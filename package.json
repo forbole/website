@@ -2,9 +2,11 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "dev": "nodemon",
+    "build": "npm run build:next && npm run build:server",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build:next": "next build",
+    "start": "NODE_ENV=production node dist/index.js",
     "type-check": "tsc",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
@@ -29,6 +31,7 @@
     "eslint-plugin-react": "^7.20.3",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
+    "ts-node": "^8.10.2",
     "typescript": "3.7.3"
   },
   "license": "ISC"

@@ -20,13 +20,13 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": [
-        "./*"
+        "src/*"
       ],
       "@components/*": [
-        "components/*"
+        "src/components/*"
       ],
       "@screens/*": [
-        "screens/*"
+        "src/screens/*"
       ],
       "@public/*": [
         "public/*"
@@ -37,6 +37,8 @@
     "node_modules"
   ],
   "include": [
-    "./server.js"
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }
