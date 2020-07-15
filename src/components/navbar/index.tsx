@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import "./styles.scss";
+import { NavBarCSS } from "./styles";
 
 const NavBar = () => {
   return (
-    <header className="main-header">
+    <NavBarCSS>
       <div className="logo">
         <Link href="/">
           <a>
@@ -64,7 +64,7 @@ const NavBar = () => {
           </Link>
         </li>
       </ul>
-    </header>
+    </NavBarCSS>
   );
 };
 

@@ -1,17 +1,19 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Layout from "@components/layout";
+import { Layout, ResponsiveExample } from "@components";
 import { useTranslation } from "i18n";
+import { HomeCSS } from "./styles";
 
 const Home = () => {
   const { t } = useTranslation("home");
   return (
     <Layout title="Forbole">
-      <div>
+      <HomeCSS>
         <Head>
           <title>Forbole</title>
         </Head>
+        <ResponsiveExample />
         <div className="hero">
           <h1>Co-Building Interchain</h1>
           <p>
@@ -27,7 +29,7 @@ const Home = () => {
           </p>
           <p>{t("placeholder")}</p>
         </div>
-      </div>
+      </HomeCSS>
     </Layout>
   );
 };

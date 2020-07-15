@@ -22,14 +22,20 @@
       "@src/*": [
         "src/*"
       ],
-      "@components/*": [
-        "src/components/*"
+      "@components": [
+        "src/components"
       ],
       "@screens/*": [
         "src/screens/*"
       ],
       "@public/*": [
         "public/*"
+      ],
+      "@styles": [
+        "src/styles"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ],
     }
   },
@@ -39,6 +45,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/styles/media.js"
   ]
 }
