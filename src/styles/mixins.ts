@@ -25,7 +25,7 @@ const mixins = {
   `,
   // used for containers that require custom or no horizontal padding
   mobileVerticalPadding: css`
-    padding-top: 1.5rem;
+    padding-top: 2.5rem;
     padding-bottom: 1.5rem;
   `,
   // used for containers that require custom or no vertical padding
@@ -57,6 +57,13 @@ const mixins = {
   // Used for the last container right before footer
   desktopBottomPadding: css`
     padding-bottom: 5rem;
+  `,
+  grayHr: css`
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #e6e6e6;
+    padding: 0;
   `,
 };
 
