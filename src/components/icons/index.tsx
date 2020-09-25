@@ -15,6 +15,11 @@ import GooglePlayButton from "./google_play_badge.svg";
 import Block from "./block.svg";
 import Award from "./award.svg";
 import Go from "./go.svg";
+import Secure from "./secure.svg";
+import Trusted from "./trust.svg";
+import Reliable from "./reliable.svg";
+import Reward from "./reward.svg";
+import Next from "./next.svg";
 
 export {
   Telegram,
@@ -34,4 +39,9 @@ export {
   Block,
   Award,
   Go,
+  Secure,
+  Trusted,
+  Reliable,
+  Reward,
+  Next,
 };

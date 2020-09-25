@@ -1,13 +1,12 @@
 import React from "react";
 import { useTranslation } from "i18n";
-import { TermsOfService } from "@components";
+import { TermsOfService, AnimatedNetwork } from "@components";
 import { networkData } from "../../config";
 import {
   SupportedNetworksCSS,
   HeaderContentCSS,
   NetworkListCSS,
 } from "./styles";
-import Network from "./components/network";
 
 const SupportedNetworks = () => {
   const { t } = useTranslation("stake_now");
@@ -22,7 +21,7 @@ const SupportedNetworks = () => {
       </HeaderContentCSS>
       <NetworkListCSS>
         {networkData.map((x) => (
-          <Network
+          <AnimatedNetwork
             key={x.name}
             name={x.name}
             image={x.image}

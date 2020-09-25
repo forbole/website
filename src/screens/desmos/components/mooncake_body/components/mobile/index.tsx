@@ -1,14 +1,8 @@
 import React from "react";
-import { useTranslation } from "i18n";
-import {
-  BodyCSS
-} from "./styles";
-import MooncakeDetails from "../mooncake_details";
-import MooncakeImg from "../mooncake_img";
+import { BodyCSS } from "./styles";
+import { MooncakeDetails, MooncakeImg } from "@components";
 
 const Mobile = () => {
-  const { t } = useTranslation("desmos");
-
   return (
     <BodyCSS>
       <MooncakeImg />

@@ -1,0 +1,75 @@
+import styled from "styled-components";
+import { media, theme, mixins } from "@styles";
+import {
+  CONTAINER_HEIGHT,
+  CONTAINER_WIDTH,
+  CONTAINER_MIN_HEIGHT,
+} from "../../../../config";
+
+const { colors } = theme;
+
+export const DesktopCSS = styled.div`
+  display: none;
+  ${media.bigDesktop`
+    min-height: ${CONTAINER_MIN_HEIGHT};
+    ${mixins.flexCenter};
+    flex-direction: row;
+    width: 100%;
+    `}
+`;
+
+export const MooncakeBodyCSS = styled.div`
+  height: ${CONTAINER_HEIGHT};
+  min-height: ${CONTAINER_MIN_HEIGHT};
+  width: ${CONTAINER_WIDTH};
+  display: flex;
+  // align-items: center;
+  position: relative;
+  width: 55%;
+  background: ${colors.white};
+  height: 80vh;
+  min-height: 800px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-left: 15rem;
+`;
+
+export const MooncakeContentCSS = styled.div`
+  max-width: 600px;
+  position: relative;
+`;
+
+export const MooncakeImgCSS = styled.div`
+  position: absolute;
+  left: -650px;
+  max-height: 45vh;
+  z-index: 1;
+`;
+
+export const BackgroundCSS = styled.div`
+  height: ${CONTAINER_HEIGHT};
+  min-height: ${CONTAINER_MIN_HEIGHT};
+  width: ${CONTAINER_WIDTH};
+  background: linear-gradient(
+      0deg,
+      rgba(123, 135, 185, 0.33),
+      rgba(123, 135, 185, 0.33)
+    ),
+    url(static/images/assets/desmos-hero.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 center;
+  display: flex;
+  flex: 1;
+  background-color: black;
+  transform: scaleX(-1);
+`;

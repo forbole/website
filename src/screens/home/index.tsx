@@ -1,35 +1,52 @@
 import React from "react";
-import Link from "next/link";
 import Head from "next/head";
-import { Layout, SampleButton, Telegram } from "@components";
+import {
+  HeroContent,
+  SupportedNetworks,
+  DashboardContent,
+  MooncakeBody,
+  News,
+  HiringContent,
+} from "./components";
+import { ProgressBar, Layout } from "@components";
 import { useTranslation } from "i18n";
-import { HomeCSS } from "./styles";
+import { HomeCSS, CustomContent } from "./styles";
+import AwesomeSlider from "react-awesome-slider";
+import { useHomeHook } from "./hooks";
 
 const Home = () => {
   const { t } = useTranslation("home");
+  const { activeScreen, setActiveScreen, handleActiveScreen } = useHomeHook();
+  // console.log(activeScreen);
   return (
-    <Layout title="Forbole">
+    <Layout title={t("home")}>
       <HomeCSS>
         <Head>
-          <title>Forbole</title>
+          <title>{t("forbole")}</title>
         </Head>
-        <Telegram />
-        <div className="hero">
-          <SampleButton />
-          <h1>Co-Building Interchain</h1>
-          <p>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </p>
-        </div>
-
-        <div className="container">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, in.
-          </p>
-          <p>{t("placeholder")}</p>
-        </div>
+        <AwesomeSlider
+          customContent={
+            <CustomContent>
+              <ProgressBar
+                handleAnimation={handleActiveScreen}
+                // onclick={}
+              />
+            </CustomContent>
+          }
+          buttons={false}
+          selected={activeScreen}
+        >
+          <div>
+            <HeroContent />
+          </div>
+          <div>
+            <HiringContent />
+          </div>
+        </AwesomeSlider>
+        <SupportedNetworks />
+        <DashboardContent />
+        <MooncakeBody />
+        <News />
       </HomeCSS>
     </Layout>
   );
