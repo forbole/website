@@ -66,20 +66,17 @@ export const HomeIconsCSS = styled.div`
     color: ${colors.white};
     font-size: 0.9rem;
   }
-
   svg {
     margin-bottom: 0.5rem;
   }
-
   ${media.tablet`
-    .icon {
-      width: 80px;
-      height: 80px;
-      font-size: 0.8rem;
-    }
-
-    svg {
-      margin-bottom: 0.3rem;
-    }
-  `}
+  .icon {
+    width: 80px;
+    height: 80px;
+    font-size: 0.8rem;
+  }
+  svg {
+    margin-bottom: 0.3rem;
+  }
+`}
 `;
