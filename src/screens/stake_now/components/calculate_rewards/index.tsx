@@ -10,10 +10,12 @@ const CalculateRewards = () => {
   const {
     selectedToken,
     setSelectedToken,
-    inputElement,
     handleCalculations,
     totalEarnings,
-  } = useCalculateRewardsHook();
+    handleChange,
+    tokens,
+    loading,
+  } = useCalculateRewardsHook(t);
 
   return (
     <CalculateRewardsCSS>
@@ -25,9 +27,11 @@ const CalculateRewards = () => {
             setSelectedToken={setSelectedToken}
           />
           <Calculator
-            inputElement={inputElement}
             handleCalculations={handleCalculations}
             totalEarnings={totalEarnings}
+            handleChange={handleChange}
+            tokens={tokens}
+            loading={loading}
           />
         </div>
       </ContentCSS>

@@ -1,5 +1,7 @@
 export interface ICalculatorProp {
-  inputElement: any;
   handleCalculations: any;
   totalEarnings: any;
+  handleChange: any;
+  tokens: any;
+  loading: boolean;
 }

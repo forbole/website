@@ -1,15 +1,20 @@
 import React from "react";
 import { useTranslation } from "i18n";
 import { AnimatedNetwork } from "@components";
-import { networkData } from "../../config";
+import { networkKeys } from "./config";
+import { getNetworkInfo } from "@src/utils/network_info";
 import {
   SupportedNetworksCSS,
   HeaderContentCSS,
   NetworkListCSS,
 } from "./styles";
+import { useSupportedNetworkHook } from "./hooks";
 
 const SupportedNetworks = () => {
   const { t } = useTranslation("home");
+  const networkData = networkKeys.map((x) => getNetworkInfo(x));
+  const { state } = useSupportedNetworkHook();
+
   return (
     <SupportedNetworksCSS>
       <HeaderContentCSS>
@@ -19,10 +24,11 @@ const SupportedNetworks = () => {
       <NetworkListCSS>
         {networkData.map((x) => (
           <AnimatedNetwork
-            key={x.name}
-            name={x.name}
-            image={x.image}
-            amount={x.amount}
+            key={x.key}
+            name={x?.name}
+            image={x?.image}
+            amount={state[x.key]}
+            delegate={x?.delegate}
           />
         ))}
       </NetworkListCSS>

@@ -8,7 +8,7 @@ import {
 } from "./styles";
 import { networkKeys } from "./config";
 import { Network } from "@components";
-import { getNetworkInfo } from "@utils/network-info";
+import { getNetworkInfo } from "@src/utils/network_info";
 
 export const EcoSystemProjects = () => {
   const { t } = useTranslation("staking");
@@ -20,11 +20,16 @@ export const EcoSystemProjects = () => {
         <p>{t("ecosystemProjectsDetails")}</p>
         <ProjectsGridCSS>
           {networkData.map((x) => (
-            <Link href={`/networks/${x.key}`} key={x.name}>
-              <a>
-                <Network name={x.name} image={x.image} nameKey={x.key} />
-              </a>
-            </Link>
+            // <Link href={`/networks/${x.key}`} key={x.name}>
+            // <a>
+            <Network
+              name={x.name}
+              image={x.image}
+              nameKey={x.key}
+              key={x.name}
+            />
+            // </a>
+            // </Link>
           ))}
         </ProjectsGridCSS>
       </MainContentCSS>

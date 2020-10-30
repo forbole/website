@@ -1,11 +1,11 @@
 export const networkKeys = [
   "cosmos",
   "iris",
-  "terra-money",
+  // "terra-money",
   "kava",
   "sentinel",
-  "likechain",
+  "likecoin",
   "regen-network",
   "e-money",
   "desmos",
-];
+].sort();

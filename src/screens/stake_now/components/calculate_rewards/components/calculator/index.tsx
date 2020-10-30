@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "semantic-ui-react";
 import { useTranslation } from "i18n";
 import { ParagraphTitleCSS } from "../../styles";
 import { CalculatorCSS, Input, StatsDetailsCSS } from "./styles";
@@ -7,18 +8,29 @@ import Detail from "./components/detail";
 
 const Calculator = (props: ICalculatorProp) => {
   const { t } = useTranslation("stake_now");
-  const { inputElement, handleCalculations, totalEarnings } = props;
+  const {
+    handleCalculations,
+    totalEarnings,
+    handleChange,
+    tokens,
+    loading,
+  } = props;
   const totalEarningKeys = Object.keys(totalEarnings);
   return (
     <CalculatorCSS>
       <ParagraphTitleCSS>{t("enterTokens")}</ParagraphTitleCSS>
       <Input
         fluid
+        onChange={handleChange}
         action={{
-          content: t("calculate"),
+          content: loading ? (
+            <Icon loading fitted name="asterisk" />
+          ) : (
+            t("calculate")
+          ),
           onClick: handleCalculations,
         }}
-        ref={inputElement}
+        value={tokens?.display}
       />
       <StatsDetailsCSS>
         {totalEarningKeys.map((x, i) => (
