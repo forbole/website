@@ -22,6 +22,8 @@ export const MaxWidthContainerCSS = styled(MaxWidthCSS)`
 `;
 
 export const ContentCSS = styled.div`
+  overflow: auto;
+  word-break: break-word;
   ${mixins.mobileLastContainerPadding}
   padding-top: 4rem;
   width: 100%;
