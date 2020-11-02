@@ -1,0 +1,26 @@
+name: Test
+on: push
+jobs:
+  Lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: run lint # will run `yarn build` command
+  Build-test:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_URL: http://localhost:3000
+      NEXT_PUBLIC_GHOST_KEY: 22444f78447824223cefc48062
+      NEXT_PUBLIC_GHOST_API: https://demo.ghost.io
+    steps:
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Run build check
+        run: npm run build
