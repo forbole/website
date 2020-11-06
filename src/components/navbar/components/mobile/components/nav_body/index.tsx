@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import classNames from "classnames";
 import { useTranslation, i18n } from "i18n";
 import {
   navItems,
@@ -25,7 +26,7 @@ const NavBody = (props: INavBar) => {
   return displayTransitions.map(
     ({ item, key, props }: any) =>
       item && (
-        <NavBodyCSS key={key} style={props}>
+        <NavBodyCSS key={key} style={props} className={classNames("nav-body")}>
           <NavbarOverrideCSS>
             <Link href="/">
               <a>
