@@ -19,18 +19,15 @@ const Home = (props: any) => {
   const { t } = useTranslation("home");
   const { activeScreen, handleActiveScreen } = useHomeHook();
   return (
-    <Layout title={t("home")} description={t("description")}>
+    <Layout
+      title={t("home")}
+      description={t("description")}
+      image="/static/images/assets/Facebook-Forbole.png"
+      twitterImage="/static/images/assets/Twitter-Forbole.png"
+    >
       <HomeCSS>
         <Head>
           <title>{t("forbole")}</title>
-          <meta
-            name="og:image"
-            content="/static/images/assets/Facebook-Forbole.png"
-          />
-          <meta
-            name="twitter:image"
-            content="/static/images/assets/Twitter-Forbole.png"
-          />
         </Head>
         <AwesomeSlider
           customContent={

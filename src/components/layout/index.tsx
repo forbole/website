@@ -15,6 +15,7 @@ type Props = {
   keywords?: string[];
   type?: string;
   image?: string;
+  twitterImage?: string;
 };
 
 const Layout = ({

@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import { useTranslation } from "i18n";
 import { theme } from "@styles";
 import { Layout } from "@components";
@@ -15,17 +14,9 @@ const Desmos = () => {
       title={t("title")}
       description={t("description")}
       navColor={colors.gray600}
+      image="/static/images/assets/Facebook-Desmos.png"
+      twitterImage="/static/images/assets/Twitter-Desmos.png"
     >
-      <Head>
-        <meta
-          name="og:image"
-          content="/static/images/assets/Facebook-Desmos.png"
-        />
-        <meta
-          name="twitter:image"
-          content="/static/images/assets/Twitter-Desmos.png"
-        />
-      </Head>
       <div>
         <DesmosBody />
         <MooncakeBody />
