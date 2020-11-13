@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import { useTranslation } from "i18n";
 import { Layout } from "@components";
 import { ContactHeader, ContactMessage, ContactInfo } from "./components";
