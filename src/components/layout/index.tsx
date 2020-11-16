@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import Head from "next/head";
 import * as R from "ramda";
+import validator from "validator";
 import { useRouter } from "next/router";
 import { NavBar, Footer } from "@components";
 import { FlexCSS } from "./styles";
@@ -28,13 +29,21 @@ const Layout = ({
   mobileNavColor,
   type = "website",
   image,
+  twitterImage,
 }: Props) => {
   const router = useRouter();
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
-  const ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
+  let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
+  let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ["Forbole", "blockchain", "social network"];
   const formattedKeyworks = R.uniq(R.concat(keywords, baseKeywords));
+  if (!validator.isURL(ogImage)) {
+    ogImage = `${url}${ogImage}`;
+  }
+  if (!validator.isURL(metaTwitterImage)) {
+    metaTwitterImage = `${url}${metaTwitterImage}`;
+  }
   return (
     <>
       <Head>
@@ -47,8 +56,8 @@ const Layout = ({
         <meta name="og:url" content={`${url}${currentPath}`} />
         <meta name="og:description" content={description} />
         <meta name="og:image" content={ogImage} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={metaTwitterImage} />
         <link
           rel="icon"
           type="image/png"
