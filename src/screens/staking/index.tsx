@@ -6,7 +6,12 @@ import { StakingCover, WhatIsStaking, EcoSystemProjects } from "./components";
 const Staking = () => {
   const { t } = useTranslation("staking");
   return (
-    <Layout title={t("title")}>
+    <Layout
+      title={t("title")}
+      description={t("description")}
+      image="/static/images/assets/Facebook-Get-to-know-Staking.png"
+      twitterImage="/static/images/assets/Twitter-Get-to-know-Staking.png"
+    >
       <StakingCover />
       <WhatIsStaking />
       <EcoSystemProjects />

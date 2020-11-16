@@ -19,7 +19,12 @@ const Home = (props: any) => {
   const { t } = useTranslation("home");
   const { activeScreen, handleActiveScreen } = useHomeHook();
   return (
-    <Layout title={t("home")}>
+    <Layout
+      title={t("home")}
+      description={t("description")}
+      image="/static/images/assets/Facebook-Forbole.png"
+      twitterImage="/static/images/assets/Twitter-Forbole.png"
+    >
       <HomeCSS>
         <Head>
           <title>{t("forbole")}</title>

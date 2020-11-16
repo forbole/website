@@ -1,5 +1,6 @@
 {
-  "title": "Big Dipper",
+  "title": "Big Dipper: A blockchain explorer",
+  "description": "Big Dipper is a renowned and open-sourced blockchain explorers with audience from 140+ countries. Supporting multiple languages, Big Dipper is an all-around monitoring and staking tool of over 20 blockchain networks and counting.",
   "supportedBlockchains": "Supported Blockchains",
   "yourCosmosExplorer": "Your Cosmos Explorer",
   "visitWebsite": "VISIT WEBSITE",

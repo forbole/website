@@ -10,7 +10,13 @@ const Desmos = () => {
   const { t } = useTranslation("desmos");
 
   return (
-    <Layout title={t("title")} navColor={colors.gray600}>
+    <Layout
+      title={t("title")}
+      description={t("description")}
+      navColor={colors.gray600}
+      image="/static/images/assets/Facebook-Desmos.png"
+      twitterImage="/static/images/assets/Twitter-Desmos.png"
+    >
       <div>
         <DesmosBody />
         <MooncakeBody />
