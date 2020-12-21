@@ -3,6 +3,7 @@ import Head from "next/head";
 import DOMPurify from "isomorphic-dompurify";
 import { Layout, Tags } from "@components";
 import { theme } from "@styles";
+import Custom404 from "@screens/404";
 import {
   BlogDetailsCSS,
   MaxWidthContainerCSS,
@@ -15,6 +16,9 @@ import { Author, SocialMedia } from "./components";
 const { colors } = theme;
 
 const BlogDetails = ({ post, raw }: any) => {
+  if (!post) {
+    return <Custom404 />;
+  }
   const url = process.env.NEXT_PUBLIC_URL;
   const {
     title,
