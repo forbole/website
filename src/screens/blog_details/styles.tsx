@@ -29,6 +29,11 @@ export const ContentCSS = styled.div`
   ${mixins.mobileLastContainerPadding}
   padding-top: 4rem;
   width: 100%;
+  h4 {
+    font-weight: 400;
+    margin-bottom: 0.1rem;
+    color: ${colors.gray400};
+  }
   h3 {
     font-weight: 400;
     margin-bottom: 1rem;

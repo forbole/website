@@ -4,7 +4,7 @@ import { IPost } from "./interface";
 
 /** Gets posts from remote */
 export const getPosts = async ({
-  limit = 5,
+  limit = 11,
   page = 1,
   // filter = "tag:-[hash-zhs,hash-zht]",
   filter = "",

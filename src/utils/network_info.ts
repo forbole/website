@@ -104,6 +104,13 @@ const logos = {
     delegate:
       "https://e-money.network/validator/emoneyvaloper1293pqwtzu67zp8txuya4yts03ccw5kgf98hz9y/delegate",
     heightSocket: "wss://ws.emoney.forbole.com",
+    calculator: {
+      bonded: "http://lcd.emoney.forbole.com/staking/pool",
+      inflation: "http://lcd.emoney.forbole.com/minting/inflation",
+      supply: "http://lcd.emoney.forbole.com/supply/total/nanolike",
+      stakingParams:
+        "http://lcd.emoney.forbole.com/staking/validators/emoneyvaloper1293pqwtzu67zp8txuya4yts03ccw5kgf98hz9y",
+    },
   },
   desmos: {
     image: "/static/images/icons/desmos.png",
@@ -233,3 +240,6 @@ export const HEIGHT_QUERY =
 
 export const POLKADOT_HEIGHT_QUERY =
   '{"jsonrpc": "2.0","method": "chain_subscribeAllHeads","id":"0","params":[]}';
+
+export const VOTE_HEIGHT_QUERY =
+  '{"jsonrpc": "2.0","id": "1", "method": "getVoteAccounts"}';
