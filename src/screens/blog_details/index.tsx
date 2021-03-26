@@ -52,7 +52,7 @@ const BlogDetails = ({ post, raw }: any) => {
     publisher: org,
     author: {
       "@type": "Person",
-      "@id": `${url}/author/${author.name}`,
+      "@id": `${url}/author/${author.slug}`,
       name: author.name,
     },
     headline: `${title}`,
