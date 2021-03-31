@@ -106,7 +106,7 @@ solana.gecko = "https://api.coingecko.com/api/v3/coins/solana";
 //   },
 // };
 
-const iris = R.clone(defaultFunctions(uIrisToIris)); 
+const iris = R.clone(defaultFunctions(uIrisToIris));
 iris.gecko = "https://api.coingecko.com/api/v3/coins/iris-network";
 
 // available networks for calculations

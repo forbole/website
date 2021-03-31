@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState, useEffect } from "react";
 import axios from "axios";
 import * as R from "ramda";
@@ -147,7 +146,7 @@ export const useForboleStakesHook = () => {
 
       // resolve any possible Promise error (in case any api endpoint doesn't work )
       try {
-        let state = {
+        const state = {
           title: cosmosData[x]?.title,
           denom: cosmosData[x]?.denom,
           totalToken: totalTokenFormat,
@@ -201,7 +200,7 @@ export const useForboleStakesHook = () => {
         }
       } catch (err) {
         console.log(`err`, err);
-        let failedState = {
+        const failedState = {
           title: cosmosData[x].title ?? null,
           totalToken: 0,
           totalMarketValue: "0.00",
