@@ -4,6 +4,15 @@ import { media } from "@styles";
 
 export const PPCSS = styled.div`
   padding: 4rem 1.5rem;
+  .usage {
+    padding-bottom: 2rem;
+  }
+  .li {
+    padding-bottom: 1rem;
+  }
+  .email {
+    list-style: none;
+  }
   ${media.bigDesktop`
   display: flex;
   flex-direction: column;
@@ -15,4 +24,8 @@ export const PPCSS = styled.div`
 
 export const MaxWidthContainerCSS = styled(MaxWidthCSS)`
   margin: auto;
+  p {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+  }
 `;
