@@ -6,15 +6,16 @@ import Post from "./components/post";
 import { IProps } from "./interface";
 import { useBlogPostsHook } from "./hooks";
 
-const AuthorPosts = ({ blogs, meta }: IProps) => {
+const AuthorPosts = ({ main, blogs, meta }: IProps) => {
   const currentPage = R.pathOr(0, ["pagination", "page"], meta);
   const totalPages = R.pathOr(0, ["pagination", "pages"], meta);
 
-  const { handleTagPageChange } = useBlogPostsHook();
+  const { handleAuthorPageChange } = useBlogPostsHook();
 
   return (
     <BlogContainerCSS>
       <BlogPostCSS>
+        {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
           <Post key={i} post={post} />
         ))}
@@ -23,7 +24,7 @@ const AuthorPosts = ({ blogs, meta }: IProps) => {
         boundaryRange={0}
         activePage={currentPage}
         totalPages={totalPages}
-        onPageChange={handleTagPageChange}
+        onPageChange={handleAuthorPageChange}
       />
     </BlogContainerCSS>
   );

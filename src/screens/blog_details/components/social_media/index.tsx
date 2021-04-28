@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Telegram, Facebook, Twitter } from "@icons";
+import { Telegram, Facebook, Twitter, LinkedIn } from "@icons";
 import { SocialMediaCSS } from "./styles";
 
 const SocialMedia = (props: any) => {
@@ -60,6 +60,15 @@ const SocialMedia = (props: any) => {
         }
       >
         <Twitter />
+      </span>
+      <span
+        onClick={() =>
+          handleClick(
+            `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}&text=${title}`
+          )
+        }
+      >
+        <LinkedIn />
       </span>
     </SocialMediaCSS>
   );
