@@ -16,7 +16,6 @@ import { INetworkDataProps } from "./interfaces";
 
 const ForboleStakes = () => {
   const { t } = useTranslation("stake_now");
-
   const hookProps = useForboleStakesHook();
   const {
     cosmos,
@@ -29,19 +28,39 @@ const ForboleStakes = () => {
     emoney,
     iris,
     vsys,
+    cryptoOrg,
+    sentinel,
+    fetchAI,
+    regen,
+    bitsong,
+    oasis,
+    kusama,
+    flow,
+    solana,
+    usdLoading,
     totalUSD,
   }: any = hookProps;
+  // console.log(`oasis`, oasis);
   const networkData: INetworkDataProps[] = [
-    { network: cosmos, icon: "cosmos-hub" },
-    { network: terra, icon: "terra" },
-    { network: kava, icon: "kava" },
-    { network: likecoin, icon: "likecoin" },
-    { network: iov, icon: "iov" },
-    { network: band, icon: "band-protocol" },
-    { network: akash, icon: "akash" },
-    { network: emoney, icon: "e-money" },
-    { network: iris, icon: "iris" },
-    { network: vsys, icon: "v-system" },
+    { network: cosmos, icon: "cosmos-hub.png" },
+    { network: terra, icon: "terra.png" },
+    { network: kava, icon: "kava.png" },
+    { network: likecoin, icon: "likecoin.png" },
+    { network: iov, icon: "iov.png" },
+    { network: band, icon: "band-protocol.png" },
+    { network: akash, icon: "akash.png" },
+    { network: emoney, icon: "e-money.png" },
+    { network: iris, icon: "iris.png" },
+    { network: vsys, icon: "v-system.png" },
+    { network: cryptoOrg, icon: "crypto-org.svg" },
+    { network: sentinel, icon: "sentinel.png" },
+    { network: fetchAI, icon: "fetch-ai.png" },
+    { network: regen, icon: "regen-network.png" },
+    { network: bitsong, icon: "bitsong.png" },
+    { network: oasis, icon: "oasis-protocol.png" },
+    { network: kusama, icon: "kusama.png" },
+    { network: flow, icon: "flow.png" },
+    { network: solana, icon: "solana.png" },
   ];
   return (
     <StakeNowContainerCSS>
@@ -55,15 +74,25 @@ const ForboleStakes = () => {
             width={"5%"}
           />
         ) : (
-          <h1>
-            $
-            <AnimatedNumber
-              animateToNumber={moneyToInt(totalUSD)}
-              includeComma
-              config={config.stiff}
-              animationType={"random"}
-            />
-          </h1>
+          <>
+            <h1>
+              $
+              <AnimatedNumber
+                animateToNumber={moneyToInt(totalUSD)}
+                includeComma
+                config={config.stiff}
+                animationType={"random"}
+              />
+            </h1>
+            {!!(usdLoading === true) && (
+              <ReactLoading
+                type={"bars"}
+                color={"#FFF"}
+                height={"5%"}
+                width={"5%"}
+              />
+            )}
+          </>
         )}
       </ForboleStakesCSS>
       <FlexContainerCSS>

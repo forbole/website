@@ -25,6 +25,27 @@ export const uIrisToIris = defaultConverter(1000000);
 
 export const nanoLikeToLike = defaultConverter(1000000000);
 
+export const uCryptoOrgToCryptoOrg = defaultConverter(100000000);
+
+export const uSentinelToSentinel = defaultConverter(1000000);
+
+// Need adjusting the converter
+export const uFetchAIToFetchAI = defaultConverter(1000000000000000000);
+
+// Regen Network not listed on Coingecko yet
+export const uRegenToRegen = defaultConverter(1000000);
+
+export const uBitsongToBitsong = defaultConverter(1000000);
+
+export const uOasisToOasis = defaultConverter(1);
+
+// need to adjust the converter
+export const uKusamaToKusama = defaultConverter(1);
+
+export const uFlowToFlow = defaultConverter(1);
+
+export const uSolanaToSolana = defaultConverter(1);
+
 export const defaultFunctions = (converter: any) => ({
   bonded: (data: any) => {
     return converter(Number(R.pathOr(0, ["result", "bonded_tokens"], data)));
@@ -75,9 +96,6 @@ vsys.gecko = "https://api.coingecko.com/api/v3/coins/v-systems";
 const emoney = R.clone(defaultFunctions(uBandToBand));
 emoney.gecko = "https://api.coingecko.com/api/v3/coins/iris-network";
 
-const solana = R.clone(defaultFunctions(uAtomToAtom));
-solana.gecko = "https://api.coingecko.com/api/v3/coins/solana";
-
 // const iris: any = {
 //   bonded: (data: any) => {
 //     return Number(R.pathOr(0, ["bonded_tokens"], data));
@@ -109,6 +127,34 @@ solana.gecko = "https://api.coingecko.com/api/v3/coins/solana";
 const iris = R.clone(defaultFunctions(uIrisToIris));
 iris.gecko = "https://api.coingecko.com/api/v3/coins/iris-network";
 
+const cryptoOrg = R.clone(defaultFunctions(uCryptoOrgToCryptoOrg));
+cryptoOrg.gecko = "https://api.coingecko.com/api/v3/coins/crypto-com-chain";
+
+const sentinel = R.clone(defaultFunctions(uSentinelToSentinel));
+sentinel.gecko = "https://api.coingecko.com/api/v3/coins/sentinel";
+
+const fetchAI = R.clone(defaultFunctions(uFetchAIToFetchAI));
+fetchAI.gecko = "https://api.coingecko.com/api/v3/coins/fetch-ai";
+
+// Regen Network not listed on Coingecko yet
+const regen = R.clone(defaultFunctions(uRegenToRegen));
+// regen.gecko = "https://api.coingecko.com/api/v3/coins/regen-network";
+
+const bitsong = R.clone(defaultFunctions(uBitsongToBitsong));
+bitsong.gecko = "https://api.coingecko.com/api/v3/coins/bitsong";
+
+const oasis = R.clone(defaultFunctions(uOasisToOasis));
+oasis.gecko = "https://api.coingecko.com/api/v3/coins/oasis-network";
+
+const kusama = R.clone(defaultFunctions(uKusamaToKusama));
+kusama.gecko = "https://api.coingecko.com/api/v3/coins/kusama";
+
+const flow = R.clone(defaultFunctions(uFlowToFlow));
+flow.gecko = "https://api.coingecko.com/api/v3/coins/flow";
+
+const solana = R.clone(defaultFunctions(uSolanaToSolana));
+solana.gecko = "https://api.coingecko.com/api/v3/coins/solana";
+
 // available networks for calculations
 export const networkFunctions = {
   cosmos,
@@ -123,4 +169,12 @@ export const networkFunctions = {
   vsys,
   solana,
   ["band-protocol"]: band,
+  cryptoOrg,
+  sentinel,
+  ["fetch.ai"]: fetchAI,
+  "regen-network": regen,
+  bitsong,
+  "oasis-protocol": oasis,
+  kusama,
+  flow,
 };

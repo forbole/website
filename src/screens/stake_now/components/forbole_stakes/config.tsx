@@ -1,3 +1,70 @@
+const dataParams = {
+  cosmos: {
+    totalTokenData: 273460364505181,
+    bondedData: 193395019832210,
+    selfDelegation: 2414513744704,
+  },
+  terra: {
+    totalTokenData: 982911320980144,
+    bondedData: 322848406720639,
+    selfDelegation: 2358293157003,
+  },
+  kava: {
+    totalTokenData: 128155373282488,
+    bondedData: 74827116718480,
+    selfDelegation: 2213097585421,
+  },
+  cryptoOrg: {
+    totalTokenData: 2506933382641597413,
+    bondedData: 348954387453015544,
+    selfDelegation: 7308504808729876,
+  },
+  sentinel: {
+    totalTokenData: 10288428980216833,
+    bondedData: 9167598803417683,
+    selfDelegation: 264415829817570,
+  },
+  ["fetch.ai"]: {
+    totalTokenData: 1059406888657601483097496694,
+    bondedData: 53388864075675265212893849,
+    selfDelegation: 3438006635315918023130450,
+  },
+  ["regen-network"]: {
+    totalTokenData: 102712435328012,
+    bondedData: 57978105410921,
+    selfDelegation: 2360208138165,
+  },
+  bitsong: {
+    totalTokenData: 106228117674904,
+    bondedData: 31303511882895,
+    selfDelegation: 4749699284583,
+  },
+  ["oasis-protocol"]: {
+    totalTokenData: 10000000000,
+    bondedData: 4545887153.23,
+    selfDelegation: 54396365.96,
+  },
+  kusama: {
+    totalTokenData: 10000000,
+    bondedData: 4890000,
+    selfDelegation: 15526,
+  },
+  flow: {
+    totalTokenData: 1358642702.43160844,
+    bondedData: 1238448939.32838964,
+    selfDelegation: 27104804.58989077,
+  },
+  solana: {
+    totalTokenData: 496200600,
+    bondedData: 335727200,
+    selfDelegation: 839318,
+  },
+};
+
+export const getDataParams = (key) => {
+  return dataParams[key] ?? {};
+};
+
 export const cosmosData = [
   {
     title: "Cosmos Hub",
@@ -5,7 +72,7 @@ export const cosmosData = [
     network: "cosmos",
     denom: "ATOM",
     delegationsApi:
-      "https://lcd.cosmoshub.bigdipper.live/staking/delegators/cosmos14kn0kk33szpwus9nh8n87fjel8djx0y0mmswhp/delegations",
+      "https://api.cosmoshub.bigdipper.live/staking/delegators/cosmos14kn0kk33szpwus9nh8n87fjel8djx0y0mmswhp/delegations",
     address: "validator_address",
     delegationsJson_R: ["result"],
     validator_address: ["cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj"],
@@ -112,6 +179,60 @@ export const cosmosData = [
     delegationsJson_R: ["result"],
     validator_address: ["iaa1msqqkd3v0gmullzwm56c4frevyczzxfednxa7m"],
     color: "#7a41ff",
+  },
+  {
+    title: "Crypto.org",
+    name: "cryptoOrg",
+    network: "crypto.org",
+    denom: "CRO",
+  },
+  {
+    title: "Sentinel",
+    name: "sentinel",
+    network: "sentinel",
+    denom: "DVPN",
+  },
+  {
+    title: "Fetch.ai",
+    name: "fetch.ai",
+    network: "fetch.ai",
+    denom: "FET",
+  },
+  {
+    title: "regen-network",
+    name: "regen-network",
+    network: "regen-network",
+    denom: "REGEN",
+  },
+  {
+    title: "Bitsong",
+    name: "bitsong",
+    network: "bitsong",
+    denom: "BTSG",
+  },
+  {
+    title: "Oasis Protocol",
+    name: "oasis-protocol",
+    network: "oasis-protocol",
+    denom: "ROSE",
+  },
+  {
+    title: "Kusama",
+    name: "kusama",
+    network: "kusama",
+    denom: "KSM",
+  },
+  {
+    title: "Flow",
+    name: "flow",
+    network: "flow",
+    denom: "FLOW",
+  },
+  {
+    title: "Solana",
+    name: "solana",
+    network: "solana",
+    denom: "SOL",
   },
 ];
 
