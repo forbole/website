@@ -4,11 +4,21 @@ import { theme, media } from "@styles";
 const { colors } = theme;
 
 export const PostCSS = styled.div`
-  img {
-    border-radius: 0.5rem;
-    min-height: 150px;
-    width: 100%;
-    object-fit: cover;
+  .image-container {
+    padding-bottom: 1rem;
+    > div {
+      position: unset !important;
+    }
+
+    .image {
+      display: block;
+      position: relative !important;
+      border-radius: 0.5rem;
+      height: 200px !important;
+      min-height: 150px !important;
+      width: 100% !important;
+      object-fit: cover;
+    }
   }
   h3 {
     font-weight: 500;
@@ -42,8 +52,19 @@ export const PostCSS = styled.div`
   }
 
   ${media.bigDesktop`
-    img {
-      height: 225px;
+    &.main {
+      .content {
+        a > .image-container {
+            .image {
+              height: 350px !important;
+            }
+        }
+      }
+    }
+    .image-container {
+      .image {
+        height: 225px !important;
+      }
     }
   `}
 `;
