@@ -29,4 +29,5 @@ export const networkKeys = [
   "crypto.org",
   "v-system",
   "osmosis",
+  "elrond",
 ].sort();

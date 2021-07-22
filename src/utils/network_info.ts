@@ -331,6 +331,14 @@ const logos = {
     delegate: "https://osmosis.zone/",
     bigDipper: "https://osmosis.bigdipper.live/",
   },
+  elrond: {
+    image: "/static/images/icons/elrond.png",
+    name: "Elrond",
+    key: "elrond",
+    delegate:
+      "https://explorer.elrond.com/providers/erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqq40llllsfjmn54",
+    // bigDipper: "https://elrond.bigdipper.live/",
+  },
 };
 
 export const getNetworkInfo = (key) => {
