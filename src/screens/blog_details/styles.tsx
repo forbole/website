@@ -51,10 +51,6 @@ export const ContentCSS = styled.div`
     }
   }
 
-  img {
-    width: 100%;
-  }
-
   .tags-container {
     margin-top: 1rem;
   }

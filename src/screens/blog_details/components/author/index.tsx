@@ -14,7 +14,11 @@ const Author = ({ post }: any) => {
       <div className="image-container">
         <Image
           loader={cmsLoader}
-          src={author.profileImage}
+          src={
+            author.profileImage == null
+              ? "/static/images/assets/blog-placeholder.png"
+              : author.profileImage
+          }
           alt={author.name}
           className="image"
           layout="fill"

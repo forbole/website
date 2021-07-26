@@ -70,7 +70,11 @@ const AuthorTitlePosts = (props: any) => {
                 <div className="image-container">
                   <Image
                     loader={cmsLoader}
-                    src={author.profile_image}
+                    src={
+                      author.profile_image == null
+                        ? "/static/images/assets/blog-placeholder.png"
+                        : author.profile_image
+                    }
                     alt={author.name}
                     className="image"
                     layout="fill"
