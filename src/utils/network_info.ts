@@ -335,8 +335,7 @@ const logos = {
     image: "/static/images/icons/elrond.png",
     name: "Elrond",
     key: "elrond",
-    delegate:
-      "https://explorer.elrond.com/providers/erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqq40llllsfjmn54",
+    delegate: "https://elrond.forbole.com/",
     // bigDipper: "https://elrond.bigdipper.live/",
   },
 };
