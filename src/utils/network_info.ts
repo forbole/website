@@ -338,6 +338,22 @@ const logos = {
     delegate: "https://elrond.forbole.com/",
     // bigDipper: "https://elrond.bigdipper.live/",
   },
+  radix: {
+    image: "/static/images/icons/radix.png",
+    name: "Radix",
+    key: "radix",
+    delegate:
+      "https://explorer.radixdlt.com/#/validators/rv1qtkl4r2x86cn5nujyx7cnd6rup5tkuvvm7qqp0ycxa6fgv246k6d6nrq0kz",
+    // bigDipper: "https://osmosis.bigdipper.live/",
+  },
+  // wormhole: {
+  //   image: "/static/images/icons/elrond.png",
+  //   name: "Elrond",
+  //   key: "elrond",
+  //   // delegate: "https://elrond.forbole.com/",
+  //   // bigDipper: "https://elrond.bigdipper.live/",
+  //   disable: true,
+  // },
 };
 
 export const getNetworkInfo = (key) => {

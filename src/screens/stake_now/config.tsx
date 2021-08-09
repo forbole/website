@@ -30,4 +30,5 @@ export const networkKeys = [
   "v-system",
   "osmosis",
   "elrond",
+  "radix",
 ].sort();

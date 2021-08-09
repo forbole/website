@@ -32,4 +32,5 @@ export const networkKeys = [
   "moonbeam",
   "osmosis",
   "elrond",
+  "radix",
 ].sort();
