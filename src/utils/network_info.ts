@@ -270,6 +270,12 @@ const logos = {
     name: "Sharering",
     key: "sharering",
   },
+  cardano: {
+    image: "/static/images/icons/cardano.png",
+    name: "Cardano",
+    key: "cardano",
+    delegate: "https://www.forbole.com/blog/ada-cardano-staking-guide",
+  },
   ["fetch.ai"]: {
     image: "/static/images/icons/fetch-ai.png",
     name: "Fetch.ai",
