@@ -374,6 +374,20 @@ const logos = {
     delegate:
       "https://blockscan.ixo.world/account/ixo1dvr6jp0j7jqjrzqp4xz333h2s85pxvzgg3ad8c",
   },
+  bitcanna: {
+    image: "/static/images/icons/bitcanna.png",
+    name: "BitCanna",
+    key: "bitcanna",
+    delegate:
+      "https://cosmos-explorer.bitcanna.io/validators/bcnavaloper1kkpevanspcg0zkxhnvptjszus52svxpcwe32yp",
+  },
+  rizon: {
+    image: "/static/images/icons/rizon.png",
+    name: "Rizon",
+    key: "rizon",
+    delegate:
+      "https://www.mintscan.io/rizon/validators/rizonvaloper1axa2p2klp4er2z0a29msplf9mtmq7venrmudk7",
+  },
 };
 
 export const getNetworkInfo = (key) => {

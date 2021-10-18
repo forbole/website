@@ -37,4 +37,6 @@ export const networkKeys = [
   "cardano",
   "lido",
   "ixo",
+  "bitcanna",
+  "rizon",
 ].sort();
