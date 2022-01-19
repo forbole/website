@@ -83,6 +83,16 @@ export const membersData = [
     slug: "charles",
   },
   {
+    name: "Hiep Mai",
+    position: "trainDevOpsEng",
+    image: "/static/images/team/hiep.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/quanghiep-mai/",
+      twitter: "https://twitter.com/hiepmq",
+    },
+    slug: "hiep",
+  },
+  {
     name: "Calvin Kei",
     position: "leadFrontDev",
     image: "/static/images/team/calvin.jpg",
@@ -101,6 +111,16 @@ export const membersData = [
       github: "https://github.com/ryuash",
     },
     slug: "wingman",
+  },
+  {
+    name: "Kevin Pang",
+    position: "sswe",
+    image: "/static/images/team/kevin.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/kppang/",
+      github: "https://github.com/Moistbobo",
+    },
+    slug: "kevin",
   },
   {
     name: "Leonardo Bragagnolo",
@@ -165,6 +185,37 @@ export const membersData = [
     slug: "paul",
   },
   {
+    name: "Franco Chau",
+    position: "swe",
+    image: "/static/images/team/franco.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/franco-chau-96411317b",
+      github: "https://github.com/francochau",
+    },
+    slug: "franco",
+  },
+  {
+    name: "Aaron Tsou",
+    position: "swe",
+    image: "/static/images/team/aaron.jpg",
+    links: {
+      twitter: "https://twitter.com/AaronTsou",
+      linkedin: "https://www.linkedin.com/in/atsou/",
+      github: "https://github.com/huichiaotsou",
+    },
+    slug: "aaron",
+  },
+  {
+    name: "Ellie Yang",
+    position: "swe",
+    image: "/static/images/team/ellie.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/ellie-y/",
+      github: "https://github.com/yayay927",
+    },
+    slug: "ellie",
+  },
+  {
     name: "Caroline Lau",
     position: "communityManager",
     image: "/static/images/team/caroline.jpeg",
@@ -220,6 +271,27 @@ export const membersData = [
       twitter: "https://twitter.com/jadelaiwy",
     },
     slug: "jade",
+  },
+  {
+    name: "Brian Chan",
+    position: "talentAqt",
+    image: "/static/images/team/brian.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/brian-chan-bhn/",
+      twitter: "https://twitter.com/brianchan_bhn",
+    },
+    slug: "brian",
+  },
+  {
+    name: "Kannie Chu",
+    position: "projManager",
+    image: "/static/images/team/kannie.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/kannie-chu/",
+      twitter: "https://twitter.com/kachujai",
+      github: "https://github.com/kanniec826",
+    },
+    slug: "kannie",
   },
   // {
   // name: "You",

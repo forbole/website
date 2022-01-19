@@ -37,4 +37,8 @@ export const networkKeys = [
   "ixo",
   "bitcanna",
   "rizon",
+  "chihuahua",
+  "lum.network",
+  "axelar-network",
+  "ssv",
 ].sort();
