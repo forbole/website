@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { MemberCSS, SocialMediaContainerCSS } from "./styles";
-import { LinkedIn, Twitter, Github } from "@icons";
+import { LinkedIn, Twitter, Github, Medium } from "@icons";
 const Member = (props: any) => {
   const {
     name = "",
@@ -36,6 +36,11 @@ const Member = (props: any) => {
         {!!links.github && (
           <a href={links.github} target="_blank" rel="noreferrer">
             <Github />
+          </a>
+        )}
+        {!!links.medium && (
+          <a href={links.medium} target="_blank" rel="noreferrer">
+            <Medium />
           </a>
         )}
       </SocialMediaContainerCSS>

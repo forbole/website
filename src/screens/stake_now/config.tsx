@@ -42,4 +42,10 @@ export const networkKeys = [
   "axelar-network",
   "ssv",
   "comdex",
+  "gravity-bridge",
+  "nomic",
+  "sommelier",
+  "omniflex",
+  "cheqd",
+  "secret",
 ].sort();

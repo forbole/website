@@ -145,6 +145,17 @@ export const membersData = [
     slug: "manuel",
   },
   {
+    name: "Alessandro Mazzon",
+    position: "swe",
+    image: "/static/images/team/alessandro.jpeg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/ale-mazzon/",
+      github: "https://github.com/ale-mazz",
+      twitter: "https://twitter.com/ale_mazzon",
+    },
+    slug: "rachel",
+  },
+  {
     name: "Rachel Ho",
     position: "swe",
     image: "/static/images/team/rachel.jpg",
@@ -245,6 +256,16 @@ export const membersData = [
     slug: "rooty",
   },
   {
+    name: "Viola Chan",
+    position: "seniorUXDesigner",
+    image: "/static/images/team/viola.jpg",
+    links: {
+      twitter: "https://twitter.com/Viocmm",
+      linkedin: "https://www.linkedin.com/in/violacc/",
+    },
+    slug: "viola",
+  },
+  {
     name: "Nicole To",
     position: "uiuxDesigner",
     image: "/static/images/team/nicole.jpg",
@@ -254,8 +275,17 @@ export const membersData = [
     slug: "nicole",
   },
   {
+    name: "Vivian Wong",
+    position: "uiuxDesigner",
+    image: "/static/images/team/vivian.jpeg",
+    links: {
+      twitter: "https://twitter.com/vivianw271",
+    },
+    slug: "vivian",
+  },
+  {
     name: "Carine Cho",
-    position: "exeAssitant",
+    position: "stratManager",
     image: "/static/images/team/carine.png",
     links: {
       linkedin: "https://www.linkedin.com/in/carine-cho",
@@ -292,6 +322,17 @@ export const membersData = [
     slug: "ron",
   },
   {
+    name: "Wei Ly",
+    position: "prodLead",
+    image: "/static/images/team/wei.jpeg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/wei-ly-81371b3/",
+      twitter: "https://twitter.com/ly_wei",
+      medium: "https://weiking.medium.com/",
+    },
+    slug: "wei",
+  },
+  {
     name: "Kannie Chu",
     position: "projManager",
     image: "/static/images/team/kannie.jpg",
@@ -301,6 +342,16 @@ export const membersData = [
       github: "https://github.com/kanniec826",
     },
     slug: "kannie",
+  },
+  {
+    name: "Christy Li",
+    position: "exeAssitant",
+    image: "/static/images/team/christy.webp",
+    links: {
+      linkedin: "https://www.linkedin.com/in/christywyli/",
+      twitter: "https://twitter.com/christyli_fb",
+    },
+    slug: "christy",
   },
   // {
   // name: "You",

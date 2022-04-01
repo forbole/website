@@ -422,6 +422,45 @@ const logos = {
     key: "comdex",
     delegate: "https://comdex.omniflix.co/",
   },
+  ["gravity-bridge"]: {
+    image: "/static/images/icons/gravity-bridge.png",
+    name: "Gravity Bridge",
+    key: "gravity-bridge",
+    delegate:
+      "https://gravity-bridge.ezstaking.io/validators/gravityvaloper1xwkkam88aep5jcu2hcj0a2hy79eyvcw6yhfgv6",
+  },
+  nomic: {
+    image: "/static/images/icons/nomic.svg",
+    name: "Nomic",
+    key: "nomic",
+    delegate: "https://app.nomic.io/",
+  },
+  sommelier: {
+    image: "/static/images/icons/sommelier.png",
+    name: "Sommelier",
+    key: "sommelier",
+    delegate:
+      "https://wallet.keplr.app/#/sommelier/stake?modal=detail&validator=sommvaloper1l449zpgsn74y7vneh27malgfc8yg76ckpz6w78",
+  },
+  omniflex: {
+    image: "/static/images/icons/omniflex.svg",
+    name: "Omniflex",
+    key: "omniflex",
+    delegate: "https://flix.omniflix.co/stake",
+  },
+  cheqd: {
+    image: "/static/images/icons/cheqd.svg",
+    name: "Cheqd",
+    key: "cheqd",
+    delegate: "https://cheqd.omniflix.co/stake",
+  },
+  secret: {
+    image: "/static/images/icons/secret.svg",
+    name: "Secret Network",
+    key: "secret",
+    delegate:
+      "https://wallet.keplr.app/#/secret/stake?modal=detail&validator=secretvaloper1kvp570cd6zvzh8ffrhz7lmytt6v6u2gxz8tl0g",
+  },
 };
 
 export const getNetworkInfo = (key) => {
