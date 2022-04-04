@@ -406,8 +406,8 @@ const logos = {
     image: "/static/images/icons/axelar-network.png",
     name: "Axelar Network",
     key: "axelar-network",
-    // delegate: "https://axelar.network/",
-    disable: true,
+    delegate:
+      "https://wallet.keplr.app/#/axelar/stake?modal=stake&validator=axelarvaloper1r7ppsrmzpslqu3d3yf344kzjv32n9dn4xyt0sw",
   },
   ssv: {
     image: "/static/images/icons/ssv.png",
