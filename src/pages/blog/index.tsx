@@ -1,18 +1,20 @@
 import Blog from "@screens/blog";
+import type { NextPage } from "next";
 import { getPosts, getAllPosts, getTags } from "@api/posts";
 import { Post, Tag } from "@models";
 import { removeInternalTags } from "@utils/remove_internal_tags";
-function BlogPage(props: any) {
+const BlogPage: NextPage = (props: any) => {
   return <Blog {...props} />;
-}
+};
 
-BlogPage.getInitialProps = async ({ query }) => {
+export async function getServerSideProps(context) {
   let formattedPosts = [];
   let formattedSidePosts = [];
   let formattedTags = [];
   let meta = {};
   let error = false;
   try {
+    const { query } = context;
     const fetchQuery: any = {};
     let posts: any = [];
     if (query.page) {
@@ -38,16 +40,18 @@ BlogPage.getInitialProps = async ({ query }) => {
     meta = posts.meta;
   } catch (err) {
     error = true;
-    console.log(error, "error");
+    console.log(err, "error");
   }
 
   return {
-    posts: formattedPosts,
-    tags: formattedTags,
-    sidePosts: formattedSidePosts,
-    meta,
-    error,
+    props: {
+      posts: JSON.parse(JSON.stringify(formattedPosts)),
+      tags: JSON.parse(JSON.stringify(formattedTags)),
+      sidePosts: JSON.parse(JSON.stringify(formattedSidePosts)),
+      meta,
+      error,
+    },
   };
-};
+}
 
 export default BlogPage;
