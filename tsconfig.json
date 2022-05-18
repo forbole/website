@@ -30,6 +30,7 @@
       ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",  "tests/utils/mock_i18n.js",
+    "tests/utils/mock_apollo_provider.tss"],
+  "exclude": ["node_modules"]
 }
