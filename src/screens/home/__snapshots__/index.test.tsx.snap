@@ -3,7 +3,7 @@
 exports[`screen: Home matches snapshot 1`] = `
 <DocumentFragment>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-186zswo-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-19w8cah-MuiTypography-root"
   >
     hello world
   </p>
