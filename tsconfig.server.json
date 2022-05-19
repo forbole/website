@@ -8,4 +8,4 @@
     "include": [
       "server/index.ts"
     ]
-  }
+}

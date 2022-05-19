@@ -2,14 +2,30 @@ import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
 
 const Home = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   return (
-    <Typography sx={{ fontSize: theme.typography.h1 }}>
-      {t('hello world')}
-    </Typography>
+    <>
+      <Typography
+        sx={(s) => ({
+          [s.breakpoints.up('tablet')]: { display: 'none' },
+          // fontSize: { sm: '10px', lg: theme.typography.h1 },
+        })}
+      >
+        {t('hello world')}
+      </Typography>
+      {/* <Typography
+        sx={{
+          fontSize: theme.typography.h1,
+          color: { sm: 'red', md: 'black' },
+        }}
+      >
+        {t('hello world')}
+      </Typography> */}
+    </>
   );
 };
 

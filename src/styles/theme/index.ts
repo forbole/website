@@ -14,20 +14,19 @@ import { lightThemeOverride } from './light';
 /** Common themes that don't change across light and dark theme */
 export const common = {
   breakpoints: {
-    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+    keys: ['mobile', 'tablet', 'laptop', 'desktop'],
     values: {
-      xs: 0,
-      sm: 375,
-      md: 768,
-      lg: 1280,
-      xl: 1920,
+      mobile: 320,
+      tablet: 769,
+      laptop: 1025,
+      desktop: 1201,
     },
   },
   typography: {
     fontFamily: 'SF Pro',
     h1: {
       fontSize: '32px',
-      '@media (min-width: 768px)': {
+      '@media (min-width: 769px)': {
         fontSize: '64px',
       },
     },
