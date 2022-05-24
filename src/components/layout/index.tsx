@@ -88,21 +88,21 @@ const Layout = ({
           rel="icon"
           type="image/png"
           sizes="96x96"
-          href={`${url}/static/icons/favicon-96x96.png`}
+          href={`${url}/icons/favicon-96x96.png`}
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href={`${url}/static/icons/favicon-32x32.png`}
+          href={`${url}/icons/favicon-32x32.png`}
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href={`${url}/static/icons/favicon-16x16.png`}
+          href={`${url}/icons/favicon-16x16.png`}
         />
-        <link rel="manifest" href={`${url}/static/icons/manifest.json`} />
+        <link rel="manifest" href={`${url}/icons/manifest.json`} />
       </Head>
       <Box
         sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}

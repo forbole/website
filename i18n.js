@@ -5,6 +5,7 @@ module.exports = {
   defaultLocale: 'en',
   pages: {
     '*': ['common'],
+    '/': ['home'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };

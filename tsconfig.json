@@ -27,6 +27,9 @@
       ],
       "@recoil/*": [
         "src/recoil/*"
+      ],
+      "@components": [
+        "src/components"
       ]
     }
   },
