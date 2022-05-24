@@ -8,7 +8,7 @@ export const navItems = [
     link: '/mission',
   },
   {
-    display: 'solution',
+    display: 'solutions',
     link: '/solution',
   },
   {

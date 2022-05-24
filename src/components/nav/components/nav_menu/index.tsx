@@ -12,6 +12,7 @@ import { navItems } from './config';
 const NavMenu = () => {
   const { t } = useTranslation('common');
   const theme = useTheme();
+  const [width, setWidth] = React.useState(0);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -20,6 +21,9 @@ const NavMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  React.useEffect(() => {
+    setWidth(window.innerWidth);
+  });
   return (
     <div>
       <IconButton
@@ -50,7 +54,13 @@ const NavMenu = () => {
         PaperProps={{
           style: {
             // maxHeight: ITEM_HEIGHT * 4.5,
-            // width: '20ch',
+            width: '50vw',
+          },
+          sx: {
+            left: `${width / 4}px!important` as any,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            backgroundColor: '#1D1E22',
           },
         }}
       >
@@ -60,6 +70,10 @@ const NavMenu = () => {
             // selected={anchorEl}
             onClick={handleClose}
             sx={{
+              '> a': {
+                color: theme.palette.primary.main,
+                textDecoration: 'none',
+              },
               '&:hover': {
                 backgroundColor: theme.palette.custom.forbole.indigo,
               },
