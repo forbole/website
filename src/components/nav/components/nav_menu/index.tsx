@@ -85,6 +85,8 @@ const NavMenu = ({ link }: NavMenuProps) => {
               fontWeight: 900,
               height: theme.spacing(8),
               '> a': {
+                width: '100%',
+                textAlign: 'center',
                 color:
                   item.link === link
                     ? theme.palette.custom.forbole.purple
