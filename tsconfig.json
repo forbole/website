@@ -34,8 +34,14 @@
       "@components": [
         "src/components"
       ],
+      "@components/*": [
+        "src/components/*"
+      ],
       "@tests/*": [
         "tests/*"
+      ],
+      "@icons": [
+        "src/components/icons"
       ]
     }
   },

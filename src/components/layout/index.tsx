@@ -6,6 +6,7 @@ import * as R from 'ramda';
 import validator from 'validator';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
+import Nav from '../nav';
 
 type Props = {
   children?: ReactNode;
@@ -107,6 +108,7 @@ const Layout = ({
       <Box
         sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
       >
+        <Nav />
         {children}
         {/* {!!footer && <Footer />} */}
       </Box>

@@ -6,7 +6,8 @@ declare module '@mui/material/styles/createPalette' {
     interface Custom {
         background: { default: string };
         forbole: {
-            red: '#BD081C',
+            red: string,
+            indigo: string,
         },
     }
     interface PaletteOptions {
