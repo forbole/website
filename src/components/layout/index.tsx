@@ -5,7 +5,7 @@ import Head from 'next/head';
 import * as R from 'ramda';
 import validator from 'validator';
 import { useRouter } from 'next/router';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import Nav from '../nav';
 
 type Props = {
@@ -33,6 +33,7 @@ const Layout = ({
   twitterImage,
   themeModeButton,
 }: Props) => {
+  const theme = useTheme();
   const router = useRouter();
   const currentPath = router.asPath === '/' ? '/' : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
@@ -108,7 +109,11 @@ const Layout = ({
         <link rel="manifest" href={`${url}/icons/manifest.json`} />
       </Head>
       <Box
-        sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+        }}
       >
         <Nav navLink={navLink} />
         {children}

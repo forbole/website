@@ -37,13 +37,15 @@ const NavMenu = ({ link }: NavMenuProps) => {
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
-        sx={
-          {
-            //   '&:hover': {
-            //     backgroundColor: theme.palette.custom.forbole.indigo,
-            //   },
-          }
-        }
+        sx={{
+          [theme.breakpoints.up('laptop')]: {
+            width: theme.spacing(7),
+            height: theme.spacing(7),
+          },
+          '&:hover': {
+            backgroundColor: 'rgba(29, 30, 34, 0.3)',
+          },
+        }}
       >
         <MenuIcon />
       </IconButton>
@@ -56,15 +58,18 @@ const NavMenu = ({ link }: NavMenuProps) => {
         open={open}
         onClose={handleClose}
         PaperProps={{
-          style: {
-            // maxHeight: ITEM_HEIGHT * 4.5,
-            width: '70%',
-          },
           sx: {
-            top: '80px!important' as any,
-            left: `${width / 6}px!important` as any,
             backgroundColor: '#1D1E22',
             borderRadius: theme.spacing(2.25),
+            width: theme.spacing(27.5),
+            left: `${width - width / 4}px!important` as any,
+            [theme.breakpoints.down('tablet')]: {
+              width: '70%',
+              top: '80px!important' as any,
+              left: `${width / 6}px!important` as any,
+              backgroundColor: '#1D1E22',
+              borderRadius: theme.spacing(2.25),
+            },
           },
         }}
       >
@@ -76,6 +81,7 @@ const NavMenu = ({ link }: NavMenuProps) => {
             sx={{
               display: 'flex',
               justifyContent: 'center',
+              fontSize: theme.spacing(2),
               fontWeight: 900,
               height: theme.spacing(8),
               '> a': {
