@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`screen: Home matches snapshot 1`] = `
-<DocumentFragment>
+<div
+  description="description"
+  id="Layout"
+  image="/static/images/assets/Facebook-Forbole.png"
+  title="forbole"
+  twitterImage="/static/images/assets/Twitter-Forbole.png"
+>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-19w8cah-MuiTypography-root"
+    className="MuiTypography-root MuiTypography-body1 css-19w8cah-MuiTypography-root"
   >
     hello world
   </p>
-</DocumentFragment>
+</div>
 `;

@@ -1,25 +1,29 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import renderer from 'react-test-renderer';
+import { wait } from '@tests/utils';
+// import { render, screen } from '@testing-library/react';
 import Home from '.';
 
 // ==================================
 // mocks
 // ==================================
-const mockI18n = {
-  t: (key: string) => key,
-  lang: 'en',
-};
-
-jest.mock('next-translate/useTranslation', () => () => mockI18n);
+jest.mock('@components', () => ({
+  Layout: (props: any) => <div id="Layout" {...props} />,
+}));
 
 // ==================================
 // unit tests
 // ==================================
 describe('screen: Home', () => {
   it('matches snapshot', async () => {
-    const { asFragment } = render(<Home />);
-    expect(screen.getByText(/Hello World/i)).toBeInTheDocument();
-    expect(asFragment()).toMatchSnapshot();
+    let component: any;
+    renderer.act(() => {
+      component = renderer.create(<Home />);
+    });
+    await wait();
+
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   afterEach(() => {
