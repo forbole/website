@@ -6,8 +6,10 @@ import * as R from 'ramda';
 import validator from 'validator';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
+import Nav from '../nav';
 
 type Props = {
+  navLink: string;
   children?: ReactNode;
   title?: string;
   footer?: boolean;
@@ -20,6 +22,7 @@ type Props = {
 };
 
 const Layout = ({
+  navLink,
   children,
   title = 'Forbole',
   footer,
@@ -105,8 +108,13 @@ const Layout = ({
         <link rel="manifest" href={`${url}/icons/manifest.json`} />
       </Head>
       <Box
-        sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+        }}
       >
+        <Nav navLink={navLink} />
         {children}
         {/* {!!footer && <Footer />} */}
       </Box>

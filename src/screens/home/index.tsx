@@ -9,6 +9,7 @@ const Home = () => {
   const theme = useTheme();
   return (
     <Layout
+      navLink="/"
       title={t('forbole')}
       description={t('description')}
       image="/static/images/assets/Facebook-Forbole.png"

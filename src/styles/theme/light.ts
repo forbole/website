@@ -3,7 +3,7 @@ const backgroundDefault = '#FFFFFF';
 /** Custom theme overrides for dark mode */
 export const lightThemeOverride = {
   palette: {
-    type: 'dark',
+    type: 'light',
     primary: {
       main: '#FFFFFF',
     },
@@ -13,8 +13,15 @@ export const lightThemeOverride = {
     background: {
       default: backgroundDefault,
     },
-    forbole: {
-      red: '#BD081C',
+    custom: {
+      background: {
+        default: backgroundDefault,
+      },
+      forbole: {
+        red: '#BD081C',
+        indigo: '#362187',
+        purple: '#6061E4',
+      },
     },
   },
 };
