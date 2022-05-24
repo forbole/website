@@ -5,6 +5,7 @@ exports[`screen: Home matches snapshot 1`] = `
   description="description"
   id="Layout"
   image="/static/images/assets/Facebook-Forbole.png"
+  navLink="/"
   title="forbole"
   twitterImage="/static/images/assets/Twitter-Forbole.png"
 >
