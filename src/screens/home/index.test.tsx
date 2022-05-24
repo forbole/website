@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { wait } from '@tests/utils';
-// import { render, screen } from '@testing-library/react';
 import Home from '.';
 
 // ==================================

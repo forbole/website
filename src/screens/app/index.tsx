@@ -1,13 +1,8 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-// import { ThemeProvider, createTheme } from '@mui/material/styles';
-// import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-// import theme from '../src/theme';
-// import { darkTemplate, lightTemplate } from '@src/styles';
 import { RecoilRoot } from 'recoil';
-// import { readTheme } from '@recoil/settings';
 import createEmotionCache from '../../misc/createEmotionCache';
 import InnerApp from './innerApp';
 

@@ -1,8 +1,6 @@
 import * as React from 'react';
-// import { AppProps } from 'next/app';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-// import theme from '../src/theme';
 import { darkTemplate, lightTemplate } from '@src/styles';
 import { useRecoilValue } from 'recoil';
 import { readTheme } from '@recoil/settings';
