@@ -8,6 +8,7 @@ declare module '@mui/material/styles/createPalette' {
         forbole: {
             red: string,
             indigo: string,
+            purple: string,
         },
     }
     interface PaletteOptions {

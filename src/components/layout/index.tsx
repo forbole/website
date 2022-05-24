@@ -9,6 +9,7 @@ import { Box } from '@mui/material';
 import Nav from '../nav';
 
 type Props = {
+  navLink: string;
   children?: ReactNode;
   title?: string;
   footer?: boolean;
@@ -21,6 +22,7 @@ type Props = {
 };
 
 const Layout = ({
+  navLink,
   children,
   title = 'Forbole',
   footer,
@@ -108,7 +110,7 @@ const Layout = ({
       <Box
         sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
       >
-        <Nav />
+        <Nav navLink={navLink} />
         {children}
         {/* {!!footer && <Footer />} */}
       </Box>

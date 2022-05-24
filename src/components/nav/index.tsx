@@ -5,7 +5,11 @@ import { Box, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo } from '@icons';
 import { NavMenu } from './components';
 
-const Nav = () => {
+export interface NavProps {
+  navLink: string;
+}
+
+const Nav = ({ navLink }: NavProps) => {
   const theme = useTheme();
   return (
     <Box
@@ -41,7 +45,7 @@ const Nav = () => {
           },
         }}
       >
-        <NavMenu />
+        <NavMenu link={navLink} />
       </Box>
     </Box>
   );

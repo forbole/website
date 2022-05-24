@@ -9,7 +9,11 @@ import { MenuIcon } from '@components/icons';
 import { useTheme } from '@mui/material';
 import { navItems } from './config';
 
-const NavMenu = () => {
+export interface NavMenuProps {
+  link: string;
+}
+
+const NavMenu = ({ link }: NavMenuProps) => {
   const { t } = useTranslation('common');
   const theme = useTheme();
   const [width, setWidth] = React.useState(0);
@@ -54,13 +58,13 @@ const NavMenu = () => {
         PaperProps={{
           style: {
             // maxHeight: ITEM_HEIGHT * 4.5,
-            width: '50vw',
+            width: '70%',
           },
           sx: {
-            left: `${width / 4}px!important` as any,
-            marginLeft: 'auto',
-            marginRight: 'auto',
+            top: '80px!important' as any,
+            left: `${width / 6}px!important` as any,
             backgroundColor: '#1D1E22',
+            borderRadius: theme.spacing(2.25),
           },
         }}
       >
@@ -70,8 +74,15 @@ const NavMenu = () => {
             // selected={anchorEl}
             onClick={handleClose}
             sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              fontWeight: 900,
+              height: theme.spacing(8),
               '> a': {
-                color: theme.palette.primary.main,
+                color:
+                  item.link === link
+                    ? theme.palette.custom.forbole.purple
+                    : theme.palette.primary.main,
                 textDecoration: 'none',
               },
               '&:hover': {
