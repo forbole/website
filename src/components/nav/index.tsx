@@ -17,13 +17,17 @@ const Nav = ({ navLink }: NavProps) => {
         display: 'flex',
         justifyContent: 'center',
         width: '100%',
-        minHeight: theme.spacing(10),
+        background: 'transparent',
         backdropFilter: 'blur(16px)',
-        '-webkit-backdrop-filter': 'blur(16px)',
+        webkitBackdropFilter: 'blur(16px)',
+        position: 'relative',
       }}
     >
       <Box
         sx={{
+          width: '100%',
+          position: 'fixed',
+          top: 0,
           [theme.breakpoints.up('laptop')]: {
             maxWidth: '1200px',
             width: '100%',
@@ -34,10 +38,12 @@ const Nav = ({ navLink }: NavProps) => {
       >
         <Box
           sx={{
-            padding: theme.spacing(4),
+            background: 'transparent',
+            paddingTop: theme.spacing(4),
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'center',
             [theme.breakpoints.up('laptop')]: {
               padding: theme.spacing(4, 2, 0, 2),
               justifyContent: 'space-between',
@@ -46,7 +52,7 @@ const Nav = ({ navLink }: NavProps) => {
         >
           <Box
             sx={{
-              margin: 'auto',
+              // margin: 'auto',
               [theme.breakpoints.up('laptop')]: {
                 margin: 0,
               },
@@ -60,7 +66,7 @@ const Nav = ({ navLink }: NavProps) => {
           </Box>
           <Box
             sx={{
-              [theme.breakpoints.down('tablet')]: {
+              [theme.breakpoints.down('laptop')]: {
                 position: 'absolute',
                 top: theme.spacing(4),
                 right: theme.spacing(4),

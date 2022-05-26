@@ -7,6 +7,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { MenuIcon } from '@components/icons';
 import { useTheme } from '@mui/material';
+import { useWindowDimensions } from '@src/hooks';
 import { navItems } from './config';
 
 export interface NavMenuProps {
@@ -16,7 +17,7 @@ export interface NavMenuProps {
 const NavMenu = ({ link }: NavMenuProps) => {
   const { t } = useTranslation('common');
   const theme = useTheme();
-  const [width, setWidth] = React.useState(0);
+  const { width } = useWindowDimensions();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -25,9 +26,6 @@ const NavMenu = ({ link }: NavMenuProps) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  React.useEffect(() => {
-    setWidth(window.innerWidth);
-  });
   return (
     <div>
       <IconButton
@@ -63,7 +61,7 @@ const NavMenu = ({ link }: NavMenuProps) => {
             borderRadius: theme.spacing(2.25),
             width: theme.spacing(27.5),
             left: `${width - width / 4}px!important` as any,
-            [theme.breakpoints.down('tablet')]: {
+            [theme.breakpoints.down('laptop')]: {
               width: '70%',
               top: '80px!important' as any,
               left: `${width / 6}px!important` as any,

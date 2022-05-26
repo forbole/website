@@ -1,3 +1,3 @@
-import { useScreenSize } from './use_screen_size';
+import { useWindowDimensions } from './get_screen_size';
 
-export { useScreenSize };
+export { useWindowDimensions };
