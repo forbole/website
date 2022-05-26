@@ -48,7 +48,7 @@
       ],
       "@public/*": [
         "public/*"
-      ],
+      ]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",  "tests/utils/mock_i18n.js",
