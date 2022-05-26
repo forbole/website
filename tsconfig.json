@@ -45,6 +45,9 @@
       ],
       "@hooks": [
         "src/hooks"
+      ],
+      "@public/*": [
+        "public/*"
       ]
     }
   },

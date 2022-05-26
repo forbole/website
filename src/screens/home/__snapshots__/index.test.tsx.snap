@@ -4,15 +4,35 @@ exports[`screen: Home matches snapshot 1`] = `
 <div
   description="description"
   id="Layout"
-  image="/static/images/assets/Facebook-Forbole.png"
+  image="/images/assets/Facebook-Forbole.png"
   navLink="/"
   title="forbole"
-  twitterImage="/static/images/assets/Twitter-Forbole.png"
+  twitterImage="/images/assets/Twitter-Forbole.png"
 >
-  <p
-    className="MuiTypography-root MuiTypography-body1 css-19w8cah-MuiTypography-root"
+  <div
+    className="MuiBox-root css-17ojfhh"
   >
-    hello world
-  </p>
+    <div
+      className="MuiBox-root css-rbdyf8"
+    />
+    <div
+      className="MuiBox-root css-1vud5kq"
+    >
+      <div
+        className="MuiBox-root css-1p1g7i8"
+      />
+      <p
+        className="MuiTypography-root MuiTypography-body1 css-7so9kd-MuiTypography-root"
+      >
+        titleD
+      </p>
+      <div
+        className="MuiBox-root css-16iedfi"
+      />
+      <div
+        className="MuiBox-root css-isnvhe"
+      />
+    </div>
+  </div>
 </div>
 `;
