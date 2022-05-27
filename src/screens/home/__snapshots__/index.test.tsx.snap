@@ -27,10 +27,10 @@ exports[`screen: Home matches snapshot 1`] = `
         titleD
       </p>
       <div
-        className="MuiBox-root css-16iedfi"
+        className="MuiBox-root css-xt8px5"
       />
       <div
-        className="MuiBox-root css-isnvhe"
+        className="MuiBox-root css-xyedca"
       />
     </div>
   </div>
