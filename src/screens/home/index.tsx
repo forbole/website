@@ -101,13 +101,16 @@ const Home = () => {
               backgroundImage: 'url(/images/assets/image_horseInWater.png)',
               position: 'absolute',
               backgroundRepeat: 'no-repeat',
-              backgroundSize: 'contain',
+              backgroundSize: 'cover',
+              [theme.breakpoints.up('tablet')]: {
+                backgroundSize: 'contain',
+              },
               mixBlendMode: 'lighten',
               bottom: '10vh',
               width: width / 2,
               [theme.breakpoints.up('mobile')]: {
                 height: '300px',
-                width: theme.spacing(50),
+                width: theme.spacing(45),
               },
             }}
           />
@@ -121,7 +124,7 @@ const Home = () => {
               backgroundImage: 'url(/images/assets/image_watershadow.png)',
               position: 'absolute',
               backgroundRepeat: 'no-repeat',
-              backgroundSize: 'contain',
+              backgroundSize: 'cover',
             }}
           />
         </Box>
