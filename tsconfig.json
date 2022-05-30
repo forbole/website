@@ -43,6 +43,9 @@
       "@icons": [
         "src/components/icons"
       ],
+      "@icons/*": [
+        "src/components/icons/*"
+      ],
       "@hooks": [
         "src/hooks"
       ],

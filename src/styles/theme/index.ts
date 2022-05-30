@@ -17,7 +17,7 @@ export const common = {
     keys: ['mobile', 'tablet', 'laptop', 'desktop'],
     values: {
       mobile: 320,
-      tablet: 769,
+      tablet: 768,
       laptop: 1025,
       desktop: 1201,
     },

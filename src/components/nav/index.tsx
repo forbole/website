@@ -5,7 +5,7 @@ import { Box, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo } from '@icons';
 import { NavMenu } from './components';
 
-export interface NavProps {
+interface NavProps {
   navLink: string;
 }
 
