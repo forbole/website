@@ -9,6 +9,8 @@ const SocialMedia = () => {
   return (
     <Box
       sx={{
+        display: 'flex',
+        justifyContent: 'space-around',
         'svg path': {
           transition: '0.3s',
           fill: 'rgba(250, 250, 250, 1)',

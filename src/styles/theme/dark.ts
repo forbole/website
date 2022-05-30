@@ -1,4 +1,5 @@
-const backgroundDefault = '#252345';
+// const backgroundDefault = '#252345';
+const backgroundDefault = 'rgba(30, 41, 67, 1)';
 
 /** Custom theme overrides for dark mode */
 export const darkThemeOverride = {

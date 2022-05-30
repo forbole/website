@@ -12,6 +12,7 @@ const FooterItems = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         color: theme.palette.primary.main,
         fontSize: theme.spacing(2),
         [theme.breakpoints.up('laptop')]: {
