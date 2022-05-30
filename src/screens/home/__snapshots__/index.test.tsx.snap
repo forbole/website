@@ -3,6 +3,7 @@
 exports[`screen: Home matches snapshot 1`] = `
 <div
   description="description"
+  footer={true}
   id="Layout"
   image="/images/assets/Facebook-Forbole.png"
   navLink="/"
@@ -10,7 +11,7 @@ exports[`screen: Home matches snapshot 1`] = `
   twitterImage="/images/assets/Twitter-Forbole.png"
 >
   <div
-    className="MuiBox-root css-17ojfhh"
+    className="MuiBox-root css-ilsauu"
   >
     <div
       className="MuiBox-root css-rbdyf8"
