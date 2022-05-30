@@ -12,14 +12,14 @@ export const useWindowDimensions = () => {
   const [windowDimensions, setWindowDimensions] = React.useState({
     width: 0,
     height: 0,
-  }); // <-- don't invoke here
+  }); // <-- don't invoke the function here
 
   React.useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
 
-    handleResize(); // <-- invoke this on component mount
+    handleResize(); // <-- invoke this function on component mount
     window.addEventListener('resize', handleResize);
 
     return () => {

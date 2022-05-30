@@ -7,6 +7,7 @@ import validator from 'validator';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
 import Nav from '../nav';
+import Footer from '../footer';
 
 type Props = {
   navLink: string;
@@ -116,7 +117,7 @@ const Layout = ({
       >
         <Nav navLink={navLink} />
         {children}
-        {/* {!!footer && <Footer />} */}
+        {!!footer && <Footer />}
       </Box>
     </>
   );

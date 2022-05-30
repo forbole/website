@@ -10,7 +10,7 @@ import { useTheme } from '@mui/material';
 import { useWindowDimensions } from '@src/hooks';
 import { navItems } from './config';
 
-export interface NavMenuProps {
+interface NavMenuProps {
   link: string;
 }
 

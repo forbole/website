@@ -16,6 +16,7 @@ const Home = () => {
       description={t('description')}
       image="/images/assets/Facebook-Forbole.png"
       twitterImage="/images/assets/Twitter-Forbole.png"
+      footer
     >
       <Box
         sx={{
@@ -23,7 +24,7 @@ const Home = () => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           // backgroundPosition: '52px -59px',
-          minHeight: '100vh',
+          minHeight: '85vh',
         }}
       >
         <Box
