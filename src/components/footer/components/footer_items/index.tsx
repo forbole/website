@@ -15,9 +15,11 @@ const FooterItems = () => {
         alignItems: 'center',
         color: theme.palette.primary.main,
         fontSize: theme.spacing(2),
+        paddingTop: theme.spacing(4),
         [theme.breakpoints.up('laptop')]: {
           flexDirection: 'row',
           alignItems: 'center',
+          paddingTop: 0,
           '& hr': {
             mx: 2,
           },
