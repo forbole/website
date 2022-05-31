@@ -17,6 +17,8 @@ const SocialMedia = () => {
         },
         a: {
           paddingRight: '1rem',
+          alignItems: 'center',
+          display: 'flex',
           '&:hover': {
             cursor: 'pointer',
             'svg path': {

@@ -52,6 +52,7 @@ const Footer = () => {
             [theme.breakpoints.up('laptop')]: {
               flexDirection: 'row',
               justifyContent: 'space-between',
+              alignItems: 'center',
             },
           }}
         >
