@@ -39,6 +39,9 @@ const ContactForm = () => {
             variant="h5"
             component="div"
             textAlign="left"
+            fontWeight={600}
+            fontSize={theme.spacing(2.5)}
+            mb={theme.spacing(3.5)}
           >
             {t('send us a message')}
           </Typography>
@@ -73,6 +76,9 @@ const ContactForm = () => {
                 variant="h6"
                 component="div"
                 textAlign="left"
+                fontWeight={600}
+                fontSize={theme.spacing(2.5)}
+                mb={theme.spacing(2)}
               >
                 {t('your name')}
               </Typography>
@@ -81,7 +87,7 @@ const ContactForm = () => {
                 id="demo-helper-text-aligned-no-helper"
                 // variant="outlined"
                 name="name"
-                label="Name"
+                label={t('your name')}
                 onChange={handleInputChange}
                 value={inputs.name}
                 InputProps={{
@@ -99,7 +105,15 @@ const ContactForm = () => {
                 sx={{
                   color: theme.palette.primary.main,
                   alignSelf: 'stretch',
-                  // flexGrow: 0,
+                  '& .MuiOutlinedInput-root': {
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    '& fieldset': {
+                      borderColor: 'primary.main',
+                    },
+                  },
+                  '& label': {
+                    color: 'rgba(255, 255, 255, 0.3)',
+                  },
                 }}
               />
             </Box>
@@ -120,6 +134,9 @@ const ContactForm = () => {
                 variant="h6"
                 component="div"
                 textAlign="left"
+                fontWeight={600}
+                fontSize={theme.spacing(2.5)}
+                mb={theme.spacing(2)}
               >
                 {t('email')}
               </Typography>
@@ -144,10 +161,17 @@ const ContactForm = () => {
                   ),
                 }}
                 sx={{
-                  // flex: 'none',
-                  // order: 0,
+                  color: theme.palette.primary.main,
                   alignSelf: 'stretch',
-                  // flexGrow: 0,
+                  '& .MuiOutlinedInput-root': {
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    '& fieldset': {
+                      borderColor: 'primary.main',
+                    },
+                  },
+                  '& label': {
+                    color: 'rgba(255, 255, 255, 0.3)',
+                  },
                 }}
               />
             </Box>
@@ -168,6 +192,9 @@ const ContactForm = () => {
                 variant="h6"
                 component="div"
                 textAlign="left"
+                fontWeight={600}
+                fontSize={theme.spacing(2.5)}
+                mb={theme.spacing(2)}
               >
                 {t('message')}
               </Typography>
@@ -193,7 +220,19 @@ const ContactForm = () => {
                     </InputAdornment>
                   ),
                 }}
-                sx={{ alignSelf: 'stretch' }}
+                sx={{
+                  color: theme.palette.primary.main,
+                  alignSelf: 'stretch',
+                  '& .MuiOutlinedInput-root': {
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    '& fieldset': {
+                      borderColor: 'primary.main',
+                    },
+                  },
+                  '& label': {
+                    color: 'rgba(255, 255, 255, 0.3)',
+                  },
+                }}
               />
             </Box>
           </Box>
@@ -213,9 +252,12 @@ const ContactForm = () => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              padding: theme.spacing(0, 2),
-              backgroundColor: theme.palette.primary.main,
+              padding: theme.spacing(1.5, 2),
+              backgroundColor: 'secondary.main',
               borderRadius: theme.spacing(25),
+              fontWeight: 600,
+              fontSize: theme.spacing(2),
+              letterSpacing: '0.036em',
             }}
           >
             {t('submit')}

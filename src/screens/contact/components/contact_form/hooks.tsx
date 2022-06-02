@@ -57,11 +57,9 @@ const useContactForm = () => {
       ...input,
       [name]: value,
     }));
-    console.log('after', inputs);
   };
 
   const handleClear = (field: any) => {
-    // const { name, value } = event.target;
     setInputs((input) => ({
       ...input,
       [field]: '',
