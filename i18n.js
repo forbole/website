@@ -6,6 +6,7 @@ module.exports = {
   pages: {
     '*': ['common'],
     '/': ['home'],
+    '/contact': ['contact'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };

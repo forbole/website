@@ -48,7 +48,7 @@ const Layout = ({
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
   return (
-    <>
+    <Box position="relative">
       <Head>
         <title>{title}</title>
         {!!(url === 'https://staging.forbole.com') && (
@@ -110,16 +110,23 @@ const Layout = ({
       </Head>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
+          backgroundImage: 'url(/images/assets/image_BG.png)',
+          background: 'transparent',
         }}
       >
-        <Nav navLink={navLink} />
-        {children}
-        {!!footer && <Footer />}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh',
+          }}
+        >
+          <Nav navLink={navLink} />
+          {children}
+          {!!footer && <Footer />}
+        </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
