@@ -12,72 +12,77 @@ interface NavProps {
 const Nav = ({ navLink }: NavProps) => {
   const theme = useTheme();
   return (
+    // <Box
+    //   sx={{
+    //     display: 'flex',
+    //     justifyContent: 'center',
+    //     width: '100%',
+    //     background: 'transparent',
+    //     backdropFilter: 'blur(16px)',
+    //     webkitBackdropFilter: 'blur(16px)',
+    //     position: 'relative',
+    //   }}
+    // >
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
         width: '100%',
-        background: 'transparent',
-        backdropFilter: 'blur(16px)',
-        webkitBackdropFilter: 'blur(16px)',
-        position: 'relative',
+        position: 'fixed',
+        top: 0,
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        [theme.breakpoints.up('laptop')]: {
+          maxWidth: '1200px',
+          width: '100%',
+          position: 'fixed',
+          top: 30,
+          margin: 'auto',
+          left: '50vw',
+          transform: 'translate(-50%, -50%)',
+        },
       }}
     >
       <Box
         sx={{
-          width: '100%',
-          position: 'fixed',
-          top: 0,
+          background: 'transparent',
+          paddingTop: theme.spacing(4),
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
           [theme.breakpoints.up('laptop')]: {
-            maxWidth: '1200px',
-            width: '100%',
-            position: 'fixed',
-            top: 0,
+            padding: theme.spacing(4, 2, 0, 2),
+            justifyContent: 'space-between',
           },
         }}
       >
         <Box
           sx={{
-            background: 'transparent',
-            paddingTop: theme.spacing(4),
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
+            // margin: 'auto',
             [theme.breakpoints.up('laptop')]: {
-              padding: theme.spacing(4, 2, 0, 2),
-              justifyContent: 'space-between',
+              margin: 0,
             },
           }}
         >
-          <Box
-            sx={{
-              // margin: 'auto',
-              [theme.breakpoints.up('laptop')]: {
-                margin: 0,
-              },
-            }}
-          >
-            <Link href="/">
-              <a>
-                <ForboleLogo />
-              </a>
-            </Link>
-          </Box>
-          <Box
-            sx={{
-              [theme.breakpoints.down('laptop')]: {
-                position: 'absolute',
-                top: theme.spacing(4),
-                right: theme.spacing(4),
-              },
-            }}
-          >
-            <NavMenu link={navLink} />
-          </Box>
+          <Link href="/">
+            <a>
+              <ForboleLogo />
+            </a>
+          </Link>
+        </Box>
+        <Box
+          sx={{
+            [theme.breakpoints.down('laptop')]: {
+              position: 'absolute',
+              top: theme.spacing(4),
+              right: theme.spacing(4),
+            },
+          }}
+        >
+          <NavMenu link={navLink} />
         </Box>
       </Box>
     </Box>
+    // </Box>
   );
 };
 

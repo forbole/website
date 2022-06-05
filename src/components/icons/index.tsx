@@ -6,6 +6,9 @@ import LinkedIn from './linkedIn';
 import Medium from './medium';
 import Telegram from './telegram';
 import Twitter from './twitter';
+import ClearIcon from './icon_clear.svg';
+import LocationIcon from './icon_location.svg';
+import MailIcon from './icon_mail.svg';
 
 export {
   Forbole,
@@ -16,4 +19,7 @@ export {
   Medium,
   Telegram,
   Twitter,
+  ClearIcon,
+  LocationIcon,
+  MailIcon,
 };

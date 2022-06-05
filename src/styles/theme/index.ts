@@ -30,6 +30,9 @@ export const common = {
         fontSize: '64px',
       },
     },
+    button: {
+      textTransform: 'none',
+    },
   },
 };
 

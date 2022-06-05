@@ -29,8 +29,10 @@ const Footer = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        position: 'fixed',
+        position: 'absolute',
         bottom: 0,
+        // overflowY: 'scroll',
+        // overflowX: 'hidden',
       }}
     >
       <Box
@@ -52,6 +54,7 @@ const Footer = () => {
             [theme.breakpoints.up('laptop')]: {
               flexDirection: 'row',
               justifyContent: 'space-between',
+              alignItems: 'center',
             },
           }}
         >

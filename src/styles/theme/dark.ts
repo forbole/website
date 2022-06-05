@@ -1,5 +1,7 @@
 // const backgroundDefault = '#252345';
 const backgroundDefault = 'rgba(30, 41, 67, 1)';
+// const backgroundDefault = 'url(/images/assets/image_BG.png)';
+// const backgroundDefault = 'transaprent';
 
 /** Custom theme overrides for dark mode */
 export const darkThemeOverride = {
