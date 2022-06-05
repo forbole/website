@@ -15,17 +15,15 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       width: '100%',
       marginBottom: 3,
       borderRadius: theme.spacing(2),
-      borderRight: '2px solid',
+      borderRight: '2px solid rgba(195, 204, 226, 0.3)',
     },
   }),
   formDiv: (theme) => ({
     display: 'flex',
     flexDirection: 'column',
-    // alignItems: 'flex-start',
     [theme.breakpoints.up('laptop')]: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      // gridTemplateRows: 'repeat(2, 1fr)',
       gridGap: theme.spacing(5),
       gridTemplateRows: '100px',
       gridAutoRows: '200px',
