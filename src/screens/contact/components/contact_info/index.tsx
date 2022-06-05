@@ -25,54 +25,56 @@ const ContactInfo = (props: ContactInfoProps) => {
   const { handleSubmit, canSubmit } = props;
   return (
     <Card sx={styles.infoBox}>
-      <form noValidate onSubmit={handleSubmit}>
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            textAlign="left"
-            fontWeight={600}
-            fontSize={theme.spacing(2.5)}
-            mb={theme.spacing(3.5)}
-          >
-            {t('contact info')}
-          </Typography>
-          <Box sx={styles.content}>
-            <LocationIcon />
+      <form noValidate onSubmit={handleSubmit} style={{ height: '100%' }}>
+        <CardContent sx={{ height: '100%' }}>
+          <Box sx={styles.flexBox}>
             <Typography
               gutterBottom
-              variant="body1"
+              variant="h5"
               component="div"
               textAlign="left"
-              fontWeight={400}
-              fontSize={theme.spacing(1.75)}
-              // mb={theme.spacing(2)}
+              fontWeight={600}
+              fontSize={theme.spacing(2.5)}
+              mb={theme.spacing(3.5)}
             >
-              {t('address')}
+              {t('contact info')}
             </Typography>
-          </Box>
-          <Box sx={styles.content}>
-            <MailIcon />
-            <Typography
-              gutterBottom
-              variant="body1"
-              component="div"
-              textAlign="left"
-              fontWeight={400}
-              fontSize={theme.spacing(1.75)}
-              // mb={theme.spacing(2)}
-            >
-              {t('info email')}
-            </Typography>
-          </Box>
-          <SocialMedia />
-          <Box>
-            <CardActions sx={styles.buttonDiv}>
-              <Button type="submit" disabled={!canSubmit} sx={styles.button}>
-                {t('submit')}
-              </Button>
-            </CardActions>
+            <Box sx={styles.content}>
+              <LocationIcon />
+              <Typography
+                gutterBottom
+                variant="body1"
+                component="div"
+                textAlign="left"
+                fontWeight={400}
+                fontSize={theme.spacing(1.75)}
+                // mb={theme.spacing(2)}
+              >
+                {t('address')}
+              </Typography>
+            </Box>
+            <Box sx={styles.content}>
+              <MailIcon />
+              <Typography
+                gutterBottom
+                variant="body1"
+                component="div"
+                textAlign="left"
+                fontWeight={400}
+                fontSize={theme.spacing(1.75)}
+                // mb={theme.spacing(2)}
+              >
+                {t('info email')}
+              </Typography>
+            </Box>
+            <SocialMedia contact />
+            <Box>
+              <CardActions sx={styles.buttonDiv}>
+                <Button type="submit" disabled={!canSubmit} sx={styles.button}>
+                  {t('submit')}
+                </Button>
+              </CardActions>
+            </Box>
           </Box>
         </CardContent>
       </form>

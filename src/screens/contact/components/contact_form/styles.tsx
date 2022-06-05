@@ -8,10 +8,14 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     flexDirection: 'column',
     background: 'transparent',
     border: '2px solid rgba(195, 204, 226, 0.3)',
-    borderRadius: theme.spacing(2),
+    borderRadius: theme.spacing(2, 0, 0, 2),
+    borderRight: 'none',
+    gridGap: 0,
     [theme.breakpoints.down('laptop')]: {
       width: '100%',
       marginBottom: 3,
+      borderRadius: theme.spacing(2),
+      borderRight: '2px solid',
     },
   }),
   formDiv: (theme) => ({
@@ -21,8 +25,10 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     [theme.breakpoints.up('laptop')]: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      gridTemplateRows: 'repeat(2, 1fr)',
+      // gridTemplateRows: 'repeat(2, 1fr)',
       gridGap: theme.spacing(5),
+      gridTemplateRows: '100px',
+      gridAutoRows: '200px',
     },
   }),
   nameBox: (theme) => ({

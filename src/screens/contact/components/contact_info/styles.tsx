@@ -7,11 +7,24 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     display: 'flex',
     flexDirection: 'column',
     background: 'rgba(255, 255, 255, 0.1)',
-    border: 'none',
-    borderRadius: theme.spacing(2),
+    // border: 'none',
+    border: '2px solid rgba(195, 204, 226, 0.3)',
+    borderLeft: 'none',
+    borderRadius: theme.spacing(0, 2, 2, 0),
+    height: '100%',
     [theme.breakpoints.down('laptop')]: {
       width: '100%',
       marginBottom: 5,
+      border: 'none',
+      borderRadius: theme.spacing(2),
+    },
+  }),
+  flexBox: (theme) => ({
+    [theme.breakpoints.up('laptop')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      height: '100%',
     },
   }),
   content: (theme) => ({
@@ -35,7 +48,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       display: 'none',
     },
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     paddingBottom: 3,
   }),
   button: (theme) => ({

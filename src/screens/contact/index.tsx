@@ -6,6 +6,7 @@ import { Layout } from '@components';
 import { useWindowDimensions } from '@src/hooks';
 import { ContactForm, ContactInfo } from './components';
 import useContactForm from './hooks';
+import { styles } from './styles';
 
 const Contact = () => {
   const { t } = useTranslation('contact');
@@ -23,16 +24,11 @@ const Contact = () => {
     <Layout title={t('title')} navLink="/contact" footer>
       <Box
         sx={{
-          backgroundImage: 'url(/images/assets/image_BG.png)',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          // backgroundPosition: '52px -59px',
-          //   minHeight: '85vh',
-          //   height,
           padding: theme.spacing(0, 3),
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          minHeight: '90vh',
           [theme.breakpoints.down('laptop')]: {
             height: '140vh',
           },
@@ -41,28 +37,35 @@ const Contact = () => {
           },
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{
-            paddingTop: theme.spacing(12),
-            color: theme.palette.primary.main,
-            fontSize: theme.spacing(3),
-            fontWeight: 700,
-            letterSpacing: '0.0015em',
-            paddingBottom: theme.spacing(5),
-          }}
-        >
-          {t('heading')}
-        </Typography>
-        <ContactForm
-          inputs={inputs}
-          handleInputChange={handleInputChange}
-          handleMouseDownClear={handleMouseDownClear}
-          handleSubmit={handleSubmit}
-          handleClear={handleClear}
-          canSubmit={canSubmit}
-        />
-        <ContactInfo handleSubmit={handleSubmit} canSubmit={canSubmit} />
+        <Box sx={{ [theme.breakpoints.up('laptop')]: { maxWidth: '1200px' } }}>
+          <Typography
+            variant="h2"
+            sx={{
+              paddingTop: theme.spacing(12),
+              color: theme.palette.primary.main,
+              fontSize: theme.spacing(3),
+              fontWeight: 700,
+              letterSpacing: '0.0015em',
+              paddingBottom: theme.spacing(5),
+              [theme.breakpoints.up('laptop')]: {
+                fontSize: theme.spacing(5),
+              },
+            }}
+          >
+            {t('heading')}
+          </Typography>
+          <Box sx={styles.gridBox}>
+            <ContactForm
+              inputs={inputs}
+              handleInputChange={handleInputChange}
+              handleMouseDownClear={handleMouseDownClear}
+              handleSubmit={handleSubmit}
+              handleClear={handleClear}
+              canSubmit={canSubmit}
+            />
+            <ContactInfo handleSubmit={handleSubmit} canSubmit={canSubmit} />
+          </Box>
+        </Box>
       </Box>
     </Layout>
   );

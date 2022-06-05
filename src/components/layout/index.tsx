@@ -119,6 +119,9 @@ const Layout = ({
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
+            backgroundImage: 'url(/images/assets/image_BG.png)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
           }}
         >
           <Nav navLink={navLink} />
