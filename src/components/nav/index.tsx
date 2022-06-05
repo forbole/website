@@ -34,7 +34,10 @@ const Nav = ({ navLink }: NavProps) => {
           maxWidth: '1200px',
           width: '100%',
           position: 'fixed',
-          top: 0,
+          top: 30,
+          margin: 'auto',
+          left: '50vw',
+          transform: 'translate(-50%, -50%)',
         },
       }}
     >
