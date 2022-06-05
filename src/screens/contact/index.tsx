@@ -3,13 +3,22 @@ import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Layout } from '@components';
-// import { useWindowDimensions } from '@src/hooks';
-import { ContactForm } from './components';
+import { useWindowDimensions } from '@src/hooks';
+import { ContactForm, ContactInfo } from './components';
+import useContactForm from './hooks';
 
 const Contact = () => {
   const { t } = useTranslation('contact');
   const theme = useTheme();
-  //   const { width, height } = useWindowDimensions();
+  const {
+    inputs,
+    handleInputChange,
+    handleMouseDownClear,
+    handleSubmit,
+    handleClear,
+    canSubmit,
+  } = useContactForm();
+  const { height } = useWindowDimensions();
   return (
     <Layout title={t('title')} navLink="/contact" footer>
       <Box
@@ -18,13 +27,18 @@ const Contact = () => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           // backgroundPosition: '52px -59px',
-          minHeight: '85vh',
+          //   minHeight: '85vh',
           //   height,
-          height: '150vh',
           padding: theme.spacing(0, 3),
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          [theme.breakpoints.down('laptop')]: {
+            height: '140vh',
+          },
+          [theme.breakpoints.down('tablet')]: {
+            height: height < 668 ? '220vh' : '180vh',
+          },
         }}
       >
         <Typography
@@ -40,7 +54,15 @@ const Contact = () => {
         >
           {t('heading')}
         </Typography>
-        <ContactForm />
+        <ContactForm
+          inputs={inputs}
+          handleInputChange={handleInputChange}
+          handleMouseDownClear={handleMouseDownClear}
+          handleSubmit={handleSubmit}
+          handleClear={handleClear}
+          canSubmit={canSubmit}
+        />
+        <ContactInfo handleSubmit={handleSubmit} canSubmit={canSubmit} />
       </Box>
     </Layout>
   );
