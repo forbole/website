@@ -28,7 +28,7 @@ const Contact = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          minHeight: '90vh',
+          minHeight: '110vh',
           [theme.breakpoints.down('laptop')]: {
             height: '140vh',
           },
@@ -49,6 +49,7 @@ const Contact = () => {
               paddingBottom: theme.spacing(5),
               [theme.breakpoints.up('laptop')]: {
                 fontSize: theme.spacing(5),
+                paddingTop: theme.spacing(20),
               },
             }}
           >
