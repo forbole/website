@@ -2,7 +2,12 @@ import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Divider, useTheme } from '@mui/material';
 import { Layout } from '@components';
-import { AboutUsMobile, MilestonesMobile, AboutUsDesktop } from './components';
+import {
+  AboutUsMobile,
+  MilestonesMobile,
+  AboutUsDesktop,
+  MilestonesDesktop,
+} from './components';
 
 const About = () => {
   const { t } = useTranslation('about');
@@ -25,10 +30,13 @@ const About = () => {
         sx={{
           display: 'flex',
           justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
           [theme.breakpoints.down('laptop')]: { display: 'none' },
         }}
       >
         <AboutUsDesktop />
+        <MilestonesDesktop />
       </Box>
     </Layout>
   );
