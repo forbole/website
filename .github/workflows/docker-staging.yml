@@ -70,7 +70,7 @@ jobs:
             # "NEXT_PUBLIC_MATOMO_URL=${{ steps.dockerPrep.outputs.NEXT_PUBLIC_MATOMO_URL }}"
             # "NEXT_PUBLIC_MATOMO_SITE_ID=${{ steps.dockerPrep.outputs.NEXT_PUBLIC_MATOMO_SITE_ID }}"
             "GHOST_PRIVATE_KEY=${{ steps.dockerPrep.outputs.GHOST_PRIVATE_KEY }}"
-          tags: 'forbole/forbole-website:${{ steps.prep.outputs.branch }}-staging'
+          tags: 'forbole/official-website:${{ steps.prep.outputs.branch }}-staging'
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
             org.opencontainers.image.created=${{ steps.prep.outputs.created }}
