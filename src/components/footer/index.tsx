@@ -18,10 +18,11 @@ const Footer = () => {
           height: '40vh',
           minHeight: '320px',
           paddingBottom: theme.spacing(4),
+          position: 'static',
         },
         width: '100%',
         background: 'url(/images/assets/footer_desktop.svg) bottom',
-        backgroundPosition: '0 50%',
+        backgroundPosition: '0 100%',
         backgroundRepeat: 'no-repeat',
         backgroundSize: '100%',
         height: '20vh',
@@ -42,7 +43,6 @@ const Footer = () => {
           [theme.breakpoints.up('laptop')]: {
             maxWidth: '1200px',
             width: '100%',
-            padding: theme.spacing(0, 2, 5, 2),
           },
         }}
       >
@@ -55,6 +55,7 @@ const Footer = () => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
+              padding: theme.spacing(0, 2, 5, 2),
             },
           }}
         >
