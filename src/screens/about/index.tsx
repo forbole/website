@@ -32,6 +32,7 @@ const About = () => {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
+          // minHeight: '250vh',
           [theme.breakpoints.down('laptop')]: { display: 'none' },
         }}
       >

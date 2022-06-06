@@ -30,7 +30,7 @@ const Contact = () => {
           [theme.breakpoints.down('laptop')]: {
             minHeight: 'auto',
           },
-          [theme.breakpoints.up('laptop')]: { minHeight: '110vh' },
+          [theme.breakpoints.up('laptop')]: { minHeight: '130vh' },
         }}
       >
         <Box sx={{ [theme.breakpoints.up('laptop')]: { maxWidth: '1200px' } }}>

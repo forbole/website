@@ -8,12 +8,18 @@ const MilestonesDesktop = () => {
   const theme = useTheme();
   let row = 0;
   return (
-    <Box display="flex" flexDirection="column" maxWidth="1200px" width="100%">
+    <Box
+      display="flex"
+      flexDirection="column"
+      maxWidth="1200px"
+      width="100%"
+      height="180vh"
+    >
       <Typography
         variant="h2"
         fontSize={theme.spacing(5)}
         pt={theme.spacing(20)}
-        pb={theme.spacing(2.5)}
+        pb={theme.spacing(7)}
         textAlign="left"
         letterSpacing="0.0015em"
         fontWeight={700}
@@ -40,7 +46,20 @@ const MilestonesDesktop = () => {
                 key={Math.random()}
                 sx={{ gridRow: `${row} / span 1`, gridColumn: '1 / span 1' }}
               >
-                {year}
+                <Typography
+                  variant="h5"
+                  component="div"
+                  textAlign="left"
+                  fontWeight={400}
+                  fontSize={theme.spacing(2.5)}
+                  color="primary.main"
+                  display="flex"
+                  justifyContent="flex-start"
+                  height="100%"
+                  alignItems="center"
+                >
+                  {year}
+                </Typography>
               </Box>
               <Card
                 sx={{
@@ -51,11 +70,13 @@ const MilestonesDesktop = () => {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   background: 'transparent',
-                  border: '2px solid rgba(195, 204, 226, 1)',
+                  border: '2px solid rgba(195, 204, 226, 0.3)',
                   borderRadius: 2,
                   marginLeft: 3,
                   marginBottom: 3,
                   padding: theme.spacing(2.5, 2),
+                  width: '448px',
+                  height: '144px',
                 }}
               >
                 <Typography
