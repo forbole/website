@@ -3,7 +3,6 @@ import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Layout } from '@components';
-import { useWindowDimensions } from '@src/hooks';
 import { ContactForm, ContactInfo } from './components';
 import useContactForm from './hooks';
 import { styles } from './styles';
@@ -19,7 +18,6 @@ const Contact = () => {
     handleClear,
     canSubmit,
   } = useContactForm();
-  const { height } = useWindowDimensions();
   return (
     <Layout title={t('title')} navLink="/contact" footer>
       <Box
@@ -28,13 +26,11 @@ const Contact = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          minHeight: '110vh',
+          minHeight: '140vh',
           [theme.breakpoints.down('laptop')]: {
-            height: '140vh',
+            minHeight: 'auto',
           },
-          [theme.breakpoints.down('tablet')]: {
-            height: height < 668 ? '220vh' : '180vh',
-          },
+          [theme.breakpoints.up('laptop')]: { minHeight: '110vh' },
         }}
       >
         <Box sx={{ [theme.breakpoints.up('laptop')]: { maxWidth: '1200px' } }}>
@@ -47,9 +43,11 @@ const Contact = () => {
               fontWeight: 700,
               letterSpacing: '0.0015em',
               paddingBottom: theme.spacing(5),
+              textAlign: 'center',
               [theme.breakpoints.up('laptop')]: {
                 fontSize: theme.spacing(5),
                 paddingTop: theme.spacing(20),
+                textAlign: 'left',
               },
             }}
           >
