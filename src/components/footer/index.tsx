@@ -19,6 +19,7 @@ const Footer = () => {
           minHeight: '320px',
           paddingBottom: theme.spacing(4),
           position: 'static',
+          zIndex: 1,
         },
         width: '100%',
         background: 'url(/images/assets/footer_desktop.svg) bottom',
