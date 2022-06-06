@@ -1,4 +1,4 @@
-import MilestonesMobile from './mobile/milestones';
-import AboutUsMobile from './mobile/about_us';
+import { MilestonesMobile, AboutUsMobile } from './mobile';
+import { AboutUsDesktop } from './desktop';
 
-export { AboutUsMobile, MilestonesMobile };
+export { AboutUsMobile, MilestonesMobile, AboutUsDesktop };

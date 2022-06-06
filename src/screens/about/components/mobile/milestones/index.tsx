@@ -5,7 +5,7 @@ import { DotIcon } from '@icons';
 import { styles } from './styles';
 import { awards } from '../../../config';
 
-const Milestones = () => {
+const MilestonesMobile = () => {
   const { t } = useTranslation('about');
   const theme = useTheme();
   return (
@@ -25,6 +25,7 @@ const Milestones = () => {
         const { year, title, desc, timeline } = award;
         return (
           <Box
+            key={Math.random()}
             sx={{
               borderLeft:
                 i === awards.length - 1
@@ -34,12 +35,7 @@ const Milestones = () => {
             }}
           >
             {year && (
-              <Box
-                display="flex"
-                flexDirection="row"
-                position="relative"
-                // left="20px"
-              >
+              <Box display="flex" flexDirection="row" position="relative">
                 <Box position="absolute" left={-6} top={-6}>
                   <DotIcon />
                 </Box>
@@ -104,4 +100,4 @@ const Milestones = () => {
   );
 };
 
-export default Milestones;
+export default MilestonesMobile;

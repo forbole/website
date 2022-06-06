@@ -10,6 +10,6 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     alignItems: 'center',
     minHeight: '100%',
     padding: theme.spacing(0, 3),
-    paddingBottom: 7.5,
+    paddingBottom: 5.5,
   }),
 };

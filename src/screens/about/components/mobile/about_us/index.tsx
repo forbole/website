@@ -1,11 +1,10 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
-// import { useGetComponentDimension } from '@hooks';
 import { styles } from './styles';
 import { icons } from '../../../config';
 
-const AboutUs = () => {
+const AboutUsMobile = () => {
   const { t } = useTranslation('about');
   const theme = useTheme();
   return (
@@ -22,10 +21,6 @@ const AboutUs = () => {
             fontWeight: 700,
             letterSpacing: '0.0015em',
             marginBottom: theme.spacing(3.5),
-            //   [theme.breakpoints.up('laptop')]: {
-            //     fontSize: theme.spacing(5),
-            //     paddingTop: theme.spacing(20),
-            //   },
           }}
         >
           {t('title')}
@@ -79,13 +74,25 @@ const AboutUs = () => {
           const Svg = icon;
           return (
             <Box
+              key={Math.random()}
               display="flex"
               justifyItems="center"
               alignItems="center"
               flexDirection="column"
             >
               <Svg />
-              {t(title)}
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                textAlign="center"
+                fontWeight={600}
+                fontSize={theme.spacing(2.5)}
+                letterSpacing="0.004em"
+                pb={4.5}
+              >
+                {t(title)}
+              </Typography>
             </Box>
           );
         })}
@@ -94,4 +101,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUsMobile;

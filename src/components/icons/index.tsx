@@ -10,9 +10,9 @@ import ClearIcon from './icon_clear.svg';
 import LocationIcon from './icon_location.svg';
 import MailIcon from './icon_mail.svg';
 import DotIcon from './icon_dot.svg';
-import Contact1Icon from './icon_contact1.svg';
-import Contact2Icon from './icon_contact2.svg';
-import Contact3Icon from './icon_contact3.svg';
+import ContactIIcon from './icon_contactI.svg';
+import ContactIIIcon from './icon_contactII.svg';
+import ContactIIIIcon from './icon_contactIII.svg';
 
 export {
   Forbole,
@@ -27,7 +27,7 @@ export {
   LocationIcon,
   MailIcon,
   DotIcon,
-  Contact1Icon,
-  Contact2Icon,
-  Contact3Icon,
+  ContactIIcon,
+  ContactIIIcon,
+  ContactIIIIcon,
 };

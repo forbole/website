@@ -1,4 +1,4 @@
-import { Contact1Icon, Contact2Icon, Contact3Icon } from '@icons';
+import { ContactIIcon, ContactIIIcon, ContactIIIIcon } from '@icons';
 
 interface AwardProps {
   year?: number;
@@ -36,19 +36,23 @@ export const awards: AwardProps[] = [
 interface IconProps {
   icon: any;
   title: string;
+  picture: any;
 }
 
 export const icons: IconProps[] = [
   {
-    icon: Contact1Icon,
+    icon: ContactIIcon,
+    picture: '/images/assets/icon01.png',
     title: 'title 1',
   },
   {
-    icon: Contact2Icon,
+    icon: ContactIIIcon,
+    picture: '/images/assets/icon02.png',
     title: 'title 2',
   },
   {
-    icon: Contact3Icon,
+    icon: ContactIIIIcon,
+    picture: '/images/assets/icon03.png',
     title: 'title 3',
   },
 ];
