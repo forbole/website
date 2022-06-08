@@ -11,7 +11,7 @@ exports[`screen: Home matches snapshot 1`] = `
   twitterImage="/images/assets/Twitter-Forbole.png"
 >
   <div
-    className="MuiBox-root css-ilsauu"
+    className="MuiBox-root css-uwbwau"
   >
     <div
       className="MuiBox-root css-rbdyf8"
@@ -28,7 +28,7 @@ exports[`screen: Home matches snapshot 1`] = `
         titleD
       </p>
       <div
-        className="MuiBox-root css-xt8px5"
+        className="MuiBox-root css-18dtj11"
       />
       <div
         className="MuiBox-root css-xyedca"
