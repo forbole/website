@@ -8,13 +8,7 @@ const MilestonesDesktop = () => {
   const theme = useTheme();
   let row = 0;
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      maxWidth="1200px"
-      width="100%"
-      height="180vh"
-    >
+    <Box display="flex" flexDirection="column" maxWidth="1200px" width="100%">
       <Typography
         variant="h2"
         fontSize={theme.spacing(5)}

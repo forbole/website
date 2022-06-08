@@ -50,7 +50,7 @@ const MilestonesMobile = () => {
             <Card
               sx={{
                 height: '180px',
-                width: '300px',
+                width: '95%',
                 color: 'primary.main',
                 display: 'flex',
                 flexDirection: 'column',
@@ -62,6 +62,9 @@ const MilestonesMobile = () => {
                 marginBottom: 3,
                 marginTop: year ? 5 : 3,
                 padding: theme.spacing(2.5, 2),
+                [theme.breakpoints.up('tablet')]: {
+                  width: '500px',
+                },
               }}
             >
               <Typography
