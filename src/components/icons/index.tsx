@@ -13,6 +13,8 @@ import DotIcon from './icon_dot.svg';
 import ContactIIcon from './icon_contactI.svg';
 import ContactIIIcon from './icon_contactII.svg';
 import ContactIIIIcon from './icon_contactIII.svg';
+import BottomIcon from './icon_bottom.svg';
+import TopIcon from './icon_top.svg';
 
 export {
   Forbole,
@@ -30,4 +32,6 @@ export {
   ContactIIcon,
   ContactIIIcon,
   ContactIIIIcon,
+  BottomIcon,
+  TopIcon,
 };

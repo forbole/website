@@ -2,7 +2,7 @@ import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Layout } from '@components';
+import { Layout, ScrollToTop } from '@components';
 import { ContactForm, ContactInfo } from './components';
 import useContactForm from './hooks';
 import { styles } from './styles';
@@ -18,6 +18,7 @@ const Contact = () => {
     handleClear,
     canSubmit,
   } = useContactForm();
+  const topRef = React.useRef(null);
   return (
     <Layout title={t('title')} navLink="/contact" footer>
       <Box
@@ -36,6 +37,7 @@ const Contact = () => {
         <Box sx={{ [theme.breakpoints.up('laptop')]: { maxWidth: '1200px' } }}>
           <Typography
             variant="h2"
+            ref={topRef}
             sx={{
               paddingTop: theme.spacing(12),
               color: theme.palette.primary.main,
@@ -64,6 +66,7 @@ const Contact = () => {
             />
             <ContactInfo handleSubmit={handleSubmit} canSubmit={canSubmit} />
           </Box>
+          <ScrollToTop topRef={topRef} />
         </Box>
       </Box>
     </Layout>
