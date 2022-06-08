@@ -24,7 +24,7 @@ const Home = () => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           // backgroundPosition: '52px -59px',
-          minHeight: '85vh',
+          minHeight: '75vh',
         }}
       >
         <Box
@@ -111,7 +111,13 @@ const Home = () => {
               width: width / 2,
               [theme.breakpoints.up('mobile')]: {
                 height: '300px',
-                width: theme.spacing(45),
+                // width: theme.spacing(45),
+                // styling after review 1:
+                width: '100%',
+              },
+              [theme.breakpoints.up('laptop')]: {
+                height: '322px',
+                width: '431px',
               },
             }}
           />
