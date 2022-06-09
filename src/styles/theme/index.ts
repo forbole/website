@@ -16,7 +16,8 @@ export const common = {
   breakpoints: {
     keys: ['mobile', 'tablet', 'laptop', 'desktop'],
     values: {
-      mobile: 320,
+      // mobile: 320,
+      mobile: 280,
       tablet: 768,
       laptop: 1024,
       desktop: 1201,

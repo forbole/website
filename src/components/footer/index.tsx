@@ -5,7 +5,8 @@ import { SocialMedia, FooterItems } from './components';
 
 const Footer = () => {
   const theme = useTheme();
-  const { width } = useWindowDimensions();
+  const { windowDimensions } = useWindowDimensions();
+  const { width } = windowDimensions;
   return (
     <Box
       sx={{
