@@ -17,7 +17,8 @@ interface NavMenuProps {
 const NavMenu = ({ link }: NavMenuProps) => {
   const { t } = useTranslation('common');
   const theme = useTheme();
-  const { width } = useWindowDimensions();
+  const { windowDimensions } = useWindowDimensions();
+  const { width } = windowDimensions;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

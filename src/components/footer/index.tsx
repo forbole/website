@@ -5,34 +5,50 @@ import { SocialMedia, FooterItems } from './components';
 
 const Footer = () => {
   const theme = useTheme();
-  const { width } = useWindowDimensions();
+  const { windowDimensions } = useWindowDimensions();
+  const { width } = windowDimensions;
   return (
     <Box
       sx={{
-        [theme.breakpoints.down('laptop')]: {
+        [theme.breakpoints.up('mobile')]: {
           width: '100%',
           background: 'url(/images/assets/footer_mobile.svg) bottom',
           backgroundPosition: '0 0',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
-          height: '40vh',
-          minHeight: '320px',
-          paddingBottom: theme.spacing(4),
+          // height: '40vh',
+          // minHeight: '320px',
+          // paddingBottom: theme.spacing(4),
+          zIndex: 1,
+          // position: 'static',
+          // styling after review 1:
+          minHeight: '280px',
           position: 'static',
+          bottom: 0,
+          paddingBottom: 0,
+        },
+        [theme.breakpoints.up('tablet')]: {
+          minHeight: '35vh',
+          backgroundSize: 'cover',
+        },
+        [theme.breakpoints.up('laptop')]: {
+          width: '100%',
+          background: 'url(/images/assets/footer_desktop1.svg) bottom',
+          backgroundPosition: '0 100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '100%',
+          // height: '20vh',
+          minHeight: '367px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-end',
+          position: 'absolute',
+          bottom: 0,
           zIndex: 1,
         },
-        width: '100%',
-        background: 'url(/images/assets/footer_desktop.svg) bottom',
-        backgroundPosition: '0 100%',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100%',
-        height: '20vh',
-        minHeight: '450px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        position: 'absolute',
-        bottom: 0,
         // overflowY: 'scroll',
         // overflowX: 'hidden',
       }}

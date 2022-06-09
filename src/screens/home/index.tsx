@@ -8,7 +8,8 @@ import { useWindowDimensions } from '@src/hooks';
 const Home = () => {
   const { t } = useTranslation('home');
   const theme = useTheme();
-  const { width } = useWindowDimensions();
+  const { windowDimensions } = useWindowDimensions();
+  const { width } = windowDimensions;
   return (
     <Layout
       navLink="/"
@@ -24,7 +25,7 @@ const Home = () => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           // backgroundPosition: '52px -59px',
-          minHeight: '85vh',
+          minHeight: '75vh',
         }}
       >
         <Box
@@ -103,15 +104,28 @@ const Home = () => {
               position: 'absolute',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
-              [theme.breakpoints.up('tablet')]: {
-                backgroundSize: 'contain',
-              },
               mixBlendMode: 'lighten',
               bottom: '10vh',
               width: width / 2,
               [theme.breakpoints.up('mobile')]: {
+                backgroundSize: 'contain',
                 height: '300px',
-                width: theme.spacing(45),
+                // width: theme.spacing(45),
+                // styling after review 1:
+                width: '100%',
+                // width: `${width}px`,
+                right: '15px',
+              },
+              [theme.breakpoints.up('tablet')]: {
+                backgroundSize: 'contain',
+                height: '500px',
+                width: '550px',
+                left: 'auto',
+                right: 'auto',
+              },
+              [theme.breakpoints.up('laptop')]: {
+                height: '322px',
+                width: '431px',
               },
             }}
           />

@@ -8,6 +8,7 @@ module.exports = {
     '/': ['home'],
     '/contact': ['contact'],
     '/about': ['about'],
+    '/mission': ['mission'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };
