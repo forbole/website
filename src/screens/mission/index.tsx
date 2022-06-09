@@ -21,8 +21,18 @@ const Mission = () => {
           minHeight: '140vh',
           [theme.breakpoints.down('laptop')]: {
             minHeight: 'auto',
+            background: 'url(/images/assets/image_BG.png) top',
+            backgroundPosition: '0 0',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '200%',
           },
-          [theme.breakpoints.up('laptop')]: { minHeight: '130vh' },
+          [theme.breakpoints.up('laptop')]: {
+            background: 'url(/images/assets/image_BG.png) top',
+            backgroundPosition: '0 0',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '100%',
+            minHeight: '130vh',
+          },
         }}
       >
         <Box
