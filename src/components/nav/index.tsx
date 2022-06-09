@@ -30,6 +30,7 @@ const Nav = ({ navLink }: NavProps) => {
         top: 0,
         overflowY: 'scroll',
         overflowX: 'hidden',
+        zIndex: 2,
         [theme.breakpoints.up('laptop')]: {
           maxWidth: '1200px',
           width: '100%',
@@ -38,6 +39,7 @@ const Nav = ({ navLink }: NavProps) => {
           margin: 'auto',
           left: '50vw',
           transform: 'translate(-50%, -50%)',
+          zIndex: 2,
         },
       }}
     >
@@ -50,7 +52,7 @@ const Nav = ({ navLink }: NavProps) => {
           alignItems: 'center',
           justifyContent: 'center',
           [theme.breakpoints.up('laptop')]: {
-            padding: theme.spacing(4, 2, 0, 2),
+            padding: theme.spacing(4, 0, 0, 0),
             justifyContent: 'space-between',
           },
         }}

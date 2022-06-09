@@ -12,15 +12,37 @@ const MissionItems = () => {
   const { t } = useTranslation('mission');
   const { isDesktop } = useWindowDimensions();
   return (
-    <Box
-      sx={
-        {
-          // paddingTop: theme.spacing(12),
-        }
-      }
-    >
+    <Box>
       {statements.map((item) => {
         const { id, title, desc, image } = item;
+        let svgStyle = {};
+        let boxStyle = {};
+        switch (id) {
+          case 1:
+            svgStyle = { transform: 'translate(10%, 20%)' };
+            break;
+          case 2:
+            svgStyle = { transform: 'translateY(-20%)' };
+            break;
+          case 3:
+            svgStyle = { transform: 'translate(20%, -40%)' };
+            break;
+          case 4:
+            svgStyle = { transform: 'translate(0%, -55%)' };
+            boxStyle = { transform: 'translate(0px, -50%)' };
+            break;
+          case 5:
+            svgStyle = { transform: 'translate(10%, -75%)' };
+            boxStyle = { transform: 'translateY(-85%)' };
+            break;
+          case 6:
+            svgStyle = { transform: 'translate(0%, -85%)' };
+            boxStyle = { transform: 'translateY(-150%)' };
+            break;
+          default:
+            svgStyle = {};
+            boxStyle = {};
+        }
         return (
           <Box
             sx={{
@@ -30,16 +52,23 @@ const MissionItems = () => {
               [theme.breakpoints.up('laptop')]: {
                 position: 'relative',
                 flexDirection: id % 2 !== 0 ? 'row-reverse' : 'row',
+                width: '100%',
+                justifyContent: 'space-between',
+                alignItems: id >= 3 ? 'flex-start' : 'center',
               },
             }}
           >
             <Box
-              height={isDesktop ? '450px' : '240px'}
-              width={isDesktop ? '420px' : '222px'}
+              height={isDesktop ? '600px' : '240px'}
+              width={isDesktop ? '600px' : '222px'}
               sx={{
                 '& img': {
-                  height: isDesktop ? '450px' : '240px',
-                  width: isDesktop ? '420px' : '222px',
+                  height: isDesktop ? '600px' : '240px',
+                  width: isDesktop ? '600px' : '222px',
+                },
+                [theme.breakpoints.up('laptop')]: {
+                  '& img': svgStyle,
+                  width: '60%',
                 },
               }}
             >
@@ -49,6 +78,10 @@ const MissionItems = () => {
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
+                [theme.breakpoints.up('desktop')]: boxStyle,
+                [theme.breakpoints.up('laptop')]: {
+                  width: '30%',
+                },
               }}
             >
               <Typography
@@ -60,14 +93,6 @@ const MissionItems = () => {
               >
                 {t(title)}
               </Typography>
-              {/* <Typography
-                variant="body1"
-                color="primary.main"
-                fontWeight={600}
-                fontSize={isDesktop ? theme.spacing(2.5) : theme.spacing(1.5)}
-              >
-                {t(desc)}
-              </Typography> */}
               <Box
                 sx={{
                   paddingTop: 3,
@@ -82,12 +107,8 @@ const MissionItems = () => {
                     <Typography
                       variant="body1"
                       color="primary.main"
-                      //   fontWeight={600}
-                      // fontSize={
-                      //   isDesktop ? theme.spacing(2.5) : theme.spacing(1.5)
-                      // }
                       sx={{
-                        display: 'inline-block',
+                        display: 'inline',
                         fontSize: theme.spacing(1.5),
                         [theme.breakpoints.up('laptop')]: {
                           fontSize: theme.spacing(2.5),
@@ -96,15 +117,13 @@ const MissionItems = () => {
                     />,
                     <Typography
                       color="primary.main"
-                      // fontSize={
-                      //   isDesktop ? theme.spacing(2.5) : theme.spacing(1.5)
-                      // }
                       fontWeight={900}
                       sx={{
-                        display: 'inline-block',
+                        display: 'inline',
                         fontSize: theme.spacing(1.5),
                         [theme.breakpoints.up('laptop')]: {
                           fontSize: theme.spacing(2.5),
+                          display: 'inline',
                         },
                       }}
                     />,

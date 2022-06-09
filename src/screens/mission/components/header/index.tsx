@@ -6,11 +6,18 @@ const MissionHeader = () => {
   const theme = useTheme();
   const { t } = useTranslation('mission');
   return (
-    <Box>
+    <Box
+      sx={{
+        [theme.breakpoints.up('laptop')]: {
+          width: '80%',
+          margin: 'auto',
+          letterSpacing: '0.028em',
+        },
+      }}
+    >
       <Typography
         variant="h2"
         pt={theme.spacing(20)}
-        // pb={theme.spacing(2.5)}
         textAlign="center"
         letterSpacing="0.0015em"
         fontWeight={700}
