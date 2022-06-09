@@ -20,6 +20,7 @@ type Props = {
   image?: string;
   twitterImage?: string;
   themeModeButton?: boolean;
+  waveBG?: boolean;
 };
 
 const Layout = ({
@@ -33,6 +34,7 @@ const Layout = ({
   image,
   twitterImage,
   themeModeButton,
+  waveBG,
 }: Props) => {
   const router = useRouter();
   const currentPath = router.asPath === '/' ? '/' : `${router.asPath}`;
@@ -119,7 +121,9 @@ const Layout = ({
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
-            backgroundImage: 'url(/images/assets/image_BG.png)',
+            background: waveBG
+              ? 'rgba(37, 35, 69, 1)'
+              : 'url(/images/assets/image_BG.png)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}

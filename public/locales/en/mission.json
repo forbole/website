@@ -3,15 +3,15 @@
     "heading": "We are a people-centric technology company in the web3 era",
     "description": "Our mission is to empower people by building decentralized infrastructure that supports a free and open metaverse",
     "empower": "Empower",
-    "empower desc": "Empowering our users to <strong>take control of their digital dreams</strong> and being able to confidently participate in the inevitable future.",
+    "empower desc": "<0>Empowering our users to <1>take control of their digital dreams</1> and being able to confidently participate in the inevitable future.</0>",
     "open source": "Open source",
-    "open source desc": "Creating <strong>trust and transparency with 100% open-source software</strong> that is always available for peer review and feedback.",
+    "open source desc": "<0>Creating <1>trust and transparency with 100% open-source software</1> that is always available for peer review and feedback.</0>",
     "adoption": "Adoption",
-    "adoption desc": "Proactively <strong>paving the path to mass adoption</strong> of web3 technologies and building the tools necessary to simplify the use of this inherently complicated space.",
+    "adoption desc": "<0>Proactively <1>paving the path to mass adoption</1> of web3 technologies and building the tools necessary to simplify the use of this inherently complicated space.</0>",
     "decentralized": "Decentralized",
-    "decentralized desc": "Single-minded belief in a decentralized future where our users will always have the ability to decide on their choices <strong>without the need for bureaucratic structure and rules.</strong>",
+    "decentralized desc": "<0>Single-minded belief in a decentralized future where our users will always have the ability to decide on their choices <1>without the need for bureaucratic structure and rules.</1></0>",
     "community": "Community",
-    "community desc": "Garnering a culture of constant learning and <strong>building a community</strong> of users and developers worldwide who share the same vision as us.",
+    "community desc": "<0>Garnering a culture of constant learning and <1>building a community</1> of users and developers worldwide who share the same vision as us.</0>",
     "innovation": "Innovation",
-    "innovation desc": "Constantly innovating our products and services to meet the ever changing landscape so that <strong>users are always equipped to make their choices.</strong>"
+    "innovation desc": "<0>Constantly innovating our products and services to meet the ever changing landscape so that <1>users are always equipped to make their choices.</1></0>"
 }
