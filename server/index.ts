@@ -1,14 +1,20 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
+import 'dotenv-defaults/config';
 import express, { Request, Response } from 'express';
 import next from 'next';
 import cors from 'cors';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import axios from 'axios';
 
-dotenv.config();
+// require('dotenv').config({ path: require('find-config')('.env') });
+
+// const path = require('path');
+// require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
+
+// dotenv.config();
 
 const GhostAdminAPI = require('@tryghost/admin-api');
 
@@ -36,7 +42,7 @@ const ghostAdminApi = new GhostAdminAPI({
   url: 'https://admin.forbole.com',
   // Admin API key goes here
   key: process.env.GHOST_PRIVATE_KEY,
-  version: 'v3',
+  version: 'v3.0',
 });
 
 (async () => {
@@ -45,6 +51,8 @@ const ghostAdminApi = new GhostAdminAPI({
     const server = express();
     server.use(cors());
     server.use(express.json());
+
+    // console.log('ghost', process.env.GHOST_PRIVATE_KEY);
 
     server.post(
       '/api/contact',

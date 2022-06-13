@@ -6,5 +6,5 @@ const GhostContentAPI = require('@tryghost/content-api');
 export const ghostApi = new GhostContentAPI({
   url: process.env.NEXT_PUBLIC_GHOST_API,
   key: process.env.NEXT_PUBLIC_GHOST_KEY,
-  version: 'v3',
+  version: 'v3.0',
 });
