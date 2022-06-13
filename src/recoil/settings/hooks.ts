@@ -17,7 +17,9 @@ export const useSettingsRecoil = () => {
           currentTheme = 'dark';
         }
       } else if (THEME_DICTIONARY[savedTheme]) {
-        currentTheme = savedTheme;
+        // dark theme by default even when users' browser setting prefers light theme:
+        currentTheme = 'dark';
+        // currentTheme = savedTheme;
       }
 
       const initSettings: AtomState = {
