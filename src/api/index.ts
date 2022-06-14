@@ -1,5 +1,6 @@
 // import GhostContentAPI from '@tryghost/content-api';
-import 'dotenv-defaults/config';
+// import 'dotenv-defaults/config';
+require('dotenv').config();
 
 const GhostContentAPI = require('@tryghost/content-api');
 
