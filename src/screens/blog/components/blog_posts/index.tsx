@@ -1,14 +1,63 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-shadow */
 import React from 'react';
 import * as R from 'ramda';
-import { Box, Pagination, useTheme } from '@mui/material';
+import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
+import { Box, Button, Pagination, useTheme } from '@mui/material';
+import { useWindowDimensions } from '@hooks';
 import Post from './components/post';
 import { IProps } from './interface';
 import { useBlogPostsHook } from './hooks';
 
 const BlogPosts = ({ main, blogs, meta }: IProps) => {
+  const { t } = useTranslation('blog');
+  const router = useRouter();
   const theme = useTheme();
+
+  const { windowDimensions } = useWindowDimensions();
+  const { width } = windowDimensions;
+
   const currentPage = R.pathOr(0, ['pagination', 'page'], meta);
   const totalPages = R.pathOr(0, ['pagination', 'pages'], meta);
+  const totalPosts = R.pathOr(0, ['pagination', 'total'], meta);
+
+  const [limit, setLimit] = React.useState(15);
+  const [lastView, setLastView] = React.useState(0);
+  const postRef = React.useCallback(
+    (node: any) => {
+      if (node) {
+        node.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest',
+        });
+      }
+      return node;
+    },
+    [lastView]
+  );
+
+  const seeMorePages = (e: any, { limit, blogs }: any) => {
+    const lastPost = blogs.length;
+    limit + 15 >= totalPosts ? setLimit(totalPosts) : setLimit(limit + 15);
+    setLastView(lastPost);
+    router.push({
+      pathname: router.pathname,
+      query: { limit },
+    });
+  };
+  const responsive: any = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1100 },
+    },
+    tablet: {
+      breakpoint: { max: 1100, min: 464 },
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+    },
+  };
 
   const { handlePageChange } = useBlogPostsHook();
 
@@ -38,22 +87,42 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
       >
         {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
-          <Post key={Math.random()} id={i} post={post} />
+          <Post
+            key={Math.random()}
+            id={i}
+            refProp={i === lastView ? postRef : null}
+            post={post}
+          />
         ))}
       </Box>
-      <Pagination
-        count={totalPages}
-        page={currentPage}
-        onChange={handlePageChange}
-        showFirstButton
-        showLastButton
-        sx={{
-          [theme.breakpoints.down('tablet')]: {
-            display: 'none',
-            margin: theme.spacing(32, 0),
-          },
-        }}
-      />
+      {width >= responsive.mobile.breakpoint.max ? (
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          showFirstButton
+          showLastButton
+          sx={{
+            [theme.breakpoints.down('tablet')]: {
+              display: 'none',
+              margin: theme.spacing(32, 0),
+            },
+          }}
+        />
+      ) : (
+        <Button
+          variant="text"
+          sx={{
+            color: 'primary.main',
+            paddingTop: theme.spacing(10),
+            fontWeight: 600,
+            fontSize: theme.spacing(2),
+          }}
+          onClick={(e) => seeMorePages(e, { limit, blogs })}
+        >
+          {t('see more')}
+        </Button>
+      )}
     </Box>
   );
 };

@@ -2,8 +2,9 @@ import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, useTheme } from '@mui/material';
 import { Layout } from '@components';
-import { BlogPosts } from './components';
+import { BlogPosts, TitlePosts } from './components';
 import { useBlogHook } from './hooks';
+import { styles } from './styles';
 
 const Blog = (props: any) => {
   const theme = useTheme();
@@ -22,6 +23,9 @@ const Blog = (props: any) => {
           }}
         >
           <BlogPosts main={posts[0]} blogs={posts.slice(1)} meta={meta} />
+          <Box sx={styles.sideCSS}>
+            <TitlePosts posts={sidePosts} />
+          </Box>
         </Box>
       </Box>
     </Layout>

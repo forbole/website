@@ -18,21 +18,19 @@ export async function getServerSideProps(context: { query: any }) {
   try {
     const { query } = context;
     const fetchQuery: any = {};
-    // let posts: any = [];
+    let posts: any = [];
     if (query.page) {
       fetchQuery.page = query.page;
+      posts = await getPosts(fetchQuery);
+    } else if (query.limit) {
+      fetchQuery.limit = query.limit;
+      posts = await getAllPosts(fetchQuery);
+    } else {
+      posts = await getPosts(fetchQuery);
     }
-    //   posts = await getPosts(fetchQuery);
-    // } else if (query.limit) {
-    //   fetchQuery.limit = query.limit;
-    //   posts = await getAllPosts(fetchQuery);
-    // } else {
-    //   posts = await getPosts(fetchQuery);
-    // }
 
-    const [tags, posts, sidePosts] = await Promise.all([
+    const [tags, sidePosts] = await Promise.all([
       getTags(),
-      getPosts(fetchQuery),
       getPosts({
         limit: 10,
       }),

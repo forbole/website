@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
@@ -30,65 +31,67 @@ const Post = (props: any) => {
         },
       }}
     >
-      <Link href="/blog/[title]" as={`/blog/${slug}`}>
-        <a>
-          <img
-            src={
-              featureImage == null
-                ? '/static/images/assets/blog-placeholder.png'
-                : featureImage
-            }
-            alt={title}
-          />
-          <Box sx={{ padding: theme.spacing(2.5, 2.5, 0, 2.5) }}>
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: 700,
-                fontSize: theme.spacing(3),
-                paddingBottom: theme.spacing(3),
-              }}
-            >
-              {title}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 700,
-                fontSize: theme.spacing(2),
-              }}
-            >
-              {excerpt}
-            </Typography>
-          </Box>
-        </a>
-      </Link>
-      <Box sx={{ padding: theme.spacing(5, 2.5, 2.5, 2.5) }}>
-        <span
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            flexDirection: 'column',
-            color: 'rgba(255, 255, 255, 0.5)',
-            fontWeight: 400,
-            fontSize: '12px',
-          }}
-        >
-          <p>
-            Posted by{' '}
-            <Link href="/author/[author]" as={`/author/${author.slug}`}>
-              <a
-                style={{
-                  textDecoration: 'underline',
-                  color: 'rgba(255, 255, 255, 0.5)',
+      <Box ref={props.refProp} sx={{ padding: 0 }}>
+        <Link href="/blog/[title]" as={`/blog/${slug}`}>
+          <a>
+            <img
+              src={
+                featureImage == null
+                  ? '/static/images/assets/blog-placeholder.png'
+                  : featureImage
+              }
+              alt={title}
+            />
+            <Box sx={{ padding: theme.spacing(2.5, 2.5, 0, 2.5) }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: theme.spacing(3),
+                  paddingBottom: theme.spacing(3),
                 }}
               >
-                {author.name}
-              </a>
-            </Link>
-          </p>
-          <p className="date">{publishedAt}</p>
-        </span>
+                {title}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: theme.spacing(2),
+                }}
+              >
+                {excerpt}
+              </Typography>
+            </Box>
+          </a>
+        </Link>
+        <Box sx={{ padding: theme.spacing(5, 2.5, 2.5, 2.5) }}>
+          <span
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexDirection: 'column',
+              color: 'rgba(255, 255, 255, 0.5)',
+              fontWeight: 400,
+              fontSize: '12px',
+            }}
+          >
+            <p>
+              Posted by{' '}
+              <Link href="/author/[author]" as={`/author/${author.slug}`}>
+                <a
+                  style={{
+                    textDecoration: 'underline',
+                    color: 'rgba(255, 255, 255, 0.5)',
+                  }}
+                >
+                  {author.name}
+                </a>
+              </Link>
+            </p>
+            <p className="date">{publishedAt}</p>
+          </span>
+        </Box>
       </Box>
     </Box>
   );

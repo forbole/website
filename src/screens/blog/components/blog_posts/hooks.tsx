@@ -4,7 +4,6 @@ export const useBlogPostsHook = () => {
   const router = useRouter();
 
   const handlePageChange = (e: any, value: any) => {
-    console.log('val', value);
     router.push({
       pathname: router.pathname,
       query: { page: value },
