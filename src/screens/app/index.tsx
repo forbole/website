@@ -6,6 +6,8 @@ import { RecoilRoot } from 'recoil';
 import createEmotionCache from '../../misc/createEmotionCache';
 import InnerApp from './innerApp';
 
+require('dotenv').config();
+
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
