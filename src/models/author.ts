@@ -1,7 +1,10 @@
 class Author {
   public bio: string;
+
   public name: string;
+
   public profileImage: string;
+
   public slug: string;
 
   constructor(payload: any) {
@@ -15,7 +18,7 @@ class Author {
     return new Author({
       bio: data.bio,
       name: data.name,
-      profileImage: data["profile_image"],
+      profileImage: data.profile_image,
       slug: data.slug,
     });
   }

@@ -1,6 +1,8 @@
 class Tag {
   public name: string;
+
   public slug: string;
+
   public url: string;
 
   constructor(payload: any) {
