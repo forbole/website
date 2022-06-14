@@ -3,7 +3,7 @@ import { Theme } from '@mui/material';
 
 export const styles: { [index: string]: SxProps<Theme> } = {
   titlePostCSS: (theme) => ({
-    padding: theme.spacing(7, 1.5),
+    padding: theme.spacing(7, 1.5, 0, 1.5),
     color: 'primary.main',
     listStyleType: 'none',
     '& a': {
