@@ -135,7 +135,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
               paddingTop: theme.spacing(7),
             },
             [theme.breakpoints.up('laptop')]: {
-              height: theme.spacing(33.25),
+              height: '366px',
               zIndex: 3,
             },
           }}
