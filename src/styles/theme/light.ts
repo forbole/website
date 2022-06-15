@@ -1,11 +1,13 @@
+import { PaletteMode } from '@mui/material';
+
 const backgroundDefault = '#FFFFFF';
 // const backgroundDefault = 'rgba(30, 41, 67, 1)';
 
 /** Custom theme overrides for dark mode */
 export const lightThemeOverride = {
   palette: {
-    mode: 'light',
-    type: 'light',
+    mode: 'light' as PaletteMode,
+    type: 'light' as PaletteMode,
     primary: {
       main: '#FFFFFF',
     },

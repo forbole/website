@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import { Box, useTheme } from '@mui/material';
+import DOMPurify from 'isomorphic-dompurify';
+import { css, jsx } from '@emotion/react';
+import { Box, Divider, Typography, useTheme } from '@mui/material';
 import { Layout, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
 import { Author, SocialMedia } from './components';
+import { ContentBox, ContentCSS } from './styles';
 
 const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
@@ -19,26 +22,11 @@ const BlogDetails = ({ post }: any) => {
     featureImage,
     html,
   } = post;
-
   const { t } = useTranslation('blog');
-  //   console.log(
-  //     'post',
-  //     title,
-  //     publishedAt,
-  //     modified,
-  //     slug,
-  //     author,
-  //     tags,
-  //     excerpt,
-  //     featureImage,
-  //     html
-  //   );
-  console.log('post mode', theme.palette.mode);
+  const { sanitize } = DOMPurify;
   return (
     <Layout
       title={post.title}
-      //   navColor={colors.gray600}
-      //   mobileNavColor={colors.gray600}
       description={excerpt}
       type="article"
       image={featureImage}
@@ -81,8 +69,36 @@ const BlogDetails = ({ post }: any) => {
         }}
       />
       <Box sx={{ padding: theme.spacing(3) }}>
-        <Author post={post} />
-        <SocialMedia title={post.title} />
+        <ContentCSS theme={theme}>
+          <Author post={post} />
+          <SocialMedia title={post.title} />
+          <Typography
+            variant="h3"
+            sx={{
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary.main
+                  : theme.palette.text.primary,
+              fontWeight: 600,
+              fontSize: theme.spacing(2.5),
+            }}
+          >
+            {title}
+          </Typography>
+          <Divider
+            variant="middle"
+            sx={{
+              border:
+                theme.palette.mode === 'dark'
+                  ? '1px solid rgba(255, 255, 255, 0.3)'
+                  : '1px solid rgba(29, 30, 34, 0.3)',
+              margin: theme.spacing(4.375, 0, 4.375, 0),
+            }}
+          />
+          <ContentBox
+            dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
+          />
+        </ContentCSS>
       </Box>
     </Layout>
   );
