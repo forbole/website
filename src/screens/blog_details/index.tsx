@@ -100,6 +100,7 @@ const BlogDetails = ({ post }: any) => {
           />
         </ContentCSS>
       </Box>
+      <Tags tags={tags} />
     </Layout>
   );
 };

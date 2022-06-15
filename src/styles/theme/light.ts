@@ -11,6 +11,9 @@ export const lightThemeOverride = {
     primary: {
       main: '#FFFFFF',
     },
+    secondary: {
+      main: '#4D2FC2',
+    },
     text: {
       primary: '#000000',
     },
