@@ -1,9 +1,10 @@
-// const backgroundDefault = '#FFFFFF';
-const backgroundDefault = 'rgba(30, 41, 67, 1)';
+const backgroundDefault = '#FFFFFF';
+// const backgroundDefault = 'rgba(30, 41, 67, 1)';
 
 /** Custom theme overrides for dark mode */
 export const lightThemeOverride = {
   palette: {
+    mode: 'light',
     type: 'light',
     primary: {
       main: '#FFFFFF',

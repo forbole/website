@@ -67,7 +67,13 @@ const Nav = ({ navLink }: NavProps) => {
         >
           <Link href="/">
             <a>
-              <ForboleLogo />
+              <ForboleLogo
+                color={
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primary.main
+                    : theme.palette.custom.forbole.red
+                }
+              />
             </a>
           </Link>
         </Box>

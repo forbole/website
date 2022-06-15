@@ -46,7 +46,13 @@ const NavMenu = ({ link }: NavMenuProps) => {
           },
         }}
       >
-        <MenuIcon />
+        <MenuIcon
+          color={
+            theme.palette.mode === 'dark'
+              ? theme.palette.primary.main
+              : theme.palette.custom.forbole.indigo
+          }
+        />
       </IconButton>
       <Menu
         id="basic-menu"

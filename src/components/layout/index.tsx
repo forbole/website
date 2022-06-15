@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 import React, { ReactNode } from 'react';
@@ -5,7 +6,7 @@ import Head from 'next/head';
 import * as R from 'ramda';
 import validator from 'validator';
 import { useRouter } from 'next/router';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import Nav from '../nav';
 import Footer from '../footer';
 
@@ -36,6 +37,7 @@ const Layout = ({
   themeModeButton,
   waveBG,
 }: Props) => {
+  const theme = useTheme();
   const router = useRouter();
   const currentPath = router.asPath === '/' ? '/' : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
@@ -123,7 +125,9 @@ const Layout = ({
             minHeight: '100vh',
             background: waveBG
               ? 'rgba(37, 35, 69, 1)'
-              : 'url(/images/assets/image_BG.png)',
+              : theme.palette.mode === 'dark'
+              ? 'url(/images/assets/image_BG.png)'
+              : theme.palette.primary.main,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}
