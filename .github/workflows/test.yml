@@ -17,11 +17,3 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test -- --coverage
-  Build-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install modules
-        run: npm ci
-      - name: Run build check
-        run: npm run build
