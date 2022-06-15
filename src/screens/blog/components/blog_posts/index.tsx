@@ -15,7 +15,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
   const router = useRouter();
   const theme = useTheme();
 
-  const { windowDimensions } = useWindowDimensions();
+  const { windowDimensions, isMobile } = useWindowDimensions();
   const { width } = windowDimensions;
 
   const currentPage = R.pathOr(0, ['pagination', 'page'], meta);
@@ -26,7 +26,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
   const [lastView, setLastView] = React.useState(0);
   const postRef = React.useCallback(
     (node: any) => {
-      if (node) {
+      if (node && isMobile) {
         node.scrollIntoView({
           behavior: 'smooth',
           block: 'nearest',
@@ -77,6 +77,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
           gridGap: theme.spacing(4),
           gridTemplateColumns: 'repeat(1, 1fr)',
           width: '100%',
+          padding: theme.spacing(12, 3, 0, 3),
           [theme.breakpoints.up('laptop')]: {
             padding: 0,
             gridTemplateColumns: 'repeat(2, 1fr)',
@@ -100,12 +101,42 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
           count={totalPages}
           page={currentPage}
           onChange={handlePageChange}
+          shape="rounded"
           showFirstButton
           showLastButton
           sx={{
+            '& .MuiPaginationItem-root': {
+              color: theme.palette.primary.main,
+            },
+            '& .MuiPaginationItem-root.Mui-disabled': {
+              opacity: 1,
+              background: 'rgba(239, 239, 239, 1)',
+              color: 'rgba(175, 175, 175, 1)',
+            },
+            '& .MuiPaginationItem-root.Mui-selected': {
+              backgroundColor: theme.palette.custom.forbole.purple,
+              color: theme.palette.primary.main,
+            },
+            '& .MuiPaginationItem-previousNext': {
+              opacity: 1,
+              background: 'rgba(239, 239, 239, 1)',
+              color: 'rgba(52, 56, 62, 1)',
+            },
+            '& .MuiPaginationItem-firstLast': {
+              opacity: 1,
+              background: 'rgba(239, 239, 239, 1)',
+              color: 'rgba(52, 56, 62, 1)',
+            },
             [theme.breakpoints.down('tablet')]: {
               display: 'none',
               margin: theme.spacing(32, 0),
+            },
+            [theme.breakpoints.up('tablet')]: {
+              paddingTop: theme.spacing(7),
+            },
+            [theme.breakpoints.up('laptop')]: {
+              height: theme.spacing(33.25),
+              zIndex: 3,
             },
           }}
         />

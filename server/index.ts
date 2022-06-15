@@ -5,16 +5,8 @@ import 'dotenv-defaults/config';
 import express, { Request, Response } from 'express';
 import next from 'next';
 import cors from 'cors';
-// import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import axios from 'axios';
-
-// require('dotenv').config({ path: require('find-config')('.env') });
-
-// const path = require('path');
-// require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
-
-// dotenv.config();
 
 const GhostAdminAPI = require('@tryghost/admin-api');
 
@@ -51,8 +43,6 @@ const ghostAdminApi = new GhostAdminAPI({
     const server = express();
     server.use(cors());
     server.use(express.json());
-
-    // console.log('ghost', process.env.GHOST_PRIVATE_KEY);
 
     server.post(
       '/api/contact',

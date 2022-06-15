@@ -42,7 +42,11 @@ const Post = (props: any) => {
               }
               alt={title}
             />
-            <Box sx={{ padding: theme.spacing(2.5, 2.5, 0, 2.5) }}>
+            <Box
+              sx={{
+                padding: theme.spacing(2.5, 2.5, 0, 2.5),
+              }}
+            >
               <Typography
                 variant="h3"
                 sx={{
@@ -65,15 +69,25 @@ const Post = (props: any) => {
             </Box>
           </a>
         </Link>
-        <Box sx={{ padding: theme.spacing(5, 2.5, 2.5, 2.5) }}>
-          <span
-            style={{
+        <Box
+          sx={{
+            padding: theme.spacing(5, 2.5, 2.5, 2.5),
+          }}
+        >
+          <Box
+            component="span"
+            sx={{
               display: 'flex',
               alignItems: 'flex-start',
               flexDirection: 'column',
               color: 'rgba(255, 255, 255, 0.5)',
               fontWeight: 400,
               fontSize: '12px',
+              [theme.breakpoints.up('laptop')]: {
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
             }}
           >
             <p>
@@ -90,7 +104,7 @@ const Post = (props: any) => {
               </Link>
             </p>
             <p className="date">{publishedAt}</p>
-          </span>
+          </Box>
         </Box>
       </Box>
     </Box>
