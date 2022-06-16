@@ -1,15 +1,39 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
-import Link from 'next/link';
 import { styles } from './styles';
 
-const Tags = ({ tags = [] }: any) => {
+interface TagsProps {
+  tags: any[];
+  details?: boolean;
+  noPadding?: boolean;
+}
+
+const Tags = (props: TagsProps) => {
   const { t } = useTranslation('blog');
   const theme = useTheme();
+  const { tags, details, noPadding } = props;
   return (
-    <Box sx={styles.tagsContainer}>
+    <Box
+      sx={{
+        padding: theme.spacing(7, 3),
+        color: theme.palette.primary.main,
+        '& h3': {
+          fontWeight: 700,
+          fontSize: theme.spacing(3),
+          paddingBottom: theme.spacing(3.5),
+        },
+        [theme.breakpoints.up('laptop')]: {
+          padding: noPadding ? 0 : theme.spacing(3.75),
+          background: details ? 'transparent' : 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(8px)',
+          borderRadius: theme.spacing(0.75),
+        },
+      }}
+    >
       <Typography
         variant="h3"
         color={
