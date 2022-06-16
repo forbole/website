@@ -1,14 +1,17 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
 import * as R from 'ramda';
 import validator from 'validator';
 import { useRouter } from 'next/router';
 import { Box, useTheme } from '@mui/material';
-import Nav from '../nav';
+import { useRecoilState, SetterOrUpdater } from 'recoil';
+import { Theme } from '@recoil/settings/types';
+import { writeTheme } from '@recoil/settings';
 import Footer from '../footer';
+import Nav from '../nav';
 
 type Props = {
   navLink: string;
@@ -38,6 +41,10 @@ const Layout = ({
   waveBG,
 }: Props) => {
   const theme = useTheme();
+  const [themeMode, setTheme] = useRecoilState(writeTheme) as [
+    Theme,
+    SetterOrUpdater<Theme>
+  ];
   const router = useRouter();
   const currentPath = router.asPath === '/' ? '/' : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
@@ -51,6 +58,13 @@ const Layout = ({
   if (!validator.isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
+  React.useEffect(() => {
+    if (navLink !== '/blog' && theme.palette.mode === 'light') {
+      setTheme('dark');
+    } else if (navLink !== '/careers' && theme.palette.mode === 'light') {
+      setTheme('dark');
+    }
+  }, [navLink]);
   return (
     <Box position="relative">
       <Head>
