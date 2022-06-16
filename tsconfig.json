@@ -19,6 +19,9 @@
       "@src/*": [
         "src/*"
       ],
+      "@screens/*": [
+        "src/screens/*"
+      ],
       "@styles/*": [
         "src/styles/*"
       ],
@@ -51,6 +54,12 @@
       ],
       "@public/*": [
         "public/*"
+      ],
+      "@api/*": [
+        "src/api/*"
+      ],
+      "@models": [
+        "src/models"
       ]
     }
   },

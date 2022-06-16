@@ -1,13 +1,14 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
+import 'dotenv-defaults/config';
 import express, { Request, Response } from 'express';
 import next from 'next';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import axios from 'axios';
 
-dotenv.config();
+const GhostAdminAPI = require('@tryghost/admin-api');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const app = next({
@@ -17,7 +18,7 @@ const app = next({
 const handle = app.getRequestHandler();
 
 const port = process.env.PORT || 3000;
-// const url = process.env.NEXT_PUBLIC_URL;
+const url = process.env.NEXT_PUBLIC_URL;
 const transporter = nodemailer.createTransport({
   service: 'Mailgun',
   host: 'smtp.mailgun.org',
@@ -29,11 +30,19 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const ghostAdminApi = new GhostAdminAPI({
+  url: 'https://admin.forbole.com',
+  // Admin API key goes here
+  key: process.env.GHOST_PRIVATE_KEY,
+  version: 'v3.0',
+});
+
 (async () => {
   try {
     await app.prepare();
     const server = express();
     server.use(cors());
+    server.use(express.json());
 
     server.post(
       '/api/contact',
@@ -67,12 +76,36 @@ const transporter = nodemailer.createTransport({
       }
     );
 
+    server.post(
+      '/api/post-preview',
+      async (req: Request, res: Response, next: any) => {
+        try {
+          const { id } = req?.body;
+          const [blog] = await ghostAdminApi.posts
+            .browse({
+              filter: `uuid:${id}`,
+              limit: 1,
+              include: 'tags,authors',
+              formats: 'html',
+            })
+            .catch((error: { message: any }) => {
+              console.log('the error here');
+              console.log(error.message);
+            });
+          res.status(200).json(blog ?? null);
+        } catch (err) {
+          next(err);
+        }
+      }
+    );
+
     server.all('*', (req: Request, res: Response) => {
       return handle(req, res);
     });
+
     server.listen(port, (err?: any) => {
       if (err) throw err;
-      console.log('> App Ready On:');
+      console.log(`> App Ready On: ${url}`);
       console.log(`> URL: http://localhost:${port}`);
       console.log(`> ENV: ${process.env.NODE_ENV || 'development'}`);
       console.log(`> PORT: ${port}`);
