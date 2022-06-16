@@ -5,5 +5,6 @@
     "tags": "Tags",
     "contents": "Contents",
     "twitter": "Twitter",
-    "see more": "See More"
+    "see more": "See More",
+    "error": "Unable to fetch blogs. Please try again later."
 }
