@@ -116,7 +116,7 @@ export const ContentBox = styled.div<any>`
     margin-top: 1.5rem;
   }
 
-  [id]:not(:first-child) {
+  [id]:not(:first-of-type) {
     margin: 1.5em 0 0;
   }
 
@@ -410,16 +410,16 @@ export const ContentBox = styled.div<any>`
     padding: 0.4em 0.7em;
   }
 
-  tbody tr:nth-child(2n + 1) {
+  tbody tr:nth-of-type(2n + 1) {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 1px;
   }
 
-  tbody tr:nth-child(2n + 2) td:last-child {
+  tbody tr:nth-of-type(2n + 2) td:last-child {
     box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1);
   }
 
-  tbody tr:nth-child(2n + 2) td {
+  tbody tr:nth-of-type(2n + 2) td {
     box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1);
   }
 

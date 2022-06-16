@@ -22,7 +22,7 @@ const TitlePosts = (props: any) => {
         {t('contents')}
       </Typography>
       {posts.map((post: any, i: number) => (
-        <>
+        <div key={Math.random()}>
           <Box
             sx={{
               padding: theme.spacing(3, 0),
@@ -49,7 +49,7 @@ const TitlePosts = (props: any) => {
           {i === posts.length - 1 ? null : (
             <Divider sx={{ borderColor: 'rgba(116, 136, 188, 0.3)' }} />
           )}
-        </>
+        </div>
       ))}
     </Box>
   );
