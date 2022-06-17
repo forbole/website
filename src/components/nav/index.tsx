@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Box, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo } from '@icons';
-import { NavMenu } from './components';
+import { MobileNavMenu } from './components';
 import { useNavHook } from './hooks';
 
 interface NavProps {
@@ -93,7 +93,7 @@ const Nav = ({ navLink }: NavProps) => {
               },
             }}
           >
-            <NavMenu link={navLink} />
+            <MobileNavMenu link={navLink} />
           </Box>
         </Box>
       </Box>

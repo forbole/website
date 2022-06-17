@@ -1,3 +1,3 @@
-import NavMenu from './nav_menu';
+import MobileNavMenu from './mobile_nav_menu';
 
-export { NavMenu };
+export { MobileNavMenu };

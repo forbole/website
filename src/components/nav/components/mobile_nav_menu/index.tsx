@@ -14,7 +14,7 @@ interface NavMenuProps {
   link: string;
 }
 
-const NavMenu = ({ link }: NavMenuProps) => {
+const MobileNavMenu = ({ link }: NavMenuProps) => {
   const { t } = useTranslation('common');
   const theme = useTheme();
   const { windowDimensions } = useWindowDimensions();
@@ -114,4 +114,4 @@ const NavMenu = ({ link }: NavMenuProps) => {
   );
 };
 
-export default NavMenu;
+export default MobileNavMenu;
