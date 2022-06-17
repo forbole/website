@@ -29,6 +29,12 @@ const ScrollToTop = ({ topRef, mobile, height }: TopProps) => {
         height="max-content"
         sx={{
           cursor: 'pointer',
+          '& svg': {
+            '&:hover': {
+              borderRadius: '50%',
+              background: 'rgba(29, 30, 34, 0.3)',
+            },
+          },
         }}
       >
         <TopIcon
