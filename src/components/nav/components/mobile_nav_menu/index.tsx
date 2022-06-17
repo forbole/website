@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { MenuIcon } from '@components/icons';
 import { useTheme } from '@mui/material';
 import { useWindowDimensions } from '@src/hooks';
-import { navItems } from './config';
+import { navItems } from '../config';
 
 interface NavMenuProps {
   link: string;

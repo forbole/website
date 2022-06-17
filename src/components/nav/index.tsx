@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Box, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo } from '@icons';
-import { MobileNavMenu } from './components';
+import { MobileNavMenu, DesktopNavMenu } from './components';
 import { useNavHook } from './hooks';
 
 interface NavProps {
@@ -61,6 +61,7 @@ const Nav = ({ navLink }: NavProps) => {
             [theme.breakpoints.up('laptop')]: {
               padding: theme.spacing(4, 0, 0, 0),
               justifyContent: 'space-between',
+              height: '100px',
             },
           }}
         >
@@ -69,11 +70,18 @@ const Nav = ({ navLink }: NavProps) => {
               // margin: 'auto',
               [theme.breakpoints.up('laptop')]: {
                 margin: 0,
+                width: '40%',
               },
             }}
           >
             <Link href="/">
-              <a>
+              <a
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '100%',
+                }}
+              >
                 <ForboleLogo
                   color={
                     theme.palette.mode === 'dark'
@@ -91,9 +99,24 @@ const Nav = ({ navLink }: NavProps) => {
                 top: theme.spacing(4),
                 right: theme.spacing(4),
               },
+              [theme.breakpoints.up('laptop')]: {
+                display: 'none',
+              },
             }}
           >
             <MobileNavMenu link={navLink} />
+          </Box>
+          <Box
+            sx={{
+              [theme.breakpoints.down('laptop')]: { display: 'none' },
+              [theme.breakpoints.up('laptop')]: {
+                display: 'flex',
+                width: '60%',
+                height: '100px',
+              },
+            }}
+          >
+            <DesktopNavMenu link={navLink} />
           </Box>
         </Box>
       </Box>
