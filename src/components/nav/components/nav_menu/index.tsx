@@ -64,7 +64,7 @@ const NavMenu = ({ link }: NavMenuProps) => {
         onClose={handleClose}
         PaperProps={{
           sx: {
-            backgroundColor: '#1D1E22',
+            backgroundImage: 'none',
             borderRadius: theme.spacing(2.25),
             width: theme.spacing(27.5),
             left: `${width - width / 4}px!important` as any,
@@ -89,9 +89,10 @@ const NavMenu = ({ link }: NavMenuProps) => {
               fontSize: theme.spacing(2),
               fontWeight: 900,
               height: theme.spacing(8),
+              padding: theme.spacing(4),
               '> a': {
                 width: '100%',
-                textAlign: 'center',
+                textAlign: 'left',
                 color:
                   item.link === link
                     ? theme.palette.custom.forbole.purple
