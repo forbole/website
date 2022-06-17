@@ -30,6 +30,12 @@ const SocialMedia = ({ contact }: SocialMediaProps) => {
           paddingRight: '1rem',
           alignItems: 'center',
           display: 'flex',
+          '& svg': {
+            '&:hover': {
+              borderRadius: '50%',
+              background: theme.palette.custom.forbole.indigo,
+            },
+          },
           '&:hover': {
             cursor: 'pointer',
             'svg path': {

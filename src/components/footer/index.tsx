@@ -12,8 +12,8 @@ const Footer = () => {
       sx={{
         [theme.breakpoints.up('mobile')]: {
           width: '100%',
-          background: 'url(/images/assets/footer_mobile.svg) bottom',
-          backgroundPosition: '0 0',
+          background: 'url(/images/assets/footer_mobile2.svg) bottom',
+          backgroundPosition: '0 50%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
           // height: '40vh',
@@ -28,12 +28,15 @@ const Footer = () => {
           paddingBottom: 0,
         },
         [theme.breakpoints.up('tablet')]: {
-          minHeight: '35vh',
+          // minHeight: '35vh',
           backgroundSize: 'cover',
+          // backgroundSize: '100%',
+          backgroundPosition: '0 35%',
+          bottom: 0,
         },
         [theme.breakpoints.up('laptop')]: {
           width: '100%',
-          background: 'url(/images/assets/footer_desktop1.svg) bottom',
+          background: 'url(/images/assets/footer_desktop2.svg) bottom',
           backgroundPosition: '0 100%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',

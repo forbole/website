@@ -8,13 +8,13 @@ import MenuItem from '@mui/material/MenuItem';
 import { MenuIcon } from '@components/icons';
 import { useTheme } from '@mui/material';
 import { useWindowDimensions } from '@src/hooks';
-import { navItems } from './config';
+import { navItems } from '../config';
 
 interface NavMenuProps {
   link: string;
 }
 
-const NavMenu = ({ link }: NavMenuProps) => {
+const MobileNavMenu = ({ link }: NavMenuProps) => {
   const { t } = useTranslation('common');
   const theme = useTheme();
   const { windowDimensions } = useWindowDimensions();
@@ -64,7 +64,7 @@ const NavMenu = ({ link }: NavMenuProps) => {
         onClose={handleClose}
         PaperProps={{
           sx: {
-            backgroundColor: '#1D1E22',
+            backgroundImage: 'none',
             borderRadius: theme.spacing(2.25),
             width: theme.spacing(27.5),
             left: `${width - width / 4}px!important` as any,
@@ -89,9 +89,10 @@ const NavMenu = ({ link }: NavMenuProps) => {
               fontSize: theme.spacing(2),
               fontWeight: 900,
               height: theme.spacing(8),
+              padding: theme.spacing(4),
               '> a': {
                 width: '100%',
-                textAlign: 'center',
+                textAlign: 'left',
                 color:
                   item.link === link
                     ? theme.palette.custom.forbole.purple
@@ -113,4 +114,4 @@ const NavMenu = ({ link }: NavMenuProps) => {
   );
 };
 
-export default NavMenu;
+export default MobileNavMenu;
