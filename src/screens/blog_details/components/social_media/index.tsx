@@ -49,6 +49,11 @@ const SocialMedia = (props: any) => {
           },
           '&:hover': {
             cursor: 'pointer',
+            borderRadius: '50%',
+            background:
+              theme.palette.mode === 'dark'
+                ? theme.palette.custom.forbole.indigo
+                : 'rgba(29, 30, 34, 0.3)',
           },
         },
       }}
