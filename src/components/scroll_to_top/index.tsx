@@ -30,6 +30,12 @@ const ScrollToTop = ({ topRef, mobile, height }: TopProps) => {
         sx={{
           cursor: 'pointer',
           '& svg': {
+            '& path': {
+              stroke:
+                theme.palette.mode === 'dark'
+                  ? '#fff'
+                  : 'rgba(29, 30, 34, 0.3)',
+            },
             '&:hover': {
               borderRadius: '50%',
               background: 'rgba(29, 30, 34, 0.3)',
