@@ -16,6 +16,7 @@ import ContactIIIcon from './icon_contactII.svg';
 import ContactIIIIcon from './icon_contactIII.svg';
 import BottomIcon from './icon_bottom.svg';
 import TopIcon from './icon_top.svg';
+import CareersIcon from './icon_careers.svg';
 
 export {
   Forbole,
@@ -36,4 +37,5 @@ export {
   ContactIIIIcon,
   BottomIcon,
   TopIcon,
+  CareersIcon,
 };

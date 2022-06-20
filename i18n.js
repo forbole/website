@@ -10,6 +10,7 @@ module.exports = {
     '/about': ['about'],
     '/mission': ['mission'],
     '/blog': ['blog'],
+    '/careers': ['careers'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };
