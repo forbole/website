@@ -69,12 +69,12 @@ const AboutUsMobile = () => {
         </Typography>
       </Box>
       <Box mt={10}>
-        {icons.map((item) => {
+        {icons.map((item, i) => {
           const { icon, title } = item;
           const Svg = icon;
           return (
             <Box
-              key={Math.random()}
+              key={i}
               display="flex"
               justifyItems="center"
               alignItems="center"

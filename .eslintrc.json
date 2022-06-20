@@ -43,6 +43,7 @@
         "react/jsx-props-no-spreading": "off",
         "react/react-in-jsx-scope": "off",
         "react/jsx-one-expression-per-line": "off",
+        "react/no-array-index-key": "off",
         "react/jsx-filename-extension": [
             2,
             {

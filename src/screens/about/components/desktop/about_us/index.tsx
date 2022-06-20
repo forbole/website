@@ -81,11 +81,11 @@ const AboutUsDesktop = () => {
           flexDirection="row"
           mt={theme.spacing(4.5)}
         >
-          {icons.map((item) => {
+          {icons.map((item, i) => {
             const { title, picture } = item;
             return (
               <Box
-                key={Math.random()}
+                key={i}
                 display="flex"
                 justifyItems="center"
                 alignItems="center"

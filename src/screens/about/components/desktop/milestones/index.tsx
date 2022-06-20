@@ -29,7 +29,7 @@ const MilestonesDesktop = () => {
           gridTemplateRows: 'repeat(5, 1fr)',
         }}
       >
-        {awards.map((award) => {
+        {awards.map((award, i) => {
           const { year, title, desc, timeline } = award;
           if (year) {
             row += 1;
@@ -37,7 +37,7 @@ const MilestonesDesktop = () => {
           return (
             <>
               <Box
-                key={Math.random()}
+                key={i}
                 sx={{ gridRow: `${row} / span 1`, gridColumn: '1 / span 1' }}
               >
                 <Typography

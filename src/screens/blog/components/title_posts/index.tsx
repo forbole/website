@@ -22,17 +22,13 @@ const TitlePosts = (props: any) => {
         {t('contents')}
       </Typography>
       {posts.map((post: any, i: number) => (
-        <div key={Math.random()}>
+        <div key={post.id}>
           <Box
             sx={{
               padding: theme.spacing(3, 0),
             }}
           >
-            <Link
-              href="/blog/[title]"
-              as={`/blog/${post.slug}`}
-              key={Math.random()}
-            >
+            <Link href="/blog/[title]" as={`/blog/${post.slug}`} key={post.id}>
               <a>
                 <li
                   style={{

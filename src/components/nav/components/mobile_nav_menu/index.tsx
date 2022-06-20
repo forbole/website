@@ -78,9 +78,9 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
           },
         }}
       >
-        {navItems.map((item) => (
+        {navItems.map((item, i) => (
           <MenuItem
-            key={item.display}
+            key={i}
             // selected={anchorEl}
             onClick={handleClose}
             sx={{

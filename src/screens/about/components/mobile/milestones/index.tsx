@@ -25,7 +25,7 @@ const MilestonesMobile = () => {
         const { year, title, desc, timeline } = award;
         return (
           <Box
-            key={Math.random()}
+            key={i}
             sx={{
               borderLeft:
                 i === awards.length - 1

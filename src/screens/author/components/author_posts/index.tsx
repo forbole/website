@@ -41,7 +41,7 @@ const AuthorPosts = ({ main, blogs, meta }: IProps) => {
       >
         {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
-          <Post key={Math.random()} id={i} post={post} />
+          <Post key={post.id} id={i} post={post} />
         ))}
       </Box>
       <Pagination
