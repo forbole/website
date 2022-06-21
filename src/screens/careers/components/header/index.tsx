@@ -1,11 +1,12 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
-import { CareersIcon } from '@icons';
+import { useWindowDimensions } from '@hooks';
 
 const CareersHeader = () => {
   const theme = useTheme();
   const { t } = useTranslation('careers');
+  const { isDesktop } = useWindowDimensions();
   return (
     <Box
       sx={{
@@ -18,7 +19,7 @@ const CareersHeader = () => {
     >
       <Typography
         variant="h2"
-        pt={theme.spacing(20)}
+        pt={theme.spacing(12)}
         textAlign="center"
         letterSpacing="0.0015em"
         fontWeight={700}
@@ -36,12 +37,19 @@ const CareersHeader = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
           [theme.breakpoints.up('laptop')]: {
             flexDirection: 'column-reverse',
           },
         }}
       >
-        <CareersIcon />
+        <Box pt={3.75}>
+          <img
+            src="/images/assets/icon_careers.svg"
+            alt="careers"
+            style={{ width: isDesktop ? 372 : 220 }}
+          />
+        </Box>
         <Box>
           <Typography
             variant="body1"
