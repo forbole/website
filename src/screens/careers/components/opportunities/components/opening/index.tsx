@@ -44,7 +44,19 @@ const Opening = (props: any) => {
         >
           {description}
         </Typography>
-        <Box display="flex" flexDirection="column" alignItems="flex-start">
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-start"
+          sx={{
+            [theme.breakpoints.up('laptop')]: {
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              width: '100%',
+            },
+          }}
+        >
           <Button
             href={`/careers/${slug}`}
             variant="text"
@@ -54,10 +66,23 @@ const Opening = (props: any) => {
               color: 'primary.main',
               fontWeight: 600,
               fontSize: theme.spacing(2),
+              [theme.breakpoints.up('laptop')]: {
+                border: '1px solid #FFFFFF',
+                borderRadius: theme.spacing(20),
+                padding: theme.spacing(1.5, 2),
+                marginRight: 2,
+              },
             }}
           >
             {t('learn more')}
-            <ArrowIcon />
+            <Box
+              sx={{
+                display: 'flex',
+                [theme.breakpoints.up('laptop')]: { display: 'none' },
+              }}
+            >
+              <ArrowIcon />
+            </Box>
           </Button>
           <Button sx={styles.button}>{t('apply now')}</Button>
         </Box>
