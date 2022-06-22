@@ -1,3 +1,4 @@
 import CareersHeader from './header';
+import Opportunities from './opportunities';
 
-export { CareersHeader };
+export { CareersHeader, Opportunities };

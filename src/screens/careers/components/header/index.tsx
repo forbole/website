@@ -11,7 +11,7 @@ const CareersHeader = () => {
     <Box
       sx={{
         [theme.breakpoints.up('laptop')]: {
-          width: '80%',
+          width: '100%',
           margin: 'auto',
           letterSpacing: '0.028em',
         },
@@ -28,6 +28,7 @@ const CareersHeader = () => {
           fontSize: theme.spacing(3),
           [theme.breakpoints.up('laptop')]: {
             fontSize: theme.spacing(5),
+            paddingTop: theme.spacing(20),
           },
         }}
       >
