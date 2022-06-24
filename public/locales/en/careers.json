@@ -6,5 +6,18 @@
     "learn more": "Learn more",
     "apply now": "Apply Now",
     "job opportunities": "Job Opportunities",
-    "search": "Search by keywords"
+    "search": "Search by keywords",
+    "apply title": "Apply for this job",
+    "first name": "First name",
+    "last name": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "cv": "Resume/CV",
+    "cover letter": "Cover letter (optional)",
+    "submit": "Submit",
+    "upload": "Upload",
+    "form success": "Application submitted successfully!",
+    "form error": "Application submission error!",
+    "file error": "File upload error!"
 }

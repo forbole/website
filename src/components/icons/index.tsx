@@ -18,6 +18,8 @@ import BottomIcon from './icon_bottom.svg';
 import TopIcon from './icon_top.svg';
 import ArrowIcon from './icon_arrow.svg';
 import SearchIcon from './icon_search.svg';
+import CloseIcon from './icon_cross.svg';
+import UploadIcon from './icon_upload.svg';
 
 export {
   Forbole,
@@ -40,4 +42,6 @@ export {
   TopIcon,
   ArrowIcon,
   SearchIcon,
+  CloseIcon,
+  UploadIcon,
 };
