@@ -89,7 +89,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
         {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
           <Post
-            key={Math.random()}
+            key={post.id}
             id={i}
             refProp={i === lastView ? postRef : null}
             post={post}

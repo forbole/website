@@ -21,7 +21,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
       alignContent="center"
       alignItems="center"
     >
-      {navItems.map((item) => {
+      {navItems.map((item, i) => {
         let mainColor = 'none';
         if (item.link === link && theme.palette.mode === 'light') {
           mainColor = theme.palette.custom.forbole.indigo;
@@ -30,6 +30,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
         }
         return (
           <Box
+            key={i}
             sx={{
               borderRadius: '220px',
               background: mainColor,
