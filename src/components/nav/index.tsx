@@ -62,6 +62,7 @@ const Nav = ({ navLink }: NavProps) => {
               padding: theme.spacing(4, 0, 0, 0),
               justifyContent: 'space-between',
               height: '100px',
+              overflowY: 'hidden',
             },
           }}
         >
