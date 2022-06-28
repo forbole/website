@@ -103,7 +103,7 @@ const Opportunities = ({ jobPosts }: any) => {
           >
             {openingsData.slice(1, 3).map((item: any, i: any) => {
               return (
-                <Box sx={{ paddingBottom: theme.spacing(3) }}>
+                <Box key={i} sx={{ paddingBottom: theme.spacing(3) }}>
                   <Opening
                     key={i}
                     title={item.title}

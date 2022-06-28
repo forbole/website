@@ -49,8 +49,6 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
     title,
   });
 
-  console.log('inputs', inputs);
-
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
