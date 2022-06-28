@@ -7,7 +7,7 @@ import { MobileNavMenu, DesktopNavMenu } from './components';
 import { useNavHook } from './hooks';
 
 interface NavProps {
-  navLink: string;
+  navLink: string | null;
 }
 
 const Nav = ({ navLink }: NavProps) => {

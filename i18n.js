@@ -11,6 +11,7 @@ module.exports = {
     '/mission': ['mission'],
     '/blog': ['blog'],
     '/careers': ['careers'],
+    '/terms-and-conditions': ['terms_and_conditions'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };
