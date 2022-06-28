@@ -26,6 +26,6 @@ export const TNCCSS = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 5rem 0;
+    padding: 10rem 0;
   }
 `;
