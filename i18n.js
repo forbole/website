@@ -12,6 +12,7 @@ module.exports = {
     '/blog': ['blog'],
     '/careers': ['careers'],
     '/terms-and-conditions': ['terms_and_conditions'],
+    '/privacy-policy': ['policy'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };

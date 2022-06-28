@@ -8,13 +8,21 @@ export const TNCCSS = styled.div`
   h1 {
     padding-top: 8px;
     padding-bottom: 24px;
-    font-size: 18px;
+    font-size: 20px;
   }
   h2 {
     padding-bottom: 16px;
+    font-size: 18px;
+  }
+  h3 {
+    padding: 16px 0;
     font-size: 16px;
   }
   p {
+    padding: 8px 0px;
+    font-size: 14px;
+  }
+  li {
     padding: 8px 0px;
     font-size: 14px;
   }
@@ -26,6 +34,6 @@ export const TNCCSS = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 10rem 0;
+    padding: 14rem 0;
   }
 `;
