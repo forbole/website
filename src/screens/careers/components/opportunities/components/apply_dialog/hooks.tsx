@@ -16,11 +16,12 @@ interface InputProps {
   phone: string;
   message: string;
   resume: File | string;
-  coverLetter?: string;
+  coverLetter?: File | string;
 }
 
 const useApplyForm = ({ title }: any) => {
   const [resumeName, setResumeName] = React.useState('');
+  const [letterName, setLetterName] = React.useState('');
   const [inputs, setInputs] = React.useState<InputProps>({
     title,
     firstName: '',
@@ -50,24 +51,16 @@ const useApplyForm = ({ title }: any) => {
     }
   }, [inputs]);
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = (event: any) => {
     if (event) {
       event.preventDefault();
+      const formData = new FormData();
+      formData.append('resume', inputs.resume);
+      formData.append('coverLetter', inputs.coverLetter as Blob);
+      formData.append('inputs', JSON.stringify(inputs));
       axios
-        .post('/api/careers', {
-          from: inputs.email,
-          to: 'career@forbole.com',
-          subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
-          // text: sanitize(inputs.message),
-          html: `<p>${sanitize(
-            inputs.message
-          )}</p> <p>Applicant's phone number: ${inputs.phone}</p>`,
-          attachments: [
-            {
-              filename: resumeName,
-              content: inputs.resume,
-            },
-          ],
+        .post('/api/careers', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
         })
         .then((res) => {
           if (res.status === 200) {
@@ -91,7 +84,7 @@ const useApplyForm = ({ title }: any) => {
     }
   };
 
-  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleResumeUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
@@ -115,6 +108,32 @@ const useApplyForm = ({ title }: any) => {
       resume: '',
     }));
     setResumeName('');
+  };
+
+  const handleLetterUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    try {
+      const file = e.target.files[0];
+      const { name } = file;
+      setLetterName(name);
+      setInputs((input) => ({
+        ...input,
+        coverLetter: file,
+      }));
+    } catch (err) {
+      console.log(err);
+      toast.error(t('file error'));
+    }
+  };
+
+  const handleLetterClear = () => {
+    setInputs((input) => ({
+      ...input,
+      coverLetter: '',
+    }));
+    setLetterName('');
   };
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
@@ -145,7 +164,10 @@ const useApplyForm = ({ title }: any) => {
     handleMouseDownClear,
     resumeName,
     handleResumeClear,
-    handleFileUpload,
+    handleResumeUpload,
+    handleLetterClear,
+    handleLetterUpload,
+    letterName,
   };
 };
 

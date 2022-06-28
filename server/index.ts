@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
@@ -7,6 +9,28 @@ import next from 'next';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import axios from 'axios';
+import DOMPurify from 'isomorphic-dompurify';
+
+const { sanitize } = DOMPurify;
+
+const multer = require('multer');
+
+const whitelist = ['application/pdf'];
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  fileFilter: (req: any, file: any, cb: any) => {
+    if (!whitelist.includes(file.mimetype)) {
+      return cb(new Error('file is not allowed'));
+    }
+
+    cb(null, true);
+  },
+});
+
+interface MulterRequest extends Request {
+  files: any;
+}
 
 const GhostAdminAPI = require('@tryghost/admin-api');
 
@@ -59,6 +83,49 @@ const ghostAdminApi = new GhostAdminAPI({
         }
       }
     );
+
+    server.post(
+      '/api/careers',
+      upload.fields([{ name: 'resume' }, { name: 'coverLetter' }]),
+      async (req: Request, res: Response, next: any) => {
+        try {
+          const inputs = JSON.parse(req.body.inputs);
+          if (process.env.NODE_ENV === 'production') {
+            await transporter.sendMail({
+              from: inputs.email,
+              to: 'career@forbole.com',
+              subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
+              html: `<p>${sanitize(
+                inputs.message
+              )}</p> <p>Applicant's phone number: ${inputs.phone}</p>`,
+              attachments: [
+                {
+                  filename: (req as MulterRequest).files.resume[0].originalname,
+                  content: (req as MulterRequest).files.resume[0].buffer,
+                },
+                {
+                  filename:
+                    (req as MulterRequest).files.coverLetter[0].originalname ||
+                    null,
+                  content:
+                    (req as MulterRequest).files.coverLetter[0].buffer || null,
+                },
+              ],
+            });
+          }
+          res.status(200).json({
+            success: true,
+          });
+        } catch (e: any) {
+          next(e);
+        }
+      }
+    );
+
+    // catch Multer file fields' error
+    server.use((error: any, req: any, res: any, next: any) => {
+      console.log('This is the rejected field ->', error.field, error);
+    });
 
     server.post(
       '/api/proxy',

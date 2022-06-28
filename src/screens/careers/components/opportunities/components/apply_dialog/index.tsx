@@ -39,9 +39,12 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
     canSubmit,
     handleClear,
     handleMouseDownClear,
-    handleFileUpload,
+    handleResumeUpload,
     handleResumeClear,
+    handleLetterUpload,
+    handleLetterClear,
     resumeName,
+    letterName,
   } = useApplyForm({
     title,
   });
@@ -349,13 +352,73 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
               }}
             >
               {t('upload')}
-              <input type="file" hidden onChange={handleFileUpload} />
+              <input
+                type="file"
+                name="resume"
+                hidden
+                accept="application/pdf"
+                onChange={handleResumeUpload}
+              />
             </Button>
             {inputs.resume && (
-              <Box color="primary.main">
+              <Box
+                color="primary.main"
+                fontWeight={400}
+                fontSize={theme.spacing(2)}
+              >
                 {resumeName}
                 <IconButton
                   onClick={() => handleResumeClear()}
+                  onMouseDown={handleMouseDownClear}
+                >
+                  <ClearIcon />
+                </IconButton>{' '}
+              </Box>
+            )}
+          </Box>
+          <Box sx={styles.fileField}>
+            <Typography
+              variant="h6"
+              color="primary.main"
+              sx={{
+                fontWeight: 600,
+                fontSize: theme.spacing(1.75),
+                paddingBottom: theme.spacing(2),
+              }}
+            >
+              {t('cover letter')}
+            </Typography>
+            <Button
+              variant="outlined"
+              component="label"
+              startIcon={<UploadIcon />}
+              sx={{
+                border: '1px solid rgba(235, 238, 245, 1)',
+                borderRadius: '200px',
+                fontSize: theme.spacing(2),
+                '& span': {
+                  marginRight: theme.spacing(0.5),
+                },
+              }}
+            >
+              {t('upload')}
+              <input
+                type="file"
+                name="coverLetter"
+                accept="application/pdf"
+                hidden
+                onChange={handleLetterUpload}
+              />
+            </Button>
+            {inputs.coverLetter && (
+              <Box
+                color="primary.main"
+                fontWeight={400}
+                fontSize={theme.spacing(2)}
+              >
+                {letterName}
+                <IconButton
+                  onClick={() => handleLetterClear()}
                   onMouseDown={handleMouseDownClear}
                 >
                   <ClearIcon />
