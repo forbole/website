@@ -1,13 +1,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 import type { NextPage } from 'next';
-import BlogDetails from '@screens/blog_details';
+// import BlogDetails from '@screens/blog_details';
+import CareersDetails from '@screens/careers_details';
 import { getSinglePost } from '@api/posts';
 import { Post } from '@models';
 import { removeInternalTags } from '@utils/remove_internal_tags';
 
 const CareerDetailsPage: NextPage = (props: any) => {
-  return <BlogDetails {...props} />;
+  return <CareersDetails {...props} />;
 };
 
 export async function getServerSideProps(context: { query: any }) {

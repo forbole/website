@@ -91,27 +91,44 @@ const ghostAdminApi = new GhostAdminAPI({
         try {
           const inputs = JSON.parse(req.body.inputs);
           if (process.env.NODE_ENV === 'production') {
-            await transporter.sendMail({
-              from: inputs.email,
-              to: 'career@forbole.com',
-              subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
-              html: `<p>${sanitize(
-                inputs.message
-              )}</p> <p>Applicant's phone number: ${inputs.phone}</p>`,
-              attachments: [
-                {
-                  filename: (req as MulterRequest).files.resume[0].originalname,
-                  content: (req as MulterRequest).files.resume[0].buffer,
-                },
-                {
-                  filename:
-                    (req as MulterRequest).files.coverLetter[0].originalname ||
-                    null,
-                  content:
-                    (req as MulterRequest).files.coverLetter[0].buffer || null,
-                },
-              ],
-            });
+            if ((req as MulterRequest).files.coverLetter !== undefined) {
+              await transporter.sendMail({
+                from: inputs.email,
+                to: 'career@forbole.com',
+                subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
+                html: `<p>${sanitize(
+                  inputs.message
+                )}</p> <p>Applicant's phone number: ${inputs.phone}</p>`,
+                attachments: [
+                  {
+                    filename: (req as MulterRequest).files.resume[0]
+                      .originalname,
+                    content: (req as MulterRequest).files.resume[0].buffer,
+                  },
+                  {
+                    filename: (req as MulterRequest).files.coverLetter[0]
+                      .originalname,
+                    content: (req as MulterRequest).files.coverLetter[0].buffer,
+                  },
+                ],
+              });
+            } else {
+              await transporter.sendMail({
+                from: inputs.email,
+                to: 'career@forbole.com',
+                subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
+                html: `<p>${sanitize(
+                  inputs.message
+                )}</p> <p>Applicant's phone number: ${inputs.phone}</p>`,
+                attachments: [
+                  {
+                    filename: (req as MulterRequest).files.resume[0]
+                      .originalname,
+                    content: (req as MulterRequest).files.resume[0].buffer,
+                  },
+                ],
+              });
+            }
           }
           res.status(200).json({
             success: true,

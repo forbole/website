@@ -5,7 +5,6 @@ import React, { ChangeEvent } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import validator from 'validator';
 import axios from 'axios';
-import DOMPurify from 'isomorphic-dompurify';
 import { toast } from 'react-toastify';
 
 interface InputProps {
@@ -34,7 +33,6 @@ const useApplyForm = ({ title }: any) => {
   });
 
   const [canSubmit, setCanSubmit] = React.useState(false);
-  const { sanitize } = DOMPurify;
   const { t } = useTranslation('careers');
 
   React.useEffect(() => {
@@ -43,7 +41,8 @@ const useApplyForm = ({ title }: any) => {
       inputs.phone &&
       inputs.firstName &&
       inputs.lastName &&
-      inputs.message
+      inputs.message &&
+      inputs.resume
     ) {
       setCanSubmit(true);
     } else if (canSubmit) {

@@ -24,10 +24,6 @@ const BlogDetails = ({ post }: any) => {
   } = post;
   const { t } = useTranslation('blog');
   const { sanitize } = DOMPurify;
-  let nav = '/blog';
-  if (tags[0].slug === 'careers') {
-    nav = '/careers';
-  }
   return (
     <Layout
       title={post.title}
@@ -36,7 +32,7 @@ const BlogDetails = ({ post }: any) => {
       image={featureImage}
       twitterImage={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? '')}
-      navLink={nav}
+      navLink="/blog"
       footer
     >
       <MobileCSS>
