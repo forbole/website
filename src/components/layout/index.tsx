@@ -14,7 +14,7 @@ import Footer from '../footer';
 import Nav from '../nav';
 
 type Props = {
-  navLink: string;
+  navLink: string | null;
   children?: ReactNode;
   title?: string;
   footer?: boolean;

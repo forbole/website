@@ -7,7 +7,7 @@ import { MobileNavMenu, DesktopNavMenu } from './components';
 import { useNavHook } from './hooks';
 
 interface NavProps {
-  navLink: string;
+  navLink: string | null;
 }
 
 const Nav = ({ navLink }: NavProps) => {
@@ -62,6 +62,7 @@ const Nav = ({ navLink }: NavProps) => {
               padding: theme.spacing(4, 0, 0, 0),
               justifyContent: 'space-between',
               height: '100px',
+              overflowY: 'hidden',
             },
           }}
         >

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
 
 const FooterItems = () => {
   const theme = useTheme();
@@ -40,7 +41,18 @@ const FooterItems = () => {
           },
         }}
       />
-      <Typography>{t('tnc')}</Typography>
+      <Link href="/terms-and-conditions">
+        <Typography
+          sx={{
+            '&:hover': {
+              cursor: 'pointer',
+              color: theme.palette.custom.forbole.purple,
+            },
+          }}
+        >
+          {t('tnc')}
+        </Typography>
+      </Link>
       <Divider
         orientation="vertical"
         variant="middle"
@@ -52,7 +64,18 @@ const FooterItems = () => {
           },
         }}
       />
-      <Typography>{t('policy')}</Typography>
+      <Link href="/privacy-policy">
+        <Typography
+          sx={{
+            '&:hover': {
+              cursor: 'pointer',
+              color: theme.palette.custom.forbole.purple,
+            },
+          }}
+        >
+          {t('policy')}
+        </Typography>
+      </Link>
     </Box>
   );
 };

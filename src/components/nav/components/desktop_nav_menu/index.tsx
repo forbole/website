@@ -6,7 +6,7 @@ import { Box, useTheme } from '@mui/material';
 import { navItems } from '../config';
 
 interface NavMenuProps {
-  link: string;
+  link: string | null;
 }
 
 const DesktopNavMenu = ({ link }: NavMenuProps) => {

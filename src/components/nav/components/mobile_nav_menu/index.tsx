@@ -11,7 +11,7 @@ import { useWindowDimensions } from '@src/hooks';
 import { navItems } from '../config';
 
 interface NavMenuProps {
-  link: string;
+  link: string | null;
 }
 
 const MobileNavMenu = ({ link }: NavMenuProps) => {
