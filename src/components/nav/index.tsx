@@ -35,7 +35,7 @@ const Nav = ({ navLink }: NavProps) => {
           width: '100%',
           position: 'fixed',
           top: 0,
-          overflowY: 'scroll',
+          overflowY: 'hidden',
           overflowX: 'hidden',
           zIndex: 2,
           [theme.breakpoints.up('laptop')]: {
