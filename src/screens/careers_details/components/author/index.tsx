@@ -3,7 +3,13 @@ import React from 'react';
 import Link from 'next/link';
 import { Box, Typography, useTheme } from '@mui/material';
 
-const Author = ({ post }: any) => {
+interface AuthorProps {
+  post: any;
+  // eslint-disable-next-line react/require-default-props
+  noMargin?: boolean;
+}
+
+const Author = ({ post, noMargin }: AuthorProps) => {
   const { primaryAuthor: author } = post;
   const theme = useTheme();
   return (
@@ -11,7 +17,7 @@ const Author = ({ post }: any) => {
       sx={{
         display: 'flex',
         alignContent: 'center',
-        marginBottom: theme.spacing(3.5),
+        marginBottom: noMargin ? 0 : theme.spacing(3.5),
       }}
     >
       <img

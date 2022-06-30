@@ -5,9 +5,15 @@ import { useRouter } from 'next/router';
 import { Box, useTheme } from '@mui/material';
 import { Telegram, Facebook, Twitter, LinkedIn } from '@icons';
 
-const SocialMedia = (props: any) => {
+interface SocialMediaProps {
+  title: string;
+  // eslint-disable-next-line react/require-default-props
+  noPadding?: boolean;
+}
+
+const SocialMedia = (props: SocialMediaProps) => {
   const theme = useTheme();
-  const { title = 'Forbole ' } = props;
+  const { title = 'Forbole ', noPadding } = props;
   const router = useRouter();
   const path = router.asPath;
   const shareUrl = `${process.env.NEXT_PUBLIC_URL}${path}`;
@@ -38,7 +44,7 @@ const SocialMedia = (props: any) => {
   return (
     <Box
       sx={{
-        paddingBottom: theme.spacing(3),
+        paddingBottom: noPadding ? 0 : theme.spacing(3),
         '& svg': {
           marginRight: theme.spacing(2),
           '& path': {

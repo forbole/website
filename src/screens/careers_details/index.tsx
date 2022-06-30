@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation';
 import DOMPurify from 'isomorphic-dompurify';
 import { Box, Button, Divider, Typography, useTheme } from '@mui/material';
 import { Layout, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
+import { useWindowDimensions } from '@hooks';
 import { ClientOnly } from '@src/utils/clientOnly';
 import { Author, SocialMedia } from './components';
 import {
@@ -18,6 +19,7 @@ import { ApplyDialog } from '../careers/components/opportunities/components';
 const CareersDetails = ({ post }: any) => {
   const theme = useTheme();
   const topRef = React.useRef(null);
+  const { isDesktop } = useWindowDimensions();
   const url = process.env.NEXT_PUBLIC_URL;
   const {
     title,
@@ -122,16 +124,174 @@ const CareersDetails = ({ post }: any) => {
             <ScrollToTop topRef={topRef} mobile />
           </Box>
         </MobileCSS>
-        <ClientOnly>
-          <ButtonCSS>
-            <Button
-              // sx={styles.button}
-              onClick={() => setApplyDialogOpen({ open: true, title })}
+        <LaptopCSS>
+          <Box
+            // ref={topRef}
+            sx={{
+              [theme.breakpoints.up('laptop')]: {
+                background:
+                  theme.palette.mode === 'dark'
+                    ? 'url(/images/assets/image_BG.png) top'
+                    : '#FFFFFF',
+                backgroundPosition: '0 0',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: '100%',
+                width: '100%',
+              },
+            }}
+          >
+            <Box
+              pt={isDesktop ? theme.spacing(20) : 0}
+              sx={{ maxWidth: '1200px', margin: 'auto' }}
             >
-              {t('apply now')}
-            </Button>
-          </ButtonCSS>
-
+              <Typography
+                variant="h1"
+                sx={{
+                  display: 'none',
+                  [theme.breakpoints.up('laptop')]: {
+                    display: 'block',
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? 'primary.main'
+                        : '#000000',
+                    fontSize: theme.spacing(4),
+                    fontWeight: 600,
+                    textAlign: 'center',
+                  },
+                }}
+              >
+                {title}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                [theme.breakpoints.up('laptop')]: {
+                  background:
+                    theme.palette.mode === 'dark'
+                      ? 'url(/images/assets/image_waveBG.png)'
+                      : '#FFFFFF',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: '150%',
+                  backgroundPosition: 'top 0px left -150px',
+                  minHeight: '75vh',
+                  width: '100%',
+                  zIndex: 1,
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingTop: theme.spacing(25),
+                }}
+              >
+                <Box sx={{ maxWidth: '1200px' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      paddingBottom: theme.spacing(7),
+                    }}
+                  >
+                    <Author post={post} noMargin />
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-end',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Box sx={{ margin: theme.spacing(0, 2, 3, 0) }}>
+                        <ThemeModeSwitch />
+                      </Box>
+                      <SocialMedia title={post.title} noPadding />
+                    </Box>
+                  </Box>
+                  <img
+                    src={
+                      post.featureImage == null
+                        ? '/static/images/assets/blog-placeholder.png'
+                        : post.featureImage
+                    }
+                    alt={title}
+                    style={{
+                      width: '1200px',
+                      height: '416px',
+                    }}
+                  />
+                  <ContentCSS theme={theme}>
+                    <ContentBox
+                      dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
+                    />
+                  </ContentCSS>
+                  {/* <Box height="500px" /> */}
+                  <ClientOnly>
+                    <Box
+                      sx={{
+                        [theme.breakpoints.up('laptop')]: {
+                          height: '500px',
+                          paddingTop: theme.spacing(6),
+                        },
+                      }}
+                    >
+                      <ButtonCSS>
+                        <Button
+                          // sx={styles.button}
+                          onClick={() =>
+                            setApplyDialogOpen({ open: true, title })
+                          }
+                        >
+                          {t('apply now')}
+                        </Button>
+                      </ButtonCSS>
+                    </Box>
+                    <ApplyDialog
+                      setting={applyDialogOpen}
+                      onClose={() => setApplyDialogOpen({ open: false, title })}
+                    />
+                  </ClientOnly>
+                  <Box
+                    sx={{
+                      display: 'none',
+                      [theme.breakpoints.up('laptop')]: {
+                        display: 'flex',
+                        position: 'absolute',
+                        left: '48.5%',
+                        justifyContent: 'center',
+                        bottom: '250px',
+                      },
+                    }}
+                  >
+                    <ScrollToTop topRef={topRef} />
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </LaptopCSS>
+        <ClientOnly>
+          <Box
+            sx={{
+              display: 'block',
+              [theme.breakpoints.up('laptop')]: {
+                display: 'none',
+              },
+            }}
+          >
+            <ButtonCSS>
+              <Button
+                // sx={styles.button}
+                onClick={() => setApplyDialogOpen({ open: true, title })}
+              >
+                {t('apply now')}
+              </Button>
+            </ButtonCSS>
+          </Box>
           <ApplyDialog
             setting={applyDialogOpen}
             onClose={() => setApplyDialogOpen({ open: false, title })}
