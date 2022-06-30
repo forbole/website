@@ -184,7 +184,10 @@ const CareersDetails = ({ post }: any) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  paddingTop: theme.spacing(25),
+                  paddingTop:
+                    theme.palette.mode === 'dark'
+                      ? theme.spacing(28)
+                      : theme.spacing(15),
                 }}
               >
                 <Box sx={{ maxWidth: '1200px' }}>
