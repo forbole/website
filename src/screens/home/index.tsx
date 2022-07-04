@@ -104,10 +104,7 @@ const Home = () => {
           </Typography>
           <Box
             sx={{
-              backgroundImage: 'url(/images/assets/image_horseInWater.png)',
               position: 'absolute',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
               mixBlendMode: 'lighten',
               bottom: '10vh',
               width: width / 2,
@@ -132,7 +129,13 @@ const Home = () => {
                 width: '431px',
               },
             }}
-          />
+          >
+            <Image
+              src="/images/assets/image_horseInWater.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </Box>
           <Box
             sx={{
               [theme.breakpoints.up('mobile')]: {
