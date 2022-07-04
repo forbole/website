@@ -141,14 +141,21 @@ const Home = () => {
               [theme.breakpoints.up('mobile')]: {
                 height: '140px',
                 width: theme.spacing(40),
-                bottom: '20vh',
+                bottom: '25vh',
               },
-              backgroundImage: 'url(/images/assets/image_watershadow.png)',
               position: 'absolute',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
+              [theme.breakpoints.up('tablet')]: {
+                bottom: '20vh',
+                width: theme.spacing(80),
+              },
             }}
-          />
+          >
+            <Image
+              src="/images/assets/image_watershadow.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </Box>
         </Box>
       </Box>
     </Layout>
