@@ -1,14 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
 import DOMPurify from 'isomorphic-dompurify';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
+import { useWindowDimensions } from '@hooks';
 import { Layout, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
 import { Author, SocialMedia } from './components';
 import { ContentBox, ContentCSS, MobileCSS, LaptopCSS } from './styles';
 
 const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
+  const { isDesktop } = useWindowDimensions();
   const topRef = React.useRef(null);
   const url = process.env.NEXT_PUBLIC_URL;
   const {
@@ -22,8 +24,10 @@ const BlogDetails = ({ post }: any) => {
     featureImage,
     html,
   } = post;
-  const { t } = useTranslation('blog');
   const { sanitize } = DOMPurify;
+  const cmsLoader = ({ src, width, quality }: any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <Layout
       title={post.title}
@@ -51,18 +55,28 @@ const BlogDetails = ({ post }: any) => {
             <ThemeModeSwitch />
           </Box>
         </Box>
-        <img
-          src={
-            post.featureImage == null
-              ? '/static/images/assets/blog-placeholder.png'
-              : post.featureImage
-          }
-          alt={title}
-          style={{
-            width: '100%',
-            height: '180px',
+        <Box
+          height={isDesktop ? '416px' : '180px'}
+          sx={{
+            '> span': {
+              width: '100%!important' as any,
+            },
           }}
-        />
+        >
+          <Image
+            loader={cmsLoader}
+            src={
+              post.featureImage == null
+                ? '/static/images/assets/blog-placeholder.png'
+                : post.featureImage
+            }
+            alt={title}
+            width={isDesktop ? '12000px' : '100%'}
+            height={isDesktop ? '416px' : '180px'}
+            quality={100}
+            objectFit="cover"
+          />
+        </Box>
         <Box sx={{ padding: theme.spacing(3) }}>
           <ContentCSS theme={theme}>
             <Author post={post} />

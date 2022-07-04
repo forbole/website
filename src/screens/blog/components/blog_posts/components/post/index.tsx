@@ -12,7 +12,7 @@ const Post = (props: any) => {
   const { isDesktop, isMobile } = useWindowDimensions();
   const { post, main = false } = props;
   const { featureImage, title, excerpt, publishedAt, slug, author } = post;
-  const myLoader = ({ src, width, quality }: any) => {
+  const cmsLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
   return (
@@ -56,7 +56,7 @@ const Post = (props: any) => {
               }}
             >
               <Image
-                loader={myLoader}
+                loader={cmsLoader}
                 src={
                   featureImage == null
                     ? '/static/images/assets/blog-placeholder.png'
