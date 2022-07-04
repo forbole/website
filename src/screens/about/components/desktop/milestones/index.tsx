@@ -35,9 +35,8 @@ const MilestonesDesktop = () => {
             row += 1;
           }
           return (
-            <>
+            <Box key={i}>
               <Box
-                key={i}
                 sx={{ gridRow: `${row} / span 1`, gridColumn: '1 / span 1' }}
               >
                 <Typography
@@ -102,7 +101,7 @@ const MilestonesDesktop = () => {
                   {t(timeline)}
                 </Typography>
               </Card>
-            </>
+            </Box>
           );
         })}
       </Box>
