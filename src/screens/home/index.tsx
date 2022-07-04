@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -48,19 +49,16 @@ const Home = () => {
             display: 'flex',
             justifyContent: 'center',
             width: '100%',
-            height: '60vh',
+            height: '70vh',
             alignItems: 'flex-end',
             [theme.breakpoints.up('laptop')]: {
               alignItems: 'flex-end',
-              height: '70vh',
+              height: '65vh',
             },
           }}
         >
           <Box
             sx={{
-              backgroundImage: 'url(/images/assets/image_horse.png)',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'contain',
               mixBlendMode: 'lighten',
               position: 'absolute',
               top: '10vh',
@@ -72,7 +70,13 @@ const Home = () => {
                 top: '20vh',
               },
             }}
-          />
+          >
+            <Image
+              src="/images/assets/image_horse.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </Box>
           <Typography
             sx={(s) => ({
               whiteSpace: 'pre-wrap',
