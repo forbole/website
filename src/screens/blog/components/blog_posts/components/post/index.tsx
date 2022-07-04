@@ -91,7 +91,7 @@ const Post = (props: any) => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: 700,
+                  fontWeight: 400,
                   fontSize: theme.spacing(2),
                 }}
               >
