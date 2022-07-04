@@ -31,19 +31,21 @@ const Home = () => {
       >
         <Box
           sx={{
-            backgroundImage: 'url(/images/assets/image_stars.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
             height: '70vh',
             width: '100%',
             position: 'absolute',
-            backgroundPosition: '25% 75%',
             top: theme.spacing(10),
             [theme.breakpoints.down('tablet')]: {
               display: 'none',
             },
           }}
-        />
+        >
+          <Image
+            src="/images/assets/image_stars.png"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
         <Box
           sx={{
             display: 'flex',
