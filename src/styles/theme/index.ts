@@ -24,7 +24,7 @@ export const common = {
     },
   },
   typography: {
-    fontFamily: 'SF Pro',
+    fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
     h1: {
       fontSize: '32px',
       '@media (min-width: 769px)': {

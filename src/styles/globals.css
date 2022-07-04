@@ -1,15 +1,3 @@
-@font-face {
-  font-family: 'SF Pro';
-  src: url("/fonts/SF-Pro.ttf");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'SF Pro Semibold';
-  src: url("/fonts/SF-ProText-Semibold.ttf");
-  font-weight: 500;
-}
-
 html {
   font-size: 16px;
   box-sizing: border-box;
@@ -17,6 +5,7 @@ html {
 }
 
 body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
   overflow-y: scroll !important;
 }

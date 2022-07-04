@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -30,37 +31,36 @@ const Home = () => {
       >
         <Box
           sx={{
-            backgroundImage: 'url(/images/assets/image_stars.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
             height: '70vh',
             width: '100%',
             position: 'absolute',
-            backgroundPosition: '25% 75%',
             top: theme.spacing(10),
             [theme.breakpoints.down('tablet')]: {
               display: 'none',
             },
           }}
-        />
+        >
+          <Image
+            src="/images/assets/image_stars.png"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
             width: '100%',
-            height: '60vh',
+            height: '70vh',
             alignItems: 'flex-end',
             [theme.breakpoints.up('laptop')]: {
               alignItems: 'flex-end',
-              height: '70vh',
+              height: '65vh',
             },
           }}
         >
           <Box
             sx={{
-              backgroundImage: 'url(/images/assets/image_horse.png)',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'contain',
               mixBlendMode: 'lighten',
               position: 'absolute',
               top: '10vh',
@@ -72,7 +72,13 @@ const Home = () => {
                 top: '20vh',
               },
             }}
-          />
+          >
+            <Image
+              src="/images/assets/image_horse.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </Box>
           <Typography
             sx={(s) => ({
               whiteSpace: 'pre-wrap',
@@ -100,10 +106,7 @@ const Home = () => {
           </Typography>
           <Box
             sx={{
-              backgroundImage: 'url(/images/assets/image_horseInWater.png)',
               position: 'absolute',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
               mixBlendMode: 'lighten',
               bottom: '10vh',
               width: width / 2,
@@ -128,20 +131,33 @@ const Home = () => {
                 width: '431px',
               },
             }}
-          />
+          >
+            <Image
+              src="/images/assets/image_horseInWater.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </Box>
           <Box
             sx={{
               [theme.breakpoints.up('mobile')]: {
                 height: '140px',
                 width: theme.spacing(40),
-                bottom: '20vh',
+                bottom: '25vh',
               },
-              backgroundImage: 'url(/images/assets/image_watershadow.png)',
               position: 'absolute',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
+              [theme.breakpoints.up('tablet')]: {
+                bottom: '20vh',
+                width: theme.spacing(80),
+              },
             }}
-          />
+          >
+            <Image
+              src="/images/assets/image_watershadow.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </Box>
         </Box>
       </Box>
     </Layout>
