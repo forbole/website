@@ -20,7 +20,7 @@ import ArrowIcon from './icon_arrow.svg';
 import SearchIcon from './icon_search.svg';
 import CloseIcon from './icon_cross.svg';
 import UploadIcon from './icon_upload.svg';
-import ExploreIcon from './icon_explore.svg';
+import ExploreIcon from './icon_go.svg';
 
 export {
   Forbole,
