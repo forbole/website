@@ -87,7 +87,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
               display: 'flex',
               justifyContent: 'center',
               fontSize: theme.spacing(2),
-              fontWeight: 900,
+              fontWeight: 700,
               height: theme.spacing(8),
               padding: theme.spacing(4),
               '> a': {

@@ -1,3 +1,4 @@
 import Overview from './overview';
+import Lineup from './lineup';
 
-export { Overview };
+export { Overview, Lineup };
