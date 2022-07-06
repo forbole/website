@@ -9,7 +9,7 @@ import { useWindowDimensions } from '@src/hooks';
 const Home = () => {
   const { t } = useTranslation('home');
   const theme = useTheme();
-  const { windowDimensions } = useWindowDimensions();
+  const { windowDimensions, isDesktop } = useWindowDimensions();
   const { width } = windowDimensions;
   return (
     <Layout
@@ -77,6 +77,8 @@ const Home = () => {
               src="/images/assets/image_horse.png"
               layout="fill"
               objectFit="contain"
+              width={isDesktop ? '413px' : '188px'}
+              height={isDesktop ? '500px' : '232px'}
             />
           </Box>
           <Typography
@@ -136,6 +138,8 @@ const Home = () => {
               src="/images/assets/image_horseInWater.png"
               layout="fill"
               objectFit="contain"
+              width={isDesktop ? '516px' : '210px'}
+              height={isDesktop ? '376px' : '177px'}
             />
           </Box>
           <Box
