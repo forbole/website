@@ -9,7 +9,7 @@ export const navItems = [
   },
   {
     display: 'solutions',
-    link: '/solution',
+    link: '/solutions',
   },
   {
     display: 'blog',

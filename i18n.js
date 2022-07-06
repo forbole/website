@@ -13,6 +13,7 @@ module.exports = {
     '/careers': ['careers'],
     '/terms-and-conditions': ['terms_and_conditions'],
     '/privacy-policy': ['policy'],
+    '/solutions': ['solutions'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };
