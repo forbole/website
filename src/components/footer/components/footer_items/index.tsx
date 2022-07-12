@@ -76,6 +76,29 @@ const FooterItems = () => {
           {t('policy')}
         </Typography>
       </Link>
+      <Divider
+        orientation="vertical"
+        variant="middle"
+        flexItem
+        sx={{
+          borderColor: theme.palette.primary.main,
+          [theme.breakpoints.down('laptop')]: {
+            display: 'none',
+          },
+        }}
+      />
+      <Link href="/staking-services-terms">
+        <Typography
+          sx={{
+            '&:hover': {
+              cursor: 'pointer',
+              color: theme.palette.custom.forbole.purple,
+            },
+          }}
+        >
+          {t('staking terms')}
+        </Typography>
+      </Link>
     </Box>
   );
 };
