@@ -47,6 +47,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
         borderColor: 'primary.main',
       },
     },
+    '& .MuiFormHelperText-root': {
+      color: 'red',
+    },
     '& label': {
       color: 'rgba(255, 255, 255, 0.3)',
     },
@@ -87,5 +90,8 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     fontWeight: 600,
     fontSize: theme.spacing(2),
     letterSpacing: '0.036em',
+    '& .Mui-disabled': {
+      opacity: 0.5,
+    },
   }),
 };

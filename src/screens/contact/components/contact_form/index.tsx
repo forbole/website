@@ -13,6 +13,7 @@ import {
   InputAdornment,
   useTheme,
 } from '@mui/material';
+import validator from 'validator';
 import { ClearIcon } from '@icons';
 import { styles } from './styles';
 
@@ -46,7 +47,13 @@ const ContactForm = (props: ContactFormProps) => {
   return (
     <Card sx={styles.formBox}>
       <form noValidate onSubmit={handleSubmit}>
-        <CardContent>
+        <CardContent
+          sx={{
+            [theme.breakpoints.up('laptop')]: {
+              padding: theme.spacing(5),
+            },
+          }}
+        >
           <Typography
             gutterBottom
             variant="h5"
@@ -74,9 +81,8 @@ const ContactForm = (props: ContactFormProps) => {
               <TextField
                 helperText=" "
                 id="demo-helper-text-aligned-no-helper"
-                // variant="outlined"
                 name="name"
-                label={t('your name')}
+                placeholder={t('your name')}
                 onChange={handleInputChange}
                 value={inputs.name}
                 InputProps={{
@@ -107,13 +113,16 @@ const ContactForm = (props: ContactFormProps) => {
                 {t('email')}
               </Typography>
               <TextField
-                helperText=" "
                 id="demo-helper-text-aligned-no-helper"
-                // variant="outlined"
                 name="email"
-                label={t('email')}
+                placeholder={t('email')}
                 onChange={handleInputChange}
                 value={inputs.email}
+                helperText={
+                  inputs.email.length > 0 && !validator.isEmail(inputs.email)
+                    ? 'invalid email'
+                    : ''
+                }
                 InputProps={{
                   endAdornment: inputs.email.length > 0 && (
                     <InputAdornment position="end">
@@ -126,7 +135,35 @@ const ContactForm = (props: ContactFormProps) => {
                     </InputAdornment>
                   ),
                 }}
-                sx={styles.inputField}
+                sx={{
+                  color: theme.palette.primary.main,
+                  alignSelf: 'stretch',
+                  '& .MuiOutlinedInput-root': {
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    background: 'transparent',
+                    borderRadius: theme.spacing(1),
+                    border:
+                      inputs.email.length > 0 &&
+                      !validator.isEmail(inputs.email)
+                        ? '1px solid red'
+                        : '1px solid rgba(255, 255, 255, 1)',
+                    '& fieldset': {
+                      borderColor:
+                        inputs.email.length > 0 &&
+                        !validator.isEmail(inputs.email)
+                          ? 'red'
+                          : 'white',
+                    },
+                  },
+                  '& .MuiFormHelperText-root': {
+                    color: 'red',
+                  },
+                  // important class for styling textfield when focused:
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    border: 'none',
+                    borderColor: 'transparent',
+                  },
+                }}
               />
             </Box>
             <Box sx={styles.messageBox}>
@@ -146,9 +183,8 @@ const ContactForm = (props: ContactFormProps) => {
                 rows={4}
                 helperText=" "
                 id="demo-helper-text-aligned-no-helper"
-                // variant="outlined"
                 name="message"
-                label={t('message')}
+                placeholder={t('message')}
                 onChange={handleInputChange}
                 value={inputs.message}
                 InputProps={{
