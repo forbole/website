@@ -32,8 +32,27 @@ const Home = () => {
         <Box
           sx={{
             height: '70vh',
-            width: '100%',
+            width: '50%',
             position: 'absolute',
+            left: '5%',
+            top: theme.spacing(10),
+            [theme.breakpoints.down('tablet')]: {
+              display: 'none',
+            },
+          }}
+        >
+          <Image
+            src="/images/assets/image_stars.png"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          sx={{
+            height: '70vh',
+            width: '50%',
+            position: 'absolute',
+            right: '5%',
             top: theme.spacing(10),
             [theme.breakpoints.down('tablet')]: {
               display: 'none',

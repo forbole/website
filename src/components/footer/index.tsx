@@ -12,7 +12,7 @@ const Footer = () => {
       sx={{
         [theme.breakpoints.up('mobile')]: {
           width: '100%',
-          background: 'url(/images/assets/footer_mobile2.svg) bottom',
+          background: 'url(/images/assets/footer_mobile.png)',
           backgroundPosition: '0 50%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
@@ -29,9 +29,9 @@ const Footer = () => {
         },
         [theme.breakpoints.up('tablet')]: {
           // minHeight: '35vh',
-          backgroundSize: 'cover',
+          backgroundSize: '100%',
           // backgroundSize: '100%',
-          backgroundPosition: '0 35%',
+          backgroundPosition: '0 5%',
           bottom: 0,
         },
         [theme.breakpoints.up('laptop')]: {
