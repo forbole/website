@@ -12,7 +12,8 @@ interface InputProps {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
+  countryCode: string;
+  number: string;
   message: string;
   resume: File | string;
   coverLetter?: File | string;
@@ -26,7 +27,8 @@ const useApplyForm = ({ title }: any) => {
     firstName: '',
     lastName: '',
     email: '',
-    phone: '+',
+    countryCode: '',
+    number: '',
     message: '',
     resume: '',
     coverLetter: '',
@@ -38,7 +40,8 @@ const useApplyForm = ({ title }: any) => {
   React.useEffect(() => {
     if (
       validator.isEmail(inputs.email) &&
-      inputs.phone &&
+      inputs.countryCode &&
+      inputs.number &&
       inputs.firstName &&
       inputs.lastName &&
       inputs.message &&
@@ -69,7 +72,8 @@ const useApplyForm = ({ title }: any) => {
               firstName: '',
               lastName: '',
               email: '',
-              phone: '+',
+              countryCode: '',
+              number: '',
               message: '',
               resume: '',
               coverLetter: '',
@@ -137,6 +141,7 @@ const useApplyForm = ({ title }: any) => {
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
+    console.log('hi', name, value);
     setInputs((inputs) => ({
       ...inputs,
       [name]: value,

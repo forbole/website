@@ -98,7 +98,9 @@ const ghostAdminApi = new GhostAdminAPI({
                 subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
                 html: `<p>${sanitize(
                   inputs.message
-                )}</p> <p>Applicant's phone number: ${inputs.phone}</p>`,
+                )}</p> <p>Applicant's phone number: +${
+                  inputs.countryCode + inputs.number
+                }</p>`,
                 attachments: [
                   {
                     filename: (req as MulterRequest).files.resume[0]
@@ -119,7 +121,9 @@ const ghostAdminApi = new GhostAdminAPI({
                 subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
                 html: `<p>${sanitize(
                   inputs.message
-                )}</p> <p>Applicant's phone number: ${inputs.phone}</p>`,
+                )}</p> <p>Applicant's phone number: +${
+                  inputs.countryCode + inputs.number
+                }</p>`,
                 attachments: [
                   {
                     filename: (req as MulterRequest).files.resume[0]

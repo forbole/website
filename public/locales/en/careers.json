@@ -19,5 +19,7 @@
     "upload": "Upload",
     "form success": "Application submitted successfully!",
     "form error": "Application submission error!",
-    "file error": "File upload error!"
+    "file error": "File upload error!",
+    "country code": "Country code",
+    "number": "Number"
 }

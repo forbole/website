@@ -232,61 +232,138 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
             >
               {t('phone')}
             </Typography>
-            <TextField
-              placeholder={t('phone')}
-              name="phone"
-              id="outlined-basic"
-              onChange={handleInputChange}
-              variant="outlined"
-              value={inputs.phone}
-              helperText={
-                inputs.phone.length > 1 &&
-                !validator.isMobilePhone(inputs.phone)
-                  ? 'invalid input'
-                  : ''
-              }
-              InputProps={{
-                endAdornment: inputs.phone.length > 0 && (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => handleClear('phone')}
-                      onMouseDown={handleMouseDownClear}
-                    >
-                      <ClearIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              sx={{
-                color: theme.palette.primary.main,
-                alignSelf: 'stretch',
-                '& .MuiOutlinedInput-root': {
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  background: 'transparent',
-                  borderRadius: theme.spacing(1),
-                  border:
-                    inputs.phone.length > 1 &&
-                    !validator.isMobilePhone(inputs.phone)
-                      ? '1px solid red'
-                      : '1px solid rgba(255, 255, 255, 1)',
-                  '& fieldset': {
-                    borderColor:
-                      inputs.phone.length > 1 &&
-                      !validator.isMobilePhone(inputs.phone)
-                        ? 'red'
-                        : 'white',
+            <Box sx={{ width: '100%', display: 'flex' }}>
+              <TextField
+                placeholder={t('country code')}
+                name="countryCode"
+                id="outlined-basic"
+                onChange={handleInputChange}
+                variant="outlined"
+                value={inputs.countryCode}
+                helperText={
+                  inputs.countryCode.length > 0 &&
+                  !validator.isMobilePhone(
+                    `+${inputs.countryCode + inputs.number}`
+                  )
+                    ? 'invalid input'
+                    : ''
+                }
+                InputProps={{
+                  endAdornment: inputs.countryCode.length > 0 && (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => handleClear('countryCode')}
+                        onMouseDown={handleMouseDownClear}
+                      >
+                        <ClearIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  color: theme.palette.primary.main,
+                  alignSelf: 'stretch',
+                  width: '50%',
+                  '& .MuiOutlinedInput-root': {
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    background: 'transparent',
+                    borderRadius: theme.spacing(1),
+                    border:
+                      inputs.countryCode.length > 0 &&
+                      !validator.isMobilePhone(
+                        `+${inputs.countryCode + inputs.number}`
+                      )
+                        ? '1px solid red'
+                        : '1px solid rgba(255, 255, 255, 1)',
+                    '& fieldset': {
+                      borderColor:
+                        inputs.countryCode.length > 0 &&
+                        !validator.isMobilePhone(
+                          `+${inputs.countryCode + inputs.number}`
+                        )
+                          ? 'red'
+                          : 'white',
+                    },
                   },
-                },
-                '& .MuiFormHelperText-root': {
-                  color: 'red',
-                },
-                // important class for styling textfield when focused:
-                '& .MuiOutlinedInput-notchedOutline': {
-                  border: 'none',
-                  borderColor: 'transparent',
-                },
-              }}
-            />
+                  '& .MuiFormHelperText-root': {
+                    color: 'red',
+                  },
+                  // important class for styling textfield when focused:
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    border: 'none',
+                    borderColor: 'transparent',
+                  },
+                  [theme.breakpoints.up('laptop')]: {
+                    width: '30%',
+                  },
+                }}
+              />
+              <TextField
+                placeholder={t('number')}
+                name="number"
+                id="outlined-basic"
+                onChange={handleInputChange}
+                variant="outlined"
+                value={inputs.number}
+                helperText={
+                  inputs.number.length > 0 &&
+                  !validator.isMobilePhone(
+                    `+${inputs.countryCode + inputs.number}`
+                  )
+                    ? 'invalid input'
+                    : ''
+                }
+                InputProps={{
+                  endAdornment: inputs.number.length > 0 && (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => handleClear('number')}
+                        onMouseDown={handleMouseDownClear}
+                      >
+                        <ClearIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  color: theme.palette.primary.main,
+                  alignSelf: 'stretch',
+                  width: '50%',
+                  '& .MuiOutlinedInput-root': {
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    background: 'transparent',
+                    borderRadius: theme.spacing(1),
+                    border:
+                      inputs.number.length > 0 &&
+                      !validator.isMobilePhone(
+                        `+${inputs.countryCode + inputs.number}`
+                      )
+                        ? '1px solid red'
+                        : '1px solid rgba(255, 255, 255, 1)',
+                    '& fieldset': {
+                      borderColor:
+                        inputs.number.length > 0 &&
+                        !validator.isMobilePhone(
+                          `+${inputs.countryCode + inputs.number}`
+                        )
+                          ? 'red'
+                          : 'white',
+                    },
+                  },
+                  '& .MuiFormHelperText-root': {
+                    color: 'red',
+                  },
+                  // important class for styling textfield when focused:
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    border: 'none',
+                    borderColor: 'transparent',
+                  },
+                  [theme.breakpoints.up('laptop')]: {
+                    width: '70%',
+                  },
+                }}
+              />
+            </Box>
           </Box>
           <Box sx={styles.inputField}>
             <Typography
