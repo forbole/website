@@ -24,7 +24,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     [theme.breakpoints.up('laptop')]: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      gridGap: theme.spacing(5),
+      gridGap: theme.spacing(2.5),
       gridTemplateRows: '100px',
       gridAutoRows: '200px',
     },
@@ -43,15 +43,18 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     alignSelf: 'stretch',
     '& .MuiOutlinedInput-root': {
       color: 'rgba(255, 255, 255, 0.7)',
-      '& fieldset': {
-        borderColor: 'primary.main',
-      },
+      border: '1px solid rgba(255, 255, 255, 1)',
     },
     '& .MuiFormHelperText-root': {
       color: 'red',
     },
     '& label': {
       color: 'rgba(255, 255, 255, 0.3)',
+    },
+    // important class for styling textfield when focused:
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+      borderColor: 'transparent',
     },
   }),
   emailBox: (theme) => ({

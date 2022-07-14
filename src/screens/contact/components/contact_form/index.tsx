@@ -141,7 +141,6 @@ const ContactForm = (props: ContactFormProps) => {
                   '& .MuiOutlinedInput-root': {
                     color: 'rgba(255, 255, 255, 0.7)',
                     background: 'transparent',
-                    borderRadius: theme.spacing(1),
                     border:
                       inputs.email.length > 0 &&
                       !validator.isEmail(inputs.email)
