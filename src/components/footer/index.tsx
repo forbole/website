@@ -19,7 +19,7 @@ const Footer = () => {
           // height: '40vh',
           // minHeight: '320px',
           // paddingBottom: theme.spacing(4),
-          zIndex: 1,
+          // zIndex: 1,
           // position: 'static',
           // styling after review 1:
           minHeight: '280px',
