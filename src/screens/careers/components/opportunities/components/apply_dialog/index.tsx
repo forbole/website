@@ -431,7 +431,8 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                 type="file"
                 name="resume"
                 hidden
-                accept="application/pdf"
+                accept="application/pdf,application/msword,
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                 onChange={handleResumeUpload}
               />
             </Button>
@@ -480,7 +481,8 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
               <input
                 type="file"
                 name="coverLetter"
-                accept="application/pdf"
+                accept="application/pdf,application/msword,
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                 hidden
                 onChange={handleLetterUpload}
               />

@@ -15,7 +15,11 @@ const { sanitize } = DOMPurify;
 
 const multer = require('multer');
 
-const whitelist = ['application/pdf'];
+const whitelist = [
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+];
 
 const upload = multer({
   storage: multer.memoryStorage(),
