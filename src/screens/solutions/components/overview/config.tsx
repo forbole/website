@@ -16,7 +16,7 @@ export const products: ProductCardProps[] = [
     icon: '/images/assets/icon_big_dipper.png',
     title: 'big dipper',
     desc: 'big dipper desc',
-    url: 'https://desmos.bigdipper.live/',
+    url: 'https://bigdipper.live/',
   },
   {
     icon: '/images/assets/icon_forbole_ventures.png',

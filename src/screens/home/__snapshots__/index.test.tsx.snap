@@ -14,7 +14,96 @@ exports[`screen: Home matches snapshot 1`] = `
     className="MuiBox-root css-uwbwau"
   >
     <div
-      className="MuiBox-root css-10uicv6"
+      className="MuiBox-root css-bzkzc5"
+    >
+      <span
+        style={
+          Object {
+            "background": "none",
+            "border": 0,
+            "bottom": 0,
+            "boxSizing": "border-box",
+            "display": "block",
+            "height": "initial",
+            "left": 0,
+            "margin": 0,
+            "opacity": 1,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": "initial",
+          }
+        }
+      >
+        <img
+          data-nimg="fill"
+          decoding="async"
+          onError={[Function]}
+          onLoad={[Function]}
+          sizes="100vw"
+          src="/_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=3840&q=75"
+          srcSet="/_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=640&q=75 640w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=750&q=75 750w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=828&q=75 828w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=3840&q=75 3840w"
+          style={
+            Object {
+              "border": "none",
+              "bottom": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "height": 0,
+              "left": 0,
+              "margin": "auto",
+              "maxHeight": "100%",
+              "maxWidth": "100%",
+              "minHeight": "100%",
+              "minWidth": "100%",
+              "objectFit": "contain",
+              "objectPosition": undefined,
+              "padding": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 0,
+            }
+          }
+        />
+        <noscript>
+          <img
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            sizes="100vw"
+            src="/_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=3840&q=75"
+            srcSet="/_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=640&q=75 640w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=750&q=75 750w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=828&q=75 828w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Fassets%2Fimage_stars.png&w=3840&q=75 3840w"
+            style={
+              Object {
+                "border": "none",
+                "bottom": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": 0,
+                "left": 0,
+                "margin": "auto",
+                "maxHeight": "100%",
+                "maxWidth": "100%",
+                "minHeight": "100%",
+                "minWidth": "100%",
+                "objectFit": "contain",
+                "objectPosition": undefined,
+                "padding": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": 0,
+              }
+            }
+          />
+        </noscript>
+      </span>
+    </div>
+    <div
+      className="MuiBox-root css-1c8guo7"
     >
       <span
         style={

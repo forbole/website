@@ -10,7 +10,6 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { SocialMedia } from '@components/footer/components';
 import { LocationIcon, MailIcon } from '@icons';
 import { styles } from './styles';
 
@@ -26,7 +25,14 @@ const ContactInfo = (props: ContactInfoProps) => {
   return (
     <Card sx={styles.infoBox}>
       <form noValidate onSubmit={handleSubmit} style={{ height: '100%' }}>
-        <CardContent sx={{ height: '100%' }}>
+        <CardContent
+          sx={{
+            height: '100%',
+            [theme.breakpoints.up('laptop')]: {
+              padding: theme.spacing(5),
+            },
+          }}
+        >
           <Box sx={styles.flexBox}>
             <Typography
               gutterBottom
@@ -48,7 +54,6 @@ const ContactInfo = (props: ContactInfoProps) => {
                 textAlign="left"
                 fontWeight={400}
                 fontSize={theme.spacing(1.75)}
-                // mb={theme.spacing(2)}
               >
                 {t('address')}
               </Typography>
@@ -62,12 +67,10 @@ const ContactInfo = (props: ContactInfoProps) => {
                 textAlign="left"
                 fontWeight={400}
                 fontSize={theme.spacing(1.75)}
-                // mb={theme.spacing(2)}
               >
                 {t('info email')}
               </Typography>
             </Box>
-            <SocialMedia contact />
             <Box>
               <CardActions sx={styles.buttonDiv}>
                 <Button type="submit" disabled={!canSubmit} sx={styles.button}>

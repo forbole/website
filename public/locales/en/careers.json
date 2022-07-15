@@ -13,11 +13,13 @@
     "email": "Email",
     "phone": "Phone",
     "message": "Message",
-    "cv": "Resume/CV (PDF only)",
-    "cover letter": "Cover letter (optional - PDF only)",
+    "cv": "Resume/CV (PDF, DOC and DOCX only)",
+    "cover letter": "Cover letter (optional - PDF, DOC and DOCX only)",
     "submit": "Submit",
     "upload": "Upload",
     "form success": "Application submitted successfully!",
     "form error": "Application submission error!",
-    "file error": "File upload error!"
+    "file error": "File upload error!",
+    "country code": "Country code",
+    "number": "Number"
 }

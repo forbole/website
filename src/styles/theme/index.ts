@@ -19,7 +19,7 @@ export const common = {
       // mobile: 320,
       mobile: 280,
       tablet: 768,
-      laptop: 1024,
+      laptop: 1025,
       desktop: 1201,
     },
   },

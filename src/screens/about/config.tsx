@@ -8,7 +8,24 @@ interface AwardProps {
 }
 
 export const awards: AwardProps[] = [
-  { year: 2021, title: 'new BD', desc: 'new BD desc', timeline: 'new BD time' },
+  {
+    year: 2022,
+    title: 'grant',
+    desc: 'grant desc',
+    timeline: 'grant time',
+  },
+  {
+    title: 'desmos osmosis',
+    desc: 'desmos osmosis desc',
+    timeline: 'desmos osmosis time',
+  },
+  {
+    year: 2021,
+    title: 'airdrop',
+    desc: 'airdrop desc',
+    timeline: 'airdrop time',
+  },
+  { title: 'BD v2', desc: 'BD v2 desc', timeline: 'BD v2 time' },
   {
     year: 2020,
     title: 'interchain',
@@ -18,11 +35,15 @@ export const awards: AwardProps[] = [
   { title: 'desmos', desc: 'desmos desc', timeline: 'desmos time' },
   {
     year: 2019,
+    title: 'inception',
+    desc: 'inception desc',
+    timeline: 'inception time',
+  },
+  {
     title: 'appWorks',
     desc: 'appWorks desc',
     timeline: 'appWorks time',
   },
-  { title: 'inception', desc: 'inception desc', timeline: 'inception time' },
   { year: 2018, title: 'debut', desc: 'debut desc', timeline: 'debut time' },
   { title: 'BD', desc: 'BD desc', timeline: 'BD time' },
   {

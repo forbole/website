@@ -12,14 +12,14 @@ const Footer = () => {
       sx={{
         [theme.breakpoints.up('mobile')]: {
           width: '100%',
-          background: 'url(/images/assets/footer_mobile2.svg) bottom',
+          background: 'url(/images/assets/footer_mobile.png)',
           backgroundPosition: '0 50%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
           // height: '40vh',
           // minHeight: '320px',
           // paddingBottom: theme.spacing(4),
-          zIndex: 1,
+          // zIndex: 1,
           // position: 'static',
           // styling after review 1:
           minHeight: '280px',
@@ -29,9 +29,9 @@ const Footer = () => {
         },
         [theme.breakpoints.up('tablet')]: {
           // minHeight: '35vh',
-          backgroundSize: 'cover',
+          backgroundSize: '100%',
           // backgroundSize: '100%',
-          backgroundPosition: '0 35%',
+          backgroundPosition: '0 5%',
           bottom: 0,
         },
         [theme.breakpoints.up('laptop')]: {
