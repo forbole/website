@@ -153,6 +153,9 @@ const ContactForm = (props: ContactFormProps) => {
                           ? 'red'
                           : 'white',
                     },
+                    '&:hover': {
+                      border: '1px solid #362187',
+                    },
                   },
                   '& .MuiFormHelperText-root': {
                     color: 'red',
@@ -161,6 +164,9 @@ const ContactForm = (props: ContactFormProps) => {
                   '& .MuiOutlinedInput-notchedOutline': {
                     border: 'none',
                     borderColor: 'transparent',
+                    '&:hover': {
+                      border: '1px solid #362187',
+                    },
                   },
                 }}
               />

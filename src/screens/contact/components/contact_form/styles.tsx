@@ -44,6 +44,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     '& .MuiOutlinedInput-root': {
       color: 'rgba(255, 255, 255, 0.7)',
       border: '1px solid rgba(255, 255, 255, 1)',
+      '&:hover': {
+        border: '1px solid #362187',
+      },
     },
     '& .MuiFormHelperText-root': {
       color: 'red',
