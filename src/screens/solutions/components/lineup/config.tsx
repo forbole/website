@@ -36,7 +36,7 @@ export const details: DetailCardProps[] = [
     desc1: 'big dipper desc 1',
     desc2: 'big dipper desc 2',
     desc3: 'big dipper desc 3',
-    url: 'https://desmos.bigdipper.live/',
+    url: 'https://bigdipper.live/',
     extra: true,
   },
   {
