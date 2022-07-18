@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-bitwise */
 import React from 'react';
@@ -45,9 +46,41 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
     handleLetterClear,
     resumeName,
     letterName,
+    emailError,
+    setEmailError,
+    numberError,
+    setNumberError,
   } = useApplyForm({
     title,
   });
+
+  const emailRef = React.useRef(null);
+  const numberRef = React.useRef(null);
+  const handleMouseOut = (currentRef: any) => {
+    if (document.activeElement !== currentRef) {
+      inputs.email.length > 0 && !validator.isEmail(inputs.email)
+        ? setEmailError(true)
+        : setEmailError(false);
+      inputs.countryCode.length > 0 &&
+      inputs.number.length > 0 &&
+      !validator.isMobilePhone(`+${inputs.countryCode + inputs.number}`)
+        ? setNumberError(true)
+        : setNumberError(false);
+    }
+  };
+
+  const keyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' || event.key === 'Tab') {
+      inputs.email.length > 0 && !validator.isEmail(inputs.email)
+        ? setEmailError(true)
+        : setEmailError(false);
+      inputs.countryCode.length > 0 &&
+      inputs.number.length > 0 &&
+      !validator.isMobilePhone(`+${inputs.countryCode + inputs.number}`)
+        ? setNumberError(true)
+        : setNumberError(false);
+    }
+  };
 
   const [loading, setLoading] = React.useState(false);
 
@@ -167,17 +200,17 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
               {t('email')}
             </Typography>
             <TextField
+              ref={emailRef}
+              onMouseOut={() => handleMouseOut(emailRef.current)}
+              onKeyPress={keyPressHandler}
+              onKeyDown={keyPressHandler}
               placeholder={t('email')}
               name="email"
               id="outlined-basic"
               onChange={handleInputChange}
               variant="outlined"
               value={inputs.email}
-              helperText={
-                inputs.email.length > 0 && !validator.isEmail(inputs.email)
-                  ? 'invalid input'
-                  : ''
-              }
+              helperText={emailError ? 'invalid input' : ''}
               InputProps={{
                 endAdornment: inputs.email.length > 0 && (
                   <InputAdornment position="end">
@@ -197,16 +230,11 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                   color: 'rgba(255, 255, 255, 0.7)',
                   background: 'transparent',
                   borderRadius: theme.spacing(1),
-                  border:
-                    inputs.email.length > 0 && !validator.isEmail(inputs.email)
-                      ? '1px solid red'
-                      : '1px solid rgba(255, 255, 255, 1)',
+                  border: emailError
+                    ? '1px solid red'
+                    : '1px solid rgba(255, 255, 255, 1)',
                   '& fieldset': {
-                    borderColor:
-                      inputs.email.length > 0 &&
-                      !validator.isEmail(inputs.email)
-                        ? 'red'
-                        : 'white',
+                    borderColor: emailError ? 'red' : 'white',
                   },
                 },
                 '& .MuiFormHelperText-root': {
@@ -240,14 +268,7 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                 onChange={handleInputChange}
                 variant="outlined"
                 value={inputs.countryCode}
-                helperText={
-                  inputs.countryCode.length > 0 &&
-                  !validator.isMobilePhone(
-                    `+${inputs.countryCode + inputs.number}`
-                  )
-                    ? 'invalid input'
-                    : ''
-                }
+                helperText={numberError ? 'invalid input' : ''}
                 InputProps={{
                   endAdornment: inputs.countryCode.length > 0 && (
                     <InputAdornment position="end">
@@ -268,21 +289,11 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                     color: 'rgba(255, 255, 255, 0.7)',
                     background: 'transparent',
                     borderRadius: theme.spacing(1),
-                    border:
-                      inputs.countryCode.length > 0 &&
-                      !validator.isMobilePhone(
-                        `+${inputs.countryCode + inputs.number}`
-                      )
-                        ? '1px solid red'
-                        : '1px solid rgba(255, 255, 255, 1)',
+                    border: numberError
+                      ? '1px solid red'
+                      : '1px solid rgba(255, 255, 255, 1)',
                     '& fieldset': {
-                      borderColor:
-                        inputs.countryCode.length > 0 &&
-                        !validator.isMobilePhone(
-                          `+${inputs.countryCode + inputs.number}`
-                        )
-                          ? 'red'
-                          : 'white',
+                      borderColor: numberError ? 'red' : 'white',
                     },
                   },
                   '& .MuiFormHelperText-root': {
@@ -299,20 +310,17 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                 }}
               />
               <TextField
+                ref={numberRef}
+                onMouseOut={() => handleMouseOut(numberRef.current)}
+                onKeyPress={keyPressHandler}
+                onKeyDown={keyPressHandler}
                 placeholder={t('number')}
                 name="number"
                 id="outlined-basic"
                 onChange={handleInputChange}
                 variant="outlined"
                 value={inputs.number}
-                helperText={
-                  inputs.number.length > 0 &&
-                  !validator.isMobilePhone(
-                    `+${inputs.countryCode + inputs.number}`
-                  )
-                    ? 'invalid input'
-                    : ''
-                }
+                helperText={numberError ? 'invalid input' : ''}
                 InputProps={{
                   endAdornment: inputs.number.length > 0 && (
                     <InputAdornment position="end">
@@ -333,21 +341,11 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                     color: 'rgba(255, 255, 255, 0.7)',
                     background: 'transparent',
                     borderRadius: theme.spacing(1),
-                    border:
-                      inputs.number.length > 0 &&
-                      !validator.isMobilePhone(
-                        `+${inputs.countryCode + inputs.number}`
-                      )
-                        ? '1px solid red'
-                        : '1px solid rgba(255, 255, 255, 1)',
+                    border: numberError
+                      ? '1px solid red'
+                      : '1px solid rgba(255, 255, 255, 1)',
                     '& fieldset': {
-                      borderColor:
-                        inputs.number.length > 0 &&
-                        !validator.isMobilePhone(
-                          `+${inputs.countryCode + inputs.number}`
-                        )
-                          ? 'red'
-                          : 'white',
+                      borderColor: numberError ? 'red' : 'white',
                     },
                   },
                   '& .MuiFormHelperText-root': {

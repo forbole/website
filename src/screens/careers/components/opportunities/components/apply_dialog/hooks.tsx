@@ -22,6 +22,8 @@ interface InputProps {
 const useApplyForm = ({ title }: any) => {
   const [resumeName, setResumeName] = React.useState('');
   const [letterName, setLetterName] = React.useState('');
+  const [emailError, setEmailError] = React.useState(false);
+  const [numberError, setNumberError] = React.useState(false);
   const [inputs, setInputs] = React.useState<InputProps>({
     title,
     firstName: '',
@@ -40,8 +42,7 @@ const useApplyForm = ({ title }: any) => {
   React.useEffect(() => {
     if (
       validator.isEmail(inputs.email) &&
-      inputs.countryCode &&
-      inputs.number &&
+      validator.isMobilePhone(`+${inputs.countryCode + inputs.number}`) &&
       inputs.firstName &&
       inputs.lastName &&
       inputs.message &&
@@ -141,7 +142,6 @@ const useApplyForm = ({ title }: any) => {
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
-    console.log('hi', name, value);
     setInputs((inputs) => ({
       ...inputs,
       [name]: value,
@@ -172,6 +172,10 @@ const useApplyForm = ({ title }: any) => {
     handleLetterClear,
     handleLetterUpload,
     letterName,
+    emailError,
+    setEmailError,
+    numberError,
+    setNumberError,
   };
 };
 
