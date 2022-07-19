@@ -7,6 +7,12 @@ export interface ProductCardProps {
 
 export const products: ProductCardProps[] = [
   {
+    icon: '/images/assets/icon_forbole.png',
+    title: 'staking provider',
+    desc: 'staking provider desc',
+    url: 'https://www.forbole.com/stake-now',
+  },
+  {
     icon: '/images/assets/icon_desmos.png',
     title: 'desmos network',
     desc: 'desmos network desc',

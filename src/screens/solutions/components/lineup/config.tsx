@@ -21,6 +21,15 @@ export interface BDStatsProps {
 
 export const details: DetailCardProps[] = [
   {
+    image: '/images/assets/image_staking_provider.png',
+    icon: '/images/assets/icon_forbole.png',
+    title: 'staking provider',
+    desc1: 'staking provider desc 1',
+    desc2: 'staking provider desc 2',
+    desc3: 'staking provider desc 3',
+    url: 'https://www.forbole.com/stake-now',
+  },
+  {
     image: '/images/assets/image_desmos_desktop.png',
     icon: '/images/assets/icon_desmos.png',
     title: 'desmos network',

@@ -35,10 +35,13 @@ const Overview = () => {
           gridTemplateRows: 'repeat(4, 1fr)',
           gridGap: theme.spacing(3),
           [theme.breakpoints.up('laptop')]: {
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gridTemplateRows: 'repeat(2, 1fr)',
-            gridGap: theme.spacing(7),
+            // display: 'grid',
+            // gridTemplateColumns: '1fr 1fr 1fr',
+            // gridTemplateRows: 'repeat(2, 1fr)',
+            // gridGap: theme.spacing(7),
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
           },
         }}
       >

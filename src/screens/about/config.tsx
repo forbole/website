@@ -44,8 +44,8 @@ export const awards: AwardProps[] = [
     desc: 'appWorks desc',
     timeline: 'appWorks time',
   },
-  { year: 2018, title: 'debut', desc: 'debut desc', timeline: 'debut time' },
-  { title: 'BD', desc: 'BD desc', timeline: 'BD time' },
+  { year: 2018, title: 'BD', desc: 'BD desc', timeline: 'BD time' },
+  { title: 'debut', desc: 'debut desc', timeline: 'debut time' },
   {
     year: 2017,
     title: 'forbole',

@@ -26,6 +26,7 @@ const ProductCard = (props: ProductCardProps) => {
         [theme.breakpoints.up('laptop')]: {
           width: '296px',
           height: '373px',
+          flex: '0 0 calc(30% - 40px)',
         },
       }}
     >

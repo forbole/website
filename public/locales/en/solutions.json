@@ -1,5 +1,7 @@
 {
     "title": "Forbole Solutions",
+    "staking provider": "Staking Provider",
+    "staking provider desc": "Experienced professional validator of over 50 Proof-of-Stake Networks and Bridges. We are a distributed workforce across the globe that is monitoring node performance 24/7.",
     "desmos network": "Desmos Network",
     "desmos network desc": "Desmos Network is a blockchain protocol designed to host multiple decentralized social network applications.",
     "big dipper": "Big Dipper",
@@ -7,7 +9,7 @@
     "forbole ventures": "Forbole Ventures",
     "forbole ventures desc": "The private investment arm of Forbole to invest in promising crypto projects.",
     "launching soon": "Launching Soon",
-    "launching desc": "TBC",
+    "launching desc": "Coming soon",
     "desmos network desc 1": "Based on Cosmos-SDK",
     "desmos network desc 2": "Designed for decentralized social networks applications",
     "desmos network desc 3": "Encourage mass adoption of cryptocurrencies and blockchain technologies",
@@ -20,5 +22,8 @@
     "years of journey": "Years of Journey",
     "forbole ventures desc 1": "Forbole Venture is the private investment arm of Forbole",
     "forbole ventures desc 2": "We invest in founders who can build the next generation of web3verse together with us",
-    "forbole ventures desc 3": "Investment amounts range from $50K to $1M"
+    "forbole ventures desc 3": "Investment amounts range from $50K to $1M",
+    "staking provider desc 1": "Securing 50+ Proof-of-Stake Networks and Bridges",
+    "staking provider desc 2": "Institutional grade blockchain infrastructure with industry-leading security protocols",
+    "staking provider desc 3": "A team of experienced network engineers, available 24/7 monitoring node performance"
 }
