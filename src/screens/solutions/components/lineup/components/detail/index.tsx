@@ -35,7 +35,12 @@ const DetailCard = (props: DetailCardProps) => {
           sx={{
             paddingBottom: isDesktop ? 0 : theme.spacing(4),
             width: '100%',
-            '> span': { width: '100%!important' as any },
+            '> span': {
+              width: '100%!important' as any,
+              '> img': {
+                borderRadius: theme.spacing(1.5),
+              },
+            },
             [theme.breakpoints.up('tablet')]: {
               width: 'initial',
             },
