@@ -10,6 +10,10 @@ jest.mock('@components', () => ({
   Layout: (props: any) => <div id="Layout" {...props} />,
 }));
 
+jest.mock('./components', () => ({
+  HomeAnimation: (props: any) => <div id="HomeAnimation" {...props} />,
+}));
+
 // ==================================
 // unit tests
 // ==================================
