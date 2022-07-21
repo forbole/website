@@ -7,7 +7,7 @@ const Lineup = () => {
   return (
     <Box>
       {details.map((detail) => {
-        const { image, icon, title, desc1, desc2, desc3, url, extra } = detail;
+        const { image, icon, title, desc1, desc2, desc3, url, last } = detail;
         return (
           <DetailCard
             image={image}
@@ -17,7 +17,7 @@ const Lineup = () => {
             desc2={desc2}
             desc3={desc3}
             url={url}
-            extra={extra}
+            last={last}
           />
         );
       })}
