@@ -13,7 +13,7 @@ const Footer = () => {
         [theme.breakpoints.up('mobile')]: {
           width: '100%',
           background: 'url(/images/assets/footer_mobile.png)',
-          backgroundPosition: '0 50%',
+          backgroundPosition: '0 100%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
           // height: '40vh',
@@ -22,10 +22,11 @@ const Footer = () => {
           // zIndex: 1,
           // position: 'static',
           // styling after review 1:
-          minHeight: '280px',
+          minHeight: '320px',
           position: 'static',
           bottom: 0,
           paddingBottom: 0,
+          zIndex: 1,
         },
         [theme.breakpoints.up('tablet')]: {
           // minHeight: '35vh',
