@@ -5,6 +5,8 @@ import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Layout } from '@components';
 import { useWindowDimensions } from '@src/hooks';
+import { HomeAnimation } from './components';
+import { TransitionCSS } from './styles';
 
 const Home = () => {
   const { t } = useTranslation('home');
@@ -19,10 +21,12 @@ const Home = () => {
       image="/images/assets/Facebook-Forbole.png"
       twitterImage="/images/assets/Twitter-Forbole.png"
       footer
+      homeAnimation
     >
       <Box
         sx={{
-          backgroundImage: 'url(/images/assets/image_BG.png)',
+          // backgroundImage: 'url(/images/assets/image_BG.png)',
+          backgroundImage: '',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           // backgroundPosition: '52px -59px',
@@ -30,6 +34,23 @@ const Home = () => {
         }}
       >
         <Box
+          sx={{
+            // display: 'none',
+            // [theme.breakpoints.up('laptop')]: {
+            display: 'inherit',
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            // zIndex: 1,
+            height: '100vh',
+            objectFit: 'cover',
+          }}
+        >
+          <HomeAnimation />
+        </Box>
+        {/* <Box
           sx={{
             height: '70vh',
             width: '50%',
@@ -64,7 +85,7 @@ const Home = () => {
             layout="fill"
             objectFit="contain"
           />
-        </Box>
+        </Box> */}
         <Box
           sx={{
             display: 'flex',
@@ -103,6 +124,7 @@ const Home = () => {
           <Typography
             sx={(s) => ({
               whiteSpace: 'pre-wrap',
+              zIndex: 3,
               [s.breakpoints.up('mobile')]: {
                 color: theme.palette.primary.main,
                 fontWeight: 600,
@@ -153,13 +175,15 @@ const Home = () => {
               },
             }}
           >
-            <Image
-              src="/images/assets/image_horseInWater.png"
-              layout="fill"
-              objectFit="contain"
-              width={isDesktop ? '516px' : '210px'}
-              height={isDesktop ? '376px' : '177px'}
-            />
+            <TransitionCSS>
+              <Image
+                src="/images/assets/image_horseInWater.png"
+                layout="fill"
+                objectFit="contain"
+                width={isDesktop ? '516px' : '210px'}
+                height={isDesktop ? '376px' : '177px'}
+              />
+            </TransitionCSS>
           </Box>
           <Box
             sx={{

@@ -25,6 +25,7 @@ type Props = {
   twitterImage?: string;
   themeModeButton?: boolean;
   waveBG?: boolean;
+  homeAnimation?: boolean;
 };
 
 const Layout = ({
@@ -39,6 +40,7 @@ const Layout = ({
   twitterImage,
   themeModeButton,
   waveBG,
+  homeAnimation,
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
@@ -128,7 +130,9 @@ const Layout = ({
       </Head>
       <Box
         sx={{
-          backgroundImage: 'url(/images/assets/image_BG.png)',
+          backgroundImage: homeAnimation
+            ? ''
+            : 'url(/images/assets/image_BG.png)',
           background: 'transparent',
         }}
       >
