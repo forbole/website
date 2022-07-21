@@ -8,10 +8,8 @@ import validator from 'validator';
 import { useRouter } from 'next/router';
 import { Box, useTheme } from '@mui/material';
 import { useRecoilState, SetterOrUpdater } from 'recoil';
-import Lottie from 'lottie-react';
 import { Theme } from '@recoil/settings/types';
 import { writeTheme } from '@recoil/settings';
-import HomeAnimationJsonData from '@public/images/assets/lotties/home-animation.json';
 import Footer from '../footer';
 import Nav from '../nav';
 
@@ -130,7 +128,6 @@ const Layout = ({
         />
         <link rel="manifest" href={`${url}/icons/manifest.json`} />
       </Head>
-      {/* <Lottie animationData={HomeAnimationJsonData} loop /> */}
       <Box
         sx={{
           backgroundImage: homeAnimation
