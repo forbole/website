@@ -1381,7 +1381,7 @@ const TermsAndConditions = () => {
                 sx={{
                   height: 0,
                   [theme.breakpoints.up('laptop')]: {
-                    height: '300px',
+                    height: '200px',
                   },
                 }}
               />
