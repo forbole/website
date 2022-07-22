@@ -6,7 +6,7 @@ export interface DetailCardProps {
   desc2: string;
   desc3: string;
   url: string;
-  extra?: boolean;
+  last?: boolean;
 }
 
 export interface BlockchainProps {
@@ -46,7 +46,6 @@ export const details: DetailCardProps[] = [
     desc2: 'big dipper desc 2',
     desc3: 'big dipper desc 3',
     url: 'https://bigdipper.live/',
-    extra: true,
   },
   {
     image: '/images/assets/image_forbole_ventures.png',
@@ -56,6 +55,7 @@ export const details: DetailCardProps[] = [
     desc2: 'forbole ventures desc 2',
     desc3: 'forbole ventures desc 3',
     url: 'https://ventures.forbole.com/',
+    last: true,
   },
 ];
 
