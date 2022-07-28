@@ -491,8 +491,8 @@ const TermsAndConditions = () => {
               </p>
 
               <p>
-                5.1 &nbsp; &nbsp; &nbsp; &nbsp;Our Services, together with the
-                website(s), platform(s), application(s) and their components
+                5.1 &nbsp; &nbsp; &nbsp; &nbsp;Our Platform, together with the
+                website(s), service(s), application(s) and their components
                 offered by Forbole, its holding company(ies), subsidiary(ies)
                 and affiliates, are provided on an <b>&ldquo;as is&rdquo;</b>{' '}
                 and <b>&ldquo;as available&rdquo;</b> basis.
@@ -504,13 +504,13 @@ const TermsAndConditions = () => {
               </p>
 
               <p>
-                (a) &nbsp; &nbsp; &nbsp; &nbsp;the Services comply with any
+                (a) &nbsp; &nbsp; &nbsp; &nbsp;the Platform complies with any
                 obligations that the users may have under any applicable laws,
                 rules or regulations; or
               </p>
 
               <p>
-                (b) &nbsp; &nbsp; &nbsp; &nbsp;the Services will always be
+                (b) &nbsp; &nbsp; &nbsp; &nbsp;the Platform will always be
                 available.
               </p>
 
@@ -623,25 +623,23 @@ const TermsAndConditions = () => {
               </p>
 
               <p>
-                7.1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                &nbsp; &nbsp;Neither Party will be in breach of these Terms or
-                be liable for any delay in performing, or any failure to
-                perform, any of its obligations under these Terms if such delay
-                or failure result from events, circumstances or causes beyond
-                its reasonable control. In such circumstances, the time for
-                performance will be extended by a period equivalent to the
-                period during which performance of the obligation has been
-                delayed or failed to be performed.
+                7.1 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;Neither Party will be in
+                breach of these Terms or be liable for any delay in performing,
+                or any failure to perform, any of its obligations under these
+                Terms if such delay or failure result from events, circumstances
+                or causes beyond its reasonable control. In such circumstances,
+                the time for performance will be extended by a period equivalent
+                to the period during which performance of the obligation has
+                been delayed or failed to be performed.
               </p>
               <p>
-                7.2&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                &nbsp; &nbsp;A force majeure event includes: an act of God,
-                fire, flood, typhoon, storm, war, riot, civil unrest, act of
-                terrorism, strike, industrial dispute, outbreak of epidemic or
-                pandemic illness, failure of utility service or transportation,
-                shortage and unavailability of energy or resources, and
-                operation and action of and changes to the protocols of
-                Supported Networks.
+                7.2&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;A force majeure event
+                includes: an act of God, fire, flood, typhoon, storm, war, riot,
+                civil unrest, act of terrorism, strike, industrial dispute,
+                outbreak of epidemic or pandemic illness, failure of utility
+                service or transportation, shortage and unavailability of energy
+                or resources, and operation and action of and changes to the
+                protocols of blockchain networks.
               </p>
 
               <p>
