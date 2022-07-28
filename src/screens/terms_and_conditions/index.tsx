@@ -244,9 +244,10 @@ const TermsAndConditions = () => {
                 code, software, content, text, graphics, images, audio or visual
                 files and other materials, offered from time to time, and all
                 improvements, enhancements, modifications, updates from time to
-                time, collectively, our &ldquo;Proprietary Materials&rdquo;)
-                belong to us. All rights in the Proprietary Materials under
-                applicable laws are hereby reserved.
+                time, collectively, our{' '}
+                <b>&ldquo;Proprietary Materials&rdquo;</b>) belong to us. All
+                rights in the Proprietary Materials under applicable laws are
+                hereby reserved.
               </p>
 
               <p>
@@ -306,13 +307,13 @@ const TermsAndConditions = () => {
               </p>
 
               <p>
-                2.7 &nbsp; &nbsp; &nbsp; &nbsp;In these Terms,
-                &ldquo;intellectual property rights&rdquo; include patents,
-                rights to inventions, copyright and related rights, all other
-                rights in the nature of copyright, trade marks, business names
-                and domain names, rights in get-up, goodwill and the right to
-                sue for passing off, rights in designs, database rights, rights
-                to use and protect the confidentiality of confidential
+                2.7 &nbsp; &nbsp; &nbsp; &nbsp;In these Terms,{' '}
+                <b>&ldquo; intellectual property rights&rdquo;</b> include
+                patents, rights to inventions, copyright and related rights, all
+                other rights in the nature of copyright, trade marks, business
+                names and domain names, rights in get-up, goodwill and the right
+                to sue for passing off, rights in designs, database rights,
+                rights to use and protect the confidentiality of confidential
                 information (including know-how), and all other intellectual
                 property rights, in each case whether registered or unregistered
                 and including all applications and rights to apply for and be
@@ -328,9 +329,9 @@ const TermsAndConditions = () => {
 
               <p>
                 3.1 &nbsp; &nbsp; &nbsp; &nbsp;We provide the Platform and any
-                products or services we offer on an &ldquo;as is&rdquo; and
-                &ldquo;as available&rdquo; basis, and your access to or use of
-                our Platform is at your own risk.
+                products or services we offer on an <b>&ldquo;as is&rdquo;</b>{' '}
+                and <b>&ldquo;as available&rdquo;</b> basis, and your access to
+                or use of our Platform is at your own risk.
               </p>
 
               <p>
@@ -493,8 +494,8 @@ const TermsAndConditions = () => {
                 5.1 &nbsp; &nbsp; &nbsp; &nbsp;Our Services, together with the
                 website(s), platform(s), application(s) and their components
                 offered by Forbole, its holding company(ies), subsidiary(ies)
-                and affiliates, are provided on an &ldquo;as is&rdquo; and
-                &ldquo;as available&rdquo; basis.
+                and affiliates, are provided on an <b>&ldquo;as is&rdquo;</b>{' '}
+                and <b>&ldquo;as available&rdquo;</b> basis.
               </p>
 
               <p>
@@ -741,9 +742,9 @@ const TermsAndConditions = () => {
                 (B) &nbsp; &nbsp; &nbsp; &nbsp;Forbole has developed knowledge,
                 skills and infrastructure in validating and securing blockchain
                 networks. Forbole runs validator nodes to secure a number of
-                networks (&ldquo;Supported Networks&rdquo;), which benefit all
-                holders of tokens of these networks. Each Supported Network has
-                its own protocols and terms.
+                networks (<b>&ldquo;Supported Networks&rdquo;</b>), which
+                benefit all holders of tokens of these networks. Each Supported
+                Network has its own protocols and terms.
               </p>
 
               <p>
@@ -757,9 +758,11 @@ const TermsAndConditions = () => {
 
               <p>
                 (D) &nbsp; &nbsp; &nbsp; &nbsp;The non-custodial staking
-                services are offered on and subject to these Terms.&nbsp;By
-                delegating tokens to Forbole, you agree to be bound by these
-                Terms as amended from time to time.
+                services are offered on and subject to these Terms.&nbsp;
+                <b>
+                  By delegating tokens to Forbole, you agree to be bound by
+                  these Terms as amended from time to time.
+                </b>
               </p>
 
               <p>
@@ -777,8 +780,8 @@ const TermsAndConditions = () => {
 
               <p>
                 (a) &nbsp; &nbsp; &nbsp; &nbsp;delegate any whole or fractional
-                number of digital blockchain assets (&ldquo;Tokens&rdquo;) of a
-                Supported Network to Forbole at any time; and
+                number of digital blockchain assets (<b>&ldquo;Tokens&rdquo;</b>
+                ) of a Supported Network to Forbole at any time; and
               </p>
 
               <p>
@@ -795,23 +798,23 @@ const TermsAndConditions = () => {
               <p>
                 (a) &nbsp; &nbsp; &nbsp; &nbsp;exercise the rights of the
                 delegated Tokens to validate and sign the next definitive serial
-                transaction record on a Supported Network (&ldquo;Validation
-                Rights&rdquo;); and
+                transaction record on a Supported Network (
+                <b>&ldquo;Validation Rights&rdquo;</b>); and
               </p>
 
               <p>
                 (b) &nbsp; &nbsp; &nbsp; &nbsp;exercise the rights of the
                 delegated Tokens to vote upon proposals relating to the
-                operation and governance of a Supported Network (&ldquo;Voting
-                Rights&rdquo;),&nbsp;unless&nbsp;you elect to exercise the
-                Voting Rights directly in accordance with the protocols of the
-                Supported Network
+                operation and governance of a Supported Network (
+                <b>&ldquo;Voting Rights&rdquo;</b>),&nbsp;unless&nbsp;you elect
+                to exercise the Voting Rights directly in accordance with the
+                protocols of the Supported Network
               </p>
 
               <p>
                 (the Validation Rights and the Voting Rights collectively, the
-                &ldquo;Token Rights&rdquo;; and the exercise of the Token Rights
-                on your behalf, the &ldquo;Services&rdquo;).
+                <b>&ldquo;Token Rights&rdquo;</b>; and the exercise of the Token
+                Rights on your behalf, the <b>&ldquo;Services&rdquo;</b>).
               </p>
 
               <p>
@@ -942,9 +945,10 @@ const TermsAndConditions = () => {
 
               <p>
                 12.9 &nbsp; &nbsp; &nbsp; &nbsp;For the purposes of these Terms,
-                &ldquo;Rewards&rdquo; include: block rewards and transaction
-                fees in return for the exercising of Validation Rights, in each
-                case as actually granted by the Supported Network.
+                <b>&ldquo;Rewards&rdquo;</b> include: block rewards and
+                transaction fees in return for the exercising of Validation
+                Rights, in each case as actually granted by the Supported
+                Network.
               </p>
 
               <p>
@@ -1225,9 +1229,9 @@ const TermsAndConditions = () => {
               <p>
                 17.1 &nbsp; &nbsp; &nbsp; &nbsp;These Terms come into effect and
                 become legally binding on the date on which you first delegate
-                any Tokens to Forbole (the &ldquo;Effective Date&rdquo;) and
-                will continue to remain in effect for as long as the delegation
-                continues.
+                any Tokens to Forbole (the <b>&ldquo;Effective Date&rdquo;</b>)
+                and will continue to remain in effect for as long as the
+                delegation continues.
               </p>
 
               <p>
