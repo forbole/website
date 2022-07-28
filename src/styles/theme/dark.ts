@@ -30,6 +30,7 @@ export const darkThemeOverride = {
         red: '#BD081C',
         indigo: '#362187',
         purple: '#6061E4',
+        blue: '#202A43',
       },
     },
   },
