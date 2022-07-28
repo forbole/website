@@ -45,7 +45,7 @@ const ContactInfo = (props: ContactInfoProps) => {
             >
               {t('contact info')}
             </Typography>
-            <Box sx={styles.content}>
+            {/* <Box sx={styles.content}>
               <LocationIcon />
               <Typography
                 gutterBottom
@@ -57,7 +57,7 @@ const ContactInfo = (props: ContactInfoProps) => {
               >
                 {t('address')}
               </Typography>
-            </Box>
+            </Box> */}
             <Box sx={styles.content}>
               <MailIcon />
               <Typography
