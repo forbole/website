@@ -102,6 +102,10 @@ const Nav = ({ navLink, staking }: NavProps) => {
               sx={{
                 background:
                   'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                borderRadius: theme.spacing(3),
+                color: 'primary.main',
+                filter:
+                  'drop-shadow(0px 1px 8px rgba(16, 24, 40, 0.06)) drop-shadow(0px 1px 10px rgba(16, 24, 40, 0.05))',
               }}
             >
               Stake Now
