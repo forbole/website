@@ -32,12 +32,52 @@ const Card = (props: FAQProps) => {
   } = props;
 
   return (
-    <Box>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+    <Box
+      sx={{
+        padding: theme.spacing(3),
+      }}
+    >
+      <Accordion
+        sx={{
+          background: theme.palette.primary.main,
+          borderRadius: theme.spacing(2),
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          boxShadow: '4px 8px 24px rgba(116, 81, 255, 0.28)',
+          '& .MuiAccordionSummary-content': {
+            flexGrow: 12,
+          },
+          '& .MuiIconButton-root': {
+            flexGrow: 1,
+          },
+        }}
+      >
+        <AccordionSummary
+          // sx={{
+          //   width: '100%',
+          //   '> .MuiAccordionSummary-content': { width: '70%' },
+          //   '> .MuiAccordionSummary-expandIconWrapper': {
+          //     width: '30%',
+          //     height: '100px',
+          //     position: 'absolute',
+          //     right: '10px',
+          //     '& .Mui-expanded': {
+          //       position: 'absolute',
+          //       right: '-20px',
+          //     },
+          //   },
+          // }}
+          expandIcon={<ExpandMoreIcon />}
+        >
           <Typography
             variant="h3"
-            sx={{ color: theme.palette.custom.forbole.blue }}
+            sx={{
+              color: theme.palette.custom.forbole.blue,
+              fontSize: theme.spacing(2),
+              fontWeight: 600,
+              width: '100%',
+            }}
           >
             {t(question)}
           </Typography>
