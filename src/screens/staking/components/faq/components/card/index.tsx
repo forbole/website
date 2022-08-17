@@ -54,20 +54,19 @@ const Card = (props: FAQProps) => {
         }}
       >
         <AccordionSummary
-          // sx={{
-          //   width: '100%',
-          //   '> .MuiAccordionSummary-content': { width: '70%' },
-          //   '> .MuiAccordionSummary-expandIconWrapper': {
-          //     width: '30%',
-          //     height: '100px',
-          //     position: 'absolute',
-          //     right: '10px',
-          //     '& .Mui-expanded': {
-          //       position: 'absolute',
-          //       right: '-20px',
-          //     },
-          //   },
-          // }}
+          sx={{
+            width: '100%',
+            '> .MuiAccordionSummary-expandIconWrapper': {
+              width: '30%',
+              height: '100px',
+              position: 'absolute',
+              right: '10px',
+            },
+            '>.MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+              position: 'absolute',
+              right: '-30px',
+            },
+          }}
           expandIcon={<ExpandMoreIcon />}
         >
           <Typography
@@ -76,7 +75,7 @@ const Card = (props: FAQProps) => {
               color: theme.palette.custom.forbole.blue,
               fontSize: theme.spacing(2),
               fontWeight: 600,
-              width: '100%',
+              width: '80%',
             }}
           >
             {t(question)}
