@@ -59,12 +59,15 @@ const Card = (props: FAQProps) => {
             '> .MuiAccordionSummary-expandIconWrapper': {
               width: '30%',
               height: '100px',
-              position: 'absolute',
-              right: '10px',
+              transform: 'translate(-50%)',
             },
-            '>.MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-              position: 'absolute',
-              right: '-30px',
+            '.Mui-expanded': {
+              h3: {
+                background:
+                  'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                backgroundClip: 'text',
+                textFillColor: 'transparent',
+              },
             },
           }}
           expandIcon={<ExpandMoreIcon />}
@@ -73,7 +76,11 @@ const Card = (props: FAQProps) => {
             variant="h3"
             sx={{
               color: theme.palette.custom.forbole.blue,
+              textShadow:
+                '0px 8px 22px rgba(2, 38, 225, 0.12), 0px 14px 64px rgba(2, 38, 225, 0.12)',
               fontSize: theme.spacing(2),
+              lineHeight: '20px',
+              letterSpacing: '-0.034em',
               fontWeight: 600,
               width: '80%',
             }}
@@ -81,7 +88,13 @@ const Card = (props: FAQProps) => {
             {t(question)}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails
+          sx={{
+            p: {
+              letterSpacing: '-0.012em',
+            },
+          }}
+        >
           {para1 && <Typography variant="body1">{t(para1)}</Typography>}
           {para2 && <Typography variant="body1">{t(para2)}</Typography>}
           {trans && (
