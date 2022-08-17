@@ -92,6 +92,17 @@ const Card = (props: FAQProps) => {
           sx={{
             p: {
               letterSpacing: '-0.012em',
+              color: theme.palette.custom.forbole.blue,
+              paddingBottom: theme.spacing(1),
+              '> p': {
+                paddingBottom: theme.spacing(2),
+                '&:last-child': {
+                  paddingBottom: theme.spacing(1),
+                },
+              },
+              '> li': {
+                padding: theme.spacing(0, 0, 1, 0),
+              },
             },
           }}
         >
@@ -105,8 +116,8 @@ const Card = (props: FAQProps) => {
                   variant="body1"
                   color={theme.palette.custom.forbole.blue}
                   sx={{
-                    display: 'inline',
-                    fontSize: theme.spacing(1.5),
+                    // display: 'inline',
+                    fontSize: theme.spacing(2),
                     [theme.breakpoints.up('laptop')]: {
                       fontSize: theme.spacing(2.5),
                     },
