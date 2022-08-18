@@ -11,7 +11,7 @@ import {
   ListItem,
   useTheme,
 } from '@mui/material';
-import { ExpandMoreIcon } from '@icons';
+import { ExpandIcon } from '@icons';
 import { FAQProps } from '../../config';
 
 const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
@@ -57,9 +57,9 @@ const Card = (props: FAQProps) => {
           sx={{
             width: '100%',
             '> .MuiAccordionSummary-expandIconWrapper': {
-              width: '30%',
-              height: '100px',
-              transform: 'translate(-50%)',
+              svg: {
+                fill: '#878787',
+              },
             },
             '.Mui-expanded': {
               h3: {
@@ -70,7 +70,7 @@ const Card = (props: FAQProps) => {
               },
             },
           }}
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandIcon />}
         >
           <Typography
             variant="h3"

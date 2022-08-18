@@ -27,5 +27,6 @@
     "drop bullet 2": "Bonding ratio changed (usually the higher bonding ratio, the lower the inflation rate)",
     "drop bullet 3": "Your validator(s) increased their commission rate",
     "claim q": "How often should I claim my staking rewards?",
-    "claim para 1": "There is no model answer because this depends on too many factors, including how many tokens staked, transaction fees in that particular network, etc."
+    "claim para 1": "There is no model answer because this depends on too many factors, including how many tokens staked, transaction fees in that particular network, etc.",
+    "faq": "FAQs"
 }

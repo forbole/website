@@ -13,6 +13,8 @@ const FAQ = () => {
       <Typography
         variant="h3"
         sx={{
+          textShadow:
+            '0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)',
           fontWeight: 700,
           fontSize: theme.spacing(3),
           textAlign: 'center',
