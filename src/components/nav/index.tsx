@@ -1,16 +1,18 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
-import { Box, useTheme } from '@mui/material';
+import { Box, Button, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo } from '@icons';
 import { MobileNavMenu, DesktopNavMenu } from './components';
 import { useNavHook } from './hooks';
 
 interface NavProps {
   navLink: string | null;
+  staking?: boolean;
 }
 
-const Nav = ({ navLink }: NavProps) => {
+const Nav = ({ navLink, staking }: NavProps) => {
   const theme = useTheme();
   const { displayBackground } = useNavHook();
   return (
@@ -93,32 +95,51 @@ const Nav = ({ navLink }: NavProps) => {
               </a>
             </Link>
           </Box>
-          <Box
-            sx={{
-              [theme.breakpoints.down('laptop')]: {
-                position: 'absolute',
-                top: theme.spacing(4),
-                right: theme.spacing(4),
-              },
-              [theme.breakpoints.up('laptop')]: {
-                display: 'none',
-              },
-            }}
-          >
-            <MobileNavMenu link={navLink} />
-          </Box>
-          <Box
-            sx={{
-              [theme.breakpoints.down('laptop')]: { display: 'none' },
-              [theme.breakpoints.up('laptop')]: {
-                display: 'flex',
-                width: '60%',
-                height: '100px',
-              },
-            }}
-          >
-            <DesktopNavMenu link={navLink} />
-          </Box>
+          {staking ? (
+            <Button
+              variant="contained"
+              href="#stake-now"
+              sx={{
+                background:
+                  'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                borderRadius: theme.spacing(3),
+                color: 'primary.main',
+                filter:
+                  'drop-shadow(0px 1px 8px rgba(16, 24, 40, 0.06)) drop-shadow(0px 1px 10px rgba(16, 24, 40, 0.05))',
+              }}
+            >
+              Stake Now
+            </Button>
+          ) : (
+            <>
+              <Box
+                sx={{
+                  [theme.breakpoints.down('laptop')]: {
+                    position: 'absolute',
+                    top: theme.spacing(4),
+                    right: theme.spacing(4),
+                  },
+                  [theme.breakpoints.up('laptop')]: {
+                    display: 'none',
+                  },
+                }}
+              >
+                <MobileNavMenu link={navLink} />
+              </Box>
+              <Box
+                sx={{
+                  [theme.breakpoints.down('laptop')]: { display: 'none' },
+                  [theme.breakpoints.up('laptop')]: {
+                    display: 'flex',
+                    width: '60%',
+                    height: '100px',
+                  },
+                }}
+              >
+                <DesktopNavMenu link={navLink} />
+              </Box>
+            </>
+          )}
         </Box>
       </Box>
     </Box>

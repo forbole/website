@@ -15,6 +15,7 @@ module.exports = {
     '/privacy-policy': ['policy'],
     '/solutions': ['solutions'],
     '/staking-services-terms': ['staking_services_terms'],
+    '/staking': ['staking'],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };

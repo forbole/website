@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
 import * as R from 'ramda';
 import validator from 'validator';
@@ -26,12 +26,14 @@ type Props = {
   themeModeButton?: boolean;
   waveBG?: boolean;
   homeAnimation?: boolean;
+  staking?: boolean;
+  searchBar?: boolean;
 };
 
-const Layout = ({
+const LayoutVal = ({
   navLink,
   children,
-  title = 'Forbole',
+  title = 'Forbole Validator Website',
   footer,
   description = "Too many friends. Too few relationships. Let's change our social network. Recommend trusted people and start making meaningful relationships with rewards.",
   keywords = [],
@@ -41,6 +43,8 @@ const Layout = ({
   themeModeButton,
   waveBG,
   homeAnimation,
+  staking,
+  searchBar,
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
@@ -61,11 +65,7 @@ const Layout = ({
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
   React.useEffect(() => {
-    if (navLink !== '/blog' && theme.palette.mode === 'light') {
-      setTheme('dark');
-    } else if (navLink !== '/careers' && theme.palette.mode === 'light') {
-      setTheme('dark');
-    }
+    if (theme.palette.mode === 'light') setTheme('dark');
   }, [navLink]);
   return (
     <Box position="relative">
@@ -130,9 +130,9 @@ const Layout = ({
       </Head>
       <Box
         sx={{
-          backgroundImage: homeAnimation
-            ? ''
-            : 'url(/images/assets/image_BG.png)',
+          //   backgroundImage: homeAnimation
+          //     ? ''
+          //     : 'url(/images/assets/image_val_BG_desktop.png)',
           background: 'transparent',
         }}
       >
@@ -141,16 +141,17 @@ const Layout = ({
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
-            background: waveBG
-              ? 'rgba(37, 35, 69, 1)'
-              : theme.palette.mode === 'dark'
-              ? 'url(/images/assets/image_BG.png)'
-              : theme.palette.primary.main,
+            // background: waveBG
+            //   ? 'rgba(37, 35, 69, 1)'
+            //   : theme.palette.mode === 'dark'
+            //   ? 'url(/images/assets/image_BG.png)'
+            //   : theme.palette.primary.main,
+            background: theme.palette.primary.main,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}
         >
-          <Nav navLink={navLink} />
+          <Nav navLink={navLink} staking />
           {children}
           {!!footer && <Footer />}
         </Box>
@@ -159,4 +160,4 @@ const Layout = ({
   );
 };
 
-export default Layout;
+export default LayoutVal;

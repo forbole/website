@@ -9,6 +9,7 @@ declare module '@mui/material/styles/createPalette' {
             red: string,
             indigo: string,
             purple: string,
+            blue: string,
         },
     }
     interface PaletteOptions {
