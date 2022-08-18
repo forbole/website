@@ -146,7 +146,7 @@ const LayoutVal = ({
             //   : theme.palette.mode === 'dark'
             //   ? 'url(/images/assets/image_BG.png)'
             //   : theme.palette.primary.main,
-            background: 'primary.main',
+            background: theme.palette.primary.main,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}

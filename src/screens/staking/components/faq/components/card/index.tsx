@@ -34,7 +34,7 @@ const Card = (props: FAQProps) => {
   return (
     <Box
       sx={{
-        padding: theme.spacing(3),
+        padding: theme.spacing(0, 3),
       }}
     >
       <Accordion
@@ -116,10 +116,9 @@ const Card = (props: FAQProps) => {
                   variant="body1"
                   color={theme.palette.custom.forbole.blue}
                   sx={{
-                    // display: 'inline',
                     fontSize: theme.spacing(2),
                     [theme.breakpoints.up('laptop')]: {
-                      fontSize: theme.spacing(2.5),
+                      fontSize: theme.spacing(2),
                     },
                   }}
                 />,
@@ -131,7 +130,7 @@ const Card = (props: FAQProps) => {
                       display: 'inline',
                       fontSize: theme.spacing(1.5),
                       [theme.breakpoints.up('laptop')]: {
-                        fontSize: theme.spacing(2.5),
+                        fontSize: theme.spacing(2),
                         display: 'inline',
                       },
                     }}
