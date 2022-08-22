@@ -1,3 +1,4 @@
 import FAQ from './faq';
+import ContactForbole from './contact_forbole';
 
-export { FAQ };
+export { ContactForbole, FAQ };
