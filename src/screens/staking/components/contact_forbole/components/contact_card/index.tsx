@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -11,14 +12,20 @@ import {
   Card,
   CardActions,
   CardContent,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
   TextField,
   Typography,
   ListItem,
   useTheme,
 } from '@mui/material';
+import { ExpandIcon } from '@icons';
 import { styles } from './styles';
 import ContactFormProps from './types';
 import useContactCard from './hooks';
+import { options } from './config';
 
 const ContactCard = () => {
   const theme = useTheme();
@@ -69,20 +76,85 @@ const ContactCard = () => {
               placeholder={t('name')}
               onChange={handleInputChange}
               value={inputs.name}
-              // InputProps={{
-              //   endAdornment: inputs.name.length > 0 && (
-              //     <InputAdornment position="end">
-              //       <IconButton
-              //         onClick={() => handleClear('name')}
-              //         onMouseDown={handleMouseDownClear}
-              //       >
-              //         <ClearIcon />
-              //       </IconButton>
-              //     </InputAdornment>
-              //   ),
-              // }}
               sx={styles.inputField}
             />
+          </Box>
+          <Box sx={styles.nameBox}>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              textAlign="left"
+              fontWeight={600}
+              fontSize={theme.spacing(2)}
+              pb={theme.spacing(1)}
+            >
+              {t('your email')}
+            </Typography>
+            <TextField
+              helperText=" "
+              id="demo-helper-text-aligned-no-helper"
+              name="email"
+              placeholder={t('email')}
+              onChange={handleInputChange}
+              value={inputs.email}
+              sx={styles.inputField}
+            />
+          </Box>
+          <Box sx={styles.select}>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              textAlign="left"
+              fontWeight={600}
+              fontSize={theme.spacing(2)}
+              pb={theme.spacing(1)}
+            >
+              {t('how can we help you')}
+            </Typography>
+            {/* <TextField
+              helperText=" "
+              id="demo-helper-text-aligned-no-helper"
+              name="option"
+              placeholder={t('option')}
+              onChange={handleInputChange}
+              value={inputs.option}
+              sx={styles.inputField}
+            /> */}
+            <FormControl sx={{}}>
+              <InputLabel id="demo-simple-select-autowidth-label">
+                {t(options[0])}
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={inputs.option}
+                // label="Age"
+                IconComponent={(props) => <ExpandIcon {...props} />}
+                // renderValue={(selected) => {
+                //   if (selected.length === 0) {
+                //     return <em>{t(options[0])}</em>;
+                //   }
+
+                //   return selected;
+                // }}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  setInputs((input) => ({
+                    ...input,
+                    option: value,
+                  }));
+                }}
+              >
+                <MenuItem disabled value="">
+                  <em>{t(options[0])}</em>
+                </MenuItem>
+                {options.slice(1).map((option) => (
+                  <MenuItem value={t(option)}>{t(option)}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
         </CardContent>
       </form>

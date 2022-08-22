@@ -15,4 +15,13 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       borderRadius: theme.spacing(1),
     },
   }),
+  select: (theme) => ({
+    '.MuiFormControl-root': {
+      width: '100%',
+    },
+    '.MuiFormLabel-root': {
+      //   width: '100%',
+      color: theme.palette.text.primary,
+    },
+  }),
 };
