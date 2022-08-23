@@ -1,21 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import useTranslation from 'next-translate/useTranslation';
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  TextField,
-  Typography,
-  ListItem,
-  useTheme,
-} from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { ContactCard } from './components';
 
 const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
@@ -28,6 +14,17 @@ const ContactForbole = () => {
       <Box
         sx={{
           padding: theme.spacing(5, 3),
+          '> h3': {
+            fontWeight: 700,
+            fontSize: theme.spacing(3),
+            textAlign: 'center',
+            '> h3': {
+              fontWeight: 700,
+              fontSize: theme.spacing(3),
+              textAlign: 'center',
+              display: 'inline',
+            },
+          },
           [theme.breakpoints.up('laptop')]: {
             maxWidth: '1200px',
           },
@@ -50,6 +47,24 @@ const ContactForbole = () => {
         >
           {t('contact Forbole')}
         </Typography>
+        <Trans
+          i18nKey={t('contact forbole title')}
+          components={[
+            <Typography
+              variant="h3"
+              sx={{ color: theme.palette.custom.forbole.indigo6 }}
+            />,
+            <Typography
+              variant="h3"
+              sx={{
+                background:
+                  'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                backgroundClip: 'text',
+                textFillColor: 'transparent',
+              }}
+            />,
+          ]}
+        />
         <ContactCard />
       </Box>
     </Box>

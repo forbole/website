@@ -1,12 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import useTranslation from 'next-translate/useTranslation';
 import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Box,
   Button,
   Card,
@@ -18,27 +13,18 @@ import {
   MenuItem,
   TextField,
   Typography,
-  ListItem,
   useTheme,
 } from '@mui/material';
 import { ExpandIcon } from '@icons';
 import { styles } from './styles';
-import ContactFormProps from './types';
 import useContactCard from './hooks';
 import { options } from './config';
 
 const ContactCard = () => {
   const theme = useTheme();
   const { t } = useTranslation('staking');
-  const {
-    handleSubmit,
-    handleInputChange,
-    handleClear,
-    handleMouseDownClear,
-    inputs,
-    setInputs,
-    canSubmit,
-  } = useContactCard();
+  const { handleSubmit, handleInputChange, inputs, setInputs, canSubmit } =
+    useContactCard();
   return (
     <Card
       sx={{
@@ -113,15 +99,6 @@ const ContactCard = () => {
             >
               {t('how can we help you')}
             </Typography>
-            {/* <TextField
-              helperText=" "
-              id="demo-helper-text-aligned-no-helper"
-              name="option"
-              placeholder={t('option')}
-              onChange={handleInputChange}
-              value={inputs.option}
-              sx={styles.inputField}
-            /> */}
             <FormControl sx={{}}>
               <InputLabel id="demo-simple-select-autowidth-label">
                 {t(options[0])}
@@ -130,15 +107,17 @@ const ContactCard = () => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={inputs.option}
-                // label="Age"
                 IconComponent={(props) => <ExpandIcon {...props} />}
-                // renderValue={(selected) => {
-                //   if (selected.length === 0) {
-                //     return <em>{t(options[0])}</em>;
-                //   }
-
-                //   return selected;
-                // }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      bgcolor: theme.palette.primary.main,
+                      '& .MuiMenuItem-root': {
+                        padding: 2,
+                      },
+                    },
+                  },
+                }}
                 onChange={(e) => {
                   const { value } = e.target;
                   setInputs((input) => ({
@@ -157,6 +136,11 @@ const ContactCard = () => {
             </FormControl>
           </Box>
         </CardContent>
+        <CardActions sx={styles.buttonDiv}>
+          <Button type="submit" disabled={!canSubmit} sx={styles.button}>
+            {t('get in touch!')}
+          </Button>
+        </CardActions>
       </form>
     </Card>
   );

@@ -13,7 +13,7 @@ const useContactCard = () => {
   });
   const [canSubmit, setCanSubmit] = React.useState(false);
   const { sanitize } = DOMPurify;
-  const { t } = useTranslation('contact');
+  const { t } = useTranslation('staking');
 
   React.useEffect(() => {
     if (validator.isEmail(inputs.email) && inputs.name && inputs.option) {
@@ -60,22 +60,9 @@ const useContactCard = () => {
     }));
   };
 
-  const handleClear = (field: any) => {
-    setInputs((input) => ({
-      ...input,
-      [field]: '',
-    }));
-  };
-
-  const handleMouseDownClear = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   return {
     handleSubmit,
     handleInputChange,
-    handleClear,
-    handleMouseDownClear,
     inputs,
     setInputs,
     canSubmit,
