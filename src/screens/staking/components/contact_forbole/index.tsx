@@ -65,6 +65,24 @@ const ContactForbole = () => {
             />,
           ]}
         />
+        <Typography
+          variant="body1"
+          sx={{
+            textShadow:
+              '0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)',
+            fontWeight: 400,
+            fontSize: theme.spacing(2),
+            textAlign: 'center',
+            padding: theme.spacing(3, 0, 5, 0),
+            color: theme.palette.custom.forbole.blue,
+            [theme.breakpoints.up('laptop')]: {
+              fontWeight: 700,
+              fontSize: theme.spacing(3),
+            },
+          }}
+        >
+          {t('contact Forbole desc')}
+        </Typography>
         <ContactCard />
       </Box>
     </Box>
