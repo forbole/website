@@ -31,14 +31,14 @@ const ContactForbole = () => {
         }}
       >
         <Typography
-          variant="h3"
+          variant="h4"
           sx={{
             textShadow:
               '0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)',
             fontWeight: 600,
             fontSize: theme.spacing(2),
             textAlign: 'center',
-            paddingBottom: theme.spacing(5),
+            paddingBottom: theme.spacing(3),
             [theme.breakpoints.up('laptop')]: {
               fontWeight: 700,
               fontSize: theme.spacing(3),
@@ -73,7 +73,7 @@ const ContactForbole = () => {
             fontWeight: 400,
             fontSize: theme.spacing(2),
             textAlign: 'center',
-            padding: theme.spacing(3, 0, 5, 0),
+            padding: theme.spacing(3, 0, 3, 0),
             color: theme.palette.custom.forbole.blue,
             [theme.breakpoints.up('laptop')]: {
               fontWeight: 700,
