@@ -11,8 +11,25 @@ const Staking = () => {
 
   return (
     <LayoutVal navLink="staking">
-      <ContactForbole />
-      <FAQ />
+      <Box
+        sx={{
+          [theme.breakpoints.up('laptop')]: {
+            minHeight: '100vh',
+          },
+        }}
+      >
+        <ContactForbole />
+      </Box>
+      <Box
+        sx={{
+          [theme.breakpoints.up('laptop')]: {
+            minHeight: '100vh',
+            paddingTop: theme.spacing(20),
+          },
+        }}
+      >
+        <FAQ />
+      </Box>
     </LayoutVal>
   );
 };
