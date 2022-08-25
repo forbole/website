@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
 import { LayoutVal } from '@components';
 import { ContactForbole, FAQ } from './components';
+import { LaptopCSS } from './styles';
 
 const Staking = () => {
   const { t } = useTranslation('staking');
@@ -11,25 +12,12 @@ const Staking = () => {
 
   return (
     <LayoutVal navLink="staking">
-      <Box
-        sx={{
-          [theme.breakpoints.up('laptop')]: {
-            minHeight: '100vh',
-          },
-        }}
-      >
+      <LaptopCSS>
         <ContactForbole />
-      </Box>
-      <Box
-        sx={{
-          [theme.breakpoints.up('laptop')]: {
-            minHeight: '100vh',
-            paddingTop: theme.spacing(20),
-          },
-        }}
-      >
+      </LaptopCSS>
+      <LaptopCSS>
         <FAQ />
-      </Box>
+      </LaptopCSS>
     </LayoutVal>
   );
 };
