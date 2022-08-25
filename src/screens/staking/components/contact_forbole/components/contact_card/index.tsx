@@ -40,6 +40,10 @@ const ContactCard = () => {
             padding: theme.spacing(3),
             [theme.breakpoints.up('laptop')]: {
               padding: theme.spacing(5),
+              gridGap: theme.spacing(5),
+              display: 'grid',
+              gridTemplateRows: 'repeat(2, 1fr)',
+              gridTemplateColumns: 'repeat(4, 1fr)',
             },
           }}
         >
@@ -65,7 +69,7 @@ const ContactCard = () => {
               sx={styles.inputField}
             />
           </Box>
-          <Box sx={styles.nameBox}>
+          <Box sx={styles.mailBox}>
             <Typography
               gutterBottom
               variant="h6"
@@ -135,12 +139,12 @@ const ContactCard = () => {
               </Select>
             </FormControl>
           </Box>
+          <CardActions sx={styles.buttonDiv}>
+            <Button type="submit" disabled={!canSubmit} sx={styles.button}>
+              {t('get in touch!')}
+            </Button>
+          </CardActions>
         </CardContent>
-        <CardActions sx={styles.buttonDiv}>
-          <Button type="submit" disabled={!canSubmit} sx={styles.button}>
-            {t('get in touch!')}
-          </Button>
-        </CardActions>
       </form>
     </Card>
   );

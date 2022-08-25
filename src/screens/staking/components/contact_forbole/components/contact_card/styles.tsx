@@ -5,8 +5,22 @@ export const styles: { [index: string]: SxProps<Theme> } = {
   nameBox: (theme) => ({
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'stretch',
     color: theme.palette.custom.forbole.indigo6,
+    [theme.breakpoints.up('laptop')]: {
+      gridColumn: '1 / span 2',
+      gridRow: '1 / span 1',
+    },
+  }),
+  mailBox: (theme) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    color: theme.palette.custom.forbole.indigo6,
+    [theme.breakpoints.up('laptop')]: {
+      gridColumn: '3 / span 2',
+      gridRow: '1 / span 1',
+    },
   }),
   inputField: (theme) => ({
     '> .MuiOutlinedInput-root': {
@@ -25,12 +39,20 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     '.MuiFormLabel-root': {
       color: '#878787',
     },
+    [theme.breakpoints.up('laptop')]: {
+      gridColumn: '1 / span 3',
+      gridRow: '2 / span 1',
+    },
   }),
   paper: (theme) => ({
     backgroundColor: theme.palette.primary.main,
   }),
   buttonDiv: (theme) => ({
-    padding: theme.spacing(0, 0, 3, 3),
+    padding: theme.spacing(3, 0, 0, 0),
+    [theme.breakpoints.up('laptop')]: {
+      gridColumn: '4 / span 1',
+      gridRow: '2 / span 1',
+    },
   }),
   button: (theme) => ({
     background: 'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
