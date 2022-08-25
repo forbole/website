@@ -43,7 +43,7 @@ const ContactCard = () => {
               gridGap: theme.spacing(5),
               display: 'grid',
               gridTemplateRows: 'repeat(2, 1fr)',
-              gridTemplateColumns: 'repeat(4, 1fr)',
+              gridTemplateColumns: 'repeat(6, 1fr)',
             },
           }}
         >

@@ -8,7 +8,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     alignItems: 'stretch',
     color: theme.palette.custom.forbole.indigo6,
     [theme.breakpoints.up('laptop')]: {
-      gridColumn: '1 / span 2',
+      gridColumn: '1 / span 3',
       gridRow: '1 / span 1',
     },
   }),
@@ -18,7 +18,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     alignItems: 'stretch',
     color: theme.palette.custom.forbole.indigo6,
     [theme.breakpoints.up('laptop')]: {
-      gridColumn: '3 / span 2',
+      gridColumn: '4 / span 3',
       gridRow: '1 / span 1',
     },
   }),
@@ -27,6 +27,10 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       boxShadow:
         '0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)',
       borderRadius: theme.spacing(1),
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+      borderColor: 'transparent',
     },
   }),
   select: (theme) => ({
@@ -39,8 +43,12 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     '.MuiFormLabel-root': {
       color: '#878787',
     },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+      borderColor: 'transparent',
+    },
     [theme.breakpoints.up('laptop')]: {
-      gridColumn: '1 / span 3',
+      gridColumn: '1 / span 5',
       gridRow: '2 / span 1',
     },
   }),
@@ -50,8 +58,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
   buttonDiv: (theme) => ({
     padding: theme.spacing(3, 0, 0, 0),
     [theme.breakpoints.up('laptop')]: {
-      gridColumn: '4 / span 1',
+      gridColumn: '6 / span 1',
       gridRow: '2 / span 1',
+      justifyContent: 'flex-end',
     },
   }),
   button: (theme) => ({
@@ -60,5 +69,6 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       '0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)',
     borderRadius: theme.spacing(3),
     padding: theme.spacing(1.25, 2),
+    fontSize: theme.spacing(2),
   }),
 };

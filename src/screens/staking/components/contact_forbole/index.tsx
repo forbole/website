@@ -27,6 +27,14 @@ const ContactForbole = () => {
           },
           [theme.breakpoints.up('laptop')]: {
             maxWidth: '1200px',
+            '> h3': {
+              margin: 'auto',
+              width: '65%',
+              fontSize: theme.spacing(5),
+              '> h3': {
+                fontSize: theme.spacing(5),
+              },
+            },
           },
         }}
       >
@@ -52,7 +60,9 @@ const ContactForbole = () => {
           components={[
             <Typography
               variant="h3"
-              sx={{ color: theme.palette.custom.forbole.indigo6 }}
+              sx={{
+                color: theme.palette.custom.forbole.indigo6,
+              }}
             />,
             <Typography
               variant="h3"
@@ -76,7 +86,7 @@ const ContactForbole = () => {
             padding: theme.spacing(3, 0, 3, 0),
             color: theme.palette.custom.forbole.blue,
             [theme.breakpoints.up('laptop')]: {
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: theme.spacing(3),
             },
           }}
