@@ -43,7 +43,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
                 color:
                   theme.palette.mode === 'dark' || item.link === link
                     ? theme.palette.primary.main
-                    : '#202A43',
+                    : theme.palette.custom.forbole.blue,
               },
             }}
           >

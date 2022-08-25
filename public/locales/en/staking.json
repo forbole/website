@@ -28,5 +28,21 @@
     "drop bullet 3": "Your validator(s) increased their commission rate",
     "claim q": "How often should I claim my staking rewards?",
     "claim para 1": "There is no model answer because this depends on too many factors, including how many tokens staked, transaction fees in that particular network, etc.",
-    "faq": "FAQs"
+    "faq": "FAQs",
+    "select option": "Select an option",
+    "general support": "General Support",
+    "partnership collab": "Partnership collaboration",
+    "marketing collab": "Marketing collaboration",
+    "others": "Others",
+    "your name": "Your Name",
+    "contact Forbole": "Contact Forbole",
+    "name": "Name",
+    "your email": "Your Email",
+    "email": "Email",
+    "how can we help you": "How can we help you?",
+    "get in touch!": "Get in touch!",
+    "success": "Email sent! We will get back to you shortly",
+    "error": "We are unable to deliver your message at this time. Please try again later",
+    "contact forbole title": "<0><1>Get in touch</1> with our team to discuss our <1>collaboration</1> today!</0>",
+    "contact Forbole desc": "We are happy to serve you with our professional services."
 }
