@@ -24,17 +24,22 @@ const Nav = ({ navLink, staking }: NavProps) => {
         top: 0,
         zIndex: 2,
         width: '100%',
+        // height: '150px',
+        height: '100px',
         background: displayBackground
           ? 'rgba(114, 28, 78, 0.1)'
           : 'transparent',
         backdropFilter: displayBackground ? 'blur(16px)' : 'none',
         webkitBackdropFilter: 'blur(16px)',
-        height: '100px',
+        [theme.breakpoints.up('laptop')]: {
+          height: '100px',
+        },
       }}
     >
       <Box
         sx={{
           width: '100%',
+          height: '100%',
           position: 'fixed',
           top: 0,
           overflowY: 'hidden',
@@ -43,6 +48,7 @@ const Nav = ({ navLink, staking }: NavProps) => {
           [theme.breakpoints.up('laptop')]: {
             maxWidth: '1200px',
             width: '100%',
+            height: 'auto',
             position: 'fixed',
             top: 30,
             margin: 'auto',
@@ -55,11 +61,11 @@ const Nav = ({ navLink, staking }: NavProps) => {
         <Box
           sx={{
             background: 'transparent',
-            paddingTop: theme.spacing(4),
+            padding: theme.spacing(4, 3, 0, 3),
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             [theme.breakpoints.up('laptop')]: {
               padding: theme.spacing(4, 0, 0, 0),
               justifyContent: 'space-between',
