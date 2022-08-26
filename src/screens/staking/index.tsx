@@ -11,7 +11,7 @@ const Staking = () => {
   const theme = useTheme();
 
   return (
-    <LayoutVal navLink="staking">
+    <LayoutVal navLink="staking" footer>
       <LaptopCSS>
         <ContactForbole />
       </LaptopCSS>
