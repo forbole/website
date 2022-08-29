@@ -1,9 +1,11 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@src/hooks';
 import { SocialMedia, FooterItems } from './components';
+import { FooterProps } from './types';
 
-const Footer = () => {
+const Footer = ({ staking }: FooterProps) => {
   const theme = useTheme();
   const { windowDimensions } = useWindowDimensions();
   const { width } = windowDimensions;
@@ -12,7 +14,9 @@ const Footer = () => {
       sx={{
         [theme.breakpoints.up('mobile')]: {
           width: '100%',
-          background: 'url(/images/assets/footer_mobile.png)',
+          background: staking
+            ? 'url(/images/assets/footer_mobile_val.png)'
+            : 'url(/images/assets/footer_mobile.png)',
           backgroundPosition: '0 100%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
@@ -37,7 +41,9 @@ const Footer = () => {
         },
         [theme.breakpoints.up('laptop')]: {
           width: '100%',
-          background: 'url(/images/assets/footer_desktop2.svg) bottom',
+          background: staking
+            ? 'url(/images/assets/footer_desktop_val.png) bottom'
+            : 'url(/images/assets/footer_desktop2.svg) bottom',
           backgroundPosition: '0 100%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
@@ -80,8 +86,8 @@ const Footer = () => {
             },
           }}
         >
-          <SocialMedia />
-          <FooterItems />
+          <SocialMedia staking={staking || undefined} />
+          <FooterItems staking={staking || undefined} />
         </Box>
       </Box>
     </Box>

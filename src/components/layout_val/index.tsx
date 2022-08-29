@@ -153,7 +153,7 @@ const LayoutVal = ({
         >
           <Nav navLink={navLink} staking />
           {children}
-          {!!footer && <Footer />}
+          {!!footer && <Footer staking />}
         </Box>
       </Box>
     </Box>

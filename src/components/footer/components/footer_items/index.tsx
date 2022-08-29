@@ -2,8 +2,9 @@ import React from 'react';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
+import { FooterProps } from '../../types';
 
-const FooterItems = () => {
+const FooterItems = ({ staking }: FooterProps) => {
   const theme = useTheme();
   const { t } = useTranslation('common');
   const today = new Date();
@@ -14,7 +15,9 @@ const FooterItems = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        color: theme.palette.primary.main,
+        color: staking
+          ? theme.palette.custom.forbole.indigo
+          : theme.palette.primary.main,
         fontSize: theme.spacing(2),
         paddingTop: theme.spacing(4),
         paddingBottom: 4,
@@ -35,7 +38,9 @@ const FooterItems = () => {
         variant="middle"
         flexItem
         sx={{
-          borderColor: theme.palette.primary.main,
+          borderColor: staking
+            ? theme.palette.custom.forbole.indigo
+            : theme.palette.primary.main,
           [theme.breakpoints.down('laptop')]: {
             display: 'none',
           },
@@ -58,7 +63,9 @@ const FooterItems = () => {
         variant="middle"
         flexItem
         sx={{
-          borderColor: theme.palette.primary.main,
+          borderColor: staking
+            ? theme.palette.custom.forbole.indigo
+            : theme.palette.primary.main,
           [theme.breakpoints.down('laptop')]: {
             display: 'none',
           },
@@ -69,6 +76,9 @@ const FooterItems = () => {
           sx={{
             '&:hover': {
               cursor: 'pointer',
+              // color: color: staking
+              // ? theme.palette.custom.forbole.indigo
+              // : theme.palette.primary.main,
               color: theme.palette.custom.forbole.purple,
             },
           }}

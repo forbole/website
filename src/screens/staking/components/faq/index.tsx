@@ -33,7 +33,13 @@ const FAQ = () => {
         >
           {t('faq')}
         </Typography>
-        <Box>
+        <Box
+          sx={{
+            [theme.breakpoints.up('laptop')]: {
+              paddingBottom: theme.spacing(50),
+            },
+          }}
+        >
           <Grid container spacing={2} columns={12}>
             {faq.map((x) => {
               const {

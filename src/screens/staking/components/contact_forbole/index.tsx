@@ -18,11 +18,17 @@ const ContactForbole = () => {
             fontWeight: 700,
             fontSize: theme.spacing(3),
             textAlign: 'center',
+            [theme.breakpoints.up('laptop')]: {
+              fontSize: theme.spacing(5),
+            },
             '> h3': {
               fontWeight: 700,
               fontSize: theme.spacing(3),
               textAlign: 'center',
               display: 'inline',
+              [theme.breakpoints.up('laptop')]: {
+                fontSize: theme.spacing(5),
+              },
             },
           },
           [theme.breakpoints.up('laptop')]: {
@@ -30,10 +36,6 @@ const ContactForbole = () => {
             '> h3': {
               margin: 'auto',
               width: '65%',
-              fontSize: theme.spacing(5),
-              '> h3': {
-                fontSize: theme.spacing(5),
-              },
             },
           },
         }}

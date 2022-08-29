@@ -1,14 +1,11 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import { getSocialMediaInfo } from '@utils/social_media_info';
 import { socialKeys } from './config';
+import { SocialMediaProps } from '../../types';
 
-interface SocialMediaProps {
-  // eslint-disable-next-line react/require-default-props
-  contact?: boolean;
-}
-
-const SocialMedia = ({ contact }: SocialMediaProps) => {
+const SocialMedia = ({ contact, staking }: SocialMediaProps) => {
   const socialMediaInfo = socialKeys.map((x) => getSocialMediaInfo(x));
   const theme = useTheme();
   return (
@@ -24,7 +21,9 @@ const SocialMedia = ({ contact }: SocialMediaProps) => {
         }),
         'svg path': {
           transition: '0.3s',
-          fill: 'rgba(250, 250, 250, 1)',
+          fill: staking
+            ? theme.palette.custom.forbole.indigo
+            : 'rgba(250, 250, 250, 1)',
         },
         a: {
           paddingRight: '1rem',
