@@ -3,7 +3,7 @@ import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
 import { LayoutVal } from '@components';
-import { ContactForbole, FAQ } from './components';
+import { CalculateRewards, ContactForbole, FAQ } from './components';
 import { LaptopCSS } from './styles';
 
 const Staking = () => {
@@ -12,6 +12,9 @@ const Staking = () => {
 
   return (
     <LayoutVal navLink="staking" footer>
+      <LaptopCSS>
+        <CalculateRewards />
+      </LaptopCSS>
       <LaptopCSS>
         <ContactForbole />
       </LaptopCSS>
