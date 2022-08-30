@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
@@ -6,10 +7,13 @@ import {
   FormControl,
   Typography,
   Select,
+  OutlinedInput,
+  InputAdornment,
   MenuItem,
   useTheme,
 } from '@mui/material';
 import { getNetworkInfo } from '@src/utils/network_info';
+import { InfoIcon } from '@icons';
 import { calculatorKeys } from './config';
 import { styles } from './styles';
 
@@ -17,7 +21,16 @@ const Calculator = (props: any) => {
   const { t } = useTranslation('staking');
   const theme = useTheme();
 
-  const { selectedToken, setSelectedToken } = props;
+  const {
+    selectedToken,
+    setSelectedToken,
+    handleCalculations,
+    totalEarnings,
+    handleChange,
+    tokens,
+    monthlyPeriods,
+    setMonthlyPeriods,
+  } = props;
   const networkData = calculatorKeys.map((x: string | number) =>
     getNetworkInfo(x)
   );
@@ -45,6 +58,7 @@ const Calculator = (props: any) => {
           fontSize: theme.spacing(2),
           fontWeight: 600,
           color: theme.palette.custom.forbole.blue,
+          paddingBottom: theme.spacing(1),
         }}
       >
         {t('select token')}
@@ -202,6 +216,29 @@ const Calculator = (props: any) => {
             ))}
           </Select>
         </FormControl>
+      </Box>
+      <Typography
+        variant="body1"
+        sx={{
+          fontSize: theme.spacing(2),
+          fontWeight: 600,
+          color: theme.palette.custom.forbole.blue,
+          padding: theme.spacing(4, 0, 1, 0),
+        }}
+      >
+        {t('token amount')}
+      </Typography>
+      <Box sx={styles.input}>
+        <OutlinedInput
+          value={tokens?.display}
+          onChange={handleChange}
+          placeholder={t('token amount placeholder')}
+          endAdornment={
+            <InputAdornment position="end">
+              <InfoIcon stroke="#878787" height="24px" width="24px" />
+            </InputAdornment>
+          }
+        />
       </Box>
     </Box>
   );

@@ -137,6 +137,8 @@ export const useCalculateRewardsHook = (t: any) => {
     totalEarnings,
     handleChange,
     tokens,
+    monthlyPeriods,
+    setMonthlyPeriods,
     loading,
   };
 };
