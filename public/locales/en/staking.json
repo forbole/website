@@ -48,7 +48,7 @@
     "select token": "Select token",
     "token amount": "Token amount",
     "token amount placeholder": "How much token?",
-    "length of time": "Length of Time",
+    "length of time": "Length of Time (in month)",
     "months": "Months",
     "calculate rewards title": "<0><1>Calculate</1> your rewards</0>",
     "calculate rewards desc": "Earning rewards by staking your tokens with us."

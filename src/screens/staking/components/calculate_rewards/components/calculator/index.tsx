@@ -7,6 +7,7 @@ import {
   FormControl,
   Typography,
   Select,
+  Slider,
   OutlinedInput,
   InputAdornment,
   MenuItem,
@@ -238,6 +239,25 @@ const Calculator = (props: any) => {
               <InfoIcon stroke="#878787" height="24px" width="24px" />
             </InputAdornment>
           }
+        />
+      </Box>
+      <Typography
+        variant="body1"
+        sx={{
+          fontSize: theme.spacing(2),
+          fontWeight: 600,
+          color: theme.palette.custom.forbole.blue,
+          padding: theme.spacing(4, 0, 1, 0),
+        }}
+      >
+        {t('length of month')}
+      </Typography>
+      <Box sx={styles.input}>
+        <Slider
+          size="small"
+          defaultValue={0}
+          onChange={handleChange}
+          value={monthlyPeriods}
         />
       </Box>
     </Box>
