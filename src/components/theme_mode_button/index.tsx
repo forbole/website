@@ -56,7 +56,8 @@ const ThemeSwitch = styled((props: SwitchProps) => (
   },
   '& .MuiSwitch-track': {
     borderRadius: 26 / 2,
-    backgroundColor: 'rgba(54, 33, 135, 1)',
+    // backgroundColor: 'rgba(54, 33, 135, 1)',
+    backgroundColor: '#1D1E22',
     backgroundImage: 'url(/images/assets/icon_light_mode.svg)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '97%',
