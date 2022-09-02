@@ -34,6 +34,9 @@ export const ButtonCSS = styled.button<any>`
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 0.036em;
+  button:hover {
+    background-color: #4d2fc2;
+  }
 `;
 
 export const ContentCSS = styled.div<ContentProps>`
