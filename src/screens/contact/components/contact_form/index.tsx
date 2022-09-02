@@ -194,7 +194,14 @@ const ContactForm = (props: ContactFormProps) => {
                 value={inputs.message}
                 InputProps={{
                   endAdornment: inputs.message.length > 0 && (
-                    <InputAdornment position="end">
+                    <InputAdornment
+                      sx={{
+                        alignItems: 'flex-start',
+                        maxHeight: '100%',
+                        height: '100%',
+                      }}
+                      position="end"
+                    >
                       <IconButton
                         onClick={() => handleClear('message')}
                         onMouseDown={handleMouseDownClear}
