@@ -33,10 +33,10 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     flexDirection: 'row',
     alignItems: 'flex-start',
     '& svg': {
-      width: '10%',
+      width: '20%',
     },
     ' & .MuiTypography-root': {
-      width: '90%',
+      width: '80%',
     },
     [theme.breakpoints.down('laptop')]: {
       width: '100%',
