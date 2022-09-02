@@ -34,18 +34,19 @@ const ContactInfo = (props: ContactInfoProps) => {
           }}
         >
           <Box sx={styles.flexBox}>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              textAlign="left"
-              fontWeight={600}
-              fontSize={theme.spacing(2.5)}
-              mb={theme.spacing(3.5)}
-            >
-              {t('contact info')}
-            </Typography>
-            {/* <Box sx={styles.content}>
+            <Box>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                textAlign="left"
+                fontWeight={600}
+                fontSize={theme.spacing(2.5)}
+                mb={theme.spacing(3.5)}
+              >
+                {t('contact info')}
+              </Typography>
+              {/* <Box sx={styles.content}>
               <LocationIcon />
               <Typography
                 gutterBottom
@@ -58,18 +59,19 @@ const ContactInfo = (props: ContactInfoProps) => {
                 {t('address')}
               </Typography>
             </Box> */}
-            <Box sx={styles.content}>
-              <MailIcon />
-              <Typography
-                gutterBottom
-                variant="body1"
-                component="div"
-                textAlign="left"
-                fontWeight={400}
-                fontSize={theme.spacing(1.75)}
-              >
-                {t('info email')}
-              </Typography>
+              <Box sx={styles.content}>
+                <MailIcon />
+                <Typography
+                  gutterBottom
+                  variant="body1"
+                  component="div"
+                  textAlign="left"
+                  fontWeight={400}
+                  fontSize={theme.spacing(1.75)}
+                >
+                  {t('info email')}
+                </Typography>
+              </Box>
             </Box>
             <Box>
               <CardActions sx={styles.buttonDiv}>
