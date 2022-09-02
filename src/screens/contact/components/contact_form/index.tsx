@@ -136,6 +136,9 @@ const ContactForm = (props: ContactFormProps) => {
                   ),
                 }}
                 sx={{
+                  '& :-webkit-autofill': {
+                    transitionDelay: '9999s',
+                  },
                   color: theme.palette.primary.main,
                   alignSelf: 'stretch',
                   '& .MuiOutlinedInput-root': {
