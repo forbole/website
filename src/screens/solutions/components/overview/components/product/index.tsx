@@ -25,7 +25,7 @@ const ProductCard = (props: ProductCardProps) => {
         justifyContent: 'space-between',
         [theme.breakpoints.up('laptop')]: {
           width: '296px',
-          height: '373px',
+          height: '420px',
           flex: '0 0 calc(30% - 40px)',
         },
       }}
@@ -56,6 +56,8 @@ const ProductCard = (props: ProductCardProps) => {
           textAlign: 'left',
           [theme.breakpoints.up('laptop')]: {
             fontSize: theme.spacing(4),
+            width: '60%',
+            padding: theme.spacing(2.5, 0),
           },
         }}
       >
@@ -70,6 +72,7 @@ const ProductCard = (props: ProductCardProps) => {
           textAlign: 'left',
           [theme.breakpoints.up('laptop')]: {
             fontSize: theme.spacing(2),
+            height: '120px',
           },
         }}
       >
