@@ -59,6 +59,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       border: 'none',
       borderColor: 'transparent',
     },
+    '& :-webkit-autofill': {
+      transitionDelay: '9999s',
+    },
   }),
   emailBox: (theme) => ({
     display: 'flex',
