@@ -26,7 +26,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
   const [lastView, setLastView] = React.useState(0);
   const postRef = React.useCallback(
     (node: any) => {
-      if (node && isMobile) {
+      if (node && isMobile && lastView !== 0) {
         node.scrollIntoView({
           behavior: 'smooth',
           block: 'nearest',

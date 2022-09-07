@@ -245,6 +245,10 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                   border: 'none',
                   borderColor: 'transparent',
                 },
+                // prevent background color on browser autofill:
+                '& :-webkit-autofill': {
+                  transitionDelay: '9999s',
+                },
               }}
             />
           </Box>
@@ -304,6 +308,9 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                     border: 'none',
                     borderColor: 'transparent',
                   },
+                  '& :-webkit-autofill': {
+                    transitionDelay: '9999s',
+                  },
                   [theme.breakpoints.up('laptop')]: {
                     width: '30%',
                   },
@@ -355,6 +362,9 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                   '& .MuiOutlinedInput-notchedOutline': {
                     border: 'none',
                     borderColor: 'transparent',
+                  },
+                  '& :-webkit-autofill': {
+                    transitionDelay: '9999s',
                   },
                   [theme.breakpoints.up('laptop')]: {
                     width: '70%',
