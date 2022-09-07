@@ -51,9 +51,9 @@ const Post = (props: any) => {
               }
               width={
                 isDesktop && main
-                  ? ('690px!important' as any)
+                  ? ('100%!important' as any)
                   : isMobile
-                  ? ('270px!important' as any)
+                  ? ('100%!important' as any)
                   : ('100%!important' as any)
               }
               sx={{
@@ -70,9 +70,7 @@ const Post = (props: any) => {
                     : featureImage
                 }
                 alt={title}
-                width={
-                  isDesktop && main ? '690px' : isMobile ? '270px' : '100%'
-                }
+                width={isDesktop && main ? '100%' : isMobile ? '270px' : '100%'}
                 height={
                   isDesktop && main ? '324px' : isMobile ? '156px' : '156px'
                 }
