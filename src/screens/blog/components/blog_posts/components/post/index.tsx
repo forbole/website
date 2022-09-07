@@ -90,6 +90,11 @@ const Post = (props: any) => {
               }
               sx={{
                 padding: theme.spacing(2.5, 2.5, 0, 2.5),
+                [theme.breakpoints.up('laptop')]: {
+                  width: main
+                    ? ('690px!important' as any)
+                    : ('380px!important' as any),
+                },
               }}
             >
               <Typography
