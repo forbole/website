@@ -39,7 +39,7 @@ const Nav = ({ navLink, staking }: NavProps) => {
       <Box
         sx={{
           width: '100%',
-          height: '100%',
+          height: 'auto',
           position: 'fixed',
           top: 0,
           overflowY: 'hidden',
