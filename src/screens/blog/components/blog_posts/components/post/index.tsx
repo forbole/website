@@ -49,6 +49,13 @@ const Post = (props: any) => {
                   ? ('156px!important' as any)
                   : ('156px!important' as any)
               }
+              width={
+                isDesktop && main
+                  ? ('690px!important' as any)
+                  : isMobile
+                  ? ('270px!important' as any)
+                  : ('100%!important' as any)
+              }
               sx={{
                 '> span': {
                   width: '100%!important' as any,
@@ -64,7 +71,7 @@ const Post = (props: any) => {
                 }
                 alt={title}
                 width={
-                  isDesktop && main ? '690px' : isMobile ? '270px' : '340px'
+                  isDesktop && main ? '690px' : isMobile ? '270px' : '100%'
                 }
                 height={
                   isDesktop && main ? '324px' : isMobile ? '156px' : '156px'
@@ -74,6 +81,13 @@ const Post = (props: any) => {
               />
             </Box>
             <Box
+              width={
+                isDesktop && main
+                  ? ('690px!important' as any)
+                  : isMobile
+                  ? ('270px!important' as any)
+                  : ('100%!important' as any)
+              }
               sx={{
                 padding: theme.spacing(2.5, 2.5, 0, 2.5),
               }}
@@ -84,6 +98,7 @@ const Post = (props: any) => {
                   fontWeight: 700,
                   fontSize: theme.spacing(3),
                   paddingBottom: theme.spacing(3),
+                  overflowWrap: 'break-word',
                 }}
               >
                 {title}
@@ -93,6 +108,7 @@ const Post = (props: any) => {
                 sx={{
                   fontWeight: 400,
                   fontSize: theme.spacing(2),
+                  overflowWrap: 'break-word',
                 }}
               >
                 {excerpt}
