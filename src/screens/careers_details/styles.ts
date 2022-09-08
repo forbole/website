@@ -42,6 +42,8 @@ export const ButtonCSS = styled.button<any>`
 export const ContentCSS = styled.div<ContentProps>`
   overflow: auto;
   word-break: break-word;
+  width: 80%;
+  margin: auto;
   color: ${(props) =>
     props?.theme?.palette?.mode === 'dark' ? '#FFFFFF' : '#000000'};
   a {
