@@ -148,7 +148,10 @@ const Layout = ({
               : theme.palette.primary.main,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '0 0',
-            backgroundSize: '110%',
+            backgroundSize: 'cover',
+            [theme.breakpoints.up('laptop')]: {
+              backgroundSize: '110%',
+            },
           }}
         >
           <Nav navLink={navLink} />
