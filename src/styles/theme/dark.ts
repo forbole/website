@@ -1,9 +1,10 @@
 import { PaletteMode } from '@mui/material';
 
 // const backgroundDefault = '#252345';
-const backgroundDefault = 'rgba(30, 41, 67, 1)';
+// const backgroundDefault = 'rgba(30, 41, 67, 1)';
 // const backgroundDefault = 'url(/images/assets/image_BG.png)';
 // const backgroundDefault = 'transaprent';
+const backgroundDefault = '#171A4B';
 
 /** Custom theme overrides for dark mode */
 export const darkThemeOverride = {

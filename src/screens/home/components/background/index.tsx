@@ -1,14 +1,15 @@
 import { useLottie } from 'lottie-react';
-import { useWindowDimensions } from '@src/hooks';
+import { useTheme, useMediaQuery } from '@mui/material';
 import HomeAnimationLaptopJsonData from '@public/images/assets/lotties/home-page-animation-laptop.json';
 import HomeAnimationMobileJsonData from '@public/images/assets/lotties/home-page-animation-mobile.json';
 
 const BackgroundAnimation = () => {
-  const { isDesktop } = useWindowDimensions();
+  const theme = useTheme();
+  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: isDesktop
+    animationData: onlyLargeScreen
       ? HomeAnimationLaptopJsonData
       : HomeAnimationMobileJsonData,
     rendererSettings: {

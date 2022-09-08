@@ -228,18 +228,20 @@ const CareersDetails = ({ post }: any) => {
                       <SocialMedia title={post.title} noPadding />
                     </Box>
                   </Box>
-                  <img
-                    src={
-                      post.featureImage == null
-                        ? '/static/images/assets/blog-placeholder.png'
-                        : post.featureImage
-                    }
-                    alt={title}
-                    style={{
-                      width: '1200px',
-                      height: '416px',
-                    }}
-                  />
+                  <Box display="flex" justifyContent="center">
+                    <img
+                      src={
+                        post.featureImage == null
+                          ? '/static/images/assets/blog-placeholder.png'
+                          : post.featureImage
+                      }
+                      alt={title}
+                      style={{
+                        width: '80%',
+                        height: 'auto',
+                      }}
+                    />
+                  </Box>
                   <ContentCSS theme={theme}>
                     <ContentBox
                       dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
