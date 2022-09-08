@@ -144,10 +144,11 @@ const Layout = ({
             background: waveBG
               ? 'rgba(37, 35, 69, 1)'
               : theme.palette.mode === 'dark'
-              ? 'url(/images/assets/image_BG.png)'
+              ? 'url(/images/assets/image_BG.png) top'
               : theme.palette.primary.main,
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
+            backgroundPosition: '0 0',
+            backgroundSize: '110%',
           }}
         >
           <Nav navLink={navLink} />

@@ -31,7 +31,7 @@ const Solutions = () => {
             background: 'url(/images/assets/image_BG.png) top',
             backgroundPosition: '0 0',
             backgroundRepeat: 'no-repeat',
-            backgroundSize: '150%',
+            backgroundSize: '110%',
             minHeight: '130vh',
           },
         }}
