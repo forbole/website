@@ -344,6 +344,7 @@ const ApplyDialog: React.FC<ApplyDialogProps> = ({ setting, onClose }) => {
                   color: theme.palette.primary.main,
                   alignSelf: 'stretch',
                   width: '50%',
+                  paddingLeft: theme.spacing(1.5),
                   '& .MuiOutlinedInput-root': {
                     color: 'rgba(255, 255, 255, 0.7)',
                     background: 'transparent',
