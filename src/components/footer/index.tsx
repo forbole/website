@@ -59,6 +59,7 @@ const Footer = ({ staking }: FooterProps) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',
+        userSelect: 'none',
         // overflowY: 'scroll',
         // overflowX: 'hidden',
       }}
