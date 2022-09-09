@@ -31,6 +31,7 @@ const Home = () => {
           backgroundSize: 'cover',
           // backgroundPosition: '52px -59px',
           minHeight: '75vh',
+          userSelect: 'none',
         }}
       >
         <Box
