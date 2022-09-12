@@ -25,74 +25,42 @@ const Home = () => {
     >
       <Box
         sx={{
-          // backgroundImage: 'url(/images/assets/image_BG.png)',
           backgroundImage: '',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          // backgroundPosition: '52px -59px',
-          minHeight: '75vh',
+          minHeight: '65vh',
+          userSelect: 'none',
+          [theme.breakpoints.up('laptop')]: {
+            minHeight: '75vh',
+            height: '100vh',
+          },
         }}
       >
         <Box
           sx={{
-            // display: 'none',
-            // [theme.breakpoints.up('laptop')]: {
             display: 'inherit',
             position: 'absolute',
             top: 0,
             bottom: 0,
             left: 0,
             right: 0,
-            // zIndex: 1,
             height: '100vh',
             objectFit: 'cover',
           }}
         >
           <HomeAnimation />
         </Box>
-        {/* <Box
-          sx={{
-            height: '70vh',
-            width: '50%',
-            position: 'absolute',
-            left: '5%',
-            top: theme.spacing(10),
-            [theme.breakpoints.down('tablet')]: {
-              display: 'none',
-            },
-          }}
-        >
-          <Image
-            src="/images/assets/image_stars.png"
-            layout="fill"
-            objectFit="contain"
-          />
-        </Box>
-        <Box
-          sx={{
-            height: '70vh',
-            width: '50%',
-            position: 'absolute',
-            right: '5%',
-            top: theme.spacing(10),
-            [theme.breakpoints.down('tablet')]: {
-              display: 'none',
-            },
-          }}
-        >
-          <Image
-            src="/images/assets/image_stars.png"
-            layout="fill"
-            objectFit="contain"
-          />
-        </Box> */}
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
             width: '100%',
-            height: '70vh',
+            height: '55vh',
             alignItems: 'flex-end',
+            [theme.breakpoints.up('tablet')]: {
+              height: '75vh',
+              alignItems: 'center',
+            },
             [theme.breakpoints.up('laptop')]: {
               alignItems: 'flex-end',
               height: '65vh',
@@ -109,7 +77,11 @@ const Home = () => {
               width: theme.spacing(50),
               [theme.breakpoints.down('laptop')]: {
                 width: width / 2,
-                top: '20vh',
+                top: '5vh',
+              },
+              [theme.breakpoints.up('tablet')]: {
+                width: width / 2,
+                top: '10vh',
               },
             }}
           >
@@ -133,6 +105,7 @@ const Home = () => {
                 textAlign: 'center',
                 letterSpacing: '0.032em',
                 textShadow: '0px 0px 20px rgba(0, 0, 0, 0.88)',
+                padding: 0,
               },
               [theme.breakpoints.up('tablet')]: {
                 maxWidth: '610px',
@@ -140,6 +113,7 @@ const Home = () => {
                 letterSpacing: '0.013em',
                 fontSize: theme.spacing(8),
                 padding: 0,
+                paddingTop: theme.spacing(30),
               },
             })}
           >
@@ -151,23 +125,21 @@ const Home = () => {
             sx={{
               position: 'absolute',
               mixBlendMode: 'lighten',
-              bottom: '10vh',
               width: width / 2,
               [theme.breakpoints.up('mobile')]: {
                 backgroundSize: 'contain',
                 height: '300px',
-                // width: theme.spacing(45),
-                // styling after review 1:
-                width: '100%',
-                // width: `${width}px`,
-                right: '15px',
+                width: `${width * 0.6}px`,
+                margin: 'auto',
+                top: '45vh',
               },
               [theme.breakpoints.up('tablet')]: {
                 backgroundSize: 'contain',
-                height: '500px',
+                height: '400px',
                 width: '550px',
                 left: 'auto',
                 right: 'auto',
+                top: '50vh',
               },
               [theme.breakpoints.up('laptop')]: {
                 height: '322px',
@@ -189,12 +161,12 @@ const Home = () => {
             sx={{
               [theme.breakpoints.up('mobile')]: {
                 height: '140px',
-                width: theme.spacing(40),
-                bottom: '25vh',
+                width: theme.spacing(35),
+                top: '50vh',
               },
               position: 'absolute',
               [theme.breakpoints.up('tablet')]: {
-                bottom: '20vh',
+                top: '55vh',
                 width: theme.spacing(80),
               },
             }}

@@ -12,7 +12,7 @@ exports[`screen: Home matches snapshot 1`] = `
   twitterImage="/images/assets/Twitter-Forbole.png"
 >
   <div
-    className="MuiBox-root css-1aw2g8g"
+    className="MuiBox-root css-k3uim4"
   >
     <div
       className="MuiBox-root css-1gkx5xx"
@@ -22,10 +22,10 @@ exports[`screen: Home matches snapshot 1`] = `
       />
     </div>
     <div
-      className="MuiBox-root css-1hqti87"
+      className="MuiBox-root css-vo8hy4"
     >
       <div
-        className="MuiBox-root css-10ae8ck"
+        className="MuiBox-root css-19n6gli"
       >
         <span
           style={
@@ -114,12 +114,12 @@ exports[`screen: Home matches snapshot 1`] = `
         </span>
       </div>
       <p
-        className="MuiTypography-root MuiTypography-body1 css-ta7p4w-MuiTypography-root"
+        className="MuiTypography-root MuiTypography-body1 css-8tvsb-MuiTypography-root"
       >
         titleD
       </p>
       <div
-        className="MuiBox-root css-1eor2yx"
+        className="MuiBox-root css-10ky3wd"
       >
         <div
           className="css-hofwxa"
@@ -212,7 +212,7 @@ exports[`screen: Home matches snapshot 1`] = `
         </div>
       </div>
       <div
-        className="MuiBox-root css-13cs9ls"
+        className="MuiBox-root css-1ik380f"
       >
         <span
           style={
