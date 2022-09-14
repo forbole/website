@@ -144,13 +144,13 @@ const Layout = ({
             background: waveBG
               ? 'rgba(37, 35, 69, 1)'
               : theme.palette.mode === 'dark'
-              ? 'url(/images/assets/image_BG.png) top'
+              ? 'url(/images/assets/image_BG_gradient.png) top'
               : theme.palette.primary.main,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '0 0',
             backgroundSize: 'cover',
             [theme.breakpoints.up('laptop')]: {
-              backgroundSize: '110%',
+              backgroundSize: '100%',
             },
           }}
         >
