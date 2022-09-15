@@ -46,6 +46,9 @@ const Home = () => {
             right: 0,
             height: '100vh',
             objectFit: 'cover',
+            '#lottie-svg-id': {
+              transform: 'unset !important' as any,
+            },
           }}
         >
           <HomeAnimation />
