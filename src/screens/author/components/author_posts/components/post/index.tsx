@@ -1,13 +1,20 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Box, Typography, useTheme } from '@mui/material';
+import { useWindowDimensions } from '@hooks';
 
 const Post = (props: any) => {
   const theme = useTheme();
+  const { isDesktop, isMobile } = useWindowDimensions();
   const { post, main = false } = props;
   const { featureImage, title, excerpt, publishedAt, slug, author } = post;
+  const cmsLoader = ({ src, width, quality }: any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <Box
       sx={{
@@ -34,17 +41,58 @@ const Post = (props: any) => {
       <Box ref={props.refProp} sx={{ padding: 0 }}>
         <Link href="/blog/[title]" as={`/blog/${slug}`}>
           <a>
-            <img
-              src={
-                featureImage == null
-                  ? '/static/images/assets/blog-placeholder.png'
-                  : featureImage
-              }
-              alt={title}
-            />
             <Box
+              height={
+                isDesktop && main
+                  ? ('324px!important' as any)
+                  : isMobile
+                  ? ('156px!important' as any)
+                  : ('156px!important' as any)
+              }
+              width={
+                isDesktop && main
+                  ? ('100%!important' as any)
+                  : isMobile
+                  ? ('100%!important' as any)
+                  : ('100%!important' as any)
+              }
+              sx={{
+                '> span': {
+                  width: '100%!important' as any,
+                },
+              }}
+            >
+              <Image
+                loader={cmsLoader}
+                src={
+                  featureImage == null
+                    ? '/static/images/assets/blog-placeholder.png'
+                    : featureImage
+                }
+                alt={title}
+                width={isDesktop && main ? '100%' : isMobile ? '270px' : '100%'}
+                height={
+                  isDesktop && main ? '324px' : isMobile ? '156px' : '156px'
+                }
+                quality={100}
+                objectFit="cover"
+              />
+            </Box>
+            <Box
+              width={
+                isDesktop && main
+                  ? ('690px!important' as any)
+                  : isMobile
+                  ? ('270px!important' as any)
+                  : ('100%!important' as any)
+              }
               sx={{
                 padding: theme.spacing(2.5, 2.5, 0, 2.5),
+                [theme.breakpoints.up('laptop')]: {
+                  width: main
+                    ? ('690px!important' as any)
+                    : ('380px!important' as any),
+                },
               }}
             >
               <Typography
@@ -53,6 +101,7 @@ const Post = (props: any) => {
                   fontWeight: 700,
                   fontSize: theme.spacing(3),
                   paddingBottom: theme.spacing(3),
+                  overflowWrap: 'break-word',
                 }}
               >
                 {title}
@@ -60,8 +109,9 @@ const Post = (props: any) => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: 700,
+                  fontWeight: 400,
                   fontSize: theme.spacing(2),
+                  overflowWrap: 'break-word',
                 }}
               >
                 {excerpt}
