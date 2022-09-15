@@ -240,6 +240,10 @@ export const ContentBox = styled.div<any>`
 
   .kg-image-card img {
     margin: auto;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
   }
 
   /* Galleries
