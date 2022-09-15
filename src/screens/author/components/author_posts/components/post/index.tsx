@@ -21,7 +21,7 @@ const Post = (props: any) => {
           textDecoration: 'none',
         },
         '& img': {
-          borderRadius: theme.spacing(2),
+          borderRadius: theme.spacing(1.5, 1.5, 0, 0),
           minHeight: '150px',
           width: '100%',
           objectFit: 'cover',
