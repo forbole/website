@@ -20,6 +20,7 @@ const Solutions = () => {
           flexDirection: 'column',
           alignItems: 'center',
           minHeight: '140vh',
+          backgroundColor: '#171A4B',
           [theme.breakpoints.down('laptop')]: {
             minHeight: 'auto',
             background: 'url(/images/assets/image_BG.png) top',
@@ -31,7 +32,7 @@ const Solutions = () => {
             background: 'url(/images/assets/image_BG.png) top',
             backgroundPosition: '0 0',
             backgroundRepeat: 'no-repeat',
-            backgroundSize: '150%',
+            backgroundSize: '130%',
             minHeight: '130vh',
           },
         }}

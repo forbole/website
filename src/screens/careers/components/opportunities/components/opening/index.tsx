@@ -72,6 +72,7 @@ const Opening = (props: any) => {
                 color: 'primary.main',
                 fontWeight: 600,
                 fontSize: theme.spacing(2),
+                paddingBottom: theme.spacing(2),
                 [theme.breakpoints.up('laptop')]: {
                   border: '1px solid #FFFFFF',
                   borderRadius: theme.spacing(20),

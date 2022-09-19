@@ -44,6 +44,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
                   theme.palette.mode === 'dark' || item.link === link
                     ? theme.palette.primary.main
                     : theme.palette.custom.forbole.blue,
+                userSelect: 'none',
               },
             }}
           >

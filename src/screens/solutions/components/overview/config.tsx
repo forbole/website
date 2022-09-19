@@ -10,7 +10,7 @@ export const products: ProductCardProps[] = [
     icon: '/images/assets/icon_forbole.png',
     title: 'staking provider',
     desc: 'staking provider desc',
-    url: 'https://www.forbole.com/stake-now',
+    url: 'https://www.forbole.com/',
   },
   {
     icon: '/images/assets/icon_desmos.png',

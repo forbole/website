@@ -117,7 +117,7 @@ const MissionItems = () => {
                     />,
                     <Typography
                       color="primary.main"
-                      fontWeight={900}
+                      fontWeight={700}
                       sx={{
                         display: 'inline',
                         fontSize: theme.spacing(1.5),

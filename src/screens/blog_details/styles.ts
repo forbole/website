@@ -25,6 +25,8 @@ export const LaptopCSS = styled.div<any>`
 export const ContentCSS = styled.div<ContentProps>`
   overflow: auto;
   word-break: break-word;
+  width: 80%;
+  margin: auto;
   color: ${(props) =>
     props?.theme?.palette?.mode === 'dark' ? '#FFFFFF' : '#000000'};
   a {
@@ -238,6 +240,10 @@ export const ContentBox = styled.div<any>`
 
   .kg-image-card img {
     margin: auto;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
   }
 
   /* Galleries

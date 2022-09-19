@@ -156,30 +156,35 @@ const BlogDetails = ({ post }: any) => {
             <Author post={post} />
             <SocialMedia title={post.title} />
           </Box>
-          <img
-            src={
-              post.featureImage == null
-                ? '/static/images/assets/blog-placeholder.png'
-                : post.featureImage
-            }
-            alt={title}
-            style={{
-              width: '1200px',
-              height: '416px',
-            }}
-          />
+          <Box display="flex" justifyContent="center">
+            <img
+              src={
+                post.featureImage == null
+                  ? '/static/images/assets/blog-placeholder.png'
+                  : post.featureImage
+              }
+              alt={title}
+              style={{
+                width: '80%',
+                height: 'auto',
+              }}
+            />
+          </Box>
           <ContentCSS theme={theme}>
             <ContentBox
               dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
             />
           </ContentCSS>
-          <Box
-            sx={{
-              paddingTop: theme.spacing(8),
-              height: '580px',
-            }}
-          >
-            <Tags tags={tags} details noPadding />
+          <Box display="flex" justifyContent="center">
+            <Box
+              sx={{
+                paddingTop: theme.spacing(8),
+                height: '580px',
+                width: '80%',
+              }}
+            >
+              <Tags tags={tags} details noPadding />
+            </Box>
           </Box>
           <Box
             sx={{

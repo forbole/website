@@ -54,6 +54,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     '& .MuiFormHelperText-root': {
       color: 'red',
     },
+    '& :-webkit-autofill': {
+      transitionDelay: '9999s',
+    },
   }),
   button: (theme) => ({
     display: 'flex',
