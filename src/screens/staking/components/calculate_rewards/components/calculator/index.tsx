@@ -66,7 +66,6 @@ const Calculator = (props: any) => {
           'linear-gradient(269.66deg, rgba(2, 158, 225, 0.4) -12.39%, rgba(2, 38, 225, 0.2) 99.38%), rgba(255, 255, 255, 0.8)',
         boxShadow:
           '10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)',
-        backdropFilter: 'blur(6px)',
         borderRadius: theme.spacing(3),
         padding: theme.spacing(4, 3),
       }}
