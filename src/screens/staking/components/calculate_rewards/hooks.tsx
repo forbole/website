@@ -102,6 +102,7 @@ export const useCalculateRewardsHook = (t: any) => {
     // edge cases setup
     const exceptions = ['.', '0'];
     let occurance = 0;
+    value.toString();
     value.split('').forEach((x: any) => {
       if (x === '.') {
         occurance += 1;

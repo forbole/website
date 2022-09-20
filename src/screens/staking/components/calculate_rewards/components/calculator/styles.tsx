@@ -53,4 +53,15 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       borderColor: 'transparent',
     },
   }),
+  inputBase: (theme) => ({
+    boxShadow:
+      '0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)',
+    borderRadius: theme.spacing(1),
+    background: theme.palette.primary.main,
+    paddingRight: 1,
+    '> input': {
+      padding: theme.spacing(0.5, 0, 0.5, 1.5),
+      width: '30%',
+    },
+  }),
 };

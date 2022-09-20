@@ -5,6 +5,7 @@ import useTranslation from 'next-translate/useTranslation';
 import {
   Box,
   FormControl,
+  Grid,
   Typography,
   Select,
   Slider,
@@ -40,6 +41,23 @@ const Calculator = (props: any) => {
       setSelectedToken(networkData[0]);
     }
   }, [selectedToken]);
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    setMonthlyPeriods(newValue);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonthlyPeriods(
+      event.target.value === '' ? '' : Number(event.target.value)
+    );
+  };
+
+  const handleBlur = () => {
+    if (monthlyPeriods < 0) {
+      setMonthlyPeriods(0);
+    } else if (monthlyPeriods > 12) {
+      setMonthlyPeriods(12);
+    }
+  };
 
   return (
     <Box
@@ -250,15 +268,105 @@ const Calculator = (props: any) => {
           padding: theme.spacing(4, 0, 1, 0),
         }}
       >
-        {t('length of month')}
+        {t('length of time')}
       </Typography>
       <Box sx={styles.input}>
-        <Slider
-          size="small"
-          defaultValue={0}
-          onChange={handleChange}
-          value={monthlyPeriods}
-        />
+        <Grid container spacing={1}>
+          <Grid item>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: theme.spacing(2),
+                fontWeight: 600,
+                color: theme.palette.custom.forbole.blue,
+                // padding: theme.spacing(4, 0, 1, 0),
+              }}
+            >
+              0
+            </Typography>
+          </Grid>
+          <Grid item mobile={8}>
+            <Slider
+              size="small"
+              defaultValue={0}
+              onChange={handleSliderChange}
+              value={monthlyPeriods}
+              step={1}
+              min={0}
+              max={12}
+              sx={{
+                '& .MuiSlider-thumb': {
+                  height: 18,
+                  width: 18,
+                  background:
+                    'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                  border:
+                    '2px solid linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                  boxShadow: 'none',
+                  '&:focus, &:hover, &.Mui-active': {
+                    boxShadow: 'none',
+                    '@media (hover: none)': {
+                      boxShadow:
+                        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+                    },
+                  },
+                },
+                '& .MuiSlider-track': {
+                  height: 2.5,
+                  background:
+                    'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                },
+                '& .MuiSlider-rail': {
+                  color: '#76819B',
+                  height: 2.5,
+                },
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: theme.spacing(2),
+                fontWeight: 600,
+                color: theme.palette.custom.forbole.blue,
+                // padding: theme.spacing(4, 0, 1, 0),
+              }}
+            >
+              12
+            </Typography>
+          </Grid>
+          <Grid item sx={styles.input}>
+            <OutlinedInput
+              value={monthlyPeriods}
+              size="small"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              sx={styles.inputBase}
+              inputProps={{
+                step: 1,
+                min: 0,
+                max: 12,
+                type: 'number',
+                'aria-labelledby': 'input-slider',
+              }}
+              endAdornment={
+                <InputAdornment position="end">
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: theme.spacing(2),
+                      fontWeight: 600,
+                      color: theme.palette.custom.forbole.blue,
+                    }}
+                  >
+                    {t('month')}
+                  </Typography>
+                </InputAdornment>
+              }
+            />
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
