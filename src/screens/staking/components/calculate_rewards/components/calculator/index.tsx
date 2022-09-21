@@ -33,6 +33,7 @@ const Calculator = (props: any) => {
     monthlyPeriods,
     setMonthlyPeriods,
   } = props;
+
   const networkData = calculatorKeys.map((x: string | number) =>
     getNetworkInfo(x)
   );
@@ -83,49 +84,6 @@ const Calculator = (props: any) => {
       </Typography>
       <Box sx={styles.select}>
         <FormControl>
-          {/* <InputLabel>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignContent: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Image
-                src={networkData[0].image}
-                objectFit="contain"
-                width="52px"
-                height="52px"
-                quality={100}
-              />
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  justifyContent: 'center',
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  sx={{ fontWeight: 600, fontSize: theme.spacing(2.5) }}
-                >
-                  {networkData[0].denom}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: 400,
-                    fontSize: theme.spacing(1.5),
-                    color: '#878787',
-                  }}
-                >
-                  {networkData[0].label}
-                </Typography>
-              </Box>
-            </Box>
-          </InputLabel> */}
           <Select
             displayEmpty
             labelId="demo-simple-select-label"
@@ -270,75 +228,70 @@ const Calculator = (props: any) => {
         {t('length of time')}
       </Typography>
       <Box sx={styles.input}>
-        <Grid container spacing={1}>
-          <Grid item>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: theme.spacing(2),
-                fontWeight: 600,
-                color: theme.palette.custom.forbole.blue,
-                // padding: theme.spacing(4, 0, 1, 0),
-              }}
+        <Grid container spacing={1} columns={12}>
+          <Grid
+            container
+            spacing={1}
+            mobile={12}
+            laptop={8}
+            display="flex"
+            alignItems="center"
+          >
+            <Grid item mobile={1} laptop={2} height="100%" display="flex">
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: theme.spacing(2),
+                  fontWeight: 600,
+                  color: theme.palette.custom.forbole.blue,
+                  alignSelf: 'center',
+                }}
+              >
+                0
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              mobile={8}
+              laptop={8}
+              height="100%"
+              display="flex"
+              alignItems="center"
             >
-              0
-            </Typography>
-          </Grid>
-          <Grid item mobile={8}>
-            <Slider
-              size="small"
-              defaultValue={0}
-              onChange={handleSliderChange}
-              value={monthlyPeriods}
-              step={1}
-              min={0}
-              max={12}
-              sx={{
-                '& .MuiSlider-thumb': {
-                  height: 18,
-                  width: 18,
-                  background:
-                    'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
-                  border:
-                    '2px solid linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
-                  boxShadow: 'none',
-                  '&:focus, &:hover, &.Mui-active': {
-                    boxShadow: 'none',
-                    '@media (hover: none)': {
-                      boxShadow:
-                        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
-                    },
-                  },
-                },
-                '& .MuiSlider-track': {
-                  height: 2.5,
-                  background:
-                    'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
-                },
-                '& .MuiSlider-rail': {
-                  color: '#76819B',
-                  height: 2.5,
-                },
-              }}
-            />
-          </Grid>
-          <Grid item>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: theme.spacing(2),
-                fontWeight: 600,
-                color: theme.palette.custom.forbole.blue,
-                // padding: theme.spacing(4, 0, 1, 0),
-              }}
+              <Slider
+                size="small"
+                defaultValue={0}
+                onChange={handleSliderChange}
+                value={monthlyPeriods}
+                step={1}
+                min={0}
+                max={12}
+                sx={styles.slider}
+              />
+            </Grid>
+            <Grid
+              item
+              mobile={1}
+              laptop={2}
+              height="100%"
+              display="flex"
+              alignItems="center"
             >
-              12
-            </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: theme.spacing(2),
+                  fontWeight: 600,
+                  color: theme.palette.custom.forbole.blue,
+                }}
+              >
+                12
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item sx={styles.input}>
+          <Grid item mobile={12}>
             <OutlinedInput
               value={monthlyPeriods}
-              size="small"
               onChange={handleInputChange}
               onBlur={handleBlur}
               sx={styles.inputBase}
@@ -359,7 +312,7 @@ const Calculator = (props: any) => {
                       color: theme.palette.custom.forbole.blue,
                     }}
                   >
-                    {t('month')}
+                    {t('months')}
                   </Typography>
                 </InputAdornment>
               }

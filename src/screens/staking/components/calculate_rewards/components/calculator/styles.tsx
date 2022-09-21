@@ -53,7 +53,34 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       borderColor: 'transparent',
     },
   }),
+  slider: (theme) => ({
+    '& .MuiSlider-thumb': {
+      height: theme.spacing(2.25),
+      width: theme.spacing(2.25),
+      background: 'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+      border: '2px solid linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+      boxShadow: 'none',
+      '&:focus, &:hover, &.Mui-active': {
+        boxShadow: 'none',
+        '@media (hover: none)': {
+          boxShadow:
+            '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+        },
+      },
+    },
+    '& .MuiSlider-track': {
+      height: 2.5,
+      background: 'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+    },
+    '& .MuiSlider-rail': {
+      color: '#76819B',
+      height: 2.5,
+    },
+  }),
   inputBase: (theme) => ({
+    height: theme.spacing(7),
+    display: 'flex',
+    justifyContent: 'flex-end',
     boxShadow:
       '0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)',
     borderRadius: theme.spacing(1),
@@ -61,7 +88,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     paddingRight: 1,
     '> input': {
       padding: theme.spacing(0.5, 0, 0.5, 1.5),
-      width: '30%',
+      width: '10%',
     },
   }),
 };
