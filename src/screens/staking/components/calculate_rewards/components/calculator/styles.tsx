@@ -88,7 +88,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     paddingRight: 1,
     '> input': {
       padding: theme.spacing(0.5, 0, 0.5, 1.5),
-      width: '10%',
+      width: 'fit-content',
     },
   }),
 };

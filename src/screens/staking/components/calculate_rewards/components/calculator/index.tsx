@@ -289,7 +289,7 @@ const Calculator = (props: any) => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid item mobile={12}>
+          <Grid item mobile={12} laptop={4}>
             <OutlinedInput
               value={monthlyPeriods}
               onChange={handleInputChange}
