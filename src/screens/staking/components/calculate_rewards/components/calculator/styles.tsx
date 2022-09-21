@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material';
 
@@ -90,5 +91,32 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       padding: theme.spacing(0.5, 0, 0.5, 1.5),
       width: 'fit-content',
     },
+  }),
+  card: (theme) => ({
+    width: '100%',
+    boxShadow:
+      '0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)',
+    borderRadius: theme.spacing(1),
+    background: theme.palette.primary.main,
+    padding: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('laptop')]: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'flex-start',
+    },
+  }),
+  tokenResult: (theme) => ({
+    display: 'flex',
+    alignItems: 'center',
+    paddingBottom: theme.spacing(2),
+    [theme.breakpoints.up('laptop')]: {
+      paddingBottom: 0,
+    },
+  }),
+  amountResult: (theme) => ({
+    display: 'flex',
+    flexDirection: 'column',
   }),
 };

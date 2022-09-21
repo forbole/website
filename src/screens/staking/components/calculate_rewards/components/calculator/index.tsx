@@ -279,19 +279,58 @@ const Calculator = (props: any) => {
       </Box>
       {totalEarnings.monthlyEarnings.tokens !== '0' &&
       totalEarnings.monthlyEarnings.amount !== '0' ? (
-        <Box>
+        <>
           <Typography
             variant="body1"
             sx={{
               fontSize: theme.spacing(2),
               fontWeight: 600,
               color: theme.palette.custom.forbole.blue,
-              padding: theme.spacing(4, 0, 1, 0),
+              padding: theme.spacing(4, 0, 2, 0),
             }}
           >
             {t('estimated earning')}
           </Typography>
-        </Box>
+          <Box sx={styles.card}>
+            <Box sx={styles.tokenResult}>
+              <Image
+                src={selectedToken.image}
+                objectFit="contain"
+                width="28px"
+                height="28px"
+                quality={100}
+              />
+              <Typography
+                variant="h4"
+                fontWeight="600"
+                fontSize={theme.spacing(2.25)}
+                color={theme.palette.custom.forbole.blue}
+                paddingLeft={1}
+              >
+                {selectedToken.denom}
+              </Typography>
+            </Box>
+            <Box sx={styles.amountResult}>
+              <Typography
+                variant="h4"
+                fontWeight="600"
+                fontSize={theme.spacing(2)}
+                color={theme.palette.custom.forbole.blue}
+                padding={theme.spacing(0, 0, 0.5, 0)}
+              >
+                {totalEarnings.monthlyEarnings.tokens}
+              </Typography>
+              <Typography
+                variant="h4"
+                fontWeight="400"
+                fontSize={theme.spacing(2)}
+                color="#878787"
+              >
+                $ {totalEarnings.monthlyEarnings.amount} USD
+              </Typography>
+            </Box>
+          </Box>
+        </>
       ) : null}
     </Box>
   );
