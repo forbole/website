@@ -58,14 +58,12 @@ const CalculateRewards = () => {
           components={[
             <Box
               className="h3"
-              // variant="h3"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}
             />,
             <Box
               className="h3"
-              // variant="h3"
               sx={{
                 background:
                   'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',

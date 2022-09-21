@@ -277,6 +277,22 @@ const Calculator = (props: any) => {
           </Grid>
         </Grid>
       </Box>
+      {totalEarnings.monthlyEarnings.tokens !== '0' &&
+      totalEarnings.monthlyEarnings.amount !== '0' ? (
+        <Box>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: theme.spacing(2),
+              fontWeight: 600,
+              color: theme.palette.custom.forbole.blue,
+              padding: theme.spacing(4, 0, 1, 0),
+            }}
+          >
+            {t('estimated earning')}
+          </Typography>
+        </Box>
+      ) : null}
     </Box>
   );
 };

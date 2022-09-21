@@ -62,7 +62,6 @@ const ContactForbole = () => {
           components={[
             <Box
               className="h3"
-              // variant="h3"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}

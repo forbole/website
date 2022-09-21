@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unsafe-optional-chaining */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as R from 'ramda';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -38,6 +38,7 @@ export const useCalculateRewardsHook = (t: any) => {
     if (!selectedToken || !tokens?.value) {
       throw new Error();
     }
+    console.log('hit');
 
     const marketPriceApi = await axios.get(networkFunction?.gecko);
 
@@ -89,6 +90,12 @@ export const useCalculateRewardsHook = (t: any) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (tokens.value !== '' && monthlyPeriods !== 0) {
+      handleCalculations();
+    }
+  }, [selectedToken, tokens, monthlyPeriods]);
 
   const handleChange = (e: any) => {
     const value: any = R.pathOr(0, ['target', 'value'], e);
