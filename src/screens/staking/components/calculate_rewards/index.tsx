@@ -27,14 +27,14 @@ const CalculateRewards = () => {
       <Box
         sx={{
           padding: theme.spacing(5, 3),
-          '> h3': {
+          '> .h3': {
             fontWeight: 700,
             fontSize: theme.spacing(3),
             textAlign: 'center',
             [theme.breakpoints.up('laptop')]: {
               fontSize: theme.spacing(5),
             },
-            '> h3': {
+            '> .h3': {
               fontWeight: 700,
               fontSize: theme.spacing(3),
               textAlign: 'center',
@@ -46,7 +46,7 @@ const CalculateRewards = () => {
           },
           [theme.breakpoints.up('laptop')]: {
             maxWidth: '1200px',
-            '> h3': {
+            '> .h3': {
               margin: 'auto',
               width: '65%',
             },
@@ -56,14 +56,16 @@ const CalculateRewards = () => {
         <Trans
           i18nKey={t('calculate rewards title')}
           components={[
-            <Typography
-              variant="h3"
+            <Box
+              className="h3"
+              // variant="h3"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}
             />,
-            <Typography
-              variant="h3"
+            <Box
+              className="h3"
+              // variant="h3"
               sx={{
                 background:
                   'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',

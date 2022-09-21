@@ -8,6 +8,7 @@ type NetworkProps = {
   [key: string]: ParamsProps;
 };
 
+// sample data
 const stakingParams: NetworkProps = {
   cosmos: { inflation: 0.1273, stakingRatio: 0.6693, commissionRate: 0.095 },
 };
