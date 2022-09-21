@@ -133,8 +133,10 @@ const ContactCard = () => {
                 <MenuItem disabled value="">
                   <em>{t(options[0])}</em>
                 </MenuItem>
-                {options.slice(1).map((option) => (
-                  <MenuItem value={t(option)}>{t(option)}</MenuItem>
+                {options.slice(1).map((option, i) => (
+                  <MenuItem key={i} value={t(option)}>
+                    {t(option)}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>

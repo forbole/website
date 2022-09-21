@@ -41,7 +41,7 @@ const FAQ = () => {
           }}
         >
           <Grid container spacing={2} columns={12}>
-            {faq.map((x) => {
+            {faq.map((x, i) => {
               const {
                 question,
                 para1,
@@ -54,7 +54,7 @@ const FAQ = () => {
                 bullet3,
               } = x;
               return (
-                <Grid item mobile={12} laptop={6}>
+                <Grid item key={i} mobile={12} laptop={6}>
                   <Card
                     question={question}
                     para1={para1}

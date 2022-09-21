@@ -101,8 +101,8 @@ const Calculator = (props: any) => {
             }}
             onChange={(e) => setSelectedToken(e.target.value)}
           >
-            {networkData.map((network) => (
-              <MenuItem value={network}>
+            {networkData.map((network, i) => (
+              <MenuItem key={i} value={network}>
                 <Box
                   sx={{
                     display: 'flex',
