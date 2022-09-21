@@ -101,49 +101,6 @@ const Calculator = (props: any) => {
             }}
             onChange={(e) => setSelectedToken(e.target.value)}
           >
-            <MenuItem value={networkData[0]}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignContent: 'center',
-                  justifyContent: 'flex-start',
-                }}
-              >
-                <Image
-                  src={networkData[0].image}
-                  objectFit="contain"
-                  width="52px"
-                  height="52px"
-                  quality={100}
-                />
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Typography
-                    variant="h4"
-                    sx={{ fontWeight: 600, fontSize: theme.spacing(2.5) }}
-                  >
-                    {networkData[0].denom}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontWeight: 400,
-                      fontSize: theme.spacing(1.5),
-                      color: '#878787',
-                    }}
-                  >
-                    {networkData[0].label}
-                  </Typography>
-                </Box>
-              </Box>
-            </MenuItem>
             {networkData.map((network) => (
               <MenuItem value={network}>
                 <Box
