@@ -38,7 +38,6 @@ export const useCalculateRewardsHook = (t: any) => {
     if (!selectedToken || !tokens?.value) {
       throw new Error();
     }
-    console.log('hit');
 
     const marketPriceApi = await axios.get(networkFunction?.gecko);
 
