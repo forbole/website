@@ -14,7 +14,6 @@ const CalculateRewards = () => {
   const {
     selectedToken,
     setSelectedToken,
-    handleCalculations,
     totalEarnings,
     handleChange,
     tokens,
@@ -95,7 +94,6 @@ const CalculateRewards = () => {
           selectedToken={selectedToken}
           setSelectedToken={setSelectedToken}
           tokens={tokens}
-          handleCalculations={handleCalculations}
           totalEarnings={totalEarnings}
           handleChange={handleChange}
           monthlyPeriods={monthlyPeriods}

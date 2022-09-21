@@ -140,7 +140,6 @@ export const useCalculateRewardsHook = (t: any) => {
   return {
     selectedToken,
     setSelectedToken,
-    handleCalculations,
     totalEarnings,
     handleChange,
     tokens,

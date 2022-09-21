@@ -26,7 +26,6 @@ const Calculator = (props: any) => {
   const {
     selectedToken,
     setSelectedToken,
-    handleCalculations,
     totalEarnings,
     handleChange,
     tokens,
@@ -37,11 +36,13 @@ const Calculator = (props: any) => {
   const networkData = calculatorKeys.map((x: string | number) =>
     getNetworkInfo(x)
   );
+
   React.useEffect(() => {
     if (selectedToken === '') {
       setSelectedToken(networkData[0]);
     }
   }, [selectedToken]);
+
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
     setMonthlyPeriods(newValue);
   };
