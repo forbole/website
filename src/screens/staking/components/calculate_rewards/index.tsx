@@ -1,14 +1,26 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import dynamic from 'next/dynamic';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
-import { ContactCard } from './components';
+import { Calculator } from './components';
+import { useCalculateRewardsHook } from './hooks';
 
 const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
 
-const ContactForbole = () => {
+const CalculateRewards = () => {
   const { t } = useTranslation('staking');
   const theme = useTheme();
+  const {
+    selectedToken,
+    setSelectedToken,
+    totalEarnings,
+    handleChange,
+    tokens,
+    monthlyPeriods,
+    setMonthlyPeriods,
+    loading,
+  } = useCalculateRewardsHook(t);
   return (
     <Box display="flex" justifyContent="center">
       <Box
@@ -40,25 +52,8 @@ const ContactForbole = () => {
           },
         }}
       >
-        <Typography
-          variant="h4"
-          sx={{
-            textShadow:
-              '0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)',
-            fontWeight: 600,
-            fontSize: theme.spacing(2),
-            textAlign: 'center',
-            paddingBottom: theme.spacing(3),
-            [theme.breakpoints.up('laptop')]: {
-              fontWeight: 700,
-              fontSize: theme.spacing(3),
-            },
-          }}
-        >
-          {t('contact Forbole')}
-        </Typography>
         <Trans
-          i18nKey={t('contact forbole title')}
+          i18nKey={t('calculate rewards title')}
           components={[
             <Box
               className="h3"
@@ -93,12 +88,20 @@ const ContactForbole = () => {
             },
           }}
         >
-          {t('contact Forbole desc')}
+          {t('calculate rewards desc')}
         </Typography>
-        <ContactCard />
+        <Calculator
+          selectedToken={selectedToken}
+          setSelectedToken={setSelectedToken}
+          tokens={tokens}
+          totalEarnings={totalEarnings}
+          handleChange={handleChange}
+          monthlyPeriods={monthlyPeriods}
+          setMonthlyPeriods={setMonthlyPeriods}
+        />
       </Box>
     </Box>
   );
 };
 
-export default ContactForbole;
+export default CalculateRewards;

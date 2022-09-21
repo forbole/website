@@ -22,6 +22,7 @@ import CloseIcon from './icon_cross.svg';
 import UploadIcon from './icon_upload.svg';
 import ExploreIcon from './icon_go.svg';
 import ExpandIcon from './icon_expand_more.svg';
+import InfoIcon from './icon_info.svg';
 
 export {
   Forbole,
@@ -48,4 +49,5 @@ export {
   UploadIcon,
   ExploreIcon,
   ExpandIcon,
+  InfoIcon,
 };

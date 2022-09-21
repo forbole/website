@@ -1,0 +1,150 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-unsafe-optional-chaining */
+import { useState, useEffect } from 'react';
+import * as R from 'ramda';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { convertToMoney, convertWithDecimal } from '@utils/convert_to_money';
+import { getStakingParams } from './config';
+import { networkFunctions, toFixed } from './utils';
+
+export const useCalculateRewardsHook = (t: any) => {
+  const [loading, setLoading] = useState(false);
+  const [tokens, setTokens] = useState<any | null>({
+    value: '',
+    display: '',
+  });
+  const [selectedToken, setSelectedToken] = useState<any>('');
+  const [monthlyPeriods, setMonthlyPeriods] = useState<number>(0);
+  const [totalEarnings, setTotalEarnings] = useState({
+    dailyEarnings: {
+      tokens: '0',
+      amount: '0',
+    },
+    monthlyEarnings: {
+      tokens: '0',
+      amount: '0',
+    },
+    yearlyEarnings: {
+      tokens: '0',
+      amount: '0',
+    },
+  });
+
+  const handleDefaultCalculation = async () => {
+    const networkFunction = networkFunctions[selectedToken.key] ?? null;
+    const networkParams = getStakingParams(selectedToken.key);
+    const { commissionRate, inflation, stakingRatio } = networkParams;
+    if (!selectedToken || !tokens?.value) {
+      throw new Error();
+    }
+
+    const marketPriceApi = await axios.get(networkFunction?.gecko);
+
+    const { data: marketPriceJson } = marketPriceApi;
+
+    const marketPrice = networkFunction.marketPrice(marketPriceJson);
+    // ===============================
+    // raw calcs
+    // ===============================
+    const annualRewards = toFixed(
+      tokens?.value * (inflation / stakingRatio) * (1 - commissionRate)
+    );
+    const monthlyRewards = (annualRewards / 12) * monthlyPeriods;
+    const dailyRewards = monthlyRewards / 30;
+
+    // ===============================
+    // formats for display
+    // ===============================
+    const formatAnnualRewards = convertToMoney(annualRewards, 2);
+    const formatMonthlyRewards = convertToMoney(monthlyRewards, 2);
+    const formatDailyRewards = convertToMoney(dailyRewards, 2);
+    const formatAnnualPrice = convertToMoney(annualRewards * marketPrice, 2);
+    const formatMonthlyPrice = convertToMoney(monthlyRewards * marketPrice, 2);
+    const formatDailyPrice = convertToMoney(dailyRewards * marketPrice, 2);
+
+    setTotalEarnings({
+      dailyEarnings: {
+        tokens: formatDailyRewards,
+        amount: formatDailyPrice,
+      },
+      monthlyEarnings: {
+        tokens: formatMonthlyRewards,
+        amount: formatMonthlyPrice,
+      },
+      yearlyEarnings: {
+        tokens: formatAnnualRewards,
+        amount: formatAnnualPrice,
+      },
+    });
+  };
+
+  const handleCalculations = async () => {
+    try {
+      setLoading(true);
+      await handleDefaultCalculation();
+      setLoading(false);
+    } catch (err) {
+      toast.error(t('error'));
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (tokens.value !== '' && monthlyPeriods !== 0) {
+      handleCalculations();
+    }
+  }, [selectedToken, tokens, monthlyPeriods]);
+
+  const handleChange = (e: any) => {
+    const value: any = R.pathOr(0, ['target', 'value'], e);
+    if (!value) {
+      setTokens({
+        value: '',
+        display: '',
+      });
+      return;
+    }
+    // edge cases setup
+    const exceptions = ['.', '0'];
+    let occurance = 0;
+    value.toString();
+    value.split('').forEach((x: any) => {
+      if (x === '.') {
+        occurance += 1;
+      }
+    });
+
+    // already has a decimal place
+    if (occurance > 1 && value[value.length - 1] === '.') {
+      return;
+    }
+    // handles edge cases
+    if (exceptions.includes(value[value.length - 1])) {
+      setTokens({
+        value,
+        display: value,
+      });
+    } else {
+      const rawNumber = value.replace(/[^\d.]/g, '')
+        ? Number(value.replace(/[^\d.]/g, ''))
+        : '';
+      const convertedNumber = convertWithDecimal(rawNumber);
+      setTokens({
+        value: rawNumber,
+        display: convertedNumber,
+      });
+    }
+  };
+
+  return {
+    selectedToken,
+    setSelectedToken,
+    totalEarnings,
+    handleChange,
+    tokens,
+    monthlyPeriods,
+    setMonthlyPeriods,
+    loading,
+  };
+};

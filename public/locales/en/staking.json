@@ -44,5 +44,13 @@
     "success": "Email sent! We will get back to you shortly",
     "error": "We are unable to deliver your message at this time. Please try again later",
     "contact forbole title": "<0><1>Get in touch</1> with our team to discuss our <1>collaboration</1> today!</0>",
-    "contact Forbole desc": "We are happy to serve you with our professional services."
+    "contact Forbole desc": "We are happy to serve you with our professional services.",
+    "select token": "Select token",
+    "token amount": "Token amount",
+    "token amount placeholder": "How much token?",
+    "length of time": "Length of Time (in month)",
+    "months": "Months",
+    "calculate rewards title": "<0><1>Calculate</1> your rewards</0>",
+    "calculate rewards desc": "Earning rewards by staking your tokens with us.",
+    "estimated earning": "Estimated earning"
 }
