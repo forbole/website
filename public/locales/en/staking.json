@@ -60,5 +60,15 @@
     "our future": "Our Future",
     "our future desc": "Forbole runs a cross-chain ecosystem, we never stop and constantly improve our user experience. By exploring more opportunities and innovating our products and services to meet the ever changing landscape, stakers are equipped to make their best choices.",
     "why forbole?": "Why Forbole?",
-    "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>"
+    "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
+    "how it works": "How it works?",
+    "how it works title": "<0>Easy to <1>earn passive income</1> on tokens through staking</0>",
+    "trusted provider": "Pick Trusted Provider",
+    "trusted provider desc": "We have the infrastructure in place to act as validators and to secure networks",
+    "stake": "Stake",
+    "stake desc": "As a token holder, you can utilize our infrastructure by staking your tokens with us",
+    "rewards": "Earn Rewards",
+    "rewards desc": "You earn staking rewards on your tokens",
+    "non-custodial": "Non-custodial",
+    "non-custodial desc": "Our services are non-custodial so you can withdraw at any time"
 }
