@@ -8,6 +8,7 @@ import {
   CalculateRewards,
   ContactForbole,
   FAQ,
+  HowItWorks,
 } from './components';
 import { LaptopCSS } from './styles';
 
@@ -17,6 +18,9 @@ const Staking = () => {
 
   return (
     <LayoutVal navLink="staking" footer>
+      <LaptopCSS>
+        <HowItWorks />
+      </LaptopCSS>
       <LaptopCSS>
         <WhyForbole />
       </LaptopCSS>

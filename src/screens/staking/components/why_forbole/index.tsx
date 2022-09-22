@@ -21,9 +21,12 @@ const WhyForbole = () => {
       <Box display="flex" justifyContent="center">
         <Box
           sx={{
-            padding: theme.spacing(5, 3),
+            padding: 0,
+            [theme.breakpoints.up('tablet')]: {
+              padding: theme.spacing(5, 3),
+            },
             [theme.breakpoints.up('laptop')]: {
-              padding: 0,
+              padding: theme.spacing(5, 3),
               maxWidth: '1200px',
             },
           }}
