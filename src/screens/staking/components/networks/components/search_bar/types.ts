@@ -7,5 +7,5 @@
 export interface SearchBarProps {
   label: string;
   // eslint-disable-next-line no-undef
-  networks: Array<Network>;
+  network: Array<Network>;
 }

@@ -50,7 +50,7 @@ function addSearch(InputProps: ComponentProps<typeof TextField>['InputProps']) {
   const startAdornment = (
     <InputAdornment position="start">
       <SearchIcon
-        fill={theme.palette.custom.forbole.indigo04}
+        stroke={theme.palette.custom.forbole.indigo04}
         fontSize="small"
       />
     </InputAdornment>

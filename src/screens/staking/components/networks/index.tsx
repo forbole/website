@@ -95,7 +95,7 @@ const Networks = () => {
         >
           {t('stake with Forbole desc')}
         </Typography>
-        <SearchBar />
+        <SearchBar label="" network={[]} />
       </Box>
     </Box>
   );
