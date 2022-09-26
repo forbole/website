@@ -97,7 +97,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
                 <Typography variant="h6">TVL</Typography>
                 <InfoIcon />
               </Stack>
-              <Typography>{networkSummary.TVL}</Typography>
+              <Typography>${convertToMoney(networkSummary.TVL)}</Typography>
             </Box>
           )}
         </Box>
