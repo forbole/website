@@ -29,6 +29,7 @@ export const lightThemeOverride = {
         indigo: '#362187',
         purple: '#6061E4',
         blue: '#202A43',
+        indigo04: '#5047BA',
         indigo6: '#2A1A6A',
       },
     },

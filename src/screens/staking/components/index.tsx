@@ -3,5 +3,13 @@ import ContactForbole from './contact_forbole';
 import CalculateRewards from './calculate_rewards';
 import WhyForbole from './why_forbole';
 import HowItWorks from './how_it_works';
+import Networks from './networks';
 
-export { HowItWorks, WhyForbole, CalculateRewards, ContactForbole, FAQ };
+export {
+  Networks,
+  HowItWorks,
+  WhyForbole,
+  CalculateRewards,
+  ContactForbole,
+  FAQ,
+};

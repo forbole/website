@@ -10,6 +10,7 @@ declare module '@mui/material/styles/createPalette' {
             indigo: string,
             purple: string,
             blue: string,
+            indigo04: string,
             indigo6: string,
         },
     }

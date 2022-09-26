@@ -9,6 +9,7 @@ import {
   ContactForbole,
   FAQ,
   HowItWorks,
+  Networks,
 } from './components';
 import { LaptopCSS } from './styles';
 
@@ -18,6 +19,9 @@ const Staking = () => {
 
   return (
     <LayoutVal navLink="staking" footer>
+      <LaptopCSS>
+        <Networks />
+      </LaptopCSS>
       <LaptopCSS>
         <HowItWorks />
       </LaptopCSS>
