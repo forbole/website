@@ -10,6 +10,7 @@ import {
   FAQ,
   HowItWorks,
   Networks,
+  Hero,
 } from './components';
 import { LaptopCSS } from './styles';
 
@@ -19,6 +20,9 @@ const Staking = () => {
 
   return (
     <LayoutVal navLink="staking" footer>
+      <LaptopCSS>
+        <Hero />
+      </LaptopCSS>
       <LaptopCSS>
         <Networks />
       </LaptopCSS>

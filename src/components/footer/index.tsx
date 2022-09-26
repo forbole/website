@@ -47,7 +47,6 @@ const Footer = ({ staking }: FooterProps) => {
           backgroundPosition: '0 100%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
-          // height: '20vh',
           minHeight: '367px',
           display: 'flex',
           justifyContent: 'center',
