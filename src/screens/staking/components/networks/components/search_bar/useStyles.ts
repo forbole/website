@@ -31,7 +31,7 @@ const useStyles = () => {
         backgroundColor: alpha(theme.palette.common.white, 0.2),
       },
       '&& .searchbox__cancel-btn': {
-        color: theme.palette.secondary.contrastText,
+        color: theme.palette.custom.forbole.indigo6,
         display: 'none',
       },
       '& .MuiAutocomplete-root': {
