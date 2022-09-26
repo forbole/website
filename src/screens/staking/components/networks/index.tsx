@@ -2,7 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
-import { SearchBar } from './components';
+import { SearchBar, NetworkGrid } from './components';
 
 const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
 
@@ -95,7 +95,10 @@ const Networks = () => {
         >
           {t('stake with Forbole desc')}
         </Typography>
-        <SearchBar label="" network={[]} />
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <SearchBar label="" network={[]} />
+          <NetworkGrid />
+        </Box>
       </Box>
     </Box>
   );

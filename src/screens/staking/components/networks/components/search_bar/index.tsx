@@ -30,7 +30,6 @@ import {
 } from '@mui/material';
 import { getNetworkInfo } from '@src/utils/network_info';
 import { SearchIcon } from '@icons';
-import { styles } from '@src/screens/about/components/mobile/about_us/styles';
 import { networkKeys } from './config';
 import { SearchBarProps } from './types';
 import useStyles from './useStyles';
