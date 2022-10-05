@@ -1,12 +1,14 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import { Box, Grid, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { Card } from './components';
 import { faq } from './config';
 
 const FAQ = () => {
   const theme = useTheme();
   const { t } = useTranslation('staking');
+  const [expanded, setExpanded] = React.useState<string>();
+  const middleIndex = Math.ceil(faq.length / 2) - 1;
 
   return (
     <Box display="flex" justifyContent="center">
@@ -41,22 +43,37 @@ const FAQ = () => {
             },
           }}
         >
-          <Grid container spacing={2} columns={12}>
-            {faq.map((x, i) => {
-              const {
-                question,
-                para1,
-                para2,
-                trans,
-                para3,
-                desc,
-                bullet1,
-                bullet2,
-                bullet3,
-              } = x;
-              return (
-                <Grid item key={i} mobile={12} laptop={6}>
+          <Box display="flex" flexWrap="wrap" alignContent="flex-start">
+            <Box
+              sx={{
+                flexBasis: '100%',
+                [theme.breakpoints.up('laptop')]: {
+                  flexBasis: '50%',
+                },
+              }}
+            >
+              {faq.map((x, i) => {
+                if (i > middleIndex) return null;
+                const {
+                  question,
+                  para1,
+                  para2,
+                  trans,
+                  para3,
+                  desc,
+                  bullet1,
+                  bullet2,
+                  bullet3,
+                } = x;
+                return (
                   <Card
+                    key={question}
+                    expanded={expanded === question}
+                    setExpanded={() =>
+                      setExpanded((prev) =>
+                        prev === question ? undefined : question
+                      )
+                    }
                     question={question}
                     para1={para1}
                     para2={para2}
@@ -67,10 +84,53 @@ const FAQ = () => {
                     bullet2={bullet2}
                     bullet3={bullet3}
                   />
-                </Grid>
-              );
-            })}
-          </Grid>
+                );
+              })}
+            </Box>
+            <Box
+              sx={{
+                flexBasis: '100%',
+                [theme.breakpoints.up('laptop')]: {
+                  flexBasis: '50%',
+                },
+              }}
+            >
+              {faq.map((x, i) => {
+                if (i <= middleIndex) return null;
+                const {
+                  question,
+                  para1,
+                  para2,
+                  trans,
+                  para3,
+                  desc,
+                  bullet1,
+                  bullet2,
+                  bullet3,
+                } = x;
+                return (
+                  <Card
+                    key={question}
+                    expanded={expanded === question}
+                    setExpanded={() =>
+                      setExpanded((prev) =>
+                        prev === question ? undefined : question
+                      )
+                    }
+                    question={question}
+                    para1={para1}
+                    para2={para2}
+                    para3={para3}
+                    trans={trans}
+                    desc={desc}
+                    bullet1={bullet1}
+                    bullet2={bullet2}
+                    bullet3={bullet3}
+                  />
+                );
+              })}
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>

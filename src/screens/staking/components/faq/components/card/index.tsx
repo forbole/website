@@ -29,15 +29,19 @@ const Card = (props: FAQProps) => {
     bullet1,
     bullet2,
     bullet3,
+    expanded,
+    setExpanded,
   } = props;
 
   return (
     <Box
       sx={{
-        padding: theme.spacing(0, 3),
+        padding: theme.spacing(2, 5),
       }}
     >
       <Accordion
+        expanded={expanded}
+        onChange={setExpanded}
         sx={{
           background: theme.palette.primary.main,
           borderRadius: theme.spacing(2),
