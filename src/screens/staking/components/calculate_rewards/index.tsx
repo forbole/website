@@ -47,7 +47,6 @@ const CalculateRewards = () => {
             maxWidth: '1200px',
             '> .h3': {
               margin: 'auto',
-              width: '65%',
             },
           },
         }}
