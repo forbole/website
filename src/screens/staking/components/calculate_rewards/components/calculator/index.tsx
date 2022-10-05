@@ -110,15 +110,24 @@ const Calculator = (props: any) => {
                     flexDirection: 'row',
                     alignContent: 'center',
                     justifyContent: 'flex-start',
+                    '& .image': {
+                      width: `${theme.spacing(6.5)} !important`,
+                      height: `${theme.spacing(6.5)} !important`,
+                      borderRadius: '100%',
+                      boxShadow:
+                        '0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)',
+                    },
                   }}
                 >
-                  <Image
-                    src={network.image}
-                    objectFit="contain"
-                    width="52px"
-                    height="52px"
-                    quality={100}
-                  />
+                  <Box className="image">
+                    <Image
+                      src={network.image}
+                      objectFit="contain"
+                      width="52px"
+                      height="52px"
+                      quality={100}
+                    />
+                  </Box>
                   <Box
                     sx={{
                       display: 'flex',
