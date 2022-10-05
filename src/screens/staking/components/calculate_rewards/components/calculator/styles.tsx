@@ -111,6 +111,13 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     display: 'flex',
     alignItems: 'center',
     paddingBottom: theme.spacing(2),
+    '& .image': {
+      width: `${theme.spacing(3.5)} !important`,
+      height: `${theme.spacing(3.5)} !important`,
+      borderRadius: '100%',
+      boxShadow:
+        '0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)',
+    },
     [theme.breakpoints.up('laptop')]: {
       paddingBottom: 0,
     },

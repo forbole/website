@@ -294,13 +294,15 @@ const Calculator = (props: any) => {
           </Typography>
           <Box sx={styles.card}>
             <Box sx={styles.tokenResult}>
-              <Image
-                src={selectedToken.image}
-                objectFit="contain"
-                width="28px"
-                height="28px"
-                quality={100}
-              />
+              <Box className="image">
+                <Image
+                  src={selectedToken.image}
+                  objectFit="contain"
+                  width="28px"
+                  height="28px"
+                  quality={100}
+                />
+              </Box>
               <Typography
                 variant="h4"
                 fontWeight="600"
