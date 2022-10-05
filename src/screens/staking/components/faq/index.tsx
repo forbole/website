@@ -26,6 +26,7 @@ const FAQ = () => {
             fontSize: theme.spacing(3),
             textAlign: 'center',
             paddingBottom: theme.spacing(5),
+            color: theme.palette.custom.forbole.blue,
             [theme.breakpoints.up('laptop')]: {
               fontSize: theme.spacing(5),
             },
