@@ -84,6 +84,7 @@ const CalculateRewards = () => {
             [theme.breakpoints.up('laptop')]: {
               fontWeight: 400,
               fontSize: theme.spacing(3),
+              paddingBottom: theme.spacing(7),
             },
           }}
         >
