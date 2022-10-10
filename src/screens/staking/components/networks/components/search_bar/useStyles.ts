@@ -106,6 +106,10 @@ const useStyles = () => {
     },
     popper: {
       zIndex: '2001 !important',
+      '& .MuiPaper-root': {
+        boxShadow:
+          '0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)',
+      },
       '& .MuiAutocomplete-listbox': {
         maxHeight: `calc(50vh - ${theme.spacing(10)})`,
         [theme.breakpoints.up('tablet')]: {
