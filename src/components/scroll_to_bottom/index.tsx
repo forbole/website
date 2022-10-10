@@ -4,7 +4,15 @@ import { BottomIcon } from '../icons';
 
 const ScrollToBottom = ({ bottomRef, staking }: any) => {
   const theme = useTheme();
-  const scrollBottom = () => bottomRef.current.scrollIntoView();
+  const scrollToRef = (e: any, ref: any) => {
+    e.preventDefault();
+    window.scrollTo({
+      left: 0,
+      top: ref.current.offsetTop - 100,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <Box
       display="flex"
@@ -27,7 +35,9 @@ const ScrollToBottom = ({ bottomRef, staking }: any) => {
       }}
     >
       <BottomIcon
-        onClick={scrollBottom}
+        onClick={(e: React.MouseEvent<HTMLElement>) =>
+          scrollToRef(e, bottomRef)
+        }
         fill={staking ? theme.palette.common.white : 'transparent'}
       />
     </Box>
