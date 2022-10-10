@@ -21,6 +21,7 @@ const useStyles = () => {
       },
       '&:hover': {
         backgroundColor: theme.palette.grey.A200,
+        // backgroundColor: theme.palette.primary.light,
       },
       '& .MuiTypography-h3, & .MuiTypography-h6, & .MuiTypography-body1': {
         whiteSpace: 'nowrap',
@@ -107,7 +108,8 @@ const useStyles = () => {
         position: 'static',
         gap: theme.spacing(3),
         '&:hover': {
-          backgroundColor: theme.palette.grey[500],
+          // backgroundColor: theme.palette.grey[500],
+          backgroundColor: theme.palette.primary.light,
         },
         [theme.breakpoints.up('tablet')]: {
           display: 'none',
