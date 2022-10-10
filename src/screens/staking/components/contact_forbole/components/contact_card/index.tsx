@@ -32,6 +32,11 @@ const ContactCard = () => {
         boxShadow:
           '0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)',
         borderRadius: theme.spacing(3),
+        maxWidth: '100%',
+        margin: 'auto',
+        [theme.breakpoints.up('laptop')]: {
+          maxWidth: '70%',
+        },
       }}
     >
       <form noValidate onSubmit={handleSubmit}>
