@@ -45,6 +45,18 @@ const Calculator = (props: any) => {
     }
   }, [selectedToken]);
 
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handler = () => {
+      setIsOpen(false);
+    };
+    window.addEventListener('scroll', handler);
+    return () => {
+      window.removeEventListener('scroll', handler);
+    };
+  }, []);
+
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
     setMonthlyPeriods(newValue);
   };
@@ -88,16 +100,30 @@ const Calculator = (props: any) => {
       <Box sx={styles.select}>
         <FormControl>
           <Select
+            open={isOpen}
+            onOpen={() => {
+              setIsOpen(true);
+            }}
+            onClose={() => {
+              setIsOpen(false);
+            }}
             displayEmpty
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={selectedToken}
             MenuProps={{
+              variant: 'menu',
+              disableScrollLock: true,
               PaperProps: {
                 sx: {
                   bgcolor: theme.palette.primary.main,
+                  marginTop: 1,
                   '& .MuiMenuItem-root': {
                     padding: 2,
+                    '&:hover': {
+                      background:
+                        ' linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)',
+                    },
                   },
                 },
               },
