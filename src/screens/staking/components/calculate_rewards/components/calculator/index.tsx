@@ -13,6 +13,7 @@ import {
   InputAdornment,
   MenuItem,
   useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import { getNetworkInfo } from '@src/utils/network_info';
 import { InfoIcon } from '@icons';
@@ -22,6 +23,7 @@ import { styles } from './styles';
 const Calculator = (props: any) => {
   const { t } = useTranslation('staking');
   const theme = useTheme();
+  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
 
   const {
     selectedToken,
@@ -69,7 +71,7 @@ const Calculator = (props: any) => {
         boxShadow:
           '10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)',
         borderRadius: theme.spacing(3),
-        padding: theme.spacing(4, 3),
+        padding: theme.spacing(5),
       }}
     >
       <Typography
@@ -195,7 +197,14 @@ const Calculator = (props: any) => {
         {t('length of time')}
       </Typography>
       <Box sx={styles.input}>
-        <Grid container spacing={1} columns={12}>
+        <Grid
+          container
+          spacing={onlyLargeScreen ? 1 : 0}
+          columns={12}
+          marginLeft={0}
+          width="100%"
+          justifyContent="space-between"
+        >
           <Grid
             container
             spacing={1}
@@ -204,7 +213,7 @@ const Calculator = (props: any) => {
             display="flex"
             alignItems="center"
           >
-            <Grid item mobile={1} laptop={2} height="100%" display="flex">
+            <Grid item mobile={1} laptop={1} height="100%" display="flex">
               <Typography
                 variant="body1"
                 sx={{
@@ -220,7 +229,7 @@ const Calculator = (props: any) => {
             <Grid
               item
               mobile={8}
-              laptop={8}
+              laptop={10}
               height="100%"
               display="flex"
               alignItems="center"
@@ -239,7 +248,7 @@ const Calculator = (props: any) => {
             <Grid
               item
               mobile={1}
-              laptop={2}
+              laptop={1}
               height="100%"
               display="flex"
               alignItems="center"
