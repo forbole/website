@@ -75,15 +75,14 @@ const useStyles = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: `${theme.spacing(3)} !important`,
-          height: `${theme.spacing(3)} !important`,
+          width: `${theme.spacing(4)} !important`,
+          height: `${theme.spacing(4)} !important`,
           borderRadius: '100%',
           padding: 0,
           margin: 0,
           border: '1px solid rgba(177, 177, 242, 0.3)',
-          /* Shadow/Secondary (Validator)/Drop Shadow 01 */
           boxShadow:
-            '0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)',
+            '0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)',
         },
       },
       '& .MuiListItemText-root': {
@@ -107,6 +106,10 @@ const useStyles = () => {
     },
     popper: {
       zIndex: '2001 !important',
+      '& .MuiPaper-root': {
+        boxShadow:
+          '0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)',
+      },
       '& .MuiAutocomplete-listbox': {
         maxHeight: `calc(50vh - ${theme.spacing(10)})`,
         [theme.breakpoints.up('tablet')]: {

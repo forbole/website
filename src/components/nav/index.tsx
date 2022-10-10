@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Box, Button, useTheme } from '@mui/material';
-import { Forbole as ForboleLogo } from '@icons';
+import { Forbole as ForboleLogo, ForboleShadowIcon } from '@icons';
 import { MobileNavMenu, DesktopNavMenu } from './components';
 import { useNavHook } from './hooks';
 
@@ -91,13 +91,17 @@ const Nav = ({ navLink, staking }: NavProps) => {
                   height: '100%',
                 }}
               >
-                <ForboleLogo
-                  color={
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primary.main
-                      : theme.palette.custom.forbole.red
-                  }
-                />
+                {staking ? (
+                  <ForboleShadowIcon />
+                ) : (
+                  <ForboleLogo
+                    color={
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary.main
+                        : theme.palette.custom.forbole.red
+                    }
+                  />
+                )}
               </a>
             </Link>
           </Box>

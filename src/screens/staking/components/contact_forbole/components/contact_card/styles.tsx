@@ -32,6 +32,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       border: 'none',
       borderColor: 'transparent',
     },
+    '& :-webkit-autofill': {
+      transitionDelay: '9999s',
+    },
   }),
   select: (theme) => ({
     '.MuiFormControl-root': {
@@ -69,6 +72,10 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       '0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)',
     borderRadius: theme.spacing(3),
     padding: theme.spacing(1.25, 2),
-    fontSize: theme.spacing(2),
+    fontSize: theme.spacing(1.875),
+    lineHeight: 1.5,
+    [theme.breakpoints.up('laptop')]: {
+      width: '125px',
+    },
   }),
 };

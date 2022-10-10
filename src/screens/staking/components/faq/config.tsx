@@ -8,6 +8,8 @@ export interface FAQProps {
   bullet1?: string;
   bullet2?: string;
   bullet3?: string;
+  expanded?: boolean;
+  setExpanded?: () => void;
 }
 
 export const faq: FAQProps[] = [

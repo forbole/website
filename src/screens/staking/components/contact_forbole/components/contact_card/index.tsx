@@ -25,6 +25,19 @@ const ContactCard = () => {
   const { t } = useTranslation('staking');
   const { handleSubmit, handleInputChange, inputs, setInputs, canSubmit } =
     useContactCard();
+
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handler = () => {
+      setIsOpen(false);
+    };
+    window.addEventListener('scroll', handler);
+    return () => {
+      window.removeEventListener('scroll', handler);
+    };
+  }, []);
+
   return (
     <Card
       sx={{
@@ -32,6 +45,11 @@ const ContactCard = () => {
         boxShadow:
           '0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)',
         borderRadius: theme.spacing(3),
+        maxWidth: '100%',
+        margin: 'auto',
+        [theme.breakpoints.up('laptop')]: {
+          maxWidth: '70%',
+        },
       }}
     >
       <form noValidate onSubmit={handleSubmit}>
@@ -104,20 +122,39 @@ const ContactCard = () => {
               {t('how can we help you')}
             </Typography>
             <FormControl sx={{}}>
-              <InputLabel id="demo-simple-select-autowidth-label">
-                {t(options[0])}
-              </InputLabel>
+              {inputs.option === '' ? (
+                <InputLabel
+                  shrink={false}
+                  id="demo-simple-select-autowidth-label"
+                >
+                  {t(options[0])}
+                </InputLabel>
+              ) : null}
               <Select
+                variant="outlined"
+                open={isOpen}
+                onOpen={() => {
+                  setIsOpen(true);
+                }}
+                onClose={() => {
+                  setIsOpen(false);
+                }}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={inputs.option}
                 IconComponent={(props) => <ExpandIcon {...props} />}
                 MenuProps={{
+                  variant: 'menu',
+                  disableScrollLock: true,
                   PaperProps: {
                     sx: {
                       bgcolor: theme.palette.primary.main,
                       '& .MuiMenuItem-root': {
                         padding: 2,
+                        '&:hover': {
+                          background:
+                            ' linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)',
+                        },
                       },
                     },
                   },
@@ -130,9 +167,6 @@ const ContactCard = () => {
                   }));
                 }}
               >
-                <MenuItem disabled value="">
-                  <em>{t(options[0])}</em>
-                </MenuItem>
                 {options.slice(1).map((option, i) => (
                   <MenuItem key={i} value={t(option)}>
                     {t(option)}

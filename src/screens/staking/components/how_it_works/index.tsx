@@ -51,6 +51,7 @@ const HowItWorks = () => {
             fontSize: theme.spacing(2),
             textAlign: 'center',
             paddingBottom: theme.spacing(3),
+            color: theme.palette.custom.forbole.blue,
             [theme.breakpoints.up('laptop')]: {
               fontWeight: 700,
               fontSize: theme.spacing(3),
@@ -94,7 +95,8 @@ const HowItWorks = () => {
         >
           {howTos.map((howTo, i) => (
             <HowToCard
-              key={i}
+              key={howTo.id}
+              id={howTo.id}
               image={howTo.image}
               title={howTo.title}
               desc={howTo.desc}

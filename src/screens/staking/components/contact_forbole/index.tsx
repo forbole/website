@@ -49,6 +49,7 @@ const ContactForbole = () => {
             fontSize: theme.spacing(2),
             textAlign: 'center',
             paddingBottom: theme.spacing(3),
+            color: theme.palette.custom.forbole.blue,
             [theme.breakpoints.up('laptop')]: {
               fontWeight: 700,
               fontSize: theme.spacing(3),
@@ -90,6 +91,7 @@ const ContactForbole = () => {
             [theme.breakpoints.up('laptop')]: {
               fontWeight: 400,
               fontSize: theme.spacing(3),
+              paddingBottom: theme.spacing(5),
             },
           }}
         >

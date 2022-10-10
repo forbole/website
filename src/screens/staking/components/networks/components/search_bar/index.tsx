@@ -72,8 +72,8 @@ const Options: FC<OptionsProps> = ({ props, network }) => {
           <Image
             src={network.image}
             objectFit="contain"
-            width="24px"
-            height="24px"
+            width="32px"
+            height="32px"
             quality={100}
           />
         </Box>

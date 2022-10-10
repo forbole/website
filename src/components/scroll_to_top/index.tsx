@@ -11,7 +11,14 @@ interface TopProps {
 
 const ScrollToTop = ({ topRef, mobile, height }: TopProps) => {
   const theme = useTheme();
-  const scrollTop = () => topRef.current.scrollIntoView();
+  const scrollToRef = (e: any, ref: any) => {
+    e.preventDefault();
+    window.scrollTo({
+      left: 0,
+      top: ref.current.offsetTop - 100,
+      behavior: 'smooth',
+    });
+  };
   return (
     <Box
       display="flex"
@@ -45,7 +52,7 @@ const ScrollToTop = ({ topRef, mobile, height }: TopProps) => {
       >
         <TopIcon
           fill={mobile ? theme.palette.custom.forbole.indigo : 'transparent'}
-          onClick={scrollTop}
+          onClick={(e: React.MouseEvent<HTMLElement>) => scrollToRef(e, topRef)}
         />
       </Box>
     </Box>

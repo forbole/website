@@ -21,6 +21,7 @@ const useStyles = () => {
       },
       '&:hover': {
         backgroundColor: theme.palette.grey.A200,
+        // backgroundColor: theme.palette.primary.light,
       },
       '& .MuiTypography-h3, & .MuiTypography-h6, & .MuiTypography-body1': {
         whiteSpace: 'nowrap',
@@ -107,7 +108,8 @@ const useStyles = () => {
         position: 'static',
         gap: theme.spacing(3),
         '&:hover': {
-          backgroundColor: theme.palette.grey[500],
+          // backgroundColor: theme.palette.grey[500],
+          backgroundColor: theme.palette.primary.light,
         },
         [theme.breakpoints.up('tablet')]: {
           display: 'none',
@@ -153,7 +155,7 @@ const useStyles = () => {
         position: 'absolute',
         display: 'none',
         zIndex: 3,
-        padding: theme.spacing(2),
+        padding: theme.spacing(3),
         [theme.breakpoints.down('tablet')]: {
           marginTop: `-${theme.spacing(1)}`,
         },
@@ -163,17 +165,32 @@ const useStyles = () => {
           maxWidth: theme.spacing(34),
           maxHeight: theme.spacing(27.25),
         },
-        // boxShadow: theme.shadows[1],
-        /* Secondary Color/Royal Blue Transparent 03 */
-        // backgroundColor: alpha(theme.palette.primary.main, 0.7),
-        background:
-          'linear-gradient(269.66deg, rgba(2, 158, 225, 0.4) -12.39%, rgba(2, 38, 225, 0.2) 99.38%), rgba(255, 255, 255, 0.8)',
         boxShadow:
           '10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)',
-        // backdropFilter: 'blur(5px)',
-        // backdropFilter: 'blur(24px)',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          zIndex: -1,
+          display: 'block',
+          boxShadow:
+            '10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)',
+          background:
+            'linear-gradient(269.66deg, rgba(2, 158, 225, 0.4) -12.39%, rgba(2, 38, 225, 0.2) 99.38%), rgba(255, 255, 255, 0.8)',
+          backdropFilter: 'blur(5px)',
+          width: '100%',
+          height: '100%',
+          borderRadius: theme.spacing(3),
+          [theme.breakpoints.down('tablet')]: {
+            marginTop: `-${theme.spacing(1)}`,
+          },
+          [theme.breakpoints.up('tablet')]: {
+            maxWidth: theme.spacing(34),
+            maxHeight: theme.spacing(27.25),
+          },
+        },
         color: theme.palette.text.primary,
-        borderRadius: theme.spacing(1.5),
+        borderRadius: theme.spacing(3),
         flexFlow: 'row wrap',
         gap: theme.spacing(2),
         justifyContent: 'center',

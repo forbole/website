@@ -47,7 +47,6 @@ const CalculateRewards = () => {
             maxWidth: '1200px',
             '> .h3': {
               margin: 'auto',
-              width: '65%',
             },
           },
         }}
@@ -85,6 +84,7 @@ const CalculateRewards = () => {
             [theme.breakpoints.up('laptop')]: {
               fontWeight: 400,
               fontSize: theme.spacing(3),
+              paddingBottom: theme.spacing(7),
             },
           }}
         >
