@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Image from 'next/image';
@@ -8,7 +9,7 @@ const HowToCard = (props: any) => {
   const { t } = useTranslation('staking');
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
-  const { image, title, desc } = props;
+  const { id, image, title, desc } = props;
   return (
     <Box
       sx={{
@@ -20,6 +21,15 @@ const HowToCard = (props: any) => {
         borderRadius: theme.spacing(3),
         boxShadow:
           '0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)',
+        '& span': {
+          marginLeft:
+            id <= 2
+              ? ('-19px !important' as any)
+              : id === 3
+              ? ('-15px !important' as any)
+              : ('-5px !important' as any),
+          maxWidth: '150% !important' as any,
+        },
       }}
     >
       <Image src={image} objectFit="contain" width="100%" height="60px" />

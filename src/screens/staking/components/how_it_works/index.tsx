@@ -95,7 +95,8 @@ const HowItWorks = () => {
         >
           {howTos.map((howTo, i) => (
             <HowToCard
-              key={i}
+              key={howTo.id}
+              id={howTo.id}
               image={howTo.image}
               title={howTo.title}
               desc={howTo.desc}
