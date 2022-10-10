@@ -11,7 +11,7 @@ const useStyles = () => {
       [theme.breakpoints.up('laptop')]: {
         gridTemplateColumns: 'repeat(3, 1fr)',
         gridTemplateRows: 'repeat(1, 1fr)',
-        gridGap: theme.spacing(8),
+        gridGap: theme.spacing(3),
       },
     }),
   };
