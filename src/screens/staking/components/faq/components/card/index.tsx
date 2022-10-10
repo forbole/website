@@ -37,6 +37,7 @@ const Card = (props: FAQProps) => {
     <Box
       sx={{
         padding: theme.spacing(2, 5),
+        borderRadius: theme.spacing(2),
       }}
     >
       <Accordion
@@ -44,7 +45,7 @@ const Card = (props: FAQProps) => {
         onChange={setExpanded}
         sx={{
           background: theme.palette.primary.main,
-          borderRadius: theme.spacing(2),
+          borderRadius: `${theme.spacing(2)} !important` as any,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -60,6 +61,7 @@ const Card = (props: FAQProps) => {
         <AccordionSummary
           sx={{
             width: '100%',
+            padding: theme.spacing(1.5, 5, 1, 3),
             '> .MuiAccordionSummary-expandIconWrapper': {
               svg: {
                 fill: '#878787',
@@ -97,7 +99,8 @@ const Card = (props: FAQProps) => {
             p: {
               letterSpacing: '-0.012em',
               color: theme.palette.custom.forbole.blue,
-              paddingBottom: theme.spacing(1),
+              padding: theme.spacing(1, 3, 3, 3),
+              // paddingBottom: theme.spacing(1),
               '> p': {
                 paddingBottom: theme.spacing(2),
                 '&:last-child': {
