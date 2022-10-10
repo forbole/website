@@ -126,4 +126,22 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     display: 'flex',
     flexDirection: 'column',
   }),
+  buttonDiv: (theme) => ({
+    width: '100%',
+    display: 'flex',
+    paddingTop: 3,
+    justifyContent: 'center',
+    [theme.breakpoints.up('laptop')]: {
+      paddingTop: 4,
+      justifyContent: 'flex-end',
+    },
+  }),
+  button: (theme) => ({
+    background: 'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+    boxShadow:
+      '0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)',
+    borderRadius: theme.spacing(3),
+    padding: theme.spacing(1.25, 2),
+    fontSize: theme.spacing(2),
+  }),
 };

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 import {
   Box,
+  Button,
   FormControl,
   Grid,
   Typography,
@@ -376,6 +377,17 @@ const Calculator = (props: any) => {
                 $ {totalEarnings.monthlyEarnings.amount} USD
               </Typography>
             </Box>
+          </Box>
+          <Box sx={styles.buttonDiv}>
+            <Button
+              sx={styles.button}
+              href={selectedToken.delegate || ''}
+              disabled={!selectedToken.delegate}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {t('stake with us!')}
+            </Button>
           </Box>
         </>
       ) : null}
