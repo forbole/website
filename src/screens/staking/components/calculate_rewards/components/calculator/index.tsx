@@ -122,6 +122,9 @@ const Calculator = (props: any) => {
                 sx: {
                   bgcolor: theme.palette.primary.main,
                   marginTop: 1,
+                  boxShadow:
+                    '0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)',
+                  borderRadius: 1,
                   '& .MuiMenuItem-root': {
                     padding: 2,
                     '&:hover': {
