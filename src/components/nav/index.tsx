@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
-import { Box, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo, ForboleShadowIcon } from '@icons';
 import { MobileNavMenu, DesktopNavMenu } from './components';
 import { useNavHook } from './hooks';
@@ -14,7 +14,6 @@ interface NavProps {
 
 const Nav = ({ navLink, staking }: NavProps) => {
   const theme = useTheme();
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
   const { displayBackground } = useNavHook();
   return (
     <Box
@@ -31,9 +30,6 @@ const Nav = ({ navLink, staking }: NavProps) => {
           : 'transparent',
         backdropFilter: displayBackground ? 'blur(16px)' : 'none',
         webkitBackdropFilter: 'blur(16px)',
-        // [theme.breakpoints.down('tablet')]: {
-        //   maxWidth: '280px',
-        // },
         [theme.breakpoints.up('laptop')]: {
           height: '100px',
         },
@@ -65,7 +61,6 @@ const Nav = ({ navLink, staking }: NavProps) => {
           sx={{
             background: 'transparent',
             padding: theme.spacing(4, 3, 0, 3),
-            // padding: theme.spacing(4, 0, 0, 0),
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
@@ -80,8 +75,6 @@ const Nav = ({ navLink, staking }: NavProps) => {
         >
           <Box
             sx={{
-              // margin: 'auto',
-              // width: '40%',
               [theme.breakpoints.up('laptop')]: {
                 margin: 0,
                 width: '40%',
