@@ -46,55 +46,28 @@ const Hero = () => {
         >
           <Box
             sx={{
-              // mixBlendMode: 'soft-light',
-              mixBlendMode: 'lighten',
               opacity: 1,
-              // filter: 'brightness(35%)',
               position: 'absolute',
               top: '10vh',
               margin: 'auto',
-              height: '50vh',
-              width: theme.spacing(50),
+              height: '60vh',
+              width: '100%',
               [theme.breakpoints.down('laptop')]: {
-                width: width / 2,
                 top: '5vh',
               },
               [theme.breakpoints.up('tablet')]: {
-                width: width / 2,
                 top: '10vh',
+                height: '70vh',
+                width: theme.spacing(80),
+              },
+              [theme.breakpoints.up('laptop')]: {
+                height: '80vh',
+                width: theme.spacing(100),
               },
             }}
           >
             <Image
-              src="/images/assets/horse.png"
-              layout="fill"
-              objectFit="contain"
-              width={isDesktop ? '413px' : '188px'}
-              height={isDesktop ? '500px' : '232px'}
-            />
-          </Box>
-          <Box
-            sx={{
-              // mixBlendMode: 'screen',
-              mixBlendMode: 'soft-light',
-              // filter: 'brightness(95%)',
-              position: 'absolute',
-              top: '10vh',
-              margin: 'auto',
-              height: '50vh',
-              width: theme.spacing(50),
-              [theme.breakpoints.down('laptop')]: {
-                width: width / 2,
-                top: '5vh',
-              },
-              [theme.breakpoints.up('tablet')]: {
-                width: width / 2,
-                top: '10vh',
-              },
-            }}
-          >
-            <Image
-              src="/images/assets/horse.png"
+              src="/images/assets/image_horse_blur.png"
               layout="fill"
               objectFit="contain"
               width={isDesktop ? '413px' : '188px'}
@@ -145,7 +118,7 @@ const Hero = () => {
                 width: '550px',
                 left: 'auto',
                 right: 'auto',
-                top: '50vh',
+                top: '60vh',
               },
               [theme.breakpoints.up('laptop')]: {
                 height: '322px',

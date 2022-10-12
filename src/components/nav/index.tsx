@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
-import { Box, Button, useTheme } from '@mui/material';
+import { Box, Button, useTheme, useMediaQuery } from '@mui/material';
 import { Forbole as ForboleLogo, ForboleShadowIcon } from '@icons';
 import { MobileNavMenu, DesktopNavMenu } from './components';
 import { useNavHook } from './hooks';
@@ -14,6 +14,7 @@ interface NavProps {
 
 const Nav = ({ navLink, staking }: NavProps) => {
   const theme = useTheme();
+  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
   const { displayBackground } = useNavHook();
   return (
     <Box
@@ -24,13 +25,15 @@ const Nav = ({ navLink, staking }: NavProps) => {
         top: 0,
         zIndex: 5,
         width: '100%',
-        // height: '150px',
         height: '100px',
         background: displayBackground
           ? 'rgba(114, 28, 78, 0.1)'
           : 'transparent',
         backdropFilter: displayBackground ? 'blur(16px)' : 'none',
         webkitBackdropFilter: 'blur(16px)',
+        // [theme.breakpoints.down('tablet')]: {
+        //   maxWidth: '280px',
+        // },
         [theme.breakpoints.up('laptop')]: {
           height: '100px',
         },
@@ -62,6 +65,7 @@ const Nav = ({ navLink, staking }: NavProps) => {
           sx={{
             background: 'transparent',
             padding: theme.spacing(4, 3, 0, 3),
+            // padding: theme.spacing(4, 0, 0, 0),
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
@@ -77,6 +81,7 @@ const Nav = ({ navLink, staking }: NavProps) => {
           <Box
             sx={{
               // margin: 'auto',
+              // width: '40%',
               [theme.breakpoints.up('laptop')]: {
                 margin: 0,
                 width: '40%',
@@ -110,11 +115,20 @@ const Nav = ({ navLink, staking }: NavProps) => {
               variant="contained"
               href="#stake-now"
               sx={{
+                width: '97px',
+                height: '32px',
+                lineHeight: '17px',
+                fontWeight: 600,
+                padding: 0,
                 background:
                   'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
                 borderRadius: theme.spacing(3),
                 color: 'primary.main',
                 boxShadow: 'none',
+                [theme.breakpoints.up('laptop')]: {
+                  width: '111px',
+                  height: '45px',
+                },
               }}
             >
               Stake Now
