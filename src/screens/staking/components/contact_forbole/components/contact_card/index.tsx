@@ -121,12 +121,9 @@ const ContactCard = () => {
             >
               {t('how can we help you')}
             </Typography>
-            <FormControl sx={{}}>
+            <FormControl>
               {inputs.option === '' ? (
-                <InputLabel
-                  shrink={false}
-                  id="demo-simple-select-autowidth-label"
-                >
+                <InputLabel shrink={false} focused={false} id="item_type_label">
                   {t(options[0])}
                 </InputLabel>
               ) : null}
@@ -139,8 +136,6 @@ const ContactCard = () => {
                 onClose={() => {
                   setIsOpen(false);
                 }}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
                 value={inputs.option}
                 IconComponent={(props) => <ExpandIcon {...props} />}
                 MenuProps={{
@@ -149,6 +144,10 @@ const ContactCard = () => {
                   PaperProps: {
                     sx: {
                       bgcolor: theme.palette.primary.main,
+                      marginTop: 1,
+                      boxShadow:
+                        '0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)',
+                      borderRadius: 1,
                       '& .MuiMenuItem-root': {
                         padding: 2,
                         '&:hover': {

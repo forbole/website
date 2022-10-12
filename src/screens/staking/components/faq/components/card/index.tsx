@@ -61,13 +61,15 @@ const Card = (props: FAQProps) => {
         <AccordionSummary
           sx={{
             width: '100%',
-            padding: theme.spacing(1.5, 5, 1, 3),
+            padding: expanded
+              ? theme.spacing(3, 5, 2, 3)
+              : theme.spacing(3, 5, 3, 3),
             '> .MuiAccordionSummary-expandIconWrapper': {
               svg: {
                 fill: '#878787',
               },
             },
-            '.Mui-expanded': {
+            '& .Mui-expanded': {
               h3: {
                 background:
                   'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
@@ -99,8 +101,7 @@ const Card = (props: FAQProps) => {
             p: {
               letterSpacing: '-0.012em',
               color: theme.palette.custom.forbole.blue,
-              padding: theme.spacing(1, 3, 3, 3),
-              // paddingBottom: theme.spacing(1),
+              padding: theme.spacing(0, 3, 3, 3),
               '> p': {
                 paddingBottom: theme.spacing(2),
                 '&:last-child': {

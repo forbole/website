@@ -34,6 +34,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     },
     '& :-webkit-autofill': {
       transitionDelay: '9999s',
+      WebkitTextFillColor: theme.palette.common.black,
     },
   }),
   select: (theme) => ({

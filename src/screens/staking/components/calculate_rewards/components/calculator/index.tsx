@@ -84,7 +84,10 @@ const Calculator = (props: any) => {
         boxShadow:
           '10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)',
         borderRadius: theme.spacing(3),
-        padding: theme.spacing(5),
+        padding: theme.spacing(4, 2.5),
+        [theme.breakpoints.up('laptop')]: {
+          padding: theme.spacing(5),
+        },
       }}
     >
       <Typography
@@ -119,6 +122,9 @@ const Calculator = (props: any) => {
                 sx: {
                   bgcolor: theme.palette.primary.main,
                   marginTop: 1,
+                  boxShadow:
+                    '0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)',
+                  borderRadius: 1,
                   '& .MuiMenuItem-root': {
                     padding: 2,
                     '&:hover': {

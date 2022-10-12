@@ -24,7 +24,6 @@ const Nav = ({ navLink, staking }: NavProps) => {
         top: 0,
         zIndex: 5,
         width: '100%',
-        // height: '150px',
         height: '100px',
         background: displayBackground
           ? 'rgba(114, 28, 78, 0.1)'
@@ -76,7 +75,6 @@ const Nav = ({ navLink, staking }: NavProps) => {
         >
           <Box
             sx={{
-              // margin: 'auto',
               [theme.breakpoints.up('laptop')]: {
                 margin: 0,
                 width: '40%',
@@ -110,11 +108,20 @@ const Nav = ({ navLink, staking }: NavProps) => {
               variant="contained"
               href="#stake-now"
               sx={{
+                width: '97px',
+                height: '32px',
+                lineHeight: '17px',
+                fontWeight: 600,
+                padding: 0,
                 background:
                   'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
                 borderRadius: theme.spacing(3),
                 color: 'primary.main',
                 boxShadow: 'none',
+                [theme.breakpoints.up('laptop')]: {
+                  width: '111px',
+                  height: '45px',
+                },
               }}
             >
               Stake Now

@@ -17,6 +17,13 @@ import { LaptopCSS } from './styles';
 const Staking = () => {
   const { t } = useTranslation('staking');
   const theme = useTheme();
+  React.useEffect(() => {
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   return (
     <LayoutVal navLink="staking" footer>
