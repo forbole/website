@@ -33,22 +33,13 @@ const GuideDetails = ({ post }: any) => {
   const cmsLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
-  console.log('html', `%o${html}%o`);
   return (
-    // <LayoutVal
-    //   title={post.title}
-    //   description={excerpt}
-    //   type="article"
-    //   image={featureImage}
-    //   twitterImage={featureImage}
-    //   keywords={tags.map((x: { name: any }) => x.name ?? '')}
-    //   navLink="/blog"
-    //   footer
-    // >
     <Box
       sx={{
         maxWidth: '100%',
         margin: 'auto',
+        boxShadow: '4px 8px 24px rgba(116, 81, 255, 0.16)',
+        borderRadius: 5,
         [theme.breakpoints.up('laptop')]: {
           background: theme.palette.primary.main,
           boxShadow:
@@ -58,7 +49,14 @@ const GuideDetails = ({ post }: any) => {
         },
       }}
     >
-      <Box sx={{ padding: theme.spacing(5, 2) }}>
+      <Box
+        sx={{
+          padding: theme.spacing(5, 2),
+          [theme.breakpoints.up('laptop')]: {
+            padding: theme.spacing(8, 9),
+          },
+        }}
+      >
         <GuideContentCSS theme={theme}>
           <GuideContentBox
             dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
@@ -66,8 +64,6 @@ const GuideDetails = ({ post }: any) => {
         </GuideContentCSS>
       </Box>
     </Box>
-
-    // </LayoutVal>
   );
 };
 

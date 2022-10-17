@@ -3,14 +3,15 @@
 import type { NextPage } from 'next';
 // import BlogDetails from '@screens/blog_details';
 // import CareersDetails from '@screens/careers_details';
-import Guide from '@screens/network_guides/components/guide';
+// import Guide from '@screens/network_guides/components/guide';
+import NetworkGuides from '@screens/network_guides';
 import { getSinglePost } from '@api/posts';
 import { getNetworkPosts } from '@api/networks';
 import { Post } from '@models';
 import { removeInternalTags } from '@utils/remove_internal_tags';
 
 const StakingDetailsPage: NextPage = (props: any) => {
-  return <Guide {...props} />;
+  return <NetworkGuides {...props} />;
 };
 
 export async function getServerSideProps(context: { query: any }) {
@@ -18,7 +19,6 @@ export async function getServerSideProps(context: { query: any }) {
   try {
     const { query } = context;
     const { title } = query;
-    console.log('hiii', title);
     const post = await getSinglePost(title);
     const [sidePosts] = await Promise.all([
       getNetworkPosts({

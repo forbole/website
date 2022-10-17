@@ -25,7 +25,7 @@ export const LaptopCSS = styled.div<any>`
 export const GuideContentCSS = styled.div<ContentProps>`
   overflow: visible;
   word-break: break-word;
-  width: 80%;
+  width: 100%;
   margin: auto;
   color: ${(props) => props?.theme?.palette?.custom?.forbole?.blue} a {
     transition: 0.3s;
@@ -33,19 +33,52 @@ export const GuideContentCSS = styled.div<ContentProps>`
       color: rgba(0, 0, 0, 0.87);
     }
   }
+
   //  specific for staking guide:
   p,
   hr,
   h3 {
     display: none;
   }
-  li {
-    // counter-increment: my-awesome-counter;
-    margin: 0.25rem;
+
+  img {
+    margin: auto;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 6px 14px -6px rgba(2, 38, 225, 0.12),
+      0px 10px 32px -4px rgba(2, 38, 225, 0.1);
+    border-radius: 4px;
   }
-  li::before {
-    // content: counter(my-awesome-counter);
-    background: #662974;
+
+  ol {
+    list-style: none;
+    counter-reset: my-awesome-counter;
+  }
+
+  li {
+    // display: list-item;
+    position: relative;
+    font-size: 16px;
+    counter-increment: my-awesome-counter;
+    margin: 0.25rem;
+    border-left: 1px solid #202a43;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  li:before {
+    content: counter(my-awesome-counter);
+    position: absolute;
+    left: calc(0% - 16px);
+    top: calc(0% - 16px);
+    z-index: 1;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    background: #3c4f7d;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -54,13 +87,6 @@ export const GuideContentCSS = styled.div<ContentProps>`
     color: white;
     text-align: center;
     margin-right: 0.5rem;
-  }
-  img {
-    margin: auto;
-    object-fit: cover;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
   }
 `;
 
@@ -165,11 +191,11 @@ export const GuideContentBox = styled.div<any>`
     line-height: 1.6em;
   }
 
-  > ul,
-  > ol,
-  > dl {
-    padding-left: 1.9em;
-  }
+  // > ul,
+  // > ol,
+  // > dl {
+  //   padding-left: 1.9em;
+  // }
 
   hr {
     margin-top: 6vmin;
@@ -454,70 +480,5 @@ export const GuideContentBox = styled.div<any>`
 
   tbody tr:last-child {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  // ol {
-  //   list-style: none;
-  // }
-  // ol::before {
-  //   // content: counter(my-awesome-counter);
-  //   background: #662974;
-  //   width: 2rem;
-  //   height: 2rem;
-  //   border-radius: 50%;
-  //   display: inline-block;
-  //   line-height: 2rem;
-  //   color: white;
-  //   text-align: center;
-  //   margin-right: 0.5rem;
-  // }
-  ol {
-    list-style: none;
-    counter-reset: my-awesome-counter;
-  }
-
-  // li {
-  //   // counter-increment: my-awesome-counter;
-  //   margin: 0.25rem;
-  // }
-  // li::marker {
-  //   // content: counter(my-awesome-counter);
-  //   background: #662974;
-  //   width: 2rem;
-  //   height: 2rem;
-  //   border-radius: 50%;
-  //   display: inline-block;
-  //   line-height: 2rem;
-  //   color: white;
-  //   text-align: center;
-  //   margin-right: 0.5rem;
-  // }
-  li {
-    // display: list-item;
-    position: relative;
-    font-size: 16px;
-    counter-increment: my-awesome-counter;
-    margin: 0.25rem;
-  }
-  li:before {
-    // content: '';
-    content: counter(my-awesome-counter);
-    position: absolute;
-    left: -40px;
-    background-color: red;
-    z-index: 1;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 5px;
-    background: #662974;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    display: inline-block;
-    line-height: 2rem;
-    color: white;
-    text-align: center;
-    margin-right: 0.5rem;
   }
 `;

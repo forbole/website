@@ -71,6 +71,7 @@ const Guide = ({ post }: any) => {
             '> .h3': {
               margin: 'auto',
               width: '65%',
+              paddingBottom: 5,
             },
           },
         }}
