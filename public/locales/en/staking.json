@@ -82,5 +82,7 @@
     "users staking": "Users Staking",
     "supporting networks": "Supporting Networks",
     "FVH title": "Stake, earn and secure the networks with Forbole",
-    "stake with us!": "Stake with us!"
+    "stake with us!": "Stake with us!",
+    "guideline": "Guideline",
+    "staking title": "<0>{{title1}} <1>{{coloredTitle}}</1> {{title2}}</0>"
 }

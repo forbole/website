@@ -4,7 +4,7 @@ module.exports = {
   locales: ['en'],
   defaultLocale: 'en',
   pages: {
-    '*': ['common', 'blog', 'careers'],
+    '*': ['common', 'blog', 'careers', 'staking'],
     '/': ['home'],
     '/contact': ['contact'],
     '/about': ['about'],
