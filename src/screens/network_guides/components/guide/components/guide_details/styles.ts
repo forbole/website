@@ -27,7 +27,8 @@ export const GuideContentCSS = styled.div<ContentProps>`
   word-break: break-word;
   width: 100%;
   margin: auto;
-  color: ${(props) => props?.theme?.palette?.custom?.forbole?.blue} a {
+  color: ${(props) => props?.theme?.palette?.custom?.forbole?.blue};
+  a {
     transition: 0.3s;
     &:hover {
       color: rgba(0, 0, 0, 0.87);
@@ -59,6 +60,7 @@ export const GuideContentCSS = styled.div<ContentProps>`
 
   li {
     // display: list-item;
+    color: ${(props) => props?.theme?.palette?.custom?.forbole?.blue};
     position: relative;
     font-size: 16px;
     counter-increment: my-awesome-counter;
@@ -66,6 +68,13 @@ export const GuideContentCSS = styled.div<ContentProps>`
     border-left: 1px solid #202a43;
     padding: 40px 24px;
     text-align: center;
+    a {
+      color: #007fff;
+      transition: 0.3s;
+      &:hover {
+        color: rgba(0, 0, 0, 0.87);
+      }
+    }
   }
 
   li:before {

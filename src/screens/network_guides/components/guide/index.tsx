@@ -7,7 +7,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@hooks';
 import { LayoutVal, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
-import { GuideDetails } from './components';
+import { NetworkInfo, GuideDetails } from './components';
 
 const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
 
@@ -45,7 +45,10 @@ const Guide = ({ post }: any) => {
     //   navLink="/blog"
     //   footer
     // >
-    <Box display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center" flexDirection="column">
+      <Box sx={{ padding: theme.spacing(15, 3) }}>
+        <NetworkInfo post={post} />
+      </Box>
       <Box
         sx={{
           padding: theme.spacing(5, 3),
