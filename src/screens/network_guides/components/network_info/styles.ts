@@ -20,11 +20,24 @@ export const ContentCSS = styled.div<ContentProps>`
   li {
     display: none;
   }
+  p {
+    text-align: center;
+  }
+  padding: 0px 16px;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 8;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  @media only screen and (min-width: 1024px) {
+    width: 50%;
+    font-size: 16px;
+    line-height: 22px;
+    margin: inherit;
+    p {
+      text-align: left;
+    }
+  }
 `;
 
 export const ContentBox = styled.div<any>`

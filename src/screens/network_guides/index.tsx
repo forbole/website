@@ -25,6 +25,9 @@ const NetworkGuides = ({ post }: any) => {
       <LaptopCSS>
         <Guide post={post} />
       </LaptopCSS>
+      <Box
+        sx={{ [theme.breakpoints.up('laptop')]: { height: theme.spacing(50) } }}
+      />
     </LayoutVal>
   );
 };

@@ -23,13 +23,8 @@ import { getNetworkInfo } from '@src/utils/network_info';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import { LayoutVal, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
 import { ContentCSS, ContentBox } from './styles';
-// import { Author, SocialMedia } from './components';
-// import {
-//   GuideContentBox,
-//   GuideContentCSS,
-//   MobileCSS,
-//   LaptopCSS,
-// } from './styles';
+import { InfoCard } from './components';
+import { infoItems } from './config';
 
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
@@ -73,7 +68,10 @@ const NetworkInfo = ({ post }: any) => {
       alignItems="center"
       flexDirection="column"
       sx={{
-        padding: theme.spacing(5, 3),
+        padding: theme.spacing(15, 3),
+        [theme.breakpoints.up('laptop')]: {
+          padding: theme.spacing(0, 3),
+        },
       }}
     >
       <Box
@@ -161,35 +159,71 @@ const NetworkInfo = ({ post }: any) => {
             </Box>
           </CardContent>
           <CardContent>
-            {!readMore && !onlyLargeScreen ? (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column',
+                [theme.breakpoints.up('laptop')]: {
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                },
+              }}
+            >
+              {!readMore && !onlyLargeScreen ? (
+                <Box textAlign="center" sx={{ padding: theme.spacing(0, 2) }}>
+                  <Typography
+                    color={theme.palette.custom.forbole.blue}
+                    variant="body2"
+                    className="value"
+                    sx={{
+                      display: 'contents',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {excerpt}
+                  </Typography>
+                  <Button
+                    sx={{
+                      color: '#007FFF',
+                      display: 'inline-block',
+                      padding: 0,
+                    }}
+                    onClick={() => setReadMore((prevCheck) => !prevCheck)}
+                  >
+                    {t('more')}
+                  </Button>
+                </Box>
+              ) : (
+                <ContentCSS theme={theme}>
+                  <ContentBox
+                    dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
+                  />
+                </ContentCSS>
+              )}
               <Box
-              // display="flex"
-              // justifyContent="center"
-              // alignItems="center"
-              // flexDirection="column"
+                sx={{
+                  display: 'grid',
+                  padding: '12px 8px',
+                  gridGap: theme.spacing(2),
+                  gridTemplateColumns: 'repeat(1, 1fr)',
+                  paddingTop: theme.spacing(3),
+                  [theme.breakpoints.up('laptop')]: {
+                    gridTemplateRows: 'repeat(2, 1fr)',
+                    gridTemplateColumns: '1fr 1fr',
+                    paddingTop: 0,
+                  },
+                }}
               >
-                <Typography
-                  color={theme.palette.custom.forbole.blue}
-                  variant="body2"
-                  className="value"
-                  sx={{ display: 'contents' }}
-                >
-                  {excerpt}
-                </Typography>
-                <Button
-                  sx={{ color: '#007FFF', display: 'inline-block', padding: 0 }}
-                  onClick={() => setReadMore((prevCheck) => !prevCheck)}
-                >
-                  More
-                </Button>
+                {infoItems.map((info) => (
+                  <InfoCard
+                    title={info.title}
+                    stats={info.stats}
+                    type={info.type}
+                  />
+                ))}
               </Box>
-            ) : (
-              <ContentCSS theme={theme}>
-                <ContentBox
-                  dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
-                />
-              </ContentCSS>
-            )}
+            </Box>
           </CardContent>
         </Card>
       </Box>
