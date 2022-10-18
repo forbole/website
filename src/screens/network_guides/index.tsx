@@ -3,7 +3,7 @@ import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
 import { LayoutVal } from '@components';
-import { Guide } from './components';
+import { NetworkInfo, Guide } from './components';
 import { LaptopCSS } from './styles';
 
 const NetworkGuides = ({ post }: any) => {
@@ -19,6 +19,9 @@ const NetworkGuides = ({ post }: any) => {
 
   return (
     <LayoutVal navLink="staking" stakingGuide footer>
+      <LaptopCSS>
+        <NetworkInfo post={post} />
+      </LaptopCSS>
       <LaptopCSS>
         <Guide post={post} />
       </LaptopCSS>

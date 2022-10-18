@@ -1,3 +1,4 @@
 import Guide from './guide';
+import NetworkInfo from './network_info';
 
-export { Guide };
+export { NetworkInfo, Guide };

@@ -7,7 +7,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@hooks';
 import { LayoutVal, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
-import { NetworkInfo, GuideDetails } from './components';
+import { GuideDetails } from './components';
 
 const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
 
@@ -35,20 +35,12 @@ const Guide = ({ post }: any) => {
   const titleArray = title.split(' ');
   const coloredTitle = title.split(' ')[2] + title.split(' ')[3];
   return (
-    // <LayoutVal
-    //   title={post.title}
-    //   description={excerpt}
-    //   type="article"
-    //   image={featureImage}
-    //   twitterImage={featureImage}
-    //   keywords={tags.map((x: { name: any }) => x.name ?? '')}
-    //   navLink="/blog"
-    //   footer
-    // >
-    <Box display="flex" justifyContent="center" flexDirection="column">
-      <Box sx={{ padding: theme.spacing(15, 3) }}>
-        <NetworkInfo post={post} />
-      </Box>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+    >
       <Box
         sx={{
           padding: theme.spacing(5, 3),
@@ -124,7 +116,6 @@ const Guide = ({ post }: any) => {
         <GuideDetails post={post} />
       </Box>
     </Box>
-    // </LayoutVal>
   );
 };
 
