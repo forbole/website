@@ -51,6 +51,8 @@ const useStyles = () => {
         backgroundImage: 'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
         /* Neutral Color/White */
         color: '#FFFFFF',
+        width: '111px',
+        height: '45px',
         '&:hover': {
           filter: 'brightness(1.2)',
         },

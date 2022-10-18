@@ -28,6 +28,7 @@ type Props = {
   homeAnimation?: boolean;
   staking?: boolean;
   searchBar?: boolean;
+  stakingGuide?: boolean;
 };
 
 const LayoutVal = ({
@@ -45,6 +46,7 @@ const LayoutVal = ({
   homeAnimation,
   staking,
   searchBar,
+  stakingGuide,
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
@@ -149,7 +151,9 @@ const LayoutVal = ({
             //   : theme.palette.primary.main,
             // backgroundImage: 'url(/images/assets/image_BG_staking_mobile.png)',
             // background: theme.palette.primary.main,
-            background: 'url(/images/assets/image_BG_FVH.png)',
+            background: stakingGuide
+              ? 'url(/images/assets/image_BG_FVH_guide.png)'
+              : 'url(/images/assets/image_BG_FVH.png)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}

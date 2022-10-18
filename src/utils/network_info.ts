@@ -126,6 +126,12 @@ const logos: IStringIndex = {
       'https://explore.fetch.ai/validator/fetchvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0dzxfx3',
     bigDipper: 'https://explore.fetch.ai/',
   },
+  comdex: {
+    image: '/images/network/comdex.png',
+    name: 'Comdex',
+    key: 'comdex',
+    address: 'comdexvaloper1e4wjh48ks5j5d9702d35q360ffmf3jj2xpuf3f',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
