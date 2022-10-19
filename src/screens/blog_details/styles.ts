@@ -39,6 +39,19 @@ export const ContentCSS = styled.div<ContentProps>`
       color: rgba(0, 0, 0, 0.87);
     }
   }
+  img {
+    margin: auto;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  li {
+    padding: 22.5px 0 0 0;
+    img {
+      padding-top: 16px;
+    }
+  }
 `;
 
 export const ContentBox = styled.div<any>`
