@@ -1,6 +1,6 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React from 'react';
 import {
-  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -38,24 +38,91 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
 
   return (
     <>
-      {/* {onlyLargeScreen ? (
-        <IconButton
-          aria-label="language"
-          onClick={(e) => setAnchor(e.currentTarget)}
-          css={styles.navBarButton}
-        >
-          <LangIcon />
-        </IconButton>
+      {onlyLargeScreen ? (
+        <>
+          <IconButton
+            aria-label="language"
+            onClick={(e) => setAnchor(e.currentTarget)}
+            css={styles.navBarButton}
+          >
+            <LangIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchor}
+            //   getContentAnchorEl={null}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            keepMounted
+            open={!!anchor}
+            onClose={onClose}
+            id="basic-menu"
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+            // anchorEl={anchorEl}s
+            // open={open}
+            // onClose={handleClose}
+            PaperProps={{
+              sx: {
+                backgroundImage: 'none',
+                borderRadius: theme.spacing(2.25),
+                width: theme.spacing(27.5),
+                left: `${width - width / 4}px!important` as any,
+                [theme.breakpoints.down('laptop')]: {
+                  width: '70%',
+                  top: '75% !important' as any,
+                  bottom: '20px!important' as any,
+                  left: `${width / 6}px!important` as any,
+                  backgroundColor: '#1D1E22',
+                  borderRadius: theme.spacing(2.25),
+                  color: theme.palette.common.white,
+                },
+              },
+            }}
+          >
+            {locales?.map((l) => (
+              <div key={l}>
+                <Link href={{ pathname, query }} locale={l} passHref>
+                  <MenuItem
+                    component="a"
+                    sx={{
+                      display: 'flex',
+                      color: theme.palette.common.white,
+                      justifyContent: 'flex-start',
+                      fontSize: theme.spacing(2),
+                      fontWeight: 700,
+                      height: theme.spacing(5),
+                      padding: theme.spacing(0, 3),
+                      '> a': {
+                        width: '100%',
+                        textAlign: 'left',
+                        // color:
+                        //   item.link === link
+                        //     ? theme.palette.custom.forbole.purple
+                        //     : theme.palette.primary.main,
+                        textDecoration: 'none',
+                      },
+                      '&:hover': {
+                        backgroundColor: theme.palette.custom.forbole.indigo,
+                      },
+                    }}
+                  >
+                    {t(l)}
+                  </MenuItem>
+                </Link>
+              </div>
+            ))}
+          </Menu>{' '}
+        </>
       ) : (
-        <Button
-          onClick={(e) => setAnchor(e.currentTarget)}
-          css={styles.navBarButton}
-        >
-          {t(lang)}
-        </Button>
-      )} */}
-      <List component="div" disablePadding>
-        {/* <Menu
+        <List component="div" disablePadding>
+          {/* <Menu
         anchorEl={anchor}
         //   getContentAnchorEl={null}
         anchorOrigin={{
@@ -94,40 +161,41 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
           },
         }}
       > */}
-        {locales?.map((l) => (
-          <div key={l}>
-            <Link href={{ pathname, query }} locale={l} passHref>
-              <MenuItem
-                component="a"
-                sx={{
-                  display: 'flex',
-                  color: theme.palette.common.white,
-                  justifyContent: 'flex-start',
-                  fontSize: theme.spacing(2),
-                  fontWeight: 700,
-                  height: theme.spacing(5),
-                  padding: theme.spacing(0, 3),
-                  '> a': {
-                    width: '100%',
-                    textAlign: 'left',
-                    // color:
-                    //   item.link === link
-                    //     ? theme.palette.custom.forbole.purple
-                    //     : theme.palette.primary.main,
-                    textDecoration: 'none',
-                  },
-                  '&:hover': {
-                    backgroundColor: theme.palette.custom.forbole.indigo,
-                  },
-                }}
-              >
-                {t(l)}
-              </MenuItem>
-            </Link>
-          </div>
-        ))}
-        {/* </Menu> */}
-      </List>
+          {locales?.map((l) => (
+            <div key={l}>
+              <Link href={{ pathname, query }} locale={l} passHref>
+                <MenuItem
+                  component="a"
+                  sx={{
+                    display: 'flex',
+                    color: theme.palette.common.white,
+                    justifyContent: 'flex-start',
+                    fontSize: theme.spacing(2),
+                    fontWeight: 700,
+                    height: theme.spacing(5),
+                    padding: theme.spacing(0, 3),
+                    '> a': {
+                      width: '100%',
+                      textAlign: 'left',
+                      // color:
+                      //   item.link === link
+                      //     ? theme.palette.custom.forbole.purple
+                      //     : theme.palette.primary.main,
+                      textDecoration: 'none',
+                    },
+                    '&:hover': {
+                      backgroundColor: theme.palette.custom.forbole.indigo,
+                    },
+                  }}
+                >
+                  {t(l)}
+                </MenuItem>
+              </Link>
+            </div>
+          ))}
+          {/* </Menu> */}
+        </List>
+      )}
     </>
   );
 };

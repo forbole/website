@@ -4,6 +4,7 @@ import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, useTheme } from '@mui/material';
 import { navItems } from '../config';
+import LangMenuButton from '../lang_menu_button';
 
 interface NavMenuProps {
   link: string | null;
@@ -12,6 +13,7 @@ interface NavMenuProps {
 const DesktopNavMenu = ({ link }: NavMenuProps) => {
   const { t } = useTranslation('common');
   const theme = useTheme();
+  const [openDrawer, setOpenDrawer] = React.useState(true);
   return (
     <Box
       width="100%"
@@ -54,6 +56,9 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
           </Box>
         );
       })}
+      <Box>
+        <LangMenuButton open={openDrawer} />
+      </Box>
     </Box>
   );
 };
