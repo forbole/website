@@ -16,6 +16,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.8.0",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@tryghost/admin-api": "^1.13.0",

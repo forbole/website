@@ -24,6 +24,7 @@ import ExploreIcon from './icon_go.svg';
 import ExpandIcon from './icon_expand_more.svg';
 import InfoIcon from './icon_info.svg';
 import CopyIcon from './icon_copy.svg';
+import LangIcon from './icon_language.svg';
 import ForboleShadowIcon from './icon_forbole_shadow.svg';
 
 export {
@@ -53,5 +54,6 @@ export {
   ExpandIcon,
   InfoIcon,
   CopyIcon,
+  LangIcon,
   ForboleShadowIcon,
 };

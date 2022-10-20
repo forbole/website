@@ -5,10 +5,13 @@ import useTranslation from 'next-translate/useTranslation';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { MenuIcon } from '@components/icons';
-import { useTheme } from '@mui/material';
+import { Collapse, ListItem, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@src/hooks';
 import { navItems } from '../config';
+import LangMenuButton from '../lang_menu_button';
 
 interface NavMenuProps {
   link: string | null;
@@ -26,6 +29,10 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const [openDrawer, setOpenDrawer] = React.useState(true);
+  const handleDropdownClick = () => {
+    setOpenDrawer((prevState) => !prevState);
   };
   return (
     <div>
@@ -88,8 +95,10 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
               justifyContent: 'center',
               fontSize: theme.spacing(2),
               fontWeight: 700,
-              height: theme.spacing(8),
-              padding: theme.spacing(4),
+              // height: theme.spacing(8),
+              // padding: theme.spacing(0),
+              height: theme.spacing(5),
+              padding: theme.spacing(0, 3),
               '> a': {
                 width: '100%',
                 textAlign: 'left',
@@ -109,6 +118,65 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
             </Link>
           </MenuItem>
         ))}
+        <ListItem
+          onClick={handleDropdownClick}
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            fontSize: theme.spacing(2),
+            fontWeight: 700,
+            color: theme.palette.common.white,
+            // height: theme.spacing(8),
+            // padding: theme.spacing(0),
+            height: theme.spacing(5),
+            padding: theme.spacing(0, 3),
+            '> a': {
+              width: '100%',
+              textAlign: 'left',
+              // color:
+              //   item.link === link
+              //     ? theme.palette.custom.forbole.purple
+              //     : theme.palette.primary.main,
+              textDecoration: 'none',
+            },
+            '&:hover': {
+              backgroundColor: theme.palette.custom.forbole.indigo,
+            },
+          }}
+        >
+          {t('language')}
+          {openDrawer ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        </ListItem>
+        <Collapse in={openDrawer} timeout="auto" unmountOnExit>
+          <LangMenuButton open={openDrawer} />
+        </Collapse>
+        {/* <MenuItem
+          // key={i}
+          // selected={anchorEl}
+          // onClick={handleClose}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: theme.spacing(2),
+            fontWeight: 700,
+            height: theme.spacing(8),
+            padding: theme.spacing(4),
+            '> a': {
+              width: '100%',
+              textAlign: 'left',
+              // color:
+              //   item.link === link
+              //     ? theme.palette.custom.forbole.purple
+              //     : theme.palette.primary.main,
+              textDecoration: 'none',
+            },
+            '&:hover': {
+              backgroundColor: theme.palette.custom.forbole.indigo,
+            },
+          }}
+        >
+          <LangMenuButton />
+        </MenuItem> */}
       </Menu>
     </div>
   );
