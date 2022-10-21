@@ -30,7 +30,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const [openDrawer, setOpenDrawer] = React.useState(true);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
   const handleDropdownClick = () => {
     setOpenDrawer((prevState) => !prevState);
   };

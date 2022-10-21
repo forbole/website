@@ -1,7 +1,7 @@
 {
-    "title": "About Us",
-    "heading 1": "What we do?",
-    "heading 2": "Milestones & Awards",
+    "title": "關於我們",
+    "heading 1": "想了解我們?",
+    "heading 2": "里程碑及獎項",
     "grant": "Introducing Desmos Grant Programme",
     "grant desc": "We are open for applications to anyone who is excited about Desmos protocol and decentralized social networks.",
     "grant time": "Mar 2022",
@@ -35,10 +35,10 @@
     "forbole": "Forbole is Founded",
     "forbole desc": "Forbole Limited was founded in Hong Kong by Kwun Yeung and Terence Lam",
     "forbole time": "Oct 2017",
-    "intro 1": "We are blockchain validators, builders, contributors, and your trusted partner in the future of decentralization.",
-    "intro 2": "Founded in Hong Kong in 2017, Forbole [ˈfɔːbəl] is a pioneer in building blockchain solutions with a strong focus on user experience. Our goal is to make blockchain space more accessible to more people.",
-    "intro 3": "We provide enterprise grade staking services for over 60 blockchain networks and crypto asset management tools for more than 10 cryptocurrencies; we actively participate in communities and governance; we also build a sovereign blockchain for social network applications to encourage mass adoption of cryptos and blockchain technologies.",
-    "title 1": "Experienced Validators",
-    "title 2": "Crypto Management Tools",
-    "title 3": "Ecosystem Chain"
+    "intro 1": "我們是區塊鏈驗證人、建設者、貢獻者，是你在去中心化未來中的可靠伙伴。",
+    "intro 2": "創立於2017年，Forbole 是建設區塊鏈服務的先驅。我們重視用戶體驗，並以使區塊鏈更暢通易達為目標。",
+    "intro 3": "我們為超過60個區塊鏈網絡提供企業級的質押服務，並為超過25種加密貨幣提供加密資產管理工具。我們積極參與社群及管治，亦建立了一個專為支持去中心化社交網絡應用程式的區塊鏈，以促進加密貨幣及區塊鏈科技的普及。",
+    "title 1": "經驗豐富的驗證人",
+    "title 2": "加密資產管理工具",
+    "title 3": "生態區塊鏈"
 }
