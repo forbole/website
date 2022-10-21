@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 module.exports = {
-  locales: ['en'],
+  locales: ['en', 'zh'],
   defaultLocale: 'en',
   pages: {
     '*': ['common', 'blog', 'careers', 'staking'],

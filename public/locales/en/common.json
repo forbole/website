@@ -1,5 +1,6 @@
 {
-    "en": "ENG",
+    "en": "English",
+    "zh": "繁體中文",
     "hello world": "Hello World",
     "home": "Home",
     "mission": "Mission",
@@ -11,5 +12,6 @@
     "copyright": "Copyright © Forbole {{year}}",
     "tnc": "Terms & Conditions",
     "policy": "Privacy Policy",
-    "staking terms": "Staking Services Terms"
+    "staking terms": "Staking Services Terms",
+    "language": "Language"
 }

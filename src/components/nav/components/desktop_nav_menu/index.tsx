@@ -4,6 +4,7 @@ import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, useTheme } from '@mui/material';
 import { navItems } from '../config';
+import LangMenuButton from '../lang_menu_button';
 
 interface NavMenuProps {
   link: string | null;
@@ -54,6 +55,9 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
           </Box>
         );
       })}
+      <Box>
+        <LangMenuButton />
+      </Box>
     </Box>
   );
 };
