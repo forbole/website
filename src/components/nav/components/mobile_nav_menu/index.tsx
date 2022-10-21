@@ -88,15 +88,12 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
         {navItems.map((item, i) => (
           <MenuItem
             key={i}
-            // selected={anchorEl}
             onClick={handleClose}
             sx={{
               display: 'flex',
               justifyContent: 'center',
               fontSize: theme.spacing(2),
               fontWeight: 700,
-              // height: theme.spacing(8),
-              // padding: theme.spacing(0),
               height: theme.spacing(5),
               padding: theme.spacing(0, 3),
               '> a': {
@@ -126,17 +123,11 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
             fontSize: theme.spacing(2),
             fontWeight: 700,
             color: theme.palette.common.white,
-            // height: theme.spacing(8),
-            // padding: theme.spacing(0),
             height: theme.spacing(5),
             padding: theme.spacing(0, 3),
             '> a': {
               width: '100%',
               textAlign: 'left',
-              // color:
-              //   item.link === link
-              //     ? theme.palette.custom.forbole.purple
-              //     : theme.palette.primary.main,
               textDecoration: 'none',
             },
             '&:hover': {
@@ -148,35 +139,8 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
           {openDrawer ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </ListItem>
         <Collapse in={openDrawer} timeout="auto" unmountOnExit>
-          <LangMenuButton open={openDrawer} />
-        </Collapse>
-        {/* <MenuItem
-          // key={i}
-          // selected={anchorEl}
-          // onClick={handleClose}
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: theme.spacing(2),
-            fontWeight: 700,
-            height: theme.spacing(8),
-            padding: theme.spacing(4),
-            '> a': {
-              width: '100%',
-              textAlign: 'left',
-              // color:
-              //   item.link === link
-              //     ? theme.palette.custom.forbole.purple
-              //     : theme.palette.primary.main,
-              textDecoration: 'none',
-            },
-            '&:hover': {
-              backgroundColor: theme.palette.custom.forbole.indigo,
-            },
-          }}
-        >
           <LangMenuButton />
-        </MenuItem> */}
+        </Collapse>
       </Menu>
     </div>
   );

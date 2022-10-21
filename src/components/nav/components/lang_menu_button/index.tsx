@@ -15,13 +15,8 @@ import { useWindowDimensions } from '@src/hooks';
 import { LangIcon } from '@icons';
 import useStyles from './useStyles';
 
-interface LangMenuButtonProp {
-  open: boolean;
-}
-
-const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
+const LangMenuButton: React.FC = () => {
   const { t, lang } = useTranslation('common');
-  const { open } = props;
   const { locales, pathname, query } = useRouter();
   const styles = useStyles();
   const { windowDimensions } = useWindowDimensions();
@@ -45,18 +40,21 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
             onClick={(e) => setAnchor(e.currentTarget)}
             css={styles.navBarButton}
           >
-            <LangIcon />
+            <LangIcon
+              width={20}
+              height={20}
+              fill={theme.palette.common.white}
+            />
           </IconButton>
           <Menu
             anchorEl={anchor}
-            //   getContentAnchorEl={null}
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
+              vertical: 'bottom',
+              horizontal: 'right',
             }}
             transformOrigin={{
               vertical: 'top',
-              horizontal: 'center',
+              horizontal: 'right',
             }}
             keepMounted
             open={!!anchor}
@@ -65,15 +63,13 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
             MenuListProps={{
               'aria-labelledby': 'basic-button',
             }}
-            // anchorEl={anchorEl}s
-            // open={open}
-            // onClose={handleClose}
             PaperProps={{
               sx: {
                 backgroundImage: 'none',
                 borderRadius: theme.spacing(2.25),
                 width: theme.spacing(27.5),
-                left: `${width - width / 4}px!important` as any,
+                top: `${theme.spacing(9)} !important` as any,
+                right: `${width - width / 4}px!important` as any,
                 [theme.breakpoints.down('laptop')]: {
                   width: '70%',
                   top: '75% !important' as any,
@@ -102,10 +98,6 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
                       '> a': {
                         width: '100%',
                         textAlign: 'left',
-                        // color:
-                        //   item.link === link
-                        //     ? theme.palette.custom.forbole.purple
-                        //     : theme.palette.primary.main,
                         textDecoration: 'none',
                       },
                       '&:hover': {
@@ -122,45 +114,6 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
         </>
       ) : (
         <List component="div" disablePadding>
-          {/* <Menu
-        anchorEl={anchor}
-        //   getContentAnchorEl={null}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        keepMounted
-        // open={!!anchor}
-        onClose={onClose}
-        id="basic-menu"
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-        // anchorEl={anchorEl}
-        open={open}
-        // onClose={handleClose}
-        PaperProps={{
-          sx: {
-            backgroundImage: 'none',
-            borderRadius: theme.spacing(2.25),
-            width: theme.spacing(27.5),
-            left: `${width - width / 4}px!important` as any,
-            [theme.breakpoints.down('laptop')]: {
-              width: '70%',
-              top: '75% !important' as any,
-              bottom: '20px!important' as any,
-              left: `${width / 6}px!important` as any,
-              backgroundColor: '#1D1E22',
-              borderRadius: theme.spacing(2.25),
-              color: theme.palette.common.white,
-            },
-          },
-        }}
-      > */}
           {locales?.map((l) => (
             <div key={l}>
               <Link href={{ pathname, query }} locale={l} passHref>
@@ -177,10 +130,6 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
                     '> a': {
                       width: '100%',
                       textAlign: 'left',
-                      // color:
-                      //   item.link === link
-                      //     ? theme.palette.custom.forbole.purple
-                      //     : theme.palette.primary.main,
                       textDecoration: 'none',
                     },
                     '&:hover': {
@@ -193,7 +142,6 @@ const LangMenuButton: React.FC<LangMenuButtonProp> = (props: any) => {
               </Link>
             </div>
           ))}
-          {/* </Menu> */}
         </List>
       )}
     </>

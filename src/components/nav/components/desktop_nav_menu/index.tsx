@@ -13,7 +13,6 @@ interface NavMenuProps {
 const DesktopNavMenu = ({ link }: NavMenuProps) => {
   const { t } = useTranslation('common');
   const theme = useTheme();
-  const [openDrawer, setOpenDrawer] = React.useState(true);
   return (
     <Box
       width="100%"
@@ -57,7 +56,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
         );
       })}
       <Box>
-        <LangMenuButton open={openDrawer} />
+        <LangMenuButton />
       </Box>
     </Box>
   );
