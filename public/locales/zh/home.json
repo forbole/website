@@ -1,10 +1,9 @@
 {
     "hello world": "Hello World",
     "forbole": "建立自由、開放的元宇宙",
-    "description": "Forbole is a blockchain developer, validator, and contributor. Trusted, Stable, Global.",
+    "description": "Forbole致力開發去中心化科技基建。值得信賴、穩定、全球化。",
     "home": "首頁",
     "coBuildingInterchain": "CO-BUILDING THE INTERCHAIN",
-    "homeDescription": "We are blockchain validators, builders, contributors, and your trusted partner in the future of decentralization.",
     "title": "建立自由、開放 {{variable}} 的 {{variable}} 元宇宙",
     "titleD": "建立自由、開放的元宇宙"
 }

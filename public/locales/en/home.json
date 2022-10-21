@@ -1,10 +1,9 @@
 {
     "hello world": "Hello World",
     "forbole": "Building a free and open metaverse",
-    "description": "Forbole is a blockchain developer, validator, and contributor. Trusted, Stable, Global.",
+    "description": "Forbole empowers people by building decentralized infrastructure. Trusted, Stable, Global.",
     "home": "Home",
     "coBuildingInterchain": "CO-BUILDING THE INTERCHAIN",
-    "homeDescription": "We are blockchain validators, builders, contributors, and your trusted partner in the future of decentralization.",
     "title": "Building a free {{variable}} and {{variable}} open metaverse",
     "titleD": "Building a free and open metaverse"
 }
