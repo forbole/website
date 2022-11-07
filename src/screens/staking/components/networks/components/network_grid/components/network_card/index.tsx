@@ -89,7 +89,9 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
           {!!networkSummary.APY && (
             <Box>
               <Typography variant="h6">APY</Typography>
-              <Typography>{networkSummary.APY}</Typography>
+              <Typography>{`${Math.round(
+                networkSummary.APY * 100
+              )}%`}</Typography>
             </Box>
           )}
           {!!networkSummary.TVL && (

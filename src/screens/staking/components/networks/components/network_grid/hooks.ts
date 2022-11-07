@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useState, useMemo } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { getEachCosmosBondedToken } from '@graphql/queries/bondedToken';
+import { getEachCosmosBondedToken, getEachCosmosAPY } from '@graphql/queries';
 import { networkParams } from './config';
 
 export const useNetworkHook = () => {
@@ -9,6 +9,11 @@ export const useNetworkHook = () => {
   const { loading: bondedLoading, data: bondedData } = useQuery(
     gql`
       ${getEachCosmosBondedToken()}
+    `
+  );
+  const { loading: apyLoading, data: apyData } = useQuery(
+    gql`
+      ${getEachCosmosAPY()}
     `
   );
   useMemo(() => {
@@ -29,9 +34,28 @@ export const useNetworkHook = () => {
         return networks;
       });
     } else {
-      console.log('data laoding');
+      console.log('bonded data loading');
     }
-  }, [bondedData]);
+    if (!apyLoading) {
+      const { eachCosmosAPY } = apyData;
+      eachCosmosAPY.map((data: any) => {
+        const keys = Object.keys(networks);
+        // eslint-disable-next-line no-unused-expressions
+        keys.includes(data.metric.instance)
+          ? setNetworks((prev) => ({
+              ...prev,
+              [data.metric.instance]: {
+                ...networks[data.metric.instance],
+                APY: data.APY,
+              },
+            }))
+          : null;
+        return networks;
+      });
+    } else {
+      console.log('APY data loading');
+    }
+  }, [bondedData, apyData]);
   return {
     networks,
   };
