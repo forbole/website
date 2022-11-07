@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 import { useState, useMemo } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { getEachCosmosBondedToken, getEachCosmosAPY } from '@graphql/queries';
+import {
+  getEachCosmosBondedToken,
+  getEachCosmosAPY,
+  getEachCosmosTVL,
+} from '@graphql/queries';
 import { networkParams } from './config';
 
 export const useNetworkHook = () => {
@@ -14,6 +18,11 @@ export const useNetworkHook = () => {
   const { loading: apyLoading, data: apyData } = useQuery(
     gql`
       ${getEachCosmosAPY()}
+    `
+  );
+  const { loading: tvlLoading, data: tvlData } = useQuery(
+    gql`
+      ${getEachCosmosTVL()}
     `
   );
   useMemo(() => {
@@ -55,7 +64,26 @@ export const useNetworkHook = () => {
     } else {
       console.log('APY data loading');
     }
-  }, [bondedData, apyData]);
+    if (!tvlLoading) {
+      const { eachCosmosTVL } = tvlData;
+      eachCosmosTVL.map((data: any) => {
+        const keys = Object.keys(networks);
+        // eslint-disable-next-line no-unused-expressions
+        keys.includes(data.metric.instance)
+          ? setNetworks((prev) => ({
+              ...prev,
+              [data.metric.instance]: {
+                ...networks[data.metric.instance],
+                TVL: data.TVL,
+              },
+            }))
+          : null;
+        return networks;
+      });
+    } else {
+      console.log('TVL data loading');
+    }
+  }, [bondedData, apyData, tvlData]);
   return {
     networks,
   };
