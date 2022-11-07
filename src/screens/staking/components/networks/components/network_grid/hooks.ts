@@ -6,13 +6,13 @@ import { networkParams } from './config';
 
 export const useNetworkHook = () => {
   const [networks, setNetworks] = useState(networkParams);
-  const { loading, data: bondedData } = useQuery(
+  const { loading: bondedLoading, data: bondedData } = useQuery(
     gql`
       ${getEachCosmosBondedToken()}
     `
   );
   useMemo(() => {
-    if (!loading) {
+    if (!bondedLoading) {
       const { eachCosmosBondedToken } = bondedData;
       eachCosmosBondedToken.map((data: any) => {
         const keys = Object.keys(networks);
