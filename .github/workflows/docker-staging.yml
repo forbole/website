@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
 jobs:
   Build-and-Publish:
     runs-on: ubuntu-latest
@@ -15,8 +15,8 @@ jobs:
         id: prep
         run: |
           BRANCH=${GITHUB_REF#refs/heads/}
-          if [[ $GITHUB_REF == refs/heads/master ]]; then
-            BRANCH="master"
+          if [[ $GITHUB_REF == refs/heads/main ]]; then
+            BRANCH="main"
           elif [[ $GITHUB_REF == refs/pull/* ]]; then
             BRANCH="build-test"
           fi
