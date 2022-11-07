@@ -35,7 +35,7 @@ export const useStatsHook = () => {
       );
     }
     return stats;
-  }, [totalTVL]);
+  }, [totalTVL, totalTVLLoading]);
 
   useMemo(() => {
     if (!cosmosUsersCountLoading) {
@@ -54,7 +54,7 @@ export const useStatsHook = () => {
       );
     }
     return stats;
-  }, [cosmosUsersCountData]);
+  }, [cosmosUsersCountData, cosmosUsersCountLoading]);
 
   return stats;
 };

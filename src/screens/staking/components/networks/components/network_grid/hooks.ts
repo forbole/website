@@ -45,7 +45,7 @@ export const useNetworkHook = () => {
       });
     }
     return networks;
-  }, [bondedData]);
+  }, [bondedData, bondedLoading]);
 
   useMemo(() => {
     if (!apyLoading) {
@@ -65,7 +65,7 @@ export const useNetworkHook = () => {
       });
     }
     return networks;
-  }, [apyData]);
+  }, [apyData, apyLoading]);
 
   useMemo(() => {
     if (!tvlLoading) {
@@ -85,7 +85,7 @@ export const useNetworkHook = () => {
       });
     }
     return networks;
-  }, [tvlData]);
+  }, [tvlData, tvlLoading]);
 
   return {
     networks,
