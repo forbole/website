@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-console */
 import { useState, useMemo } from 'react';
 import { useQuery, gql } from '@apollo/client';
@@ -25,6 +26,7 @@ export const useNetworkHook = () => {
       ${getEachCosmosTVL()}
     `
   );
+
   useMemo(() => {
     if (!bondedLoading) {
       const { eachCosmosBondedToken } = bondedData;
@@ -40,11 +42,13 @@ export const useNetworkHook = () => {
               },
             }))
           : null;
-        return networks;
       });
     } else {
       console.log('bonded data loading');
     }
+  }, [bondedData]);
+
+  useMemo(() => {
     if (!apyLoading) {
       const { eachCosmosAPY } = apyData;
       eachCosmosAPY.map((data: any) => {
@@ -59,11 +63,13 @@ export const useNetworkHook = () => {
               },
             }))
           : null;
-        return networks;
       });
     } else {
       console.log('APY data loading');
     }
+  }, [apyData]);
+
+  useMemo(() => {
     if (!tvlLoading) {
       const { eachCosmosTVL } = tvlData;
       eachCosmosTVL.map((data: any) => {
@@ -78,12 +84,11 @@ export const useNetworkHook = () => {
               },
             }))
           : null;
-        return networks;
       });
     } else {
       console.log('TVL data loading');
     }
-  }, [bondedData, apyData, tvlData]);
+  }, [tvlData]);
   return {
     networks,
   };
