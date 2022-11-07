@@ -43,9 +43,8 @@ export const useNetworkHook = () => {
             }))
           : null;
       });
-    } else {
-      console.log('bonded data loading');
     }
+    return networks;
   }, [bondedData]);
 
   useMemo(() => {
@@ -64,9 +63,8 @@ export const useNetworkHook = () => {
             }))
           : null;
       });
-    } else {
-      console.log('APY data loading');
     }
+    return networks;
   }, [apyData]);
 
   useMemo(() => {
@@ -85,10 +83,10 @@ export const useNetworkHook = () => {
             }))
           : null;
       });
-    } else {
-      console.log('TVL data loading');
     }
+    return networks;
   }, [tvlData]);
+
   return {
     networks,
   };

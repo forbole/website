@@ -1,5 +1,12 @@
 import { getEachCosmosBondedToken } from './bondedToken';
 import { getEachCosmosAPY } from './apy';
-import { getEachCosmosTVL } from './tvl';
+import { getEachCosmosTVL, getAllCosmosTVL } from './tvl';
+import { getCosmosUsersCount } from './usersCount';
 
-export { getEachCosmosBondedToken, getEachCosmosAPY, getEachCosmosTVL };
+export {
+  getEachCosmosBondedToken,
+  getEachCosmosAPY,
+  getEachCosmosTVL,
+  getCosmosUsersCount,
+  getAllCosmosTVL,
+};

@@ -1,7 +1,7 @@
 export const statsItems = [
   {
     title: 'full tvl',
-    stats: 598679437123,
+    stats: 0,
   },
   {
     title: 'users staking',
