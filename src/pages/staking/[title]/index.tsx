@@ -14,10 +14,14 @@ const StakingDetailsPage: NextPage = (props: any) => {
   return <NetworkGuides {...props} />;
 };
 
-export async function getServerSideProps(context: { query: any }) {
+export async function getServerSideProps(context: { query: any; res: any }) {
   let formattedSidePosts = [];
   try {
-    const { query } = context;
+    const { query, res } = context;
+    res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=10, stale-while-revalidate=59'
+    );
     const { title } = query;
     const post = await getSinglePost(title);
     const [sidePosts] = await Promise.all([

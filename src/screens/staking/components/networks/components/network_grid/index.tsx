@@ -1,10 +1,12 @@
+/* eslint-disable no-bitwise */
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { LayoutGroup } from 'framer-motion';
 import { getNetworkInfo } from '@src/utils/network_info';
 import { NetworkCard } from './components';
-import { networkKeys, networkParams } from './config';
+import { networkKeys } from './config';
 import useStyles from './useStyles';
+import { useNetworkHook } from './hooks';
 
 const NetworkGrid = () => {
   const styles = useStyles();
@@ -12,6 +14,7 @@ const NetworkGrid = () => {
     getNetworkInfo(x)
   );
   const [showMobilePopover, setShowMobilePopover] = useState('');
+  const { networks } = useNetworkHook();
 
   return (
     <Box css={styles.root}>
@@ -22,7 +25,7 @@ const NetworkGrid = () => {
               <NetworkCard
                 key={network.name}
                 network={network}
-                networkSummary={networkParams[network.key]}
+                networkSummary={networks[network.graphql]}
                 showMobilePopover={showMobilePopover}
                 setShowMobilePopover={setShowMobilePopover}
               />

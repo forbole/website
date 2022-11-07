@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 declare module '*.svg';
 
 interface Calculator {
@@ -7,7 +8,6 @@ interface Calculator {
   stakingParams: string;
 }
 
-// eslint-disable-next-line no-unused-vars
 interface Network {
   image: string;
   name: string;
@@ -19,6 +19,19 @@ interface Network {
   bigDipper?: string;
   delegate: string;
   calculator?: Calculator;
+}
+
+interface MetricProps {
+  chain_id: string;
+  instance: string;
+  denom?: string;
+  validator_address?: string;
+  __typename: string;
+}
+
+interface BondedProps {
+  bondedToken: string;
+  metric: MetricProps;
 }
 
 // interface Network {
