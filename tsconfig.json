@@ -65,6 +65,9 @@
       ],
       "@models": [
         "src/models"
+      ],
+      "@graphql/*": [
+        "graphql/*"
       ]
     }
   },

@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unstable-nested-components */
 import React, {
@@ -76,7 +77,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
           />
         </Box>
       </Box>
-      {networkSummary === undefined && <LinearProgress color="secondary" />}
+      {!networkSummary && <LinearProgress color="secondary" />}
       {!!networkSummary && (
         <Box onClickCapture={handleMobilPopoverClick}>
           {!!networkSummary.bonded && (
