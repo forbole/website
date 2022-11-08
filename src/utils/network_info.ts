@@ -34,6 +34,7 @@ const logos: IStringIndex = {
   agoric: {
     image: '/images/network/agoric.png',
     name: 'Agoric',
+    denom: 'bld',
     key: 'agoric',
     graphql: 'agoric',
     delegate:
@@ -82,6 +83,7 @@ const logos: IStringIndex = {
   bitsong: {
     image: '/images/network/bitsong.png',
     name: 'BitSong',
+    denom: 'btsg',
     key: 'bitsong',
     graphql: 'bitsong',
     delegate: 'https://wallet.bitsong.io/#/authentication/login',
@@ -89,6 +91,7 @@ const logos: IStringIndex = {
   'crypto.org': {
     image: '/images/network/crypto_org.png',
     name: 'Crypto.org',
+    denom: 'cro',
     key: 'crypto-org',
     graphql: 'cro',
     delegate:
@@ -98,6 +101,7 @@ const logos: IStringIndex = {
   desmos: {
     image: '/images/network/desmos.png',
     name: 'Desmos',
+    denom: 'dsm',
     key: 'desmos',
     graphql: 'desmos',
     bigDipper: 'https://morpheus.desmos.network/',
@@ -105,6 +109,7 @@ const logos: IStringIndex = {
   ['e-money']: {
     image: '/images/network/e_money.png',
     name: 'eMoney',
+    denom: 'ngm',
     key: 'e-money',
     graphql: 'emoney',
     color: '#1e5877',
@@ -123,6 +128,7 @@ const logos: IStringIndex = {
   evmos: {
     image: '/images/network/evmos.png',
     name: 'Evmos',
+    denom: 'evmos',
     key: 'evmos',
     graphql: 'evmos',
     delegate: 'https://app.evmos.org/staking',
@@ -130,6 +136,7 @@ const logos: IStringIndex = {
   ['fetch-ai']: {
     image: '/images/network/fetch_ai.png',
     name: 'Fetch.ai',
+    denom: 'fet',
     key: 'fetch-ai',
     graphql: 'fetchai',
     delegate:
@@ -146,20 +153,30 @@ const logos: IStringIndex = {
   axelar: {
     image: '/images/network/axelar.png',
     name: 'Axelar',
+    denom: 'axl',
     key: 'axelar',
     graphql: 'axelar',
   },
   bitcanna: {
     image: '/images/network/bitcanna.png',
     name: 'Bitcanna',
+    denom: 'bcna',
     key: 'bitcanna',
     graphql: 'bitcanna',
   },
   cheqd: {
     image: '/images/network/cheqd.png',
     name: 'Cheqd',
+    denom: 'cheq',
     key: 'cheqd',
     graphql: 'cheqd',
+  },
+  chihuahua: {
+    image: '/images/network/chihuahua.png',
+    name: 'Chihuahua',
+    denom: 'huahua',
+    key: 'chihuahua',
+    graphql: 'chihuahua',
   },
 };
 
