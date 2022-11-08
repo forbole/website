@@ -207,6 +207,13 @@ const logos: IStringIndex = {
     key: 'ixo',
     graphql: 'ixo',
   },
+  injective: {
+    image: '/images/network/injective.png',
+    name: 'Injective',
+    denom: 'inj',
+    key: 'injective',
+    graphql: 'injective',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
