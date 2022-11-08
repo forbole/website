@@ -291,6 +291,13 @@ const logos: IStringIndex = {
     key: 'shentu',
     graphql: 'shentu',
   },
+  sifchain: {
+    image: '/images/network/sifchain.png',
+    name: 'Sifchain',
+    denom: 'rowan',
+    key: 'sifchain',
+    graphql: 'sifchain',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
