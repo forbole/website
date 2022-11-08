@@ -149,6 +149,12 @@ const logos: IStringIndex = {
     key: 'axelar',
     graphql: 'axelar',
   },
+  bitcanna: {
+    image: '/images/network/bitcanna.png',
+    name: 'Bitcanna',
+    key: 'bitcanna',
+    graphql: 'bitcanna',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

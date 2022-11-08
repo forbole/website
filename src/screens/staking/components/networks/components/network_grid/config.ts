@@ -21,6 +21,7 @@ export const networkParams: NetworkProps = {
   evmos: { bonded: 0, APY: 0, TVL: 0 },
   comdex: { bonded: 0, APY: 0, TVL: 0 },
   axelar: { bonded: 0, APY: 0, TVL: 0 },
+  bitcanna: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -33,6 +34,7 @@ export const networkKeys = [
   'evmos',
   'comdex',
   'axelar',
+  'bitcanna',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
