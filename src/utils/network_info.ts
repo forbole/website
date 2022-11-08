@@ -298,6 +298,13 @@ const logos: IStringIndex = {
     key: 'sifchain',
     graphql: 'sifchain',
   },
+  sommelier: {
+    image: '/images/network/sommelier.png',
+    name: 'Sommelier',
+    denom: 'somm',
+    key: 'sommelier',
+    graphql: 'sommelier',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

@@ -41,6 +41,7 @@ export const networkParams: NetworkProps = {
   sentinelhub: { bonded: 0, APY: 0, TVL: 0 },
   shentu: { bonded: 0, APY: 0, TVL: 0 },
   sifchain: { bonded: 0, APY: 0, TVL: 0 },
+  sommelier: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -73,6 +74,7 @@ export const networkKeys = [
   'sentinelhub',
   'shentu',
   'sifchain',
+  'sommelier',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
