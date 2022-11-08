@@ -249,6 +249,13 @@ const logos: IStringIndex = {
     key: 'assetmantle',
     graphql: 'assetmantle',
   },
+  osmosis: {
+    image: '/images/network/osmosis.png',
+    name: 'Osmosis',
+    denom: 'osmo',
+    key: 'osmosis',
+    graphql: 'osmosis',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
