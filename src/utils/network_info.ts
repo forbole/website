@@ -256,6 +256,13 @@ const logos: IStringIndex = {
     key: 'osmosis',
     graphql: 'osmosis',
   },
+  provenance: {
+    image: '/images/network/provenance.png',
+    name: 'Provenance',
+    denom: 'hash',
+    key: 'provenance',
+    graphql: 'provenance',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
