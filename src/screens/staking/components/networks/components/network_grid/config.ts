@@ -37,6 +37,7 @@ export const networkParams: NetworkProps = {
   osmosis: { bonded: 0, APY: 0, TVL: 0 },
   provenance: { bonded: 0, APY: 0, TVL: 0 },
   regen: { bonded: 0, APY: 0, TVL: 0 },
+  secret: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -65,6 +66,7 @@ export const networkKeys = [
   'osmosis',
   'provenance',
   'regen',
+  'secret',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',

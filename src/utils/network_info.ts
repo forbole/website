@@ -270,6 +270,13 @@ const logos: IStringIndex = {
     key: 'regen',
     graphql: 'regen',
   },
+  secret: {
+    image: '/images/network/secret.png',
+    name: 'Secret',
+    denom: 'scrt',
+    key: 'secret',
+    graphql: 'secret',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
