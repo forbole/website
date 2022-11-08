@@ -186,6 +186,13 @@ const logos: IStringIndex = {
     key: 'terra_classic',
     graphql: 'terra_classic',
   },
+  persistence: {
+    image: '/images/network/persistence.png',
+    name: 'Persistence',
+    denom: 'xprt',
+    key: 'persistence',
+    graphql: 'persistence',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

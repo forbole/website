@@ -25,6 +25,7 @@ export const networkParams: NetworkProps = {
   cheqd: { bonded: 0, APY: 0, TVL: 0 },
   chihuahua: { bonded: 0, APY: 0, TVL: 0 },
   terra_classic: { bonded: 0, APY: 0, TVL: 0 },
+  persistence: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -41,6 +42,7 @@ export const networkKeys = [
   'cheqd',
   'chihuahua',
   'terra_classic',
+  'persistence',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
