@@ -235,6 +235,13 @@ const logos: IStringIndex = {
     key: 'band',
     graphql: 'band',
   },
+  likecoin: {
+    image: '/images/network/likecoin.png',
+    name: 'Likecoin',
+    denom: 'like',
+    key: 'likecoin',
+    graphql: 'likecoin',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
