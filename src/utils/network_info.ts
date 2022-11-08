@@ -305,6 +305,13 @@ const logos: IStringIndex = {
     key: 'sommelier',
     graphql: 'sommelier',
   },
+  stafihub: {
+    image: '/images/network/stafihub.png',
+    name: 'Stafihub',
+    denom: 'fis',
+    key: 'stafihub',
+    graphql: 'stafihub',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
