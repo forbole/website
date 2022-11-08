@@ -214,6 +214,13 @@ const logos: IStringIndex = {
     key: 'injective',
     graphql: 'injective',
   },
+  juno: {
+    image: '/images/network/juno.png',
+    name: 'Juno',
+    denom: 'juno',
+    key: 'juno',
+    graphql: 'juno',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

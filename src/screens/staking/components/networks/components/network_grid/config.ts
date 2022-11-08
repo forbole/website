@@ -29,6 +29,7 @@ export const networkParams: NetworkProps = {
   crescent: { bonded: 0, APY: 0, TVL: 0 },
   ixo: { bonded: 0, APY: 0, TVL: 0 },
   injective: { bonded: 0, APY: 0, TVL: 0 },
+  juno: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -49,6 +50,7 @@ export const networkKeys = [
   'crescent',
   'ixo',
   'injective',
+  'juno',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
