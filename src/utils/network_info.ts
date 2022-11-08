@@ -200,6 +200,13 @@ const logos: IStringIndex = {
     key: 'crescent',
     graphql: 'crescent',
   },
+  ixo: {
+    image: '/images/network/ixo.png',
+    name: 'ixo',
+    denom: 'ixo',
+    key: 'ixo',
+    graphql: 'ixo',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

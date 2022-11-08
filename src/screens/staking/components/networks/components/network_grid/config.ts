@@ -27,6 +27,7 @@ export const networkParams: NetworkProps = {
   terra_classic: { bonded: 0, APY: 0, TVL: 0 },
   persistence: { bonded: 0, APY: 0, TVL: 0 },
   crescent: { bonded: 0, APY: 0, TVL: 0 },
+  ixo: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -45,6 +46,7 @@ export const networkKeys = [
   'terra_classic',
   'persistence',
   'crescent',
+  'ixo',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
