@@ -193,6 +193,13 @@ const logos: IStringIndex = {
     key: 'persistence',
     graphql: 'persistence',
   },
+  crescent: {
+    image: '/images/network/crescent.png',
+    name: 'Crescent',
+    denom: 'cre',
+    key: 'crescent',
+    graphql: 'crescent',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
