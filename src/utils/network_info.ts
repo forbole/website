@@ -146,6 +146,7 @@ const logos: IStringIndex = {
   comdex: {
     image: '/images/network/comdex.png',
     name: 'Comdex',
+    denom: 'cmdx',
     key: 'comdex',
     graphql: 'comdex',
     address: 'comdexvaloper1e4wjh48ks5j5d9702d35q360ffmf3jj2xpuf3f',
@@ -177,6 +178,13 @@ const logos: IStringIndex = {
     denom: 'huahua',
     key: 'chihuahua',
     graphql: 'chihuahua',
+  },
+  ['terra_classic']: {
+    image: '/images/network/terra_classic.png',
+    name: 'Terra Classic',
+    denom: 'LUNC',
+    key: 'terra_classic',
+    graphql: 'terra_classic',
   },
 };
 

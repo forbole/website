@@ -24,6 +24,7 @@ export const networkParams: NetworkProps = {
   bitcanna: { bonded: 0, APY: 0, TVL: 0 },
   cheqd: { bonded: 0, APY: 0, TVL: 0 },
   chihuahua: { bonded: 0, APY: 0, TVL: 0 },
+  terra_classic: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -39,6 +40,7 @@ export const networkKeys = [
   'bitcanna',
   'cheqd',
   'chihuahua',
+  'terra_classic',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',

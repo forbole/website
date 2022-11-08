@@ -82,7 +82,9 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         <Box onClickCapture={handleMobilPopoverClick}>
           {!!networkSummary.bonded && (
             <Box>
-              <Typography variant="h6">{network.name}</Typography>
+              <Typography variant="h6">
+                {network.denom?.toUpperCase()}
+              </Typography>
               <Typography>{convertToMoney(networkSummary.bonded)}</Typography>
             </Box>
           )}
