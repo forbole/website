@@ -263,6 +263,13 @@ const logos: IStringIndex = {
     key: 'provenance',
     graphql: 'provenance',
   },
+  regen: {
+    image: '/images/network/regen.png',
+    name: 'Regen',
+    denom: 'regen',
+    key: 'regen',
+    graphql: 'regen',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
