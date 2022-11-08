@@ -277,6 +277,13 @@ const logos: IStringIndex = {
     key: 'secret',
     graphql: 'secret',
   },
+  sentinelhub: {
+    image: '/images/network/sentinelhub.png',
+    name: 'Sentinel',
+    denom: 'dvpn',
+    key: 'sentinelhub',
+    graphql: 'sentinelhub',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
