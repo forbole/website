@@ -43,6 +43,7 @@ export const networkParams: NetworkProps = {
   sifchain: { bonded: 0, APY: 0, TVL: 0 },
   sommelier: { bonded: 0, APY: 0, TVL: 0 },
   stafihub: { bonded: 0, APY: 0, TVL: 0 },
+  stride: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -77,6 +78,7 @@ export const networkKeys = [
   'sifchain',
   'sommelier',
   'stafihub',
+  'stride',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
