@@ -155,6 +155,12 @@ const logos: IStringIndex = {
     key: 'bitcanna',
     graphql: 'bitcanna',
   },
+  cheqd: {
+    image: '/images/network/cheqd.png',
+    name: 'Cheqd',
+    key: 'cheqd',
+    graphql: 'cheqd',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

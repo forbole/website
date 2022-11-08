@@ -22,6 +22,7 @@ export const networkParams: NetworkProps = {
   comdex: { bonded: 0, APY: 0, TVL: 0 },
   axelar: { bonded: 0, APY: 0, TVL: 0 },
   bitcanna: { bonded: 0, APY: 0, TVL: 0 },
+  cheqd: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -35,6 +36,7 @@ export const networkKeys = [
   'comdex',
   'axelar',
   'bitcanna',
+  'cheqd',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
