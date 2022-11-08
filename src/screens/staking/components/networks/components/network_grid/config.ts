@@ -39,6 +39,7 @@ export const networkParams: NetworkProps = {
   regen: { bonded: 0, APY: 0, TVL: 0 },
   secret: { bonded: 0, APY: 0, TVL: 0 },
   sentinelhub: { bonded: 0, APY: 0, TVL: 0 },
+  shentu: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -69,6 +70,7 @@ export const networkKeys = [
   'regen',
   'secret',
   'sentinelhub',
+  'shentu',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',

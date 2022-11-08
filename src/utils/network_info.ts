@@ -284,6 +284,13 @@ const logos: IStringIndex = {
     key: 'sentinelhub',
     graphql: 'sentinelhub',
   },
+  shentu: {
+    image: '/images/network/shentu.png',
+    name: 'Shentu',
+    denom: 'ctk',
+    key: 'shentu',
+    graphql: 'shentu',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
