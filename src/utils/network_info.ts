@@ -143,6 +143,12 @@ const logos: IStringIndex = {
     graphql: 'comdex',
     address: 'comdexvaloper1e4wjh48ks5j5d9702d35q360ffmf3jj2xpuf3f',
   },
+  axelar: {
+    image: '/images/network/axelar.png',
+    name: 'Axelar',
+    key: 'axelar',
+    graphql: 'axelar',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
