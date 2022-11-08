@@ -20,6 +20,7 @@ export const networkParams: NetworkProps = {
   cro: { bonded: 0, APY: 0, TVL: 0 },
   evmos: { bonded: 0, APY: 0, TVL: 0 },
   comdex: { bonded: 0, APY: 0, TVL: 0 },
+  axelar: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -31,6 +32,7 @@ export const networkKeys = [
   'crypto.org',
   'evmos',
   'comdex',
+  'axelar',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
