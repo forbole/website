@@ -242,6 +242,13 @@ const logos: IStringIndex = {
     key: 'likecoin',
     graphql: 'likecoin',
   },
+  assetmantle: {
+    image: '/images/network/assetmantle.png',
+    name: 'Assetmantle',
+    denom: 'mntl',
+    key: 'assetmantle',
+    graphql: 'assetmantle',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

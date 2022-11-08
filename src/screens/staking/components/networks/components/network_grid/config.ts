@@ -33,6 +33,7 @@ export const networkParams: NetworkProps = {
   kava: { bonded: 0, APY: 0, TVL: 0 },
   band: { bonded: 0, APY: 0, TVL: 0 },
   likecoin: { bonded: 0, APY: 0, TVL: 0 },
+  assetmantle: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const networkKeys = [
@@ -57,6 +58,7 @@ export const networkKeys = [
   'kava',
   'band',
   'likecoin',
+  'assetmantle',
   // bonded data not available:
   // 'band-protocol',
   // 'cosmos',
