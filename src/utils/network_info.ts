@@ -228,6 +228,13 @@ const logos: IStringIndex = {
     key: 'kava',
     graphql: 'kava',
   },
+  band: {
+    image: '/images/network/band_protocol.png',
+    name: 'Band',
+    denom: 'band',
+    key: 'band',
+    graphql: 'band',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
