@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { init } from '@socialgouv/matomo-next';
 import createEmotionCache from '../../misc/createEmotionCache';
 import InnerApp from './innerApp';
 
@@ -20,8 +21,17 @@ interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
+const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
+const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
+
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  React.useEffect(() => {
+    init({
+      url: MATOMO_URL,
+      siteId: MATOMO_SITE_ID,
+    });
+  }, []);
   return (
     <RecoilRoot>
       <CacheProvider value={emotionCache}>
