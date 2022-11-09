@@ -72,6 +72,6 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",  "tests/utils/mock_i18n.js",
-    "tests/utils/mock_apollo_provider.tss"],
+    "tests/utils/mock_apollo_provider.tss", "environment.d.ts"],
   "exclude": ["node_modules"]
 }
