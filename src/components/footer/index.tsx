@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
-import React from 'react';
 import { Box, useTheme } from '@mui/material';
+import useTranslation from 'next-translate/useTranslation';
 import { useWindowDimensions } from '@src/hooks';
 import { SocialMedia, FooterItems } from './components';
 import { FooterProps } from './types';
@@ -9,6 +9,7 @@ const Footer = ({ staking }: FooterProps) => {
   const theme = useTheme();
   const { windowDimensions } = useWindowDimensions();
   const { width } = windowDimensions;
+  const { t } = useTranslation('common');
   return (
     <Box
       sx={{
@@ -46,7 +47,7 @@ const Footer = ({ staking }: FooterProps) => {
             : 'url(/images/assets/footer_desktop2.svg) bottom',
           backgroundPosition: '0 100%',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: '100%',
+          backgroundSize: '130%',
           minHeight: '367px',
           display: 'flex',
           justifyContent: 'center',
@@ -78,15 +79,31 @@ const Footer = ({ staking }: FooterProps) => {
             background: 'transparent',
             display: 'flex',
             flexDirection: 'column',
+            '& a': {
+              color: theme.palette.common.white,
+              textDecoration: 'none',
+              margin: 'auto',
+              padding: theme.spacing(3, 0, 0, 0),
+              [theme.breakpoints.up('laptop')]: {
+                padding: theme.spacing(0, 0, 3, 0),
+              },
+            },
             [theme.breakpoints.up('laptop')]: {
-              flexDirection: 'row',
+              flexDirection: 'column',
               justifyContent: 'space-between',
               alignItems: 'center',
-              padding: theme.spacing(0, 2, 5, 2),
+              padding: theme.spacing(0, 2, 2.5, 2),
             },
           }}
         >
           <SocialMedia staking={staking || undefined} />
+          <a
+            href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2"
+            rel="noreferrer"
+            target="_blank"
+          >
+            {t('brand guide')}
+          </a>
           <FooterItems staking={staking || undefined} />
         </Box>
       </Box>
