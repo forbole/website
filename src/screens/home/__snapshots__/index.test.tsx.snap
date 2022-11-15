@@ -116,7 +116,7 @@ exports[`screen: Home matches snapshot 1`] = `
       <p
         className="MuiTypography-root MuiTypography-body1 css-8tvsb-MuiTypography-root"
       >
-        titleD
+        title
       </p>
       <div
         className="MuiBox-root css-10ky3wd"
