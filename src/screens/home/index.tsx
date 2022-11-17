@@ -18,8 +18,8 @@ const Home = () => {
       navLink="/"
       title={t('forbole')}
       description={t('description')}
-      image="/images/assets/Facebook-Forbole.png"
-      twitterImage="/images/assets/Twitter-Forbole.png"
+      image="/images/assets/website-preview.png"
+      twitterImage="/images/assets/website-preview.png"
       footer
       homeAnimation
     >
