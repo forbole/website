@@ -35,6 +35,8 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
     setShowMobilePopover,
   } = props;
 
+  console.log('apy', network, networkSummary.APY, typeof networkSummary.APY);
+
   /* Using framer-motion to animate the network box. */
   const ref = React.useRef(null);
 
@@ -91,9 +93,13 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
           {!!networkSummary.APY && (
             <Box>
               <Typography variant="h6">APY</Typography>
-              <Typography>{`${Math.round(
-                networkSummary.APY * 100
-              )}%`}</Typography>
+              {networkSummary.APY <= 0 ? (
+                <Typography>-%</Typography>
+              ) : (
+                <Typography>{`${Math.round(
+                  networkSummary.APY * 100
+                )}%`}</Typography>
+              )}
             </Box>
           )}
           {!!networkSummary.TVL && (
