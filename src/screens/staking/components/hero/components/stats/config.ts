@@ -1,11 +1,11 @@
 export const statsItems = [
   {
     title: 'full tvl',
-    stats: 0,
+    stats: '-',
   },
   {
     title: 'users staking',
-    stats: 19511,
+    stats: '-',
   },
   {
     title: 'supporting networks',
