@@ -55,8 +55,8 @@ const ProductCard = (props: ProductCardProps) => {
           //   paddingBottom: theme.spacing(3),
           textAlign: 'left',
           [theme.breakpoints.up('laptop')]: {
-            fontSize: theme.spacing(4),
-            width: '60%',
+            fontSize: theme.spacing(3.5),
+            width: '100%',
             padding: theme.spacing(2.5, 0),
           },
         }}
