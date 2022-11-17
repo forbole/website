@@ -94,7 +94,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
             <Box>
               <Typography variant="h6">APY</Typography>
               {networkSummary.APY <= 0 ? (
-                <Typography>-%</Typography>
+                <Typography> - %</Typography>
               ) : (
                 <Typography>{`${Math.round(
                   networkSummary.APY * 100
