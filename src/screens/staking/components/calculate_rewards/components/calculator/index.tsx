@@ -16,8 +16,6 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { getNetworkInfo } from '@src/utils/network_info';
 import { InfoIcon, DropDownIcon } from '@icons';
 import { calculatorKeys } from './config';

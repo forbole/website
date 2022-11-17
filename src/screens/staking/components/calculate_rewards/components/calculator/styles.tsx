@@ -33,6 +33,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       border: 'none',
       borderColor: 'transparent',
     },
+    '& .MuiSelect-icon': {
+      margin: theme.spacing(0.5, 2.5, 0, 0),
+    },
     [theme.breakpoints.up('laptop')]: {
       //   gridColumn: '1 / span 5',
       //   gridRow: '2 / span 1',
