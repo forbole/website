@@ -23,7 +23,6 @@ export const convertWithDecimal = (num:number | string) => {
 }
 
 export const moneyToInt = (money: string) => { 
-  //console.log(money, typeof money)
   if (!money || money === "boolean" ) {
     return 0;
   } else {

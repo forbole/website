@@ -39,7 +39,6 @@ export const useStatsHook = () => {
 
   useMemo(() => {
     if (!cosmosUsersCountLoading) {
-      console.log('total tvl', cosmosUsersCountData);
       const { cosmosUsersCount } = cosmosUsersCountData;
       statsItems.map((item, i) =>
         item.title === 'users staking'

@@ -35,8 +35,6 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
     setShowMobilePopover,
   } = props;
 
-  console.log('apy', network, networkSummary.APY, typeof networkSummary.APY);
-
   /* Using framer-motion to animate the network box. */
   const ref = React.useRef(null);
 
