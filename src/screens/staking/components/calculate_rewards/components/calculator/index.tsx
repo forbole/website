@@ -16,8 +16,10 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { getNetworkInfo } from '@src/utils/network_info';
-import { InfoIcon } from '@icons';
+import { InfoIcon, DropDownIcon } from '@icons';
 import { calculatorKeys } from './config';
 import { styles } from './styles';
 
@@ -136,6 +138,7 @@ const Calculator = (props: any) => {
               },
             }}
             onChange={(e) => setSelectedToken(e.target.value)}
+            IconComponent={DropDownIcon}
           >
             {networkData.map((network, i) => (
               <MenuItem key={i} value={network}>

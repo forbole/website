@@ -26,6 +26,7 @@ import InfoIcon from './icon_info.svg';
 import CopyIcon from './icon_copy.svg';
 import LangIcon from './icon_language.svg';
 import ForboleShadowIcon from './icon_forbole_shadow.svg';
+import DropDownIcon from './icon_dropdown.svg';
 
 export {
   Forbole,
@@ -56,4 +57,5 @@ export {
   CopyIcon,
   LangIcon,
   ForboleShadowIcon,
+  DropDownIcon,
 };
