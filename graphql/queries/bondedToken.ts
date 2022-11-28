@@ -45,3 +45,15 @@ export const getElrondBondedToken = () => `
         }
     }
 `;
+
+export const getOasisBondedToken = () => `
+    query OasisBondedToken {
+        oasisBondedToken {
+        metric {
+            instance
+            validator_address
+        }
+        bondedToken
+        }
+    }
+`;

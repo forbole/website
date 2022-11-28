@@ -42,3 +42,14 @@ export const getElrondTVL = () => `
         }
     }
 `;
+
+export const getOasisTVL = () => `
+    query OasisTVL {
+        oasisTVL {
+        metric {
+            instance
+        }
+        TVL
+        }
+    }
+`;

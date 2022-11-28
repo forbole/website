@@ -34,3 +34,15 @@ export const getElrondCommission = () => `
         }
     }
 `;
+
+export const getOasisCommission = () => `
+    query OasisCommission {
+        oasisCommission {
+        metric {
+            instance
+            validator_address
+        }
+        commissionRate
+        }
+    }
+`;

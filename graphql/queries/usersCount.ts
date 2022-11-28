@@ -28,3 +28,15 @@ export const getElrondUsersCount = () => `
         }
     }
 `;
+
+export const getOasisUsersCount = () => `
+    query OasisUsers {
+        oasisUsers {
+        metric {
+            instance
+            validator_address
+        }
+        usersCount
+        }
+    }
+`;
