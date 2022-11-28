@@ -23,6 +23,7 @@ const logos: IStringIndex = {
     delegate:
       'https://cosmos.bigdipper.live/validators/cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj/delegate',
     heightSocket: 'wss://ws.cosmoshub.forbole.com',
+    guide: 'how-to-stake-atom-on-cosmos-hub',
     calculator: {
       bonded: 'http://lcd.cosmoshub.bigdipper.live/staking/pool',
       inflation: 'http://lcd.cosmoshub.bigdipper.live/minting/inflation',
@@ -40,6 +41,7 @@ const logos: IStringIndex = {
     delegate:
       'https://wallet.keplr.app/#/agoric/stake?tab=inactive-validators&modal=detail&validator=agoricvaloper1pcc069wu2utgnf5qsm6n2pk2x8xt6cah954t4g',
     bigDipper: 'https://testnet.explorer.agoric.net/',
+    guide: 'how-to-stake-bld-on-agoric',
   },
   akash: {
     image: '/images/network/akash.png',
@@ -53,6 +55,7 @@ const logos: IStringIndex = {
     delegate:
       'https://akash.bigdipper.live/validator/akashvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0uzn073/delegate',
     heightSocket: 'wss://ws.akash.forbole.com',
+    guide: 'how-to-stake-akt-on-akash',
     calculator: {
       bonded: 'https://api.akash.forbole.com/staking/pool',
       inflation: 'https://api.akash.forbole.com/minting/inflation',
@@ -87,6 +90,7 @@ const logos: IStringIndex = {
     key: 'bitsong',
     graphql: 'bitsong',
     delegate: 'https://wallet.bitsong.io/#/authentication/login',
+    guide: 'how-to-stake-btsg-on-bitsong',
   },
   'crypto.org': {
     image: '/images/network/crypto_org.png',
@@ -117,6 +121,7 @@ const logos: IStringIndex = {
     delegate:
       'https://wallet.e-money.com/earn/emoneyvaloper1293pqwtzu67zp8txuya4yts03ccw5kgf98hz9y',
     heightSocket: 'wss://ws.emoney.forbole.com',
+    guide: 'how-to-stake-ngm-on-e-money',
     calculator: {
       bonded: 'http://lcd.emoney.forbole.com/staking/pool',
       inflation: 'http://lcd.emoney.forbole.com/minting/inflation',
@@ -150,6 +155,7 @@ const logos: IStringIndex = {
     key: 'comdex',
     graphql: 'comdex',
     address: 'comdexvaloper1e4wjh48ks5j5d9702d35q360ffmf3jj2xpuf3f',
+    guide: 'blog-how-to-stake-cmdx-on-comdex',
   },
   axelar: {
     image: '/images/network/axelar.png',
@@ -157,6 +163,7 @@ const logos: IStringIndex = {
     denom: 'axl',
     key: 'axelar',
     graphql: 'axelar',
+    guide: 'how-to-stake-axl-on-axelar',
   },
   bitcanna: {
     image: '/images/network/bitcanna.png',
@@ -164,13 +171,18 @@ const logos: IStringIndex = {
     denom: 'bcna',
     key: 'bitcanna',
     graphql: 'bitcanna',
+    guide: 'how-to-stake-bcna-on-bitcanna',
   },
+  // bifrost: {
+  //   guide: 'how-to-stake-bnc-on-bifrost',
+  // },
   cheqd: {
     image: '/images/network/cheqd.png',
     name: 'Cheqd',
     denom: 'cheq',
     key: 'cheqd',
     graphql: 'cheqd',
+    guide: 'how-to-stake-cheq-on-cheqd',
   },
   chihuahua: {
     image: '/images/network/chihuahua.png',
@@ -178,6 +190,7 @@ const logos: IStringIndex = {
     denom: 'huahua',
     key: 'chihuahua',
     graphql: 'chihuahua',
+    guide: 'how-to-stake-huahua-on-chihuahua',
   },
   ['terra_classic']: {
     image: '/images/network/terra_classic.png',
@@ -192,6 +205,7 @@ const logos: IStringIndex = {
     denom: 'xprt',
     key: 'persistence',
     graphql: 'persistence',
+    guide: 'how-to-stake-xprt-on-persistence',
   },
   crescent: {
     image: '/images/network/crescent.png',
@@ -199,6 +213,7 @@ const logos: IStringIndex = {
     denom: 'cre',
     key: 'crescent',
     graphql: 'crescent',
+    guide: 'how-to-stake-cre-on-crescent',
   },
   ixo: {
     image: '/images/network/ixo.png',
@@ -206,6 +221,7 @@ const logos: IStringIndex = {
     denom: 'ixo',
     key: 'ixo',
     graphql: 'ixo',
+    guide: 'how-to-stake-ixo-on-ixo',
   },
   injective: {
     image: '/images/network/injective.png',
@@ -227,6 +243,7 @@ const logos: IStringIndex = {
     denom: 'kava',
     key: 'kava',
     graphql: 'kava',
+    guide: 'how-to-stake-kava-on-kava',
   },
   band: {
     image: '/images/network/band_protocol.png',
@@ -241,6 +258,7 @@ const logos: IStringIndex = {
     denom: 'like',
     key: 'likecoin',
     graphql: 'likecoin',
+    guide: 'how-to-stake-like-on-likecoin',
   },
   assetmantle: {
     image: '/images/network/assetmantle.png',
@@ -248,6 +266,7 @@ const logos: IStringIndex = {
     denom: 'mntl',
     key: 'assetmantle',
     graphql: 'assetmantle',
+    guide: 'how-to-stake-mntl-on-assetmantle',
   },
   osmosis: {
     image: '/images/network/osmosis.png',
@@ -255,6 +274,7 @@ const logos: IStringIndex = {
     denom: 'osmo',
     key: 'osmosis',
     graphql: 'osmosis',
+    guide: 'how-to-stake-osmo-on-osmosis',
   },
   provenance: {
     image: '/images/network/provenance.png',
@@ -276,6 +296,7 @@ const logos: IStringIndex = {
     denom: 'scrt',
     key: 'secret',
     graphql: 'secret',
+    guide: 'how-to-stake-scrt-on-secret-network',
   },
   sentinelhub: {
     image: '/images/network/sentinelhub.png',
@@ -283,6 +304,7 @@ const logos: IStringIndex = {
     denom: 'dvpn',
     key: 'sentinelhub',
     graphql: 'sentinelhub',
+    guide: 'how-to-stake-dvpn-on-sentinel',
   },
   shentu: {
     image: '/images/network/shentu.png',
@@ -297,6 +319,7 @@ const logos: IStringIndex = {
     denom: 'rowan',
     key: 'sifchain',
     graphql: 'sifchain',
+    guide: 'how-to-stake-rowan-on-sifchain',
   },
   sommelier: {
     image: '/images/network/sommelier.png',
@@ -319,6 +342,12 @@ const logos: IStringIndex = {
     key: 'stride',
     graphql: 'stride',
   },
+  // ['gravity-bridge']: {
+  //   guide: 'how-to-stake-grav-on-gravity-bridge',
+  // },
+  // nomic: {
+  //   guide: 'how-to-stake-nom-on-nomic',
+  // },
 };
 
 export const getNetworkInfo = (key: string | number) => {

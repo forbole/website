@@ -19,6 +19,7 @@ interface Network {
   bigDipper?: string;
   delegate: string;
   calculator?: Calculator;
+  guide?: string;
 }
 
 interface MetricProps {

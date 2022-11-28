@@ -42,6 +42,10 @@ export const GuideContentCSS = styled.div<ContentProps>`
     display: none;
   }
 
+  li > p {
+    display: block;
+  }
+
   img {
     margin: auto;
     object-fit: cover;

@@ -53,9 +53,15 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(
     (event) => {
       event.stopPropagation();
-      if (network.delegate) window.open(network.delegate, '_top');
+      // if (network.delegate) window.open(network.delegate, '_top');
+      if (network.guide)
+        window.open(
+          `${process.env.NEXT_PUBLIC_URL}/staking/${network.guide}`,
+          '_top'
+        );
+      else if (network.delegate) window.open(network.delegate, '_top');
     },
-    [network.delegate]
+    [network.denom, network.key, network.delegate]
   );
 
   /* A variable that is used to render the popover. */

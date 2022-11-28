@@ -138,24 +138,27 @@ const NetworkInfo = ({ post }: any) => {
               >
                 {networkData.name}
               </Typography>
-              <Box
-                display="flex"
-                alignItems="center"
-                flexDirection="row"
-                mt={-1}
-              >
-                <Typography color="#76819B" variant="body2" className="value">
-                  {!onlyLargeScreen
-                    ? getMiddleEllipsis(networkData.address, {
-                        beginning: 15,
-                        ending: 5,
-                      })
-                    : networkData.address}
-                </Typography>
-                <IconButton onClick={copyText}>
-                  <CopyIcon />
-                </IconButton>
-              </Box>
+              {networkData.address && (
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  flexDirection="row"
+                  mt={-1}
+                >
+                  <Typography color="#76819B" variant="body2" className="value">
+                    {!onlyLargeScreen
+                      ? getMiddleEllipsis(networkData.address, {
+                          beginning: 15,
+                          ending: 5,
+                        })
+                      : networkData.address}
+                  </Typography>
+
+                  <IconButton onClick={copyText}>
+                    <CopyIcon />
+                  </IconButton>
+                </Box>
+              )}
             </Box>
           </CardContent>
           <CardContent>
