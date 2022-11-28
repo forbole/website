@@ -20,3 +20,14 @@ export const getRadixUnbondingTime = () => `
         }
     }
 `;
+
+export const getSolanaUnbondingTime = () => `
+    query SolanaUnbondingTime {
+        solanaUnbondingTime {
+        metric {
+            instance
+        }
+        unbondingTime
+        }
+    }
+`;

@@ -21,3 +21,15 @@ export const getRadixBondedToken = () => `
         }
     }
 `;
+
+export const getSolanaBondedToken = () => `
+    query SolanaBondedToken {
+        solanaBondedToken {
+        metric {
+            instance
+            validator_address
+        }
+        bondedToken
+        }
+    }
+`;

@@ -10,3 +10,15 @@ export const getEachCosmosCommission = () => `
         }
     }
 `;
+
+export const getSolanaCommission = () => `
+    query SolanaCommission {
+        solanaCommission {
+        metric {
+            instance
+            validator_address
+        }
+        commissionRate
+        }
+    }
+`;
