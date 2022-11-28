@@ -19,3 +19,15 @@ export const getEachCosmosTVL = () => `
         }
     }
 `;
+
+export const getSolanaTVL = () => `
+    query SolanaTVL {
+        solanaTVL {
+        metric {
+            instance
+            validator_address
+        }
+        TVL
+        }
+    }
+`;
