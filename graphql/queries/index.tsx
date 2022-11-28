@@ -1,5 +1,6 @@
 import {
   getEachCosmosBondedToken,
+  getElrondBondedToken,
   getRadixBondedToken,
   getSolanaBondedToken,
   getOasisBondedToken,
@@ -38,6 +39,7 @@ import {
 
 export {
   getEachCosmosBondedToken,
+  getElrondBondedToken,
   getRadixBondedToken,
   getSolanaBondedToken,
   getOasisBondedToken,

@@ -4,23 +4,26 @@ import { Box } from '@mui/material';
 import { LayoutGroup } from 'framer-motion';
 import { getNetworkInfo } from '@src/utils/network_info';
 import { NetworkCard } from './components';
-import { networkKeys } from './config';
+import { cosmosNetworkKeys } from './config';
 import useStyles from './useStyles';
 import { useNetworkHook } from './hooks';
 
 const NetworkGrid = () => {
   const styles = useStyles();
-  const networkData = networkKeys.map((x: string | number) =>
+  const cosmosNetworkData = cosmosNetworkKeys.map((x: string | number) =>
     getNetworkInfo(x)
   );
+  const elrondNetworkData = getNetworkInfo('elrond');
   const [showMobilePopover, setShowMobilePopover] = useState('');
-  const { cosmosNetworks } = useNetworkHook();
+  const { cosmosNetworks, elrondNetwork } = useNetworkHook();
+
+  console.log('elrodn', elrondNetwork);
 
   return (
     <Box css={styles.root}>
       <Box className="home__networks">
         <LayoutGroup>
-          {networkData.map((network) => {
+          {cosmosNetworkData.map((network) => {
             return (
               <NetworkCard
                 key={network.name}
@@ -31,6 +34,13 @@ const NetworkGrid = () => {
               />
             );
           })}
+          <NetworkCard
+            key={elrondNetworkData.name}
+            network={elrondNetworkData}
+            networkSummary={elrondNetwork[elrondNetworkData.graphql]}
+            showMobilePopover={showMobilePopover}
+            setShowMobilePopover={setShowMobilePopover}
+          />
         </LayoutGroup>
       </Box>
     </Box>

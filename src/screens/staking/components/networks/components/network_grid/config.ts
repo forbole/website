@@ -46,7 +46,11 @@ export const cosmosNetworkParams: NetworkProps = {
   stride: { bonded: 0, APY: 0, TVL: 0 },
 };
 
-export const networkKeys = [
+export const elrondNetworkParams: NetworkProps = {
+  elrond: { bonded: 0, APY: 0, TVL: 0 },
+};
+
+export const cosmosNetworkKeys = [
   'e-money',
   'akash',
   'bitsong',
@@ -85,6 +89,6 @@ export const networkKeys = [
   // 'desmos',
 ].sort();
 
-export const getCosmosNetworkParams = (key: string) => {
+export const getNetworkParams = (key: string) => {
   return cosmosNetworkParams[key] ?? {};
 };

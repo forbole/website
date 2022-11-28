@@ -342,6 +342,13 @@ const logos: IStringIndex = {
     key: 'stride',
     graphql: 'stride',
   },
+  elrond: {
+    image: '/images/network/elrond.png',
+    name: 'Elrond',
+    denom: 'egld',
+    key: 'elrond',
+    graphql: 'elrond',
+  },
   // ['gravity-bridge']: {
   //   guide: 'how-to-stake-grav-on-gravity-bridge',
   // },
