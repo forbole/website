@@ -9,3 +9,15 @@ export const getEachCosmosBondedToken = () => `
         }
     }
 `;
+
+export const getRadixBondedToken = () => `
+    query RadixStakedTokens {
+        allRadixStakedTokens {
+        metric {
+            instance
+            validator_address
+        }
+        bondedToken
+        }
+    }
+`;
