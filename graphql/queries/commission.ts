@@ -22,3 +22,15 @@ export const getSolanaCommission = () => `
         }
     }
 `;
+
+export const getElrondCommission = () => `
+    query ElrondCommission {
+        elrondCommission {
+        metric {
+            instance
+            validator_address
+        }
+        commissionRate
+        }
+    }
+`;

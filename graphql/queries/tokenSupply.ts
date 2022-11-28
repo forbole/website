@@ -20,3 +20,14 @@ export const getRadixTokenSupply = () => `
         }
     }
 `;
+
+export const getElrondTokenSupply = () => `
+    query ElrondCirculatingSupply {
+        elrondCirculatingSupply {
+        metric {
+            instance
+        }
+        circulatingSupply
+        }
+    }
+`;

@@ -31,3 +31,14 @@ export const getSolanaTVL = () => `
         }
     }
 `;
+
+export const getElrondTVL = () => `
+    query ElrondTVL {
+        elrondTVL {
+        metric {
+            instance
+        }
+        TVL
+        }
+    }
+`;

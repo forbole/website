@@ -17,3 +17,14 @@ export const getSolanaUsersCount = () => `
         }
     }
 `;
+
+export const getElrondUsersCount = () => `
+    query ElrondUsers {
+        elrondUsers {
+        metric {
+            instance
+        }
+        usersCount
+        }
+    }
+`;

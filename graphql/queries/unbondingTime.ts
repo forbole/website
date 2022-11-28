@@ -31,3 +31,14 @@ export const getSolanaUnbondingTime = () => `
         }
     }
 `;
+
+export const getElrondUnbondingTime = () => `
+    query ElrondUnbondingTime {
+        elrondUnbondingTime {
+        metric {
+            instance
+        }
+        unbondingTime
+        }
+    }
+`;

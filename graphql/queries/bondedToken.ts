@@ -33,3 +33,15 @@ export const getSolanaBondedToken = () => `
         }
     }
 `;
+
+export const getElrondBondedToken = () => `
+    query ElrondBondedToken {
+        elrondBondedToken {
+        metric {
+            instance
+            validator_address
+        }
+        bondedToken
+        }
+    }
+`;
