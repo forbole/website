@@ -7,87 +7,87 @@ import {
   getEachCosmosAPY,
   getEachCosmosTVL,
 } from '@graphql/queries';
-import { networkParams } from './config';
+import { cosmosNetworkParams } from './config';
 
 export const useNetworkHook = () => {
-  const [networks, setNetworks] = useState(networkParams);
-  const { loading: bondedLoading, data: bondedData } = useQuery(
+  const [cosmosNetworks, setCosmosNetworks] = useState(cosmosNetworkParams);
+  const { loading: cosmosBondedLoading, data: cosmosBondedData } = useQuery(
     gql`
       ${getEachCosmosBondedToken()}
     `
   );
-  const { loading: apyLoading, data: apyData } = useQuery(
+  const { loading: cosmosAPYLoading, data: cosmosAPYData } = useQuery(
     gql`
       ${getEachCosmosAPY()}
     `
   );
-  const { loading: tvlLoading, data: tvlData } = useQuery(
+  const { loading: cosmosTVLLoading, data: cosmosTVLData } = useQuery(
     gql`
       ${getEachCosmosTVL()}
     `
   );
 
   useMemo(() => {
-    if (!bondedLoading) {
-      const { eachCosmosBondedToken } = bondedData;
+    if (!cosmosBondedLoading) {
+      const { eachCosmosBondedToken } = cosmosBondedData;
       eachCosmosBondedToken.map((data: any) => {
-        const keys = Object.keys(networks);
+        const keys = Object.keys(cosmosNetworks);
         // eslint-disable-next-line no-unused-expressions
         keys.includes(data.metric.instance)
-          ? setNetworks((prev) => ({
+          ? setCosmosNetworks((prev) => ({
               ...prev,
               [data.metric.instance]: {
-                ...networks[data.metric.instance],
+                ...cosmosNetworks[data.metric.instance],
                 bonded: data.bondedToken,
               },
             }))
           : null;
       });
     }
-    return networks;
-  }, [bondedData, bondedLoading]);
+    return cosmosNetworks;
+  }, [cosmosBondedData, cosmosBondedLoading]);
 
   useMemo(() => {
-    if (!apyLoading) {
-      const { eachCosmosAPY } = apyData;
+    if (!cosmosAPYLoading) {
+      const { eachCosmosAPY } = cosmosAPYData;
       eachCosmosAPY.map((data: any) => {
-        const keys = Object.keys(networks);
+        const keys = Object.keys(cosmosNetworks);
         // eslint-disable-next-line no-unused-expressions
         keys.includes(data.metric.instance)
-          ? setNetworks((prev) => ({
+          ? setCosmosNetworks((prev) => ({
               ...prev,
               [data.metric.instance]: {
-                ...networks[data.metric.instance],
+                ...cosmosNetworks[data.metric.instance],
                 APY: data.APY,
               },
             }))
           : null;
       });
     }
-    return networks;
-  }, [apyData, apyLoading]);
+    return cosmosNetworks;
+  }, [cosmosAPYData, cosmosAPYLoading]);
 
   useMemo(() => {
-    if (!tvlLoading) {
-      const { eachCosmosTVL } = tvlData;
+    if (!cosmosTVLLoading) {
+      const { eachCosmosTVL } = cosmosTVLData;
       eachCosmosTVL.map((data: any) => {
-        const keys = Object.keys(networks);
+        const keys = Object.keys(cosmosNetworks);
         // eslint-disable-next-line no-unused-expressions
         keys.includes(data.metric.instance)
-          ? setNetworks((prev) => ({
+          ? setCosmosNetworks((prev) => ({
               ...prev,
               [data.metric.instance]: {
-                ...networks[data.metric.instance],
+                ...cosmosNetworks[data.metric.instance],
                 TVL: data.TVL,
               },
             }))
           : null;
       });
     }
-    return networks;
-  }, [tvlData, tvlLoading]);
+    return cosmosNetworks;
+  }, [cosmosTVLData, cosmosTVLLoading]);
 
   return {
-    networks,
+    cosmosNetworks,
   };
 };

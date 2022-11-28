@@ -10,7 +10,7 @@ type NetworkProps = {
 
 // state data
 
-export const networkParams: NetworkProps = {
+export const cosmosNetworkParams: NetworkProps = {
   cosmos: { bonded: 0, APY: 0, TVL: 0 },
   emoney: { bonded: 0, APY: 0, TVL: 0 },
   akash: { bonded: 0, APY: 0, TVL: 0 },
@@ -85,6 +85,6 @@ export const networkKeys = [
   // 'desmos',
 ].sort();
 
-export const getNetworkParams = (key: string) => {
-  return networkParams[key] ?? {};
+export const getCosmosNetworkParams = (key: string) => {
+  return cosmosNetworkParams[key] ?? {};
 };

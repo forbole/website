@@ -14,7 +14,7 @@ const NetworkGrid = () => {
     getNetworkInfo(x)
   );
   const [showMobilePopover, setShowMobilePopover] = useState('');
-  const { networks } = useNetworkHook();
+  const { cosmosNetworks } = useNetworkHook();
 
   return (
     <Box css={styles.root}>
@@ -25,7 +25,7 @@ const NetworkGrid = () => {
               <NetworkCard
                 key={network.name}
                 network={network}
-                networkSummary={networks[network.graphql]}
+                networkSummary={cosmosNetworks[network.graphql]}
                 showMobilePopover={showMobilePopover}
                 setShowMobilePopover={setShowMobilePopover}
               />
