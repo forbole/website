@@ -1,5 +1,5 @@
 export const getCosmosUsersCount = () => `
-    query Query {
+    query CosmosUsersCount {
         cosmosUsersCount {
             usersCount
         }

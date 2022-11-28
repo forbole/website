@@ -1,5 +1,5 @@
 export const getEachCosmosBondedToken = () => `
-    query Query {
+    query EachCosmosBondedToken {
         eachCosmosBondedToken {
             metric {
               chain_id

@@ -1,5 +1,5 @@
 export const getAllCosmosTVL = () => `
-    query Query {
+    query AllCosmosTVL {
         allCosmosTVL {
             cosmosTVL
         }
@@ -7,7 +7,7 @@ export const getAllCosmosTVL = () => `
 `;
 
 export const getEachCosmosTVL = () => `
-    query Query {
+    query EachCosmosTVL {
         eachCosmosTVL {
             metric {
                 chain_id

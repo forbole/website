@@ -1,5 +1,5 @@
 export const getEachCosmosAPY = () => `
-    query Query {
+    query EachCosmosAPY {
         eachCosmosAPY {
             metric {
               chain_id

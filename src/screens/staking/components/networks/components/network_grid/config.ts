@@ -11,7 +11,7 @@ type NetworkProps = {
 // state data
 
 export const networkParams: NetworkProps = {
-  cosmos: { bonded: 2414514, APY: 246, TVL: 123345678312 },
+  cosmos: { bonded: 0, APY: 0, TVL: 0 },
   emoney: { bonded: 0, APY: 0, TVL: 0 },
   akash: { bonded: 0, APY: 0, TVL: 0 },
   agoric: { bonded: 0, APY: 0, TVL: 0 },
@@ -81,7 +81,7 @@ export const networkKeys = [
   'stride',
   // bonded data not available:
   // 'band-protocol',
-  // 'cosmos',
+  'cosmos',
   // 'desmos',
 ].sort();
 

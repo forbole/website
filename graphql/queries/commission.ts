@@ -1,5 +1,5 @@
-export const getEachCosmosBondedToken = () => `
-    query Query {
+export const getEachCosmosCommission = () => `
+    query EachCosmosCommission {
         eachCosmosCommission {
             metric {
               chain_id
