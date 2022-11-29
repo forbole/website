@@ -153,9 +153,14 @@ const LayoutVal = ({
             // background: theme.palette.primary.main,
             background: stakingGuide
               ? 'url(/images/assets/image_BG_FVH_guide.png)'
-              : 'url(/images/assets/image_BG_FVH.png)',
+              : 'url(/images/assets/bg_mobile.webp)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
+            [theme.breakpoints.up('laptop')]: {
+              background: stakingGuide
+                ? 'url(/images/assets/image_BG_FVH_guide.png)'
+                : 'url(/images/assets/bg_laptop.webp)',
+            },
           }}
         >
           <Nav navLink={navLink} staking />
