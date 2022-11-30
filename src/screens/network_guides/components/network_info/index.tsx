@@ -21,10 +21,9 @@ import {
 import { CopyIcon } from '@icons';
 import { getNetworkInfo } from '@src/utils/network_info';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
-import { LayoutVal, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
 import { ContentCSS, ContentBox } from './styles';
 import { InfoCard } from './components';
-import { infoItems } from './config';
+import { useNetworkGuidesHook } from './hooks';
 
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
@@ -49,6 +48,10 @@ const NetworkInfo = ({ post }: any) => {
   };
   const networkData = tags.length <= 1 ? null : getNetworkInfo(tags[1].slug);
 
+  const { cosmosNetworkGuides } = useNetworkGuidesHook();
+
+  const networkStats = cosmosNetworkGuides[networkData.graphql];
+
   const copyText = React.useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation();
@@ -61,6 +64,7 @@ const NetworkInfo = ({ post }: any) => {
   );
   const networkImage =
     tags.length <= 1 ? null : `/images/network/${tags[1].slug}.png`;
+
   return (
     <Box
       display="flex"
@@ -211,15 +215,18 @@ const NetworkInfo = ({ post }: any) => {
                   gridGap: theme.spacing(2),
                   gridTemplateColumns: 'repeat(1, 1fr)',
                   paddingTop: theme.spacing(3),
+                  width: '100%',
                   [theme.breakpoints.up('laptop')]: {
                     gridTemplateRows: 'repeat(2, 1fr)',
                     gridTemplateColumns: '1fr 1fr',
                     paddingTop: 0,
+                    width: '50%',
                   },
                 }}
               >
-                {infoItems.map((info) => (
+                {networkStats.map((info) => (
                   <InfoCard
+                    info={networkData.key}
                     title={info.title}
                     stats={info.stats}
                     type={info.type}

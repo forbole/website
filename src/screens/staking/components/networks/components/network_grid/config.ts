@@ -77,7 +77,7 @@ export const cosmosNetworkKeys = [
   'provenance',
   'regen',
   'secret',
-  'sentinelhub',
+  'sentinel',
   'shentu',
   'sifchain',
   'sommelier',

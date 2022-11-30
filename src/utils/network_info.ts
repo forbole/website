@@ -298,8 +298,8 @@ const logos: IStringIndex = {
     graphql: 'secret',
     guide: 'how-to-stake-scrt-on-secret-network',
   },
-  sentinelhub: {
-    image: '/images/network/sentinelhub.png',
+  sentinel: {
+    image: '/images/network/sentinel.png',
     name: 'Sentinel',
     denom: 'dvpn',
     key: 'sentinelhub',

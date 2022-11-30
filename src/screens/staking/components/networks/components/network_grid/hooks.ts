@@ -146,7 +146,6 @@ export const useNetworkHook = () => {
   useMemo(() => {
     if (!elrondTVLLoading) {
       const { elrondTVL } = elrondTVLData;
-      console.log('check', elrondTVL);
       elrondTVL.map((data: any) => {
         const key = Object.keys(elrondNetwork);
         key.includes(data.metric.instance)

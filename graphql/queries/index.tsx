@@ -7,6 +7,7 @@ import {
 } from './bondedToken';
 import { getEachCosmosAPY, getElrondAPY } from './apy';
 import {
+  getEachCosmosCommission,
   getSolanaCommission,
   getElrondCommission,
   getOasisCommission,
@@ -45,6 +46,7 @@ export {
   getOasisBondedToken,
   getEachCosmosAPY,
   getElrondAPY,
+  getEachCosmosCommission,
   getSolanaCommission,
   getElrondCommission,
   getOasisCommission,

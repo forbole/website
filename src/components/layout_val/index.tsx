@@ -160,6 +160,8 @@ const LayoutVal = ({
               background: stakingGuide
                 ? 'url(/images/assets/image_BG_FVH_guide.png)'
                 : 'url(/images/assets/bg_laptop.webp)',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
             },
           }}
         >

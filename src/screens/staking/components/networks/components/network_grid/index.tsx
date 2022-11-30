@@ -17,8 +17,6 @@ const NetworkGrid = () => {
   const [showMobilePopover, setShowMobilePopover] = useState('');
   const { cosmosNetworks, elrondNetwork } = useNetworkHook();
 
-  console.log('elrodn', elrondNetwork);
-
   return (
     <Box css={styles.root}>
       <Box className="home__networks">
