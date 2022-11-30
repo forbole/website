@@ -8,24 +8,24 @@ interface AwardProps {
 }
 
 export const awards: AwardProps[] = [
-  {
-    year: 2022,
-    title: 'grant',
-    desc: 'grant desc',
-    timeline: 'grant time',
-  },
-  {
-    title: 'desmos osmosis',
-    desc: 'desmos osmosis desc',
-    timeline: 'desmos osmosis time',
-  },
-  {
-    year: 2021,
-    title: 'airdrop',
-    desc: 'airdrop desc',
-    timeline: 'airdrop time',
-  },
-  { title: 'BD v2', desc: 'BD v2 desc', timeline: 'BD v2 time' },
+  // {
+  //   year: 2022,
+  //   title: 'grant',
+  //   desc: 'grant desc',
+  //   timeline: 'grant time',
+  // },
+  // {
+  //   title: 'desmos osmosis',
+  //   desc: 'desmos osmosis desc',
+  //   timeline: 'desmos osmosis time',
+  // },
+  // {
+  //   year: 2021,
+  //   title: 'airdrop',
+  //   desc: 'airdrop desc',
+  //   timeline: 'airdrop time',
+  // },
+  { year: 2021, title: 'BD v2', desc: 'BD v2 desc', timeline: 'BD v2 time' },
   {
     year: 2020,
     title: 'interchain',
