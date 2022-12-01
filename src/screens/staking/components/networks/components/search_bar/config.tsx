@@ -31,7 +31,7 @@ export const networkKeys = [
   'provenance',
   'regen',
   'secret',
-  'sentinelhub',
+  'sentinel',
   'shentu',
   'sifchain',
   'sommelier',
@@ -39,6 +39,6 @@ export const networkKeys = [
   'stride',
   // bonded data not available:
   // 'band-protocol',
-  // 'cosmos',
+  'cosmos',
   // 'desmos',
 ].sort();
