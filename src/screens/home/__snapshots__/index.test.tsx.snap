@@ -6,10 +6,10 @@ exports[`screen: Home matches snapshot 1`] = `
   footer={true}
   homeAnimation={true}
   id="Layout"
-  image="/images/assets/website-preview.png"
+  image="/images/assets/image_forbole_website_preview.png"
   navLink="/"
   title="forbole"
-  twitterImage="/images/assets/website-preview.png"
+  twitterImage="/images/assets/image_forbole_website_preview.png"
 >
   <div
     className="MuiBox-root css-k3uim4"
