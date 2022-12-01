@@ -35,6 +35,20 @@ export const common = {
       textTransform: 'none',
     },
   },
+  // components: {
+  //   MuiCssBaseline: {
+  //     styleOverrides: `
+  //       @font-face {
+  //         font-family: chinese font;
+  //         font-style: normal;
+  //         font-weight: 400;
+  //         src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+  //         unicodeRange: U+4E00–9FFF;
+  //         letter-spacing: 0.2rem;
+  //       }
+  //     `,
+  //   },
+  // },
 };
 
 export const lightTemplate: ThemeOptions = deepmerge(
