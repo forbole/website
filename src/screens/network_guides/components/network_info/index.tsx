@@ -224,8 +224,9 @@ const NetworkInfo = ({ post }: any) => {
                   },
                 }}
               >
-                {networkStats.map((info) => (
+                {networkStats.map((info, i) => (
                   <InfoCard
+                    key={i}
                     info={networkData.key}
                     title={info.title}
                     stats={info.stats}

@@ -101,6 +101,11 @@ export const GuideContentCSS = styled.div<ContentProps>`
     text-align: center;
     margin-right: 0.5rem;
   }
+  @media only screen and (min-width: 1024px) {
+    li {
+      text-align: left;
+    }
+  }
 `;
 
 export const GuideContentBox = styled.div<any>`

@@ -30,6 +30,7 @@ export const ContentCSS = styled.div<ContentProps>`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   @media only screen and (min-width: 1024px) {
+    -webkit-line-clamp: 6;
     width: 50%;
     font-size: 16px;
     line-height: 22px;
