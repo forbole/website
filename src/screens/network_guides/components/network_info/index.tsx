@@ -107,62 +107,104 @@ const NetworkInfo = ({ post }: any) => {
               flexDirection: 'row',
               paddingTop: 0,
               marginTop: theme.spacing(-7),
+              [theme.breakpoints.up('laptop')]: {
+                justifyContent: 'space-between',
+              },
             }}
           >
             <Box
               sx={{
-                '> span': {
-                  borderRadius: '50%',
-                  border: '8px solid #FFFFFF !important' as any,
-                },
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'row',
               }}
             >
-              <Image
-                loader={cmsLoader}
-                src={
-                  networkData.image == null
-                    ? '/static/images/assets/blog-placeholder.png'
-                    : networkData.image
-                }
-                alt={title}
-                width={onlyLargeScreen ? '90px' : '52px'}
-                height={onlyLargeScreen ? '90px' : '52px'}
-                quality={100}
-                objectFit="contain"
-              />
-            </Box>
-            <Box pl={onlyLargeScreen ? 2 : 1}>
-              <Typography
-                variant="h3"
+              <Box
                 sx={{
-                  fontWeight: 600,
-                  fontSize: theme.spacing(2),
-                  paddingBottom: theme.spacing(1),
+                  '> span': {
+                    borderRadius: '50%',
+                    border: '8px solid #FFFFFF !important' as any,
+                  },
                 }}
               >
-                {networkData.name}
-              </Typography>
-              {networkData.address && (
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  flexDirection="row"
-                  mt={-1}
+                <Image
+                  loader={cmsLoader}
+                  src={
+                    networkData.image == null
+                      ? '/static/images/assets/blog-placeholder.png'
+                      : networkData.image
+                  }
+                  alt={title}
+                  width={onlyLargeScreen ? '90px' : '52px'}
+                  height={onlyLargeScreen ? '90px' : '52px'}
+                  quality={100}
+                  objectFit="contain"
+                />
+              </Box>
+              <Box pl={onlyLargeScreen ? 2 : 1}>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: theme.spacing(2),
+                    paddingBottom: theme.spacing(1),
+                  }}
                 >
-                  <Typography color="#76819B" variant="body2" className="value">
-                    {!onlyLargeScreen
-                      ? getMiddleEllipsis(networkData.address, {
-                          beginning: 15,
-                          ending: 5,
-                        })
-                      : networkData.address}
-                  </Typography>
+                  {networkData.name}
+                </Typography>
+                {networkData.address && (
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    flexDirection="row"
+                    mt={-1}
+                  >
+                    <Typography
+                      color="#76819B"
+                      variant="body2"
+                      className="value"
+                    >
+                      {!onlyLargeScreen
+                        ? getMiddleEllipsis(networkData.address, {
+                            beginning: 15,
+                            ending: 5,
+                          })
+                        : networkData.address}
+                    </Typography>
 
-                  <IconButton onClick={copyText}>
-                    <CopyIcon />
-                  </IconButton>
-                </Box>
-              )}
+                    <IconButton onClick={copyText}>
+                      <CopyIcon />
+                    </IconButton>
+                  </Box>
+                )}
+              </Box>
+            </Box>
+            <Box>
+              <Button
+                variant="contained"
+                href={networkData.delegate ? networkData.delegate : ''}
+                disabled={!networkData.delegate}
+                sx={{
+                  display: 'none',
+                  width: '97px',
+                  height: '32px',
+                  lineHeight: '17px',
+                  fontWeight: 600,
+                  padding: 0,
+                  background:
+                    'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                  borderRadius: theme.spacing(3),
+                  color: 'primary.main',
+                  boxShadow: 'none',
+                  [theme.breakpoints.up('laptop')]: {
+                    width: '111px',
+                    height: '45px',
+                    display: 'inline-flex',
+                  },
+                }}
+              >
+                Stake Now
+              </Button>
             </Box>
           </CardContent>
           <CardContent>

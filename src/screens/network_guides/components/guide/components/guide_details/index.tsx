@@ -2,10 +2,9 @@
 import React from 'react';
 import Image from 'next/image';
 import DOMPurify from 'isomorphic-dompurify';
-import { Box, Card, Divider, Typography, useTheme } from '@mui/material';
+import { Box, Button, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@hooks';
-import { LayoutVal, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
-// import { Author, SocialMedia } from './components';
+import { getNetworkInfo } from '@src/utils/network_info';
 import {
   GuideContentBox,
   GuideContentCSS,
@@ -29,6 +28,7 @@ const GuideDetails = ({ post }: any) => {
     featureImage,
     html,
   } = post;
+  const networkData = tags.length <= 1 ? null : getNetworkInfo(tags[1].slug);
   const { sanitize } = DOMPurify;
   const cmsLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
@@ -62,6 +62,40 @@ const GuideDetails = ({ post }: any) => {
             dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
           />
         </GuideContentCSS>
+        <Box
+          sx={{
+            paddingTop: theme.spacing(6),
+            display: 'flex',
+            justifyContent: 'flex-start',
+            [theme.breakpoints.up('laptop')]: {
+              justifyContent: 'center',
+            },
+          }}
+        >
+          <Button
+            variant="contained"
+            href={networkData.delegate ? networkData.delegate : ''}
+            disabled={!networkData.delegate}
+            sx={{
+              width: '97px',
+              height: '32px',
+              lineHeight: '17px',
+              fontWeight: 600,
+              padding: 0,
+              background:
+                'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+              borderRadius: theme.spacing(3),
+              color: 'primary.main',
+              boxShadow: 'none',
+              [theme.breakpoints.up('laptop')]: {
+                width: '111px',
+                height: '45px',
+              },
+            }}
+          >
+            Stake Now
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
