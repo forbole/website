@@ -6,10 +6,10 @@ exports[`screen: Home matches snapshot 1`] = `
   footer={true}
   homeAnimation={true}
   id="Layout"
-  image="/images/assets/Facebook-Forbole.png"
+  image="/images/assets/image_forbole_website_preview.png"
   navLink="/"
   title="forbole"
-  twitterImage="/images/assets/Twitter-Forbole.png"
+  twitterImage="/images/assets/image_forbole_website_preview.png"
 >
   <div
     className="MuiBox-root css-k3uim4"
@@ -113,11 +113,20 @@ exports[`screen: Home matches snapshot 1`] = `
           </noscript>
         </span>
       </div>
-      <p
-        className="MuiTypography-root MuiTypography-body1 css-8tvsb-MuiTypography-root"
+      <div
+        className="MuiBox-root css-j7qwjs"
       >
-        title
-      </p>
+        <p
+          className="MuiTypography-root MuiTypography-body1 css-2oe3r8-MuiTypography-root"
+        >
+          titleD
+        </p>
+        <p
+          className="MuiTypography-root MuiTypography-body1 css-1a9lsdn-MuiTypography-root"
+        >
+          titleE
+        </p>
+      </div>
       <div
         className="MuiBox-root css-10ky3wd"
       >

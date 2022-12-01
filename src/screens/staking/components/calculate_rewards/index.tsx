@@ -21,6 +21,7 @@ const CalculateRewards = () => {
     setMonthlyPeriods,
     loading,
   } = useCalculateRewardsHook(t);
+
   return (
     <Box display="flex" justifyContent="center">
       <Box

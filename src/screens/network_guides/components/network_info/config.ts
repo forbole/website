@@ -1,22 +1,80 @@
 export const infoItems = [
   {
     title: 'staked by forbole',
-    stats: 589679437123,
+    stats: '-',
     type: 'money',
   },
   {
-    title: 'annual reward',
-    stats: 5,
+    title: 'apy',
+    stats: 0,
     type: 'percentage',
   },
   {
-    title: 'comission',
-    stats: 7,
+    title: 'commission',
+    stats: 0,
     type: 'percentage',
   },
   {
     title: 'unbonding period',
-    stats: 48,
-    type: 'hours',
+    stats: '-',
+    type: 'string',
   },
 ];
+
+export type ParamsProps = {
+  title: string;
+  stats: number | string;
+  type: string;
+};
+
+type NetworkGuideProps = {
+  [key: string]: ParamsProps[];
+};
+
+// state data
+
+export const cosmosNetworkGuideParams: NetworkGuideProps = {
+  cosmos: infoItems,
+  emoney: infoItems,
+  akash: infoItems,
+  agoric: infoItems,
+  assetmantle: infoItems,
+  axelar: infoItems,
+  bitcanna: infoItems,
+  bitsong: infoItems,
+  cheqd: infoItems,
+  chihuahua: infoItems,
+  comdex: infoItems,
+  crescent: infoItems,
+  ixo: infoItems,
+  kava: infoItems,
+  likecoin: infoItems,
+  osmosis: infoItems,
+  persistence: infoItems,
+  secret: infoItems,
+  sentinelhub: infoItems,
+  sifchain: infoItems,
+};
+
+export const cosmosNetworkKeys = [
+  'emoney',
+  'cosmos',
+  'akash',
+  'agoric',
+  'assetmantle',
+  'axelar',
+  'bitcanna',
+  'bitsong',
+  'cheqd',
+  'chihuahua',
+  'comdex',
+  'crescent',
+  'ixo',
+  'kava',
+  'likecoin',
+  'osmosis',
+  'persistence',
+  'secret',
+  'sentinelhub',
+  'sifchain',
+].sort();

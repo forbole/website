@@ -42,6 +42,10 @@ export const GuideContentCSS = styled.div<ContentProps>`
     display: none;
   }
 
+  li > p {
+    display: block;
+  }
+
   img {
     margin: auto;
     object-fit: cover;
@@ -96,6 +100,11 @@ export const GuideContentCSS = styled.div<ContentProps>`
     color: white;
     text-align: center;
     margin-right: 0.5rem;
+  }
+  @media only screen and (min-width: 1024px) {
+    li {
+      text-align: left;
+    }
   }
 `;
 

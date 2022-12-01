@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unstable-nested-components */
@@ -14,19 +15,21 @@ const InfoCard = ({ title, stats, type }: any) => {
   return (
     <Box css={styles.root}>
       <Typography variant="h6">{t(title)}</Typography>
-      {type === 'money' ? (
+      {title === 'staked by forbole' ? (
         <Typography variant="h3">
           {t(type)}
-          {convertToMoney(stats)}
+          {stats === '-' ? stats : convertToMoney(stats)}
         </Typography>
-      ) : type === 'percentage' ? (
+      ) : title === 'apy' ? (
         <Typography variant="h3">
-          {stats} {t(type)}
+          {(parseFloat(stats) * 100).toFixed(1)} {t(type)}
+        </Typography>
+      ) : title === 'commission' ? (
+        <Typography variant="h3">
+          {parseFloat(stats) * 100} {t(type)}
         </Typography>
       ) : (
-        <Typography variant="h3">
-          {stats} {t(type)}
-        </Typography>
+        <Typography variant="h3">{stats}</Typography>
       )}
     </Box>
   );

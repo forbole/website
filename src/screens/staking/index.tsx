@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useRef } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
 import { LayoutVal } from '@components';
@@ -17,6 +17,7 @@ import { LaptopCSS } from './styles';
 const Staking = () => {
   const { t } = useTranslation('staking');
   const theme = useTheme();
+  const stakeNowRef = useRef(null);
   React.useEffect(() => {
     window.scrollTo({
       left: 0,
@@ -26,7 +27,7 @@ const Staking = () => {
   }, []);
 
   return (
-    <LayoutVal navLink="staking" footer>
+    <LayoutVal stakeNowRef={stakeNowRef} navLink="staking" footer>
       <LaptopCSS>
         <Hero />
       </LaptopCSS>
@@ -39,7 +40,7 @@ const Staking = () => {
       <LaptopCSS>
         <WhyForbole />
       </LaptopCSS>
-      <LaptopCSS>
+      <LaptopCSS ref={stakeNowRef}>
         <CalculateRewards />
       </LaptopCSS>
       <LaptopCSS>

@@ -10,8 +10,8 @@ type NetworkProps = {
 
 // state data
 
-export const networkParams: NetworkProps = {
-  cosmos: { bonded: 2414514, APY: 246, TVL: 123345678312 },
+export const cosmosNetworkParams: NetworkProps = {
+  cosmos: { bonded: 0, APY: 0, TVL: 0 },
   emoney: { bonded: 0, APY: 0, TVL: 0 },
   akash: { bonded: 0, APY: 0, TVL: 0 },
   agoric: { bonded: 0, APY: 0, TVL: 0 },
@@ -46,7 +46,11 @@ export const networkParams: NetworkProps = {
   stride: { bonded: 0, APY: 0, TVL: 0 },
 };
 
-export const networkKeys = [
+export const elrondNetworkParams: NetworkProps = {
+  elrond: { bonded: 0, APY: 0, TVL: 0 },
+};
+
+export const cosmosNetworkKeys = [
   'e-money',
   'akash',
   'bitsong',
@@ -73,7 +77,7 @@ export const networkKeys = [
   'provenance',
   'regen',
   'secret',
-  'sentinelhub',
+  'sentinel',
   'shentu',
   'sifchain',
   'sommelier',
@@ -81,10 +85,10 @@ export const networkKeys = [
   'stride',
   // bonded data not available:
   // 'band-protocol',
-  // 'cosmos',
+  'cosmos',
   // 'desmos',
 ].sort();
 
 export const getNetworkParams = (key: string) => {
-  return networkParams[key] ?? {};
+  return cosmosNetworkParams[key] ?? {};
 };

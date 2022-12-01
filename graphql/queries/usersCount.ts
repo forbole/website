@@ -1,7 +1,42 @@
 export const getCosmosUsersCount = () => `
-    query Query {
+    query CosmosUsersCount {
         cosmosUsersCount {
             usersCount
+        }
+    }
+`;
+
+export const getSolanaUsersCount = () => `
+    query SolanaUsers {
+        solanaUsers {
+        metric {
+            instance
+            validator_address
+        }
+        usersCount
+        }
+    }
+`;
+
+export const getElrondUsersCount = () => `
+    query ElrondUsers {
+        elrondUsers {
+        metric {
+            instance
+        }
+        usersCount
+        }
+    }
+`;
+
+export const getOasisUsersCount = () => `
+    query OasisUsers {
+        oasisUsers {
+        metric {
+            instance
+            validator_address
+        }
+        usersCount
         }
     }
 `;

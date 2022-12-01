@@ -116,6 +116,9 @@ const useStyles = () => {
           maxHeight: '70vh',
         },
       },
+      '& .MuiAutocomplete-noOptions': {
+        color: '#1D1E22',
+      },
       [theme.breakpoints.down('tablet')]: {
         position: 'fixed !important',
         top: `${theme.spacing(8)} !important`,

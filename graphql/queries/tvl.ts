@@ -1,5 +1,5 @@
 export const getAllCosmosTVL = () => `
-    query Query {
+    query AllCosmosTVL {
         allCosmosTVL {
             cosmosTVL
         }
@@ -7,7 +7,7 @@ export const getAllCosmosTVL = () => `
 `;
 
 export const getEachCosmosTVL = () => `
-    query Query {
+    query EachCosmosTVL {
         eachCosmosTVL {
             metric {
                 chain_id
@@ -16,6 +16,40 @@ export const getEachCosmosTVL = () => `
                 validator_address
             }
             TVL
+        }
+    }
+`;
+
+export const getSolanaTVL = () => `
+    query SolanaTVL {
+        solanaTVL {
+        metric {
+            instance
+            validator_address
+        }
+        TVL
+        }
+    }
+`;
+
+export const getElrondTVL = () => `
+    query ElrondTVL {
+        elrondTVL {
+        metric {
+            instance
+        }
+        TVL
+        }
+    }
+`;
+
+export const getOasisTVL = () => `
+    query OasisTVL {
+        oasisTVL {
+        metric {
+            instance
+        }
+        TVL
         }
     }
 `;

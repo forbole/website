@@ -3,6 +3,13 @@ html {
   box-sizing: border-box;
 }
 
+/* @font-face {
+  font-family: 'Chinese Font';
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+  unicode-range: U+4E00–9FFF;
+  letter-spacing: 1rem;
+} */
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;

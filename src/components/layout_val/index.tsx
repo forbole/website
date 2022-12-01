@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, RefObject } from 'react';
 import Head from 'next/head';
 import * as R from 'ramda';
 import validator from 'validator';
@@ -12,6 +13,7 @@ import { Theme } from '@recoil/settings/types';
 import { writeTheme } from '@recoil/settings';
 import Footer from '../footer';
 import Nav from '../nav';
+import GuideNav from '../guide_nav';
 
 type Props = {
   navLink: string | null;
@@ -29,6 +31,7 @@ type Props = {
   staking?: boolean;
   searchBar?: boolean;
   stakingGuide?: boolean;
+  stakeNowRef?: RefObject<HTMLElement>;
 };
 
 const LayoutVal = ({
@@ -47,6 +50,7 @@ const LayoutVal = ({
   staking,
   searchBar,
   stakingGuide,
+  stakeNowRef,
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
@@ -153,12 +157,24 @@ const LayoutVal = ({
             // background: theme.palette.primary.main,
             background: stakingGuide
               ? 'url(/images/assets/image_BG_FVH_guide.png)'
-              : 'url(/images/assets/image_BG_FVH.png)',
+              : 'url(/images/assets/bg_mobile.webp)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
+            [theme.breakpoints.up('laptop')]: {
+              background: stakingGuide
+                ? 'url(/images/assets/image_BG_FVH_guide.png)'
+                : 'url(/images/assets/bg_laptop.webp)',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            },
           }}
         >
-          <Nav navLink={navLink} staking />
+          {stakingGuide ? (
+            <GuideNav staking />
+          ) : (
+            <Nav stakeNowRef={stakeNowRef} navLink={navLink} staking />
+          )}
+
           {children}
           {!!footer && <Footer staking />}
         </Box>

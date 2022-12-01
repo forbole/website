@@ -17,7 +17,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { getNetworkInfo } from '@src/utils/network_info';
-import { InfoIcon } from '@icons';
+import { InfoIcon, DropDownIcon } from '@icons';
 import { calculatorKeys } from './config';
 import { styles } from './styles';
 
@@ -120,6 +120,7 @@ const Calculator = (props: any) => {
               disableScrollLock: true,
               PaperProps: {
                 sx: {
+                  height: '50vh',
                   bgcolor: theme.palette.primary.main,
                   marginTop: 1,
                   boxShadow:
@@ -136,6 +137,7 @@ const Calculator = (props: any) => {
               },
             }}
             onChange={(e) => setSelectedToken(e.target.value)}
+            IconComponent={DropDownIcon}
           >
             {networkData.map((network, i) => (
               <MenuItem key={i} value={network}>
@@ -176,7 +178,7 @@ const Calculator = (props: any) => {
                       variant="h4"
                       sx={{ fontWeight: 600, fontSize: theme.spacing(2.5) }}
                     >
-                      {network.denom}
+                      {network.denom.toUpperCase()}
                     </Typography>
                     <Typography
                       variant="body1"
@@ -361,7 +363,7 @@ const Calculator = (props: any) => {
                 color={theme.palette.custom.forbole.blue}
                 paddingLeft={1}
               >
-                {selectedToken.denom}
+                {selectedToken.denom.toUpperCase()}
               </Typography>
             </Box>
             <Box sx={styles.amountResult}>
@@ -370,7 +372,6 @@ const Calculator = (props: any) => {
                 fontWeight="600"
                 fontSize={theme.spacing(2)}
                 color={theme.palette.custom.forbole.blue}
-                padding={theme.spacing(0, 0, 0.5, 0)}
               >
                 {totalEarnings.monthlyEarnings.tokens}
               </Typography>
@@ -379,6 +380,12 @@ const Calculator = (props: any) => {
                 fontWeight="400"
                 fontSize={theme.spacing(2)}
                 color="#878787"
+                padding={theme.spacing(0.5, 0, 0, 0)}
+                display={
+                  totalEarnings.monthlyEarnings.amount === '0.00'
+                    ? 'none'
+                    : 'block'
+                }
               >
                 $ {totalEarnings.monthlyEarnings.amount} USD
               </Typography>

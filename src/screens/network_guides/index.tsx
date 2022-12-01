@@ -18,7 +18,17 @@ const NetworkGuides = ({ post }: any) => {
   }, []);
 
   return (
-    <LayoutVal navLink="staking" stakingGuide footer>
+    <LayoutVal
+      title={post.title}
+      description={post.excerpt}
+      type="article"
+      image={post.featureImage}
+      twitterImage={post.featureImage}
+      keywords={post.tags.map((x: { name: any }) => x.name ?? '')}
+      navLink="staking"
+      stakingGuide
+      footer
+    >
       <LaptopCSS>
         <NetworkInfo post={post} />
       </LaptopCSS>
