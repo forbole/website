@@ -36,6 +36,7 @@ jobs:
           NEXT_PUBLIC_MATOMO_SITE_ID=1
           GHOST_PRIVATE_KEY=${{ secrets.GHOST_PRIVATE_KEY }}
           NEXT_PUBLIC_GRAPHQL_API="https://api.forbole.com/graphql"
+          NEXT_PUBLIC_COINGECKO_API="https://api.coingecko.com/api/v3"
           echo ::set-output name=NEXT_PUBLIC_URL::${NEXT_PUBLIC_URL}
           echo ::set-output name=PORT::${PORT}
           echo ::set-output name=NEXT_PUBLIC_GHOST_KEY::${NEXT_PUBLIC_GHOST_KEY}
@@ -47,6 +48,7 @@ jobs:
           echo ::set-output name=NEXT_PUBLIC_MATOMO_SITE_ID::${NEXT_PUBLIC_MATOMO_SITE_ID}
           echo ::set-output name=GHOST_PRIVATE_KEY::${GHOST_PRIVATE_KEY}
           echo ::set-output name=NEXT_PUBLIC_GRAPHQL_API::${NEXT_PUBLIC_GRAPHQL_API}
+          echo ::set-output name=NEXT_PUBLIC_COINGECKO_API::${NEXT_PUBLIC_COINGECKO_API}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -73,6 +75,7 @@ jobs:
             "NEXT_PUBLIC_MATOMO_SITE_ID=${{ steps.dockerPrep.outputs.NEXT_PUBLIC_MATOMO_SITE_ID }}"
             "GHOST_PRIVATE_KEY=${{ steps.dockerPrep.outputs.GHOST_PRIVATE_KEY }}"
             "NEXT_PUBLIC_GRAPHQL_API=${{ steps.dockerPrep.outputs.NEXT_PUBLIC_GRAPHQL_API }}"
+            "NEXT_PUBLIC_COINGECKO_API=${{ steps.dockerPrep.outputs.NEXT_PUBLIC_COINGECKO_API }}"
           tags: 'forbole/official-website:${{ steps.prep.outputs.branch }}-staging'
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
