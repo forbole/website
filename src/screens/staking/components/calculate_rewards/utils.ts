@@ -2,10 +2,10 @@
 import * as R from 'ramda';
 
 type NetworkDataProps = {
-  bonded: (data: any) => number;
-  inflation: (data: any) => number;
-  supply: (data: any) => number;
-  commissionRate: (data: any) => number;
+  bonded?: (data: any) => number;
+  inflation?: (data: any) => number;
+  supply?: (data: any) => number;
+  commissionRate?: (data: any) => number;
   marketPrice: (data: any) => number;
   gecko?: any;
 };
@@ -60,7 +60,7 @@ export const uFlowToFlow = defaultConverter(1);
 
 export const uSolanaToSolana = defaultConverter(1);
 
-export const defaultFunctions = (converter: any) => ({
+export const defaultFunctions = (converter?: any) => ({
   bonded: (data: any) => {
     return converter(Number(R.pathOr(0, ['result', 'bonded_tokens'], data)));
   },
@@ -185,7 +185,7 @@ export const networkFunctions: NetworkProps = {
   'band-protocol': band,
   cryptoOrg,
   sentinel,
-  'fetch.ai': fetchAI,
+  fetchai: fetchAI,
   'regen-network': regen,
   bitsong,
   'oasis-protocol': oasis,
