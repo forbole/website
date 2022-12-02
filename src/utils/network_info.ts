@@ -424,6 +424,14 @@ const logos: IStringIndex = {
     graphql: 'elrond',
     address: 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqq40llllsfjmn54',
   },
+  solana: {
+    image: '/images/network/solana.png',
+    name: 'Solana',
+    denom: 'SOL',
+    key: 'solana',
+    graphql: 'solana',
+    address: '76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857',
+  },
   // ['gravity-bridge']: {
   //   guide: 'how-to-stake-grav-on-gravity-bridge',
   // },

@@ -50,6 +50,10 @@ export const elrondNetworkParams: NetworkProps = {
   elrond: { bonded: 0, APY: 0, TVL: 0 },
 };
 
+export const solanaNetworkParams: NetworkProps = {
+  solana: { bonded: 0, APY: 0, TVL: 0 },
+};
+
 export const cosmosNetworkKeys = [
   'e-money',
   'akash',
