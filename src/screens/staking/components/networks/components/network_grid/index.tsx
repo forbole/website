@@ -14,8 +14,9 @@ const NetworkGrid = () => {
     getNetworkInfo(x)
   );
   const elrondNetworkData = getNetworkInfo('elrond');
+  const solanaNetworkData = getNetworkInfo('solana');
   const [showMobilePopover, setShowMobilePopover] = useState('');
-  const { cosmosNetworks, elrondNetwork } = useNetworkHook();
+  const { cosmosNetworks, elrondNetwork, solanaNetwork } = useNetworkHook();
 
   return (
     <Box css={styles.root}>
@@ -36,6 +37,13 @@ const NetworkGrid = () => {
             key={elrondNetworkData.name}
             network={elrondNetworkData}
             networkSummary={elrondNetwork[elrondNetworkData.graphql]}
+            showMobilePopover={showMobilePopover}
+            setShowMobilePopover={setShowMobilePopover}
+          />
+          <NetworkCard
+            key={solanaNetworkData.name}
+            network={solanaNetworkData}
+            networkSummary={solanaNetwork[solanaNetworkData.graphql]}
             showMobilePopover={showMobilePopover}
             setShowMobilePopover={setShowMobilePopover}
           />

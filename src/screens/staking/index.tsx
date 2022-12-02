@@ -27,7 +27,13 @@ const Staking = () => {
   }, []);
 
   return (
-    <LayoutVal stakeNowRef={stakeNowRef} navLink="staking" footer>
+    <LayoutVal
+      stakeNowRef={stakeNowRef}
+      navLink="staking"
+      image="/images/assets/image_forbole_validator_website_preview.png"
+      twitterImage="/images/assets/image_forbole_validator_website_preview.png"
+      footer
+    >
       <LaptopCSS>
         <Hero />
       </LaptopCSS>

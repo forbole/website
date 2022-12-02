@@ -10,9 +10,15 @@ import {
   getElrondBondedToken,
   getElrondAPY,
   getElrondTVL,
+  getSolanaTVL,
+  getSolanaBondedToken,
 } from '@graphql/queries';
 import { networkFunctions } from '@utils/network_functions';
-import { cosmosNetworkParams, elrondNetworkParams } from './config';
+import {
+  cosmosNetworkParams,
+  elrondNetworkParams,
+  solanaNetworkParams,
+} from './config';
 
 export const useNetworkHook = () => {
   const [cosmosNetworks, setCosmosNetworks] = useState(cosmosNetworkParams);
@@ -47,6 +53,18 @@ export const useNetworkHook = () => {
   const { loading: elrondTVLLoading, data: elrondTVLData } = useQuery(
     gql`
       ${getElrondTVL()}
+    `
+  );
+
+  const [solanaNetwork, setSolanaNetwork] = useState(solanaNetworkParams);
+  const { loading: solanaBondedLoading, data: solanaBondedData } = useQuery(
+    gql`
+      ${getSolanaBondedToken()}
+    `
+  );
+  const { loading: solanaTVLLoading, data: solanaTVLData } = useQuery(
+    gql`
+      ${getSolanaTVL()}
     `
   );
 
@@ -161,8 +179,35 @@ export const useNetworkHook = () => {
     }
   }, [elrondTVLData, elrondTVLLoading]);
 
+  useMemo(() => {
+    if (!solanaTVLLoading) {
+      const { solanaTVL } = solanaTVLData;
+      setSolanaNetwork((prev) => ({
+        ...prev,
+        [solanaTVL.metric.instance]: {
+          ...solanaNetwork[solanaTVL.metric.instance],
+          TVL: solanaTVL.TVL,
+        },
+      }));
+    }
+  }, [solanaTVLLoading, solanaTVLData]);
+
+  useMemo(() => {
+    if (!solanaBondedLoading) {
+      const { solanaBondedToken } = solanaBondedData;
+      setSolanaNetwork((prev) => ({
+        ...prev,
+        [solanaBondedToken.metric.instance]: {
+          ...solanaNetwork[solanaBondedToken.metric.instance],
+          bonded: solanaBondedToken.bondedToken,
+        },
+      }));
+    }
+  }, [solanaBondedData, solanaBondedLoading]);
+
   return {
     cosmosNetworks,
     elrondNetwork,
+    solanaNetwork,
   };
 };
