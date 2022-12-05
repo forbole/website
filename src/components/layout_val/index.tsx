@@ -39,7 +39,7 @@ const LayoutVal = ({
   children,
   title = 'Forbole Validator Website',
   footer,
-  description = "Too many friends. Too few relationships. Let's change our social network. Recommend trusted people and start making meaningful relationships with rewards.",
+  description = 'Forbole is an experienced professional blockchain node operator and staking provider. Delegate to us and earn your crypto rewards now!',
   keywords = [],
   type = 'website',
   image,
