@@ -213,11 +213,6 @@ const Calculator = (props: any) => {
           value={tokens?.display}
           onChange={handleChange}
           placeholder={t('token amount placeholder')}
-          endAdornment={
-            <InputAdornment position="end">
-              <InfoIcon stroke="#878787" height="24px" width="24px" />
-            </InputAdornment>
-          }
         />
       </Box>
       <Typography
