@@ -27,7 +27,7 @@ export const details: DetailCardProps[] = [
     desc1: 'staking provider desc 1',
     desc2: 'staking provider desc 2',
     desc3: 'staking provider desc 3',
-    url: 'https://www.forbole.com/',
+    url: 'https://www.forbole.com/staking',
   },
   {
     image: '/images/assets/image_desmos_desktop.png',
