@@ -65,6 +65,10 @@ const NetworkInfo = ({ post }: any) => {
   const networkImage =
     tags.length <= 1 ? null : `/images/network/${tags[1].slug}.png`;
 
+  const coverImage = networkData
+    ? `/images/guides/how_to_stake_${networkData.graphql}.png`
+    : featureImage;
+
   return (
     <Box
       display="flex"
@@ -97,8 +101,12 @@ const NetworkInfo = ({ post }: any) => {
           <CardMedia
             component="img"
             height={onlyLargeScreen ? 240 : 106}
-            image={featureImage}
+            image={coverImage || featureImage}
             alt="network feature image"
+            sx={{
+              objectFit: 'cover',
+              objectPosition: '0% 37%',
+            }}
           />
           <CardContent
             sx={{
@@ -106,9 +114,10 @@ const NetworkInfo = ({ post }: any) => {
               alignItems: 'center',
               flexDirection: 'row',
               paddingTop: 0,
-              marginTop: theme.spacing(-7),
+              marginTop: theme.spacing(-5),
               [theme.breakpoints.up('laptop')]: {
                 justifyContent: 'space-between',
+                marginTop: theme.spacing(-7),
               },
             }}
           >
