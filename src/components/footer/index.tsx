@@ -80,10 +80,16 @@ const Footer = ({ staking }: FooterProps) => {
             display: 'flex',
             flexDirection: 'column',
             '& a': {
-              color: theme.palette.common.white,
+              color: staking
+                ? theme.palette.custom.forbole.indigo
+                : theme.palette.primary.main,
               textDecoration: 'none',
               margin: 'auto',
               padding: theme.spacing(3, 0, 0, 0),
+              '&:hover': {
+                cursor: 'pointer',
+                color: theme.palette.custom.forbole.purple,
+              },
               [theme.breakpoints.up('laptop')]: {
                 padding: theme.spacing(0, 0, 3, 0),
               },

@@ -180,7 +180,8 @@ const logos: IStringIndex = {
     graphql: 'axelar',
     address: 'axelarvaloper1r7ppsrmzpslqu3d3yf344kzjv32n9dn4xyt0sw',
     guide: 'how-to-stake-axl-on-axelar',
-    delegate: 'https://wallet.keplr.app/chains/axelar',
+    delegate:
+      'https://wallet.keplr.app/chains/axelar?modal=validator&chain=axelar-dojo-1&validator_address=axelarvaloper1r7ppsrmzpslqu3d3yf344kzjv32n9dn4xyt0sw',
   },
   bitcanna: {
     image: '/images/network/bitcanna.png',
