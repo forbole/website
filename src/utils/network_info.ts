@@ -469,6 +469,13 @@ const logos: IStringIndex = {
     key: 'jackal',
     graphql: 'jackal',
   },
+  kusama: {
+    image: '/images/network/kusama.png',
+    name: 'Kusama',
+    denom: 'KSM',
+    key: 'kusama',
+    graphql: 'kusama',
+  },
   // nomic: {
   //   guide: 'how-to-stake-nom-on-nomic',
   // },

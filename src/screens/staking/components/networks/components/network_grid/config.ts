@@ -49,6 +49,7 @@ export const cosmosNetworkParams: NetworkProps = {
   ethereum: { bonded: 0, APY: 0, TVL: 0 },
   gravity_bridge: { bonded: 0, APY: 0, TVL: 0 },
   jackal: { bonded: 0, APY: 0, TVL: 0 },
+  kusama: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -101,6 +102,7 @@ const cosmosNetworkKeys = [
   'ethereum',
   'gravity_bridge',
   'jackal',
+  'kusama',
 ].sort();
 
 const getNetworkKeysArray = () => {
