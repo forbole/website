@@ -462,6 +462,13 @@ const logos: IStringIndex = {
     // need staking guide stats:
     // guide: 'how-to-stake-grav-on-gravity-bridge',
   },
+  jackal: {
+    image: '/images/network/jackal.png',
+    name: 'Jackal Protocol',
+    denom: 'JKL',
+    key: 'jackal',
+    graphql: 'jackal',
+  },
   // nomic: {
   //   guide: 'how-to-stake-nom-on-nomic',
   // },
