@@ -64,7 +64,7 @@ export const cosmosNetworkParams: NetworkProps = {
   wormhole: { bonded: 0, APY: 0, TVL: 0 },
   vsys: { bonded: 0, APY: 0, TVL: 0 },
   xpla: { bonded: 0, APY: 0, TVL: 0 },
-  // ununifi: { bonded: 0, APY: 0, TVL: 0 },
+  ununifi: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -140,7 +140,7 @@ const cosmosNetworkKeys = [
   'wormhole',
   'vsys',
   'xpla',
-  // 'ununifi',
+  'ununifi',
 ].sort();
 
 const getNetworkKeysArray = () => {
