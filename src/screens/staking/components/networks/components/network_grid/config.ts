@@ -63,6 +63,7 @@ export const cosmosNetworkParams: NetworkProps = {
   tgrade: { bonded: 0, APY: 0, TVL: 0 },
   wormhole: { bonded: 0, APY: 0, TVL: 0 },
   vsys: { bonded: 0, APY: 0, TVL: 0 },
+  // ununifi: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -137,6 +138,7 @@ const cosmosNetworkKeys = [
   'tgrade',
   'wormhole',
   'vsys',
+  // 'ununifi',
 ].sort();
 
 const getNetworkKeysArray = () => {

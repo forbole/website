@@ -583,6 +583,13 @@ const logos: IStringIndex = {
     key: 'vsys',
     graphql: 'vsys',
   },
+  ununifi: {
+    image: '/images/network/ununifi.png',
+    name: 'Ununifi',
+    denom: 'GUU',
+    key: 'ununifi',
+    graphql: 'ununifi',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
