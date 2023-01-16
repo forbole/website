@@ -453,9 +453,15 @@ const logos: IStringIndex = {
     key: 'ethereum',
     graphql: 'ethereum',
   },
-  // ['gravity-bridge']: {
-  //   guide: 'how-to-stake-grav-on-gravity-bridge',
-  // },
+  ['gravity_bridge']: {
+    image: '/images/network/gravity_bridge.png',
+    name: 'Gravity Bridge',
+    denom: 'GRAV',
+    key: 'gravity_bridge',
+    graphql: 'gravity_bridge',
+    // need staking guide stats:
+    // guide: 'how-to-stake-grav-on-gravity-bridge',
+  },
   // nomic: {
   //   guide: 'how-to-stake-nom-on-nomic',
   // },
