@@ -11,9 +11,11 @@ import {
   getElrondAPY,
   getElrondTVL,
   getSolanaTVL,
+  getOasisTVL,
+  getRadixTVL,
   getSolanaBondedToken,
   getOasisBondedToken,
-  getOasisTVL,
+  getRadixBondedToken,
 } from '@graphql/queries';
 import { networkFunctions } from '@utils/network_functions';
 import {
@@ -21,6 +23,7 @@ import {
   elrondNetworkParams,
   solanaNetworkParams,
   oasisNetworkParams,
+  radixNetworkParams,
 } from './config';
 
 export const useNetworkHook = () => {
@@ -80,6 +83,18 @@ export const useNetworkHook = () => {
   const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(
     gql`
       ${getOasisTVL()}
+    `
+  );
+
+  const [radixNetwork, setRadixNetwork] = useState(radixNetworkParams);
+  const { loading: radixBondedLoading, data: radixBondedData } = useQuery(
+    gql`
+      ${getRadixBondedToken()}
+    `
+  );
+  const { loading: radixTVLLoading, data: radixTVLData } = useQuery(
+    gql`
+      ${getRadixTVL()}
     `
   );
 
@@ -246,10 +261,37 @@ export const useNetworkHook = () => {
     }
   }, [oasisBondedData, oasisBondedLoading]);
 
+  useMemo(() => {
+    if (!radixTVLLoading) {
+      const { radixTVL } = radixTVLData;
+      setRadixNetwork((prev) => ({
+        ...prev,
+        [radixTVL[0].metric.instance]: {
+          ...radixNetwork[radixTVL[0].metric.instance],
+          TVL: radixTVL[0].TVL,
+        },
+      }));
+    }
+  }, [radixTVLLoading, radixTVLData]);
+
+  useMemo(() => {
+    if (!radixBondedLoading) {
+      const { allRadixStakedTokens } = radixBondedData;
+      setRadixNetwork((prev) => ({
+        ...prev,
+        [allRadixStakedTokens[0].metric.instance]: {
+          ...oasisNetwork[allRadixStakedTokens[0].metric.instance],
+          bonded: allRadixStakedTokens[0].bondedToken,
+        },
+      }));
+    }
+  }, [radixBondedData, radixBondedLoading]);
+
   return {
     cosmosNetworks,
     elrondNetwork,
     solanaNetwork,
     oasisNetwork,
+    radixNetwork,
   };
 };

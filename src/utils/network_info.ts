@@ -534,6 +534,13 @@ const logos: IStringIndex = {
     key: 'quicksilver',
     graphql: 'quicksilver',
   },
+  radix: {
+    image: '/images/network/radix.png',
+    name: 'Radix',
+    denom: 'XRD',
+    key: 'radix',
+    graphql: 'radix',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

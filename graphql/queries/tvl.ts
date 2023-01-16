@@ -53,3 +53,15 @@ export const getOasisTVL = () => `
         }
     }
 `;
+
+export const getRadixTVL = () => `
+    query RadixTVL {
+        radixTVL {
+        metric {
+            validator_address
+            instance
+        }
+        TVL
+        }
+    }
+`;

@@ -18,12 +18,14 @@ import {
   getSolanaTVL,
   getElrondTVL,
   getOasisTVL,
+  getRadixTVL,
 } from './tvl';
 import {
   getCosmosUsersCount,
   getSolanaUsersCount,
   getElrondUsersCount,
   getOasisUsersCount,
+  getRadixUsersCount,
 } from './usersCount';
 import {
   getEachCosmosTokenSupply,
@@ -55,10 +57,12 @@ export {
   getSolanaTVL,
   getElrondTVL,
   getOasisTVL,
+  getRadixTVL,
   getCosmosUsersCount,
   getSolanaUsersCount,
   getElrondUsersCount,
   getOasisUsersCount,
+  getRadixUsersCount,
   getEachCosmosTokenSupply,
   getRadixTokenSupply,
   getElrondTokenSupply,
