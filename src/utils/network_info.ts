@@ -476,6 +476,13 @@ const logos: IStringIndex = {
     key: 'kusama',
     graphql: 'kusama',
   },
+  terra: {
+    image: '/images/network/terra.png',
+    name: 'Terra',
+    denom: 'LUNA',
+    key: 'terra',
+    graphql: 'terra',
+  },
   // nomic: {
   //   guide: 'how-to-stake-nom-on-nomic',
   // },
