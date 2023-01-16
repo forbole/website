@@ -40,3 +40,15 @@ export const getOasisUsersCount = () => `
         }
     }
 `;
+
+export const getRadixUsersCount = () => `
+    query RadixUsers {
+        radixUsers {
+        metric {
+            instance
+            validator_address
+        }
+        usersCount
+        }
+    }
+`;

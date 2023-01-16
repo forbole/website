@@ -131,6 +131,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const styles = useStyles();
   return (
     <motion.div
+      key={key}
       ref={ref}
       css={styles.root}
       variants={{

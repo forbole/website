@@ -109,6 +109,7 @@ const WhyForbole = () => {
             />
             {reasons.map((reason, i) => (
               <Box
+                key={i}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',

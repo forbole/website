@@ -4,7 +4,7 @@ export type ParamsProps = {
   TVL: number;
 };
 
-type NetworkProps = {
+export type NetworkProps = {
   [key: string]: ParamsProps;
 };
 
@@ -44,6 +44,27 @@ export const cosmosNetworkParams: NetworkProps = {
   sommelier: { bonded: 0, APY: 0, TVL: 0 },
   stafihub: { bonded: 0, APY: 0, TVL: 0 },
   stride: { bonded: 0, APY: 0, TVL: 0 },
+  cardano: { bonded: 0, APY: 0, TVL: 0 },
+  certik: { bonded: 0, APY: 0, TVL: 0 },
+  ethereum: { bonded: 0, APY: 0, TVL: 0 },
+  gravity_bridge: { bonded: 0, APY: 0, TVL: 0 },
+  jackal: { bonded: 0, APY: 0, TVL: 0 },
+  kusama: { bonded: 0, APY: 0, TVL: 0 },
+  terra: { bonded: 0, APY: 0, TVL: 0 },
+  nomic: { bonded: 0, APY: 0, TVL: 0 },
+  nym: { bonded: 0, APY: 0, TVL: 0 },
+  omniflix: { bonded: 0, APY: 0, TVL: 0 },
+  passage: { bonded: 0, APY: 0, TVL: 0 },
+  celer: { bonded: 0, APY: 0, TVL: 0 },
+  quicksilver: { bonded: 0, APY: 0, TVL: 0 },
+  ssv: { bonded: 0, APY: 0, TVL: 0 },
+  stargaze: { bonded: 0, APY: 0, TVL: 0 },
+  teritori: { bonded: 0, APY: 0, TVL: 0 },
+  tgrade: { bonded: 0, APY: 0, TVL: 0 },
+  wormhole: { bonded: 0, APY: 0, TVL: 0 },
+  vsys: { bonded: 0, APY: 0, TVL: 0 },
+  xpla: { bonded: 0, APY: 0, TVL: 0 },
+  ununifi: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -54,7 +75,15 @@ export const solanaNetworkParams: NetworkProps = {
   solana: { bonded: 0, APY: 0, TVL: 0 },
 };
 
-export const cosmosNetworkKeys = [
+export const oasisNetworkParams: NetworkProps = {
+  oasis: { bonded: 0, APY: 0, TVL: 0 },
+};
+
+export const radixNetworkParams: NetworkProps = {
+  radix: { bonded: 0, APY: 0, TVL: 0 },
+};
+
+const cosmosNetworkKeys = [
   'e-money',
   'akash',
   'bitsong',
@@ -91,7 +120,38 @@ export const cosmosNetworkKeys = [
   // 'band-protocol',
   'cosmos',
   // 'desmos',
+  'cardano',
+  'certik',
+  'ethereum',
+  'gravity_bridge',
+  'jackal',
+  'kusama',
+  'terra',
+  'nomic',
+  'nym',
+  'omniflix',
+  'passage',
+  'celer',
+  'quicksilver',
+  'ssv',
+  'stargaze',
+  'teritori',
+  'tgrade',
+  'wormhole',
+  'vsys',
+  'xpla',
+  'ununifi',
 ].sort();
+
+const getNetworkKeysArray = () => {
+  const arr = [];
+  cosmosNetworkKeys.map((key) => arr.push(key));
+  arr.push('elrond', 'solana', 'oasis', 'radix');
+  arr.sort();
+  return arr;
+};
+
+export const allNetworkKeys = getNetworkKeysArray();
 
 export const getNetworkParams = (key: string) => {
   return cosmosNetworkParams[key] ?? {};

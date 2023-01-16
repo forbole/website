@@ -80,10 +80,14 @@ const Footer = ({ staking }: FooterProps) => {
             display: 'flex',
             flexDirection: 'column',
             '& a': {
-              color: theme.palette.common.white,
+              color: theme.palette.custom.forbole.indigo,
               textDecoration: 'none',
               margin: 'auto',
               padding: theme.spacing(3, 0, 0, 0),
+              '&:hover': {
+                cursor: 'pointer',
+                color: theme.palette.custom.forbole.purple,
+              },
               [theme.breakpoints.up('laptop')]: {
                 padding: theme.spacing(0, 0, 3, 0),
               },
@@ -97,13 +101,15 @@ const Footer = ({ staking }: FooterProps) => {
           }}
         >
           <SocialMedia staking={staking || undefined} />
-          <a
-            href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2"
-            rel="noreferrer"
-            target="_blank"
-          >
-            {t('brand guide')}
-          </a>
+          {staking && (
+            <a
+              href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2"
+              rel="noreferrer"
+              target="_blank"
+            >
+              {t('brand guide')}
+            </a>
+          )}
           <FooterItems staking={staking || undefined} />
         </Box>
       </Box>
