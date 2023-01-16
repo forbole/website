@@ -576,6 +576,13 @@ const logos: IStringIndex = {
     key: 'wormhole',
     graphql: 'wormhole',
   },
+  vsys: {
+    image: '/images/network/v-systems.png',
+    name: 'V Systems',
+    denom: 'VSYS',
+    key: 'vsys',
+    graphql: 'vsys',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
