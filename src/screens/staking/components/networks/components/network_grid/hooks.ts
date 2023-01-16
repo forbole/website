@@ -12,12 +12,15 @@ import {
   getElrondTVL,
   getSolanaTVL,
   getSolanaBondedToken,
+  getOasisBondedToken,
+  getOasisTVL,
 } from '@graphql/queries';
 import { networkFunctions } from '@utils/network_functions';
 import {
   cosmosNetworkParams,
   elrondNetworkParams,
   solanaNetworkParams,
+  oasisNetworkParams,
 } from './config';
 
 export const useNetworkHook = () => {
@@ -65,6 +68,18 @@ export const useNetworkHook = () => {
   const { loading: solanaTVLLoading, data: solanaTVLData } = useQuery(
     gql`
       ${getSolanaTVL()}
+    `
+  );
+
+  const [oasisNetwork, setOasisNetwork] = useState(oasisNetworkParams);
+  const { loading: oasisBondedLoading, data: oasisBondedData } = useQuery(
+    gql`
+      ${getOasisBondedToken()}
+    `
+  );
+  const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(
+    gql`
+      ${getOasisTVL()}
     `
   );
 
@@ -205,9 +220,36 @@ export const useNetworkHook = () => {
     }
   }, [solanaBondedData, solanaBondedLoading]);
 
+  useMemo(() => {
+    if (!oasisTVLLoading) {
+      const { oasisTVL } = oasisTVLData;
+      setOasisNetwork((prev) => ({
+        ...prev,
+        [oasisTVL[0].metric.instance]: {
+          ...oasisNetwork[oasisTVL[0].metric.instance],
+          TVL: oasisTVL[0].TVL,
+        },
+      }));
+    }
+  }, [oasisTVLLoading, oasisTVLData]);
+
+  useMemo(() => {
+    if (!oasisBondedLoading) {
+      const { oasisBondedToken } = oasisBondedData;
+      setOasisNetwork((prev) => ({
+        ...prev,
+        [oasisBondedToken[0].metric.instance]: {
+          ...oasisNetwork[oasisBondedToken[0].metric.instance],
+          bonded: oasisBondedToken[0].bondedToken,
+        },
+      }));
+    }
+  }, [oasisBondedData, oasisBondedLoading]);
+
   return {
     cosmosNetworks,
     elrondNetwork,
     solanaNetwork,
+    oasisNetwork,
   };
 };

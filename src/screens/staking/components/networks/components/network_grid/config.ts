@@ -63,6 +63,10 @@ export const solanaNetworkParams: NetworkProps = {
   solana: { bonded: 0, APY: 0, TVL: 0 },
 };
 
+export const oasisNetworkParams: NetworkProps = {
+  oasis: { bonded: 0, APY: 0, TVL: 0 },
+};
+
 const cosmosNetworkKeys = [
   'e-money',
   'akash',
@@ -114,7 +118,7 @@ const cosmosNetworkKeys = [
 const getNetworkKeysArray = () => {
   const arr = [];
   cosmosNetworkKeys.map((key) => arr.push(key));
-  arr.push('elrond', 'solana');
+  arr.push('elrond', 'solana', 'oasis');
   arr.sort();
   return arr;
 };

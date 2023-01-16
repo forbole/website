@@ -499,6 +499,13 @@ const logos: IStringIndex = {
     key: 'nym',
     graphql: 'nym',
   },
+  oasis: {
+    image: '/images/network/oasis.png',
+    name: 'Oasis Network',
+    denom: 'ROSE',
+    key: 'oasis',
+    graphql: 'oasis',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

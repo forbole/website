@@ -11,7 +11,8 @@ import { useNetworkHook } from './hooks';
 const NetworkGrid = () => {
   const styles = useStyles();
   const [showMobilePopover, setShowMobilePopover] = useState('');
-  const { cosmosNetworks, elrondNetwork, solanaNetwork } = useNetworkHook();
+  const { cosmosNetworks, elrondNetwork, solanaNetwork, oasisNetwork } =
+    useNetworkHook();
   const allNetworkData = allNetworkKeys.map((x: string | number) =>
     getNetworkInfo(x)
   );
@@ -19,6 +20,7 @@ const NetworkGrid = () => {
     ...cosmosNetworks,
     ...elrondNetwork,
     ...solanaNetwork,
+    ...oasisNetwork,
   };
 
   const networkInfo: NetworkProps = Object.keys(allNetworkInfo)
