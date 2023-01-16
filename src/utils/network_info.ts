@@ -432,6 +432,13 @@ const logos: IStringIndex = {
     graphql: 'solana',
     address: '76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857',
   },
+  cardano: {
+    image: '/images/network/cardano.png',
+    name: 'Cardano',
+    denom: 'ADA',
+    key: 'cardano',
+    graphql: 'cardano',
+  },
   // ['gravity-bridge']: {
   //   guide: 'how-to-stake-grav-on-gravity-bridge',
   // },
