@@ -562,6 +562,13 @@ const logos: IStringIndex = {
     key: 'teritori',
     graphql: 'teritori',
   },
+  tgrade: {
+    image: '/images/network/tgrade.png',
+    name: 'Tgrade',
+    denom: 'TGD',
+    key: 'tgrade',
+    graphql: 'tgrade',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
