@@ -54,6 +54,7 @@ export const cosmosNetworkParams: NetworkProps = {
   nomic: { bonded: 0, APY: 0, TVL: 0 },
   nym: { bonded: 0, APY: 0, TVL: 0 },
   omniflix: { bonded: 0, APY: 0, TVL: 0 },
+  passage: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -115,6 +116,7 @@ const cosmosNetworkKeys = [
   'nomic',
   'nym',
   'omniflix',
+  'passage',
 ].sort();
 
 const getNetworkKeysArray = () => {

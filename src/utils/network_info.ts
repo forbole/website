@@ -513,6 +513,13 @@ const logos: IStringIndex = {
     key: 'omniflix',
     graphql: 'omniflix',
   },
+  passage: {
+    image: '/images/network/passage.png',
+    name: 'Passage',
+    denom: 'PASG',
+    key: 'passage',
+    graphql: 'passage',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
