@@ -520,6 +520,13 @@ const logos: IStringIndex = {
     key: 'passage',
     graphql: 'passage',
   },
+  celer: {
+    image: '/images/network/celer.png',
+    name: 'Celer',
+    denom: 'CELER',
+    key: 'celer',
+    graphql: 'celer',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
