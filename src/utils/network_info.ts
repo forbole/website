@@ -590,6 +590,13 @@ const logos: IStringIndex = {
     key: 'ununifi',
     graphql: 'ununifi',
   },
+  xpla: {
+    image: '/images/network/xpla.png',
+    name: 'XPLA',
+    denom: 'XPLA',
+    key: 'xpla',
+    graphql: 'xpla',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

@@ -63,6 +63,7 @@ export const cosmosNetworkParams: NetworkProps = {
   tgrade: { bonded: 0, APY: 0, TVL: 0 },
   wormhole: { bonded: 0, APY: 0, TVL: 0 },
   vsys: { bonded: 0, APY: 0, TVL: 0 },
+  xpla: { bonded: 0, APY: 0, TVL: 0 },
   // ununifi: { bonded: 0, APY: 0, TVL: 0 },
 };
 
@@ -138,6 +139,7 @@ const cosmosNetworkKeys = [
   'tgrade',
   'wormhole',
   'vsys',
+  'xpla',
   // 'ununifi',
 ].sort();
 
