@@ -541,6 +541,13 @@ const logos: IStringIndex = {
     key: 'radix',
     graphql: 'radix',
   },
+  ssv: {
+    image: '/images/network/ssv.png',
+    name: 'SSV Network',
+    denom: 'SSV',
+    key: 'ssv',
+    graphql: 'ssv',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
