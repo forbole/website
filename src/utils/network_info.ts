@@ -506,6 +506,13 @@ const logos: IStringIndex = {
     key: 'oasis',
     graphql: 'oasis',
   },
+  omniflix: {
+    image: '/images/network/omniflix.png',
+    name: 'Omniflix Network',
+    denom: 'FLIX',
+    key: 'omniflix',
+    graphql: 'omniflix',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
