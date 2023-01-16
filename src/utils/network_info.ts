@@ -99,8 +99,8 @@ const logos: IStringIndex = {
   },
   'crypto.org': {
     image: '/images/network/crypto_org.png',
-    name: 'Cronos',
-    label: 'Cronos - CRO',
+    name: 'Crypto.org',
+    label: 'Crypto.org - CRO',
     denom: 'cro',
     key: 'crypto-org',
     graphql: 'cro',
@@ -445,6 +445,13 @@ const logos: IStringIndex = {
     denom: 'CTK',
     key: 'certik',
     graphql: 'certik',
+  },
+  ethereum: {
+    image: '/images/network/ethereum.png',
+    name: 'Ethereum',
+    denom: 'ETH',
+    key: 'ethereum',
+    graphql: 'ethereum',
   },
   // ['gravity-bridge']: {
   //   guide: 'how-to-stake-grav-on-gravity-bridge',
