@@ -492,6 +492,13 @@ const logos: IStringIndex = {
     // need staking guide stats:
     guide: 'how-to-stake-nom-on-nomic',
   },
+  nym: {
+    image: '/images/network/nym.png',
+    name: 'NYM',
+    denom: 'NYM',
+    key: 'nym',
+    graphql: 'nym',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
