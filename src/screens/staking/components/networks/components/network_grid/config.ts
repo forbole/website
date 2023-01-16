@@ -51,6 +51,7 @@ export const cosmosNetworkParams: NetworkProps = {
   jackal: { bonded: 0, APY: 0, TVL: 0 },
   kusama: { bonded: 0, APY: 0, TVL: 0 },
   terra: { bonded: 0, APY: 0, TVL: 0 },
+  nomic: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -105,6 +106,7 @@ const cosmosNetworkKeys = [
   'jackal',
   'kusama',
   'terra',
+  'nomic',
 ].sort();
 
 const getNetworkKeysArray = () => {

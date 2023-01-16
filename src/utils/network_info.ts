@@ -483,9 +483,15 @@ const logos: IStringIndex = {
     key: 'terra',
     graphql: 'terra',
   },
-  // nomic: {
-  //   guide: 'how-to-stake-nom-on-nomic',
-  // },
+  nomic: {
+    image: '/images/network/nomic.png',
+    name: 'Nomic Network',
+    denom: 'NOM',
+    key: 'nomic',
+    graphql: 'nomic',
+    // need staking guide stats:
+    guide: 'how-to-stake-nom-on-nomic',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
