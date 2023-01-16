@@ -4,7 +4,7 @@ export type ParamsProps = {
   TVL: number;
 };
 
-type NetworkProps = {
+export type NetworkProps = {
   [key: string]: ParamsProps;
 };
 
@@ -54,7 +54,7 @@ export const solanaNetworkParams: NetworkProps = {
   solana: { bonded: 0, APY: 0, TVL: 0 },
 };
 
-export const cosmosNetworkKeys = [
+const cosmosNetworkKeys = [
   'e-money',
   'akash',
   'bitsong',
@@ -92,6 +92,16 @@ export const cosmosNetworkKeys = [
   'cosmos',
   // 'desmos',
 ].sort();
+
+const getNetworkKeysArray = () => {
+  const arr = [];
+  cosmosNetworkKeys.map((key) => arr.push(key));
+  arr.push('elrond', 'solana');
+  arr.sort();
+  return arr;
+};
+
+export const allNetworkKeys = getNetworkKeysArray();
 
 export const getNetworkParams = (key: string) => {
   return cosmosNetworkParams[key] ?? {};
