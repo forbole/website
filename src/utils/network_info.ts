@@ -569,6 +569,13 @@ const logos: IStringIndex = {
     key: 'tgrade',
     graphql: 'tgrade',
   },
+  wormhole: {
+    image: '/images/network/wormhole.png',
+    name: 'Wormhole',
+    // denom: 'NUL',
+    key: 'wormhole',
+    graphql: 'wormhole',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

@@ -61,6 +61,7 @@ export const cosmosNetworkParams: NetworkProps = {
   stargaze: { bonded: 0, APY: 0, TVL: 0 },
   teritori: { bonded: 0, APY: 0, TVL: 0 },
   tgrade: { bonded: 0, APY: 0, TVL: 0 },
+  wormhole: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -133,6 +134,7 @@ const cosmosNetworkKeys = [
   'stargaze',
   'teritori',
   'tgrade',
+  'wormhole',
 ].sort();
 
 const getNetworkKeysArray = () => {
