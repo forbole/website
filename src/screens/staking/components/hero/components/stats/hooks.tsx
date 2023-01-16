@@ -7,10 +7,12 @@ import {
   getElrondTVL,
   getSolanaTVL,
   getOasisTVL,
+  getRadixTVL,
   getCosmosUsersCount,
   getSolanaUsersCount,
   getElrondUsersCount,
   getOasisUsersCount,
+  getRadixUsersCount,
 } from '@graphql/queries';
 import { networkFunctions } from '@utils/network_functions';
 import { statsItems } from './config';
@@ -21,11 +23,13 @@ export const useStatsHook = () => {
   const [elrondTotalTVL, setElrondTotalTVL] = useState(0);
   const [solanaTotalTVL, setSolanaTotalTVL] = useState(0);
   const [oasisTotalTVL, setOasisTotalTVL] = useState(0);
+  const [radixTotalTVL, setRadixTotalTVL] = useState(0);
   const [totalTVL, setTotalTVL] = useState(0);
   const [cosmosUser, setCosmosUser] = useState(0);
   const [solanaUser, setSolanaUser] = useState(0);
   const [elrondUser, setElrondUser] = useState(0);
   const [oasisUser, setOasisUser] = useState(0);
+  const [radixUser, setRadixUser] = useState(0);
   const [totalUsers, setTotalUsers] = useState(0);
 
   const { loading: cosmosTotalTVLLoading, data: cosmosTotalTVL } = useQuery(
@@ -59,6 +63,12 @@ export const useStatsHook = () => {
     `
   );
 
+  const { loading: radixTVLLoading, data: radixTVLData } = useQuery(
+    gql`
+      ${getRadixTVL()}
+    `
+  );
+
   const { loading: solanaUserLoading, data: solanaUserData } = useQuery(
     gql`
       ${getSolanaUsersCount()}
@@ -77,6 +87,12 @@ export const useStatsHook = () => {
     `
   );
 
+  const { loading: radixUserLoading, data: radixUserData } = useQuery(
+    gql`
+      ${getRadixUsersCount()}
+    `
+  );
+
   useEffect(() => {
     if (!cosmosUsersCountLoading) {
       const { cosmosUsersCount } = cosmosUsersCountData;
@@ -90,10 +106,14 @@ export const useStatsHook = () => {
       const { elrondUsers } = elrondUserData;
       setElrondUser(elrondUsers[0].usersCount);
     }
-    // if (!oasisUserLoading) {
-    //   const { oasisUsers } = oasisUserData;
-    //   setOasisUser(oasisUsers[0].usersCount);
-    // }
+    if (!oasisUserLoading) {
+      const { oasisUsers } = oasisUserData;
+      setOasisUser(oasisUsers[0].usersCount);
+    }
+    if (!radixUserLoading) {
+      const { radixUsers } = radixUserData;
+      setRadixUser(radixUsers[0].usersCount);
+    }
   }, [
     cosmosUsersCountLoading,
     cosmosUsersCountData,
@@ -103,6 +123,8 @@ export const useStatsHook = () => {
     elrondUserData,
     oasisUserLoading,
     oasisUserData,
+    radixUserLoading,
+    radixUserData,
   ]);
 
   useMemo(() => {
@@ -123,6 +145,10 @@ export const useStatsHook = () => {
       userCount += Number(oasisUser);
       setTotalUsers(userCount);
     }
+    if (radixUser && Number(radixUser) !== 0) {
+      userCount += Number(radixUser);
+      setTotalUsers(userCount);
+    }
     statsItems.map((item, i) =>
       item.title === 'users staking'
         ? setStats((prevStats) => ({
@@ -139,6 +165,7 @@ export const useStatsHook = () => {
     solanaUser,
     elrondUser,
     oasisUser,
+    radixUser,
     totalUsers,
     setTotalUsers,
   ]);
@@ -158,10 +185,14 @@ export const useStatsHook = () => {
       const { solanaTVL } = solanaTVLData;
       setSolanaTotalTVL(solanaTVL.TVL);
     }
-    // if (!oasisTVLLoading) {
-    //   const { oasisTVL } = oasisTVLData;
-    //   setOasisTotalTVL(oasisTVL[0].TVL);
-    // }
+    if (!oasisTVLLoading) {
+      const { oasisTVL } = oasisTVLData;
+      setOasisTotalTVL(oasisTVL[0].TVL);
+    }
+    if (!radixTVLLoading) {
+      const { radixTVL } = radixTVLData;
+      setRadixTotalTVL(radixTVL[0].TVL);
+    }
   }, [
     cosmosTotalTVL,
     cosmosTotalTVLLoading,
@@ -171,6 +202,8 @@ export const useStatsHook = () => {
     solanaTVLLoading,
     oasisTVLLoading,
     oasisTVLData,
+    radixTVLLoading,
+    radixTVLData,
   ]);
 
   useMemo(() => {
@@ -191,6 +224,10 @@ export const useStatsHook = () => {
       tvl += Number(oasisTotalTVL);
       setTotalTVL(tvl);
     }
+    if (radixTotalTVL && Number(radixTotalTVL) !== 0) {
+      tvl += Number(radixTotalTVL);
+      setTotalTVL(tvl);
+    }
     statsItems.map((item, i) =>
       item.title === 'full tvl'
         ? setStats((prevStats) => ({
@@ -208,6 +245,7 @@ export const useStatsHook = () => {
     elrondTotalTVL,
     solanaTotalTVL,
     oasisTotalTVL,
+    radixTotalTVL,
     totalTVL,
     setTotalTVL,
   ]);
