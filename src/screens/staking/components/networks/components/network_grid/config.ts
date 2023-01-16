@@ -59,6 +59,7 @@ export const cosmosNetworkParams: NetworkProps = {
   quicksilver: { bonded: 0, APY: 0, TVL: 0 },
   ssv: { bonded: 0, APY: 0, TVL: 0 },
   stargaze: { bonded: 0, APY: 0, TVL: 0 },
+  teritori: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -129,6 +130,7 @@ const cosmosNetworkKeys = [
   'quicksilver',
   'ssv',
   'stargaze',
+  'teritori',
 ].sort();
 
 const getNetworkKeysArray = () => {

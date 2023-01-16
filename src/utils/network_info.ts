@@ -555,6 +555,13 @@ const logos: IStringIndex = {
     key: 'stargaze',
     graphql: 'stargaze',
   },
+  teritori: {
+    image: '/images/network/teritori.png',
+    name: 'Teritori',
+    denom: 'TORI',
+    key: 'teritori',
+    graphql: 'teritori',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
