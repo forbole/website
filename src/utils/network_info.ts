@@ -439,6 +439,13 @@ const logos: IStringIndex = {
     key: 'cardano',
     graphql: 'cardano',
   },
+  certik: {
+    image: '/images/network/certik.png',
+    name: 'Certik',
+    denom: 'CTK',
+    key: 'certik',
+    graphql: 'certik',
+  },
   // ['gravity-bridge']: {
   //   guide: 'how-to-stake-grav-on-gravity-bridge',
   // },

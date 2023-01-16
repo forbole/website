@@ -45,6 +45,7 @@ export const cosmosNetworkParams: NetworkProps = {
   stafihub: { bonded: 0, APY: 0, TVL: 0 },
   stride: { bonded: 0, APY: 0, TVL: 0 },
   cardano: { bonded: 0, APY: 0, TVL: 0 },
+  certik: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -93,6 +94,7 @@ const cosmosNetworkKeys = [
   'cosmos',
   // 'desmos',
   'cardano',
+  'certik',
 ].sort();
 
 const getNetworkKeysArray = () => {
