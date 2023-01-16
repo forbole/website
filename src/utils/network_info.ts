@@ -527,6 +527,13 @@ const logos: IStringIndex = {
     key: 'celer',
     graphql: 'celer',
   },
+  quicksilver: {
+    image: '/images/network/quicksilver.png',
+    name: 'Quicksilver Protocol',
+    denom: 'QCK',
+    key: 'quicksilver',
+    graphql: 'quicksilver',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
