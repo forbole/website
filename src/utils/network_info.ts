@@ -548,6 +548,13 @@ const logos: IStringIndex = {
     key: 'ssv',
     graphql: 'ssv',
   },
+  stargaze: {
+    image: '/images/network/stargaze.png',
+    name: 'Stargaze',
+    denom: 'STARS',
+    key: 'stargaze',
+    graphql: 'stargaze',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
