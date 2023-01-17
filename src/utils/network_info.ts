@@ -439,13 +439,6 @@ const logos: IStringIndex = {
     key: 'cardano',
     graphql: 'cardano',
   },
-  certik: {
-    image: '/images/network/certik.png',
-    name: 'Certik',
-    denom: 'CTK',
-    key: 'certik',
-    graphql: 'certik',
-  },
   ethereum: {
     image: '/images/network/ethereum.png',
     name: 'Ethereum',
@@ -456,9 +449,9 @@ const logos: IStringIndex = {
   ['gravity_bridge']: {
     image: '/images/network/gravity_bridge.png',
     name: 'Gravity Bridge',
-    denom: 'GRAV',
+    denom: 'GRAVITON',
     key: 'gravity_bridge',
-    graphql: 'gravity_bridge',
+    graphql: 'gravitybridge',
     // need staking guide stats:
     // guide: 'how-to-stake-grav-on-gravity-bridge',
   },
@@ -495,7 +488,7 @@ const logos: IStringIndex = {
   nym: {
     image: '/images/network/nym.png',
     name: 'NYM',
-    denom: 'NYM',
+    denom: 'NYX',
     key: 'nym',
     graphql: 'nym',
   },

@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
 import { LayoutVal } from '@components';
+import { StakingContextProvider } from '@src/contexts';
 import {
   WhyForbole,
   CalculateRewards,
@@ -34,12 +35,14 @@ const Staking = () => {
       twitterImage="/images/assets/image_forbole_validator_website_preview.png"
       footer
     >
-      <LaptopCSS>
-        <Hero />
-      </LaptopCSS>
-      <LaptopCSS>
-        <Networks />
-      </LaptopCSS>
+      <StakingContextProvider>
+        <LaptopCSS>
+          <Hero />
+        </LaptopCSS>
+        <LaptopCSS>
+          <Networks />
+        </LaptopCSS>
+      </StakingContextProvider>
       <LaptopCSS>
         <HowItWorks />
       </LaptopCSS>

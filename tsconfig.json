@@ -68,6 +68,9 @@
       ],
       "@graphql/*": [
         "graphql/*"
+      ],
+      "@contexts": [
+        "src/contexts"
       ]
     }
   },

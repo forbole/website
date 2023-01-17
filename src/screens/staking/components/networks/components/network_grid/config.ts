@@ -5,7 +5,7 @@ export type ParamsProps = {
 };
 
 export type NetworkProps = {
-  [key: string]: ParamsProps;
+  [graphqlKey: string]: ParamsProps;
 };
 
 // state data
@@ -45,9 +45,8 @@ export const cosmosNetworkParams: NetworkProps = {
   stafihub: { bonded: 0, APY: 0, TVL: 0 },
   stride: { bonded: 0, APY: 0, TVL: 0 },
   cardano: { bonded: 0, APY: 0, TVL: 0 },
-  certik: { bonded: 0, APY: 0, TVL: 0 },
   ethereum: { bonded: 0, APY: 0, TVL: 0 },
-  gravity_bridge: { bonded: 0, APY: 0, TVL: 0 },
+  gravitybridge: { bonded: 0, APY: 0, TVL: 0 },
   jackal: { bonded: 0, APY: 0, TVL: 0 },
   kusama: { bonded: 0, APY: 0, TVL: 0 },
   terra: { bonded: 0, APY: 0, TVL: 0 },
@@ -121,7 +120,6 @@ const cosmosNetworkKeys = [
   'cosmos',
   // 'desmos',
   'cardano',
-  'certik',
   'ethereum',
   'gravity_bridge',
   'jackal',

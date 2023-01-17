@@ -14,10 +14,12 @@ import {
   getOasisUsersCount,
   getRadixUsersCount,
 } from '@graphql/queries';
+import { useStakingContext } from '@contexts';
 import { networkFunctions } from '@utils/network_functions';
 import { statsItems } from './config';
 
 export const useStatsHook = () => {
+  const { networkNumber } = useStakingContext();
   const [stats, setStats] = useState(statsItems);
   const [cosmosTVL, setCosmosTVL] = useState(0);
   const [elrondTotalTVL, setElrondTotalTVL] = useState(0);
@@ -250,23 +252,22 @@ export const useStatsHook = () => {
     setTotalTVL,
   ]);
 
-  // useMemo(() => {
-  //   if (!cosmosUsersCountLoading) {
-  //     const { cosmosUsersCount } = cosmosUsersCountData;
-  //     statsItems.map((item, i) =>
-  //       item.title === 'users staking'
-  //         ? setStats((prevStats) => ({
-  //             ...prevStats,
-  //             [i]: {
-  //               ...item,
-  //               stats: cosmosUsersCount[0].usersCount,
-  //             },
-  //           }))
-  //         : null
-  //     );
-  //   }
-  //   return stats;
-  // }, [cosmosUsersCountData, cosmosUsersCountLoading]);
+  useMemo(() => {
+    if (networkNumber !== 0) {
+      statsItems.map((item, i) =>
+        item.title === 'supporting networks'
+          ? setStats((prevStats) => ({
+              ...prevStats,
+              [i]: {
+                ...item,
+                stats: networkNumber,
+              },
+            }))
+          : null
+      );
+    }
+    return stats;
+  }, [networkNumber]);
 
   return stats;
 };
