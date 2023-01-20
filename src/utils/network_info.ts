@@ -484,6 +484,8 @@ const logos: IStringIndex = {
     graphql: 'nomic',
     // need staking guide stats:
     guide: 'how-to-stake-nom-on-nomic',
+    delegate: 'https://app.nomic.io/',
+    address: 'nomic1yvzvykkvqruhrvwn7776tm6ppmaf4gcnazas2e',
   },
   nym: {
     image: '/images/network/nym.png',

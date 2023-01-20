@@ -54,6 +54,7 @@ export const cosmosNetworkGuideParams: NetworkGuideProps = {
   secret: infoItems,
   sentinelhub: infoItems,
   sifchain: infoItems,
+  nomic: infoItems,
 };
 
 export const cosmosNetworkKeys = [
@@ -77,4 +78,5 @@ export const cosmosNetworkKeys = [
   'secret',
   'sentinelhub',
   'sifchain',
+  'nomic',
 ].sort();
