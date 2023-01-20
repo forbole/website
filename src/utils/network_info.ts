@@ -148,6 +148,7 @@ const logos: IStringIndex = {
     graphql: 'evmos',
     delegate: 'https://app.evmos.org/staking',
     address: 'evmosvaloper1ak9t7kwk44azu6cefqdydqmy3hen28nvdjjvz0',
+    guide: 'how-to-stake-evmos-on-evmos',
   },
   ['fetch-ai']: {
     image: '/images/network/fetch_ai.png',
