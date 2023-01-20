@@ -28,9 +28,8 @@ import {
   createFilterOptions,
   useTheme,
 } from '@mui/material';
-import { getNetworkInfo } from '@src/utils/network_info';
+import { getNetworkInfo, logos } from '@src/utils/network_info';
 import { SearchIcon } from '@icons';
-import { networkKeys } from './config';
 import { SearchBarProps } from './types';
 import useStyles from './useStyles';
 
@@ -125,8 +124,8 @@ type StyledAutocompleteProps = ComponentProps<typeof Autocomplete>;
 
 const SearchBar: FC<SearchBarProps> = () => {
   const { t } = useTranslation('staking');
-  const theme = useTheme();
-  const networkData: Array<Network> = networkKeys.map((x: string) =>
+  const keys = Object.keys(logos);
+  const networkData: Array<Network> = keys.map((x: string) =>
     getNetworkInfo(x)
   );
   const options = networkData.map((network) => ({

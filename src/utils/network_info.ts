@@ -9,7 +9,7 @@ interface IStringIndex extends Record<string, any> {}
  * Takes the key name and returns the location. Will return null if undefined
  */
 
-const logos: IStringIndex = {
+export const logos: IStringIndex = {
   cosmos: {
     image: '/images/network/cosmos_hub.png',
     name: 'Cosmos Hub',
@@ -108,6 +108,7 @@ const logos: IStringIndex = {
       'https://crypto-org.bigdipper.live/validator/crocncl15xphw2m025acwnjd2ucq9t5ku4ggaqyecekzqa',
     bigDipper: 'https://crypto-org.bigdipper.live/',
     address: 'crocncl15xphw2m025acwnjd2ucq9t5ku4ggaqyecekzqa',
+    guide: 'how-to-stake-cro-on-crypto-org',
   },
   desmos: {
     image: '/images/network/desmos.png',
@@ -147,6 +148,7 @@ const logos: IStringIndex = {
     graphql: 'evmos',
     delegate: 'https://app.evmos.org/staking',
     address: 'evmosvaloper1ak9t7kwk44azu6cefqdydqmy3hen28nvdjjvz0',
+    guide: 'how-to-stake-evmos-on-evmos',
   },
   ['fetch-ai']: {
     image: '/images/network/fetch_ai.png',
@@ -276,6 +278,9 @@ const logos: IStringIndex = {
     denom: 'juno',
     key: 'juno',
     graphql: 'juno',
+    delegate: 'https://wallet.keplr.app/chains/juno',
+    address: 'junovaloper1pvwqfze548z95sdhun58trrvxhlhfrvky5ejtk',
+    guide: 'how-to-stake-juno-on-juno',
   },
   kava: {
     image: '/images/network/kava.png',
@@ -397,6 +402,8 @@ const logos: IStringIndex = {
     key: 'sommelier',
     graphql: 'sommelier',
     address: 'sommvaloper1l449zpgsn74y7vneh27malgfc8yg76ckpz6w78',
+    delegate: 'https://wallet.keplr.app/chains/sommelier',
+    guide: 'how-to-stake-somm-on-sommelier',
   },
   stafihub: {
     image: '/images/network/stafihub.png',
@@ -415,6 +422,8 @@ const logos: IStringIndex = {
     key: 'stride',
     graphql: 'stride',
     address: 'stridevaloper19d8a9dr4kh85zcl5kq7fj64ad9r9dqfky93dgq',
+    delegate: 'https://wallet.keplr.app/chains/stride',
+    guide: 'how-to-stake-strd-on-stride',
   },
   elrond: {
     image: '/images/network/elrond.png',
@@ -439,13 +448,6 @@ const logos: IStringIndex = {
     key: 'cardano',
     graphql: 'cardano',
   },
-  certik: {
-    image: '/images/network/certik.png',
-    name: 'Certik',
-    denom: 'CTK',
-    key: 'certik',
-    graphql: 'certik',
-  },
   ethereum: {
     image: '/images/network/ethereum.png',
     name: 'Ethereum',
@@ -456,11 +458,12 @@ const logos: IStringIndex = {
   ['gravity_bridge']: {
     image: '/images/network/gravity_bridge.png',
     name: 'Gravity Bridge',
-    denom: 'GRAV',
+    denom: 'GRAVITON',
     key: 'gravity_bridge',
-    graphql: 'gravity_bridge',
-    // need staking guide stats:
-    // guide: 'how-to-stake-grav-on-gravity-bridge',
+    graphql: 'gravitybridge',
+    guide: 'how-to-stake-grav-on-gravity-bridge',
+    delegate: 'https://wallet.keplr.app/chains/gravity-bridge',
+    address: 'gravityvaloper1xwkkam88aep5jcu2hcj0a2hy79eyvcw6yhfgv6',
   },
   jackal: {
     image: '/images/network/jackal.png',
@@ -491,11 +494,13 @@ const logos: IStringIndex = {
     graphql: 'nomic',
     // need staking guide stats:
     guide: 'how-to-stake-nom-on-nomic',
+    delegate: 'https://app.nomic.io/',
+    address: 'nomic1yvzvykkvqruhrvwn7776tm6ppmaf4gcnazas2e',
   },
   nym: {
     image: '/images/network/nym.png',
     name: 'NYM',
-    denom: 'NYM',
+    denom: 'NYX',
     key: 'nym',
     graphql: 'nym',
   },
@@ -554,6 +559,9 @@ const logos: IStringIndex = {
     denom: 'STARS',
     key: 'stargaze',
     graphql: 'stargaze',
+    delegate: 'https://wallet.keplr.app/chains/stargaze',
+    guide: 'how-to-stake-stars-on-stargaze',
+    address: 'starsvaloper12k8za208e5kt0j34w6au6v8py6t6cat2sqjzvw',
   },
   teritori: {
     image: '/images/network/teritori.png',
@@ -561,6 +569,9 @@ const logos: IStringIndex = {
     denom: 'TORI',
     key: 'teritori',
     graphql: 'teritori',
+    delegate: 'https://explorer.teritori.com/teritori',
+    guide: 'how-to-stake-tori-on-teritori',
+    address: 'torivaloper138664l4407d7hfwe8a82q25fk4vht53j9yl3e9',
   },
   tgrade: {
     image: '/images/network/tgrade.png',

@@ -17,6 +17,7 @@ import {
   getOasisBondedToken,
   getRadixBondedToken,
 } from '@graphql/queries';
+import { useStakingContext } from '@contexts';
 import { networkFunctions } from '@utils/network_functions';
 import {
   cosmosNetworkParams,
@@ -24,6 +25,7 @@ import {
   solanaNetworkParams,
   oasisNetworkParams,
   radixNetworkParams,
+  allNetworkKeys,
 } from './config';
 
 export const useNetworkHook = () => {
@@ -97,6 +99,10 @@ export const useNetworkHook = () => {
       ${getRadixTVL()}
     `
   );
+
+  const { setNetworkNumber } = useStakingContext();
+  const networkLength = allNetworkKeys.length;
+  setNetworkNumber(networkLength);
 
   useMemo(() => {
     if (!cosmosBondedLoading) {
