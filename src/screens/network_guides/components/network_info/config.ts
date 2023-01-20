@@ -62,6 +62,7 @@ export const cosmosNetworkGuideParams: NetworkGuideProps = {
   sommelier: infoItems,
   stargaze: infoItems,
   stride: infoItems,
+  teritori: infoItems,
 };
 
 export const cosmosNetworkKeys = [
@@ -93,4 +94,5 @@ export const cosmosNetworkKeys = [
   'sommelier',
   'stargaze',
   'stride',
+  'teritori',
 ].sort();

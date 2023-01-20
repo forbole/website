@@ -569,6 +569,9 @@ const logos: IStringIndex = {
     denom: 'TORI',
     key: 'teritori',
     graphql: 'teritori',
+    delegate: 'https://explorer.teritori.com/teritori',
+    guide: 'how-to-stake-tori-on-teritori',
+    address: 'torivaloper138664l4407d7hfwe8a82q25fk4vht53j9yl3e9',
   },
   tgrade: {
     image: '/images/network/tgrade.png',
