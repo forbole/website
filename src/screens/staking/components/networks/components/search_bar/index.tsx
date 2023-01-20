@@ -125,9 +125,9 @@ type StyledAutocompleteProps = ComponentProps<typeof Autocomplete>;
 const SearchBar: FC<SearchBarProps> = () => {
   const { t } = useTranslation('staking');
   const keys = Object.keys(logos);
-  const networkData: Array<Network> = keys.map((x: string) =>
-    getNetworkInfo(x)
-  );
+  const networkData: Array<Network> = keys
+    .sort()
+    .map((x: string) => getNetworkInfo(x));
   const options = networkData.map((network) => ({
     label: network.name,
     network,
