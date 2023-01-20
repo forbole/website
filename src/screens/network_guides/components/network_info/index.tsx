@@ -46,7 +46,13 @@ const NetworkInfo = ({ post }: any) => {
   const cmsLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
-  const networkData = tags.length <= 1 ? null : getNetworkInfo(tags[1].slug);
+  const networkData =
+    // eslint-disable-next-line no-nested-ternary
+    tags.length <= 1
+      ? null
+      : tags[1].slug === 'crypto-org'
+      ? getNetworkInfo('crypto.org')
+      : getNetworkInfo(tags[1].slug);
 
   const { cosmosNetworkGuides } = useNetworkGuidesHook();
 

@@ -28,7 +28,7 @@ export type ParamsProps = {
 };
 
 type NetworkGuideProps = {
-  [key: string]: ParamsProps[];
+  [graphqlKey: string]: ParamsProps[];
 };
 
 // state data
@@ -56,6 +56,7 @@ export const cosmosNetworkGuideParams: NetworkGuideProps = {
   sifchain: infoItems,
   nomic: infoItems,
   gravitybridge: infoItems,
+  cro: infoItems,
 };
 
 export const cosmosNetworkKeys = [
@@ -81,4 +82,5 @@ export const cosmosNetworkKeys = [
   'sifchain',
   'nomic',
   'gravity_bridge',
+  'crypto.org',
 ].sort();

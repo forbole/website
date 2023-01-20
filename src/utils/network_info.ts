@@ -108,6 +108,7 @@ const logos: IStringIndex = {
       'https://crypto-org.bigdipper.live/validator/crocncl15xphw2m025acwnjd2ucq9t5ku4ggaqyecekzqa',
     bigDipper: 'https://crypto-org.bigdipper.live/',
     address: 'crocncl15xphw2m025acwnjd2ucq9t5ku4ggaqyecekzqa',
+    guide: 'how-to-stake-cro-on-crypto-org',
   },
   desmos: {
     image: '/images/network/desmos.png',
