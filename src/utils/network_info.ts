@@ -422,6 +422,8 @@ const logos: IStringIndex = {
     key: 'stride',
     graphql: 'stride',
     address: 'stridevaloper19d8a9dr4kh85zcl5kq7fj64ad9r9dqfky93dgq',
+    delegate: 'https://wallet.keplr.app/chains/stride',
+    guide: 'how-to-stake-strd-on-stride',
   },
   elrond: {
     image: '/images/network/elrond.png',

@@ -61,6 +61,7 @@ export const cosmosNetworkGuideParams: NetworkGuideProps = {
   juno: infoItems,
   sommelier: infoItems,
   stargaze: infoItems,
+  stride: infoItems,
 };
 
 export const cosmosNetworkKeys = [
@@ -91,4 +92,5 @@ export const cosmosNetworkKeys = [
   'juno',
   'sommelier',
   'stargaze',
+  'stride',
 ].sort();
