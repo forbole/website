@@ -58,6 +58,7 @@ export const cosmosNetworkGuideParams: NetworkGuideProps = {
   gravitybridge: infoItems,
   cro: infoItems,
   evmos: infoItems,
+  juno: infoItems,
 };
 
 export const cosmosNetworkKeys = [
@@ -85,4 +86,5 @@ export const cosmosNetworkKeys = [
   'gravity_bridge',
   'crypto.org',
   'evmos',
+  'juno',
 ].sort();

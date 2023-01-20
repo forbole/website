@@ -278,6 +278,9 @@ const logos: IStringIndex = {
     denom: 'juno',
     key: 'juno',
     graphql: 'juno',
+    delegate: 'https://wallet.keplr.app/chains/juno',
+    address: 'junovaloper1pvwqfze548z95sdhun58trrvxhlhfrvky5ejtk',
+    guide: 'how-to-stake-juno-on-juno',
   },
   kava: {
     image: '/images/network/kava.png',
