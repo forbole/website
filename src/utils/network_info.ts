@@ -9,7 +9,7 @@ interface IStringIndex extends Record<string, any> {}
  * Takes the key name and returns the location. Will return null if undefined
  */
 
-const logos: IStringIndex = {
+export const logos: IStringIndex = {
   cosmos: {
     image: '/images/network/cosmos_hub.png',
     name: 'Cosmos Hub',
