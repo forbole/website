@@ -402,6 +402,8 @@ const logos: IStringIndex = {
     key: 'sommelier',
     graphql: 'sommelier',
     address: 'sommvaloper1l449zpgsn74y7vneh27malgfc8yg76ckpz6w78',
+    delegate: 'https://wallet.keplr.app/chains/sommelier',
+    guide: 'how-to-stake-somm-on-sommelier',
   },
   stafihub: {
     image: '/images/network/stafihub.png',

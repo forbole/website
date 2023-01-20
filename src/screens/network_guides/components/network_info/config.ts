@@ -59,6 +59,7 @@ export const cosmosNetworkGuideParams: NetworkGuideProps = {
   cro: infoItems,
   evmos: infoItems,
   juno: infoItems,
+  sommelier: infoItems,
 };
 
 export const cosmosNetworkKeys = [
@@ -87,4 +88,5 @@ export const cosmosNetworkKeys = [
   'crypto.org',
   'evmos',
   'juno',
+  'sommelier',
 ].sort();
