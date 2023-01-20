@@ -452,8 +452,9 @@ const logos: IStringIndex = {
     denom: 'GRAVITON',
     key: 'gravity_bridge',
     graphql: 'gravitybridge',
-    // need staking guide stats:
-    // guide: 'how-to-stake-grav-on-gravity-bridge',
+    guide: 'how-to-stake-grav-on-gravity-bridge',
+    delegate: 'https://wallet.keplr.app/chains/gravity-bridge',
+    address: 'gravityvaloper1xwkkam88aep5jcu2hcj0a2hy79eyvcw6yhfgv6',
   },
   jackal: {
     image: '/images/network/jackal.png',
