@@ -557,6 +557,9 @@ const logos: IStringIndex = {
     denom: 'STARS',
     key: 'stargaze',
     graphql: 'stargaze',
+    delegate: 'https://wallet.keplr.app/chains/stargaze',
+    guide: 'how-to-stake-stars-on-stargaze',
+    address: 'starsvaloper12k8za208e5kt0j34w6au6v8py6t6cat2sqjzvw',
   },
   teritori: {
     image: '/images/network/teritori.png',
