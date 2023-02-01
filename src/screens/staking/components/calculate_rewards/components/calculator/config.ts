@@ -35,8 +35,11 @@ export const calculatorKeys = [
   'terra',
   // annual rewards not available:
   // 'nym',
+  // 'xpla',
   // token price not on Coingecko:
   // 'omniflix',
+  // 'ununifi',
+  // 'onomy',
   'stargaze',
   'teritori',
 ].sort();

@@ -65,6 +65,9 @@ const stakingParams: NetworkProps = {
   // omniflix: baseState,
   stargaze: baseState,
   teritori: baseState,
+  // xpla: baseState,
+  // ununifi: baseState,
+  // onomy: baseState
 };
 
 export const getStakingParams = (key: string) => {

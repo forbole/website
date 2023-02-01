@@ -604,6 +604,7 @@ export const logos: IStringIndex = {
   ununifi: {
     image: '/images/network/ununifi.png',
     name: 'Ununifi',
+    label: 'Ununifi - GUU',
     denom: 'GUU',
     key: 'ununifi',
     graphql: 'ununifi',
@@ -611,6 +612,7 @@ export const logos: IStringIndex = {
   xpla: {
     image: '/images/network/xpla.png',
     name: 'XPLA',
+    label: 'XPLA - XPLA',
     denom: 'XPLA',
     key: 'xpla',
     graphql: 'xpla',
@@ -618,6 +620,7 @@ export const logos: IStringIndex = {
   onomy: {
     image: '/images/network/onomy.png',
     name: 'Onomy Protocol',
+    label: 'Onomy Protocol - NOM',
     denom: 'NOM',
     key: 'onomy',
     graphql: 'onomy',
