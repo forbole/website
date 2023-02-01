@@ -64,6 +64,7 @@ const stakingParams: NetworkProps = {
   // nym: baseState,
   // omniflix: baseState,
   stargaze: baseState,
+  teritori: baseState,
 };
 
 export const getStakingParams = (key: string) => {

@@ -38,4 +38,5 @@ export const calculatorKeys = [
   // token price not on Coingecko:
   // 'omniflix',
   'stargaze',
+  'teritori',
 ].sort();

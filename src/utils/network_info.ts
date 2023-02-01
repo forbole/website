@@ -573,6 +573,7 @@ export const logos: IStringIndex = {
     image: '/images/network/teritori.png',
     name: 'Teritori',
     denom: 'TORI',
+    label: 'Teritori - TORI',
     key: 'teritori',
     graphql: 'teritori',
     delegate: 'https://explorer.teritori.com/teritori',
