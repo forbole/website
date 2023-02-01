@@ -469,6 +469,7 @@ export const logos: IStringIndex = {
   jackal: {
     image: '/images/network/jackal.png',
     name: 'Jackal Protocol',
+    label: 'Jackal Protocol - JKL',
     denom: 'JKL',
     key: 'jackal',
     graphql: 'jackal',
