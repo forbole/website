@@ -61,6 +61,9 @@ const stakingParams: NetworkProps = {
   gravity_bridge: baseState,
   jackal: baseState,
   terra: baseState,
+  // nym: baseState,
+  // omniflix: baseState,
+  stargaze: baseState,
 };
 
 export const getStakingParams = (key: string) => {

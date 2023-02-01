@@ -503,6 +503,7 @@ export const logos: IStringIndex = {
   nym: {
     image: '/images/network/nym.png',
     name: 'NYM',
+    label: 'NYM - NYX',
     denom: 'NYX',
     key: 'nym',
     graphql: 'nym',
@@ -517,6 +518,7 @@ export const logos: IStringIndex = {
   omniflix: {
     image: '/images/network/omniflix.png',
     name: 'Omniflix Network',
+    label: 'Omniflix Network - FLIX',
     denom: 'FLIX',
     key: 'omniflix',
     graphql: 'omniflix',
@@ -559,6 +561,7 @@ export const logos: IStringIndex = {
   stargaze: {
     image: '/images/network/stargaze.png',
     name: 'Stargaze',
+    label: 'Stargaze - STARS',
     denom: 'STARS',
     key: 'stargaze',
     graphql: 'stargaze',

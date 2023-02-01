@@ -33,4 +33,9 @@ export const calculatorKeys = [
   'gravity_bridge',
   'jackal',
   'terra',
+  // annual rewards not available:
+  // 'nym',
+  // token price not on Coingecko:
+  // 'omniflix',
+  'stargaze',
 ].sort();
