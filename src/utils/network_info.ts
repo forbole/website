@@ -459,6 +459,7 @@ export const logos: IStringIndex = {
     image: '/images/network/gravity_bridge.png',
     name: 'Gravity Bridge',
     denom: 'GRAVITON',
+    label: 'Gravity Bridge - GRAVITON',
     key: 'gravity_bridge',
     graphql: 'gravitybridge',
     guide: 'how-to-stake-grav-on-gravity-bridge',

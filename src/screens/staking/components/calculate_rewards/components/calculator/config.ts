@@ -30,4 +30,5 @@ export const calculatorKeys = [
   // 'provenance',
   // awaiting for back-end data:
   // 'sommelier',
+  'gravity_bridge',
 ].sort();

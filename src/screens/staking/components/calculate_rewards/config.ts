@@ -58,6 +58,7 @@ const stakingParams: NetworkProps = {
   sommelier: baseState,
   stafihub: baseState,
   stride: baseState,
+  gravity_bridge: baseState,
 };
 
 export const getStakingParams = (key: string) => {
