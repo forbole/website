@@ -60,6 +60,7 @@ const stakingParams: NetworkProps = {
   stride: baseState,
   gravity_bridge: baseState,
   jackal: baseState,
+  terra: baseState,
 };
 
 export const getStakingParams = (key: string) => {

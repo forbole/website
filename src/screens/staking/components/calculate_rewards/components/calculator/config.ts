@@ -32,4 +32,5 @@ export const calculatorKeys = [
   // 'sommelier',
   'gravity_bridge',
   'jackal',
+  'terra',
 ].sort();

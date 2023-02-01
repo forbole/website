@@ -485,6 +485,7 @@ export const logos: IStringIndex = {
     image: '/images/network/terra.png',
     name: 'Terra',
     denom: 'LUNA',
+    label: 'Terra - LUNA',
     key: 'terra',
     graphql: 'terra',
   },
