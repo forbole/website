@@ -608,6 +608,13 @@ export const logos: IStringIndex = {
     key: 'xpla',
     graphql: 'xpla',
   },
+  onomy: {
+    image: '/images/network/onomy.png',
+    name: 'Onomy Protocol',
+    denom: 'NOM',
+    key: 'onomy',
+    graphql: 'onomy',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
