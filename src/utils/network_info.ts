@@ -633,6 +633,8 @@ export const logos: IStringIndex = {
     denom: 'MARS',
     key: 'mars',
     graphql: 'mars',
+    guide: 'how-to-stake-mars-on-mars-hub',
+    address: 'marsvaloper1799t9vxshqssrk5cgnywvlx0fnlk2ekdz328aa',
     delegate:
       'https://explorer.marsprotocol.io/validators/marsvaloper1799t9vxshqssrk5cgnywvlx0fnlk2ekdz328aa',
   },
