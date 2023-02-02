@@ -54,7 +54,6 @@ const stakingParams: NetworkProps = {
   secret: baseState,
   sentinelhub: baseState,
   shentu: baseState,
-  sifchain: baseState,
   sommelier: baseState,
   stafihub: baseState,
   stride: baseState,

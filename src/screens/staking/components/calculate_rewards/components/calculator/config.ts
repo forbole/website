@@ -23,7 +23,6 @@ export const calculatorKeys = [
   'secret',
   'sentinel',
   'shentu',
-  'sifchain',
   'stafihub',
   'stride',
   // coingecko not updating its market price:
