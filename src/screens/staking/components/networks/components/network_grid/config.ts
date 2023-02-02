@@ -65,6 +65,7 @@ export const cosmosNetworkParams: NetworkProps = {
   xpla: { bonded: 0, APY: 0, TVL: 0 },
   ununifi: { bonded: 0, APY: 0, TVL: 0 },
   onomy: { bonded: 0, APY: 0, TVL: 0 },
+  mars: { bonded: 0, APY: 0, TVL: 0 },
 };
 
 export const elrondNetworkParams: NetworkProps = {
@@ -141,6 +142,7 @@ const cosmosNetworkKeys = [
   'xpla',
   'ununifi',
   'onomy',
+  'mars',
 ].sort();
 
 const getNetworkKeysArray = () => {

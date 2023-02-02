@@ -67,26 +67,26 @@ export const logos: IStringIndex = {
         'https://api.akash.forbole.com/staking/validators/akashvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0uzn073',
     },
   },
-  ['band-protocol']: {
-    image: '/images/network/band_protocol.png',
-    name: 'Band Protocol',
-    label: 'Band Protocol - BAND',
-    key: 'band-protocol',
-    graphql: 'band',
-    denom: 'BAND',
-    address: 'bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
-    color: '#516FFA',
-    heightSocket: 'wss://ws.band.forbole.com',
-    bigDipper: 'https://band.bigdipper.live/',
-    delegate: 'https://atomicwallet.io/band-staking',
-    calculator: {
-      bonded: 'http://lcd.band.forbole.com/staking/pool',
-      inflation: 'http://lcd.band.forbole.com/minting/inflation',
-      supply: 'http://lcd.band.forbole.com/supply/total/uband',
-      stakingParams:
-        'http://lcd.band.forbole.com/staking/validators/bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
-    },
-  },
+  // ['band-protocol']: {
+  //   image: '/images/network/band_protocol.png',
+  //   name: 'Band Protocol',
+  //   label: 'Band Protocol - BAND',
+  //   key: 'band-protocol',
+  //   graphql: 'band',
+  //   denom: 'BAND',
+  //   address: 'bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
+  //   color: '#516FFA',
+  //   heightSocket: 'wss://ws.band.forbole.com',
+  //   bigDipper: 'https://band.bigdipper.live/',
+  //   delegate: 'https://atomicwallet.io/band-staking',
+  //   calculator: {
+  //     bonded: 'http://lcd.band.forbole.com/staking/pool',
+  //     inflation: 'http://lcd.band.forbole.com/minting/inflation',
+  //     supply: 'http://lcd.band.forbole.com/supply/total/uband',
+  //     stakingParams:
+  //       'http://lcd.band.forbole.com/staking/validators/bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
+  //   },
+  // },
   bitsong: {
     image: '/images/network/bitsong.png',
     name: 'BitSong',
@@ -295,12 +295,13 @@ export const logos: IStringIndex = {
   },
   band: {
     image: '/images/network/band_protocol.png',
-    name: 'Band',
+    name: 'Band Protocol',
     denom: 'band',
     label: 'Band Protocol - BAND',
     key: 'band',
     graphql: 'band',
     address: 'bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
+    delegate: 'https://atomicwallet.io/band-staking',
   },
   likecoin: {
     image: '/images/network/likecoin.png',
@@ -624,6 +625,16 @@ export const logos: IStringIndex = {
     denom: 'NOM',
     key: 'onomy',
     graphql: 'onomy',
+  },
+  mars: {
+    image: '/images/network/mars.png',
+    name: 'Mars Protocol',
+    label: 'Mars Protocol - MARS',
+    denom: 'MARS',
+    key: 'mars',
+    graphql: 'mars',
+    delegate:
+      'https://explorer.marsprotocol.io/validators/marsvaloper1799t9vxshqssrk5cgnywvlx0fnlk2ekdz328aa',
   },
 };
 
