@@ -234,29 +234,43 @@ const NetworkInfo = ({ post }: any) => {
                 },
               }}
             >
-              {!readMore && !onlyLargeScreen ? (
+              {!onlyLargeScreen ? (
                 <Box textAlign="center" sx={{ padding: theme.spacing(0, 2) }}>
-                  <Typography
-                    color={theme.palette.custom.forbole.blue}
-                    variant="body2"
-                    className="value"
-                    sx={{
-                      display: 'contents',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {excerpt}
-                  </Typography>
-                  <Button
-                    sx={{
-                      color: '#007FFF',
-                      display: 'inline-block',
-                      padding: 0,
-                    }}
-                    onClick={() => setReadMore((prevCheck) => !prevCheck)}
-                  >
-                    {t('more')}
-                  </Button>
+                  {readMore ? (
+                    <ContentCSS theme={theme}>
+                      <ContentBox
+                        dangerouslySetInnerHTML={{
+                          __html: sanitize(post.html),
+                        }}
+                      />
+                    </ContentCSS>
+                  ) : (
+                    <>
+                      <Typography
+                        color={theme.palette.custom.forbole.blue}
+                        variant="body2"
+                        className="value"
+                        sx={{
+                          display: 'contents',
+                          textAlign: 'center',
+                          // WebkitLineClamp: readMore ? 10 : 5,
+                          WebkitLineClamp: readMore ? 'unset' : 'inherit',
+                        }}
+                      >
+                        {excerpt}
+                      </Typography>
+                      <Button
+                        sx={{
+                          color: '#007FFF',
+                          display: readMore ? 'none' : 'inline-block',
+                          padding: 0,
+                        }}
+                        onClick={() => setReadMore((prevCheck) => !prevCheck)}
+                      >
+                        {t('more')}
+                      </Button>
+                    </>
+                  )}
                 </Box>
               ) : (
                 <ContentCSS theme={theme}>

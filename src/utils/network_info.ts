@@ -67,26 +67,26 @@ export const logos: IStringIndex = {
         'https://api.akash.forbole.com/staking/validators/akashvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0uzn073',
     },
   },
-  ['band-protocol']: {
-    image: '/images/network/band_protocol.png',
-    name: 'Band Protocol',
-    label: 'Band Protocol - BAND',
-    key: 'band-protocol',
-    graphql: 'band',
-    denom: 'BAND',
-    address: 'bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
-    color: '#516FFA',
-    heightSocket: 'wss://ws.band.forbole.com',
-    bigDipper: 'https://band.bigdipper.live/',
-    delegate: 'https://atomicwallet.io/band-staking',
-    calculator: {
-      bonded: 'http://lcd.band.forbole.com/staking/pool',
-      inflation: 'http://lcd.band.forbole.com/minting/inflation',
-      supply: 'http://lcd.band.forbole.com/supply/total/uband',
-      stakingParams:
-        'http://lcd.band.forbole.com/staking/validators/bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
-    },
-  },
+  // ['band-protocol']: {
+  //   image: '/images/network/band_protocol.png',
+  //   name: 'Band Protocol',
+  //   label: 'Band Protocol - BAND',
+  //   key: 'band-protocol',
+  //   graphql: 'band',
+  //   denom: 'BAND',
+  //   address: 'bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
+  //   color: '#516FFA',
+  //   heightSocket: 'wss://ws.band.forbole.com',
+  //   bigDipper: 'https://band.bigdipper.live/',
+  //   delegate: 'https://atomicwallet.io/band-staking',
+  //   calculator: {
+  //     bonded: 'http://lcd.band.forbole.com/staking/pool',
+  //     inflation: 'http://lcd.band.forbole.com/minting/inflation',
+  //     supply: 'http://lcd.band.forbole.com/supply/total/uband',
+  //     stakingParams:
+  //       'http://lcd.band.forbole.com/staking/validators/bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
+  //   },
+  // },
   bitsong: {
     image: '/images/network/bitsong.png',
     name: 'BitSong',
@@ -295,12 +295,13 @@ export const logos: IStringIndex = {
   },
   band: {
     image: '/images/network/band_protocol.png',
-    name: 'Band',
+    name: 'Band Protocol',
     denom: 'band',
     label: 'Band Protocol - BAND',
     key: 'band',
     graphql: 'band',
     address: 'bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z',
+    delegate: 'https://atomicwallet.io/band-staking',
   },
   likecoin: {
     image: '/images/network/likecoin.png',
@@ -459,6 +460,7 @@ export const logos: IStringIndex = {
     image: '/images/network/gravity_bridge.png',
     name: 'Gravity Bridge',
     denom: 'GRAVITON',
+    label: 'Gravity Bridge - GRAVITON',
     key: 'gravity_bridge',
     graphql: 'gravitybridge',
     guide: 'how-to-stake-grav-on-gravity-bridge',
@@ -468,6 +470,7 @@ export const logos: IStringIndex = {
   jackal: {
     image: '/images/network/jackal.png',
     name: 'Jackal Protocol',
+    label: 'Jackal Protocol - JKL',
     denom: 'JKL',
     key: 'jackal',
     graphql: 'jackal',
@@ -483,6 +486,7 @@ export const logos: IStringIndex = {
     image: '/images/network/terra.png',
     name: 'Terra',
     denom: 'LUNA',
+    label: 'Terra - LUNA',
     key: 'terra',
     graphql: 'terra',
   },
@@ -500,6 +504,7 @@ export const logos: IStringIndex = {
   nym: {
     image: '/images/network/nym.png',
     name: 'NYM',
+    label: 'NYM - NYX',
     denom: 'NYX',
     key: 'nym',
     graphql: 'nym',
@@ -514,6 +519,7 @@ export const logos: IStringIndex = {
   omniflix: {
     image: '/images/network/omniflix.png',
     name: 'Omniflix Network',
+    label: 'Omniflix Network - FLIX',
     denom: 'FLIX',
     key: 'omniflix',
     graphql: 'omniflix',
@@ -556,6 +562,7 @@ export const logos: IStringIndex = {
   stargaze: {
     image: '/images/network/stargaze.png',
     name: 'Stargaze',
+    label: 'Stargaze - STARS',
     denom: 'STARS',
     key: 'stargaze',
     graphql: 'stargaze',
@@ -567,6 +574,7 @@ export const logos: IStringIndex = {
     image: '/images/network/teritori.png',
     name: 'Teritori',
     denom: 'TORI',
+    label: 'Teritori - TORI',
     key: 'teritori',
     graphql: 'teritori',
     delegate: 'https://explorer.teritori.com/teritori',
@@ -597,6 +605,7 @@ export const logos: IStringIndex = {
   ununifi: {
     image: '/images/network/ununifi.png',
     name: 'Ununifi',
+    label: 'Ununifi - GUU',
     denom: 'GUU',
     key: 'ununifi',
     graphql: 'ununifi',
@@ -604,9 +613,30 @@ export const logos: IStringIndex = {
   xpla: {
     image: '/images/network/xpla.png',
     name: 'XPLA',
+    label: 'XPLA - XPLA',
     denom: 'XPLA',
     key: 'xpla',
     graphql: 'xpla',
+  },
+  onomy: {
+    image: '/images/network/onomy.png',
+    name: 'Onomy Protocol',
+    label: 'Onomy Protocol - NOM',
+    denom: 'NOM',
+    key: 'onomy',
+    graphql: 'onomy',
+  },
+  mars: {
+    image: '/images/network/mars.png',
+    name: 'Mars Protocol',
+    label: 'Mars Protocol - MARS',
+    denom: 'MARS',
+    key: 'mars',
+    graphql: 'mars',
+    guide: 'how-to-stake-mars-on-mars-hub',
+    address: 'marsvaloper1799t9vxshqssrk5cgnywvlx0fnlk2ekdz328aa',
+    delegate:
+      'https://explorer.marsprotocol.io/validators/marsvaloper1799t9vxshqssrk5cgnywvlx0fnlk2ekdz328aa',
   },
 };
 

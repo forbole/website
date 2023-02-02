@@ -183,7 +183,10 @@ export const useCalculateRewardsHook = (t: any) => {
       selectedToken.key !== 'sentinelhub' &&
       selectedToken.key !== 'shentu' &&
       selectedToken.key !== 'stafihub' &&
-      selectedToken.key !== 'terra_classic'
+      selectedToken.key !== 'terra_classic' &&
+      selectedToken.key !== 'gravity_bridge' &&
+      selectedToken.key !== 'jackal' &&
+      selectedToken.key !== 'terra'
     ) {
       networkFunction = defaultFunctions();
       networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/${selectedToken.key}`;
@@ -224,6 +227,18 @@ export const useCalculateRewardsHook = (t: any) => {
     ) {
       networkFunction = defaultFunctions();
       networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/terra-luna`;
+    } else if (
+      networkFunction === null &&
+      selectedToken.key === 'gravity_bridge'
+    ) {
+      networkFunction = defaultFunctions();
+      networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/graviton`;
+    } else if (networkFunction === null && selectedToken.key === 'jackal') {
+      networkFunction = defaultFunctions();
+      networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/jackal-protocol`;
+    } else if (networkFunction === null && selectedToken.key === 'terra') {
+      networkFunction = defaultFunctions();
+      networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/terra-luna-2`;
     }
 
     const marketPriceApi = await axios.get(networkFunction?.gecko);
