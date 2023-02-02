@@ -17,11 +17,7 @@ const StakingDetailsPage: NextPage = (props: any) => {
 export async function getServerSideProps(context: { query: any; res: any }) {
   let formattedSidePosts = [];
   try {
-    const { query, res } = context;
-    res.setHeader(
-      'Cache-Control',
-      'public, s-maxage=10, stale-while-revalidate=59'
-    );
+    const { query } = context;
     const { title } = query;
     const post = await getSinglePost(title);
     const [sidePosts] = await Promise.all([
