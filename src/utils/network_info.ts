@@ -384,17 +384,6 @@ export const logos: IStringIndex = {
     graphql: 'shentu',
     address: 'certikvaloper17agcmyws85x5yw08r60zwgdqa6zqy38d7zm33g',
   },
-  sifchain: {
-    image: '/images/network/sifchain.png',
-    name: 'Sifchain',
-    label: 'Sifchain - EROWAN',
-    denom: 'erowan',
-    key: 'sifchain',
-    graphql: 'sifchain',
-    address: 'sifvaloper1kcgt2phy70a06a5uspw5gc37a2mkv0lxlwnadx',
-    guide: 'how-to-stake-rowan-on-sifchain',
-    delegate: 'https://wallet.keplr.app/chains/sifchain',
-  },
   sommelier: {
     image: '/images/network/sommelier.png',
     name: 'Sommelier',
