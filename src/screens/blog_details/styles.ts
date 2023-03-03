@@ -249,6 +249,30 @@ export const ContentBox = styled.div<any>`
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: 100%;
+  }
+
+  figure > iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  figure {
+    height: 500px;
+  }
+  figure > iframe {
+    width: 100%;
+    height: 450px;
+  }
+
+  @media (max-width: 1296px) {
+    figure {
+      height: 500px;
+    }
+    figure > iframe {
+      width: 100%;
+      height: 450px;
+    }
   }
 
   .kg-image-card img {
