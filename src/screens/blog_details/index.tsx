@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import Image from 'next/image';
-import DOMPurify from 'isomorphic-dompurify';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@hooks';
 import { Layout, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
@@ -24,10 +22,7 @@ const BlogDetails = ({ post }: any) => {
     featureImage,
     html,
   } = post;
-  const { sanitize } = DOMPurify;
-  const cmsLoader = ({ src, width, quality }: any) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
-  };
+
   return (
     <Layout
       title={post.title}
@@ -61,20 +56,25 @@ const BlogDetails = ({ post }: any) => {
             '> span': {
               width: '100%!important' as any,
             },
+            '> img': {
+              width: '100%',
+              height: '180px',
+              [theme.breakpoints.up('laptop')]: {
+                width: '1200px',
+                height: '416px',
+              },
+            },
           }}
         >
-          <Image
-            loader={cmsLoader}
+          <img
             src={
               post.featureImage == null
-                ? '/static/images/assets/blog-placeholder.png'
+                ? '/images/assets/blog-placeholder.png'
                 : post.featureImage
             }
             alt={title}
             width={isDesktop ? '12000px' : '100%'}
             height={isDesktop ? '416px' : '180px'}
-            quality={100}
-            objectFit="cover"
           />
         </Box>
         <Box sx={{ padding: theme.spacing(3) }}>
@@ -104,9 +104,7 @@ const BlogDetails = ({ post }: any) => {
                 margin: theme.spacing(4.375, 0, 4.375, 0),
               }}
             />
-            <ContentBox
-              dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
-            />
+            <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
           </ContentCSS>
         </Box>
         <Tags tags={tags} />
@@ -144,46 +142,46 @@ const BlogDetails = ({ post }: any) => {
             </Typography>
             <ThemeModeSwitch />
           </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              paddingBottom: theme.spacing(7),
-            }}
-          >
-            <Author post={post} />
-            <SocialMedia title={post.title} />
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <img
-              src={
-                post.featureImage == null
-                  ? '/static/images/assets/blog-placeholder.png'
-                  : post.featureImage
-              }
-              alt={title}
-              style={{
-                width: '80%',
-                height: 'auto',
-              }}
-            />
-          </Box>
-          <ContentCSS theme={theme}>
-            <ContentBox
-              dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
-            />
-          </ContentCSS>
-          <Box display="flex" justifyContent="center">
+          <Box height="100%">
             <Box
               sx={{
-                paddingTop: theme.spacing(8),
-                height: '580px',
-                width: '80%',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingBottom: theme.spacing(7),
               }}
             >
-              <Tags tags={tags} details noPadding />
+              <Author post={post} />
+              <SocialMedia title={post.title} />
+            </Box>
+            <Box display="flex" justifyContent="center">
+              <img
+                src={
+                  post.featureImage == null
+                    ? '/static/images/assets/blog-placeholder.png'
+                    : post.featureImage
+                }
+                alt={title}
+                style={{
+                  width: '80%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
+            <ContentCSS theme={theme}>
+              <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
+            </ContentCSS>
+            <Box display="flex" justifyContent="center">
+              <Box
+                sx={{
+                  paddingTop: theme.spacing(8),
+                  height: '850px',
+                  width: '80%',
+                }}
+              >
+                <Tags tags={tags} details noPadding />
+              </Box>
             </Box>
           </Box>
           <Box

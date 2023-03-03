@@ -17,7 +17,7 @@ const Author = ({ post }: any) => {
       <img
         src={
           author.profileImage == null
-            ? '/static/images/assets/blog-placeholder.png'
+            ? '/images/assets/blog-placeholder.png'
             : author.profileImage
         }
         alt={author.name}
@@ -25,6 +25,7 @@ const Author = ({ post }: any) => {
           borderRadius: '50%',
           width: theme.spacing(5),
           height: theme.spacing(5),
+          margin: 0,
         }}
       />
       <Box
