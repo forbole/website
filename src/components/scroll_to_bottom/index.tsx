@@ -19,6 +19,9 @@ const ScrollToBottom = ({ bottomRef, staking }: any) => {
       justifyContent="center"
       pt={theme.spacing(10)}
       sx={{
+        [theme.breakpoints.down('tablet')]: {
+          display: staking ? 'none' : 'block',
+        },
         cursor: 'pointer',
         '& svg': {
           '& path': {
@@ -30,6 +33,9 @@ const ScrollToBottom = ({ bottomRef, staking }: any) => {
           '&:hover': {
             borderRadius: '50%',
             background: 'rgba(29, 30, 34, 0.3)',
+          },
+          [theme.breakpoints.up('laptop')]: {
+            display: 'block',
           },
         },
       }}

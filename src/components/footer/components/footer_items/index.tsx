@@ -18,9 +18,10 @@ const FooterItems = ({ staking }: FooterProps) => {
         color: staking
           ? theme.palette.custom.forbole.indigo
           : theme.palette.primary.main,
-        fontSize: theme.spacing(2),
-        paddingTop: theme.spacing(4),
-        paddingBottom: 4,
+        padding: staking ? theme.spacing(2, 0, 4, 0) : theme.spacing(6, 0),
+        '> .MuiTypography-root': {
+          fontSize: theme.spacing(1.75),
+        },
         [theme.breakpoints.up('laptop')]: {
           flexDirection: 'row',
           alignItems: 'center',
@@ -76,9 +77,6 @@ const FooterItems = ({ staking }: FooterProps) => {
           sx={{
             '&:hover': {
               cursor: 'pointer',
-              // color: color: staking
-              // ? theme.palette.custom.forbole.indigo
-              // : theme.palette.primary.main,
               color: theme.palette.custom.forbole.purple,
             },
           }}

@@ -26,7 +26,6 @@ const SocialMedia = ({ contact, staking }: SocialMediaProps) => {
             : 'rgba(250, 250, 250, 1)',
         },
         a: {
-          paddingRight: '1rem',
           alignItems: 'center',
           display: 'flex',
           '& svg': {
@@ -40,6 +39,9 @@ const SocialMedia = ({ contact, staking }: SocialMediaProps) => {
             'svg path': {
               fill: 'rgba(250, 250, 250, 1)',
             },
+          },
+          [theme.breakpoints.up('laptop')]: {
+            paddingRight: '1rem',
           },
         },
       }}
