@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography } from '@mui/material';
@@ -218,26 +217,6 @@ const Home = () => {
                 height={isDesktop ? '376px' : '177px'}
               />
             </TransitionCSS>
-          </Box>
-          <Box
-            sx={{
-              [theme.breakpoints.up('mobile')]: {
-                height: '140px',
-                width: theme.spacing(35),
-                top: '50vh',
-              },
-              position: 'absolute',
-              [theme.breakpoints.up('tablet')]: {
-                top: '55vh',
-                width: theme.spacing(80),
-              },
-            }}
-          >
-            <Image
-              src="/images/assets/image_watershadow.png"
-              layout="fill"
-              objectFit="contain"
-            />
           </Box>
         </Box>
       </Box>

@@ -46,6 +46,12 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
                     ? theme.palette.primary.main
                     : theme.palette.custom.forbole.blue,
                 userSelect: 'none',
+                '&:hover': {
+                  color:
+                    theme.palette.mode === 'dark' && item.link !== link
+                      ? theme.palette.custom.forbole.purple
+                      : theme.palette.primary.main,
+                },
               },
             }}
           >

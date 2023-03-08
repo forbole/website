@@ -5,7 +5,9 @@ import { Box, Typography, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@hooks';
 import { statements } from '../../config';
 
-const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
+const Trans = dynamic(async () => import('next-translate/Trans'), {
+  ssr: false,
+});
 
 const MissionItems = () => {
   const theme = useTheme();

@@ -18,26 +18,17 @@ const Footer = ({ staking }: FooterProps) => {
           background: staking
             ? 'url(/images/assets/footer_mobile_val.png)'
             : 'url(/images/assets/footer_mobile.png)',
-          backgroundPosition: '0 100%',
+          backgroundPosition: '0 10%',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: '100%',
-          // height: '40vh',
-          // minHeight: '320px',
-          // paddingBottom: theme.spacing(4),
-          // zIndex: 1,
-          // position: 'static',
-          // styling after review 1:
+          backgroundSize: '130%',
           minHeight: '320px',
           position: 'static',
-          bottom: 0,
           paddingBottom: 0,
           zIndex: 1,
         },
         [theme.breakpoints.up('tablet')]: {
-          // minHeight: '35vh',
           backgroundSize: '100%',
-          // backgroundSize: '100%',
-          backgroundPosition: '0 5%',
+          backgroundPosition: staking ? '0 30%' : '0 10%',
           bottom: 0,
         },
         [theme.breakpoints.up('laptop')]: {
@@ -47,7 +38,7 @@ const Footer = ({ staking }: FooterProps) => {
             : 'url(/images/assets/footer_desktop2.svg) bottom',
           backgroundPosition: '0 100%',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: '130%',
+          backgroundSize: '100%',
           minHeight: '367px',
           display: 'flex',
           justifyContent: 'center',
@@ -60,8 +51,6 @@ const Footer = ({ staking }: FooterProps) => {
         justifyContent: 'center',
         alignItems: 'flex-end',
         userSelect: 'none',
-        // overflowY: 'scroll',
-        // overflowX: 'hidden',
       }}
     >
       <Box
@@ -83,11 +72,12 @@ const Footer = ({ staking }: FooterProps) => {
               color: theme.palette.custom.forbole.indigo,
               textDecoration: 'none',
               margin: 'auto',
-              padding: theme.spacing(3, 0, 0, 0),
               '&:hover': {
                 cursor: 'pointer',
                 color: theme.palette.custom.forbole.purple,
               },
+              fontSize: theme.spacing(1.75),
+              padding: theme.spacing(2, 0, 0, 0),
               [theme.breakpoints.up('laptop')]: {
                 padding: theme.spacing(0, 0, 3, 0),
               },
