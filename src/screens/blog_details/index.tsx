@@ -59,6 +59,7 @@ const BlogDetails = ({ post }: any) => {
             '> img': {
               width: '100%',
               height: '180px',
+              objectFit: 'cover',
               [theme.breakpoints.up('laptop')]: {
                 width: '1200px',
                 height: '416px',
