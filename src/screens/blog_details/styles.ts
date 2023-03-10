@@ -19,6 +19,8 @@ export const LaptopCSS = styled.div<any>`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
+    line-height: 2;
   }
 `;
 
@@ -26,6 +28,9 @@ export const ContentCSS = styled.div<ContentProps>`
   overflow: auto;
   word-break: break-word;
   width: 80%;
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+  }
   margin: auto;
   color: ${(props) =>
     props?.theme?.palette?.mode === 'dark' ? '#FFFFFF' : '#000000'};

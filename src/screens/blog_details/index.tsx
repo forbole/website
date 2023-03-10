@@ -59,6 +59,10 @@ const BlogDetails = ({ post }: any) => {
             '> img': {
               width: '100%',
               height: '180px',
+              objectFit: 'cover',
+              [theme.breakpoints.up('tablet')]: {
+                height: '200px',
+              },
               [theme.breakpoints.up('laptop')]: {
                 width: '1200px',
                 height: '416px',
@@ -89,21 +93,12 @@ const BlogDetails = ({ post }: any) => {
                     ? theme.palette.primary.main
                     : theme.palette.text.primary,
                 fontWeight: 600,
-                fontSize: theme.spacing(2.5),
+                paddingBottom: theme.spacing(4),
+                fontSize: theme.spacing(3.5),
               }}
             >
               {title}
             </Typography>
-            <Divider
-              variant="middle"
-              sx={{
-                border:
-                  theme.palette.mode === 'dark'
-                    ? '1px solid rgba(255, 255, 255, 0.3)'
-                    : '1px solid rgba(29, 30, 34, 0.3)',
-                margin: theme.spacing(4.375, 0, 4.375, 0),
-              }}
-            />
             <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
           </ContentCSS>
         </Box>
@@ -155,7 +150,11 @@ const BlogDetails = ({ post }: any) => {
               <Author post={post} />
               <SocialMedia title={post.title} />
             </Box>
-            <Box display="flex" justifyContent="center">
+            <Box
+              display="flex"
+              justifyContent="center"
+              paddingBottom={theme.spacing(7)}
+            >
               <img
                 src={
                   post.featureImage == null
@@ -166,6 +165,7 @@ const BlogDetails = ({ post }: any) => {
                 style={{
                   width: '80%',
                   height: 'auto',
+                  objectFit: 'cover',
                 }}
               />
             </Box>
@@ -176,7 +176,7 @@ const BlogDetails = ({ post }: any) => {
               <Box
                 sx={{
                   paddingTop: theme.spacing(8),
-                  height: '850px',
+                  height: tags.length > 50 ? '850px' : '550px',
                   width: '80%',
                 }}
               >
@@ -192,7 +192,7 @@ const BlogDetails = ({ post }: any) => {
                 position: 'absolute',
                 left: '50%',
                 justifyContent: 'center',
-                bottom: '350px',
+                bottom: tags.length > 50 ? '200px' : '250px',
               },
             }}
           >

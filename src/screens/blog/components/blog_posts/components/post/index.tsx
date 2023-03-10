@@ -112,6 +112,7 @@ const Post = (props: any) => {
                   fontWeight: 400,
                   fontSize: theme.spacing(2),
                   overflowWrap: 'break-word',
+                  lineHeight: 1.8,
                 }}
               >
                 {excerpt}
