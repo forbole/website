@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import Image from 'next/image';
 import DOMPurify from 'isomorphic-dompurify';
 import { Box, Button, useTheme } from '@mui/material';
-import { useWindowDimensions } from '@hooks';
 import { getNetworkInfo } from '@src/utils/network_info';
 import {
   GuideContentBox,
@@ -14,20 +11,7 @@ import {
 
 const GuideDetails = ({ post }: any) => {
   const theme = useTheme();
-  const { isDesktop } = useWindowDimensions();
-  const topRef = React.useRef(null);
-  const url = process.env.NEXT_PUBLIC_URL;
-  const {
-    title,
-    publishedAt,
-    modified,
-    slug,
-    author,
-    tags,
-    excerpt,
-    featureImage,
-    html,
-  } = post;
+  const { tags } = post;
 
   const networkData =
     // eslint-disable-next-line no-nested-ternary
@@ -38,9 +22,6 @@ const GuideDetails = ({ post }: any) => {
       : getNetworkInfo(tags[1].slug);
 
   const { sanitize } = DOMPurify;
-  const cmsLoader = ({ src, width, quality }: any) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
-  };
   return (
     <Box
       sx={{

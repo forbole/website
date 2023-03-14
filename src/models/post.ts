@@ -14,6 +14,8 @@ class Post {
 
   public featureImage: string;
 
+  public featureImageCaption: string;
+
   public featured: boolean;
 
   public html: string;
@@ -40,6 +42,7 @@ class Post {
     this.customExcerpt = payload.customExcerpt;
     this.excerpt = payload.excerpt;
     this.featureImage = payload.featureImage;
+    this.featureImageCaption = payload.featureImageCaption;
     this.featured = payload.featured;
     this.html = payload.html;
     this.publishedAt = payload.publishedAt;
@@ -70,6 +73,7 @@ class Post {
       customExcerpt: data.custom_excerpt,
       excerpt: this.formatExcerpt(data.excerpt, excerptLimit),
       featureImage: data.feature_image,
+      featureImageCaption: data.feature_image_caption,
       featured: data.featured,
       html: data.html,
       publishedAt: moment(data.published_at).format('Do MMM YYYY, h:mm a'),

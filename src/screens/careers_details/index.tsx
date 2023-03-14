@@ -4,7 +4,7 @@ import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 import DOMPurify from 'isomorphic-dompurify';
 import { Box, Button, Divider, Typography, useTheme } from '@mui/material';
-import { Layout, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
+import { Layout, ScrollToTop, ThemeModeSwitch } from '@components';
 import { useWindowDimensions } from '@hooks';
 import { ClientOnly } from '@src/utils/clientOnly';
 import { Author, SocialMedia } from './components';
@@ -21,18 +21,7 @@ const CareersDetails = ({ post }: any) => {
   const theme = useTheme();
   const topRef = React.useRef(null);
   const { isDesktop } = useWindowDimensions();
-  const url = process.env.NEXT_PUBLIC_URL;
-  const {
-    title,
-    publishedAt,
-    modified,
-    slug,
-    author,
-    tags,
-    excerpt,
-    featureImage,
-    html,
-  } = post;
+  const { title, tags, excerpt, featureImage } = post;
   const { t } = useTranslation('careers');
   const { sanitize } = DOMPurify;
   const [applyDialogOpen, setApplyDialogOpen] = React.useState({
@@ -300,10 +289,7 @@ const CareersDetails = ({ post }: any) => {
             }}
           >
             <ButtonCSS>
-              <Button
-                // sx={styles.button}
-                onClick={() => setApplyDialogOpen({ open: true, title })}
-              >
+              <Button onClick={() => setApplyDialogOpen({ open: true, title })}>
                 {t('apply now')}
               </Button>
             </ButtonCSS>

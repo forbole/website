@@ -1,17 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
 import { Layout, ScrollToTop } from '@components';
 import { AuthorPosts } from './components';
 import { useBlogHook } from './hooks';
-// import { styles } from './styles';
 
 const AuthorTitlePosts = (props: any) => {
   const { t } = useTranslation('blog');
   const theme = useTheme();
-  const { post, main = false, sidePosts = [], tags, author, meta } = props;
-  const { featureImage, title, excerpt, publishedAt, slug, error } = post;
+  const { post, tags, author, meta } = props;
+  const { featureImage, excerpt, error } = post;
   useBlogHook(error, t);
   return (
     <Layout

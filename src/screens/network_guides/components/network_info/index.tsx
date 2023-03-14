@@ -8,10 +8,8 @@ import {
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
-  Divider,
   IconButton,
   Snackbar,
   Typography,
@@ -28,17 +26,7 @@ import { useNetworkGuidesHook } from './hooks';
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
   const { t } = useTranslation('staking');
-  const {
-    title,
-    publishedAt,
-    modified,
-    slug,
-    author,
-    tags,
-    excerpt,
-    featureImage,
-    html,
-  } = post;
+  const { title, tags, excerpt, featureImage } = post;
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
   const [isCopySuccess, setIsCopySuccess] = React.useState(false);
   const [readMore, setReadMore] = React.useState(false);
@@ -68,9 +56,6 @@ const NetworkInfo = ({ post }: any) => {
     },
     [networkData?.address]
   );
-  const networkImage =
-    tags.length <= 1 ? null : `/images/network/${tags[1].slug}.png`;
-
   const coverImage = networkData
     ? `/images/guides/how_to_stake_${networkData.graphql}.png`
     : featureImage;
