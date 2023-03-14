@@ -2,7 +2,13 @@
 import React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@hooks';
-import { Layout, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
+import {
+  Layout,
+  Tags,
+  ScrollToTop,
+  ThemeModeSwitch,
+  Markdown,
+} from '@components';
 import { Author, SocialMedia } from './components';
 import { ContentBox, ContentCSS, MobileCSS, LaptopCSS } from './styles';
 
@@ -10,7 +16,7 @@ const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
   const { isDesktop } = useWindowDimensions();
   const topRef = React.useRef(null);
-  const { title, tags, excerpt, featureImage } = post;
+  const { title, tags, excerpt, featureImage, featureImageCaption } = post;
 
   return (
     <Layout
@@ -39,37 +45,6 @@ const BlogDetails = ({ post }: any) => {
             <ThemeModeSwitch />
           </Box>
         </Box>
-        <Box
-          height={isDesktop ? '416px' : '180px'}
-          sx={{
-            '> span': {
-              width: '100%!important' as any,
-            },
-            '> img': {
-              width: '100%',
-              height: '180px',
-              objectFit: 'cover',
-              [theme.breakpoints.up('tablet')]: {
-                height: '200px',
-              },
-              [theme.breakpoints.up('laptop')]: {
-                width: '1200px',
-                height: '416px',
-              },
-            },
-          }}
-        >
-          <img
-            src={
-              post.featureImage == null
-                ? '/images/assets/blog-placeholder.png'
-                : post.featureImage
-            }
-            alt={title}
-            width={isDesktop ? '12000px' : '100%'}
-            height={isDesktop ? '416px' : '180px'}
-          />
-        </Box>
         <Box sx={{ padding: theme.spacing(3) }}>
           <ContentCSS theme={theme}>
             <Author post={post} />
@@ -88,6 +63,43 @@ const BlogDetails = ({ post }: any) => {
             >
               {title}
             </Typography>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              paddingBottom={
+                featureImageCaption === null ? theme.spacing(8) : 0
+              }
+            >
+              <img
+                src={
+                  post.featureImage == null
+                    ? '/static/images/assets/blog-placeholder.png'
+                    : post.featureImage
+                }
+                alt={title}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                }}
+              />
+              {featureImageCaption === null ? null : (
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary.main
+                        : theme.palette.text.primary,
+                    padding: theme.spacing(2, 0, 8, 0),
+                    fontSize: theme.spacing(1.75),
+                  }}
+                >
+                  <Markdown>{featureImageCaption}</Markdown>
+                </Typography>
+              )}
+            </Box>
             <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
           </ContentCSS>
         </Box>
@@ -142,7 +154,10 @@ const BlogDetails = ({ post }: any) => {
             <Box
               display="flex"
               justifyContent="center"
-              paddingBottom={theme.spacing(7)}
+              flexDirection="column"
+              paddingBottom={
+                featureImageCaption === null ? theme.spacing(8) : 0
+              }
             >
               <img
                 src={
@@ -152,11 +167,34 @@ const BlogDetails = ({ post }: any) => {
                 }
                 alt={title}
                 style={{
-                  width: '80%',
+                  width: '100%',
                   height: 'auto',
                   objectFit: 'cover',
+                  margin: 'auto',
                 }}
               />
+              {featureImageCaption === null ? null : (
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary.main
+                        : theme.palette.text.primary,
+                    padding: theme.spacing(4, 0, 8, 0),
+                    fontSize: theme.spacing(2),
+                    width: '80%',
+                    a: {
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primary.main
+                          : theme.palette.text.primary,
+                    },
+                  }}
+                >
+                  <Markdown>{featureImageCaption}</Markdown>
+                </Typography>
+              )}
             </Box>
             <ContentCSS theme={theme}>
               <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -166,7 +204,7 @@ const BlogDetails = ({ post }: any) => {
                 sx={{
                   paddingTop: theme.spacing(8),
                   height: tags.length > 50 ? '850px' : '550px',
-                  width: '80%',
+                  width: '100%',
                 }}
               >
                 <Tags tags={tags} details noPadding />

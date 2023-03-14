@@ -27,7 +27,7 @@ export const LaptopCSS = styled.div<any>`
 export const ContentCSS = styled.div<ContentProps>`
   overflow: auto;
   word-break: break-word;
-  width: 80%;
+  width: 100%;
   @media only screen and (max-width: 1024px) {
     width: 100%;
   }
