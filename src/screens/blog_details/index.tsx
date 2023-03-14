@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Box, Divider, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { useWindowDimensions } from '@hooks';
 import { Layout, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
 import { Author, SocialMedia } from './components';
@@ -10,18 +10,7 @@ const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
   const { isDesktop } = useWindowDimensions();
   const topRef = React.useRef(null);
-  const url = process.env.NEXT_PUBLIC_URL;
-  const {
-    title,
-    publishedAt,
-    modified,
-    slug,
-    author,
-    tags,
-    excerpt,
-    featureImage,
-    html,
-  } = post;
+  const { title, tags, excerpt, featureImage } = post;
 
   return (
     <Layout

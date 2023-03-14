@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Box, Typography, useTheme } from '@mui/material';
@@ -15,6 +15,8 @@ const Post = (props: any) => {
   const cmsLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
+  const [time, setTime] = useState(publishedAt);
+  useEffect(() => setTime(publishedAt), [publishedAt]);
   return (
     <Box
       sx={{
@@ -154,7 +156,7 @@ const Post = (props: any) => {
                 </a>
               </Link>
             </p>
-            <p className="date">{publishedAt}</p>
+            <p className="date">{time}</p>
           </Box>
         </Box>
       </Box>

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Box, Typography, useTheme } from '@mui/material';
 
@@ -12,6 +12,8 @@ interface AuthorProps {
 const Author = ({ post, noMargin }: AuthorProps) => {
   const { primaryAuthor: author } = post;
   const theme = useTheme();
+  const [time, setTime] = useState(post.publishedAt);
+  useEffect(() => setTime(post.publishedAt), [post.publishedAt]);
   return (
     <Box
       sx={{
@@ -72,7 +74,7 @@ const Author = ({ post, noMargin }: AuthorProps) => {
                 fontSize: theme.spacing(1.75),
               }}
             >
-              {post.publishedAt}
+              {time}
             </Typography>
           </a>
         </Link>

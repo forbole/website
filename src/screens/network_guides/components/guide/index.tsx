@@ -1,12 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import useTranslation from 'next-translate/useTranslation';
 import DOMPurify from 'isomorphic-dompurify';
-import { Box, Divider, Typography, useTheme } from '@mui/material';
-import { useWindowDimensions } from '@hooks';
-import { LayoutVal, Tags, ScrollToTop, ThemeModeSwitch } from '@components';
+import { Box, Typography, useTheme } from '@mui/material';
 import { GuideDetails } from './components';
 
 const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
@@ -14,20 +10,7 @@ const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
 const Guide = ({ post }: any) => {
   const theme = useTheme();
   const { t } = useTranslation('staking');
-  const { isDesktop } = useWindowDimensions();
-  const topRef = React.useRef(null);
-  const url = process.env.NEXT_PUBLIC_URL;
-  const {
-    title,
-    publishedAt,
-    modified,
-    slug,
-    author,
-    tags,
-    excerpt,
-    featureImage,
-    html,
-  } = post;
+  const { title } = post;
   const { sanitize } = DOMPurify;
   const cmsLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
