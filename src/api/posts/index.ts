@@ -104,7 +104,11 @@ export const getSinglePostById = async (id: string, options?: any) => {
 /** Get all post tags */
 export const getTags = async () => {
   try {
-    return await api.tags.browse({ order: 'slug ASC' });
+    return await api.tags.browse({
+      order: 'count.posts DESC',
+      limit: '15',
+      include: 'count.posts',
+    });
   } catch (err) {
     console.error(err);
     return [];

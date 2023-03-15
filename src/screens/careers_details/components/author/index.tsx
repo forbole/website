@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Box, Typography, useTheme } from '@mui/material';
+import { useHKT } from '@hooks';
 
 interface AuthorProps {
   post: any;
@@ -10,10 +10,9 @@ interface AuthorProps {
 }
 
 const Author = ({ post, noMargin }: AuthorProps) => {
-  const { primaryAuthor: author } = post;
+  const { primaryAuthor: author, publishedAt } = post;
   const theme = useTheme();
-  const [time, setTime] = useState(post.publishedAt);
-  useEffect(() => setTime(post.publishedAt), [post.publishedAt]);
+  const time = useHKT(publishedAt);
   return (
     <Box
       sx={{
@@ -25,7 +24,7 @@ const Author = ({ post, noMargin }: AuthorProps) => {
       <img
         src={
           author.profileImage == null
-            ? '/static/images/assets/blog-placeholder.png'
+            ? '/images/assets/blog-placeholder.png'
             : author.profileImage
         }
         alt={author.name}

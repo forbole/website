@@ -1,3 +1,5 @@
+import * as R from 'ramda';
+
 class Tag {
   public name: string;
 
@@ -5,10 +7,13 @@ class Tag {
 
   public url: string;
 
+  public count: object;
+
   constructor(payload: any) {
     this.name = payload.name;
     this.slug = payload.slug;
     this.url = payload.url;
+    this.count = payload.count;
   }
 
   static fromJson(data: any) {
@@ -16,6 +21,7 @@ class Tag {
       name: data.name,
       slug: data.slug ?? data.name,
       url: data.url ?? data.name,
+      count: { posts: R.pathOr('', ['count', 'posts'], data) },
     });
   }
 }

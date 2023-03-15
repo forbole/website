@@ -69,7 +69,7 @@ const AuthorTitlePosts = (props: any) => {
                 }}
                 src={
                   author.profile_image == null
-                    ? '/static/images/assets/blog-placeholder.png'
+                    ? '/images/assets/blog-placeholder.png'
                     : author.profile_image
                 }
                 alt={author.name}
