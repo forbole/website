@@ -34,8 +34,3 @@ interface BondedProps {
   bondedToken: string;
   metric: MetricProps;
 }
-
-// interface Network {
-//   name: string;
-//   links: Array<NetworkLink>;
-// }
