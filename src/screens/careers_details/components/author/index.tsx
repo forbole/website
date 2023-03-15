@@ -24,7 +24,7 @@ const Author = ({ post, noMargin }: AuthorProps) => {
       <img
         src={
           author.profileImage == null
-            ? '/static/images/assets/blog-placeholder.png'
+            ? '/images/assets/blog-placeholder.png'
             : author.profileImage
         }
         alt={author.name}

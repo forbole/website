@@ -71,7 +71,7 @@ const CareersDetails = ({ post }: any) => {
               loader={cmsLoader}
               src={
                 post.featureImage == null
-                  ? '/static/images/assets/blog-placeholder.png'
+                  ? '/images/assets/blog-placeholder.png'
                   : post.featureImage
               }
               alt={title}
@@ -221,7 +221,7 @@ const CareersDetails = ({ post }: any) => {
                     <img
                       src={
                         post.featureImage == null
-                          ? '/static/images/assets/blog-placeholder.png'
+                          ? '/images/assets/blog-placeholder.png'
                           : post.featureImage
                       }
                       alt={title}

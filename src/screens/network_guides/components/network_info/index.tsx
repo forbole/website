@@ -131,7 +131,7 @@ const NetworkInfo = ({ post }: any) => {
                   loader={cmsLoader}
                   src={
                     networkData.image == null
-                      ? '/static/images/assets/blog-placeholder.png'
+                      ? '/images/assets/blog-placeholder.png'
                       : networkData.image
                   }
                   alt={title}

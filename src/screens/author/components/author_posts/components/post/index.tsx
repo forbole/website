@@ -66,7 +66,7 @@ const Post = (props: any) => {
                 loader={cmsLoader}
                 src={
                   featureImage == null
-                    ? '/static/images/assets/blog-placeholder.png'
+                    ? '/images/assets/blog-placeholder.png'
                     : featureImage
                 }
                 alt={title}
