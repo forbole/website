@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment-timezone';
 
-export const useHKT = (publishedAt: string) => {
+const useHKT = (publishedAt: string) => {
   const [time, setTime] = useState(publishedAt);
   useEffect(() => {
     const hkt = moment
@@ -11,3 +11,5 @@ export const useHKT = (publishedAt: string) => {
   }, [publishedAt]);
   return time;
 };
+
+export default useHKT;
