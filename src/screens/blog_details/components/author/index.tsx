@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Box, Typography, useTheme } from '@mui/material';
+import { useHKT } from '@hooks';
 
 const Author = ({ post }: any) => {
-  const { primaryAuthor: author } = post;
+  const { primaryAuthor: author, publishedAt } = post;
   const theme = useTheme();
-  const [time, setTime] = useState(post.publishedAt);
-  useEffect(() => setTime(post.publishedAt), [post.publishedAt]);
+  const time = useHKT(publishedAt);
   return (
     <Box
       sx={{

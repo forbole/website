@@ -1,11 +1,10 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Box, Typography, useTheme } from '@mui/material';
-import { useWindowDimensions } from '@hooks';
+import { useWindowDimensions, useHKT } from '@hooks';
 
 const Post = (props: any) => {
   const theme = useTheme();
@@ -15,8 +14,7 @@ const Post = (props: any) => {
   const cmsLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
-  const [time, setTime] = useState(publishedAt);
-  useEffect(() => setTime(publishedAt), [publishedAt]);
+  const time = useHKT(publishedAt);
   return (
     <Box
       sx={{
