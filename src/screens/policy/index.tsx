@@ -1,9 +1,15 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import useTranslation from 'next-translate/useTranslation';
 import { Box, Typography, useTheme } from '@mui/material';
 import { Layout, ScrollToTop } from '@components';
 import { useWindowDimensions } from '@hooks';
+import Link from '@mui/material/Link';
 import { TNCCSS } from '../terms_and_conditions/styles';
+
+const Trans = dynamic(async () => import('next-translate/Trans'), {
+  ssr: false,
+});
 
 const Policy = () => {
   const { t } = useTranslation('policy');
@@ -99,7 +105,7 @@ const Policy = () => {
               >
                 {t('updatedDate')}
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="body1"
                 sx={{
                   color: theme.palette.primary.main,
@@ -108,8 +114,49 @@ const Policy = () => {
                   paddingBottom: theme.spacing(5),
                 }}
               >
-                {t('description1')}
-              </Typography>
+                {t('description1', {})}
+              </Typography> */}
+              <Trans
+                i18nKey={t('description1')}
+                components={[
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: theme.palette.primary.main,
+                      fontSize: theme.spacing(1.75),
+                      fontWeight: 600,
+                      paddingBottom: theme.spacing(5),
+                    }}
+                  />,
+                  <Typography
+                    color="primary.main"
+                    fontWeight={700}
+                    sx={{
+                      display: 'inline',
+                      fontSize: theme.spacing(1.5),
+                      [theme.breakpoints.up('laptop')]: {
+                        fontSize: theme.spacing(2.5),
+                        display: 'inline',
+                      },
+                    }}
+                  />,
+                  <Link
+                    color="primary.main"
+                    fontWeight={700}
+                    href="https://forbole.com"
+                    rel="noreferrer"
+                    target="_blank"
+                    sx={{
+                      display: 'inline',
+                      fontSize: theme.spacing(1.5),
+                      [theme.breakpoints.up('laptop')]: {
+                        fontSize: theme.spacing(2.5),
+                        display: 'inline',
+                      },
+                    }}
+                  />,
+                ]}
+              />
               <Typography
                 variant="body1"
                 sx={{
