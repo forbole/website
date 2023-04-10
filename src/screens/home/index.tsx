@@ -111,7 +111,7 @@ const Home = () => {
                   padding: 0,
                 },
                 [theme.breakpoints.up('tablet')]: {
-                  maxWidth: '610px',
+                  maxWidth: '800px',
                   lineHeight: theme.spacing(9),
                   letterSpacing: '0.013em',
                   fontSize: theme.spacing(8),
