@@ -118,6 +118,9 @@ const Home = () => {
                   padding: 0,
                   paddingTop: theme.spacing(30),
                 },
+                [theme.breakpoints.up('laptop')]: {
+                  maxWidth: '900px',
+                },
               })}
             >
               {width < theme.breakpoints.values.tablet
