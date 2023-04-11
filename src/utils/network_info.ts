@@ -199,7 +199,7 @@ export const logos: IStringIndex = {
   //   guide: 'how-to-stake-bnc-on-bifrost',
   // },
   cheqd: {
-    image: '/images/network/cheqd.png',
+    image: '/images/network/cheqd.svg',
     name: 'Cheqd',
     label: 'CHEQD Network - CHEQ',
     denom: 'cheq',

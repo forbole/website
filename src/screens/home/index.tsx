@@ -111,12 +111,15 @@ const Home = () => {
                   padding: 0,
                 },
                 [theme.breakpoints.up('tablet')]: {
-                  maxWidth: '610px',
+                  maxWidth: '800px',
                   lineHeight: theme.spacing(9),
                   letterSpacing: '0.013em',
                   fontSize: theme.spacing(8),
                   padding: 0,
                   paddingTop: theme.spacing(30),
+                },
+                [theme.breakpoints.up('laptop')]: {
+                  maxWidth: '900px',
                 },
               })}
             >
@@ -126,60 +129,91 @@ const Home = () => {
             </Typography>
           ) : (
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography
-                sx={(s) => ({
-                  whiteSpace: 'pre-wrap',
-                  zIndex: 3,
-                  [s.breakpoints.up('mobile')]: {
-                    marginLeft: theme.spacing(0),
-                    color: theme.palette.primary.main,
-                    fontWeight: 600,
-                    fontSize: theme.spacing(4),
-                    lineHeight: theme.spacing(5),
-                    textAlign: 'center',
-                    letterSpacing: '0.032em',
-                    textShadow: '0px 0px 20px rgba(0, 0, 0, 0.88)',
-                    padding: 0,
-                  },
-                  [theme.breakpoints.up('tablet')]: {
-                    marginLeft: theme.spacing(8),
-                    maxWidth: '610px',
-                    lineHeight: theme.spacing(9),
-                    letterSpacing: '0.013em',
-                    fontSize: theme.spacing(8),
-                    padding: 0,
-                    paddingTop: theme.spacing(30),
-                  },
-                })}
-              >
-                {t('titleD')}
-              </Typography>
-              <Typography
-                sx={(s) => ({
-                  whiteSpace: 'pre-wrap',
-                  zIndex: 3,
-                  [s.breakpoints.up('mobile')]: {
-                    color: theme.palette.primary.main,
-                    fontWeight: 600,
-                    fontSize: theme.spacing(4),
-                    lineHeight: theme.spacing(5),
-                    textAlign: 'center',
-                    letterSpacing: '0.032em',
-                    textShadow: '0px 0px 20px rgba(0, 0, 0, 0.88)',
-                    padding: 0,
-                  },
-                  [theme.breakpoints.up('tablet')]: {
-                    maxWidth: '610px',
-                    lineHeight: theme.spacing(9),
-                    letterSpacing: '0.013em',
-                    fontSize: theme.spacing(8),
-                    padding: 0,
-                    paddingTop: theme.spacing(1),
-                  },
-                })}
-              >
-                {t('titleE')}
-              </Typography>
+              {width < theme.breakpoints.values.laptop ? (
+                <>
+                  <Typography
+                    sx={(s) => ({
+                      whiteSpace: 'pre-wrap',
+                      zIndex: 3,
+                      [s.breakpoints.up('mobile')]: {
+                        marginLeft: theme.spacing(0),
+                        color: theme.palette.primary.main,
+                        fontWeight: 600,
+                        fontSize: theme.spacing(4),
+                        lineHeight: theme.spacing(5),
+                        textAlign: 'center',
+                        letterSpacing: '0.032em',
+                        textShadow: '0px 0px 20px rgba(0, 0, 0, 0.88)',
+                        padding: 0,
+                      },
+                      [theme.breakpoints.up('tablet')]: {
+                        marginLeft: theme.spacing(8),
+                        maxWidth: '610px',
+                        lineHeight: theme.spacing(9),
+                        letterSpacing: '0.013em',
+                        fontSize: theme.spacing(8),
+                        padding: 0,
+                        paddingTop: theme.spacing(30),
+                      },
+                    })}
+                  >
+                    {t('titleD')}
+                  </Typography>
+                  <Typography
+                    sx={(s) => ({
+                      whiteSpace: 'pre-wrap',
+                      zIndex: 3,
+                      [s.breakpoints.up('mobile')]: {
+                        color: theme.palette.primary.main,
+                        fontWeight: 600,
+                        fontSize: theme.spacing(4),
+                        lineHeight: theme.spacing(5),
+                        textAlign: 'center',
+                        letterSpacing: '0.032em',
+                        textShadow: '0px 0px 20px rgba(0, 0, 0, 0.88)',
+                        padding: 0,
+                      },
+                      [theme.breakpoints.up('tablet')]: {
+                        maxWidth: '610px',
+                        lineHeight: theme.spacing(9),
+                        letterSpacing: '0.013em',
+                        fontSize: theme.spacing(8),
+                        padding: 0,
+                        paddingTop: theme.spacing(1),
+                      },
+                    })}
+                  >
+                    {t('titleE')}
+                  </Typography>
+                </>
+              ) : (
+                <Typography
+                  sx={(s) => ({
+                    whiteSpace: 'pre-wrap',
+                    zIndex: 3,
+                    [s.breakpoints.up('mobile')]: {
+                      color: theme.palette.primary.main,
+                      fontWeight: 600,
+                      fontSize: theme.spacing(4),
+                      lineHeight: theme.spacing(5),
+                      textAlign: 'center',
+                      letterSpacing: '0.032em',
+                      textShadow: '0px 0px 20px rgba(0, 0, 0, 0.88)',
+                      padding: 0,
+                    },
+                    [theme.breakpoints.up('tablet')]: {
+                      maxWidth: '800px',
+                      lineHeight: theme.spacing(9),
+                      letterSpacing: '0.013em',
+                      fontSize: theme.spacing(8),
+                      padding: 0,
+                      paddingTop: theme.spacing(30),
+                    },
+                  })}
+                >
+                  {t('title')}
+                </Typography>
+              )}
             </Box>
           )}
           <Box

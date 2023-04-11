@@ -117,14 +117,9 @@ exports[`screen: Home matches snapshot 1`] = `
         className="MuiBox-root css-j7qwjs"
       >
         <p
-          className="MuiTypography-root MuiTypography-body1 css-2oe3r8-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body1 css-196tevl-MuiTypography-root"
         >
-          titleD
-        </p>
-        <p
-          className="MuiTypography-root MuiTypography-body1 css-1a9lsdn-MuiTypography-root"
-        >
-          titleE
+          title
         </p>
       </div>
       <div
