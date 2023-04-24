@@ -133,7 +133,7 @@ export const ContentBox = styled.div<any>`
 /* ---------------------------------------------------------- */
 
   > * + * {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
   }
 
   [id]:not(:first-of-type) {
@@ -217,12 +217,12 @@ export const ContentBox = styled.div<any>`
   }
 
   .kg-card figcaption {
-    padding: 0.6rem 1.5rem 0;
     text-align: center;
-    color: rgba(0, 0, 0, 0.5);
     font-weight: 300;
     font-size: 0.9rem;
     line-height: 1.4em;
+    color: ${(props) =>
+      props?.theme?.palette?.mode === 'dark' ? '#FFFFFF' : '#000000'};
   }
 
   .kg-card figcaption strong {
@@ -286,6 +286,14 @@ export const ContentBox = styled.div<any>`
     overflow: hidden;
     width: 100%;
     height: 100%;
+  }
+
+  .kg-card-hascaption {
+    display: flex;
+    flex-direction: column;
+    img {
+      height: 95%;
+    }
   }
 
   /* Galleries
