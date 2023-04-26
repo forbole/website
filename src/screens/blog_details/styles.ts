@@ -223,6 +223,7 @@ export const ContentBox = styled.div<any>`
     line-height: 1.4em;
     color: ${(props) =>
       props?.theme?.palette?.mode === 'dark' ? '#FFFFFF' : '#000000'};
+    padding: 1rem 0rem;
   }
 
   .kg-card figcaption strong {
@@ -263,7 +264,7 @@ export const ContentBox = styled.div<any>`
   }
 
   figure {
-    height: 500px;
+    height: max-content;
   }
   figure > iframe {
     width: 100%;
@@ -272,7 +273,7 @@ export const ContentBox = styled.div<any>`
 
   @media (max-width: 1296px) {
     figure {
-      height: 500px;
+      height: max-content;
     }
     figure > iframe {
       width: 100%;
@@ -292,7 +293,8 @@ export const ContentBox = styled.div<any>`
     display: flex;
     flex-direction: column;
     img {
-      height: 95%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 
