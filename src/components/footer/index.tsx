@@ -31,7 +31,13 @@ const Footer = ({ staking }: FooterProps) => {
             },
           }}
         >
-          <SSVBadge />
+          <a
+            href="https://beta.explorer.ssv.network/operators/16"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <SSVBadge />
+          </a>
           <Box
             sx={{
               [theme.breakpoints.up('mobile')]: {
