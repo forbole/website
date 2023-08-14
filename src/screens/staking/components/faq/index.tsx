@@ -39,7 +39,7 @@ const FAQ = () => {
         <Box
           sx={{
             [theme.breakpoints.up('laptop')]: {
-              paddingBottom: theme.spacing(50),
+              paddingBottom: theme.spacing(25),
             },
           }}
         >
