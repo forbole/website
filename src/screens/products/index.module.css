@@ -1,0 +1,28 @@
+.icon {
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-right: -2px;
+    margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+    .icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .response {
+        height: 32px;
+        font-size: 12px;
+        padding: 0px 12px;
+        border-radius: 32px;
+    }
+    .response36 {
+        height: 36px;
+        font-size: 12px;
+        padding: 0px 12px;
+        border-radius: 36px;
+    }
+}

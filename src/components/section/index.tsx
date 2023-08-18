@@ -1,0 +1,117 @@
+import { Stack, Typography, useTheme } from '@mui/material';
+import dynamic from 'next/dynamic';
+import React from 'react';
+
+const Trans = dynamic(async () => import('next-translate/Trans'), {
+  ssr: false,
+});
+
+type Props = {
+  maxWidth?: string;
+  title?: string;
+  title_large?: string;
+  title_large_trans?: string;
+  desc?: string;
+};
+
+const Section = ({ maxWidth = "laptop", title, desc, title_large, title_large_trans }: Props) => {
+  const theme = useTheme();
+  return (
+    <Stack
+      sx={{
+        maxWidth: maxWidth,
+        margin: "0 auto",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        gap: "24px",
+        color: "#202A43",
+        textShadow:
+          "0px 14px 64px  rgba(2, 38, 225, 0.12), 0px 8px 22px  rgba(2, 38, 225, 0.12)",
+      }}
+    >
+      {title && (
+        <Typography
+          sx={{
+            fontSize: "24px",
+            fontWeight: "700",
+            gap: "24px",
+            color: "#202A43",
+            [theme.breakpoints.down("laptop")]: {
+              fontWeight: "590",
+              fontSize: "16px",
+            },
+          }}
+        >
+          {title}
+        </Typography>
+      )}
+      {title_large && (
+        <Typography
+          sx={{
+            fontSize: "40px",
+            fontWeight: "590",
+            color: "#202A43",
+            [theme.breakpoints.down("laptop")]: {
+              fontWeight: "700",
+              fontSize: "24px",
+            },
+          }}
+        >
+          {title_large}
+        </Typography>
+      )}
+
+      {title_large_trans && (
+        <Trans
+          i18nKey={title_large_trans}
+          components={[
+            <Typography
+              display='inline'
+              sx={{
+                fontSize: "40px",
+                fontWeight: "590",
+                color: "#202A43",
+                [theme.breakpoints.down("laptop")]: {
+                  fontWeight: "700",
+                  fontSize: "24px",
+                },
+              }}
+            />,
+            <Typography
+              display='inline'
+              component={'span'}
+              color='#EE3131'
+              sx={{
+                textShadow:'0px 0px 20px #ffffff',
+                fontSize: "40px",
+                fontWeight: "590",
+                [theme.breakpoints.down("laptop")]: {
+                  fontWeight: "700",
+                  fontSize: "24px",
+                },
+              }}
+            />
+          ]}
+        />
+      )}
+
+      {desc && (
+        <Typography
+          sx={{
+            fontSize: "24px",
+            fontWeight: "400",
+            color: "#202A43",
+            [theme.breakpoints.down("laptop")]: {
+              fontSize: "16px",
+            },
+          }}
+        >
+          {desc}
+        </Typography>
+      )}
+    </Stack>
+  );
+};
+
+export default Section;

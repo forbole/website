@@ -1,0 +1,69 @@
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* @font-face {
+  font-family: 'Chinese Font';
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+  unicode-range: U+4E00–9FFF;
+  letter-spacing: 1rem;
+} */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  line-height: normal
+    /* overflow-y: scroll !important; */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/*Carousel组件 */
+/* .swiper-slide.scale {
+  transition: 300ms;
+  transform: scale(0.8);
+  height: auto;
+}
+
+.swiper-slide-active.scale {
+  transform: scale(1);
+}
+.scale>.swiper-wrapper{
+  align-items: stretch;
+}
+.c-next.swiper-button-disabled,
+.c-prev.swiper-button-disabled {
+  display: none;
+}
+
+.c-next,
+.c-prev {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .c-next,
+  .c-prev {
+    display: block;
+  }
+}
+/* .v-next.swiper-button-disabled,
+.v-prev.swiper-button-disabled {
+  display: none;
+} */ 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition: color 11111s ease-out, background-color 111111s ease-out!important;
+} 

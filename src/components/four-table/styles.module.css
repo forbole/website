@@ -1,0 +1,49 @@
+.active {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 346px;
+    height: 536px;
+    position: relative;
+    border: 3px solid rgb(253, 63, 97);
+    background-image: linear-gradient(315deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%);
+}
+
+.money{
+    font-size: 64px;
+}
+.popular {
+    position: absolute;
+    top:-18px;
+    right:0;
+    gap:8px;
+    box-sizing: border-box;
+    padding:0 11px;
+    width: 126px;
+    height: 32px;
+    align-items: center;
+    border-radius: 32px;
+    background: linear-gradient(315deg, #EE3131 0%, #FF426B 100%);
+    color: #FFF;
+    text-align: center;
+}
+.popular>span{
+    font-weight: 590;
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+}
+.none{
+    display: none;
+}
+@media (max-width: 1024.95px) {
+    .active {
+         flex-basis:max-content;
+         width:100%;
+    }
+   .money{
+        font-size: 48px;
+    }
+    .active .money span{
+        font-size: 48px;
+    }
+}

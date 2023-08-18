@@ -1,0 +1,41 @@
+{
+  "stake_now":"Stake now",
+  "see_more_networks":"See more networks",
+  "toggle_btn_left":"Our Infrastructure",
+  "toggle_btn_right":"Our Expertise",
+
+  "page_title": "Validator Infrastructure",
+  "headercard_title": "Validator Infrastructure",
+  "headercard_desc": "Building the Multi-chain from the ground up",
+  "section_1st_title": "Use cases",
+  "section_1st_large_title": "<0><1>Building</1> infrastructure with you right from the start</0>",
+  "section_1st_desc": "We are among the genesis validator sets on prominent Proof-of-Stake chains including Cosmos Hub, Solana, Oasis, Sui, Wormhole and others.",
+
+  "section_2nd_title": "Our Strengths",
+  "section_2nd_large_title": "<0>Your go-to Web3 <1>infrastructure choice</1></0>",
+
+  "section_3rd_title": "Testimonials",
+  "section_3rd_large_title": "<0>Supporting over <1>60 networks</1></0>",
+  "section_3rd_desc": "Partners who trust us",
+
+  "grid_1st_title": "Solana",
+  "grid_1st_desc": "Solana is a high performance blockchain network supporting a wide range of use cases, including finance, NFTs, payments and gaming. Solana is known for being extremely fast, scalable and energy-efficient. Forbole is one of the genesis validators of Solana.",
+  "grid_2nd_title": "SSV",
+  "grid_2nd_desc": "The ssv.network is a unique protocol that enables the distributed operation of an Ethereum validator by utilizing Distributed Validator Technology (DVT). Forbole is one of the verified operators of SSV.",
+  "grid_3rd_title": "Wormhole",
+  "grid_3rd_desc": "The Wormhole Network is a cross-chain messaging protocol that facilitates interoperability among decentralized applications built on various blockchains. Wormhole supports a wide range of cross-chain use cases, ranging from tokens, DeFi, NFTs and governance. Forbole is one of the 19 guardians who secure the Wormhole Network and operate its governance process.",
+
+  "infrastructure_item1":"Trusted by 60+ networks and bridges worldwide",
+  "infrastructure_item2":"Enterprise grade setup including remote signer, DDoS protection and double-signing prevention",
+  "infrastructure_item3":"Industry leading security protocols",
+  "infrastructure_item4":"Self-owned and cloud-based servers across the world",
+  "infrastructure_item5":"High-availability nodes",
+  "infrastructure_item6":"Achieve 99.9% uptime",
+
+  "expertise_item1":"Extensive blockchain protocol and cyber-security knowledge",
+  "expertise_item2":"24/7 On-call roster & monitoring",
+  "expertise_item3":"Active participation in community and governance",
+  "expertise_item4":"Contributor to major projects' codebase",
+  "expertise_item5":"Responsive and proactive with projects' development",
+  "expertise_item6":"Award-winning team of experienced network engineers"
+}

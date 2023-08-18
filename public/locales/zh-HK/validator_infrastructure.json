@@ -1,0 +1,41 @@
+{
+  "stake_now":"立即質押",
+  "see_more_networks":"查看更多網絡",
+  "toggle_btn_left":"我們的基礎建設",
+  "toggle_btn_right":"我們的專業技能",
+
+  "page_title": "驗證人基礎建設",
+  "headercard_title": "驗證人基礎建設",
+  "headercard_desc": "構建多鏈 由零開始",
+  "section_1st_title": "實例",
+  "section_1st_large_title": "<0>與你一起<1>構建</1>基礎設施</0>",
+  "section_1st_desc": "我們是數個知名PoS鏈（包括Cosmos Hub、Solana、Oasis、Sui、Wormhole等）的創世驗證人之一。",
+
+  "section_2nd_title": "我們的優勢",
+  "section_2nd_large_title": "<0>你的首選 Web3 <1>基礎建設</1></0>",
+
+  "section_3rd_title": "值得信賴",
+  "section_3rd_large_title": "<0>支援 <1>60</1> 多個<1>網絡</1></0>",
+  "section_3rd_desc": "獲得合作夥伴的信任",
+
+  "grid_1st_title": "Solana",
+  "grid_1st_desc": "Solana 是一個高性能區塊鍊網絡，支援多個不同範疇的實例，包括金融、NFT、支付和遊戲。 Solana 以極快、可擴展和節能而聞名。 Forbole 是 Solana 的創世驗證人之一。",
+  "grid_2nd_title": "SSV",
+  "grid_2nd_desc": "ssv.network 建立獨特的協議，它利用分佈式驗證器技術（DVT）實現以太坊驗證器的分佈式操作。 Forbole 是SSV 的認可的營運商之一。",
+  "grid_3rd_title": "Wormhole",
+  "grid_3rd_desc": "Wormhole 網絡建立消息傳遞的跨鏈協議，可促進各區塊鏈所建設的去中心化應用程式間的互操作性。Wormhole 支援多個不同範疇的實例，包括通證、DeFi、NFT 和治理。 Forbole 是確保 Wormhole 網絡能營運其治理流程的 19 名維護者之一。",
+
+  "infrastructure_item1":"獲得超過 60 個網絡及跨鏈橋的信任",
+  "infrastructure_item2":"企業級設置，包括遠端簽署、DDoS 保護和雙重支付防護",
+  "infrastructure_item3":"行業領先的安全協議",
+  "infrastructure_item4":"自家擁有的雲伺服器遍佈全球",
+  "infrastructure_item5":"高可用性節點",
+  "infrastructure_item6":"實現 99.9% 的運行時間",
+
+  "expertise_item1":"淵博的協議及網絡安全知識",
+  "expertise_item2":"24/7 全天候服務和監控",
+  "expertise_item3":"積極參與社區和治理",
+  "expertise_item4":"為重要項目的代碼庫作出貢獻",
+  "expertise_item5":"負責並積極推動項目發展",
+  "expertise_item6":"獲獎及經驗豐富的網絡工程師團隊" 
+}
