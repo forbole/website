@@ -118,7 +118,7 @@ const EnterpriseSolution = () => {
           </Grid>
         </Stack>
 
-        <Stack>
+        {/* <Stack>
           <Section
             title={t('testimonials')}
             title_large_trans={t('building')}
@@ -139,7 +139,7 @@ const EnterpriseSolution = () => {
           >
             {t('talk_to_us')}
           </CtaButton>
-        </Stack>
+        </Stack> */}
 
         <Stack mx="auto">
           <Section
