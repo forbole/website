@@ -1,7 +1,5 @@
-import React from 'react';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
 import { FooterProps } from '../../types';
 
 const FooterItems = ({ staking }: FooterProps) => {
@@ -47,7 +45,7 @@ const FooterItems = ({ staking }: FooterProps) => {
           },
         }}
       />
-      <Link href="/terms-and-conditions">
+      <a href="https://www.forbole.com/terms-and-conditions">
         <Typography
           sx={{
             '&:hover': {
@@ -58,7 +56,7 @@ const FooterItems = ({ staking }: FooterProps) => {
         >
           {t('tnc')}
         </Typography>
-      </Link>
+      </a>
       <Divider
         orientation="vertical"
         variant="middle"
@@ -72,7 +70,7 @@ const FooterItems = ({ staking }: FooterProps) => {
           },
         }}
       />
-      <Link href="/privacy-policy">
+      <a href="https://www.forbole.com/privacy-policy">
         <Typography
           sx={{
             '&:hover': {
@@ -83,7 +81,7 @@ const FooterItems = ({ staking }: FooterProps) => {
         >
           {t('policy')}
         </Typography>
-      </Link>
+      </a>
     </Box>
   );
 };
