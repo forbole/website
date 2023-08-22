@@ -24,6 +24,9 @@ const FooterItems = ({ staking }: FooterProps) => {
           paddingBottom: 0,
           '> p': {
             fontSize: theme.spacing(1.75),
+            color: staking
+              ? theme.palette.custom.forbole.indigo
+              : theme.palette.primary.main,
           },
         },
         [theme.breakpoints.up('laptop')]: {
