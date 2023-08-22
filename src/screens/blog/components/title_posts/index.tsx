@@ -28,7 +28,7 @@ const TitlePosts = (props: any) => {
               padding: theme.spacing(3, 0),
             }}
           >
-            <Link href="/blog/[title]" as={`/blog/${post.slug}`} key={post.id}>
+            <Link href="/[title]" as={`/${post.slug}`} key={post.id}>
               <a>
                 <li
                   style={{

@@ -1,10 +1,10 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-undef */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { RefObject } from 'react';
-import Link from 'next/link';
 import { Box, Button, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo, ForboleShadowIcon } from '@icons';
 import { MobileNavMenu, DesktopNavMenu } from './components';
@@ -14,9 +14,10 @@ interface NavProps {
   navLink: string | null;
   staking?: boolean;
   stakeNowRef?: RefObject<HTMLElement>;
+  navBar?: boolean;
 }
 
-const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
+const Nav = ({ navLink, staking, stakeNowRef, navBar }: NavProps) => {
   const theme = useTheme();
   const { displayBackground } = useNavHook();
   const scrollToRef = (e: any) => {
@@ -98,79 +99,82 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
               },
             }}
           >
-            <Link href="/">
-              <a
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: '100%',
-                }}
-              >
-                {staking ? (
-                  <ForboleShadowIcon />
-                ) : (
-                  <ForboleLogo
-                    color={
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primary.main
-                        : theme.palette.custom.forbole.red
-                    }
-                  />
-                )}
-              </a>
-            </Link>
-          </Box>
-          {staking ? (
-            <Button
-              variant="contained"
-              onClick={(e: React.MouseEvent<HTMLElement>) => scrollToRef(e)}
-              sx={{
-                width: '97px',
-                height: '32px',
-                lineHeight: '17px',
-                fontWeight: 600,
-                padding: 0,
-                background:
-                  'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
-                borderRadius: theme.spacing(3),
-                color: 'primary.main',
-                boxShadow: 'none',
-                [theme.breakpoints.up('laptop')]: {
-                  width: '111px',
-                  height: '45px',
-                },
+            <a
+              href="https://www.forbole.com/"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                height: '100%',
               }}
             >
-              Stake Now
-            </Button>
-          ) : (
+              {staking ? (
+                <ForboleShadowIcon />
+              ) : (
+                <ForboleLogo
+                  color={
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primary.main
+                      : theme.palette.custom.forbole.red
+                  }
+                />
+              )}
+            </a>
+          </Box>
+          {!navBar ? null : (
             <>
-              <Box
-                sx={{
-                  [theme.breakpoints.down('laptop')]: {
-                    position: 'absolute',
-                    top: theme.spacing(4),
-                    right: theme.spacing(4),
-                  },
-                  [theme.breakpoints.up('laptop')]: {
-                    display: 'none',
-                  },
-                }}
-              >
-                <MobileNavMenu link={navLink} />
-              </Box>
-              <Box
-                sx={{
-                  [theme.breakpoints.down('laptop')]: { display: 'none' },
-                  [theme.breakpoints.up('laptop')]: {
-                    display: 'flex',
-                    width: '60%',
-                    height: '100px',
-                  },
-                }}
-              >
-                <DesktopNavMenu link={navLink} />
-              </Box>
+              {staking ? (
+                <Button
+                  variant="contained"
+                  onClick={(e: React.MouseEvent<HTMLElement>) => scrollToRef(e)}
+                  sx={{
+                    width: '97px',
+                    height: '32px',
+                    lineHeight: '17px',
+                    fontWeight: 600,
+                    padding: 0,
+                    background:
+                      'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                    borderRadius: theme.spacing(3),
+                    color: 'primary.main',
+                    boxShadow: 'none',
+                    [theme.breakpoints.up('laptop')]: {
+                      width: '111px',
+                      height: '45px',
+                    },
+                  }}
+                >
+                  Stake Now
+                </Button>
+              ) : (
+                <>
+                  <Box
+                    sx={{
+                      [theme.breakpoints.down('laptop')]: {
+                        position: 'absolute',
+                        top: theme.spacing(4),
+                        right: theme.spacing(4),
+                      },
+                      [theme.breakpoints.up('laptop')]: {
+                        display: 'none',
+                      },
+                    }}
+                  >
+                    <MobileNavMenu link={navLink} />
+                  </Box>
+                  <Box
+                    sx={{
+                      [theme.breakpoints.down('laptop')]: { display: 'none' },
+                      [theme.breakpoints.up('laptop')]: {
+                        display: 'flex',
+                        width: '60%',
+                        height: '100px',
+                      },
+                    }}
+                  >
+                    <DesktopNavMenu link={navLink} />
+                  </Box>
+                </>
+              )}
             </>
           )}
         </Box>

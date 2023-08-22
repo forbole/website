@@ -26,6 +26,7 @@ type Props = {
   themeModeButton?: boolean;
   waveBG?: boolean;
   homeAnimation?: boolean;
+  navBar?: boolean;
 };
 
 const Layout = ({
@@ -41,6 +42,7 @@ const Layout = ({
   themeModeButton,
   waveBG,
   homeAnimation,
+  navBar,
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
@@ -49,7 +51,7 @@ const Layout = ({
   ];
   const router = useRouter();
   const currentPath = router.asPath === '/' ? '/' : `${router.asPath}`;
-  const url = process.env.NEXT_PUBLIC_URL;
+  const url = `${process.env.NEXT_PUBLIC_URL}/blog`;
   let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
   let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ['Forbole', 'blockchain', 'social network'];
@@ -132,7 +134,7 @@ const Layout = ({
         sx={{
           backgroundImage: homeAnimation
             ? ''
-            : 'url(/images/assets/image_BG.png)',
+            : 'url(/blog/images/assets/image_BG.png)',
           background: 'transparent',
         }}
       >
@@ -144,7 +146,7 @@ const Layout = ({
             background: waveBG
               ? 'rgba(37, 35, 69, 1)'
               : theme.palette.mode === 'dark'
-              ? 'url(/images/assets/image_BG_gradient.png) top'
+              ? 'url(/blog/images/assets/image_BG_gradient.png) top'
               : theme.palette.primary.main,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '0 0',
@@ -154,7 +156,7 @@ const Layout = ({
             },
           }}
         >
-          <Nav navLink={navLink} />
+          <Nav navLink={navLink} navBar={navBar} />
           {children}
           {!!footer && <Footer />}
         </Box>

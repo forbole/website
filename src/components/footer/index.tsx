@@ -43,8 +43,8 @@ const Footer = ({ staking }: FooterProps) => {
               [theme.breakpoints.up('mobile')]: {
                 width: '100%',
                 background: staking
-                  ? 'url(/images/assets/footer_mobile_val.png)'
-                  : 'url(/images/assets/footer_mobile.png)',
+                  ? 'url(/blog/images/assets/footer_mobile_val.png)'
+                  : 'url(/blog/images/assets/footer_mobile.png)',
                 backgroundPosition: '0 10%',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: '130%',
@@ -61,8 +61,8 @@ const Footer = ({ staking }: FooterProps) => {
               [theme.breakpoints.up('laptop')]: {
                 width: '100%',
                 background: staking
-                  ? 'url(/images/assets/footer_desktop_val.png) bottom'
-                  : 'url(/images/assets/footer_desktop2.svg) bottom',
+                  ? 'url(/blog/images/assets/footer_desktop_val.png) bottom'
+                  : 'url(/blog/images/assets/footer_desktop2.svg) bottom',
                 backgroundPosition: '0 100%',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: '100%',
@@ -138,8 +138,8 @@ const Footer = ({ staking }: FooterProps) => {
             [theme.breakpoints.up('mobile')]: {
               width: '100%',
               background: staking
-                ? 'url(/images/assets/footer_mobile_val.png)'
-                : 'url(/images/assets/footer_mobile.png)',
+                ? 'url(/blog/images/assets/footer_mobile_val.png)'
+                : 'url(/blog/images/assets/footer_mobile.png)',
               backgroundPosition: '0 10%',
               backgroundRepeat: 'no-repeat',
               backgroundSize: '130%',
@@ -156,8 +156,8 @@ const Footer = ({ staking }: FooterProps) => {
             [theme.breakpoints.up('laptop')]: {
               width: '100%',
               background: staking
-                ? 'url(/images/assets/footer_desktop_val.png) bottom'
-                : 'url(/images/assets/footer_desktop2.svg) bottom',
+                ? 'url(/blog/images/assets/footer_desktop_val.png) bottom'
+                : 'url(/blog/images/assets/footer_desktop2.svg) bottom',
               backgroundPosition: '0 100%',
               backgroundRepeat: 'no-repeat',
               backgroundSize: '100%',

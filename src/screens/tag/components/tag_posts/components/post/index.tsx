@@ -39,7 +39,7 @@ const Post = (props: any) => {
       }}
     >
       <Box ref={props.refProp} sx={{ padding: 0 }}>
-        <Link href="/blog/[title]" as={`/blog/${slug}`}>
+        <Link href="/[title]" as={`/${slug}`}>
           <a>
             <Box
               height={
