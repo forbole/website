@@ -42,6 +42,7 @@ const Home = () => {
       redBgFooter
       redBg
       twitterImage="/images/assets/preview_image.png"
+      image="/images/assets/preview_image.png"
     >
       <Box ref={topRef}>
         <Container
