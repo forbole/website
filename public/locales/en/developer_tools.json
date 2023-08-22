@@ -24,19 +24,19 @@
   "plan_item1_title":"Free",
   "plan_item1_currency":"USD / Month",
   "plan_item1_description":"Start building for free",
-  "plan_item1_features":"20,000 requests/ day",
+  "plan_item1_features":"20,000 requests / day",
 
   "plan_item2_title":"Builder",
   "plan_item2_currency":"USD / Month",
   "plan_item2_description":"Try enhanced plan",
-  "plan_item2_features":"20,000 requests/ day",
+  "plan_item2_features":"200,000 requests / day",
 
   "plan_item3_title":"Team",
   "plan_item3_currency":"USD / Month",
   "plan_item3_description":"Scale for small team",
   "plan_item3_features_1":"Archive nodes",
   "plan_item3_features_2":"Websocket service",
-  "plan_item3_features_3":"2,000,000 requests/ day",
+  "plan_item3_features_3":"2,000,000 requests / day",
   
   "plan_item4_title":"Enterprise",
   "plan_item4_price":"Custom",
