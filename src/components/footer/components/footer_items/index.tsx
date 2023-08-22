@@ -20,6 +20,12 @@ const FooterItems = ({ staking }: FooterProps) => {
         '> .MuiTypography-root': {
           fontSize: theme.spacing(1.75),
         },
+        a: {
+          paddingBottom: 0,
+          '> p': {
+            fontSize: theme.spacing(1.75),
+          },
+        },
         [theme.breakpoints.up('laptop')]: {
           flexDirection: 'row',
           alignItems: 'center',
