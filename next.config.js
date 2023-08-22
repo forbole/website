@@ -1,6 +1,7 @@
 const nextTranslate = require('next-translate');
 
 module.exports = nextTranslate({
+  basePath: '/staking',
   poweredByHeader: false,
   nextConfig: {
     reactStrictMode: true,

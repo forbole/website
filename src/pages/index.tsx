@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import HomePage from '@src/screens/home';
+import StakingPage from '@src/screens/staking';
 
-const Home: NextPage = () => <HomePage />;
+const Home: NextPage = () => <StakingPage />;
 
 export default Home;
