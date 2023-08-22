@@ -1,6 +1,7 @@
 const nextTranslate = require('next-translate');
 
 module.exports = nextTranslate({
+  basePath: '/blog',
   poweredByHeader: false,
   nextConfig: {
     reactStrictMode: true,
