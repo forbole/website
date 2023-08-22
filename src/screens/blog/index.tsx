@@ -13,7 +13,7 @@ const Blog = (props: any) => {
   useBlogHook(error, t);
   const topRef = React.useRef(null);
   return (
-    <Layout title={t('title')} navLink="/blog" footer>
+    <Layout title={t('title')} navLink="/blog" navBar={false} footer>
       <Box sx={styles.flexBox}>
         <Box
           ref={topRef}

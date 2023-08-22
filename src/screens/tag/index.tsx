@@ -24,7 +24,7 @@ const TagTitlePosts = (props: any) => {
   useBlogHook(error, t);
 
   return (
-    <Layout title={t('title')} navLink="/blog" footer>
+    <Layout title={t('title')} navLink="/blog" navBar={false} footer>
       <Box sx={styles.flexBox}>
         <Box
           sx={{
