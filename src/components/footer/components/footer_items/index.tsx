@@ -1,7 +1,5 @@
-import React from 'react';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
 import { FooterProps } from '../../types';
 
 const FooterItems = ({ staking }: FooterProps) => {
@@ -21,6 +19,12 @@ const FooterItems = ({ staking }: FooterProps) => {
         padding: staking ? theme.spacing(2, 0, 4, 0) : theme.spacing(6, 0),
         '> .MuiTypography-root': {
           fontSize: theme.spacing(1.75),
+        },
+        a: {
+          paddingBottom: 0,
+          '> p': {
+            fontSize: theme.spacing(1.75),
+          },
         },
         [theme.breakpoints.up('laptop')]: {
           flexDirection: 'row',
@@ -47,7 +51,7 @@ const FooterItems = ({ staking }: FooterProps) => {
           },
         }}
       />
-      <Link href="/terms-and-conditions">
+      <a href="https://www.forbole.com/terms-and-conditions">
         <Typography
           sx={{
             '&:hover': {
@@ -58,7 +62,7 @@ const FooterItems = ({ staking }: FooterProps) => {
         >
           {t('tnc')}
         </Typography>
-      </Link>
+      </a>
       <Divider
         orientation="vertical"
         variant="middle"
@@ -72,7 +76,7 @@ const FooterItems = ({ staking }: FooterProps) => {
           },
         }}
       />
-      <Link href="/privacy-policy">
+      <a href="https://www.forbole.com/privacy-policy">
         <Typography
           sx={{
             '&:hover': {
@@ -83,7 +87,7 @@ const FooterItems = ({ staking }: FooterProps) => {
         >
           {t('policy')}
         </Typography>
-      </Link>
+      </a>
     </Box>
   );
 };

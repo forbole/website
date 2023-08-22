@@ -26,6 +26,7 @@ type Props = {
   themeModeButton?: boolean;
   waveBG?: boolean;
   homeAnimation?: boolean;
+  navBar?: boolean;
 };
 
 const Layout = ({
@@ -41,6 +42,7 @@ const Layout = ({
   themeModeButton,
   waveBG,
   homeAnimation,
+  navBar,
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
@@ -154,7 +156,7 @@ const Layout = ({
             },
           }}
         >
-          <Nav navLink={navLink} />
+          <Nav navLink={navLink} navBar={navBar} />
           {children}
           {!!footer && <Footer />}
         </Box>
