@@ -4,7 +4,6 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { RefObject } from 'react';
-import Link from 'next/link';
 import { Box, Button, useTheme } from '@mui/material';
 import { Forbole as ForboleLogo, ForboleShadowIcon } from '@icons';
 import { MobileNavMenu, DesktopNavMenu } from './components';
@@ -98,27 +97,26 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
               },
             }}
           >
-            <Link href="/">
-              <a
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: '100%',
-                }}
-              >
-                {staking ? (
-                  <ForboleShadowIcon />
-                ) : (
-                  <ForboleLogo
-                    color={
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primary.main
-                        : theme.palette.custom.forbole.red
-                    }
-                  />
-                )}
-              </a>
-            </Link>
+            <a
+              href="https://www.forbole.com/"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                height: '100%',
+              }}
+            >
+              {staking ? (
+                <ForboleShadowIcon />
+              ) : (
+                <ForboleLogo
+                  color={
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primary.main
+                      : theme.palette.custom.forbole.red
+                  }
+                />
+              )}
+            </a>
           </Box>
           {staking ? (
             <Button

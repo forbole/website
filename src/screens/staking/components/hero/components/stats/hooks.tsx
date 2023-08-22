@@ -180,7 +180,10 @@ export const useStatsHook = () => {
     if (!elrondTVLLoading) {
       const { elrondTVL } = elrondTVLData;
       const elrondNetworkFunctions = networkFunctions.elrond;
-      const TVL = elrondNetworkFunctions.converter(elrondTVL[0].TVL);
+      const TVL =
+        elrondTVL && elrondTVL[0]
+          ? elrondNetworkFunctions.converter(elrondTVL[0].TVL)
+          : 0;
       setElrondTotalTVL(TVL);
     }
     if (!solanaTVLLoading) {

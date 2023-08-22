@@ -57,7 +57,7 @@ const NetworkInfo = ({ post }: any) => {
     [networkData?.address]
   );
   const coverImage = networkData
-    ? `/images/guides/how_to_stake_${networkData.graphql}.png`
+    ? `/staking/images/guides/how_to_stake_${networkData.graphql}.png`
     : featureImage;
 
   return (

@@ -156,14 +156,14 @@ const LayoutVal = ({
             // backgroundImage: 'url(/images/assets/image_BG_staking_mobile.png)',
             // background: theme.palette.primary.main,
             background: stakingGuide
-              ? 'url(/images/assets/image_BG_FVH_guide.png)'
-              : 'url(/images/assets/bg_mobile.webp)',
+              ? 'url(/staking/images/assets/image_BG_FVH_guide.png)'
+              : 'url(/staking/images/assets/bg_mobile.webp)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             [theme.breakpoints.up('laptop')]: {
               background: stakingGuide
-                ? 'url(/images/assets/image_BG_FVH_guide.png)'
-                : 'url(/images/assets/bg_laptop.webp)',
+                ? 'url(/staking/images/assets/image_BG_FVH_guide.png)'
+                : 'url(/staking/images/assets/bg_laptop.webp)',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
             },
