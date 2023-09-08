@@ -48,7 +48,7 @@ export const cosmosNetworkParams: NetworkProps = {
   gravitybridge: { bonded: 0, APY: 0, TVL: 0 },
   jackal: { bonded: 0, APY: 0, TVL: 0 },
   // kusama: { bonded: 0, APY: 0, TVL: 0 },
-  // terra: { bonded: 0, APY: 0, TVL: 0 },
+  coreum: { bonded: 0, APY: 0, TVL: 0 },
   nomic: { bonded: 0, APY: 0, TVL: 0 },
   nym: { bonded: 0, APY: 0, TVL: 0 },
   omniflix: { bonded: 0, APY: 0, TVL: 0 },
@@ -130,6 +130,7 @@ const cosmosNetworkKeys = [
   'ununifi',
   'mars',
   'archway',
+  'coreum',
 ].sort();
 
 const getNetworkKeysArray = () => {

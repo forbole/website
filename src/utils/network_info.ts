@@ -635,6 +635,14 @@ export const logos: IStringIndex = {
     key: 'archway',
     graphql: 'archway',
   },
+  coreum: {
+    image: '/images/network/coreum.svg',
+    name: 'Coreum',
+    label: 'Coreum - CORE',
+    denom: 'CORE',
+    key: 'coreum',
+    graphql: 'coreum',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
