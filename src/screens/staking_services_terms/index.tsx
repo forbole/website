@@ -18,7 +18,7 @@ const StakingServicesTerms = () => {
   return (
     <Layout
       title={t('title')}
-      navLink="/staking-services-terms"
+      navLink="/forbole-staking-services-terms"
       waveBG={!!isDesktop}
       footer
     >
