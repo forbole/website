@@ -33,7 +33,7 @@ const ProductsMenuButton = () => {
     },
     {
       name: 'native-staking-service',
-      link: '/staking-service',
+      link: '/native-staking',
     },
     {
       name: 'blockchain-data-analytics-tools',
