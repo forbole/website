@@ -416,8 +416,8 @@ export const logos: IStringIndex = {
     guide: 'how-to-stake-strd-on-stride',
   },
   elrond: {
-    image: '/images/network/elrond.png',
-    name: 'Elrond',
+    image: '/images/network/multiversx.svg',
+    name: 'MultiversX',
     denom: 'egld',
     key: 'elrond',
     graphql: 'elrond',
