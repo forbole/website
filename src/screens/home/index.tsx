@@ -146,7 +146,7 @@ const Home = () => {
                 desc={t('Native_Staking_Service_desc')}
                 btnName={t('see_more')}
                 btn_Click={() => {
-                  router.push('staking-service');
+                  router.push('native-staking');
                 }}
                 imageHref={
                   isMobile
