@@ -627,6 +627,14 @@ export const logos: IStringIndex = {
     delegate:
       'https://explorer.marsprotocol.io/validators/marsvaloper1799t9vxshqssrk5cgnywvlx0fnlk2ekdz328aa',
   },
+  archway: {
+    image: '/images/network/archway.svg',
+    name: 'Archway',
+    label: 'Onomy Protocol - ARCH',
+    denom: 'ARCH',
+    key: 'archway',
+    graphql: 'archway',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
