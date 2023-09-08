@@ -659,6 +659,14 @@ export const logos: IStringIndex = {
     key: 'kyve',
     graphql: 'kyve',
   },
+  humansai: {
+    image: '/images/network/humansai.svg',
+    name: 'Humans.ai',
+    label: 'Humans.ai - HEART',
+    denom: 'HEART',
+    key: 'humansai',
+    graphql: 'humansai',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

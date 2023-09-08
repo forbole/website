@@ -40,7 +40,7 @@ export const cosmosNetworkParams: NetworkProps = {
   // secret: { bonded: 0, APY: 0, TVL: 0 },
   sentinelhub: { bonded: 0, APY: 0, TVL: 0 },
   // shentu: { bonded: 0, APY: 0, TVL: 0 },
-  // sommelier: { bonded: 0, APY: 0, TVL: 0 },
+  humansai: { bonded: 0, APY: 0, TVL: 0 },
   stafihub: { bonded: 0, APY: 0, TVL: 0 },
   stride: { bonded: 0, APY: 0, TVL: 0 },
   kyve: { bonded: 0, APY: 0, TVL: 0 },
@@ -133,6 +133,7 @@ const cosmosNetworkKeys = [
   'coreum',
   'gitopia',
   'kyve',
+  'humansai',
 ].sort();
 
 const getNetworkKeysArray = () => {
