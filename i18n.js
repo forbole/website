@@ -11,7 +11,7 @@ module.exports = {
     '/about': ['about'],
     '/terms-and-conditions': ['terms_and_conditions'],
     '/privacy-policy': ['policy'],
-    '/staking-service': ['staking_service'],
+    '/native-staking': ['staking_service'],
     '/infrastructure': ['validator_infrastructure'],
     '/developer-tools': ['developer_tools'],
     '/products': ['products'],
