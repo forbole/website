@@ -37,7 +37,7 @@ export const cosmosNetworkParams: NetworkProps = {
   osmosis: { bonded: 0, APY: 0, TVL: 0 },
   provenance: { bonded: 0, APY: 0, TVL: 0 },
   regen: { bonded: 0, APY: 0, TVL: 0 },
-  // secret: { bonded: 0, APY: 0, TVL: 0 },
+  nolus: { bonded: 0, APY: 0, TVL: 0 },
   sentinelhub: { bonded: 0, APY: 0, TVL: 0 },
   neutron: { bonded: 0, APY: 0, TVL: 0 },
   humansai: { bonded: 0, APY: 0, TVL: 0 },
@@ -135,6 +135,7 @@ const cosmosNetworkKeys = [
   'kyve',
   'humansai',
   'neutron',
+  'nolus',
 ].sort();
 
 const getNetworkKeysArray = () => {

@@ -675,6 +675,14 @@ export const logos: IStringIndex = {
     key: 'neutron',
     graphql: 'neutron',
   },
+  nolus: {
+    image: '/images/network/nolus.svg',
+    name: 'Nolus',
+    label: 'Nolus - NLS',
+    denom: 'NLS',
+    key: 'nolus',
+    graphql: 'nolus',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
