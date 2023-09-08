@@ -43,7 +43,7 @@ export const cosmosNetworkParams: NetworkProps = {
   // sommelier: { bonded: 0, APY: 0, TVL: 0 },
   stafihub: { bonded: 0, APY: 0, TVL: 0 },
   stride: { bonded: 0, APY: 0, TVL: 0 },
-  // cardano: { bonded: 0, APY: 0, TVL: 0 },
+  kyve: { bonded: 0, APY: 0, TVL: 0 },
   ethereum: { bonded: 0, APY: 0, TVL: 0 },
   gravitybridge: { bonded: 0, APY: 0, TVL: 0 },
   jackal: { bonded: 0, APY: 0, TVL: 0 },
@@ -132,6 +132,7 @@ const cosmosNetworkKeys = [
   'archway',
   'coreum',
   'gitopia',
+  'kyve',
 ].sort();
 
 const getNetworkKeysArray = () => {

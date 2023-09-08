@@ -651,6 +651,14 @@ export const logos: IStringIndex = {
     key: 'gitopia',
     graphql: 'gitopia',
   },
+  kyve: {
+    image: '/images/network/kyve.svg',
+    name: 'KYVE',
+    label: 'KYVE - KYVE',
+    denom: 'KYVE',
+    key: 'kyve',
+    graphql: 'kyve',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
