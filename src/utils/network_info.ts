@@ -667,6 +667,14 @@ export const logos: IStringIndex = {
     key: 'humansai',
     graphql: 'humansai',
   },
+  neutron: {
+    image: '/images/network/neutron.svg',
+    name: 'Neutron',
+    label: 'Neutron - NTRN',
+    denom: 'NTRN',
+    key: 'neutron',
+    graphql: 'neutron',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
