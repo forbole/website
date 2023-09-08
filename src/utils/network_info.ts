@@ -683,6 +683,14 @@ export const logos: IStringIndex = {
     key: 'nolus',
     graphql: 'nolus',
   },
+  sui: {
+    image: '/images/network/sui.svg',
+    name: 'Sui',
+    label: 'Sui - SUI',
+    denom: 'SUI',
+    key: 'sui',
+    graphql: 'sui',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {

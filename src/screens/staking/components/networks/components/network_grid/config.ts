@@ -29,7 +29,7 @@ export const cosmosNetworkParams: NetworkProps = {
   crescent: { bonded: 0, APY: 0, TVL: 0 },
   // ixo: { bonded: 0, APY: 0, TVL: 0 },
   injective: { bonded: 0, APY: 0, TVL: 0 },
-  // juno: { bonded: 0, APY: 0, TVL: 0 },
+  sui: { bonded: 0, APY: 0, TVL: 0 },
   kava: { bonded: 0, APY: 0, TVL: 0 },
   band: { bonded: 0, APY: 0, TVL: 0 },
   likecoin: { bonded: 0, APY: 0, TVL: 0 },
@@ -136,6 +136,7 @@ const cosmosNetworkKeys = [
   'humansai',
   'neutron',
   'nolus',
+  'sui',
 ].sort();
 
 const getNetworkKeysArray = () => {
