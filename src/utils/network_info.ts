@@ -683,6 +683,14 @@ export const logos: IStringIndex = {
     key: 'nolus',
     graphql: 'nolus',
   },
+  picasso: {
+    image: '/images/network/picasso.svg',
+    name: 'Picasso',
+    label: 'Picasso - PICA',
+    denom: 'PICA',
+    key: 'picasso',
+    graphql: 'picasso',
+  },
   sui: {
     image: '/images/network/sui.svg',
     name: 'Sui',

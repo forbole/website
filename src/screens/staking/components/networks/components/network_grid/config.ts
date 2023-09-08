@@ -27,7 +27,7 @@ export const cosmosNetworkParams: NetworkProps = {
   // terra_classic: { bonded: 0, APY: 0, TVL: 0 },
   persistence: { bonded: 0, APY: 0, TVL: 0 },
   crescent: { bonded: 0, APY: 0, TVL: 0 },
-  // ixo: { bonded: 0, APY: 0, TVL: 0 },
+  picasso: { bonded: 0, APY: 0, TVL: 0 },
   injective: { bonded: 0, APY: 0, TVL: 0 },
   sui: { bonded: 0, APY: 0, TVL: 0 },
   kava: { bonded: 0, APY: 0, TVL: 0 },
@@ -136,6 +136,7 @@ const cosmosNetworkKeys = [
   'humansai',
   'neutron',
   'nolus',
+  'picasso',
   'sui',
 ].sort();
 
