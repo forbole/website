@@ -643,6 +643,14 @@ export const logos: IStringIndex = {
     key: 'coreum',
     graphql: 'coreum',
   },
+  gitopia: {
+    image: '/images/network/gitopia.svg',
+    name: 'Gitopia',
+    label: 'Gitopia - LORE',
+    denom: 'LORE',
+    key: 'gitopia',
+    graphql: 'gitopia',
+  },
 };
 
 export const getNetworkInfo = (key: string | number) => {
