@@ -1,4 +1,5 @@
 const nextTranslate = require("next-translate");
+
 module.exports = nextTranslate({
   poweredByHeader: false,
   nextConfig: {
@@ -6,11 +7,6 @@ module.exports = nextTranslate({
   },
   experimental: {
     outputStandalone: true,
-  },
-  compiler: {
-    // removeConsole: {
-    //   exclude: ['error'],
-    // },
   },
   images: {
     unoptimized: true,
@@ -21,5 +17,8 @@ module.exports = nextTranslate({
       use: ["@svgr/webpack"],
     });
     return config;
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 });

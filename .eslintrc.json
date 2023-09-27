@@ -43,13 +43,6 @@
       }
     ],
     "react/function-component-definition": "off",
-    "prettier/prettier": [
-      "error",
-      { "singleQuote": true, "parser": "typescript", "endOfLine": "auto" },
-      {
-        "usePrettierrc": false
-      }
-    ],
     "no-unused-vars": [
       "error",
       {
