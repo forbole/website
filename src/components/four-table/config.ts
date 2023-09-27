@@ -7,6 +7,8 @@ const plans = [
     description: "plan_item1_description",
     features: "plan_item1_features",
     image: "/images/assets/24.png",
+    btnName:'try_now',
+    btnHref:"http://dev-tools.forbole.com",
   },
   {
     title: "plan_item2_title",
@@ -15,6 +17,8 @@ const plans = [
     description: "plan_item2_description",
     features: "plan_item2_features",
     image: "/images/assets/24.png",
+    btnName:'contact_sales',
+    btnHref:"",
   },
   {
     title: "plan_item3_title",
@@ -23,6 +27,8 @@ const plans = [
     description: "plan_item3_description",
     features: ['plan_item3_features_1','plan_item3_features_2','plan_item3_features_3'],
     image: "/images/assets/24.png",
+    btnName:'contact_sales',
+    btnHref:"",
   },
   {
     title: "plan_item4_title",
@@ -31,6 +37,8 @@ const plans = [
     description: "plan_item4_description",
     features: ["plan_item4_features_1", "plan_item4_features_2",'plan_item4_features_3','plan_item4_features_4','plan_item4_features_5'],
     image: "/images/assets/24.png",
+    btnName:'contact_sales',
+    btnHref:"",
   },
 ];
 export default plans;

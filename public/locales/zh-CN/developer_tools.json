@@ -1,6 +1,6 @@
 {
-  "sign_up_now": "立即注册",
-  "start_trial": "开始试用",
+  "sign_up_now": "立即试用",
+  "start_trial": "开始建设",
   "page_title": "开发者专用工具",
   "headercard_title": "开发者专用工具",
   "headercard_1st_desc": "在坚实的基础建设上来构建你的产品",
@@ -38,6 +38,18 @@
   "plan_item4_features_3": "Websocket 协议支援",
   "plan_item4_features_4": "无上限委托次数",
   "plan_item4_features_5": "工程师团队直接支援",
+  "try_now": "立即试用",
+  "contact_sales": "联络我们",
+  "purchase_premium_plans": "购买升级计划",
+
+  "signature":"随意添加附加选项",
+  "websocket_service":"Websocket 协议支持",
+  "archive_node":"存档节点",
+  "sui_indexer":"Sui 索引",
+  "extra_chain":"额外区块链",
+  "rpc":"适用于RPC 接口",
+  "rpc_api":"适用于RPC 接口及API",
+
   "section_4th_title": "<0>立即<1>联络</1>我们，期待与你<1>合作</1>！</0>",
   "section_4th_large_title": "我们很高兴为你提供专业的服务。",
 

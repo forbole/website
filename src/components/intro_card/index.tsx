@@ -1,22 +1,13 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import {
-  Button,
-  ButtonBase,
-  Grid,
-  Skeleton,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import Image, { StaticImageData } from "next/image";
-import CtaButton from "../cta-button";
-import { useWindowDimensions } from "@src/hooks";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
+import CtaButton from '../cta-button';
+
 type Props = {
   title?: string;
   desc?: string;
   list?: string[];
-  imageHref?: StaticImageData | string;
+  imageHref?:  string;
   btnName?: string;
   btnClick?:()=>void;
   disabled?: boolean;
@@ -38,7 +29,7 @@ const IntroCard = (props: Props) => {
           "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
       }}
     >
-      {imageHref && <Image src={imageHref} objectFit="cover" alt=""></Image>}
+      {imageHref && <img src={imageHref} alt=""></img>}
       <Box
         component={"div"}
         sx={{
@@ -80,7 +71,7 @@ const IntroCard = (props: Props) => {
               <Typography
                 key={index}
                 component="li"
-                sx={{ 
+                sx={{
                   display: "flex",
                   fontSize: "16px", lineHeight: "22px",fontWeight: "400",
                   color:'#202A43',

@@ -12,3 +12,15 @@ export const YTBSwiperCSS = styled.div`
         position: absolute; left: 0%; top: 50%; transform: translateY(-50%);
     }
 `
+export const ImgBox = styled.div`
+  height: 100%;
+  .swiper-style{
+    height: 100%;
+    padding:0;
+  }
+  @media screen and (max-width: 1025px) {
+    .swiper-style{
+      //padding:0 20px;
+    }
+  }
+`

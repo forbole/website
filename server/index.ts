@@ -59,7 +59,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const ghostAdminApi = new GhostAdminAPI({
-  url: 'https://admin.forbole.com',
+  url: process.env.NEXT_PUBLIC_GHOST_API,
   // Admin API key goes here
   key: process.env.GHOST_PRIVATE_KEY,
   version: 'v3.0',
@@ -87,7 +87,7 @@ const ghostAdminApi = new GhostAdminAPI({
         }
       }
     );
-    // subscribe
+    //订阅
     server.post(
       '/api/subscribe',
       async (req: Request, res: Response, next: any) => {
@@ -114,7 +114,7 @@ const ghostAdminApi = new GhostAdminAPI({
         }
       }
     );
-    
+
     server.post(
       '/api/careers',
       upload.fields([{ name: 'resume' }, { name: 'coverLetter' }]),

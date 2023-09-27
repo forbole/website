@@ -1,4 +1,4 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
 import { Layout, ScrollToTop } from '@src/components';
 import React, { useState } from 'react';
 import Section from '@src/components/section';
@@ -11,6 +11,8 @@ import TalkModal from '@src/components/talk-modal';
 
 import SuccessModal from '@src/components/success-modal';
 import useTalkModalForm from './hooks';
+import SignatureCard from '@components/signature-card';
+import { useRouter } from 'next/router';
 
 const DeveloperTools = () => {
   const {
@@ -28,7 +30,7 @@ const DeveloperTools = () => {
   const isMobile=useMediaQuery(theme.breakpoints.down('tablet'),{noSsr:true})
   const topRef = React.useRef(null);
   let [show, setShow] = useState(false);
-
+  const router=useRouter()
   return (
     <Layout title={t("page_title")} navLink="/products" footer>
       <Container
@@ -60,20 +62,27 @@ const DeveloperTools = () => {
             title_large={t("section_1st_large_title")}
             desc={t("section_1st_desc")}
           />
-          <CtaButton
-            sx={{
-              display: "block",
-              margin: "40px auto",
-              [theme.breakpoints.down("laptop")]: {
-                my: "32px",
-              },
-            }}
-            onClick={() => {
-              setShow(true);
-            }}
-          >
-            {t("sign_up_now")}
-          </CtaButton>
+          <Stack   sx={{
+            flexDirection:"row",
+            margin: "40px auto",
+            gap:'16px',
+            [theme.breakpoints.down("laptop")]: {
+              my: "32px",
+            },
+          }}>
+            <CtaButton
+              onClick={() => router.push('http://dev-tools.forbole.com')}
+            >
+              {t("sign_up_now")}
+            </CtaButton>
+            <CtaButton
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              {t("purchase_premium_plans")}
+            </CtaButton>
+          </Stack>
           <Grid container spacing={theme.spacing(2)}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
@@ -129,7 +138,18 @@ const DeveloperTools = () => {
           >
             {t("start_trial")}
           </CtaButton>
-          <FourTable></FourTable>
+          <FourTable btnHref={()=>setShow(true)}></FourTable>
+          <Stack sx={{
+            mt:{laptop:'128px',mobile:'40px'},
+            gap:'40px',
+            justifyContent:'center',
+            alignItem:"center"
+          }}>
+            <Section title_large={t("signature")}></Section>
+            <Box sx={{maxWidth:{laptop:"1100px",mobile:"65%"},alignSelf: 'center'}}>
+              <SignatureCard />
+            </Box>
+          </Stack>
         </Stack>
 
         <Stack maxWidth="desktop">

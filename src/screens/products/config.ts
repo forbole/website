@@ -5,7 +5,7 @@ export const individuals = [{
     imageHref: "/products/tab2@2x.png",
     imageHref_m: "/products/tab2_m@2x.png",
     btnName: "seemore",
-    btnHref: "/native-staking"
+    btnHref: "/staking-service"
 }, {
     title: "analytics",
     benefits: ["real-time", "bird-eye-view", "free"],
@@ -38,7 +38,7 @@ export const businesses = [{
     imageHref: "/products/tab2@2x.png",
     imageHref_m: "/products/tab2_m@2x.png",
     btnName: "seemore",
-    btnHref: "/native-staking"
+    btnHref: "/staking-service"
 }, {
     title: "analytics",
     benefits: ["custom-visualization", "modularized-development", "fast"],

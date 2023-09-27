@@ -15,28 +15,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import SwiperCore, { Autoplay, Navigation } from 'swiper';
 import Arraw, { Direction } from '@src/components/arrow';
-import dynamic from 'next/dynamic';
-import { YTBSwiperCSS } from './SwiperCSS';
+import Trans from 'next-translate/Trans';
+import { ImgBox, YTBSwiperCSS } from '@screens/about/SwiperCSS';
+
 // 挂载到当前swiper实例
 SwiperCore.use([Navigation,Autoplay]);
-const Trans = dynamic(async () => import('next-translate/Trans'), {
-  ssr: false,
-});
 const About = () => {
   const { t } = useTranslation("about");
   const theme = useTheme();
   const topRef = React.useRef(null);
-  const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(true);
 
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   const imagList = [
-    "/about/aboutus_01.jpg",
-    "/about/aboutus_02.jpg",
-    "/about/aboutus_03.jpg",
-    "/about/aboutus_04.jpg",
-    "/about/aboutus_05.jpg",
-    "/about/aboutus_06.jpg",
-    "/about/aboutus_07.jpg",
+    "/about/aboutus_01.webp",
+    "/about/aboutus_02.webp",
+    "/about/aboutus_03.webp",
+    "/about/aboutus_04.webp",
+    "/about/aboutus_05.webp",
+    "/about/aboutus_06.webp",
+    "/about/aboutus_07.webp",
   ]
   const vidoeList = [
     {
@@ -177,56 +175,58 @@ const About = () => {
               },
             }}
           >
-            <Swiper
-              style={{
-                padding: onlyLargeScreen ? "0" : "0 20px",
-                height: "100%",
-              }}
-              slidesPerView="auto"
-              spaceBetween={onlyLargeScreen ? 16 : 24}
-              loop={true} //循环滚动
-              navigation={{
-                nextEl: ".h-next",
-                prevEl: ".h-prev",
-              }}
-              autoplay={{
-                delay: 2000,
-                disableOnInteraction: true,
-                stopOnLastSlide: false,
-              }}
-            >
-              {imagList.map((item, index) => (
-                <SwiperSlide
-                  key={item}
-                  style={{
-                    boxSizing: "border-box",
-                    width: "auto",
-                    padding: "28px 0",
-                  }}
-                >
-                  <img
-                    src={item}
-                    alt=""
+            <ImgBox>
+              <Swiper
+               className={'swiper-style'}
+                slidesPerView="auto"
+                centeredSlides={true}
+                spaceBetween={24}
+                breakpoints={{
+                  1023: {
+                    spaceBetween:16,
+                    centeredSlides:false
+                  }
+                }}
+                loop={true} //循环滚动
+                navigation={{
+                  nextEl: ".h-next",
+                  prevEl: ".h-prev",
+                }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: true,
+                  stopOnLastSlide: false,
+                }}
+              >
+                {imagList.map((item, index) => (
+                  <SwiperSlide
+                    key={item}
                     style={{
-                      height: "100%",
-                      width:'300px',
-                      border: "1px solid rgba(2, 38, 225, 0.12)",
-                      borderRadius: "4px",
-                      overflow: "hidden",
-                      boxShadow:
-                        "0px 7.8450517654418945px 25.10416603088379px -3.1380207538604736px rgba(2, 38, 225, 0.10), 0px 4.70703125px 10.983072280883789px -4.70703125px rgba(2, 38, 225, 0.12)",
+                      boxSizing: "border-box",
+                      width: "auto",
+                      padding: "28px 0",
                     }}
-                    onLoad={(e:any )=> {
-                      e.target.style.width = 'auto';
-                      console.log(e.target);
-                    }}
-                    onError={(e:any )=> {
-                      e.target.style.width = '300px';
-                    }}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  >
+                    <img
+                      src={item}
+                      alt=""
+                      style={{
+                        height: "100%",
+                        width:'auto',
+                        border: "1px solid rgba(2, 38, 225, 0.12)",
+                        borderRadius: "4px",
+                        overflow: "hidden",
+                        boxShadow:
+                          "0px 7.8450517654418945px 25.10416603088379px -3.1380207538604736px rgba(2, 38, 225, 0.10), 0px 4.70703125px 10.983072280883789px -4.70703125px rgba(2, 38, 225, 0.12)",
+                      }}
+                      onError={(e:any )=> {
+                        e.target.style.width = '300px';
+                      }}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </ImgBox>
             <Arraw className="h-next" direction={Direction.Right} sx={{
               position: "absolute", right: '5px', top: "50%", transform: "translateY(-50%)",
             }} />

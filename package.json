@@ -14,7 +14,7 @@
     "prd": "pm2 start ecosystem.config.js"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.1",
+    "@apollo/client": "^3.7.1",
     "@emotion/react": "^11.9.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.8.1",
@@ -32,6 +32,7 @@
     "framer-motion": "^7.3.6",
     "graphql": "^16.6.0",
     "isomorphic-dompurify": "^0.19.0",
+    "jsdom": "^22.1.0",
     "lodash": "^4.17.21",
     "lottie-react": "^2.3.1",
     "markdown-to-jsx": "^7.1.9",

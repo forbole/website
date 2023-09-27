@@ -3,12 +3,15 @@ import plans from './config';
 import styles from './styles.module.css';
 import useTranslation from 'next-translate/useTranslation';
 import { useState } from 'react';
+import CtaButton from '@components/cta-button';
+import { useRouter } from 'next/router';
 
-const FourTable = () => {
+type Props={btnHref:()=>void}
+const FourTable = ({btnHref }:Props) => {
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
   const [clickItem, setClickItem] = useState<number | null>(2);
-
+  const router=useRouter();
   // const handleClick = (index: number) => {
   //   setClickItem(index);
   // };
@@ -16,14 +19,16 @@ const FourTable = () => {
   return (
     <Stack
       direction={"row"}
-      gap={theme.spacing(2)}
       sx={{
-        alignItems: "center",
+        alignItems: "flex-end",
         minHeight:'536px',
+        gap:'16px',
         [theme.breakpoints.down("laptop")]: {
           flexDirection: "column",
           justifyContent: "center",
-         minHeight:'1200px',
+          alignItems:'center',
+          gap:'24px',
+          // minHeight:'1200px',
         },
       }}
     >
@@ -33,7 +38,8 @@ const FourTable = () => {
           // onClick={() => handleClick(index)}
           className={index === clickItem ? styles.active : ""}
           sx={{
-            height: "440px",
+            position: 'relative',
+            height: "496px",
             flexGrow: 1,
             flexShrink: 1,
             flexBasis: '270px',
@@ -48,14 +54,14 @@ const FourTable = () => {
               flexBasis: 'max-content',
               width: "75%",
             },
-            transition: theme.transitions.create([
-              "flex-basis",
-              "height",
-              'box-shadow',
-              'width',
-            ],
-
-            ),
+            // transition: theme.transitions.create([
+            //   "flex-basis",
+            //   "height",
+            //   'box-shadow',
+            //   'width',
+            // ],
+            //
+            // ),
           }}
         >
           <Stack
@@ -93,9 +99,9 @@ const FourTable = () => {
                 fontWeight: "590",
                 marginTop: "-23px",
                 pr:'7px',
-                transition: theme.transitions.create([
-                  "font-size",
-                ]),
+                // transition: theme.transitions.create([
+                //   "font-size",
+                // ]),
                 letterSpacing: "-0.508px",
               }}
             >
@@ -185,6 +191,15 @@ const FourTable = () => {
               </Box>
             )}
           </Box>
+            <CtaButton sx={{
+              position:'absolute',
+              left:'24px',
+              right:'24px',
+              bottom:'24px',
+              [theme.breakpoints.down("laptop")]: {display:'none'}
+            }}
+             onClick={Plan.btnHref?(()=>router.push(Plan.btnHref)):btnHref}
+            >{t(Plan.btnName)}</CtaButton>
         </Box>
       ))}
     </Stack>

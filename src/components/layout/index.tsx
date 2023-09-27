@@ -7,7 +7,7 @@ import * as R from 'ramda';
 import validator from 'validator';
 import { useRouter } from 'next/router';
 import { Box, useTheme } from '@mui/material';
-import { useRecoilState, SetterOrUpdater } from 'recoil';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
 import { Theme } from '@recoil/settings/types';
 import { writeTheme } from '@recoil/settings';
 import Footer from '../footer';
@@ -44,8 +44,8 @@ const Layout = ({
   themeModeButton,
   waveBG,
   homeAnimation,
-  redBgFooter, //首页红色页脚
-  redBg, //首页红色背景
+  redBgFooter,//首页红色页脚
+  redBg,//首页红色背景
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
@@ -55,7 +55,7 @@ const Layout = ({
   const router = useRouter();
   const currentPath = router.asPath === '/' ? '/' : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
-  let ogImage = image ?? `/icons/favicon-96x96.png`;
+  let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
   let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ['Forbole', 'blockchain', 'social network'];
   const formattedKeyworks = R.uniq(R.concat(keywords, baseKeywords));
@@ -72,7 +72,7 @@ const Layout = ({
   //     setTheme('dark');
   //   }
   // }, [navLink]);
-  const color = useColor();
+  const color =useColor()
   return (
     <Box position="relative">
       <Head>
@@ -82,10 +82,7 @@ const Layout = ({
         )}
         <meta name="description" content={description} />
         <meta name="keywords" content={formattedKeyworks.join(', ')} />
-        <meta
-          name="viewport"
-          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-        />
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
         <meta
           prefix="og: http://ogp.me/ns#"
           property="og:type"
@@ -138,29 +135,28 @@ const Layout = ({
         />
         <link rel="manifest" href={`${url}/icons/manifest.json`} />
       </Head>
-      <Box>
+      <Box
+      >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
-            backgroundImage: redBg
-              ? 'url(/images/assets/bg1.png)'
-              : 'url(/images/assets/bg2.png)',
+            backgroundImage:  redBg?'url(/images/assets/bg1.png)':'url(/images/assets/bg2.png)',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: '0 0',
-            backgroundColor: color.primary,
+            backgroundPosition: redBg?'0 -10vw':'0 0',
+            backgroundColor:color.primary,
             backgroundSize: '100% auto',
-            [theme.breakpoints.between('mobile', 550)]: {
-              backgroundImage: redBg
-                ? 'url(/images/assets/bg1_m.png)'
-                : 'url(/images/assets/bg2_m.png)',
+            [theme.breakpoints.between('mobile',550)]: {
+              backgroundImage:redBg?'url(/images/assets/bg1_m.png)':'url(/images/assets/bg2_m.png)',
+            },
+            [theme.breakpoints.up('laptop')]: {
             },
           }}
         >
           <Nav navLink={navLink} />
           {children}
-          {!!footer && <Footer red={redBgFooter} />}
+          {!!footer && <Footer red={redBgFooter}/>}
         </Box>
       </Box>
     </Box>

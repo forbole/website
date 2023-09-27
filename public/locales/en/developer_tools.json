@@ -1,7 +1,7 @@
 {
-  "sign_up_now":"Sign up now",
-  "start_trial":"Start trial",
-  
+  "sign_up_now":"Try now",
+  "start_trial":"Start building",
+
   "page_title":"Developer Tools",
   "headercard_title":"Developer Tools",
   "headercard_1st_desc":"We build the infrastructure for you to build your product",
@@ -12,11 +12,11 @@
   "section_1st_desc":"Our developer tool kit gives you easy access to blockchain data derived from our enterprise-grade infrastructure. We do the heavy-lifting and 24/7 monitoring for you, so that you can focus on building your product and your business.",
 
   "section_2nd_title":"Pricing",
-  "section_2nd_large_title":"The plan suits you", 
+  "section_2nd_large_title":"The plan suits you",
 
-  "section_3rd_large_title":"Get in touch with our team to discuss our collaboration today!", 
-  "section_3rd_desc":"We are happy to serve you with our professional services.  ", 
-  
+  "section_3rd_large_title":"Get in touch with our team to discuss our collaboration today!",
+  "section_3rd_desc":"We are happy to serve you with our professional services.  ",
+
   "pinfo_item1":"RPC Endpoints",
   "pinfo_item2":"GraphQL",
   "pinfo_item3":"Data API",
@@ -24,20 +24,20 @@
   "plan_item1_title":"Free",
   "plan_item1_currency":"USD / Month",
   "plan_item1_description":"Start building for free",
-  "plan_item1_features":"20,000 requests / day",
+  "plan_item1_features":"20,000 requests/ day",
 
   "plan_item2_title":"Builder",
   "plan_item2_currency":"USD / Month",
   "plan_item2_description":"Try enhanced plan",
-  "plan_item2_features":"200,000 requests / day",
+  "plan_item2_features":"20,000 requests/ day",
 
   "plan_item3_title":"Team",
   "plan_item3_currency":"USD / Month",
   "plan_item3_description":"Scale for small team",
   "plan_item3_features_1":"Archive nodes",
   "plan_item3_features_2":"Websocket service",
-  "plan_item3_features_3":"2,000,000 requests / day",
-  
+  "plan_item3_features_3":"2,000,000 requests/ day",
+
   "plan_item4_title":"Enterprise",
   "plan_item4_price":"Custom",
   "plan_item4_currency":"USD / Month",
@@ -47,6 +47,17 @@
   "plan_item4_features_3":"Websocket service",
   "plan_item4_features_4":"Unlimited requests",
   "plan_item4_features_5":"Direct engineering team support",
+  "try_now": "Try now",
+  "contact_sales": "Contact sales",
+  "purchase_premium_plans": "Purchase premium plans",
+
+  "signature": "Try our signature Add-on",
+  "websocket_service": "Websocket service",
+  "archive_node": "Archive node",
+  "sui_indexer": "Sui indexer",
+  "extra_chain": "Extra chain",
+  "rpc": "Applicable to RPC",
+  "rpc_api": "Applicable to RPC and API",
 
   "section_4th_title":"<0><1>Get in touch</1> with our team to discuss our <1>collaboration</1> today!</0>",
   "section_4th_large_title":"We are happy to serve you with our professional services.",
