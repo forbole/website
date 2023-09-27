@@ -1,113 +1,91 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb",
-        "prettier"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "max-len": "warn",
+    "import/no-extraneous-dependencies": "off",
+    "global-require": "warn",
+    "import/no-dynamic-require": "warn",
+    "@typescript-eslint/no-var-requires": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        // "@typescript-eslint",
-        // "prettier"
+    "import/no-unresolved": "off",
+    "arrow-body-style": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     ],
-    "rules": {
-        "max-len": "warn",
-        "import/no-extraneous-dependencies": "off",
-        "global-require": "warn",
-        "import/no-dynamic-require": "warn",
-        "@typescript-eslint/no-var-requires": "off",
-        "import/prefer-default-export": "off",
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-                "js": "never",
-                "jsx": "never",
-                "ts": "never",
-                "tsx": "never"
-            }
-        ],
-        "import/no-unresolved": "off",
-        "arrow-body-style": "off",
-        "react/jsx-props-no-spreading": "off",
-        "react/react-in-jsx-scope": "off",
-        "react/jsx-one-expression-per-line": "off",
-        "react/no-array-index-key": "off",
-        "react/jsx-filename-extension": [
-            2,
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx"
-                ]
-            }
-        ],
-        "react/function-component-definition": "off",
-        "prettier/prettier": ["error", {"singleQuote": true, "parser": "typescript", "endOfLine": "auto"}, {
-          "usePrettierrc": false
-        }],
-        "no-unused-vars": [
-          "error",
-          {
-              "ignoreRestSiblings": true,
-              "destructuredArrayIgnorePattern": "[A-Z]",
-              "caughtErrors": "none"
-          }
-      ]
+    "react/function-component-definition": "off",
+    "prettier/prettier": [
+      "error",
+      { "singleQuote": true, "parser": "typescript", "endOfLine": "auto" },
+      {
+        "usePrettierrc": false
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true,
+        "destructuredArrayIgnorePattern": "[A-Z]",
+        "caughtErrors": "none"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/**/types.ts"],
+      "rules": {
+        "no-unused-vars": "off"
+      }
     },
-    "overrides": [
-        {
-          "files": [
-            "src/**/types.ts"
-          ],
-          "rules": {
-            "no-unused-vars": "off"
-          }
-        },
-        {
-          "files": [
-            "tests/**/*"
-          ],
-          "rules": {
-            "no-undef": "off"
-          }
-        },
-        {
-          "files": [
-            "src/**/*.test.tsx",
-            "src/**/*.test.ts",
-            "**/*.spec.ts"
-          ],
-          "rules": {
-            "no-undef": "off",
-            "import/no-extraneous-dependencies": "off"
-          }
-        }
-      ],
-      "settings": {
-        "import/resolver": {
-            "typescript": {}, // this loads <rootdir>/tsconfig.json to eslint
-            "node": {
-            "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx"
-                ]
-            }
-        }
+    {
+      "files": ["tests/**/*"],
+      "rules": {
+        "no-undef": "off"
+      }
+    },
+    {
+      "files": ["src/**/*.test.tsx", "src/**/*.test.ts", "**/*.spec.ts"],
+      "rules": {
+        "no-undef": "off",
+        "import/no-extraneous-dependencies": "off"
+      }
     }
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}, // this loads <rootdir>/tsconfig.json to eslint
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }
