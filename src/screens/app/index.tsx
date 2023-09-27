@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { RecoilRoot } from 'recoil';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { init } from '@socialgouv/matomo-next';
 import createEmotionCache from '../../misc/createEmotionCache';
 import InnerApp from './innerApp';
@@ -38,6 +38,8 @@ export default function MyApp(props: MyAppProps) {
         <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
           <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+          {/* 解决图片403防盗链问题  */}
+          <meta name="referrer" content="no-referrer" />
         </Head>
         <ApolloProvider client={apolloClient}>
           <InnerApp pageProps={pageProps} Component={Component} />

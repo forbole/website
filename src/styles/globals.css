@@ -60,10 +60,16 @@ body {
 /* .v-next.swiper-button-disabled,
 .v-prev.swiper-button-disabled {
   display: none;
-} */ 
+} */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-transition: color 11111s ease-out, background-color 111111s ease-out!important;
-} 
+}
+[class*=-prev]>svg{
+  transform: rotate(90deg);
+}
+[class*=-next]>svg{
+  transform: rotate(-90deg);
+}

@@ -84,11 +84,12 @@ export const radixNetworkParams: NetworkProps = {
 };
 
 const cosmosNetworkKeys = [
+
   'e-money',
   'akash',
   'bitsong',
   'agoric',
-  'fetch-ai',
+  // 'fetch-ai',
   'crypto.org',
   'evmos',
   'comdex',
@@ -116,14 +117,14 @@ const cosmosNetworkKeys = [
   'stafihub',
   'stride',
   // bonded data not available:
-  // 'band-protocol',
+  'band-protocol',
   'cosmos',
   // 'desmos',
   // 'cardano',
   'ethereum',
-  'gravity_bridge',
+  // 'gravity_bridge',
   'jackal',
-  // 'kusama',
+  'kusama',
   // 'terra',
   'nomic',
   'nym',
@@ -141,12 +142,27 @@ const cosmosNetworkKeys = [
   'ununifi',
   // 'onomy',
   'mars',
+  //追加的数据
+  'archway',
+  'coreum',
+  'humansai',
+  'islamic_coin',
+  'kyve',
+  'lido',
+  'multiversx',
+  'nolus',
+  'neutron',
+  'quasar',
+  'gitopia',
+  'rizon',
+  'sui'
 ].sort();
 
 const getNetworkKeysArray = () => {
   const arr = [];
   cosmosNetworkKeys.map((key) => arr.push(key));
-  arr.push('elrond', 'solana', 'oasis', 'radix');
+  // arr.push('elrond', 'solana', 'oasis', 'radix');
+  arr.push('solana', 'oasis','radix');
   arr.sort();
   return arr;
 };

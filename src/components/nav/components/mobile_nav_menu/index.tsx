@@ -1,24 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from "react";
-import Link from "next/link";
-import useTranslation from "next-translate/useTranslation";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { LangIcon, MenuIcon } from "@components/icons";
-import { Collapse, ListItem, Stack, Typography, useTheme } from "@mui/material";
-import { useWindowDimensions } from "@src/hooks";
-import LangMenuButton from "../lang_menu_button";
-import CompanyMenuButton from "../company_menu_button";
-import ProductsMenuButton from "../products_menu_button";
-import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
+import * as React from 'react';
+import useTranslation from 'next-translate/useTranslation';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { LangIcon, MenuIcon } from '@components/icons';
+import { Collapse, ListItem, Stack, useTheme } from '@mui/material';
+import { useWindowDimensions } from '@src/hooks';
+import LangMenuButton from '../lang_menu_button';
+import CompanyMenuButton from '../company_menu_button';
+import ProductsMenuButton from '../products_menu_button';
+import { Forbole as ForboleLogo } from '@icons';
 
-import CtaButton from "@src/components/cta-button";
-import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { anchorElState } from "@src/recoil/settings/anchorEl";
+import CtaButton from '@src/components/cta-button';
+import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { anchorElState } from '@src/recoil/settings/anchorEl';
 
 interface NavMenuProps {
   link: string | null;
@@ -63,7 +61,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
     setOpenShowCompany(() => false);
     setOpenShowProducts(() => false);
   },[open])
-  
+
   return (
     <div>
       <IconButton
@@ -195,19 +193,16 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
               ? theme.palette.common.white
               : theme.palette.custom.forbole.indigo,
           }}
+          onClick={() => {
+            handlerCLickShowCompany();
+          }}
         >
           <div>{t("Company")}</div>
-          <div
-            onClick={() => {
-              handlerCLickShowCompany();
-            }}
-          >
             {openShowCompany ? (
               <KeyboardArrowUpIcon />
             ) : (
               <KeyboardArrowDownIcon />
             )}
-          </div>
         </ListItem>
         <Collapse in={openShowCompany} timeout="auto" unmountOnExit>
           <CompanyMenuButton />
@@ -261,6 +256,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
               ? theme.palette.common.white
               : theme.palette.custom.forbole.indigo,
           }}
+          onClick={handleDropdownClick}
         >
           <Stack direction={"row"} gap="8px" alignItems={"center"}>
             <LangIcon
@@ -274,9 +270,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
             />
             {t(lang)}
           </Stack>
-          <div onClick={handleDropdownClick}>
             {openDrawer ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </div>
         </ListItem>
           <Collapse in={openDrawer} timeout="auto" unmountOnExit>
           <LangMenuButton />

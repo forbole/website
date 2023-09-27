@@ -1,11 +1,11 @@
 import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
 import React, { useMemo } from 'react';
-import { useStakingContext } from '@contexts';
 import { getNetworkInfo } from '@src/utils/network_info';
 import { allNetworkKeys } from './config';
-import Card from './Card';
 import { TransitionCSS } from './style';
+import dynamic from 'next/dynamic';
 
+const Card =dynamic(() =>import('./Card'),{ssr:false})
 const ScrollLogo = () => {
   const theme = useTheme();
   //分割数组
@@ -19,47 +19,43 @@ const ScrollLogo = () => {
   const allNetworkData = allNetworkKeys.map((x: string | number) =>
     getNetworkInfo(x)
   );
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
+  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"),{noSsr:true});
   const data = useMemo(
     () =>
-      splitArray(
-        allNetworkData,
-        allNetworkData.length / (onlyLargeScreen ? 4 : 3)
-      ),
+      splitArray(allNetworkData, allNetworkData.length / (onlyLargeScreen ? 4 : 3)),
     [onlyLargeScreen]
   );
+  console.log('data', data)
   return (
     <Container
       disableGutters
       sx={{
-        height: '330px',
-        [theme.breakpoints.down('laptop')]: {
-          height: '250px',
+        height: "330px",
+        [theme.breakpoints.down("laptop")]: {
+          height: "250px",
         },
       }}
     >
       <Box
         className="swiper-no-swiping"
         sx={{
-          position: 'absolute',
+          position: "absolute",
           left: 0,
-          width: '100vw',
-          overflow: 'hidden',
-          py: '10px',
+          width: "100vw",
+          overflow: "hidden",
+          py: "10px",
         }}
       >
-        <Box position={'relative'}>
+        <Box position={'relative'} width={'max-content'}>
           {data.map((networkData, index) => (
-            <TransitionCSS key={index}>
-              <Card
-                networkData={networkData.concat(networkData)}
-                sx={{
-                  animation:
-                    '35s linear 0s infinite alternate none running jss634',
-                  animationName:
-                    index == 1 ? ' horizontalRightMove' : 'horizontalMove',
-                }}
-              ></Card>
+            <TransitionCSS key={index} style={{
+              animation: "35s linear 0s infinite alternate none running jss634",
+              animationName: index == 1 ? " horizontalRightMove" : "horizontalMove"+index,
+              // [theme.breakpoints.down("laptop")]: {
+              //   animationDuration: '50s'
+              // },
+            }}>
+              <Card networkData={networkData.concat(networkData)}  ></Card>
             </TransitionCSS>
           ))}
         </Box>

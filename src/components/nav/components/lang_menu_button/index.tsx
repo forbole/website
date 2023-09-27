@@ -1,24 +1,15 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React from "react";
-import {
-  IconButton,
-  Menu,
-  MenuItem,
-  List,
-  useTheme,
-  useMediaQuery,
-  colors,
-  Typography,
-  Button,
-  Box,
-} from "@mui/material";
-import Link from "next/link";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
-import { useWindowDimensions } from "@src/hooks";
-import { LangIcon } from "@icons";
-import useStyles from "./useStyles";
-import useColor from "@src/styles/useColor";
+import React from 'react';
+import { Box, Button, List, Menu, MenuItem, Typography, useTheme } from '@mui/material';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
+import { useWindowDimensions } from '@src/hooks';
+import { LangIcon } from '@icons';
+import useStyles from './useStyles';
+import useColor from '@src/styles/useColor';
+import { useRecoilState } from 'recoil';
+import { anchorElState } from '@recoil/settings/anchorEl';
 
 const LangMenuButton = () => {
   const { t, lang } = useTranslation("common");
@@ -28,7 +19,10 @@ const LangMenuButton = () => {
   const { width } = windowDimensions;
   const [anchor, setAnchor] = React.useState<Element>();
   const theme = useTheme();
-
+  const [anchorEl, setAnchorEl] =useRecoilState(anchorElState);
+  const handleClose=()=>{
+    setAnchorEl(null)
+  }
   const onClose = React.useCallback(() => setAnchor(undefined), [setAnchor]);
 
   React.useEffect(() => {
@@ -142,6 +136,7 @@ const LangMenuButton = () => {
             <div key={l} style={{display:lang!=l?'block':"none"}}>
               <Link href={{ pathname, query }} locale={l} passHref>
                 <MenuItem
+                  onClick={handleClose}
                   component="a"
                   sx={{
                     display: "flex",

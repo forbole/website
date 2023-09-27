@@ -20,7 +20,7 @@ export const common:ThemeOptions = {
       mobile: 375,
       tablet: 768,
       laptop: 1025,
-      desktop: 1233,
+      desktop: 1208,
     },
   },
   typography: {

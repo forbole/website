@@ -9,6 +9,6 @@ export const statsItems = [
   },
   {
     title: 'supporting networks',
-    stats: 58,
+    stats: 0,
   },
 ];

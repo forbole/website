@@ -1,16 +1,14 @@
 /* eslint-disable react/require-default-props */
-import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Container, Stack, Typography, useTheme } from '@mui/material';
 
-import useTranslation from "next-translate/useTranslation";
-import { useWindowDimensions } from "@src/hooks";
-import { SocialMedia, FooterItems } from "./components";
-import { FooterProps } from "./types";
-import CtaButton from "../cta-button";
-import Image from "next/image";
-
-import { url } from "inspector";
-import { Height } from "@mui/icons-material";
-import { useRouter } from "next/router";
+import useTranslation from 'next-translate/useTranslation';
+import { useWindowDimensions } from '@src/hooks';
+import { FooterItems, SocialMedia } from './components';
+import { FooterProps } from './types';
+import CtaButton from '../cta-button';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Footer = ({ staking,red }: FooterProps) => {
   const theme = useTheme();
@@ -36,7 +34,7 @@ const Footer = ({ staking,red }: FooterProps) => {
           backdropFilter: "blur(8px)",
           // backgroundImage: "url(/images/footer/foot_m.png)",
         },
-       
+
       }}
     >
       {red&&<Container
@@ -94,17 +92,20 @@ const Footer = ({ staking,red }: FooterProps) => {
           >
             together today
           </Typography>
-          <CtaButton
-            sx={{
-              mt: "24px",
-              [theme.breakpoints.down("laptop")]: {
-                mb: "76px",
-              },
-            }}
-            onClick={()=>{router.push('https://www.forbole.com/staking')}}
-          >
-           {t("StakeNow")}
-          </CtaButton>
+          <Link href='https://www.forbole.com/staking' passHref>
+            <a>
+              <CtaButton
+                sx={{
+                  mt: "24px",
+                  [theme.breakpoints.down("laptop")]: {
+                    mb: "76px",
+                  },
+                }}
+              >
+                {t("StakeNow")}
+              </CtaButton>
+            </a>
+          </Link>
         </Stack>
         </Container>}
       <Container
@@ -113,7 +114,7 @@ const Footer = ({ staking,red }: FooterProps) => {
           background:
             "linear-gradient(180deg, rgba(114, 28, 78, 0.00) 0%, rgba(114, 28, 78, 0.10) 31.25%)",
           backdropFilter: "blur(8px)",
-          
+
         }}
       >
         <Stack

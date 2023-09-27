@@ -3,24 +3,25 @@ import useTranslation from 'next-translate/useTranslation';
 import validator from 'validator';
 import axios from 'axios';
 import DOMPurify from 'isomorphic-dompurify';
-import { ToastContent, toast } from 'react-toastify';
+import { toast, ToastContent } from 'react-toastify';
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = React.useState({
-    name: '',
-    email: '',
-    company: '',
-    telegram: '',
-    specify: '',
+    name: "",
+    email: "",
+    company: "",
+    telegram: "",
+    specify: "",
     agree: false,
-    'Data API': false,
+    "Data API": false,
     GraphQL: false,
     Other: false,
-    'RPC Endpoints': false,
+    "RPC Endpoints": false,
   });
+  console.log(inputs);
   const [canSubmit, setCanSubmit] = React.useState(false);
   const { sanitize } = DOMPurify;
-  const { t } = useTranslation('contact');
+  const { t } = useTranslation("contact");
   const [success, setSuccess] = React.useState<boolean>(false);
   const [isLoading, setLoading] = React.useState<boolean>(false);
 
@@ -28,9 +29,9 @@ const useTalkModalForm = () => {
     if (
       validator.isEmail(inputs.email) &&
       inputs.name &&
-      (inputs['Data API'] ||
+      (inputs["Data API"] ||
         inputs.GraphQL ||
-        inputs['RPC Endpoints'] ||
+        inputs["RPC Endpoints"] ||
         inputs.Other)
     ) {
       setCanSubmit(true);
@@ -40,24 +41,24 @@ const useTalkModalForm = () => {
   }, [inputs]);
   const get_started = React.useMemo(() => {
     let str = [];
-    if (inputs['Data API']) {
-      str.push('Data API');
+    if (inputs["Data API"]) {
+      str.push("Data API");
     }
-    if (inputs['GraphQL']) {
-      str.push('GraphQL');
+    if (inputs["GraphQL"]) {
+      str.push("GraphQL");
     }
-    if (inputs['Other']) {
-      str.push('Other');
+    if (inputs["Other"]) {
+      str.push("Other");
     }
-    if (inputs['RPC Endpoints']) {
-      str.push('RPC Endpoints');
+    if (inputs["RPC Endpoints"]) {
+      str.push("RPC Endpoints");
     }
     return str;
   }, [
-    inputs['Data API'],
-    inputs['GraphQL'],
-    inputs['Other'],
-    inputs['RPC Endpoints'],
+    inputs["Data API"],
+    inputs["GraphQL"],
+    inputs["Other"],
+    inputs["RPC Endpoints"],
   ]);
 
   const handleSubmit = (event: any) => {
@@ -65,11 +66,11 @@ const useTalkModalForm = () => {
       event.preventDefault();
       setLoading(true);
       axios
-        .post('/api/contact', {
+        .post("/api/contact", {
           from: inputs.email,
-          to: 'rpc@forbole.com',
+          to: "info@forbole.com",
           subject:
-            'A new customer just wanted to get in touch with us via Developer Tools form',
+            "A new customer just wanted to get in touch with us via Developer Tools form",
           html: `
           <p>Dear Administrator,</p>
           <p>A new customer: ${sanitize(
@@ -89,16 +90,16 @@ const useTalkModalForm = () => {
         .then((res) => {
           if (res.status === 200) {
             setInputs({
-              name: '',
-              email: '',
-              company: '',
-              telegram: '',
+              name: "",
+              email: "",
+              company: "",
+              telegram: "",
               agree: false,
-              specify: '',
-              'Data API': false,
+              specify: "",
+              "Data API": false,
               GraphQL: false,
               Other: false,
-              'RPC Endpoints': false,
+              "RPC Endpoints": false,
             });
           }
           setSuccess(true);
@@ -108,7 +109,7 @@ const useTalkModalForm = () => {
           // eslint-disable-next-line no-console
           setLoading(false);
           console.log(err);
-          toast.error(t('error') as ToastContent<unknown>);
+          toast.error(t("error") as ToastContent<unknown>);
         });
     }
   };
@@ -131,7 +132,7 @@ const useTalkModalForm = () => {
   const handleClear = (field: any) => {
     setInputs((input) => ({
       ...input,
-      [field]: '',
+      [field]: "",
     }));
   };
 

@@ -12,7 +12,7 @@ export const navItems = [
 
   {
     display: 'Company',
-    link: '',
+    link: '#!',
     status: true
   },
 
