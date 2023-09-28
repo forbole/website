@@ -156,7 +156,7 @@ const Infrastructure = (props: Props) => {
             desc={t("section_1st_desc")}
           />
           <CtaButton
-            onClick={() => router.push("https://www.forbole.com/staking")}
+            onClick={() => router.push("/staking")}
             className={style.mobile}
           >
             {t("see_more_networks")}
@@ -190,7 +190,7 @@ const Infrastructure = (props: Props) => {
           </Grid>
 
           <CtaButton
-            onClick={() => router.push("https://www.forbole.com/staking")}
+            onClick={() => router.push("/staking")}
             className={style.desktop}
           >
             {t("see_more_networks")}
@@ -294,7 +294,7 @@ const Infrastructure = (props: Props) => {
           />
           <CtaButton
             onClick={() => {
-              router.push("https://www.forbole.com/staking");
+              router.push("/staking");
             }}
           >
             {t("stake_now")}

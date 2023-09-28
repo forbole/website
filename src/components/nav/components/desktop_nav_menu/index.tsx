@@ -65,7 +65,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
         );
       })}
       <Box>
-        <Link href={'https://www.forbole.com/staking'} passHref>
+        <Link href={'/staking'} passHref>
           <a>
           <CtaButton >{t('StakeNow')}</CtaButton>
           </a>

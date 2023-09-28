@@ -143,7 +143,7 @@ const FooterItems = ({ staking }: FooterProps) => {
               },
             }}
           />
-          <Link href="https://www.forbole.com/blog" passHref>
+          <Link href="/blog" passHref>
             <Typography
               component='a'
               css={styles.word}

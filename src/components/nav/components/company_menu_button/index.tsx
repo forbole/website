@@ -25,7 +25,7 @@ const CompanyMenuButton = () => {
         },
         {
             name: 'blog',
-            link: 'https://www.forbole.com/blog'
+            link: '/blog'
         },
         {
             name: 'contact',
