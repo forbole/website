@@ -11,7 +11,7 @@ import useStyles from "./useStyles";
 const Hero = () => {
   const { t } = useTranslation("staking");
   const theme = useTheme();
-  const { windowDimensions, isDesktop } = useWindowDimensions();
+  const { windowDimensions } = useWindowDimensions();
   const { width } = windowDimensions;
   const styles = useStyles();
   const ref = React.useRef(null);
@@ -70,8 +70,6 @@ const Hero = () => {
               src="/images/assets/image_horse_blur.png"
               layout="fill"
               objectFit="contain"
-              width={isDesktop ? "413px" : "188px"}
-              height={isDesktop ? "500px" : "232px"}
             />
           </Box>
           <Typography
@@ -131,8 +129,6 @@ const Hero = () => {
               src="/images/assets/image_water_shadow.png"
               layout="fill"
               objectFit="contain"
-              width={isDesktop ? "516px" : "210px"}
-              height={isDesktop ? "376px" : "177px"}
             />
           </Box>
         </Box>

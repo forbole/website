@@ -13,7 +13,13 @@ const Stats = () => {
     <Box css={styles.grid}>
       {statsKeys.map((key: any) => {
         const statsItem = stats[key];
-        return <StatsCard title={statsItem.title} stats={statsItem.stats} />;
+        return (
+          <StatsCard
+            key={key}
+            title={statsItem.title}
+            stats={statsItem.stats}
+          />
+        );
       })}
     </Box>
   );
