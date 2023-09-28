@@ -5,18 +5,17 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { LangIcon, MenuIcon } from "@components/icons";
+import { LangIcon, MenuIcon , Forbole as ForboleLogo } from "@components/icons";
 import { Collapse, ListItem, Stack, useTheme } from "@mui/material";
 import { useWindowDimensions } from "@src/hooks";
-import LangMenuButton from "../lang_menu_button";
-import CompanyMenuButton from "../company_menu_button";
-import ProductsMenuButton from "../products_menu_button";
-import { Forbole as ForboleLogo } from "@icons";
 
 import CtaButton from "@src/components/cta-button";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { anchorElState } from "@src/recoil/settings/anchorEl";
+import ProductsMenuButton from "../products_menu_button";
+import CompanyMenuButton from "../company_menu_button";
+import LangMenuButton from "../lang_menu_button";
 
 interface NavMenuProps {
   link: string | null;
@@ -55,7 +54,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
     setOpenShowCompany(() => false);
     setOpenShowProducts((prevState) => !prevState);
   };
-  //close other drawer
+  // close other drawer
   React.useEffect(() => {
     setOpenDrawer(() => false);
     setOpenShowCompany(() => false);
@@ -78,7 +77,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
           },
         }}
       >
-        <MenuIcon color={"#fff"} />
+        <MenuIcon color="#fff" />
       </IconButton>
       <Menu
         id="basic-menu"
@@ -112,12 +111,12 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
         }}
       >
         <Stack
-          direction={"row"}
+          direction="row"
           px="32px"
           py="16px"
           mb="24px"
-          justifyContent={"space-between"}
-          alignItems={"center"}
+          justifyContent="space-between"
+          alignItems="center"
         >
           <ForboleLogo color="#BD081C" height="20px" width="106px" />
           <CtaButton
@@ -258,7 +257,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
           }}
           onClick={handleDropdownClick}
         >
-          <Stack direction={"row"} gap="8px" alignItems={"center"}>
+          <Stack direction="row" gap="8px" alignItems="center">
             <LangIcon
               width={20}
               height={20}

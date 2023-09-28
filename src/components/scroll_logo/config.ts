@@ -141,7 +141,7 @@ const cosmosNetworkKeys = [
   "ununifi",
   // 'onomy',
   "mars",
-  //追加的数据
+  // 追加的数据
   "archway",
   "coreum",
   "humansai",

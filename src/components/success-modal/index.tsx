@@ -8,8 +8,9 @@ import {
   Backdrop,
 } from "@mui/material";
 import React, { forwardRef } from "react";
-import { Close } from "../icons";
 import Image from "next/image";
+import { Close } from "../icons";
+
 type Props = {
   fixed?: any;
   close?: (b: boolean) => void;
@@ -45,9 +46,9 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
         }}
       >
         <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
         >
           <Stack>
             {up_word && (
@@ -93,7 +94,7 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
                 alignSelf: "flex-start",
                 boxSizing: "content-box",
               }}
-            ></Close>
+             />
           )}
         </Stack>
         <Box

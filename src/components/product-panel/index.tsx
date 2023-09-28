@@ -18,7 +18,7 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
     }
     return (
       <Box
-        component={"div"}
+        component="div"
         ref={ref}
         sx={{
           display: "flex",
@@ -48,7 +48,7 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
           </Typography>
         )}
         <Stack
-          direction={"row"}
+          direction="row"
           sx={{
             gap: imgFull ? theme.spacing(4) : theme.spacing(7),
             [theme.breakpoints.down("tablet")]: {
@@ -81,7 +81,7 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
               },
             }}
           >
-            <img src={imageHref} alt="" loading="lazy"></img>
+            <img src={imageHref} alt="" loading="lazy" />
           </Box>
           <Stack
             sx={{

@@ -39,7 +39,7 @@ const useContactForm = () => {
     }
   }, [inputs]);
   const get_started = React.useMemo(() => {
-    let str = [];
+    const str = [];
     if (inputs.collaboration) {
       str.push("Collaboration");
     }
@@ -120,7 +120,7 @@ const useContactForm = () => {
     }));
   };
   const handleCheckedChange = (event: any) => {
-    let { name, checked } = event.target;
+    const { name, checked } = event.target;
     setInputs((input) => ({
       ...input,
       [name]: checked,

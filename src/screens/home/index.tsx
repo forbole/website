@@ -3,11 +3,11 @@ import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Layout, ScrollToBottom, ScrollToTop } from "@components";
 import { useWindowDimensions } from "@src/hooks";
-import { FilterBG } from "./styles";
 import IntroPanel from "@src/components/Intro_panel";
 import IntroCard from "@src/components/intro_card";
 import React from "react";
 import { useRouter } from "next/router";
+import { FilterBG } from "./styles";
 
 type Props = {
   pages: {
@@ -209,7 +209,7 @@ const Home: React.FC<Props> = ({ pages }) => {
                     : require("/public/home/Desktop-5@2x.png")
                 }
                 img_not_response
-                disabled={true}
+                disabled
               />
             </Grid>
           </Grid>
@@ -241,13 +241,13 @@ const Home: React.FC<Props> = ({ pages }) => {
                     btnName={btnName}
                     btnClick={() => router.push(btnClick)}
                     disabled={!btnClick || false}
-                  ></IntroCard>
+                   />
                 </Grid>
               );
             })}
           </Grid>
           <Box mt="100px">
-            <ScrollToTop topRef={topRef}></ScrollToTop>
+            <ScrollToTop topRef={topRef} />
           </Box>
         </Container>
       </Box>

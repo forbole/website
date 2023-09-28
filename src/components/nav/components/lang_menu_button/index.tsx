@@ -14,10 +14,10 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useWindowDimensions } from "@src/hooks";
 import { LangIcon } from "@icons";
-import useStyles from "./useStyles";
 import useColor from "@src/styles/useColor";
 import { useRecoilState } from "recoil";
 import { anchorElState } from "@recoil/settings/anchorEl";
+import useStyles from "./useStyles";
 
 const LangMenuButton = () => {
   const { t, lang } = useTranslation("common");

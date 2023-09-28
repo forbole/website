@@ -1,17 +1,17 @@
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import React, { useMemo } from "react";
 import { getNetworkInfo } from "@src/utils/network_info";
+import dynamic from "next/dynamic";
 import { allNetworkKeys } from "./config";
 import { TransitionCSS } from "./style";
-import dynamic from "next/dynamic";
 
 const Card = dynamic(() => import("./Card"), { ssr: false });
 const ScrollLogo = () => {
   const theme = useTheme();
-  //分割数组
+  // 分割数组
   function splitArray(array: any[], length: number) {
-    var result = [];
-    for (var i = 0; i < array.length; i += length) {
+    const result = [];
+    for (let i = 0; i < array.length; i += length) {
       result.push(array.slice(i, i + length));
     }
     return result;
@@ -51,7 +51,7 @@ const ScrollLogo = () => {
           py: "10px",
         }}
       >
-        <Box position={"relative"} width={"max-content"}>
+        <Box position="relative" width="max-content">
           {data.map((networkData, index) => (
             <TransitionCSS
               key={index}
@@ -61,13 +61,13 @@ const ScrollLogo = () => {
                 animationName:
                   index == 1
                     ? " horizontalRightMove"
-                    : "horizontalMove" + index,
+                    : `horizontalMove${  index}`,
                 // [theme.breakpoints.down("laptop")]: {
                 //   animationDuration: '50s'
                 // },
               }}
             >
-              <Card networkData={networkData.concat(networkData)}></Card>
+              <Card networkData={networkData.concat(networkData)} />
             </TransitionCSS>
           ))}
         </Box>

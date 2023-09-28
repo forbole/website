@@ -7,9 +7,9 @@ import React, { RefObject } from "react";
 import Link from "next/link";
 import { Box, Button, useTheme } from "@mui/material";
 import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
+import useColor from "@src/styles/useColor";
 import { MobileNavMenu, DesktopNavMenu } from "./components";
 import { useNavHook } from "./hooks";
-import useColor from "@src/styles/useColor";
 
 interface NavProps {
   navLink: string | null;

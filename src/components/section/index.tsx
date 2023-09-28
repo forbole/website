@@ -25,7 +25,7 @@ const Section = ({
   return (
     <Stack
       sx={{
-        maxWidth: maxWidth,
+        maxWidth,
         margin: "0 auto",
         justifyContent: "center",
         alignItems: "center",
@@ -86,7 +86,7 @@ const Section = ({
             />,
             <Typography
               display="inline"
-              component={"span"}
+              component="span"
               color="#EE3131"
               sx={{
                 textShadow: "0px 0px 20px #ffffff",

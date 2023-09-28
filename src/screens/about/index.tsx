@@ -95,7 +95,7 @@ const About = () => {
         >
           <Stack
             spacing={3}
-            maxWidth={"1000px"}
+            maxWidth="1000px"
             sx={{
               alignItems: "center",
               textAlign: "center",
@@ -148,7 +148,7 @@ const About = () => {
                   }}
                 />,
                 <Typography
-                  component={"span"}
+                  component="span"
                   sx={{
                     textShadow:
                       "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
@@ -178,9 +178,9 @@ const About = () => {
           >
             <ImgBox>
               <Swiper
-                className={"swiper-style"}
+                className="swiper-style"
                 slidesPerView="auto"
-                centeredSlides={true}
+                centeredSlides
                 spaceBetween={24}
                 breakpoints={{
                   1023: {
@@ -188,7 +188,7 @@ const About = () => {
                     centeredSlides: false,
                   },
                 }}
-                loop={true} //循环滚动
+                loop // 循环滚动
                 navigation={{
                   nextEl: ".h-next",
                   prevEl: ".h-prev",
@@ -353,7 +353,7 @@ const About = () => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   onLoad={() => setLoading(false)}
-                ></iframe>
+                 />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -404,7 +404,7 @@ const About = () => {
                 />,
                 <Typography
                   display="inline"
-                  component={"span"}
+                  component="span"
                   color="#EE3131"
                   sx={{
                     fontSize: "40px",
@@ -448,7 +448,7 @@ const About = () => {
             >
               {t("section_3rd_desc")}
             </Typography>
-            <Horse style={{ display: "block", marginTop: "30px" }}></Horse>
+            <Horse style={{ display: "block", marginTop: "30px" }} />
             <ScrollToTop topRef={topRef} />
           </Stack>
         </Stack>

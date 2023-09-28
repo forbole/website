@@ -65,7 +65,7 @@ const EnterpriseSolution = () => {
         />
         <Stack>
           <Section
-            maxWidth={"900px"}
+            maxWidth="900px"
             title={t("technical_consultation")}
             title_large_trans={t("customized")}
             desc={t("provides")}
@@ -143,7 +143,7 @@ const EnterpriseSolution = () => {
  */}
         <Stack mx="auto">
           <Section
-            maxWidth={"750px"}
+            maxWidth="750px"
             title={t("contact")}
             title_large_trans={t("get")}
             desc={t("our")}

@@ -10,9 +10,9 @@ import { Box, useTheme } from "@mui/material";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 import { Theme } from "@recoil/settings/types";
 import { writeTheme } from "@recoil/settings";
+import useColor from "@src/styles/useColor";
 import Footer from "../footer";
 import Nav from "../nav";
-import useColor from "@src/styles/useColor";
 
 type Props = {
   navLink: string | null;
@@ -44,8 +44,8 @@ const Layout = ({
   themeModeButton,
   waveBG,
   homeAnimation,
-  redBgFooter, //首页红色页脚
-  redBg, //首页红色背景
+  redBgFooter, // 首页红色页脚
+  redBg, // 首页红色背景
 }: Props) => {
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [

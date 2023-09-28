@@ -139,7 +139,7 @@ const StakingService = () => {
           >
             {t("stake_now")}
           </CtaButton>
-          <Horse style={{ display: "block", margin: "0 auto" }}></Horse>
+          <Horse style={{ display: "block", margin: "0 auto" }} />
           <ScrollToTop topRef={topRef} />
         </Stack>
       </Container>

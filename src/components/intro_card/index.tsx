@@ -24,7 +24,7 @@ const IntroCard = (props: Props) => {
   } = props;
   return (
     <Box
-      component={"div"}
+      component="div"
       sx={{
         height: "100%",
         overflow: "hidden",
@@ -37,9 +37,9 @@ const IntroCard = (props: Props) => {
           "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
       }}
     >
-      {imageHref && <img src={imageHref} alt=""></img>}
+      {imageHref && <img src={imageHref} alt="" />}
       <Box
-        component={"div"}
+        component="div"
         sx={{
           flex: 1,
           padding: "24px",

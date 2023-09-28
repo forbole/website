@@ -2,14 +2,14 @@
 import * as React from "react";
 import useTranslation from "next-translate/useTranslation";
 import { Box, useTheme } from "@mui/material";
+import { useRouter } from "next/router";
+import CtaButton from "@src/components/cta-button";
+import Link from "next/link";
 import { navItems } from "../config";
 import LangMenuButton from "../lang_menu_button";
 import CompanyMenuButton from "../company_menu_button";
 import ProductsMenuButton from "../products_menu_button";
-import { useRouter } from "next/router";
 import classes from "./index.module.css";
-import CtaButton from "@src/components/cta-button";
-import Link from "next/link";
 
 interface NavMenuProps {
   link: string | null;
@@ -70,7 +70,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
         );
       })}
       <Box>
-        <Link href={"/staking"} passHref>
+        <Link href="/staking" passHref>
           <a>
             <CtaButton>{t("StakeNow")}</CtaButton>
           </a>

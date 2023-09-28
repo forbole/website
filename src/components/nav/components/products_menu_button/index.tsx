@@ -93,8 +93,7 @@ const ProductsMenuButton = () => {
           ))}
         </List>
       ) : (
-        <>
-          <List
+        <List
             component="div"
             disablePadding
             sx={{ background: "rgba(107, 97, 254, 0.24)" }}
@@ -129,7 +128,6 @@ const ProductsMenuButton = () => {
               </Link>
             ))}
           </List>
-        </>
       )}
     </>
   );

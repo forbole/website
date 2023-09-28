@@ -13,7 +13,7 @@ type Props = {
   }[];
 };
 export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => {
-  const pages = await getPageByTag(locale + "_whatsnew");
+  const pages = await getPageByTag(`${locale  }_whatsnew`);
   console.log("pages", pages);
   return {
     props: { pages },

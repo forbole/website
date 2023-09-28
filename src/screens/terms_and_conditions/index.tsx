@@ -25,17 +25,17 @@ const TermsAndConditions = () => {
   };
   useEffect(() => {
     (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(
-      function (d) {
+      (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
-        d.style.height = h + "px";
+        d.style.height = `${h  }px`;
       }
     );
     (document.querySelectorAll(".t2") as NodeListOf<HTMLElement>).forEach(
-      function (d) {
+      (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
-        d.style.height = h + "px";
+        d.style.height = `${h  }px`;
       }
     );
   });

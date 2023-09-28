@@ -3,29 +3,29 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
-import 'dotenv-defaults/config';
-import express, { Request, Response } from 'express';
-import next from 'next';
-import cors from 'cors';
-import nodemailer from 'nodemailer';
-import axios from 'axios';
-import DOMPurify from 'isomorphic-dompurify';
+import "dotenv-defaults/config";
+import express, { Request, Response } from "express";
+import next from "next";
+import cors from "cors";
+import nodemailer from "nodemailer";
+import axios from "axios";
+import DOMPurify from "isomorphic-dompurify";
 
 const { sanitize } = DOMPurify;
 
-const multer = require('multer');
+const multer = require("multer");
 
 const whitelist = [
-  'application/pdf',
-  'application/msword',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  fileFilter: (req: any, file: any, cb: any) => {
+  fileFilter: (_req: any, file: any, cb: any) => {
     if (!whitelist.includes(file.mimetype)) {
-      return cb(new Error('file is not allowed'));
+      return cb(new Error("file is not allowed"));
     }
 
     cb(null, true);
@@ -36,9 +36,9 @@ interface MulterRequest extends Request {
   files: any;
 }
 
-const GhostAdminAPI = require('@tryghost/admin-api');
+const GhostAdminAPI = require("@tryghost/admin-api");
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV !== "production";
 const app = next({
   dev: isDev,
 });
@@ -48,8 +48,8 @@ const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
 const url = process.env.NEXT_PUBLIC_URL;
 const transporter = nodemailer.createTransport({
-  service: 'Mailgun',
-  host: 'smtp.mailgun.org',
+  service: "Mailgun",
+  host: "smtp.mailgun.org",
   port: 465,
   secure: true,
   auth: {
@@ -62,7 +62,7 @@ const ghostAdminApi = new GhostAdminAPI({
   url: process.env.NEXT_PUBLIC_GHOST_API,
   // Admin API key goes here
   key: process.env.GHOST_PRIVATE_KEY,
-  version: 'v3.0',
+  version: "v3.0",
 });
 
 (async () => {
@@ -73,10 +73,10 @@ const ghostAdminApi = new GhostAdminAPI({
     server.use(express.json());
 
     server.post(
-      '/api/contact',
+      "/api/contact",
       async (req: Request, res: Response, next: any) => {
         try {
-          if (process.env.NODE_ENV === 'production') {
+          if (process.env.NODE_ENV === "production") {
             await transporter.sendMail(req.body);
           }
           res.status(200).json({
@@ -87,24 +87,28 @@ const ghostAdminApi = new GhostAdminAPI({
         }
       }
     );
-    //订阅
+    // 订阅
     server.post(
-      '/api/subscribe',
+      "/api/subscribe",
       async (req: Request, res: Response, next: any) => {
         try {
-          const {inputs} = req.body;
-          if (process.env.NODE_ENV === 'production') {
+          const { inputs } = req.body;
+          if (process.env.NODE_ENV === "production") {
             await transporter.sendMail({
               from: inputs.email,
-              to: 'newsletter@forbole.com',
-              subject: `A new customer: ${sanitize(inputs.email)} just subscribed our newsletter`,
-              html:`
+              to: "newsletter@forbole.com",
+              subject: `A new customer: ${sanitize(
+                inputs.email
+              )} just subscribed our newsletter`,
+              html: `
               <p>Dear Administrator,</p>
-              <p>A new customer: ${sanitize(inputs.email)} just subscribed our newsletter.</p>
+              <p>A new customer: ${sanitize(
+                inputs.email
+              )} just subscribed our newsletter.</p>
               <p>Regards,</p>
               <p>Forbole web system</p>
-              `
-            })
+              `,
+            });
           }
           res.status(200).json({
             success: true,
@@ -116,16 +120,16 @@ const ghostAdminApi = new GhostAdminAPI({
     );
 
     server.post(
-      '/api/careers',
-      upload.fields([{ name: 'resume' }, { name: 'coverLetter' }]),
+      "/api/careers",
+      upload.fields([{ name: "resume" }, { name: "coverLetter" }]),
       async (req: Request, res: Response, next: any) => {
         try {
           const inputs = JSON.parse(req.body.inputs);
-          if (process.env.NODE_ENV === 'production') {
+          if (process.env.NODE_ENV === "production") {
             if ((req as MulterRequest).files.coverLetter !== undefined) {
               await transporter.sendMail({
                 from: inputs.email,
-                to: 'career@forbole.com',
+                to: "career@forbole.com",
                 subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
                 html: `<p>${sanitize(
                   inputs.message
@@ -148,7 +152,7 @@ const ghostAdminApi = new GhostAdminAPI({
             } else {
               await transporter.sendMail({
                 from: inputs.email,
-                to: 'career@forbole.com',
+                to: "career@forbole.com",
                 subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
                 html: `<p>${sanitize(
                   inputs.message
@@ -175,12 +179,12 @@ const ghostAdminApi = new GhostAdminAPI({
     );
 
     // catch Multer file fields' error
-    server.use((error: any, req: any, res: any, next: any) => {
-      console.log('This is the rejected field ->', error.field, error);
+    server.use((error: any, _req: any, _res: any, _next: any) => {
+      console.log("This is the rejected field ->", error.field, error);
     });
 
     server.post(
-      '/api/proxy',
+      "/api/proxy",
       async (req: Request, res: Response, next: any) => {
         try {
           const url = req?.body?.url;
@@ -196,7 +200,7 @@ const ghostAdminApi = new GhostAdminAPI({
     );
 
     server.post(
-      '/api/post-preview',
+      "/api/post-preview",
       async (req: Request, res: Response, next: any) => {
         try {
           const { id } = req?.body;
@@ -204,11 +208,11 @@ const ghostAdminApi = new GhostAdminAPI({
             .browse({
               filter: `uuid:${id}`,
               limit: 1,
-              include: 'tags,authors',
-              formats: 'html',
+              include: "tags,authors",
+              formats: "html",
             })
             .catch((error: { message: any }) => {
-              console.log('the error here');
+              console.log("the error here");
               console.log(error.message);
             });
           res.status(200).json(blog ?? null);
@@ -218,7 +222,7 @@ const ghostAdminApi = new GhostAdminAPI({
       }
     );
 
-    server.all('*', (req: Request, res: Response) => {
+    server.all("*", (req: Request, res: Response) => {
       return handle(req, res);
     });
 
@@ -226,7 +230,7 @@ const ghostAdminApi = new GhostAdminAPI({
       if (err) throw err;
       console.log(`> App Ready On: ${url}`);
       console.log(`> URL: http://localhost:${port}`);
-      console.log(`> ENV: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`> ENV: ${process.env.NODE_ENV || "development"}`);
       console.log(`> PORT: ${port}`);
     });
   } catch (e) {

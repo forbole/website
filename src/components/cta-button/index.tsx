@@ -1,6 +1,7 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import { LoadingButton, LoadingButtonProps } from "@mui/lab";
+
 const ColorButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
   flexShrink: 0,
   borderRadius: "45px",
@@ -34,5 +35,5 @@ const ColorButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
 }));
 
 export default function CtaButton(props: LoadingButtonProps) {
-  return <ColorButton {...props}></ColorButton>;
+  return <ColorButton {...props} />;
 }

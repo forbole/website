@@ -9,10 +9,11 @@ import {
   FormControl,
 } from "@mui/material";
 
-import FormInput from "../formInput";
-import CtaButton from "../cta-button";
 import useTranslation from "next-translate/useTranslation";
 import { KeyboardArrowDownTwoTone } from "@mui/icons-material";
+import FormInput from "../formInput";
+import CtaButton from "../cta-button";
+
 type Props = {
   // submit:(b:boolean)=>void
   inputs: {
@@ -84,7 +85,7 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Stack
-        component={"div"}
+        component="div"
         ref={ref}
         sx={{
           maxWidth: "776px",
@@ -206,7 +207,7 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
                   }
                   return selected;
                 }}
-                name={"help"}
+                name="help"
                 MenuProps={MenuProps}
               >
                 {helpList.map((i, j) => (

@@ -1,6 +1,7 @@
 import { Telegram, Medium, Twitter, Github, LinkedIn, Instagram } from "@icons";
 import * as React from "react";
 import { useRouter } from "next/router";
+
 interface SocialMediaProps {
   key: string;
   url: string;
@@ -49,11 +50,12 @@ const socialMedia: SocialMediasProps = {
   },
 };
 
-export const getSocialMediaInfo = (key: string) => {
+export const getSocialMediaInfo = (keyParam: string) => {
+  let key = keyParam;
   const { locale } = useRouter();
-  if (key == "Instagram") {
+  if (key === "Instagram") {
     if (locale !== "en") {
-      key = key + "_zh";
+      key += "_zh";
     }
   }
   return socialMedia[key] ?? {};

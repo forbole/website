@@ -12,11 +12,11 @@ import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import ProductPanel from "@src/components/product-panel";
 import HeaderCard from "@src/components/header-card";
 import useTranslation from "next-translate/useTranslation";
-import { businesses, individuals } from "./config";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import style from "./index.module.css";
 import { scrollBottom } from "@src/utils/scroll";
+import style from "./index.module.css";
+import { businesses, individuals } from "./config";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
   ssr: false,
@@ -113,7 +113,7 @@ const Products = () => {
                 }}
               />,
               <Typography
-                component={"span"}
+                component="span"
                 color="#EE3131"
                 sx={{
                   textShadow: "0px 0px 20px #ffffff",
@@ -132,8 +132,8 @@ const Products = () => {
             ]}
           />
           <Stack
-            direction={"row"}
-            justifyContent={"center"}
+            direction="row"
+            justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
           >
             <CtaButton
@@ -201,7 +201,7 @@ const Products = () => {
               />,
               <Typography
                 color="#EE3131"
-                component={"span"}
+                component="span"
                 display="inline"
                 sx={{
                   textShadow: "0px 0px 20px #ffffff",
@@ -220,9 +220,9 @@ const Products = () => {
             ]}
           />
           <Stack
-            direction={"column"}
-            alignItems={"center"}
-            justifyContent={"center"}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
             sx={{
               mb: "40px",
@@ -302,13 +302,13 @@ const Products = () => {
               key={index}
             >
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
+                  component="dt"
                   sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("benefits")}
@@ -317,8 +317,8 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dd"}
-                      display={"flex"}
+                      component="dd"
+                      display="flex"
                       sx={{
                         color: "#202A43",
                         alignItems: "baseline",
@@ -340,13 +340,13 @@ const Products = () => {
                 })}
               </Stack>
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
+                  component="dt"
                   sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("usecases")}
@@ -355,7 +355,7 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dl"}
+                      component="dl"
                       sx={{
                         color: "#202A43",
                         alignItems: "baseline",
@@ -430,7 +430,7 @@ const Products = () => {
               />,
               <Typography
                 color="#EE3131"
-                component={"span"}
+                component="span"
                 display="inline"
                 sx={{
                   textShadow: "0px 0px 20px #ffffff",
@@ -450,9 +450,9 @@ const Products = () => {
           />
 
           <Stack
-            direction={"column"}
-            alignItems={"center"}
-            justifyContent={"center"}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
             sx={{
               mb: "48px",
@@ -477,25 +477,25 @@ const Products = () => {
                     label={t("analytics")}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                 </StyledTabs>
                 <StyledTabs value={v2} onChange={handleChange2}>
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
@@ -547,7 +547,7 @@ const Products = () => {
                 >
                   {t("analytics")}
                 </CtaButton>
-                <Stack direction={"row"} spacing={1}>
+                <Stack direction="row" spacing={1}>
                   <CtaButton
                     startIcon={
                       <img src="/products/p5.svg" className={style.icon} />
@@ -586,13 +586,13 @@ const Products = () => {
               key={index}
             >
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
+                  component="dt"
                   sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("benefits")}
@@ -601,8 +601,8 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dd"}
-                      display={"flex"}
+                      component="dd"
+                      display="flex"
                       sx={{
                         color: "#202A43",
                         alignItems: "baseline",
@@ -624,13 +624,13 @@ const Products = () => {
                 })}
               </Stack>
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
+                  component="dt"
                   sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("usecases")}
@@ -639,8 +639,8 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dd"}
-                      display={"flex"}
+                      component="dd"
+                      display="flex"
                       sx={{
                         color: "#202A43",
                         alignItems: "baseline",

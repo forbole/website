@@ -17,9 +17,9 @@ import useTranslation from "next-translate/useTranslation";
 import TalkModal from "@src/components/talk-modal";
 
 import SuccessModal from "@src/components/success-modal";
-import useTalkModalForm from "./hooks";
 import SignatureCard from "@components/signature-card";
 import { useRouter } from "next/router";
+import useTalkModalForm from "./hooks";
 
 const DeveloperTools = () => {
   const {
@@ -39,7 +39,7 @@ const DeveloperTools = () => {
     noSsr: true,
   });
   const topRef = React.useRef(null);
-  let [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const router = useRouter();
   return (
     <Layout title={t("page_title")} navLink="/products" footer>
@@ -148,7 +148,7 @@ const DeveloperTools = () => {
           >
             {t("start_trial")}
           </CtaButton>
-          <FourTable btnHref={() => setShow(true)}></FourTable>
+          <FourTable btnHref={() => setShow(true)} />
           <Stack
             sx={{
               mt: { laptop: "128px", mobile: "40px" },
@@ -157,7 +157,7 @@ const DeveloperTools = () => {
               alignItem: "center",
             }}
           >
-            <Section title_large={t("signature")}></Section>
+            <Section title_large={t("signature")} />
             <Box
               sx={{
                 maxWidth: { laptop: "1100px", mobile: "65%" },
@@ -190,7 +190,7 @@ const DeveloperTools = () => {
           </CtaButton>
         </Stack>
 
-        <ScrollToTop topRef={topRef}></ScrollToTop>
+        <ScrollToTop topRef={topRef} />
       </Container>
 
       <TalkModal

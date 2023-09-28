@@ -1,5 +1,6 @@
-const GhostContentAPI = require("@tryghost/content-api/cjs/content-api");
 import "dotenv-defaults/config";
+
+const GhostContentAPI = require("@tryghost/content-api/cjs/content-api");
 
 // Create API instance with site credentials
 export const ghostApi = new GhostContentAPI({

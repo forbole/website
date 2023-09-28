@@ -3,7 +3,7 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
 type Props = {};
-let data = [
+const data = [
   {
     title: "websocket_service",
     desc: "rpc",

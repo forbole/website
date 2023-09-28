@@ -1,7 +1,7 @@
 import * as React from "react";
 import Autocomplete from "@mui/material/Autocomplete";
-import FormInput from "../formInput";
 import { Box, useTheme } from "@mui/material";
+import FormInput from "../formInput";
 
 type Props = {
   options: any;
@@ -82,7 +82,7 @@ export default function CustomInputAutocomplete({
             type="text"
             {...params.inputProps}
             placeholder={label}
-            name={"11"}
+            name="11"
           />
         </Box>
       )}

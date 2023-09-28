@@ -22,7 +22,7 @@ type Props = {
 const Card = ({ networkData, sx }: Props) => {
   const theme = useTheme();
   return (
-    <Box sx={sx} display={"flex"} maxWidth={"max-content"}>
+    <Box sx={sx} display="flex" maxWidth="max-content">
       {networkData.map((item: any, index) => (
         <Box
           key={index}
@@ -63,7 +63,7 @@ const Card = ({ networkData, sx }: Props) => {
             )}
           </Box>
           <Typography
-            component={"span"}
+            component="span"
             sx={{
               whiteSpace: "nowrap",
               fontSize: "18px",

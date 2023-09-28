@@ -2,13 +2,13 @@
 import React from "react";
 import { Box, useTheme, Input, Button, Container, Stack } from "@mui/material";
 import { getSocialMediaInfo } from "@utils/social_media_info";
-import { socialKeys } from "./config";
-import classes from "./classes.module.css";
 import useTranslation from "next-translate/useTranslation";
 import axios from "axios";
 import { ToastContent, toast } from "react-toastify";
 import validator from "validator";
 import CtaButton from "@src/components/cta-button";
+import classes from "./classes.module.css";
+import { socialKeys } from "./config";
 
 const SocialMedia = () => {
   const socialMediaInfo = socialKeys.map((x) => getSocialMediaInfo(x));
@@ -77,7 +77,7 @@ const SocialMedia = () => {
         },
       }}
     >
-      <Box display={"flex"} gap={"20px"}>
+      <Box display="flex" gap="20px">
         {socialMediaInfo.map((x) => {
           return (
             <a
@@ -99,9 +99,9 @@ const SocialMedia = () => {
           placeholder={t("placeholder")}
           disableUnderline
           value={inputs.email}
-          name={"email"}
+          name="email"
           onInput={handleInputChange}
-        ></Input>
+         />
         <CtaButton onClick={handleSubmit} loading={isLoading}>
           {t("subscribe-us")}
         </CtaButton>

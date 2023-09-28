@@ -76,7 +76,7 @@ const useContactForm = () => {
     }));
   };
   const handleCheckedChange = (event: any) => {
-    let { name, value } = event.target;
+    const { name, value } = event.target;
     setInputs((input) => ({
       ...input,
       [name]: value,

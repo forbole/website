@@ -19,8 +19,8 @@ import Section from "@src/components/section";
 import useTranslation from "next-translate/useTranslation";
 import Carousel from "@src/components/Carousel";
 import { useRouter } from "next/router";
-import style from "./index.module.css";
 import { scrollBottom } from "@src/utils/scroll";
+import style from "./index.module.css";
 
 type Props = {};
 const Infrastructure = (props: Props) => {
@@ -73,7 +73,7 @@ const Infrastructure = (props: Props) => {
           img: "/icons/Calin Pasat-humansai.png",
         },
       ];
-    } else {
+    } 
       return [
         {
           name: "Boz Menzalji",
@@ -104,10 +104,10 @@ const Infrastructure = (props: Props) => {
           img: "/icons/Calin Pasat-humansai.png",
         },
       ];
-    }
+    
   }, [onlyLargeScreen]);
   const textList = [
-    //专业技能和优势对应的文本
+    // 专业技能和优势对应的文本
     [
       "infrastructure_item1",
       "infrastructure_item2",
@@ -237,7 +237,7 @@ const Infrastructure = (props: Props) => {
               onClick={(e: any) => {
                 scrollBottom(e, PanelRef);
               }}
-            ></StyledTab>
+             />
             <StyledTab
               label={t("toggle_btn_right")}
               icon={
@@ -249,7 +249,7 @@ const Infrastructure = (props: Props) => {
               onClick={(e: any) => {
                 scrollBottom(e, PanelRef);
               }}
-            ></StyledTab>
+             />
           </StyledTabs>
           {[
             { title: "infrastructure_item", img: "desk_toggle_1@2x.png" },

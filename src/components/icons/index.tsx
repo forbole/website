@@ -30,6 +30,7 @@ import ForboleShadowIcon from "./icon_forbole_shadow.svg";
 import DropDownIcon from "./icon_dropdown.svg";
 import Horse from "./horse.svg";
 import Close from "./close.svg";
+
 export {
   Forbole,
   MenuIcon,

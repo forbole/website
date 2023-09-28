@@ -8,9 +8,9 @@ import "swiper/swiper.min.css";
 import SwiperCore, { Navigation } from "swiper";
 // 挂载到当前swiper实例
 import { Box, useMediaQuery, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
 import Arraw, { Direction } from "../arrow";
 import { BoxCSS } from "./BoxCSS";
-import useTranslation from "next-translate/useTranslation";
 
 SwiperCore.use([Navigation]);
 
@@ -194,7 +194,7 @@ const Carousel = ({ personList }: CarouselProps) => {
   return (
     <BoxCSS>
       <Box
-        position={"relative"}
+        position="relative"
         sx={{
           [theme.breakpoints.down("laptop")]: {
             margin: "0 -16px",
@@ -205,7 +205,7 @@ const Carousel = ({ personList }: CarouselProps) => {
           className="swiper-no-swiping"
           spaceBetween={-16}
           slidesPerView={3}
-          centeredSlides={true}
+          centeredSlides
           initialSlide={1}
           navigation={{
             nextEl: ".c-next",

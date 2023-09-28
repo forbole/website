@@ -1,6 +1,7 @@
 import { ghostApi as api } from "../index";
 
 const jsdom = require("jsdom");
+
 const { JSDOM } = jsdom;
 const parseMd = (html = "") => {
   const dom = new JSDOM(html);
@@ -17,7 +18,7 @@ export const getPageByTag = async (tag: string) => {
     })) as { title: string; html: string; id: string }[];
     const data = pages.map((res) => {
       const window = parseMd(res.html);
-      let list: string[] = [];
+      const list: string[] = [];
       Array.from(window.document.querySelectorAll("p")).forEach((i: any) =>
         list.push(i.innerHTML)
       );

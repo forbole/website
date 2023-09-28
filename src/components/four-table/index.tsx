@@ -1,10 +1,10 @@
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
-import plans from "./config";
-import styles from "./styles.module.css";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 import CtaButton from "@components/cta-button";
 import { useRouter } from "next/router";
+import styles from "./styles.module.css";
+import plans from "./config";
 
 type Props = { btnHref: () => void };
 const FourTable = ({ btnHref }: Props) => {
@@ -18,7 +18,7 @@ const FourTable = ({ btnHref }: Props) => {
 
   return (
     <Stack
-      direction={"row"}
+      direction="row"
       sx={{
         alignItems: "flex-end",
         minHeight: "536px",
@@ -65,11 +65,11 @@ const FourTable = ({ btnHref }: Props) => {
           }}
         >
           <Stack
-            direction={"row"}
+            direction="row"
             className={index === clickItem ? styles.popular : styles.none}
           >
-            <img src="/icons/Group.png"></img>
-            <Typography component={"span"}>Popular!</Typography>
+            <img src="/icons/Group.png" />
+            <Typography component="span">Popular!</Typography>
           </Stack>
           <Typography
             sx={{
@@ -106,7 +106,7 @@ const FourTable = ({ btnHref }: Props) => {
               }}
             >
               <Typography
-                component={"span"}
+                component="span"
                 sx={{
                   fontSize: "16px",
                   fontWeight: "590",
@@ -137,7 +137,7 @@ const FourTable = ({ btnHref }: Props) => {
               style={{
                 marginTop: "24px",
               }}
-            ></Divider>
+             />
             {Array.isArray(Plan.features) ? (
               Plan.features.map((item, index) => (
                 <Box

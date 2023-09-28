@@ -57,8 +57,7 @@ const StakenowMenuButton = () => {
   return (
     <>
       {onlyLargeScreen ? (
-        <>
-          <Box sx={{}}>
+        <Box sx={{}}>
             <List component="div" disablePadding>
               <ListItem
                 onClick={() => {
@@ -99,7 +98,7 @@ const StakenowMenuButton = () => {
                   </SvgIcon>
                 </Box>
 
-                {"Forbole Validator Webbsite"}
+                Forbole Validator Webbsite
                 {openShowStakeNow ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
               <Collapse in={openShowStakeNow} timeout="auto" unmountOnExit>
@@ -108,10 +107,8 @@ const StakenowMenuButton = () => {
               </Collapse>
             </List>
           </Box>
-        </>
       ) : (
-        <>
-          <List component="div" disablePadding>
+        <List component="div" disablePadding>
             {menuStakeNowList?.map((l, i) => (
               <div key={i}>
                 <Link href={l.link} passHref>
@@ -142,7 +139,6 @@ const StakenowMenuButton = () => {
               </div>
             ))}
           </List>
-        </>
       )}
     </>
   );

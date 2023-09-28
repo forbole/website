@@ -21,9 +21,9 @@ import { Layout } from "@components";
 import FormInput from "@src/components/formInput";
 import CtaButton from "@src/components/cta-button";
 import SuccessModal from "@src/components/success-modal";
+import { useRouter } from "next/router";
 import { styles } from "./styles";
 import useContactForm from "./hooks";
-import { useRouter } from "next/router";
 
 const Contact = () => {
   const { t } = useTranslation("contact");
@@ -121,7 +121,7 @@ const Contact = () => {
                 },
               }}
             >
-              <Stack direction={"row"}>
+              <Stack direction="row">
                 <Box
                   sx={styles.iconBox}
                   mr="8px"
@@ -301,7 +301,7 @@ const Contact = () => {
                     placeholder={t("item_5")}
                     fullWidth
                     disableUnderline
-                    disabled={!inputs["other"]}
+                    disabled={!inputs.other}
                     sx={{
                       p: "12px",
                       fontSize: "16px",

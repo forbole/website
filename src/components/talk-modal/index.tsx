@@ -12,10 +12,11 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import React, { useEffect, useMemo, useRef } from "react";
+import useTranslation from "next-translate/useTranslation";
 import { Close } from "../icons";
 import FormInput from "../formInput";
 import CtaButton from "../cta-button";
-import useTranslation from "next-translate/useTranslation";
+
 interface Props {
   close?: (b: boolean) => void;
   staking?: any;
@@ -111,7 +112,7 @@ const TalkModal = ({
           },
         }}
       >
-        <Stack direction={"row"} justifyContent={"space-between"}>
+        <Stack direction="row" justifyContent="space-between">
           <Stack>
             <Typography
               sx={{
@@ -144,7 +145,7 @@ const TalkModal = ({
                 border: "8px solid transparent",
                 boxSizing: "content-box",
               }}
-            ></Close>
+             />
           )}
         </Stack>
         <Grid
@@ -297,7 +298,7 @@ const TalkModal = ({
                   placeholder={t("item_5")}
                   fullWidth
                   disableUnderline
-                  disabled={!inputs["Other"]}
+                  disabled={!inputs.Other}
                   sx={{
                     p: "12px",
                     fontSize: "16px",

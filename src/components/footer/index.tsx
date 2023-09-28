@@ -3,12 +3,12 @@ import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 
 import useTranslation from "next-translate/useTranslation";
 import { useWindowDimensions } from "@src/hooks";
-import { FooterItems, SocialMedia } from "./components";
-import { FooterProps } from "./types";
-import CtaButton from "../cta-button";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { FooterItems, SocialMedia } from "./components";
+import { FooterProps } from "./types";
+import CtaButton from "../cta-button";
 
 const Footer = ({ staking, red }: FooterProps) => {
   const theme = useTheme();
@@ -50,9 +50,9 @@ const Footer = ({ staking, red }: FooterProps) => {
           }}
         >
           <Stack
-            direction={"column"}
-            justifyContent={"center"}
-            alignItems={"center"}
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
           >
             <Box
               sx={{

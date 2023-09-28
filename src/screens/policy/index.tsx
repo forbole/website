@@ -20,10 +20,10 @@ const Policy = () => {
   const topRef = React.useRef(null);
   useEffect(() => {
     (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(
-      function (d) {
+      (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
-        d.style.height = h + "px";
+        d.style.height = `${h  }px`;
       }
     );
   });
@@ -143,7 +143,7 @@ const Policy = () => {
                     />,
                     <Typography
                       color="#000"
-                      component={"span"}
+                      component="span"
                       sx={{
                         fontWeight: 700,
                         color: "#000",
