@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unstable-nested-components */
+
 import React, {
   Dispatch,
   SetStateAction,
@@ -18,7 +19,6 @@ import { ParamsProps } from "../../config";
 import useStyles from "./useStyles";
 
 interface CardProp {
-  key: string;
   network: Network;
   networkSummary: ParamsProps;
   showMobilePopover: string;
@@ -27,13 +27,8 @@ interface CardProp {
 
 const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const { t } = useTranslation("staking");
-  const {
-    key,
-    network,
-    networkSummary,
-    showMobilePopover,
-    setShowMobilePopover,
-  } = props;
+  const { network, networkSummary, showMobilePopover, setShowMobilePopover } =
+    props;
 
   /* Using framer-motion to animate the network box. */
   const ref = React.useRef(null);
@@ -66,7 +61,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
 
   /* A variable that is used to render the popover. */
   const popover = (
-    <Box key={key} className="networkbox__popover">
+    <Box className="networkbox__popover">
       <CloseIcon
         fontSize="small"
         className="networkbox__close-btn"
@@ -133,7 +128,6 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const styles = useStyles();
   return (
     <motion.div
-      key={key}
       ref={ref}
       css={styles.root}
       variants={{
