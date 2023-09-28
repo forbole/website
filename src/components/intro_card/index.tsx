@@ -1,19 +1,27 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
-import CtaButton from '../cta-button';
+import React from "react";
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
+import CtaButton from "../cta-button";
 
 type Props = {
   title?: string;
   desc?: string;
   list?: string[];
-  imageHref?:  string;
+  imageHref?: string;
   btnName?: string;
-  btnClick?:()=>void;
+  btnClick?: () => void;
   disabled?: boolean;
 };
 const IntroCard = (props: Props) => {
-  const { title, desc, list, imageHref = "", btnName, disabled,btnClick } = props;
+  const {
+    title,
+    desc,
+    list,
+    imageHref = "",
+    btnName,
+    disabled,
+    btnClick,
+  } = props;
   return (
     <Box
       component={"div"}
@@ -50,7 +58,7 @@ const IntroCard = (props: Props) => {
               fontWeight: "590",
               fontSize: "20px",
               marginBottom: "12px",
-              color:'#202A43'
+              color: "#202A43",
             }}
           >
             {title}
@@ -66,27 +74,30 @@ const IntroCard = (props: Props) => {
               {desc}
             </Typography>
           )}
-          <ul style={{listStyle: 'none'}} >
+          <ul style={{ listStyle: "none" }}>
             {list?.map((item, index) => (
               <Typography
                 key={index}
                 component="li"
                 sx={{
                   display: "flex",
-                  fontSize: "16px", lineHeight: "22px",fontWeight: "400",
-                  color:'#202A43',
-                "&:before": {
-                  content: '" "',
-                  display: "inline-block",
-                  width:'4px',height:'4px',
-                  backgroundColor:'#202A43',
-                  borderRadius:'4px',
-                  verticalAlign:'middle',
-                  marginRight:'10px',
-                  marginTop: '10px',
-                  flex: '0 0 auto',
-                }
-              }}
+                  fontSize: "16px",
+                  lineHeight: "22px",
+                  fontWeight: "400",
+                  color: "#202A43",
+                  "&:before": {
+                    content: '" "',
+                    display: "inline-block",
+                    width: "4px",
+                    height: "4px",
+                    backgroundColor: "#202A43",
+                    borderRadius: "4px",
+                    verticalAlign: "middle",
+                    marginRight: "10px",
+                    marginTop: "10px",
+                    flex: "0 0 auto",
+                  },
+                }}
                 px="10px"
               >
                 {item}

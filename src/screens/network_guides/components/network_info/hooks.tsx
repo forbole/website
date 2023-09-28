@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-console */
-import { useState, useMemo } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useState, useMemo } from "react";
+import { useQuery, gql } from "@apollo/client";
 import {
   getEachCosmosAPY,
   getEachCosmosTVL,
   getEachCosmosCommission,
   getEachCosmosUnbondingTime,
-} from '@graphql/queries';
-import { cosmosNetworkGuideParams } from './config';
+} from "@graphql/queries";
+import { cosmosNetworkGuideParams } from "./config";
 
 export const useNetworkGuidesHook = () => {
   const [cosmosNetworkGuides, setCosmosNetworkGuides] = useState(
@@ -50,9 +50,9 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance]: [
                 // ...prev[data.metric.instance],
                 {
-                  title: 'commission',
+                  title: "commission",
                   stats: data.commissionRate,
-                  type: 'percentage',
+                  type: "percentage",
                 },
               ],
             }))
@@ -73,9 +73,9 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance]: [
                 ...prev[data.metric.instance],
                 {
-                  title: 'apy',
+                  title: "apy",
                   stats: data.APY,
-                  type: 'percentage',
+                  type: "percentage",
                 },
               ],
             }))
@@ -96,9 +96,9 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance]: [
                 ...prev[data.metric.instance],
                 {
-                  title: 'staked by forbole',
+                  title: "staked by forbole",
                   stats: data.TVL,
-                  type: 'money',
+                  type: "money",
                 },
               ],
             }))
@@ -119,9 +119,9 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance]: [
                 ...prev[data.metric.instance],
                 {
-                  title: 'unbonding period',
+                  title: "unbonding period",
                   stats: data.unbondingTime,
-                  type: 'string',
+                  type: "string",
                 },
               ],
             }))

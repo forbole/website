@@ -16,7 +16,7 @@ type Props = {
 export default function Arraw({ className, sx, direction }: Props) {
   const theme = useTheme();
   const [rotate, setRotate] = useState(0);
-  function movePlayer(direction: Direction|undefined) {
+  function movePlayer(direction: Direction | undefined) {
     if (direction === Direction.Up) {
       setRotate(180);
     } else if (direction === Direction.Down) {
@@ -37,8 +37,8 @@ export default function Arraw({ className, sx, direction }: Props) {
       className={className}
       zIndex={2}
       sx={{
-        userSelect:"none",
-        display:'flex',
+        userSelect: "none",
+        display: "flex",
         width: "48px",
         height: "48px",
         [theme.breakpoints.down("laptop")]: {
@@ -61,9 +61,7 @@ export default function Arraw({ className, sx, direction }: Props) {
         ...sx,
       }}
     >
-      <BottomIcon
-      style={{ transform: "rotate(" + rotate + "deg)" }} 
-      />
+      <BottomIcon style={{ transform: "rotate(" + rotate + "deg)" }} />
     </Box>
   );
 }

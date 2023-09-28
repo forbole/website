@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import useTranslation from 'next-translate/useTranslation';
+import React, { useState } from "react";
+import useTranslation from "next-translate/useTranslation";
 import {
   Box,
   Container,
@@ -7,24 +7,24 @@ import {
   Stack,
   Typography,
   useMediaQuery,
-  useTheme
-} from '@mui/material';
-import { Layout, ScrollToTop } from '@components';
-import { Horse } from '@src/components/icons';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.min.css';
-import SwiperCore, { Autoplay, Navigation } from 'swiper';
-import Arraw, { Direction } from '@src/components/arrow';
-import Trans from 'next-translate/Trans';
-import { ImgBox, YTBSwiperCSS } from '@screens/about/SwiperCSS';
+  useTheme,
+} from "@mui/material";
+import { Layout, ScrollToTop } from "@components";
+import { Horse } from "@src/components/icons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
+import Arraw, { Direction } from "@src/components/arrow";
+import Trans from "next-translate/Trans";
+import { ImgBox, YTBSwiperCSS } from "@screens/about/SwiperCSS";
 
 // 挂载到当前swiper实例
-SwiperCore.use([Navigation,Autoplay]);
+SwiperCore.use([Navigation, Autoplay]);
 const About = () => {
   const { t } = useTranslation("about");
   const theme = useTheme();
   const topRef = React.useRef(null);
-const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   const imagList = [
@@ -35,7 +35,7 @@ const [loading, setLoading] = useState(true);
     "/about/aboutus_05.webp",
     "/about/aboutus_06.webp",
     "/about/aboutus_07.webp",
-  ]
+  ];
   const vidoeList = [
     {
       src: "https://www.youtube.com/embed/K5t6Q0OAVzI",
@@ -147,12 +147,12 @@ const [loading, setLoading] = useState(true);
                     },
                   }}
                 />,
-                  <Typography
-                  component={'span'}
+                <Typography
+                  component={"span"}
                   sx={{
                     textShadow:
                       "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                    fontWeight:"700",
+                    fontWeight: "700",
                     [theme.breakpoints.down("laptop")]: {
                       fontSize: "16px",
                     },
@@ -160,8 +160,9 @@ const [loading, setLoading] = useState(true);
                       fontSize: "24px",
                     },
                   }}
-                  />
-          ]}/>
+                />,
+              ]}
+            />
           </Stack>
           <Box
             sx={{
@@ -177,15 +178,15 @@ const [loading, setLoading] = useState(true);
           >
             <ImgBox>
               <Swiper
-               className={'swiper-style'}
+                className={"swiper-style"}
                 slidesPerView="auto"
                 centeredSlides={true}
                 spaceBetween={24}
                 breakpoints={{
                   1023: {
-                    spaceBetween:16,
-                    centeredSlides:false
-                  }
+                    spaceBetween: 16,
+                    centeredSlides: false,
+                  },
                 }}
                 loop={true} //循环滚动
                 navigation={{
@@ -212,27 +213,41 @@ const [loading, setLoading] = useState(true);
                       alt=""
                       style={{
                         height: "100%",
-                        width:'auto',
+                        width: "auto",
                         border: "1px solid rgba(2, 38, 225, 0.12)",
                         borderRadius: "4px",
                         overflow: "hidden",
                         boxShadow:
                           "0px 7.8450517654418945px 25.10416603088379px -3.1380207538604736px rgba(2, 38, 225, 0.10), 0px 4.70703125px 10.983072280883789px -4.70703125px rgba(2, 38, 225, 0.12)",
                       }}
-                      onError={(e:any )=> {
-                        e.target.style.width = '300px';
+                      onError={(e: any) => {
+                        e.target.style.width = "300px";
                       }}
                     />
                   </SwiperSlide>
                 ))}
               </Swiper>
             </ImgBox>
-            <Arraw className="h-next" direction={Direction.Right} sx={{
-              position: "absolute", right: '5px', top: "50%", transform: "translateY(-50%)",
-            }} />
-            <Arraw className="h-prev" direction={Direction.Left} sx={{
-              position: "absolute", left: "5px", top: '50%', transform: "translateY(-50%)",
-            }} />
+            <Arraw
+              className="h-next"
+              direction={Direction.Right}
+              sx={{
+                position: "absolute",
+                right: "5px",
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
+            />
+            <Arraw
+              className="h-prev"
+              direction={Direction.Left}
+              sx={{
+                position: "absolute",
+                left: "5px",
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
+            />
           </Box>
         </Stack>
 
@@ -280,77 +295,84 @@ const [loading, setLoading] = useState(true);
             </Typography>
           </Stack>
         </Stack>
-        </Container>
-        <YTBSwiperCSS>
-          <Stack
-              sx={{
-                position: "relative",
-                mt: "40px",
-                mb:"184px",
-                padding:onlyLargeScreen?'8px':'0',
-                height: "400px",
-                width: "1200px",
-                mx:'auto',
-                [theme.breakpoints.down("laptop")]: {
-                  height: "245px",
-                  width:'100%',
-                  mb:'40px'
-                },
-              }}
-            >
-              <Swiper
-                className="swiper-no-swiping"
-                style={{
-                  width:'100%',
-                  height: "100%",
-                  overflow:onlyLargeScreen?'visible':"hidden",
-                  padding:onlyLargeScreen?'0':"0 32px"
-                }}
-
-                slidesPerView={onlyLargeScreen ? 2 : 'auto'}
-                spaceBetween={16}
-                navigation={{
-                  nextEl: ".v-next",
-                  prevEl: ".v-prev",
-                }}
-              // loop={true}
-              >
-                {vidoeList.map((item, index) => (
-                  <SwiperSlide key={index} style={{
-                    height: "100%",
-                    maxWidth: onlyLargeScreen?"576px":'90%',
-                    overflow: "hidden",
-                    borderRadius: "12px",
-                  }}>
-                    <Skeleton variant="rectangular" sx={{display:loading?'block':'none',height:'100%'}}/>
-                    <iframe height="100%" width="100%"
-                      src={item.src}
-                      // src={'http://baidu.com'}
-                      title={item.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      onLoad={() => setLoading(false)}
-                      ></iframe>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <Arraw className="v-next" direction={Direction.Right} />
-              <Arraw className="v-prev" direction={Direction.Left}/>
-            </Stack>
-          </YTBSwiperCSS>
-
-        <Container
-          maxWidth="desktop"
+      </Container>
+      <YTBSwiperCSS>
+        <Stack
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "184px",
+            position: "relative",
+            mt: "40px",
+            mb: "184px",
+            padding: onlyLargeScreen ? "8px" : "0",
+            height: "400px",
+            width: "1200px",
+            mx: "auto",
             [theme.breakpoints.down("laptop")]: {
-              gap: "40px",
+              height: "245px",
+              width: "100%",
+              mb: "40px",
             },
           }}
         >
+          <Swiper
+            className="swiper-no-swiping"
+            style={{
+              width: "100%",
+              height: "100%",
+              overflow: onlyLargeScreen ? "visible" : "hidden",
+              padding: onlyLargeScreen ? "0" : "0 32px",
+            }}
+            slidesPerView={onlyLargeScreen ? 2 : "auto"}
+            spaceBetween={16}
+            navigation={{
+              nextEl: ".v-next",
+              prevEl: ".v-prev",
+            }}
+            // loop={true}
+          >
+            {vidoeList.map((item, index) => (
+              <SwiperSlide
+                key={index}
+                style={{
+                  height: "100%",
+                  maxWidth: onlyLargeScreen ? "576px" : "90%",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                }}
+              >
+                <Skeleton
+                  variant="rectangular"
+                  sx={{ display: loading ? "block" : "none", height: "100%" }}
+                />
+                <iframe
+                  height="100%"
+                  width="100%"
+                  src={item.src}
+                  // src={'http://baidu.com'}
+                  title={item.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  onLoad={() => setLoading(false)}
+                ></iframe>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <Arraw className="v-next" direction={Direction.Right} />
+          <Arraw className="v-prev" direction={Direction.Left} />
+        </Stack>
+      </YTBSwiperCSS>
+
+      <Container
+        maxWidth="desktop"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "184px",
+          [theme.breakpoints.down("laptop")]: {
+            gap: "40px",
+          },
+        }}
+      >
         <Stack>
           <Stack
             sx={{
@@ -364,12 +386,11 @@ const [loading, setLoading] = useState(true);
                 "0px 14px 64px  rgba(2, 38, 225, 0.12), 0px 8px 22px  rgba(2, 38, 225, 0.12)",
             }}
           >
-
             <Trans
               i18nKey={t("section_2nd_large_title")}
               components={[
                 <Typography
-                  display='inline'
+                  display="inline"
                   sx={{
                     fontSize: "40px",
                     fontWeight: "590",
@@ -382,8 +403,8 @@ const [loading, setLoading] = useState(true);
                   }}
                 />,
                 <Typography
-                  display='inline'
-                  component={'span'}
+                  display="inline"
+                  component={"span"}
                   color="#EE3131"
                   sx={{
                     fontSize: "40px",
@@ -395,10 +416,9 @@ const [loading, setLoading] = useState(true);
                       fontSize: "24px",
                     },
                   }}
-                />
+                />,
               ]}
             />
-
 
             <Typography
               sx={{

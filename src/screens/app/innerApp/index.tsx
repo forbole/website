@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { darkTemplate, lightTemplate } from '@src/styles';
-import { useRecoilValue,RecoilEnv } from 'recoil';
-import { readTheme } from '@recoil/settings';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import * as React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { darkTemplate, lightTemplate } from "@src/styles";
+import { useRecoilValue, RecoilEnv } from "recoil";
+import { readTheme } from "@recoil/settings";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 const InnerApp = (props: any) => {
   const { pageProps, Component } = props;
   const theme = useRecoilValue(readTheme);
   const muiTheme = React.useMemo(() => {
-    if (theme === 'dark') {
+    if (theme === "dark") {
       return createTheme(darkTemplate);
     }
     return createTheme(lightTemplate);

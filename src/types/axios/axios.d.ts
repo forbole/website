@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import axios from 'axios';
+import axios from "axios";
 
-declare module 'axios' {
+declare module "axios" {
   export interface AxiosInstance {
     request<T = any>(config: AxiosRequestConfig): Promise<T>;
     get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;

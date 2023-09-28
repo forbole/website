@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Link from 'next/link';
-import { Box, Typography, useTheme } from '@mui/material';
-import { useHKT } from '@hooks';
+import Link from "next/link";
+import { Box, Typography, useTheme } from "@mui/material";
+import { useHKT } from "@hooks";
 
 const Author = ({ post }: any) => {
   const { primaryAuthor: author, publishedAt } = post;
@@ -10,20 +10,20 @@ const Author = ({ post }: any) => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        alignContent: 'center',
+        display: "flex",
+        alignContent: "center",
         marginBottom: theme.spacing(3.5),
       }}
     >
       <img
         src={
           author.profileImage == null
-            ? '/images/assets/blog-placeholder.png'
+            ? "/images/assets/blog-placeholder.png"
             : author.profileImage
         }
         alt={author.name}
         style={{
-          borderRadius: '50%',
+          borderRadius: "50%",
           width: theme.spacing(5),
           height: theme.spacing(5),
           margin: 0,
@@ -32,9 +32,9 @@ const Author = ({ post }: any) => {
       <Box
         sx={{
           marginLeft: theme.spacing(2),
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
         <Link
@@ -42,12 +42,12 @@ const Author = ({ post }: any) => {
           href="/author/[author]"
           as={`/author/${author.slug}`}
         >
-          <a style={{ textDecoration: 'none' }}>
+          <a style={{ textDecoration: "none" }}>
             <Typography
               variant="body1"
               sx={{
                 color:
-                  theme.palette.mode === 'dark'
+                  theme.palette.mode === "dark"
                     ? theme.palette.primary.main
                     : theme.palette.text.primary,
                 fontWeight: 600,
@@ -61,9 +61,9 @@ const Author = ({ post }: any) => {
               sx={{
                 opacity: 0.5,
                 color:
-                  theme.palette.mode === 'dark'
+                  theme.palette.mode === "dark"
                     ? theme.palette.primary.main
-                    : 'rgba(29, 30, 34, 1)',
+                    : "rgba(29, 30, 34, 1)",
                 fontWeight: 400,
                 fontSize: theme.spacing(1.75),
               }}

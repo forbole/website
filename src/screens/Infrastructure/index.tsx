@@ -1,25 +1,34 @@
-import { Container, Grid, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { Layout, ScrollToTop } from '@src/components';
-import React from 'react';
-import IntroPanel from '@src/components/Intro_panel';
-import CtaButton from '@src/components/cta-button';
-import { StyledTab, StyledTabs } from '@src/components/selection-tab';
-import ProductPanel from '@src/components/product-panel';
-import HeaderCard from '@src/components/header-card';
-import KeyData from '@src/components/key_data';
-import ScrollLogo from '@src/components/scroll_logo';
-import Section from '@src/components/section';
-import useTranslation from 'next-translate/useTranslation';
-import Carousel from '@src/components/Carousel';
-import { useRouter } from 'next/router';
-import style from './index.module.css';
-import { scrollBottom } from '@src/utils/scroll';
+import {
+  Container,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { Layout, ScrollToTop } from "@src/components";
+import React from "react";
+import IntroPanel from "@src/components/Intro_panel";
+import CtaButton from "@src/components/cta-button";
+import { StyledTab, StyledTabs } from "@src/components/selection-tab";
+import ProductPanel from "@src/components/product-panel";
+import HeaderCard from "@src/components/header-card";
+import KeyData from "@src/components/key_data";
+import ScrollLogo from "@src/components/scroll_logo";
+import Section from "@src/components/section";
+import useTranslation from "next-translate/useTranslation";
+import Carousel from "@src/components/Carousel";
+import { useRouter } from "next/router";
+import style from "./index.module.css";
+import { scrollBottom } from "@src/utils/scroll";
 
 type Props = {};
 const Infrastructure = (props: Props) => {
   const theme = useTheme();
   // const { isMobile } = useWindowDimensions();
-  const isMobile=useMediaQuery(theme.breakpoints.down('tablet'),{noSsr:true})
+  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
+    noSsr: true,
+  });
   const [v1, setV1] = React.useState(0);
   const topRef = React.useRef(null);
   const PanelRef = React.useRef(null);
@@ -27,74 +36,76 @@ const Infrastructure = (props: Props) => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setV1(newValue);
   };
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"),{noSsr:true});
+  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
+    noSsr: true,
+  });
 
   const router = useRouter();
-  const personList=React.useMemo(()=>{
+  const personList = React.useMemo(() => {
     if (onlyLargeScreen) {
-        return [
-          {
-            name: "Michael McCaffrey",
-            position: "Lead Business Developer, Coreum",
-            desc: `Forbole is an exceptional SaaS provider that offers valuable solutions, especially within the Cosmos
+      return [
+        {
+          name: "Michael McCaffrey",
+          position: "Lead Business Developer, Coreum",
+          desc: `Forbole is an exceptional SaaS provider that offers valuable solutions, especially within the Cosmos
           ecosystem. Their expertise and commitment to delivering high-quality services have greatly benefited the
           Coreum blockchain. Their team has been responsive, knowledgeable, and efficient in addressing our
           needs and ensuring a seamless experience. I highly recommend Forbole to anyone seeking reliable and
           innovative SaaS solutions.`,
-            img: "/icons/Michael McCaffrey-Coreum.png",
-          },
-          {
-            name: "Boz Menzalji",
-            position: "COO of Overclock Labs, creator of Akash Network",
-            desc: `Forbole's team has been a reliable partner from the earliest days for Akash Network, allowing us to tap
+          img: "/icons/Michael McCaffrey-Coreum.png",
+        },
+        {
+          name: "Boz Menzalji",
+          position: "COO of Overclock Labs, creator of Akash Network",
+          desc: `Forbole's team has been a reliable partner from the earliest days for Akash Network, allowing us to tap
           into deep know-how for testnets, mainnet upgrades, and more. The tools they have contributed to the
           ecosystem, such as Big Dipper's Explorer, has been a great value-add to our growing ecosystem. We are
           fortunate to have a great partner with Forbole.`,
-            img: "/icons/person_avatar.png",
-          },
-          {
-            name: "Calin Pasat",
-            position: "Node Foundation Director, Humans.ai",
-            desc: `Working with Forbole has been an enlightening experience. As validators, they are reliably efficient, but
+          img: "/icons/person_avatar.png",
+        },
+        {
+          name: "Calin Pasat",
+          position: "Node Foundation Director, Humans.ai",
+          desc: `Working with Forbole has been an enlightening experience. As validators, they are reliably efficient, but
           it's their commitment to contributing to the broader ecosystem that truly sets them apart with open-source
           tools like Big Dipper Explorer. Their forward-thinking nature is evident in their proactive involvement in
           various projects, reflecting a deep understanding and a promising vision for the blockchain industry.`,
-            img: "/icons/Calin Pasat-humansai.png",
-          },
-        ];
-      } else {
-        return[
-          {
-            name: "Boz Menzalji",
-            position: "COO of Overclock Labs, creator of Akash Network",
-            desc: `Forbole's team has been a reliable partner from the earliest days for Akash Network, allowing us to tap
+          img: "/icons/Calin Pasat-humansai.png",
+        },
+      ];
+    } else {
+      return [
+        {
+          name: "Boz Menzalji",
+          position: "COO of Overclock Labs, creator of Akash Network",
+          desc: `Forbole's team has been a reliable partner from the earliest days for Akash Network, allowing us to tap
             into deep know-how for testnets, mainnet upgrades, and more. The tools they have contributed to the
             ecosystem, such as Big Dipper's Explorer, has been a great value-add to our growing ecosystem. We are
             fortunate to have a great partner with Forbole.`,
-            img: "/icons/person_avatar.png",
-          },
-          {
-            name: "Michael McCaffrey",
-            position: "Lead Business Developer, Coreum",
-            desc: `Forbole is an exceptional SaaS provider that offers valuable solutions, especially within the Cosmos
+          img: "/icons/person_avatar.png",
+        },
+        {
+          name: "Michael McCaffrey",
+          position: "Lead Business Developer, Coreum",
+          desc: `Forbole is an exceptional SaaS provider that offers valuable solutions, especially within the Cosmos
             ecosystem. Their expertise and commitment to delivering high-quality services have greatly benefited the
             Coreum blockchain. Their team has been responsive, knowledgeable, and efficient in addressing our
             needs and ensuring a seamless experience. I highly recommend Forbole to anyone seeking reliable and
             innovative SaaS solutions.`,
-            img: "/icons/Michael McCaffrey-Coreum.png",
-          },
-          {
-            name: "Calin Pasat",
-            position: "Node Foundation Director, Humans.ai",
-            desc: `Working with Forbole has been an enlightening experience. As validators, they are reliably efficient, but
+          img: "/icons/Michael McCaffrey-Coreum.png",
+        },
+        {
+          name: "Calin Pasat",
+          position: "Node Foundation Director, Humans.ai",
+          desc: `Working with Forbole has been an enlightening experience. As validators, they are reliably efficient, but
             it's their commitment to contributing to the broader ecosystem that truly sets them apart with open-source
             tools like Big Dipper Explorer. Their forward-thinking nature is evident in their proactive involvement in
             various projects, reflecting a deep understanding and a promising vision for the blockchain industry.`,
-            img: "/icons/Calin Pasat-humansai.png",
-          },
-        ];
+          img: "/icons/Calin Pasat-humansai.png",
+        },
+      ];
     }
-  },[onlyLargeScreen])
+  }, [onlyLargeScreen]);
   const textList = [
     //专业技能和优势对应的文本
     [
@@ -114,7 +125,7 @@ const Infrastructure = (props: Props) => {
       "expertise_item6",
     ],
   ];
-    
+
   return (
     <Layout title={t("page_title")} navLink="/products" footer>
       <Container
@@ -164,7 +175,10 @@ const Infrastructure = (props: Props) => {
           <Grid
             container
             rowSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(3) }}
-            columnSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(2) }}
+            columnSpacing={{
+              mobile: theme.spacing(2),
+              laptop: theme.spacing(2),
+            }}
           >
             <Grid item mobile={12} tablet={6} laptop={4}>
               <IntroPanel
@@ -220,7 +234,9 @@ const Infrastructure = (props: Props) => {
                   className={style.icon}
                 />
               }
-              onClick={(e: any)=>{ scrollBottom(e,PanelRef)}}
+              onClick={(e: any) => {
+                scrollBottom(e, PanelRef);
+              }}
             ></StyledTab>
             <StyledTab
               label={t("toggle_btn_right")}
@@ -230,7 +246,9 @@ const Infrastructure = (props: Props) => {
                   className={style.icon}
                 />
               }
-              onClick={(e: any)=>{ scrollBottom(e,PanelRef)}}
+              onClick={(e: any) => {
+                scrollBottom(e, PanelRef);
+              }}
             ></StyledTab>
           </StyledTabs>
           {[
@@ -256,7 +274,7 @@ const Infrastructure = (props: Props) => {
                     key={index}
                     sx={{
                       display: "flex",
-                      alignItems:"baseline",
+                      alignItems: "baseline",
                       maxWidth: "489px",
                       [theme.breakpoints.down("laptop")]: {
                         fontSize: "16px",
@@ -299,10 +317,10 @@ const Infrastructure = (props: Props) => {
           >
             {t("stake_now")}
           </CtaButton>
-          </Stack>
-          <Stack>
-            <Carousel personList={personList}/>
-          </Stack>
+        </Stack>
+        <Stack>
+          <Carousel personList={personList} />
+        </Stack>
         <ScrollToTop topRef={topRef} />
       </Container>
     </Layout>

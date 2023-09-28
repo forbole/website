@@ -1,3 +1,3 @@
-import TagPosts from './tag_posts';
+import TagPosts from "./tag_posts";
 
 export { TagPosts };

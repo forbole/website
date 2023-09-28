@@ -37,10 +37,10 @@ const NetworkGrid = () => {
     <Box css={styles.root}>
       <Box className="home__networks">
         <LayoutGroup>
-          {allNetworkData.map((network) => {
+          {allNetworkData.map((network, index) => {
             return (
               <NetworkCard
-                key={network.name}
+                key={network.name ?? index}
                 network={network}
                 networkSummary={networkInfo[network.graphql]}
                 showMobilePopover={showMobilePopover}

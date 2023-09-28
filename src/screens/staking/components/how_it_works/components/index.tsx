@@ -1,3 +1,3 @@
-import HowToCard from './how_to_card';
+import HowToCard from "./how_to_card";
 
 export { HowToCard };

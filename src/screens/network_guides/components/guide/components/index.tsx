@@ -1,3 +1,3 @@
-import GuideDetails from './guide_details';
+import GuideDetails from "./guide_details";
 
 export { GuideDetails };

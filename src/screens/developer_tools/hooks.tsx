@@ -1,9 +1,9 @@
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import validator from 'validator';
-import axios from 'axios';
-import DOMPurify from 'isomorphic-dompurify';
-import { toast, ToastContent } from 'react-toastify';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import validator from "validator";
+import axios from "axios";
+import DOMPurify from "isomorphic-dompurify";
+import { toast, ToastContent } from "react-toastify";
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = React.useState({

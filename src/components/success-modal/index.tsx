@@ -18,11 +18,8 @@ type Props = {
   bottom_word?: string;
   open: boolean;
 };
-const Alert = forwardRef<HTMLDivElement,Omit<Props, "open">>(
-  (
-    { fixed, close, up_word, middle_word, bottom_word },
-    ref
-  ) => {
+const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
+  ({ fixed, close, up_word, middle_word, bottom_word }, ref) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("laptop"));
     return (
@@ -160,21 +157,21 @@ export default function SuccessModal({
   }
   return (
     <Modal
-      disableEnforceFocus 
+      disableEnforceFocus
       open={open}
       onClose={() => close?.(false)}
       sx={{
-        overflow:'auto'
-        }}
+        overflow: "auto",
+      }}
       slotProps={{
-        backdrop:{
+        backdrop: {
           sx() {
-             return{
+            return {
               background: "rgba(123, 123, 123, 0.20)",
               backdropFilter: "blur(8px)",
-             } 
+            };
           },
-        }
+        },
       }}
     >
       <Alert

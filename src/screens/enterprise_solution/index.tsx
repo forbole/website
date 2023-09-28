@@ -1,14 +1,14 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
-import { Layout, ScrollToTop } from '@src/components';
-import React from 'react';
-import Section from '@src/components/section';
-import HeaderCard from '@src/components/header-card';
-import CtaButton from '@src/components/cta-button';
-import IntroPanel from '@src/components/Intro_panel';
-import ContactFrom from '@src/components/contact-form';
-import useTranslation from 'next-translate/useTranslation';
-import SuccessModal from '@src/components/success-modal';
-import useContactForm from './hook';
+import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Layout, ScrollToTop } from "@src/components";
+import React from "react";
+import Section from "@src/components/section";
+import HeaderCard from "@src/components/header-card";
+import CtaButton from "@src/components/cta-button";
+import IntroPanel from "@src/components/Intro_panel";
+import ContactFrom from "@src/components/contact-form";
+import useTranslation from "next-translate/useTranslation";
+import SuccessModal from "@src/components/success-modal";
+import useContactForm from "./hook";
 
 const EnterpriseSolution = () => {
   const {
@@ -19,13 +19,16 @@ const EnterpriseSolution = () => {
     canSubmit,
     handleCheckedChange,
     success,
-    setSuccess,isLoading
+    setSuccess,
+    isLoading,
   } = useContactForm();
 
   const topRef = React.useRef(null);
   const ContactRef = React.useRef(null);
   const theme = useTheme();
-  const isMobile=useMediaQuery(theme.breakpoints.down('tablet'),{noSsr:true})
+  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
+    noSsr: true,
+  });
   const { t } = useTranslation("enterprise_solution");
   const scrollToRef = (e: any, ref: any) => {
     console.log("ref", ref);
@@ -115,7 +118,7 @@ const EnterpriseSolution = () => {
           </Grid>
         </Stack>
 
-       {/*  <Stack>
+        {/*  <Stack>
           <Section
             title={t("testimonials")}
             title_large_trans={t("building")}

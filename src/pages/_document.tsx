@@ -1,8 +1,8 @@
-import * as React from 'react';
-import Document, { Head, Html, Main, NextScript } from 'next/document';
-import createEmotionServer from '@emotion/server/create-instance';
+import * as React from "react";
+import Document, { Head, Html, Main, NextScript } from "next/document";
+import createEmotionServer from "@emotion/server/create-instance";
 // import { darkTemplate as theme } from '@src/styles';
-import createEmotionCache from '../misc/createEmotionCache';
+import createEmotionCache from "../misc/createEmotionCache";
 
 export default class MyDocument extends Document {
   render() {
@@ -75,7 +75,7 @@ MyDocument.getInitialProps = async (ctx) => {
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style: any) => (
     <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
+      data-emotion={`${style.key} ${style.ids.join(" ")}`}
       key={style.key}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}

@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-console */
-import { useState, useMemo, useEffect } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useState, useMemo, useEffect } from "react";
+import { useQuery, gql } from "@apollo/client";
 import {
   getAllCosmosTVL,
   getElrondTVL,
@@ -13,10 +13,10 @@ import {
   getElrondUsersCount,
   getOasisUsersCount,
   getRadixUsersCount,
-} from '@graphql/queries';
-import { useStakingContext } from '@contexts';
-import { networkFunctions } from '@utils/network_functions';
-import { statsItems } from './config';
+} from "@graphql/queries";
+import { useStakingContext } from "@contexts";
+import { networkFunctions } from "@utils/network_functions";
+import { statsItems } from "./config";
 
 export const useStatsHook = () => {
   const { networkNumber } = useStakingContext();
@@ -152,7 +152,7 @@ export const useStatsHook = () => {
       setTotalUsers(userCount);
     }
     statsItems.map((item, i) =>
-      item.title === 'users staking'
+      item.title === "users staking"
         ? setStats((prevStats) => ({
             ...prevStats,
             [i]: {
@@ -231,7 +231,7 @@ export const useStatsHook = () => {
       setTotalTVL(tvl);
     }
     statsItems.map((item, i) =>
-      item.title === 'full tvl'
+      item.title === "full tvl"
         ? setStats((prevStats) => ({
             ...prevStats,
             [i]: {
@@ -255,7 +255,7 @@ export const useStatsHook = () => {
   useMemo(() => {
     if (networkNumber !== 0) {
       statsItems.map((item, i) =>
-        item.title === 'supporting networks'
+        item.title === "supporting networks"
           ? setStats((prevStats) => ({
               ...prevStats,
               [i]: {

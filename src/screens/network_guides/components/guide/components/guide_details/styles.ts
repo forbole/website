@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { ThemeOptions } from '@mui/material/styles';
+import styled from "@emotion/styled";
+import { ThemeOptions } from "@mui/material/styles";
 
 type ContentProps = {
   theme: ThemeOptions;
@@ -231,7 +231,7 @@ export const GuideContentBox = styled.div<any>`
   }
 
   blockquote::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -1.5em;
     top: 0;
@@ -441,7 +441,7 @@ export const GuideContentBox = styled.div<any>`
   }
 
   .kg-bookmark-publisher::before {
-    content: '•';
+    content: "•";
     margin: 0 0.5em;
   }
 

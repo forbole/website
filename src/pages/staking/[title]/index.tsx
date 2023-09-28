@@ -1,14 +1,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
-import type { NextPage } from 'next';
+import type { NextPage } from "next";
 // import BlogDetails from '@screens/blog_details';
 // import CareersDetails from '@screens/careers_details';
 // import Guide from '@screens/network_guides/components/guide';
-import NetworkGuides from '@screens/network_guides';
-import { getSinglePost } from '@api/posts';
-import { getNetworkPosts } from '@api/networks';
-import { Post } from '@models';
-import { removeInternalTags } from '@utils/remove_internal_tags';
+import NetworkGuides from "@screens/network_guides";
+import { getSinglePost } from "@api/posts";
+import { getNetworkPosts } from "@api/networks";
+import { Post } from "@models";
+import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const StakingDetailsPage: NextPage = (props: any) => {
   return <NetworkGuides {...props} />;
@@ -41,7 +41,7 @@ export async function getServerSideProps(context: { query: any; res: any }) {
     }
     return { post: null };
   } catch (err) {
-    console.log(err, 'error');
+    console.log(err, "error");
   }
 }
 

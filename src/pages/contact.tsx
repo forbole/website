@@ -1,5 +1,5 @@
-import type { NextPage } from 'next';
-import ContactPage from '@src/screens/contact';
+import type { NextPage } from "next";
+import ContactPage from "@src/screens/contact";
 
 const Contact: NextPage = () => <ContactPage />;
 

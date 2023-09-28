@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import Blog from '@screens/blog';
-import type { NextPage } from 'next';
-import { getPosts, getAllPosts, getTags } from '@api/posts';
-import { Post, Tag } from '@models';
-import { removeInternalTags } from '@utils/remove_internal_tags';
+import Blog from "@screens/blog";
+import type { NextPage } from "next";
+import { getPosts, getAllPosts, getTags } from "@api/posts";
+import { Post, Tag } from "@models";
+import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const BlogPage: NextPage = (props: any) => {
   return <Blog {...props} />;
@@ -41,7 +41,7 @@ export async function getServerSideProps(context: { query: any }) {
     meta = posts.meta;
   } catch (err) {
     error = true;
-    console.log(err, 'error');
+    console.log(err, "error");
   }
 
   return {

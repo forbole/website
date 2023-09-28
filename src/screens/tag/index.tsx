@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import { Box, useTheme } from '@mui/material';
-import { Layout, Tags } from '@components';
-import { TitlePosts, Twitter } from '../blog/components';
-import { TagPosts } from './components';
-import { useBlogHook } from './hooks';
-import { styles } from './styles';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import { Box, useTheme } from "@mui/material";
+import { Layout, Tags } from "@components";
+import { TitlePosts, Twitter } from "../blog/components";
+import { TagPosts } from "./components";
+import { useBlogHook } from "./hooks";
+import { styles } from "./styles";
 
 const TagTitlePosts = (props: any) => {
   const theme = useTheme();
@@ -20,18 +20,18 @@ const TagTitlePosts = (props: any) => {
     error,
   } = props;
 
-  const { t } = useTranslation('blog');
+  const { t } = useTranslation("blog");
   useBlogHook(error, t);
 
   return (
-    <Layout title={t('title')} navLink="/blog" navBar={false} footer>
+    <Layout title={t("title")} navLink="/blog" navBar={false} footer>
       <Box sx={styles.flexBox}>
         <Box
           sx={{
-            [theme.breakpoints.up('laptop')]: {
+            [theme.breakpoints.up("laptop")]: {
               padding: theme.spacing(15, 0),
-              display: 'flex',
-              maxWidth: '1200px',
+              display: "flex",
+              maxWidth: "1200px",
             },
           }}
         >

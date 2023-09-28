@@ -1,3 +1,3 @@
-import HomeAnimation from './background';
+import HomeAnimation from "./background";
 
 export { HomeAnimation };

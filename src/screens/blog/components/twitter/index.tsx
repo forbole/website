@@ -1,11 +1,11 @@
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import { Box, Typography, useTheme } from '@mui/material';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
-import { styles } from './styles';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import { Box, Typography, useTheme } from "@mui/material";
+import { TwitterTimelineEmbed } from "react-twitter-embed";
+import { styles } from "./styles";
 
 const Twitter = () => {
-  const { t } = useTranslation('blog');
+  const { t } = useTranslation("blog");
   const theme = useTheme();
 
   return (
@@ -18,7 +18,7 @@ const Twitter = () => {
           paddingBottom: theme.spacing(1.5),
         }}
       >
-        {t('twitter')}
+        {t("twitter")}
       </Typography>
       <Box>
         <TwitterTimelineEmbed

@@ -6,15 +6,18 @@ import { Box, useTheme } from "@mui/material";
 type Props = {
   options: any;
   label: string;
-  onChange:(even:any,label:any)=>void
+  onChange: (even: any, label: any) => void;
 };
-export default function CustomInputAutocomplete({ options, label ,onChange}: Props) {
+export default function CustomInputAutocomplete({
+  options,
+  label,
+  onChange,
+}: Props) {
   const theme = useTheme();
   return (
     <Autocomplete
       sx={{
         display: "block",
-        
       }}
       disablePortal
       onChange={onChange}
@@ -33,15 +36,15 @@ export default function CustomInputAutocomplete({ options, label ,onChange}: Pro
               color: "#878787",
               fontSize: "16px",
             },
-            "&:after":{
-              content:"url(/icons/Vector.png)",
-              position:"absolute",
-              right:'10px',
-              top:'14px',
-              transition:'transform 0.3s'
+            "&:after": {
+              content: "url(/icons/Vector.png)",
+              position: "absolute",
+              right: "10px",
+              top: "14px",
+              transition: "transform 0.3s",
             },
-            "&:focus-within:after":{
-              transform: "rotate(-180deg)"
+            "&:focus-within:after": {
+              transform: "rotate(-180deg)",
             },
             "& input": {
               display: "block",
@@ -75,7 +78,12 @@ export default function CustomInputAutocomplete({ options, label ,onChange}: Pro
             },
           }}
         >
-          <input type="text" {...params.inputProps} placeholder={label} name={'11'}/>
+          <input
+            type="text"
+            {...params.inputProps}
+            placeholder={label}
+            name={"11"}
+          />
         </Box>
       )}
     />

@@ -1,8 +1,8 @@
-import { Stack, Typography, useTheme } from '@mui/material';
-import dynamic from 'next/dynamic';
-import React from 'react';
+import { Stack, Typography, useTheme } from "@mui/material";
+import dynamic from "next/dynamic";
+import React from "react";
 
-const Trans = dynamic(async () => import('next-translate/Trans'), {
+const Trans = dynamic(async () => import("next-translate/Trans"), {
   ssr: false,
 });
 
@@ -14,7 +14,13 @@ type Props = {
   desc?: string;
 };
 
-const Section = ({ maxWidth = "laptop", title, desc, title_large, title_large_trans }: Props) => {
+const Section = ({
+  maxWidth = "laptop",
+  title,
+  desc,
+  title_large,
+  title_large_trans,
+}: Props) => {
   const theme = useTheme();
   return (
     <Stack
@@ -67,7 +73,7 @@ const Section = ({ maxWidth = "laptop", title, desc, title_large, title_large_tr
           i18nKey={title_large_trans}
           components={[
             <Typography
-              display='inline'
+              display="inline"
               sx={{
                 fontSize: "40px",
                 fontWeight: "590",
@@ -79,11 +85,11 @@ const Section = ({ maxWidth = "laptop", title, desc, title_large, title_large_tr
               }}
             />,
             <Typography
-              display='inline'
-              component={'span'}
-              color='#EE3131'
+              display="inline"
+              component={"span"}
+              color="#EE3131"
               sx={{
-                textShadow:'0px 0px 20px #ffffff',
+                textShadow: "0px 0px 20px #ffffff",
                 fontSize: "40px",
                 fontWeight: "590",
                 [theme.breakpoints.down("laptop")]: {
@@ -91,7 +97,7 @@ const Section = ({ maxWidth = "laptop", title, desc, title_large, title_large_tr
                   fontSize: "24px",
                 },
               }}
-            />
+            />,
           ]}
         />
       )}

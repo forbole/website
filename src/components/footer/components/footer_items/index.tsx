@@ -1,16 +1,16 @@
-import React from 'react';
-import { Box, Divider, Typography, useTheme } from '@mui/material';
-import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
-import { FooterProps } from '../../types';
-import useStyles from './useStyles';
+import React from "react";
+import { Box, Divider, Typography, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
+import { FooterProps } from "../../types";
+import useStyles from "./useStyles";
 
 const FooterItems = ({ staking }: FooterProps) => {
   const theme = useTheme();
   const { t } = useTranslation("common");
   const today = new Date();
   const year = today.getFullYear();
-  const styles=useStyles()
+  const styles = useStyles();
   return (
     <Box
       sx={{
@@ -48,18 +48,23 @@ const FooterItems = ({ staking }: FooterProps) => {
           },
         }}
       >
-        <Typography sx={{
-            fontSize: '14px',
-            fontStyle: 'normal',
-            fontWeight: '590',
-            lineHeight: '20px',
-            letterSpacing: '0.336px'}} >{t("copyright", { year })}</Typography>
+        <Typography
+          sx={{
+            fontSize: "14px",
+            fontStyle: "normal",
+            fontWeight: "590",
+            lineHeight: "20px",
+            letterSpacing: "0.336px",
+          }}
+        >
+          {t("copyright", { year })}
+        </Typography>
         <Divider
           orientation="vertical"
           variant="middle"
           flexItem
           sx={{
-            my:'4px',
+            my: "4px",
             borderColor: staking
               ? theme.palette.custom.forbole.indigo
               : theme.palette.primary.main,
@@ -69,10 +74,7 @@ const FooterItems = ({ staking }: FooterProps) => {
           }}
         />
         <Link href="/terms-and-conditions" passHref>
-          <Typography
-            component='a'
-            css={styles.word}
-          >
+          <Typography component="a" css={styles.word}>
             {t("tnc")}
           </Typography>
         </Link>
@@ -80,7 +82,8 @@ const FooterItems = ({ staking }: FooterProps) => {
           orientation="vertical"
           variant="middle"
           flexItem
-          sx={{ my:'4px',
+          sx={{
+            my: "4px",
             borderColor: staking
               ? theme.palette.custom.forbole.indigo
               : theme.palette.primary.main,
@@ -90,10 +93,7 @@ const FooterItems = ({ staking }: FooterProps) => {
           }}
         />
         <Link href="/privacy-policy" passHref>
-          <Typography
-            component='a'
-            css={styles.word}
-          >
+          <Typography component="a" css={styles.word}>
             {t("policy")}
           </Typography>
         </Link>
@@ -121,11 +121,11 @@ const FooterItems = ({ staking }: FooterProps) => {
             },
           }}
         >
-          <Link href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2" passHref>
-            <Typography
-              component='a'
-              css={styles.word}
-            >
+          <Link
+            href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2"
+            passHref
+          >
+            <Typography component="a" css={styles.word}>
               {t("brand guide")}
             </Typography>
           </Link>
@@ -134,7 +134,7 @@ const FooterItems = ({ staking }: FooterProps) => {
             variant="middle"
             flexItem
             sx={{
-              my:'4px',
+              my: "4px",
               borderColor: staking
                 ? theme.palette.custom.forbole.indigo
                 : theme.palette.primary.main,
@@ -144,10 +144,7 @@ const FooterItems = ({ staking }: FooterProps) => {
             }}
           />
           <Link href="/blog" passHref>
-            <Typography
-              component='a'
-              css={styles.word}
-            >
+            <Typography component="a" css={styles.word}>
               {t("blog")}
             </Typography>
           </Link>

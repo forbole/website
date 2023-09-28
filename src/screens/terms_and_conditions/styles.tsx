@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const TNCCSS = styled.div`
   padding: 0px 24px;
   .email {
     list-style: none;
   }
-  .li{
-    padding-left:60px;
+  .li {
+    padding-left: 60px;
   }
   h1 {
     padding-top: 8px;
@@ -32,15 +32,15 @@ export const TNCCSS = styled.div`
   a {
     color: #000;
   }
-  .t1{
-    display:inline-block;
-    width:60px;
-    float:left;
+  .t1 {
+    display: inline-block;
+    width: 60px;
+    float: left;
   }
-  .t2{
-    display:inline-block;
-    width:60px;
-    float:left;
+  .t2 {
+    display: inline-block;
+    width: 60px;
+    float: left;
   }
   @media only screen and (min-width: 1024px) {
     display: flex;

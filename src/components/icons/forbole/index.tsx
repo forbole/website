@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Forbole = ({ color,height="30",width="158" }: any) => {
+const Forbole = ({ color, height = "30", width = "158" }: any) => {
   return (
     <svg
       width={width}

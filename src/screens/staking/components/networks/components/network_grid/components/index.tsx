@@ -1,3 +1,3 @@
-import NetworkCard from './network_card';
+import NetworkCard from "./network_card";
 
 export { NetworkCard };

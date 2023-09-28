@@ -31,7 +31,7 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
       });
     }
   };
-   
+
   return (
     <Box
       sx={{
@@ -66,7 +66,7 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
           height: "auto",
           position: "fixed",
           top: 0,
-          px:'16px',
+          px: "16px",
           zIndex: 2,
           maxWidth: "desktop",
           [theme.breakpoints.up("laptop")]: {

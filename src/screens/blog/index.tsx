@@ -1,27 +1,27 @@
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import { Box, useTheme } from '@mui/material';
-import { Layout, Tags, ScrollToTop } from '@components';
-import { BlogPosts, TitlePosts, Twitter } from './components';
-import { useBlogHook } from './hooks';
-import { styles } from './styles';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import { Box, useTheme } from "@mui/material";
+import { Layout, Tags, ScrollToTop } from "@components";
+import { BlogPosts, TitlePosts, Twitter } from "./components";
+import { useBlogHook } from "./hooks";
+import { styles } from "./styles";
 
 const Blog = (props: any) => {
   const theme = useTheme();
   const { posts = [], meta = {}, tags = [], sidePosts = [], error } = props;
-  const { t } = useTranslation('blog');
+  const { t } = useTranslation("blog");
   useBlogHook(error, t);
   const topRef = React.useRef(null);
   return (
-    <Layout title={t('title')} navLink="/blog" navBar={false} footer>
+    <Layout title={t("title")} navLink="/blog" navBar={false} footer>
       <Box sx={styles.flexBox}>
         <Box
           ref={topRef}
           sx={{
-            [theme.breakpoints.up('laptop')]: {
+            [theme.breakpoints.up("laptop")]: {
               padding: theme.spacing(15, 0),
-              display: 'flex',
-              maxWidth: '1200px',
+              display: "flex",
+              maxWidth: "1200px",
             },
           }}
         >
@@ -33,13 +33,13 @@ const Blog = (props: any) => {
           </Box>
           <Box
             sx={{
-              display: 'none',
-              [theme.breakpoints.up('laptop')]: {
-                display: 'flex',
-                position: 'absolute',
-                left: '50%',
-                justifyContent: 'center',
-                bottom: '250px',
+              display: "none",
+              [theme.breakpoints.up("laptop")]: {
+                display: "flex",
+                position: "absolute",
+                left: "50%",
+                justifyContent: "center",
+                bottom: "250px",
               },
             }}
           >
@@ -51,9 +51,9 @@ const Blog = (props: any) => {
           right="5%"
           bottom="10%"
           sx={{
-            display: 'block',
-            [theme.breakpoints.up('laptop')]: {
-              display: 'none',
+            display: "block",
+            [theme.breakpoints.up("laptop")]: {
+              display: "none",
             },
           }}
         >

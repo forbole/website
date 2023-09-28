@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-console */
-import { useState, useMemo } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useState, useMemo } from "react";
+import { useQuery, gql } from "@apollo/client";
 import {
   getEachCosmosBondedToken,
   getEachCosmosAPY,
@@ -16,9 +16,9 @@ import {
   getSolanaBondedToken,
   getOasisBondedToken,
   getRadixBondedToken,
-} from '@graphql/queries';
-import { useStakingContext } from '@contexts';
-import { networkFunctions } from '@utils/network_functions';
+} from "@graphql/queries";
+import { useStakingContext } from "@contexts";
+import { networkFunctions } from "@utils/network_functions";
 import {
   cosmosNetworkParams,
   elrondNetworkParams,
@@ -26,7 +26,7 @@ import {
   oasisNetworkParams,
   radixNetworkParams,
   allNetworkKeys,
-} from './config';
+} from "./config";
 
 export const useNetworkHook = () => {
   const [cosmosNetworks, setCosmosNetworks] = useState(cosmosNetworkParams);

@@ -1,22 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { LangIcon, MenuIcon } from '@components/icons';
-import { Collapse, ListItem, Stack, useTheme } from '@mui/material';
-import { useWindowDimensions } from '@src/hooks';
-import LangMenuButton from '../lang_menu_button';
-import CompanyMenuButton from '../company_menu_button';
-import ProductsMenuButton from '../products_menu_button';
-import { Forbole as ForboleLogo } from '@icons';
+import * as React from "react";
+import useTranslation from "next-translate/useTranslation";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { LangIcon, MenuIcon } from "@components/icons";
+import { Collapse, ListItem, Stack, useTheme } from "@mui/material";
+import { useWindowDimensions } from "@src/hooks";
+import LangMenuButton from "../lang_menu_button";
+import CompanyMenuButton from "../company_menu_button";
+import ProductsMenuButton from "../products_menu_button";
+import { Forbole as ForboleLogo } from "@icons";
 
-import CtaButton from '@src/components/cta-button';
-import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
-import { anchorElState } from '@src/recoil/settings/anchorEl';
+import CtaButton from "@src/components/cta-button";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { anchorElState } from "@src/recoil/settings/anchorEl";
 
 interface NavMenuProps {
   link: string | null;
@@ -24,11 +24,11 @@ interface NavMenuProps {
 
 const MobileNavMenu = ({ link }: NavMenuProps) => {
   const router = useRouter();
-  const { t,lang } = useTranslation("common");
+  const { t, lang } = useTranslation("common");
   const theme = useTheme();
   const { windowDimensions } = useWindowDimensions();
   const { width } = windowDimensions;
-  const [anchorEl, setAnchorEl] =useRecoilState(anchorElState);
+  const [anchorEl, setAnchorEl] = useRecoilState(anchorElState);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -60,7 +60,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
     setOpenDrawer(() => false);
     setOpenShowCompany(() => false);
     setOpenShowProducts(() => false);
-  },[open])
+  }, [open]);
 
   return (
     <div>
@@ -198,11 +198,11 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
           }}
         >
           <div>{t("Company")}</div>
-            {openShowCompany ? (
-              <KeyboardArrowUpIcon />
-            ) : (
-              <KeyboardArrowDownIcon />
-            )}
+          {openShowCompany ? (
+            <KeyboardArrowUpIcon />
+          ) : (
+            <KeyboardArrowDownIcon />
+          )}
         </ListItem>
         <Collapse in={openShowCompany} timeout="auto" unmountOnExit>
           <CompanyMenuButton />
@@ -270,9 +270,9 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
             />
             {t(lang)}
           </Stack>
-            {openDrawer ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          {openDrawer ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </ListItem>
-          <Collapse in={openDrawer} timeout="auto" unmountOnExit>
+        <Collapse in={openDrawer} timeout="auto" unmountOnExit>
           <LangMenuButton />
         </Collapse>
       </Menu>

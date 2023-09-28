@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { ThemeOptions } from '@mui/material/styles';
+import styled from "@emotion/styled";
+import { ThemeOptions } from "@mui/material/styles";
 
 type ContentProps = {
   theme: ThemeOptions;
@@ -33,11 +33,11 @@ export const ContentCSS = styled.div<ContentProps>`
   }
   margin: auto;
   color: ${(props) =>
-    props?.theme?.palette?.mode === 'dark' ? '#FFFFFF' : '#000000'};
+    props?.theme?.palette?.mode === "dark" ? "#FFFFFF" : "#000000"};
   a {
     color: ${(props) =>
-      props?.theme?.palette?.mode === 'dark'
-        ? '#FFFFFF'
+      props?.theme?.palette?.mode === "dark"
+        ? "#FFFFFF"
         : props?.theme?.palette?.custom?.forbole?.red};
     transition: 0.3s;
     &:hover {
@@ -182,7 +182,7 @@ export const ContentBox = styled.div<any>`
   }
 
   blockquote::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -1.5em;
     top: 0;
@@ -222,7 +222,7 @@ export const ContentBox = styled.div<any>`
     font-size: 0.9rem;
     line-height: 1.4em;
     color: ${(props) =>
-      props?.theme?.palette?.mode === 'dark' ? '#FFFFFF' : '#000000'};
+      props?.theme?.palette?.mode === "dark" ? "#FFFFFF" : "#000000"};
     padding: 1rem 0rem;
   }
 
@@ -426,7 +426,7 @@ export const ContentBox = styled.div<any>`
   }
 
   .kg-bookmark-publisher::before {
-    content: '•';
+    content: "•";
     margin: 0 0.5em;
   }
 

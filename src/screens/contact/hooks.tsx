@@ -1,31 +1,38 @@
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import validator from 'validator';
-import axios from 'axios';
-import DOMPurify from 'isomorphic-dompurify';
-import { ToastContent, toast } from 'react-toastify';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import validator from "validator";
+import axios from "axios";
+import DOMPurify from "isomorphic-dompurify";
+import { ToastContent, toast } from "react-toastify";
 
 const useContactForm = () => {
   const [inputs, setInputs] = React.useState({
-    name: '',
-    email: '',
-    company:"",
-    telegram:"",
+    name: "",
+    email: "",
+    company: "",
+    telegram: "",
     agree: false,
-    specify:"",
-    collaboration:false,
-    enterprise_solution:false,
-    careers:false,
-    other:false
+    specify: "",
+    collaboration: false,
+    enterprise_solution: false,
+    careers: false,
+    other: false,
   });
   const [canSubmit, setCanSubmit] = React.useState(false);
   const { sanitize } = DOMPurify;
-  const { t } = useTranslation('contact');
+  const { t } = useTranslation("contact");
   const [success, setSuccess] = React.useState<boolean>(false);
   const [isLoading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    if (validator.isEmail(inputs.email) && inputs.name&&(inputs.collaboration||inputs.enterprise_solution||inputs.other||inputs.careers)) {
+    if (
+      validator.isEmail(inputs.email) &&
+      inputs.name &&
+      (inputs.collaboration ||
+        inputs.enterprise_solution ||
+        inputs.other ||
+        inputs.careers)
+    ) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
@@ -57,13 +64,16 @@ const useContactForm = () => {
       event.preventDefault();
       setLoading(true);
       axios
-        .post('/api/contact', {
+        .post("/api/contact", {
           from: inputs.email,
-          to: 'rpc@forbole.com',
-          subject: "A new customer just wanted to get in touch with us via Enterprise form",
+          to: "rpc@forbole.com",
+          subject:
+            "A new customer just wanted to get in touch with us via Enterprise form",
           html: `
           <p>Dear Administrator,</p>
-          <p>A new customer: ${sanitize(inputs.email)} just wanted to get in touch with us.</p>
+          <p>A new customer: ${sanitize(
+            inputs.email
+          )} just wanted to get in touch with us.</p>
           <p>Here is the details:</p>
           <p>Customer's Name: ${sanitize(inputs.name)}</p>
           <p>Customer's Company: ${sanitize(inputs.company)}</p>
@@ -73,31 +83,31 @@ const useContactForm = () => {
           <p>specify: ${sanitize(inputs.specify)}</p>
           <p>Regards,</p>
           <p>Forbole web system</p>
-          `
+          `,
         })
         .then((res) => {
           if (res.status === 200) {
             setInputs({
-              name: '',
-              email: '',
-              company:"",
-              telegram:"",
-              agree:false,
-              collaboration:false,
-              enterprise_solution:false,
-              careers:false,
-              other:false,
-              specify:''
+              name: "",
+              email: "",
+              company: "",
+              telegram: "",
+              agree: false,
+              collaboration: false,
+              enterprise_solution: false,
+              careers: false,
+              other: false,
+              specify: "",
             });
           }
-          setSuccess(true)
+          setSuccess(true);
           setLoading(false);
         })
         .catch((err) => {
           // eslint-disable-next-line no-console
           setLoading(false);
           console.log(err);
-          toast.error(t('error')as ToastContent<unknown>);
+          toast.error(t("error") as ToastContent<unknown>);
         });
     }
   };
@@ -124,8 +134,6 @@ const useContactForm = () => {
     }));
   };
 
- 
-
   return {
     handleSubmit,
     handleInputChange,
@@ -133,7 +141,10 @@ const useContactForm = () => {
     inputs,
     setInputs,
     canSubmit,
-    handleCheckedChange,success,setSuccess,isLoading
+    handleCheckedChange,
+    success,
+    setSuccess,
+    isLoading,
   };
 };
 

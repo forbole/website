@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import TagTitlePosts from '@screens/tag';
-import { getPostsByTag } from '@api/tags';
-import { getPosts, getTags } from '@api/posts';
-import { Post, Tag } from '@models';
-import { removeInternalTags } from '@utils/remove_internal_tags';
+import TagTitlePosts from "@screens/tag";
+import { getPostsByTag } from "@api/tags";
+import { getPosts, getTags } from "@api/posts";
+import { Post, Tag } from "@models";
+import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const TagDetailsPage = (props: any) => {
   return <TagTitlePosts {...props} />;
@@ -42,7 +42,7 @@ export async function getServerSideProps(context: { query: any }) {
     );
   } catch (err) {
     error = true;
-    console.log(error, 'error');
+    console.log(error, "error");
   }
 
   return {

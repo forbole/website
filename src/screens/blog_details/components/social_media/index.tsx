@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
-import { useRouter } from 'next/router';
-import { Box, useTheme } from '@mui/material';
-import { Telegram, Facebook, Twitter, LinkedIn } from '@icons';
+import React from "react";
+import { useRouter } from "next/router";
+import { Box, useTheme } from "@mui/material";
+import { Telegram, Facebook, Twitter, LinkedIn } from "@icons";
 
 const SocialMedia = (props: any) => {
   const theme = useTheme();
-  const { title = 'Forbole ' } = props;
+  const { title = "Forbole " } = props;
   const router = useRouter();
   const path = router.asPath;
   const shareUrl = `${process.env.NEXT_PUBLIC_URL}${path}`;
@@ -16,44 +16,44 @@ const SocialMedia = (props: any) => {
     const config: { [key: string]: string | number } = {
       height: 400,
       width: 550,
-      location: 'no',
-      toolbar: 'no',
-      status: 'no',
-      directories: 'no',
-      menubar: 'no',
-      scrollbars: 'yes',
-      resizable: 'no',
-      centerscreen: 'yes',
-      chrome: 'yes',
+      location: "no",
+      toolbar: "no",
+      status: "no",
+      directories: "no",
+      menubar: "no",
+      scrollbars: "yes",
+      resizable: "no",
+      centerscreen: "yes",
+      chrome: "yes",
     };
 
     window.open(
       url,
-      '',
+      "",
       Object.keys(config)
         .map((key) => `${key}=${config[key]}`)
-        .join(', ')
+        .join(", ")
     );
   };
   return (
     <Box
       sx={{
         paddingBottom: theme.spacing(3),
-        '& svg': {
+        "& svg": {
           marginRight: theme.spacing(2),
-          '& path': {
+          "& path": {
             fill:
-              theme.palette.mode === 'dark'
+              theme.palette.mode === "dark"
                 ? theme.palette.primary.main
                 : theme.palette.custom.forbole.indigo,
           },
-          '&:hover': {
-            cursor: 'pointer',
-            borderRadius: '50%',
+          "&:hover": {
+            cursor: "pointer",
+            borderRadius: "50%",
             background:
-              theme.palette.mode === 'dark'
+              theme.palette.mode === "dark"
                 ? theme.palette.custom.forbole.indigo
-                : 'rgba(29, 30, 34, 0.3)',
+                : "rgba(29, 30, 34, 0.3)",
           },
         },
       }}

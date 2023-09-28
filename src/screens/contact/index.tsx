@@ -36,11 +36,10 @@ const Contact = () => {
     handleCheckedChange,
     success,
     setSuccess,
-    isLoading
+    isLoading,
   } = useContactForm();
   const theme = useTheme();
   const router = useRouter();
-
 
   const selectList = [
     { label: "item_1", name: "collaboration" },
@@ -49,15 +48,15 @@ const Contact = () => {
     { label: "item_4", name: "other" },
   ] as const;
 
-  const inputRef=useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
   const handleToggle = (e: any) => {
     const { name, checked } = e.target;
-    if (name=='other'){
-      if(checked){
+    if (name == "other") {
+      if (checked) {
         setTimeout(() => {
-        inputRef.current?.querySelector('input')?.focus()
-        },100)
-      }else{
+          inputRef.current?.querySelector("input")?.focus();
+        }, 100);
+      } else {
         handleClear("specify");
       }
     }
@@ -82,74 +81,76 @@ const Contact = () => {
               padding: "24px",
               width: "343px",
               gap: "24px",
-              mt:'104px',
+              mt: "104px",
             },
           }}
         >
-            <Stack>
-              <Typography
-                sx={{
-                  fontSize: "32px",
-                  fontWeight: 590,
-                  mb: "8px",
-                  [theme.breakpoints.down("laptop")]: {
-                    fontSize: "18px",
-                    mb: "15px",
-                  },
-                }}
-              >
-                {t("form_title")}
-              </Typography>
+          <Stack>
+            <Typography
+              sx={{
+                fontSize: "32px",
+                fontWeight: 590,
+                mb: "8px",
+                [theme.breakpoints.down("laptop")]: {
+                  fontSize: "18px",
+                  mb: "15px",
+                },
+              }}
+            >
+              {t("form_title")}
+            </Typography>
 
+            <Typography
+              sx={{
+                fontSize: "16px",
+                fontWeight: 300,
+              }}
+            >
+              {t("form_desc")}
+            </Typography>
+
+            <Stack
+              sx={{
+                mt: "24px",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "8px",
+                [theme.breakpoints.down("laptop")]: {
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                },
+              }}
+            >
+              <Stack direction={"row"}>
+                <Box
+                  sx={styles.iconBox}
+                  mr="8px"
+                  onClick={() => {
+                    router.push("mailto:info@forbole.com");
+                  }}
+                >
+                  <img src="/icons/email.svg" alt="" />
+                </Box>
+                <Box
+                  sx={styles.iconBox}
+                  onClick={() => {
+                    router.push("https://t.me/forbole");
+                  }}
+                >
+                  <img src="/icons/Telegram.svg" alt="" />
+                </Box>
+              </Stack>
               <Typography
                 sx={{
                   fontSize: "16px",
-                  fontWeight: 300,
+                  color: "#202A43",
+                  opacity: "0.6",
                 }}
               >
-                {t("form_desc")}
+                {t("method")}
               </Typography>
-
-              <Stack
-                sx={{
-                  mt: "24px",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: "8px",
-                  [theme.breakpoints.down("laptop")]: {
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                  },
-                }}
-              >
-                <Stack direction={"row"}>
-                  <Box sx={styles.iconBox} mr="8px"
-                   onClick={() => {
-                    router.push("mailto:info@forbole.com");
-                  }}
-                  >
-                    <img src="/icons/email.svg" alt="" />
-                  </Box>
-                  <Box
-                    sx={styles.iconBox}
-                    onClick={() => {
-                      router.push("https://t.me/forbole");
-                    }}
-                  >
-                    <img src="/icons/Telegram.svg" alt="" />
-                  </Box>
-                </Stack>
-                <Typography
-                  sx={{
-                    fontSize: "16px",
-                    color: "#202A43",
-                    opacity: "0.6",
-                  }}
-                >
-                  {t("method")}
-                </Typography>
-              </Stack>
             </Stack>
+          </Stack>
           <Grid
             container
             spacing={{ mobile: theme.spacing(3), desktop: theme.spacing(4) }}
@@ -318,7 +319,7 @@ const Contact = () => {
                     mr: 0,
                     verticalAlign: "top",
                     lineHeight: "30px",
-                    alignItems:'flex-start'
+                    alignItems: "flex-start",
                   }}
                   control={
                     <Checkbox
@@ -339,7 +340,11 @@ const Contact = () => {
               </FormGroup>
             </Grid>
             <Grid item laptop={12}>
-              <CtaButton onClick={handleSubmit} disabled={!canSubmit} loading={isLoading}>
+              <CtaButton
+                onClick={handleSubmit}
+                disabled={!canSubmit}
+                loading={isLoading}
+              >
                 {t("submit")}
               </CtaButton>
             </Grid>

@@ -1,6 +1,6 @@
 export interface FooterProps {
   staking?: boolean;
-  red?:boolean;
+  red?: boolean;
 }
 
 export interface FooterItemsProps {

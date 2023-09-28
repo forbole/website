@@ -20,15 +20,15 @@ const ScrollToTop = ({ topRef }: TopProps) => {
     });
   };
   return (
-    <Box position="relative" alignSelf="center" zIndex={2}  >
+    <Box position="relative" alignSelf="center" zIndex={2}>
       <Box
         sx={{
-          my:'60px',
-          mx:"auto",
+          my: "60px",
+          mx: "auto",
           width: "48px",
           height: "48px",
           [theme.breakpoints.down("laptop")]: {
-            my:'24px',
+            my: "24px",
             width: "36px",
             height: "36px",
           },
@@ -44,7 +44,6 @@ const ScrollToTop = ({ topRef }: TopProps) => {
             "&:hover ": {
               fill: "rgba(241, 243, 248)",
             },
-            
           },
         }}
       >

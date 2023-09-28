@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const TransitionCSS = styled.div<any>`
   @keyframes fadeIn {
@@ -12,10 +12,10 @@ export const TransitionCSS = styled.div<any>`
   animation: fadeIn 10s;
 `;
 export const FilterBG = styled.div<any>`
-    position: absolute;
-    inset: 0 16px;
-    opacity: 0.8;
-    background: #FD3317;
-    filter: blur(40px);
-    z-index:-1;
+  position: absolute;
+  inset: 0 16px;
+  opacity: 0.8;
+  background: #fd3317;
+  filter: blur(40px);
+  z-index: -1;
 `;

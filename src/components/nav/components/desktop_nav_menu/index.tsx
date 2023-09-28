@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import { Box, useTheme } from '@mui/material';
-import { navItems } from '../config';
-import LangMenuButton from '../lang_menu_button';
-import CompanyMenuButton from '../company_menu_button';
-import ProductsMenuButton from '../products_menu_button';
-import { useRouter } from 'next/router';
-import classes from './index.module.css';
-import CtaButton from '@src/components/cta-button';
-import Link from 'next/link';
+import * as React from "react";
+import useTranslation from "next-translate/useTranslation";
+import { Box, useTheme } from "@mui/material";
+import { navItems } from "../config";
+import LangMenuButton from "../lang_menu_button";
+import CompanyMenuButton from "../company_menu_button";
+import ProductsMenuButton from "../products_menu_button";
+import { useRouter } from "next/router";
+import classes from "./index.module.css";
+import CtaButton from "@src/components/cta-button";
+import Link from "next/link";
 
 interface NavMenuProps {
   link: string | null;
@@ -35,27 +35,32 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
             key={i}
             className={classes.navItem}
             sx={{
-              color: 'white',
-                fontWeight: 600,
-                fontSize: theme.spacing(2),
+              color: "white",
+              fontWeight: 600,
+              fontSize: theme.spacing(2),
               "&:hover": {
                 color: theme.palette.custom.forbole.indigo,
               },
-              userSelect:'none',
+              userSelect: "none",
             }}
           >
             <Link href={item.link} passHref>
-              <Box component='a' style={{color:'inherit',textDecoration: 'none'}}>{t(item.display)}</Box>
+              <Box
+                component="a"
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                {t(item.display)}
+              </Box>
             </Link>
             {i === 0 && (
-              <Box className={classes.boxItem} >
+              <Box className={classes.boxItem}>
                 <Box className={classes.boxItemList}>
                   <ProductsMenuButton />
                 </Box>
               </Box>
             )}
             {i === 1 && (
-              <Box className={classes.boxItem} >
+              <Box className={classes.boxItem}>
                 <Box className={classes.boxItemList}>
                   <CompanyMenuButton />
                 </Box>
@@ -65,9 +70,9 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
         );
       })}
       <Box>
-        <Link href={'/staking'} passHref>
+        <Link href={"/staking"} passHref>
           <a>
-          <CtaButton >{t('StakeNow')}</CtaButton>
+            <CtaButton>{t("StakeNow")}</CtaButton>
           </a>
         </Link>
       </Box>

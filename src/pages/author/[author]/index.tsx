@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import AuthorTitlePosts from '@screens/author';
-import { getPostsByAuthor, getAuthorBySlug } from '@api/authors';
-import { getPosts, getTags } from '@api/posts';
-import { Post, Tag } from '@models';
-import { removeInternalTags } from '@utils/remove_internal_tags';
+import AuthorTitlePosts from "@screens/author";
+import { getPostsByAuthor, getAuthorBySlug } from "@api/authors";
+import { getPosts, getTags } from "@api/posts";
+import { Post, Tag } from "@models";
+import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const AuthorDetailsPage = (props: any) => {
   return <AuthorTitlePosts {...props} />;
@@ -43,7 +43,7 @@ export async function getServerSideProps(context: { query: any }) {
     );
   } catch (err) {
     error = true;
-    console.log(error, 'error');
+    console.log(error, "error");
   }
   return {
     props: {

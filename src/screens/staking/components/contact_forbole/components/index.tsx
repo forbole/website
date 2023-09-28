@@ -1,3 +1,3 @@
-import ContactCard from './contact_card';
+import ContactCard from "./contact_card";
 
 export { ContactCard };

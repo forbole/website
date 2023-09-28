@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import React from "react";
+import { Box, Typography, useTheme } from "@mui/material";
 import {
   Layout,
   Tags,
   ScrollToTop,
   ThemeModeSwitch,
   Markdown,
-} from '@components';
-import { Author, SocialMedia } from './components';
-import { ContentBox, ContentCSS, MobileCSS, LaptopCSS } from './styles';
+} from "@components";
+import { Author, SocialMedia } from "./components";
+import { ContentBox, ContentCSS, MobileCSS, LaptopCSS } from "./styles";
 
 const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
@@ -23,7 +23,7 @@ const BlogDetails = ({ post }: any) => {
       type="article"
       image={featureImage}
       twitterImage={featureImage}
-      keywords={tags.map((x: { name: any }) => x.name ?? '')}
+      keywords={tags.map((x: { name: any }) => x.name ?? "")}
       navLink="/blog"
       navBar={false}
       footer
@@ -36,8 +36,8 @@ const BlogDetails = ({ post }: any) => {
         >
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
+              display: "flex",
+              justifyContent: "flex-end",
               paddingBottom: theme.spacing(3),
             }}
           >
@@ -52,7 +52,7 @@ const BlogDetails = ({ post }: any) => {
               variant="h3"
               sx={{
                 color:
-                  theme.palette.mode === 'dark'
+                  theme.palette.mode === "dark"
                     ? theme.palette.primary.main
                     : theme.palette.text.primary,
                 fontWeight: 600,
@@ -73,14 +73,14 @@ const BlogDetails = ({ post }: any) => {
               <img
                 src={
                   post.featureImage == null
-                    ? '/images/assets/blog-placeholder.png'
+                    ? "/images/assets/blog-placeholder.png"
                     : post.featureImage
                 }
                 alt={title}
                 style={{
-                  width: '100%',
-                  height: 'auto',
-                  objectFit: 'cover',
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
                 }}
               />
               {featureImageCaption === null ? null : (
@@ -88,7 +88,7 @@ const BlogDetails = ({ post }: any) => {
                   variant="body1"
                   sx={{
                     color:
-                      theme.palette.mode === 'dark'
+                      theme.palette.mode === "dark"
                         ? theme.palette.primary.main
                         : theme.palette.text.primary,
                     padding: theme.spacing(2, 0, 8, 0),
@@ -109,16 +109,16 @@ const BlogDetails = ({ post }: any) => {
           ref={topRef}
           sx={{
             padding: theme.spacing(15, 0),
-            width: '100%',
-            maxWidth: '1200px',
+            width: "100%",
+            maxWidth: "1200px",
           }}
         >
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
               paddingBottom: theme.spacing(6),
             }}
           >
@@ -126,7 +126,7 @@ const BlogDetails = ({ post }: any) => {
               variant="h3"
               sx={{
                 color:
-                  theme.palette.mode === 'dark'
+                  theme.palette.mode === "dark"
                     ? theme.palette.primary.main
                     : theme.palette.text.primary,
                 fontWeight: 600,
@@ -140,10 +140,10 @@ const BlogDetails = ({ post }: any) => {
           <Box height="100%">
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
                 paddingBottom: theme.spacing(7),
               }}
             >
@@ -163,10 +163,10 @@ const BlogDetails = ({ post }: any) => {
                   src="/images/assets/blog-placeholder.png"
                   alt={title}
                   style={{
-                    width: '100%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    margin: 'auto',
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                    margin: "auto",
                   }}
                 />
               ) : (
@@ -174,10 +174,10 @@ const BlogDetails = ({ post }: any) => {
                   src={featureImage}
                   alt={title}
                   style={{
-                    width: '100%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    margin: 'auto',
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                    margin: "auto",
                   }}
                 />
               )}
@@ -186,15 +186,15 @@ const BlogDetails = ({ post }: any) => {
                   variant="body1"
                   sx={{
                     color:
-                      theme.palette.mode === 'dark'
+                      theme.palette.mode === "dark"
                         ? theme.palette.primary.main
                         : theme.palette.text.primary,
                     padding: theme.spacing(4, 0, 8, 0),
                     fontSize: theme.spacing(2),
-                    width: '80%',
+                    width: "80%",
                     a: {
                       color:
-                        theme.palette.mode === 'dark'
+                        theme.palette.mode === "dark"
                           ? theme.palette.primary.main
                           : theme.palette.text.primary,
                     },
@@ -211,8 +211,8 @@ const BlogDetails = ({ post }: any) => {
               <Box
                 sx={{
                   paddingTop: theme.spacing(8),
-                  height: tags.length > 50 ? '850px' : '550px',
-                  width: '100%',
+                  height: tags.length > 50 ? "850px" : "550px",
+                  width: "100%",
                 }}
               >
                 <Tags tags={tags} details noPadding />
@@ -221,13 +221,13 @@ const BlogDetails = ({ post }: any) => {
           </Box>
           <Box
             sx={{
-              display: 'none',
-              [theme.breakpoints.up('laptop')]: {
-                display: 'flex',
-                position: 'absolute',
-                left: '50%',
-                justifyContent: 'center',
-                bottom: tags.length > 50 ? '200px' : '250px',
+              display: "none",
+              [theme.breakpoints.up("laptop")]: {
+                display: "flex",
+                position: "absolute",
+                left: "50%",
+                justifyContent: "center",
+                bottom: tags.length > 50 ? "200px" : "250px",
               },
             }}
           >

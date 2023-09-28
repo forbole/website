@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import useTranslation from 'next-translate/useTranslation';
+import React from "react";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import useTranslation from "next-translate/useTranslation";
 import {
   Accordion,
   AccordionSummary,
@@ -10,15 +10,15 @@ import {
   Typography,
   ListItem,
   useTheme,
-} from '@mui/material';
-import { ExpandIcon } from '@icons';
-import { FAQProps } from '../../config';
+} from "@mui/material";
+import { ExpandIcon } from "@icons";
+import { FAQProps } from "../../config";
 
-const Trans = dynamic(() => import('next-translate/Trans'), { ssr: false });
+const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const Card = (props: FAQProps) => {
   const theme = useTheme();
-  const { t } = useTranslation('staking');
+  const { t } = useTranslation("staking");
   const {
     question,
     para1,
@@ -46,35 +46,35 @@ const Card = (props: FAQProps) => {
         sx={{
           background: theme.palette.primary.main,
           borderRadius: `${theme.spacing(2)} !important` as any,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          boxShadow: '4px 8px 24px rgba(116, 81, 255, 0.28)',
-          '& .MuiAccordionSummary-content': {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          boxShadow: "4px 8px 24px rgba(116, 81, 255, 0.28)",
+          "& .MuiAccordionSummary-content": {
             flexGrow: 12,
           },
-          '& .MuiIconButton-root': {
+          "& .MuiIconButton-root": {
             flexGrow: 1,
           },
         }}
       >
         <AccordionSummary
           sx={{
-            width: '100%',
+            width: "100%",
             padding: expanded
               ? theme.spacing(3, 5, 2, 3)
               : theme.spacing(3, 5, 3, 3),
-            '> .MuiAccordionSummary-expandIconWrapper': {
+            "> .MuiAccordionSummary-expandIconWrapper": {
               svg: {
-                fill: '#878787',
+                fill: "#878787",
               },
             },
-            '& .Mui-expanded': {
+            "& .Mui-expanded": {
               h3: {
                 background:
-                  'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
-                backgroundClip: 'text',
-                textFillColor: 'transparent',
+                  "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
+                backgroundClip: "text",
+                textFillColor: "transparent",
               },
             },
           }}
@@ -85,12 +85,12 @@ const Card = (props: FAQProps) => {
             sx={{
               color: theme.palette.custom.forbole.blue,
               textShadow:
-                '0px 8px 22px rgba(2, 38, 225, 0.12), 0px 14px 64px rgba(2, 38, 225, 0.12)',
+                "0px 8px 22px rgba(2, 38, 225, 0.12), 0px 14px 64px rgba(2, 38, 225, 0.12)",
               fontSize: theme.spacing(2),
-              lineHeight: '20px',
-              letterSpacing: '-0.034em',
+              lineHeight: "20px",
+              letterSpacing: "-0.034em",
               fontWeight: 600,
-              width: '80%',
+              width: "80%",
             }}
           >
             {t(question)}
@@ -99,16 +99,16 @@ const Card = (props: FAQProps) => {
         <AccordionDetails
           sx={{
             p: {
-              letterSpacing: '-0.012em',
+              letterSpacing: "-0.012em",
               color: theme.palette.custom.forbole.blue,
               padding: theme.spacing(0, 3, 3, 3),
-              '> p': {
+              "> p": {
                 paddingBottom: theme.spacing(2),
-                '&:last-child': {
+                "&:last-child": {
                   paddingBottom: theme.spacing(1),
                 },
               },
-              '> li': {
+              "> li": {
                 padding: theme.spacing(0, 0, 1, 0),
               },
             },
@@ -125,7 +125,7 @@ const Card = (props: FAQProps) => {
                   color={theme.palette.custom.forbole.blue}
                   sx={{
                     fontSize: theme.spacing(2),
-                    [theme.breakpoints.up('laptop')]: {
+                    [theme.breakpoints.up("laptop")]: {
                       fontSize: theme.spacing(2),
                     },
                   }}
@@ -135,11 +135,11 @@ const Card = (props: FAQProps) => {
                     color="primary.main"
                     fontWeight={900}
                     sx={{
-                      display: 'inline',
+                      display: "inline",
                       fontSize: theme.spacing(1.5),
-                      [theme.breakpoints.up('laptop')]: {
+                      [theme.breakpoints.up("laptop")]: {
                         fontSize: theme.spacing(2),
-                        display: 'inline',
+                        display: "inline",
                       },
                     }}
                   />
@@ -150,13 +150,13 @@ const Card = (props: FAQProps) => {
           {para3 && <Typography variant="body1">{t(para3)}</Typography>}
           {desc && <Typography variant="body1">{t(desc)}</Typography>}
           {bullet1 && (
-            <ListItem sx={{ display: 'list-item' }}>{t(bullet1)}</ListItem>
+            <ListItem sx={{ display: "list-item" }}>{t(bullet1)}</ListItem>
           )}
           {bullet2 && (
-            <ListItem sx={{ display: 'list-item' }}>{t(bullet2)}</ListItem>
+            <ListItem sx={{ display: "list-item" }}>{t(bullet2)}</ListItem>
           )}
           {bullet3 && (
-            <ListItem sx={{ display: 'list-item' }}>{t(bullet3)}</ListItem>
+            <ListItem sx={{ display: "list-item" }}>{t(bullet3)}</ListItem>
           )}
         </AccordionDetails>
       </Accordion>

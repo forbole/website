@@ -1,5 +1,5 @@
-import moment from 'moment';
-import { Author, Tag } from '@models';
+import moment from "moment";
+import { Author, Tag } from "@models";
 
 class Post {
   public canonicalUrl: string;
@@ -55,7 +55,7 @@ class Post {
 
   static formatExcerpt(excerpt: string, limit: number) {
     const format = excerpt.slice(0, limit);
-    const afterFormat = excerpt.length > limit ? '...' : '';
+    const afterFormat = excerpt.length > limit ? "..." : "";
     return `${format}${afterFormat}`;
   }
 
@@ -69,14 +69,14 @@ class Post {
       id: data.uuid,
       canonicalUrl: data.canonical_url,
       author: data,
-      createdAt: moment(data.created_at).format('Do MMM YYYY, h:mm a'),
+      createdAt: moment(data.created_at).format("Do MMM YYYY, h:mm a"),
       customExcerpt: data.custom_excerpt,
       excerpt: this.formatExcerpt(data.excerpt, excerptLimit),
       featureImage: data.feature_image,
       featureImageCaption: data.feature_image_caption,
       featured: data.featured,
       html: data.html,
-      publishedAt: moment(data.published_at).format('Do MMM YYYY, h:mm a'),
+      publishedAt: moment(data.published_at).format("Do MMM YYYY, h:mm a"),
       slug: data.slug,
       title: data.title,
       visibility: data.visibility,

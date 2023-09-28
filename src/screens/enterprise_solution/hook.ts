@@ -1,24 +1,24 @@
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import validator from 'validator';
-import axios from 'axios';
-import DOMPurify from 'isomorphic-dompurify';
-import { ToastContent, toast } from 'react-toastify';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import validator from "validator";
+import axios from "axios";
+import DOMPurify from "isomorphic-dompurify";
+import { ToastContent, toast } from "react-toastify";
 
 const useContactForm = () => {
   const [inputs, setInputs] = React.useState({
-    name: '',
-    email: '',
-    company:"",
-    help:'',
+    name: "",
+    email: "",
+    company: "",
+    help: "",
   });
   const [canSubmit, setCanSubmit] = React.useState(false);
   const { sanitize } = DOMPurify;
-  const { t } = useTranslation('contact');
+  const { t } = useTranslation("contact");
   const [success, setSuccess] = React.useState<boolean>(false);
   const [isLoading, setLoading] = React.useState<boolean>(false);
   React.useEffect(() => {
-    if (validator.isEmail(inputs.email) && inputs.name &&inputs.help) {
+    if (validator.isEmail(inputs.email) && inputs.name && inputs.help) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
@@ -28,12 +28,13 @@ const useContactForm = () => {
   const handleSubmit = (event: any) => {
     if (event) {
       event.preventDefault();
-      setLoading(true)
+      setLoading(true);
       axios
-        .post('/api/contact', {
+        .post("/api/contact", {
           from: inputs.email,
-          to: 'info@forbole.com',
-          subject: "A new customer just wanted to get in touch with us via Contact form",
+          to: "info@forbole.com",
+          subject:
+            "A new customer just wanted to get in touch with us via Contact form",
           html: `
           <p>Dear Administrator,</p>
           <p>A new customer: ${sanitize(inputs.email)} contacted us today.</p>
@@ -49,20 +50,20 @@ const useContactForm = () => {
         .then((res) => {
           if (res.status === 200) {
             setInputs({
-              name: '',
-              email: '',
-              company:"",
-              help:'',
+              name: "",
+              email: "",
+              company: "",
+              help: "",
             });
           }
-          setSuccess(true)
-          setLoading(false)
+          setSuccess(true);
+          setLoading(false);
         })
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.log(err);
-          setLoading(false)
-          toast.error(t('error')as ToastContent<unknown>);
+          setLoading(false);
+          toast.error(t("error") as ToastContent<unknown>);
         });
     }
   };
@@ -75,21 +76,19 @@ const useContactForm = () => {
     }));
   };
   const handleCheckedChange = (event: any) => {
-    let { name,value  } = event.target;
+    let { name, value } = event.target;
     setInputs((input) => ({
       ...input,
-      [name]:value 
+      [name]: value,
     }));
   };
 
   const handleClear = (field: any) => {
     setInputs((input) => ({
       ...input,
-      [field]: '',
+      [field]: "",
     }));
   };
-
-
 
   return {
     handleSubmit,
@@ -99,7 +98,9 @@ const useContactForm = () => {
     setInputs,
     canSubmit,
     handleCheckedChange,
-    success,setSuccess,isLoading
+    success,
+    setSuccess,
+    isLoading,
   };
 };
 

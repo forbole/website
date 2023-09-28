@@ -1,3 +1,3 @@
-import StatsCard from './stats_card';
+import StatsCard from "./stats_card";
 
 export { StatsCard };

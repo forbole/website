@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const useGetComponentDimension = () => {
   const [height, setHeight] = React.useState(0);
