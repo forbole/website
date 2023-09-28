@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import Image from 'next/image';
-import useTranslation from 'next-translate/useTranslation';
+import React from "react";
+import Image from "next/image";
+import useTranslation from "next-translate/useTranslation";
 import {
   Box,
   Button,
@@ -15,16 +15,16 @@ import {
   MenuItem,
   useTheme,
   useMediaQuery,
-} from '@mui/material';
-import { getNetworkInfo } from '@src/utils/network_info';
-import { InfoIcon, DropDownIcon } from '@icons';
-import { calculatorKeys } from './config';
-import { styles } from './styles';
+} from "@mui/material";
+import { getNetworkInfo } from "@src/utils/network_info";
+import { DropDownIcon } from "@icons";
+import { calculatorKeys } from "./config";
+import { styles } from "./styles";
 
 const Calculator = (props: any) => {
-  const { t } = useTranslation('staking');
+  const { t } = useTranslation("staking");
   const theme = useTheme();
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
+  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
 
   const {
     selectedToken,
@@ -41,7 +41,7 @@ const Calculator = (props: any) => {
   );
 
   React.useEffect(() => {
-    if (selectedToken === '') {
+    if (selectedToken === "") {
       setSelectedToken(networkData[0]);
     }
   }, [selectedToken]);
@@ -52,19 +52,19 @@ const Calculator = (props: any) => {
     const handler = () => {
       setIsOpen(false);
     };
-    window.addEventListener('scroll', handler);
+    window.addEventListener("scroll", handler);
     return () => {
-      window.removeEventListener('scroll', handler);
+      window.removeEventListener("scroll", handler);
     };
   }, []);
 
-  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+  const handleSliderChange = (_event: Event, newValue: number | number[]) => {
     setMonthlyPeriods(newValue);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonthlyPeriods(
-      event.target.value === '' ? '' : Number(event.target.value)
+      event.target.value === "" ? "" : Number(event.target.value)
     );
   };
 
@@ -80,12 +80,12 @@ const Calculator = (props: any) => {
     <Box
       sx={{
         background:
-          'linear-gradient(269.66deg, rgba(2, 158, 225, 0.4) -12.39%, rgba(2, 38, 225, 0.2) 99.38%), rgba(255, 255, 255, 0.8)',
+          "linear-gradient(269.66deg, rgba(2, 158, 225, 0.4) -12.39%, rgba(2, 38, 225, 0.2) 99.38%), rgba(255, 255, 255, 0.8)",
         boxShadow:
-          '10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)',
+          "10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)",
         borderRadius: theme.spacing(3),
         padding: theme.spacing(4, 2.5),
-        [theme.breakpoints.up('laptop')]: {
+        [theme.breakpoints.up("laptop")]: {
           padding: theme.spacing(5),
         },
       }}
@@ -99,7 +99,7 @@ const Calculator = (props: any) => {
           paddingBottom: theme.spacing(1),
         }}
       >
-        {t('select token')}
+        {t("select token")}
       </Typography>
       <Box sx={styles.select}>
         <FormControl>
@@ -116,21 +116,21 @@ const Calculator = (props: any) => {
             id="demo-simple-select"
             value={selectedToken}
             MenuProps={{
-              variant: 'menu',
+              variant: "menu",
               disableScrollLock: true,
               PaperProps: {
                 sx: {
-                  height: '50vh',
+                  height: "50vh",
                   bgcolor: theme.palette.primary.main,
                   marginTop: 1,
                   boxShadow:
-                    '0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)',
+                    "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
                   borderRadius: 1,
-                  '& .MuiMenuItem-root': {
+                  "& .MuiMenuItem-root": {
                     padding: 2,
-                    '&:hover': {
+                    "&:hover": {
                       background:
-                        ' linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)',
+                        " linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)",
                     },
                   },
                 },
@@ -143,34 +143,36 @@ const Calculator = (props: any) => {
               <MenuItem key={i} value={network}>
                 <Box
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignContent: 'center',
-                    justifyContent: 'flex-start',
-                    '& .image': {
+                    display: "flex",
+                    flexDirection: "row",
+                    alignContent: "center",
+                    justifyContent: "flex-start",
+                    "& .image": {
                       width: `${theme.spacing(6.5)} !important`,
                       height: `${theme.spacing(6.5)} !important`,
-                      borderRadius: '100%',
+                      borderRadius: "100%",
                       boxShadow:
-                        '0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)',
+                        "0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)",
                     },
                   }}
                 >
                   <Box className="image">
-                    <Image
-                      src={network.image}
-                      objectFit="contain"
-                      width="52px"
-                      height="52px"
-                      quality={100}
-                    />
+                    {network.image && (
+                      <Image
+                        src={network.image}
+                        objectFit="contain"
+                        width="52px"
+                        height="52px"
+                        quality={100}
+                      />
+                    )}
                   </Box>
                   <Box
                     sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start',
-                      justifyContent: 'center',
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      justifyContent: "center",
                       paddingLeft: theme.spacing(2),
                     }}
                   >
@@ -185,7 +187,7 @@ const Calculator = (props: any) => {
                       sx={{
                         fontWeight: 400,
                         fontSize: theme.spacing(1.5),
-                        color: '#878787',
+                        color: "#878787",
                       }}
                     >
                       {network.label}
@@ -206,13 +208,13 @@ const Calculator = (props: any) => {
           padding: theme.spacing(4, 0, 1, 0),
         }}
       >
-        {t('token amount')}
+        {t("token amount")}
       </Typography>
       <Box sx={styles.input}>
         <OutlinedInput
           value={tokens?.display}
           onChange={handleChange}
-          placeholder={t('token amount placeholder')}
+          placeholder={t("token amount placeholder")}
         />
       </Box>
       <Typography
@@ -224,7 +226,7 @@ const Calculator = (props: any) => {
           padding: theme.spacing(4, 0, 1, 0),
         }}
       >
-        {t('length of time')}
+        {t("length of time")}
       </Typography>
       <Box sx={styles.input}>
         <Grid
@@ -250,7 +252,7 @@ const Calculator = (props: any) => {
                   fontSize: theme.spacing(2),
                   fontWeight: 600,
                   color: theme.palette.custom.forbole.blue,
-                  alignSelf: 'center',
+                  alignSelf: "center",
                 }}
               >
                 0
@@ -305,8 +307,8 @@ const Calculator = (props: any) => {
                 step: 1,
                 min: 0,
                 max: 12,
-                type: 'number',
-                'aria-labelledby': 'input-slider',
+                type: "number",
+                "aria-labelledby": "input-slider",
               }}
               endAdornment={
                 <InputAdornment position="end">
@@ -318,7 +320,7 @@ const Calculator = (props: any) => {
                       color: theme.palette.custom.forbole.blue,
                     }}
                   >
-                    {t('months')}
+                    {t("months")}
                   </Typography>
                 </InputAdornment>
               }
@@ -326,8 +328,8 @@ const Calculator = (props: any) => {
           </Grid>
         </Grid>
       </Box>
-      {totalEarnings.monthlyEarnings.tokens !== '0' &&
-      totalEarnings.monthlyEarnings.amount !== '0' ? (
+      {totalEarnings.monthlyEarnings.tokens !== "0" &&
+      totalEarnings.monthlyEarnings.amount !== "0" ? (
         <>
           <Typography
             variant="body1"
@@ -338,18 +340,20 @@ const Calculator = (props: any) => {
               padding: theme.spacing(4, 0, 2, 0),
             }}
           >
-            {t('estimated earning')}
+            {t("estimated earning")}
           </Typography>
           <Box sx={styles.card}>
             <Box sx={styles.tokenResult}>
               <Box className="image">
-                <Image
-                  src={selectedToken.image}
-                  objectFit="contain"
-                  width="28px"
-                  height="28px"
-                  quality={100}
-                />
+                {selectedToken.image && (
+                  <Image
+                    src={selectedToken.image}
+                    objectFit="contain"
+                    width="28px"
+                    height="28px"
+                    quality={100}
+                  />
+                )}
               </Box>
               <Typography
                 variant="h4"
@@ -377,9 +381,9 @@ const Calculator = (props: any) => {
                 color="#878787"
                 padding={theme.spacing(0.5, 0, 0, 0)}
                 display={
-                  totalEarnings.monthlyEarnings.amount === '0.00'
-                    ? 'none'
-                    : 'block'
+                  totalEarnings.monthlyEarnings.amount === "0.00"
+                    ? "none"
+                    : "block"
                 }
               >
                 $ {totalEarnings.monthlyEarnings.amount} USD
@@ -389,12 +393,12 @@ const Calculator = (props: any) => {
           <Box sx={styles.buttonDiv}>
             <Button
               sx={styles.button}
-              href={selectedToken.delegate || ''}
+              href={selectedToken.delegate || ""}
               disabled={!selectedToken.delegate}
               rel="noreferrer"
               target="_blank"
             >
-              {t('stake with us!')}
+              {t("stake with us!")}
             </Button>
           </Box>
         </>

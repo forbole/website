@@ -1,6 +1,6 @@
-import React from 'react'
-import { Box, Stack, Typography, useTheme } from '@mui/material';
-import { useWindowDimensions } from '@src/hooks';
+import React from "react";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { useWindowDimensions } from "@src/hooks";
 import Image from "next/image";
 
 type Props = {
@@ -8,9 +8,14 @@ type Props = {
   desc_1st: string;
   desc_2nd?: string;
   head_bg: string;
-}
+};
 
-export default function HeaderCard({ head_bg, title, desc_1st, desc_2nd }: Props) {
+export default function HeaderCard({
+  head_bg,
+  title,
+  desc_1st,
+  desc_2nd,
+}: Props) {
   const theme = useTheme();
   const { isMobile, isDesktop } = useWindowDimensions();
 
@@ -21,7 +26,7 @@ export default function HeaderCard({ head_bg, title, desc_1st, desc_2nd }: Props
         bgcolor: "#ffffff",
         alignItems: "center",
         pt: "40px",
-        gap:'24px',
+        gap: "24px",
         color: "#202A43",
         borderRadius: "24px",
         boxShadow:
@@ -46,48 +51,54 @@ export default function HeaderCard({ head_bg, title, desc_1st, desc_2nd }: Props
           px: "24px",
         }}
       >
-       {title&& <Typography
-          sx={{
-            [theme.breakpoints.down("laptop")]: {
-              fontWeight: 590,
-              fontSize: "16px",
-            },
-            [theme.breakpoints.up("laptop")]: {
-              fontWeight: 700,
-              fontSize: "24px",
-            },
-          }}
-        >
-          {title}
-        </Typography>}
-        {desc_1st&&<Typography
-          sx={{
-            [theme.breakpoints.down("laptop")]: {
-              fontWeight: 700,
-              fontSize: "24px",
-            },
-            [theme.breakpoints.up("laptop")]: {
-              fontWeight: 590,
-              fontSize: "40px",
-              width: "900px",
-            },
-          }}
-        >
-          {desc_1st}
-        </Typography>}
-        {desc_2nd&&<Typography
-          sx={{
-            fontWeight: 400,
-            [theme.breakpoints.down("laptop")]: {
-              fontSize: "16px",
-            },
-            [theme.breakpoints.up("laptop")]: {
-              fontSize: "24px",
-            },
-          }}
-        >
-          {desc_2nd}
-        </Typography>}
+        {title && (
+          <Typography
+            sx={{
+              [theme.breakpoints.down("laptop")]: {
+                fontWeight: 590,
+                fontSize: "16px",
+              },
+              [theme.breakpoints.up("laptop")]: {
+                fontWeight: 700,
+                fontSize: "24px",
+              },
+            }}
+          >
+            {title}
+          </Typography>
+        )}
+        {desc_1st && (
+          <Typography
+            sx={{
+              [theme.breakpoints.down("laptop")]: {
+                fontWeight: 700,
+                fontSize: "24px",
+              },
+              [theme.breakpoints.up("laptop")]: {
+                fontWeight: 590,
+                fontSize: "40px",
+                width: "900px",
+              },
+            }}
+          >
+            {desc_1st}
+          </Typography>
+        )}
+        {desc_2nd && (
+          <Typography
+            sx={{
+              fontWeight: 400,
+              [theme.breakpoints.down("laptop")]: {
+                fontSize: "16px",
+              },
+              [theme.breakpoints.up("laptop")]: {
+                fontSize: "24px",
+              },
+            }}
+          >
+            {desc_2nd}
+          </Typography>
+        )}
       </Stack>
       <Box
         sx={{
@@ -102,14 +113,17 @@ export default function HeaderCard({ head_bg, title, desc_1st, desc_2nd }: Props
           },
         }}
       >
-        <Image
-          src={head_bg}
-          alt=""
-          objectFit="cover"
-          layout="fill"
-          priority
-        ></Image>
+        {head_bg && (
+          <Image
+            src={head_bg}
+            alt=""
+            objectFit="cover"
+            layout="fill"
+            priority
+          />
+        )}
       </Box>
     </Stack>
-  )
+  );
 }
+

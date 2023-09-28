@@ -16,13 +16,14 @@ const CardSwiper = ({ imagesList, style }: Props) => {
   const theme = useTheme();
   return (
     <BoxCSS>
-      <Box position={'relative'}>
-        <Swiper className={"scale"}
+      <Box position={"relative"}>
+        <Swiper
+          className={"scale"}
           style={{
             ...style,
           }}
           spaceBetween={-80}
-          slidesPerView= {3}
+          slidesPerView={3}
           centeredSlides={true}
           initialSlide={1}
           navigation={{
@@ -43,16 +44,15 @@ const CardSwiper = ({ imagesList, style }: Props) => {
           }}
         >
           {imagesList.map((item, index) => (
-            <SwiperSlide
-              className={"scale"}
-              key={index}
-            >
-              <Stack sx={{
-                [theme.breakpoints.down('laptop')]:{
-                  width:"100%",
-                }
-              }}>
-                <Image src={item} alt="" />
+            <SwiperSlide className={"scale"} key={index}>
+              <Stack
+                sx={{
+                  [theme.breakpoints.down("laptop")]: {
+                    width: "100%",
+                  },
+                }}
+              >
+                {item && <Image src={item} alt="" />}
               </Stack>
             </SwiperSlide>
           ))}

@@ -1,16 +1,16 @@
 /* eslint-disable no-bitwise */
-import React, { useState } from 'react';
-import { Box } from '@mui/material';
-import { LayoutGroup } from 'framer-motion';
-import { getNetworkInfo } from '@src/utils/network_info';
-import { NetworkCard } from './components';
-import { allNetworkKeys, NetworkProps } from './config';
-import useStyles from './useStyles';
-import { useNetworkHook } from './hooks';
+import React, { useState } from "react";
+import { Box } from "@mui/material";
+import { LayoutGroup } from "framer-motion";
+import { getNetworkInfo } from "@src/utils/network_info";
+import { NetworkCard } from "./components";
+import { allNetworkKeys, NetworkProps } from "./config";
+import useStyles from "./useStyles";
+import { useNetworkHook } from "./hooks";
 
 const NetworkGrid = () => {
   const styles = useStyles();
-  const [showMobilePopover, setShowMobilePopover] = useState('');
+  const [showMobilePopover, setShowMobilePopover] = useState("");
   const {
     cosmosNetworks,
     elrondNetwork,

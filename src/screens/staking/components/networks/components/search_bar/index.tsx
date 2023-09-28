@@ -9,10 +9,10 @@ import React, {
   HTMLAttributes,
   useState,
   useCallback,
-} from 'react';
-import Image from 'next/image';
-import useTranslation from 'next-translate/useTranslation';
-import ListItem from '@mui/material/ListItem';
+} from "react";
+import Image from "next/image";
+import useTranslation from "next-translate/useTranslation";
+import ListItem from "@mui/material/ListItem";
 import {
   Autocomplete,
   Box,
@@ -27,14 +27,14 @@ import {
   InputAdornment,
   createFilterOptions,
   useTheme,
-} from '@mui/material';
-import { getNetworkInfo, logos } from '@src/utils/network_info';
-import { SearchIcon } from '@icons';
-import { SearchBarProps } from './types';
-import useStyles from './useStyles';
+} from "@mui/material";
+import { getNetworkInfo, logos } from "@src/utils/network_info";
+import { SearchIcon } from "@icons";
+import { SearchBarProps } from "./types";
+import useStyles from "./useStyles";
 
 const filterOptions = createFilterOptions({
-  matchFrom: 'start',
+  matchFrom: "start",
 });
 
 /**
@@ -44,7 +44,7 @@ const filterOptions = createFilterOptions({
  * an object that contains a startAdornment property.
  * @returns An object with the properties of InputProps and startAdornment.
  */
-function addSearch(InputProps: ComponentProps<typeof TextField>['InputProps']) {
+function addSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
   const theme = useTheme();
   const startAdornment = (
     <InputAdornment position="start">
@@ -68,13 +68,15 @@ const Options: FC<OptionsProps> = ({ props, network }) => {
     <ListItem {...props} title={network.delegate} sx={styles.listItem}>
       <ListItemIcon>
         <Box className="image">
-          <Image
-            src={network.image}
-            objectFit="contain"
-            width="32px"
-            height="32px"
-            quality={100}
-          />
+          {network.image && (
+            <Image
+              src={network.image}
+              objectFit="contain"
+              width="32px"
+              height="32px"
+              quality={100}
+            />
+          )}
         </Box>
       </ListItemIcon>
       <ListItemText>{network.name}</ListItemText>
@@ -105,7 +107,7 @@ function handleChange(_event: unknown, value: unknown) {
     const { network } = value as { network: Network };
     const { delegate } = network;
     if (delegate) {
-      window.open(delegate, '_top');
+      window.open(delegate, "_top");
     }
   }
 }
@@ -123,7 +125,7 @@ const PaperComponent = (props: PaperProps) => {
 type StyledAutocompleteProps = ComponentProps<typeof Autocomplete>;
 
 const SearchBar: FC<SearchBarProps> = () => {
-  const { t } = useTranslation('staking');
+  const { t } = useTranslation("staking");
   const keys = Object.keys(logos);
   const networkData: Array<Network> = keys
     .sort()
@@ -134,11 +136,11 @@ const SearchBar: FC<SearchBarProps> = () => {
   }));
   const styles = useStyles();
 
-  const renderInput: StyledAutocompleteProps['renderInput'] = useCallback(
+  const renderInput: StyledAutocompleteProps["renderInput"] = useCallback(
     ({ InputProps, ...params }) => (
       <TextField
         {...params}
-        placeholder={t('searchNetwork')}
+        placeholder={t("searchNetwork")}
         InputProps={addSearch(InputProps)}
         sx={styles.textField}
       />
@@ -149,7 +151,7 @@ const SearchBar: FC<SearchBarProps> = () => {
   const handleFocus: FocusEventHandler = useCallback((event) => {
     setFocused(true);
     if (window.innerWidth < 768) {
-      window.addEventListener('scroll', scrollLock);
+      window.addEventListener("scroll", scrollLock);
       return;
     }
     const headerOffset = 100;
@@ -157,11 +159,11 @@ const SearchBar: FC<SearchBarProps> = () => {
     const top = elementPosition + window.pageYOffset - headerOffset;
     window.scrollTo({
       top,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   }, []);
   const handleBlur = useCallback(() => {
-    window.removeEventListener('scroll', scrollLock);
+    window.removeEventListener("scroll", scrollLock);
     setFocused(false);
   }, []);
 
@@ -169,8 +171,8 @@ const SearchBar: FC<SearchBarProps> = () => {
     <Box
       className={
         focused
-          ? 'searchbox__focused searchbox__container'
-          : 'searchbox__container'
+          ? "searchbox__focused searchbox__container"
+          : "searchbox__container"
       }
       sx={styles.root}
     >
@@ -178,7 +180,7 @@ const SearchBar: FC<SearchBarProps> = () => {
         openOnFocus
         inputMode="search"
         popupIcon={null}
-        noOptionsText={t('noResultsFound')}
+        noOptionsText={t("noResultsFound")}
         options={options}
         PaperComponent={PaperComponent}
         PopperComponent={PopperComponent}
@@ -194,7 +196,7 @@ const SearchBar: FC<SearchBarProps> = () => {
         className="searchbox__cancel-btn"
         onClick={handleBlur}
       >
-        {t('cancel')}
+        {t("cancel")}
       </Button>
     </Box>
   );

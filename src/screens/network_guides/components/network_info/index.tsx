@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
-import DOMPurify from 'isomorphic-dompurify';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import Image from "next/image";
+import DOMPurify from "isomorphic-dompurify";
 import {
   Alert,
   Box,
@@ -15,19 +15,19 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
-} from '@mui/material';
-import { CopyIcon } from '@icons';
-import { getNetworkInfo } from '@src/utils/network_info';
-import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
-import { ContentCSS, ContentBox } from './styles';
-import { InfoCard } from './components';
-import { useNetworkGuidesHook } from './hooks';
+} from "@mui/material";
+import { CopyIcon } from "@icons";
+import { getNetworkInfo } from "@src/utils/network_info";
+import { getMiddleEllipsis } from "@utils/get_middle_ellipsis";
+import { ContentCSS, ContentBox } from "./styles";
+import { InfoCard } from "./components";
+import { useNetworkGuidesHook } from "./hooks";
 
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
-  const { t } = useTranslation('staking');
+  const { t } = useTranslation("staking");
   const { title, tags, excerpt, featureImage } = post;
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up('laptop'));
+  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   const [isCopySuccess, setIsCopySuccess] = React.useState(false);
   const [readMore, setReadMore] = React.useState(false);
   const { sanitize } = DOMPurify;
@@ -38,8 +38,8 @@ const NetworkInfo = ({ post }: any) => {
     // eslint-disable-next-line no-nested-ternary
     tags.length <= 1
       ? null
-      : tags[1].slug === 'crypto-org'
-      ? getNetworkInfo('crypto.org')
+      : tags[1].slug === "crypto-org"
+      ? getNetworkInfo("crypto.org")
       : getNetworkInfo(tags[1].slug);
 
   const { cosmosNetworkGuides } = useNetworkGuidesHook();
@@ -50,7 +50,7 @@ const NetworkInfo = ({ post }: any) => {
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation();
       navigator.clipboard.writeText(
-        networkData ? networkData.address : 'coming soon'
+        networkData ? networkData.address : "coming soon"
       );
       setIsCopySuccess(true);
     },
@@ -68,15 +68,15 @@ const NetworkInfo = ({ post }: any) => {
       flexDirection="column"
       sx={{
         padding: theme.spacing(15, 3),
-        [theme.breakpoints.up('laptop')]: {
+        [theme.breakpoints.up("laptop")]: {
           padding: theme.spacing(0, 3),
         },
       }}
     >
       <Box
         sx={{
-          [theme.breakpoints.up('laptop')]: {
-            maxWidth: '1200px',
+          [theme.breakpoints.up("laptop")]: {
+            maxWidth: "1200px",
           },
         }}
       >
@@ -85,7 +85,7 @@ const NetworkInfo = ({ post }: any) => {
             background: theme.palette.common.white,
             /* Shadow/Secondary (Validator)/Drop Shadow 01 */
             boxShadow:
-              '0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)',
+              "0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)",
             borderRadius: 2,
           }}
         >
@@ -95,48 +95,48 @@ const NetworkInfo = ({ post }: any) => {
             image={coverImage || featureImage}
             alt="network feature image"
             sx={{
-              objectFit: 'cover',
-              objectPosition: '0% 37%',
+              objectFit: "cover",
+              objectPosition: "0% 37%",
             }}
           />
           <CardContent
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              flexDirection: 'row',
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
               paddingTop: 0,
               marginTop: theme.spacing(-5),
-              [theme.breakpoints.up('laptop')]: {
-                justifyContent: 'space-between',
+              [theme.breakpoints.up("laptop")]: {
+                justifyContent: "space-between",
                 marginTop: theme.spacing(-7),
               },
             }}
           >
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'row',
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "row",
               }}
             >
               <Box
                 sx={{
-                  '> span': {
-                    borderRadius: '50%',
-                    border: '8px solid #FFFFFF !important' as any,
+                  "> span": {
+                    borderRadius: "50%",
+                    border: "8px solid #FFFFFF !important" as any,
                   },
                 }}
               >
                 <Image
                   loader={cmsLoader}
                   src={
-                    networkData.image == null
-                      ? '/images/assets/blog-placeholder.png'
+                    !networkData.image
+                      ? "/images/assets/blog-placeholder.png"
                       : networkData.image
                   }
                   alt={title}
-                  width={onlyLargeScreen ? '90px' : '52px'}
-                  height={onlyLargeScreen ? '90px' : '52px'}
+                  width={onlyLargeScreen ? "90px" : "52px"}
+                  height={onlyLargeScreen ? "90px" : "52px"}
                   quality={100}
                   objectFit="contain"
                 />
@@ -182,24 +182,24 @@ const NetworkInfo = ({ post }: any) => {
             <Box>
               <Button
                 variant="contained"
-                href={networkData.delegate ? networkData.delegate : ''}
+                href={networkData.delegate ? networkData.delegate : ""}
                 disabled={!networkData.delegate}
                 sx={{
-                  display: 'none',
-                  width: '97px',
-                  height: '32px',
-                  lineHeight: '17px',
+                  display: "none",
+                  width: "97px",
+                  height: "32px",
+                  lineHeight: "17px",
                   fontWeight: 600,
                   padding: 0,
                   background:
-                    'linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)',
+                    "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
                   borderRadius: theme.spacing(3),
-                  color: 'primary.main',
-                  boxShadow: 'none',
-                  [theme.breakpoints.up('laptop')]: {
-                    width: '111px',
-                    height: '45px',
-                    display: 'inline-flex',
+                  color: "primary.main",
+                  boxShadow: "none",
+                  [theme.breakpoints.up("laptop")]: {
+                    width: "111px",
+                    height: "45px",
+                    display: "inline-flex",
                   },
                 }}
               >
@@ -210,12 +210,12 @@ const NetworkInfo = ({ post }: any) => {
           <CardContent>
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'column',
-                [theme.breakpoints.up('laptop')]: {
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+                [theme.breakpoints.up("laptop")]: {
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 },
               }}
             >
@@ -236,23 +236,23 @@ const NetworkInfo = ({ post }: any) => {
                         variant="body2"
                         className="value"
                         sx={{
-                          display: 'contents',
-                          textAlign: 'center',
+                          display: "contents",
+                          textAlign: "center",
                           // WebkitLineClamp: readMore ? 10 : 5,
-                          WebkitLineClamp: readMore ? 'unset' : 'inherit',
+                          WebkitLineClamp: readMore ? "unset" : "inherit",
                         }}
                       >
                         {excerpt}
                       </Typography>
                       <Button
                         sx={{
-                          color: '#007FFF',
-                          display: readMore ? 'none' : 'inline-block',
+                          color: "#007FFF",
+                          display: readMore ? "none" : "inline-block",
                           padding: 0,
                         }}
                         onClick={() => setReadMore((prevCheck) => !prevCheck)}
                       >
-                        {t('more')}
+                        {t("more")}
                       </Button>
                     </>
                   )}
@@ -266,17 +266,17 @@ const NetworkInfo = ({ post }: any) => {
               )}
               <Box
                 sx={{
-                  display: 'grid',
-                  padding: '12px 8px',
+                  display: "grid",
+                  padding: "12px 8px",
                   gridGap: theme.spacing(2),
-                  gridTemplateColumns: 'repeat(1, 1fr)',
+                  gridTemplateColumns: "repeat(1, 1fr)",
                   paddingTop: theme.spacing(3),
-                  width: '100%',
-                  [theme.breakpoints.up('laptop')]: {
-                    gridTemplateRows: 'repeat(2, 1fr)',
-                    gridTemplateColumns: '1fr 1fr',
+                  width: "100%",
+                  [theme.breakpoints.up("laptop")]: {
+                    gridTemplateRows: "repeat(2, 1fr)",
+                    gridTemplateColumns: "1fr 1fr",
                     paddingTop: 0,
-                    width: '50%',
+                    width: "50%",
                   },
                 }}
               >
@@ -298,10 +298,10 @@ const NetworkInfo = ({ post }: any) => {
         open={isCopySuccess}
         autoHideDuration={5000}
         onClose={() => setIsCopySuccess(false)}
-        sx={{ justifyContent: 'center' }}
+        sx={{ justifyContent: "center" }}
       >
         <Alert onClose={() => setIsCopySuccess(false)} severity="success">
-          {t('copied to clipboard')}
+          {t("copied to clipboard")}
         </Alert>
       </Snackbar>
     </Box>

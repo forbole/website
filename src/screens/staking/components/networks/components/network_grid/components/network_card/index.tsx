@@ -7,15 +7,15 @@ import React, {
   FC,
   MouseEventHandler,
   useCallback,
-} from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import useTranslation from 'next-translate/useTranslation';
-import { Box, Button, Stack, LinearProgress, Typography } from '@mui/material';
-import { CloseIcon, InfoIcon } from '@icons';
-import { convertToMoney } from '@utils/convert_to_money';
-import { ParamsProps } from '../../config';
-import useStyles from './useStyles';
+} from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import useTranslation from "next-translate/useTranslation";
+import { Box, Button, Stack, LinearProgress, Typography } from "@mui/material";
+import { CloseIcon, InfoIcon } from "@icons";
+import { convertToMoney } from "@utils/convert_to_money";
+import { ParamsProps } from "../../config";
+import useStyles from "./useStyles";
 
 interface CardProp {
   key: string;
@@ -26,7 +26,7 @@ interface CardProp {
 }
 
 const NetworkCard: FC<CardProp> = (props: CardProp) => {
-  const { t } = useTranslation('staking');
+  const { t } = useTranslation("staking");
   const {
     key,
     network,
@@ -46,7 +46,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const handleMobilPopoverClick: MouseEventHandler<Element> = useCallback(
     (event) => {
       event.stopPropagation();
-      setShowMobilePopover('');
+      setShowMobilePopover("");
     },
     [setShowMobilePopover]
   );
@@ -57,9 +57,9 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       if (network.guide)
         window.open(
           `${process.env.NEXT_PUBLIC_URL}/staking/${network.guide}`,
-          '_top'
+          "_top"
         );
-      else if (network.delegate) window.open(network.delegate, '_top');
+      else if (network.delegate) window.open(network.delegate, "_top");
     },
     [network.denom, network.key, network.delegate]
   );
@@ -74,13 +74,15 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       />
       <Box onClickCapture={handleMobilPopoverClick}>
         <Box className="image">
-          <Image
-            src={network.image}
-            objectFit="contain"
-            width="48px"
-            height="48px"
-            quality={100}
-          />
+          {network?.image && (
+            <Image
+              src={network.image || ""}
+              objectFit="contain"
+              width="48px"
+              height="48px"
+              quality={100}
+            />
+          )}
         </Box>
       </Box>
       {!networkSummary && <LinearProgress color="secondary" />}
@@ -123,7 +125,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         className="networkbox__explore-btn"
         onClickCapture={handleExploreClick}
       >
-        {t('stake now')}
+        {t("stake now")}
       </Button>
     </Box>
   );
@@ -145,8 +147,8 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       <Box
         className={
           showMobilePopover === network.name
-            ? 'networkbox__active networkbox__mobile-popover-contaier'
-            : 'networkbox__mobile-popover-contaier'
+            ? "networkbox__active networkbox__mobile-popover-contaier"
+            : "networkbox__mobile-popover-contaier"
         }
       >
         {popover}
@@ -154,13 +156,15 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       <Box className="networkbox__desktop-anchor" onClick={handleExploreClick}>
         {popover}
         <Box className="image">
-          <Image
-            src={network.image}
-            objectFit="contain"
-            width="48px"
-            height="48px"
-            quality={100}
-          />
+          {network.image && (
+            <Image
+              src={network.image}
+              objectFit="contain"
+              width="48px"
+              height="48px"
+              quality={100}
+            />
+          )}
         </Box>
         <Typography variant="h4">{network.name}</Typography>
       </Box>
@@ -170,13 +174,15 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         onClick={handleMobileAnchorClick}
       >
         <Box className="image">
-          <Image
-            src={network.image}
-            objectFit="contain"
-            width="48px"
-            height="48px"
-            quality={100}
-          />
+          {network.image && (
+            <Image
+              src={network.image}
+              objectFit="contain"
+              width="48px"
+              height="48px"
+              quality={100}
+            />
+          )}
         </Box>
         <Typography variant="h4">{network.name}</Typography>
       </Button>

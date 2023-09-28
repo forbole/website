@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Link from 'next/link';
-import Image from 'next/image';
-import { Box, Typography, useTheme } from '@mui/material';
-import { useWindowDimensions, useHKT } from '@hooks';
+import Link from "next/link";
+import Image from "next/image";
+import { Box, Typography, useTheme } from "@mui/material";
+import { useWindowDimensions, useHKT } from "@hooks";
 
 const Post = (props: any) => {
   const theme = useTheme();
@@ -18,23 +18,23 @@ const Post = (props: any) => {
   return (
     <Box
       sx={{
-        border: '1px solid rgba(195, 204, 226, 0.3)',
+        border: "1px solid rgba(195, 204, 226, 0.3)",
         borderRadius: theme.spacing(1.5),
-        color: 'primary.main',
-        background: 'transparent',
-        height: '100%',
-        '& a': {
-          color: 'primary.main',
-          textDecoration: 'none',
+        color: "primary.main",
+        background: "transparent",
+        height: "100%",
+        "& a": {
+          color: "primary.main",
+          textDecoration: "none",
         },
-        '& img': {
+        "& img": {
           borderRadius: theme.spacing(1.5, 1.5, 0, 0),
-          minHeight: '150px',
-          width: '100%',
-          objectFit: 'cover',
+          minHeight: "150px",
+          width: "100%",
+          objectFit: "cover",
         },
-        [theme.breakpoints.up('laptop')]: {
-          gridColumn: main ? '1 / span 2' : 'auto',
+        [theme.breakpoints.up("laptop")]: {
+          gridColumn: main ? "1 / span 2" : "auto",
         },
       }}
     >
@@ -44,35 +44,35 @@ const Post = (props: any) => {
             <Box
               height={
                 isDesktop && main
-                  ? ('324px!important' as any)
+                  ? ("324px!important" as any)
                   : isMobile
-                  ? ('156px!important' as any)
-                  : ('156px!important' as any)
+                  ? ("156px!important" as any)
+                  : ("156px!important" as any)
               }
               width={
                 isDesktop && main
-                  ? ('100%!important' as any)
+                  ? ("100%!important" as any)
                   : isMobile
-                  ? ('100%!important' as any)
-                  : ('100%!important' as any)
+                  ? ("100%!important" as any)
+                  : ("100%!important" as any)
               }
               sx={{
-                '> span': {
-                  width: '100%!important' as any,
+                "> span": {
+                  width: "100%!important" as any,
                 },
               }}
             >
               <Image
                 loader={cmsLoader}
                 src={
-                  featureImage == null
-                    ? '/images/assets/blog-placeholder.png'
+                  !featureImage
+                    ? "/images/assets/blog-placeholder.png"
                     : featureImage
                 }
                 alt={title}
-                width={isDesktop && main ? '100%' : isMobile ? '270px' : '100%'}
+                width={isDesktop && main ? "100%" : isMobile ? "270px" : "100%"}
                 height={
-                  isDesktop && main ? '324px' : isMobile ? '156px' : '156px'
+                  isDesktop && main ? "324px" : isMobile ? "156px" : "156px"
                 }
                 quality={100}
                 objectFit="cover"
@@ -81,17 +81,17 @@ const Post = (props: any) => {
             <Box
               width={
                 isDesktop && main
-                  ? ('690px!important' as any)
+                  ? ("690px!important" as any)
                   : isMobile
-                  ? ('270px!important' as any)
-                  : ('100%!important' as any)
+                  ? ("270px!important" as any)
+                  : ("100%!important" as any)
               }
               sx={{
                 padding: theme.spacing(2.5, 2.5, 0, 2.5),
-                [theme.breakpoints.up('laptop')]: {
+                [theme.breakpoints.up("laptop")]: {
                   width: main
-                    ? ('690px!important' as any)
-                    : ('380px!important' as any),
+                    ? ("690px!important" as any)
+                    : ("380px!important" as any),
                 },
               }}
             >
@@ -101,7 +101,7 @@ const Post = (props: any) => {
                   fontWeight: 700,
                   fontSize: theme.spacing(3),
                   paddingBottom: theme.spacing(3),
-                  overflowWrap: 'break-word',
+                  overflowWrap: "break-word",
                 }}
               >
                 {title}
@@ -111,7 +111,7 @@ const Post = (props: any) => {
                 sx={{
                   fontWeight: 400,
                   fontSize: theme.spacing(2),
-                  overflowWrap: 'break-word',
+                  overflowWrap: "break-word",
                   lineHeight: 1.8,
                 }}
               >
@@ -128,26 +128,26 @@ const Post = (props: any) => {
           <Box
             component="span"
             sx={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              flexDirection: 'column',
-              color: 'rgba(255, 255, 255, 0.5)',
+              display: "flex",
+              alignItems: "flex-start",
+              flexDirection: "column",
+              color: "rgba(255, 255, 255, 0.5)",
               fontWeight: 400,
-              fontSize: '12px',
-              [theme.breakpoints.up('laptop')]: {
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
+              fontSize: "12px",
+              [theme.breakpoints.up("laptop")]: {
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
               },
             }}
           >
             <p>
-              Posted by{' '}
+              Posted by{" "}
               <Link href="/author/[author]" as={`/author/${author.slug}`}>
                 <a
                   style={{
-                    textDecoration: 'underline',
-                    color: 'rgba(255, 255, 255, 0.5)',
+                    textDecoration: "underline",
+                    color: "rgba(255, 255, 255, 0.5)",
                   }}
                 >
                   {author.name}
