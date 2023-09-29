@@ -28,24 +28,19 @@ const TermsAndConditions = () => {
       (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
-        d.style.height = `${h  }px`;
+        d.style.height = `${h}px`;
       }
     );
     (document.querySelectorAll(".t2") as NodeListOf<HTMLElement>).forEach(
       (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
-        d.style.height = `${h  }px`;
+        d.style.height = `${h}px`;
       }
     );
   });
   return (
-    <Layout
-      title={t("title")}
-      navLink="/terms-and-conditions"
-      waveBG={!!isDesktop}
-      footer
-    >
+    <Layout title={t("title")} navLink="/terms-and-conditions" footer>
       <Container maxWidth="desktop">
         <Box
           ref={topRef}

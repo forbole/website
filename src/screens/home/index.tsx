@@ -34,7 +34,6 @@ const Home: React.FC<Props> = ({ pages }) => {
       title={t("coBuildingInterchain")}
       description={t("description")}
       footer
-      homeAnimation
       redBgFooter
       redBg
     >
@@ -241,7 +240,7 @@ const Home: React.FC<Props> = ({ pages }) => {
                     btnName={btnName}
                     btnClick={() => router.push(btnClick)}
                     disabled={!btnClick || false}
-                   />
+                  />
                 </Grid>
               );
             })}
