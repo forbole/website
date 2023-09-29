@@ -2,7 +2,6 @@
 import * as React from "react";
 import useTranslation from "next-translate/useTranslation";
 import { Box, useTheme } from "@mui/material";
-import { useRouter } from "next/router";
 import CtaButton from "@src/components/cta-button";
 import Link from "next/link";
 import { navItems } from "../config";
@@ -12,13 +11,12 @@ import ProductsMenuButton from "../products_menu_button";
 import classes from "./index.module.css";
 
 interface NavMenuProps {
-  link: string | null;
+  itemColor: string | undefined;
 }
 
-const DesktopNavMenu = ({ link }: NavMenuProps) => {
+const DesktopNavMenu = ({ itemColor }: NavMenuProps) => {
   const { t } = useTranslation("common");
   const theme = useTheme();
-  const router = useRouter();
 
   return (
     <Box
@@ -39,7 +37,7 @@ const DesktopNavMenu = ({ link }: NavMenuProps) => {
               fontWeight: 600,
               fontSize: theme.spacing(2),
               "&:hover": {
-                color: theme.palette.custom.forbole.indigo,
+                color: itemColor || theme.palette.custom.forbole.indigo,
               },
               userSelect: "none",
             }}

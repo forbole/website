@@ -23,6 +23,11 @@ const BlogDetails = ({ post }: any) => {
       footer
     >
       <MobileCSS>
+        <Box
+          sx={{
+            padding: theme.spacing(12, 3, 0, 3),
+          }}
+        />
         <Box sx={{ padding: theme.spacing(3) }}>
           <ContentCSS theme={theme}>
             <Author post={post} />
