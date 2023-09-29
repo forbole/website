@@ -88,7 +88,7 @@ const Footer = ({ red, itemColor }: FooterProps) => {
             >
               together today
             </Typography>
-            <Link href="/staking" passHref>
+            <Link href="https://www.forbole.com/staking" passHref>
               <a>
                 <CtaButton
                   sx={{

@@ -77,7 +77,7 @@ const StakingService = () => {
               },
             }}
             onClick={() => {
-              router.push("/staking");
+              router.push("https://www.forbole.com/staking");
             }}
           >
             {t("stake_now")}
@@ -127,7 +127,7 @@ const StakingService = () => {
           />
           <CtaButton
             onClick={() => {
-              router.push("/staking");
+              router.push("https://www.forbole.com/staking");
             }}
             sx={{
               display: "block",

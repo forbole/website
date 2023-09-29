@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { LangIcon, MenuIcon , Forbole as ForboleLogo } from "@components/icons";
+import { LangIcon, MenuIcon, Forbole as ForboleLogo } from "@components/icons";
 import { Collapse, ListItem, Stack, useTheme } from "@mui/material";
 import { useWindowDimensions } from "@src/hooks";
 
@@ -121,7 +121,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
           <ForboleLogo color="#BD081C" height="20px" width="106px" />
           <CtaButton
             onClick={() => {
-              router.push("/staking");
+              router.push("https://www.forbole.com/staking");
             }}
           >
             {t("StakeNow")}
