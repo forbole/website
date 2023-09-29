@@ -20,11 +20,11 @@ const Post = (props: any) => {
       sx={{
         border: "1px solid rgba(195, 204, 226, 0.3)",
         borderRadius: theme.spacing(1.5),
-        color: "primary.main",
+        color: theme.palette.primary.main,
         background: "transparent",
         height: "100%",
         "& a": {
-          color: "primary.main",
+          color: theme.palette.primary.main,
           textDecoration: "none",
         },
         "& img": {

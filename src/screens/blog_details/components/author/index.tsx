@@ -46,10 +46,7 @@ const Author = ({ post }: any) => {
             <Typography
               variant="body1"
               sx={{
-                color:
-                  theme.palette.mode === "dark"
-                    ? theme.palette.primary.main
-                    : theme.palette.text.primary,
+                color: theme.palette.primary.main,
                 fontWeight: 600,
                 fontSize: theme.spacing(1.75),
               }}
@@ -60,10 +57,7 @@ const Author = ({ post }: any) => {
               variant="body1"
               sx={{
                 opacity: 0.5,
-                color:
-                  theme.palette.mode === "dark"
-                    ? theme.palette.primary.main
-                    : "rgba(29, 30, 34, 1)",
+                color: theme.palette.primary.main,
                 fontWeight: 400,
                 fontSize: theme.spacing(1.75),
               }}

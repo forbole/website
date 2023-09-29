@@ -4,10 +4,10 @@ import { Theme } from "@mui/material";
 export const styles: { [index: string]: SxProps<Theme> } = {
   titlePostCSS: (theme) => ({
     padding: theme.spacing(7, 3, 0, 3),
-    color: "primary.main",
+    color: theme.palette.primary.main,
     listStyleType: "none",
     "& a": {
-      color: "primary.main",
+      color: theme.palette.primary.main,
       fontSize: theme.spacing(2),
       fontWeight: 600,
       textDecoration: "none",

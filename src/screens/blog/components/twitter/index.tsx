@@ -29,7 +29,11 @@ const Twitter = () => {
             height: 500,
           }}
           theme="dark"
-          linkColor="#FFFFFF"
+          linkColor={
+            theme.palette.mode === "dark"
+              ? theme.palette.primary.main
+              : theme.palette.text.primary
+          }
           borderColor="rgba(116, 136, 188, 0.3)"
           transparent
         />

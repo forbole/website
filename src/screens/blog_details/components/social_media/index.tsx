@@ -42,18 +42,12 @@ const SocialMedia = (props: any) => {
         "& svg": {
           marginRight: theme.spacing(2),
           "& path": {
-            fill:
-              theme.palette.mode === "dark"
-                ? theme.palette.primary.main
-                : theme.palette.custom.forbole.indigo,
+            fill: theme.palette.primary.main,
           },
           "&:hover": {
             cursor: "pointer",
             borderRadius: "50%",
-            background:
-              theme.palette.mode === "dark"
-                ? theme.palette.custom.forbole.indigo
-                : "rgba(29, 30, 34, 0.3)",
+            background: theme.palette.custom.forbole.indigo,
           },
         },
       }}

@@ -1,13 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import {
-  Layout,
-  Tags,
-  ScrollToTop,
-  ThemeModeSwitch,
-  Markdown,
-} from "@components";
+import { Layout, Tags, ScrollToTop, Markdown } from "@components";
 import { Author, SocialMedia } from "./components";
 import { ContentBox, ContentCSS, MobileCSS, LaptopCSS } from "./styles";
 
@@ -29,21 +23,6 @@ const BlogDetails = ({ post }: any) => {
       footer
     >
       <MobileCSS>
-        <Box
-          sx={{
-            padding: theme.spacing(12, 3, 0, 3),
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              paddingBottom: theme.spacing(3),
-            }}
-          >
-            <ThemeModeSwitch />
-          </Box>
-        </Box>
         <Box sx={{ padding: theme.spacing(3) }}>
           <ContentCSS theme={theme}>
             <Author post={post} />
@@ -51,10 +30,7 @@ const BlogDetails = ({ post }: any) => {
             <Typography
               variant="h3"
               sx={{
-                color:
-                  theme.palette.mode === "dark"
-                    ? theme.palette.primary.main
-                    : theme.palette.text.primary,
+                color: theme.palette.primary.main,
                 fontWeight: 600,
                 paddingBottom: theme.spacing(4),
                 fontSize: theme.spacing(3.5),
@@ -87,10 +63,7 @@ const BlogDetails = ({ post }: any) => {
                 <Typography
                   variant="body1"
                   sx={{
-                    color:
-                      theme.palette.mode === "dark"
-                        ? theme.palette.primary.main
-                        : theme.palette.text.primary,
+                    color: theme.palette.primary.main,
                     padding: theme.spacing(2, 0, 8, 0),
                     fontSize: theme.spacing(1.75),
                   }}
@@ -125,17 +98,13 @@ const BlogDetails = ({ post }: any) => {
             <Typography
               variant="h3"
               sx={{
-                color:
-                  theme.palette.mode === "dark"
-                    ? theme.palette.primary.main
-                    : theme.palette.text.primary,
+                color: theme.palette.primary.main,
                 fontWeight: 600,
                 fontSize: theme.spacing(5),
               }}
             >
               {title}
             </Typography>
-            <ThemeModeSwitch />
           </Box>
           <Box height="100%">
             <Box
@@ -185,18 +154,12 @@ const BlogDetails = ({ post }: any) => {
                 <Typography
                   variant="body1"
                   sx={{
-                    color:
-                      theme.palette.mode === "dark"
-                        ? theme.palette.primary.main
-                        : theme.palette.text.primary,
+                    color: theme.palette.primary.main,
                     padding: theme.spacing(4, 0, 8, 0),
                     fontSize: theme.spacing(2),
                     width: "80%",
                     a: {
-                      color:
-                        theme.palette.mode === "dark"
-                          ? theme.palette.primary.main
-                          : theme.palette.text.primary,
+                      color: theme.palette.primary.main,
                     },
                   }}
                 >

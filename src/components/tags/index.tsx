@@ -34,14 +34,7 @@ const Tags = (props: TagsProps) => {
         },
       }}
     >
-      <Typography
-        variant="h3"
-        color={
-          theme.palette.mode === "dark"
-            ? theme.palette.primary.main
-            : theme.palette.text.primary
-        }
-      >
+      <Typography variant="h3" color={theme.palette.primary.main}>
         {t("tags")}
       </Typography>
       <Box component="ul" sx={styles.tagCSS}>

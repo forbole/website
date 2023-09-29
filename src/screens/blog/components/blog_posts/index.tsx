@@ -144,7 +144,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
         <Button
           variant="text"
           sx={{
-            color: "primary.main",
+            color: theme.palette.primary.main,
             paddingTop: theme.spacing(10),
             fontWeight: 600,
             fontSize: theme.spacing(2),

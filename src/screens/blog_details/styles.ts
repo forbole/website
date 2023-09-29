@@ -32,13 +32,9 @@ export const ContentCSS = styled.div<ContentProps>`
     width: 100%;
   }
   margin: auto;
-  color: ${(props) =>
-    props?.theme?.palette?.mode === "dark" ? "#FFFFFF" : "#000000"};
+  color: #fff;
   a {
-    color: ${(props) =>
-      props?.theme?.palette?.mode === "dark"
-        ? "#FFFFFF"
-        : props?.theme?.palette?.custom?.forbole?.red};
+    color: #fff;
     transition: 0.3s;
     &:hover {
       color: rgba(0, 0, 0, 0.87);
@@ -221,8 +217,7 @@ export const ContentBox = styled.div<any>`
     font-weight: 300;
     font-size: 0.9rem;
     line-height: 1.4em;
-    color: ${(props) =>
-      props?.theme?.palette?.mode === "dark" ? "#FFFFFF" : "#000000"};
+    color: #fff;
     padding: 1rem 0rem;
   }
 

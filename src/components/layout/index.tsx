@@ -59,21 +59,18 @@ const Layout = ({
   useEffect(() => {
     if (blueBg) {
       const currentColor = document.body.style.background;
-      document.body.style.background = blueBg ? "rgb(23, 26, 75)" : "#fff";
+      document.body.style.background = "rgb(23, 26, 75)";
       return () => {
         document.body.style.background = currentColor;
       };
     }
 
     return undefined;
-  }, [blueBg]);
+  }, [blueBg, theme.palette.mode]);
 
   const background = (() => {
     if (blueBg) {
-      const backgroundColor =
-        theme.palette.mode === "dark"
-          ? "url(/images/assets/image_BG_gradient.png) top"
-          : theme.palette.primary.main;
+      const backgroundColor = "url(/images/assets/image_BG_gradient.png) top";
 
       return {
         background: backgroundColor,
@@ -103,7 +100,7 @@ const Layout = ({
   })();
   const itemColor = (() => {
     if (blueBg) {
-      return theme.palette.mode === "dark" ? "#fff" : "#000";
+      return "#fff";
     }
 
     return "";
