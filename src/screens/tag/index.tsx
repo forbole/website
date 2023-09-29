@@ -31,7 +31,7 @@ const TagTitlePosts = (props: any) => {
           <Box sx={styles.sideCSS}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />
-            <Twitter />
+            {false && <Twitter />}
           </Box>
         </Box>
       </Box>
