@@ -7,9 +7,6 @@ import * as R from "ramda";
 import validator from "validator";
 import { useRouter } from "next/router";
 import { Box, useTheme } from "@mui/material";
-import { SetterOrUpdater, useRecoilState } from "recoil";
-import { Theme } from "@recoil/settings/types";
-import { writeTheme } from "@recoil/settings";
 import useColor from "@src/styles/useColor";
 import Footer from "../footer";
 import Nav from "../nav";
@@ -24,11 +21,9 @@ type Props = {
   type?: string;
   image?: string;
   twitterImage?: string;
-  themeModeButton?: boolean;
-  waveBG?: boolean;
-  homeAnimation?: boolean;
   redBgFooter?: boolean;
   redBg?: boolean;
+  blueBg?: boolean;
 };
 
 const Layout = ({
@@ -41,17 +36,11 @@ const Layout = ({
   type = "website",
   image,
   twitterImage,
-  themeModeButton,
-  waveBG,
-  homeAnimation,
   redBgFooter, // 首页红色页脚
   redBg, // 首页红色背景
+  blueBg,
 }: Props) => {
   const theme = useTheme();
-  const [themeMode, setTheme] = useRecoilState(writeTheme) as [
-    Theme,
-    SetterOrUpdater<Theme>
-  ];
   const router = useRouter();
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
@@ -65,14 +54,36 @@ const Layout = ({
   if (!validator.isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
-  // React.useEffect(() => {
-  //   if (navLink !== '/blog' && theme.palette.mode === 'light') {
-  //     setTheme('dark');
-  //   } else if (navLink !== '/careers' && theme.palette.mode === 'light') {
-  //     setTheme('dark');
-  //   }
-  // }, [navLink]);
   const color = useColor();
+
+  const background = (() => {
+    if (blueBg)
+      return {
+        background: "url(/images/assets/image_BG_gradient.png) top",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "0 0",
+        backgroundSize: "cover",
+        [theme.breakpoints.up("laptop")]: {
+          backgroundSize: "100%",
+        },
+      };
+
+    return {
+      backgroundImage: redBg
+        ? "url(/images/assets/bg1.png)"
+        : "url(/images/assets/bg2.png)",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: redBg ? "0 -10vw" : "0 0",
+      backgroundColor: color.primary,
+      backgroundSize: "100% auto",
+      [theme.breakpoints.between("mobile", 550)]: {
+        backgroundImage: redBg
+          ? "url(/images/assets/bg1.png)"
+          : "url(/images/assets/bg2.png)",
+      },
+    };
+  })();
+
   return (
     <Box position="relative">
       <Head>
@@ -144,19 +155,7 @@ const Layout = ({
             display: "flex",
             flexDirection: "column",
             minHeight: "100vh",
-            backgroundImage: redBg
-              ? "url(/images/assets/bg1.png)"
-              : "url(/images/assets/bg2.png)",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: redBg ? "0 -10vw" : "0 0",
-            backgroundColor: color.primary,
-            backgroundSize: "100% auto",
-            [theme.breakpoints.between("mobile", 550)]: {
-              backgroundImage: redBg
-                ? "url(/images/assets/bg1_m.png)"
-                : "url(/images/assets/bg2_m.png)",
-            },
-            [theme.breakpoints.up("laptop")]: {},
+            ...background,
           }}
         >
           <Nav navLink={navLink} />

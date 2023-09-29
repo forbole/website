@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import useTranslation from "next-translate/useTranslation";
 import { Box, Typography, useTheme } from "@mui/material";
-import { Layout, ScrollToTop } from "@components";
+import { Layout } from "@components";
 import { AuthorPosts } from "./components";
 import { useBlogHook } from "./hooks";
 
@@ -19,7 +19,7 @@ const AuthorTitlePosts = (props: any) => {
       image={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? "")}
       navLink="/blog"
-      navBar={false}
+      blueBg
       footer
     >
       <Box

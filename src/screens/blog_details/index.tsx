@@ -25,7 +25,7 @@ const BlogDetails = ({ post }: any) => {
       twitterImage={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? "")}
       navLink="/blog"
-      navBar={false}
+      blueBg
       footer
     >
       <MobileCSS>

@@ -15,9 +15,10 @@ interface NavProps {
   navLink: string | null;
   staking?: boolean;
   stakeNowRef?: RefObject<HTMLElement>;
+  navContent?: string;
 }
 
-const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
+const Nav = ({ navLink, staking, stakeNowRef, navContent }: NavProps) => {
   const theme = useTheme();
   const colors = useColor();
   const { displayBackground } = useNavHook();

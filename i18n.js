@@ -18,6 +18,10 @@ module.exports = {
     "/analytics-tools": ["analytics_tools"],
     "/enterprise-solution": ["enterprise_solution"],
     "/staking": ["staking"],
+    "/blog": ["blog"],
+    "/blog/[title]": ["blog"],
+    "/tag/[tag]": ["blog"],
+    "/author/[author]": ["blog"],
   },
   loadLocaleFrom: (lang, ns) => require(`./public/locales/${lang}/${ns}.json`),
 };

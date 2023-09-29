@@ -10,21 +10,13 @@ import { styles } from "./styles";
 
 const TagTitlePosts = (props: any) => {
   const theme = useTheme();
-  const {
-    post,
-    main = false,
-    sidePosts = [],
-    tags,
-    author,
-    meta,
-    error,
-  } = props;
+  const { post, sidePosts = [], tags, meta, error } = props;
 
   const { t } = useTranslation("blog");
   useBlogHook(error, t);
 
   return (
-    <Layout title={t("title")} navLink="/blog" navBar={false} footer>
+    <Layout title={t("title")} navLink="/blog" footer blueBg>
       <Box sx={styles.flexBox}>
         <Box
           sx={{
