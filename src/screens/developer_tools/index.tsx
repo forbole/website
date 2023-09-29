@@ -83,7 +83,9 @@ const DeveloperTools = () => {
             }}
           >
             <CtaButton
-              onClick={() => router.push("http://dev-tools.forbole.com")}
+              onClick={() => {
+                setShow(true);
+              }}
             >
               {t("sign_up_now")}
             </CtaButton>

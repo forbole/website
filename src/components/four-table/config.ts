@@ -7,7 +7,7 @@ const plans = [
     features: "plan_item1_features",
     image: "/images/assets/24.png",
     btnName: "try_now",
-    btnHref: "http://dev-tools.forbole.com",
+    btnHref: "",
   },
   {
     title: "plan_item2_title",
