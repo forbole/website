@@ -6,7 +6,7 @@ const plans = [
     description: "plan_item1_description",
     features: "plan_item1_features",
     image: "/images/assets/24.png",
-    btnName: "try_now",
+    btnName: "contact_sales",
     btnHref: "",
   },
   {

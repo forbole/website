@@ -18,7 +18,6 @@ import TalkModal from "@src/components/talk-modal";
 
 import SuccessModal from "@src/components/success-modal";
 import SignatureCard from "@components/signature-card";
-import { useRouter } from "next/router";
 import useTalkModalForm from "./hooks";
 
 const DeveloperTools = () => {
@@ -40,7 +39,6 @@ const DeveloperTools = () => {
   });
   const topRef = React.useRef(null);
   const [show, setShow] = useState(false);
-  const router = useRouter();
   return (
     <Layout title={t("page_title")} navLink="/products" footer>
       <Container
@@ -82,13 +80,6 @@ const DeveloperTools = () => {
               },
             }}
           >
-            <CtaButton
-              onClick={() => {
-                setShow(true);
-              }}
-            >
-              {t("sign_up_now")}
-            </CtaButton>
             <CtaButton
               onClick={() => {
                 setShow(true);
