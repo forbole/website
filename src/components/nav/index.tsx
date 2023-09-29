@@ -15,10 +15,10 @@ interface NavProps {
   navLink: string | null;
   staking?: boolean;
   stakeNowRef?: RefObject<HTMLElement>;
-  navContent?: string;
+  itemColor?: string;
 }
 
-const Nav = ({ navLink, staking, stakeNowRef, navContent }: NavProps) => {
+const Nav = ({ navLink, staking, stakeNowRef, itemColor }: NavProps) => {
   const theme = useTheme();
   const colors = useColor();
   const { displayBackground } = useNavHook();
@@ -90,7 +90,6 @@ const Nav = ({ navLink, staking, stakeNowRef, navContent }: NavProps) => {
             [theme.breakpoints.up("laptop")]: {
               padding: theme.spacing(5.5, 0, 0, 0),
               justifyContent: "space-between",
-              // overflowY: 'hidden',
               overflow: "unset",
             },
           }}
@@ -114,7 +113,7 @@ const Nav = ({ navLink, staking, stakeNowRef, navContent }: NavProps) => {
                 {staking ? (
                   <ForboleShadowIcon />
                 ) : (
-                  <ForboleLogo color={colors.primary} />
+                  <ForboleLogo color={itemColor || colors.primary} />
                 )}
               </a>
             </Link>

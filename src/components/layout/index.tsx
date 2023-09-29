@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import Head from "next/head";
 import * as R from "ramda";
 import validator from "validator";
@@ -56,10 +56,27 @@ const Layout = ({
   }
   const color = useColor();
 
+  useEffect(() => {
+    if (blueBg) {
+      const currentColor = document.body.style.background;
+      document.body.style.background = blueBg ? "rgb(23, 26, 75)" : "#fff";
+      return () => {
+        document.body.style.background = currentColor;
+      };
+    }
+
+    return undefined;
+  }, [blueBg]);
+
   const background = (() => {
-    if (blueBg)
+    if (blueBg) {
+      const backgroundColor =
+        theme.palette.mode === "dark"
+          ? "url(/images/assets/image_BG_gradient.png) top"
+          : theme.palette.primary.main;
+
       return {
-        background: "url(/images/assets/image_BG_gradient.png) top",
+        background: backgroundColor,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "0 0",
         backgroundSize: "cover",
@@ -67,6 +84,7 @@ const Layout = ({
           backgroundSize: "100%",
         },
       };
+    }
 
     return {
       backgroundImage: redBg
@@ -82,6 +100,13 @@ const Layout = ({
           : "url(/images/assets/bg2.png)",
       },
     };
+  })();
+  const itemColor = (() => {
+    if (blueBg) {
+      return theme.palette.mode === "dark" ? "#fff" : "#000";
+    }
+
+    return "";
   })();
 
   return (
@@ -158,9 +183,9 @@ const Layout = ({
             ...background,
           }}
         >
-          <Nav navLink={navLink} />
+          <Nav navLink={navLink} itemColor={itemColor} />
           {children}
-          {!!footer && <Footer red={redBgFooter} />}
+          {!!footer && <Footer red={redBgFooter} itemColor={itemColor} />}
         </Box>
       </Box>
     </Box>

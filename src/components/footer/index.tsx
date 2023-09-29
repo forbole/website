@@ -4,30 +4,28 @@ import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useWindowDimensions } from "@src/hooks";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { FooterItems, SocialMedia } from "./components";
 import { FooterProps } from "./types";
 import CtaButton from "../cta-button";
 
-const Footer = ({ staking, red }: FooterProps) => {
+const Footer = ({ red, itemColor }: FooterProps) => {
   const theme = useTheme();
-  const { windowDimensions, isTablet, isMobile } = useWindowDimensions();
-  const { width } = windowDimensions;
+  const { isTablet, isMobile } = useWindowDimensions();
   const { t } = useTranslation("common");
-  const router = useRouter();
 
   return (
     <Box
       sx={{
-        // display: "flex",
         zIndex: 1,
         userSelect: "none",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        color: red
-          ? theme.palette.primary.main
-          : theme.palette.custom.forbole.indigo,
+        color:
+          itemColor ||
+          (red
+            ? theme.palette.primary.main
+            : theme.palette.custom.forbole.indigo),
         backgroundImage: red ? "url(/images/footer/foot.png)" : "",
         [theme.breakpoints.down("laptop")]: {
           backgroundImage: red ? "url(/images/footer/foot_m.png)" : "",
@@ -49,11 +47,7 @@ const Footer = ({ staking, red }: FooterProps) => {
             justifyContent: "flex-end",
           }}
         >
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          >
+          <Stack direction="column" justifyContent="center" alignItems="center">
             <Box
               sx={{
                 mt: "20px",
