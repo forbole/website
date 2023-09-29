@@ -11,7 +11,7 @@ const Akash = () => {
     >
       <g
         id="Network Icon/ SVG icons/ &#226;&#140;&#128;28"
-        clip-path="url(#clip0_644_63049)"
+        clipPath="url(#clip0_644_63049)"
       >
         <g id="Group 21569">
           <circle id="Ellipse 37" cx="14" cy="14.5" r="14" fill="white" />

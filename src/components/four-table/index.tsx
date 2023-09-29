@@ -1,33 +1,33 @@
-import { Box, Divider, Stack, Typography, useTheme } from '@mui/material';
-import plans from './config';
-import styles from './styles.module.css';
-import useTranslation from 'next-translate/useTranslation';
-import { useState } from 'react';
-import CtaButton from '@components/cta-button';
-import { useRouter } from 'next/router';
+import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import { useState } from "react";
+import CtaButton from "@components/cta-button";
+import { useRouter } from "next/router";
+import styles from "./styles.module.css";
+import plans from "./config";
 
-type Props={btnHref:()=>void}
-const FourTable = ({btnHref }:Props) => {
+type Props = { btnHref: () => void };
+const FourTable = ({ btnHref }: Props) => {
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
   const [clickItem, setClickItem] = useState<number | null>(2);
-  const router=useRouter();
+  const router = useRouter();
   // const handleClick = (index: number) => {
   //   setClickItem(index);
   // };
 
   return (
     <Stack
-      direction={"row"}
+      direction="row"
       sx={{
         alignItems: "flex-end",
-        minHeight:'536px',
-        gap:'16px',
+        minHeight: "536px",
+        gap: "16px",
         [theme.breakpoints.down("laptop")]: {
           flexDirection: "column",
           justifyContent: "center",
-          alignItems:'center',
-          gap:'24px',
+          alignItems: "center",
+          gap: "24px",
           // minHeight:'1200px',
         },
       }}
@@ -38,11 +38,11 @@ const FourTable = ({btnHref }:Props) => {
           // onClick={() => handleClick(index)}
           className={index === clickItem ? styles.active : ""}
           sx={{
-            position: 'relative',
+            position: "relative",
             height: "496px",
             flexGrow: 1,
             flexShrink: 1,
-            flexBasis: '270px',
+            flexBasis: "270px",
             padding: "24px",
             borderRadius: "24px",
             backgroundColor: "#fff",
@@ -51,7 +51,7 @@ const FourTable = ({btnHref }:Props) => {
             [theme.breakpoints.down("laptop")]: {
               flexGrow: 0,
               flexShrink: 0,
-              flexBasis: 'max-content',
+              flexBasis: "max-content",
               width: "75%",
             },
             // transition: theme.transitions.create([
@@ -65,11 +65,11 @@ const FourTable = ({btnHref }:Props) => {
           }}
         >
           <Stack
-            direction={"row"}
-            className={index === clickItem ? styles.popular :  styles.none}
+            direction="row"
+            className={index === clickItem ? styles.popular : styles.none}
           >
-            <img src="/icons/Group.png"></img>
-            <Typography component={"span"}>Popular!</Typography>
+            <img src="/icons/Group.png" />
+            <Typography component="span">Popular!</Typography>
           </Stack>
           <Typography
             sx={{
@@ -98,7 +98,7 @@ const FourTable = ({btnHref }:Props) => {
                 fontSize: "32px",
                 fontWeight: "590",
                 marginTop: "-23px",
-                pr:'7px',
+                pr: "7px",
                 // transition: theme.transitions.create([
                 //   "font-size",
                 // ]),
@@ -106,18 +106,18 @@ const FourTable = ({btnHref }:Props) => {
               }}
             >
               <Typography
-                component={"span"}
+                component="span"
                 sx={{
                   fontSize: "16px",
                   fontWeight: "590",
-                  pr:'3px',
+                  pr: "3px",
                 }}
               >
                 $
               </Typography>
               {t(Plan.price)}
             </Typography>
-           {t(Plan.currency)}
+            {t(Plan.currency)}
           </Box>
           <Typography
             sx={{
@@ -137,7 +137,7 @@ const FourTable = ({btnHref }:Props) => {
               style={{
                 marginTop: "24px",
               }}
-            ></Divider>
+             />
             {Array.isArray(Plan.features) ? (
               Plan.features.map((item, index) => (
                 <Box
@@ -171,7 +171,7 @@ const FourTable = ({btnHref }:Props) => {
                   display: "flex",
                   [theme.breakpoints.down("laptop")]: {
                     marginTop: "16px",
-                  }
+                  },
                 }}
               >
                 <img
@@ -191,15 +191,18 @@ const FourTable = ({btnHref }:Props) => {
               </Box>
             )}
           </Box>
-            <CtaButton sx={{
-              position:'absolute',
-              left:'24px',
-              right:'24px',
-              bottom:'24px',
-              [theme.breakpoints.down("laptop")]: {display:'none'}
+          <CtaButton
+            sx={{
+              position: "absolute",
+              left: "24px",
+              right: "24px",
+              bottom: "24px",
+              [theme.breakpoints.down("laptop")]: { display: "none" },
             }}
-             onClick={Plan.btnHref?(()=>router.push(Plan.btnHref)):btnHref}
-            >{t(Plan.btnName)}</CtaButton>
+            onClick={Plan.btnHref ? () => router.push(Plan.btnHref) : btnHref}
+          >
+            {t(Plan.btnName)}
+          </CtaButton>
         </Box>
       ))}
     </Stack>

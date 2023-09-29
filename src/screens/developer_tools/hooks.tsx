@@ -1,9 +1,9 @@
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import validator from 'validator';
-import axios from 'axios';
-import DOMPurify from 'isomorphic-dompurify';
-import { toast, ToastContent } from 'react-toastify';
+import React from "react";
+import useTranslation from "next-translate/useTranslation";
+import validator from "validator";
+import axios from "axios";
+import DOMPurify from "isomorphic-dompurify";
+import { toast, ToastContent } from "react-toastify";
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = React.useState({
@@ -40,14 +40,14 @@ const useTalkModalForm = () => {
     }
   }, [inputs]);
   const get_started = React.useMemo(() => {
-    let str = [];
+    const str = [];
     if (inputs["Data API"]) {
       str.push("Data API");
     }
-    if (inputs["GraphQL"]) {
+    if (inputs.GraphQL) {
       str.push("GraphQL");
     }
-    if (inputs["Other"]) {
+    if (inputs.Other) {
       str.push("Other");
     }
     if (inputs["RPC Endpoints"]) {
@@ -56,8 +56,8 @@ const useTalkModalForm = () => {
     return str;
   }, [
     inputs["Data API"],
-    inputs["GraphQL"],
-    inputs["Other"],
+    inputs.GraphQL,
+    inputs.Other,
     inputs["RPC Endpoints"],
   ]);
 
@@ -122,7 +122,7 @@ const useTalkModalForm = () => {
     }));
   };
   const handleCheckedChange = (event: any) => {
-    let { name, checked } = event.target;
+    const { name, checked } = event.target;
     setInputs((input) => ({
       ...input,
       [name]: checked,

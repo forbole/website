@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const ClientOnly = ({ children, ...delegated }: any) => {
   const [hasMounted, setHasMounted] = React.useState(false);

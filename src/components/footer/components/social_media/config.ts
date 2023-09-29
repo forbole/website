@@ -1,7 +1,7 @@
 export const socialKeys = [
-  'github',
-  'twitter',
-  'telegram',
-  'linkedIn',
-  'Instagram',
+  "github",
+  "twitter",
+  "telegram",
+  "linkedIn",
+  "Instagram",
 ];

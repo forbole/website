@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
-import useStyles from './useStyles';
-import { StatsCard } from './components';
-import { useStatsHook } from './hooks';
+import { Box } from "@mui/material";
+import useStyles from "./useStyles";
+import { StatsCard } from "./components";
+import { useStatsHook } from "./hooks";
 
 const Stats = () => {
   const styles = useStyles();
@@ -11,9 +11,15 @@ const Stats = () => {
   const statsKeys = Object.keys(stats);
   return (
     <Box css={styles.grid}>
-      {statsKeys.map((key: any,index) => {
+      {statsKeys.map((key: any, index) => {
         const statsItem = stats[key];
-        return <StatsCard title={statsItem.title} stats={statsItem.stats} key={index}/>;
+        return (
+          <StatsCard
+            title={statsItem.title}
+            stats={statsItem.stats}
+            key={index}
+          />
+        );
       })}
     </Box>
   );

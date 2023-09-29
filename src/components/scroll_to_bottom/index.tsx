@@ -8,14 +8,14 @@ const ScrollToBottom = ({ bottomRef, staking }: any) => {
     e.preventDefault();
     window.scrollTo({
       left: 0,
-      top: ref.current.offsetTop-100,
+      top: ref.current.offsetTop - 100,
       behavior: "smooth",
     });
   };
-  
+
   return (
     <Box
-      position='relative'
+      position="relative"
       alignSelf="center"
       zIndex={2}
       sx={{
@@ -23,8 +23,9 @@ const ScrollToBottom = ({ bottomRef, staking }: any) => {
         mb: "24px",
         width: "48px",
         height: "48px",
-        borderRadius:'48px',
-        boxShadow: '0px 10px 32px -4px rgba(125, 92, 255, 0.10), 0px 6px 14px -6px rgba(126, 94, 255, 0.28)',
+        borderRadius: "48px",
+        boxShadow:
+          "0px 10px 32px -4px rgba(125, 92, 255, 0.10), 0px 6px 14px -6px rgba(126, 94, 255, 0.28)",
         filter:
           "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
         [theme.breakpoints.down("laptop")]: {
@@ -36,7 +37,7 @@ const ScrollToBottom = ({ bottomRef, staking }: any) => {
         cursor: "pointer",
         "& svg": {
           transition: "all 0.3s",
-         
+
           fill: " #FFF",
           "& path": {
             stroke: theme.palette.custom.forbole.blue,
@@ -44,7 +45,6 @@ const ScrollToBottom = ({ bottomRef, staking }: any) => {
           "&:hover": {
             fill: "rgba(241, 243, 248)",
           },
-          
         },
       }}
     >

@@ -7,17 +7,18 @@ import React, { RefObject } from "react";
 import Link from "next/link";
 import { Box, Button, useTheme } from "@mui/material";
 import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
+import useColor from "@src/styles/useColor";
 import { MobileNavMenu, DesktopNavMenu } from "./components";
 import { useNavHook } from "./hooks";
-import useColor from "@src/styles/useColor";
 
 interface NavProps {
   navLink: string | null;
   staking?: boolean;
   stakeNowRef?: RefObject<HTMLElement>;
+  itemColor?: string;
 }
 
-const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
+const Nav = ({ navLink, staking, stakeNowRef, itemColor }: NavProps) => {
   const theme = useTheme();
   const colors = useColor();
   const { displayBackground } = useNavHook();
@@ -31,7 +32,7 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
       });
     }
   };
-   
+
   return (
     <Box
       sx={{
@@ -66,7 +67,7 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
           height: "auto",
           position: "fixed",
           top: 0,
-          px:'16px',
+          px: "16px",
           zIndex: 2,
           maxWidth: "desktop",
           [theme.breakpoints.up("laptop")]: {
@@ -89,7 +90,6 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
             [theme.breakpoints.up("laptop")]: {
               padding: theme.spacing(5.5, 0, 0, 0),
               justifyContent: "space-between",
-              // overflowY: 'hidden',
               overflow: "unset",
             },
           }}
@@ -113,7 +113,7 @@ const Nav = ({ navLink, staking, stakeNowRef }: NavProps) => {
                 {staking ? (
                   <ForboleShadowIcon />
                 ) : (
-                  <ForboleLogo color={colors.primary} />
+                  <ForboleLogo color={itemColor || colors.primary} />
                 )}
               </a>
             </Link>

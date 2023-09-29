@@ -5,15 +5,15 @@ export const navItems = [
   // },
 
   {
-    display: 'Products',
-    link: '/products',
-    status: true
+    display: "Products",
+    link: "/products",
+    status: true,
   },
 
   {
-    display: 'Company',
-    link: '#!',
-    status: true
+    display: "Company",
+    link: "#!",
+    status: true,
   },
 
   // {
@@ -21,7 +21,6 @@ export const navItems = [
   //   link: '/stakenow',
   //   status: true
   // },
-
 
   // {
   //   display: 'mission',

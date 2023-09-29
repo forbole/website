@@ -1,7 +1,7 @@
-import { ThemeOptions } from '@mui/material/styles';
-import { deepmerge } from '@mui/utils';
-import { darkThemeOverride } from './dark';
-import { lightThemeOverride } from './light';
+import { ThemeOptions } from "@mui/material/styles";
+import { deepmerge } from "@mui/utils";
+import { darkThemeOverride } from "./dark";
+import { lightThemeOverride } from "./light";
 
 // interface CustomPalette extends Palette {
 //   background: { default: string };
@@ -12,9 +12,9 @@ import { lightThemeOverride } from './light';
 // }
 
 /** Common themes that don't change across light and dark theme */
-export const common:ThemeOptions = {
+export const common: ThemeOptions = {
   breakpoints: {
-    keys: ['mobile', 'tablet', 'laptop', 'desktop'],
+    keys: ["mobile", "tablet", "laptop", "desktop"],
     values: {
       // mobile: 320,
       mobile: 375,
@@ -24,24 +24,24 @@ export const common:ThemeOptions = {
     },
   },
   typography: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+    fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
     h1: {
-      fontSize: '32px',
-      '@media (min-width: 769px)': {
-        fontSize: '64px',
+      fontSize: "32px",
+      "@media (min-width: 769px)": {
+        fontSize: "64px",
       },
     },
     button: {
-      textTransform: 'none',
+      textTransform: "none",
     },
   },
-  components:{
-    MuiTypography:{
-      defaultProps:{
-        lineHeight:'normal',
-      }
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        lineHeight: "normal",
+      },
     },
-  }
+  },
 
   // components: {
   //   MuiCssBaseline: {

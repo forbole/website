@@ -1,5 +1,5 @@
 import React from "react";
-import {  Stack,  useTheme } from "@mui/material";
+import { Stack, useTheme } from "@mui/material";
 import { Stats } from "./components";
 
 type Props = {};
@@ -24,7 +24,7 @@ const KeyData = (props: Props) => {
         },
       }}
     >
-      <Stats/>
+      <Stats />
     </Stack>
   );
 };

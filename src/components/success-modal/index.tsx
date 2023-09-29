@@ -8,8 +8,9 @@ import {
   Backdrop,
 } from "@mui/material";
 import React, { forwardRef } from "react";
-import { Close } from "../icons";
 import Image from "next/image";
+import { Close } from "../icons";
+
 type Props = {
   fixed?: any;
   close?: (b: boolean) => void;
@@ -18,11 +19,8 @@ type Props = {
   bottom_word?: string;
   open: boolean;
 };
-const Alert = forwardRef<HTMLDivElement,Omit<Props, "open">>(
-  (
-    { fixed, close, up_word, middle_word, bottom_word },
-    ref
-  ) => {
+const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
+  ({ fixed, close, up_word, middle_word, bottom_word }, ref) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("laptop"));
     return (
@@ -48,9 +46,9 @@ const Alert = forwardRef<HTMLDivElement,Omit<Props, "open">>(
         }}
       >
         <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
         >
           <Stack>
             {up_word && (
@@ -96,7 +94,7 @@ const Alert = forwardRef<HTMLDivElement,Omit<Props, "open">>(
                 alignSelf: "flex-start",
                 boxSizing: "content-box",
               }}
-            ></Close>
+             />
           )}
         </Stack>
         <Box
@@ -160,21 +158,21 @@ export default function SuccessModal({
   }
   return (
     <Modal
-      disableEnforceFocus 
+      disableEnforceFocus
       open={open}
       onClose={() => close?.(false)}
       sx={{
-        overflow:'auto'
-        }}
+        overflow: "auto",
+      }}
       slotProps={{
-        backdrop:{
+        backdrop: {
           sx() {
-             return{
+            return {
               background: "rgba(123, 123, 123, 0.20)",
               backdropFilter: "blur(8px)",
-             } 
+            };
           },
-        }
+        },
       }}
     >
       <Alert

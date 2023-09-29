@@ -1,16 +1,22 @@
-import React, { useRef } from 'react';
-import { Layout, ScrollToTop } from '@components';
-import { Container, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import CtaButton from '@src/components/cta-button';
-import { StyledTab, StyledTabs } from '@src/components/selection-tab';
-import ProductPanel from '@src/components/product-panel';
-import HeaderCard from '@src/components/header-card';
-import useTranslation from 'next-translate/useTranslation';
-import { businesses, individuals } from './config';
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import style from './index.module.css';
-import { scrollBottom } from '@src/utils/scroll';
+import React, { useRef } from "react";
+import { Layout, ScrollToTop } from "@components";
+import {
+  Container,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import CtaButton from "@src/components/cta-button";
+import { StyledTab, StyledTabs } from "@src/components/selection-tab";
+import ProductPanel from "@src/components/product-panel";
+import HeaderCard from "@src/components/header-card";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import { scrollBottom } from "@src/utils/scroll";
+import style from "./index.module.css";
+import { businesses, individuals } from "./config";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
   ssr: false,
@@ -19,7 +25,9 @@ const Trans = dynamic(async () => import("next-translate/Trans"), {
 const Products = () => {
   const { t } = useTranslation("products");
   const theme = useTheme();
-  const isMobile=useMediaQuery(theme.breakpoints.down('tablet'),{noSsr:true})
+  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
+    noSsr: true,
+  });
   const [v1, setV1] = React.useState(0);
   const [v2, setV2] = React.useState(0);
   const topRef = useRef(null);
@@ -105,10 +113,10 @@ const Products = () => {
                 }}
               />,
               <Typography
-                component={"span"}
+                component="span"
                 color="#EE3131"
                 sx={{
-                  textShadow:'0px 0px 20px #ffffff',
+                  textShadow: "0px 0px 20px #ffffff",
                   [theme.breakpoints.down("laptop")]: {
                     fontSize: "24px",
                     fontWeight: "700",
@@ -124,8 +132,8 @@ const Products = () => {
             ]}
           />
           <Stack
-            direction={"row"}
-            justifyContent={"center"}
+            direction="row"
+            justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
           >
             <CtaButton
@@ -193,10 +201,10 @@ const Products = () => {
               />,
               <Typography
                 color="#EE3131"
-                component={"span"}
+                component="span"
                 display="inline"
                 sx={{
-                  textShadow:'0px 0px 20px #ffffff',
+                  textShadow: "0px 0px 20px #ffffff",
                   [theme.breakpoints.down("laptop")]: {
                     fontSize: "24px",
                     fontWeight: "700",
@@ -212,9 +220,9 @@ const Products = () => {
             ]}
           />
           <Stack
-            direction={"column"}
-            alignItems={"center"}
-            justifyContent={"center"}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
             sx={{
               mb: "40px",
@@ -249,7 +257,10 @@ const Products = () => {
                   startIcon={
                     <img src="/products/p3.svg" className={style.icon} />
                   }
-                  onClick={(e) =>{ handleChange(e, 0);scrollBottom(e,PanelRef1)} }
+                  onClick={(e) => {
+                    handleChange(e, 0);
+                    scrollBottom(e, PanelRef1);
+                  }}
                   className={style.response36}
                 >
                   {t("staking")}
@@ -258,7 +269,10 @@ const Products = () => {
                   startIcon={
                     <img src="/products/p4.svg" className={style.icon} />
                   }
-                  onClick={(e) => {handleChange(e, 1);scrollBottom(e,PanelRef1)}}
+                  onClick={(e) => {
+                    handleChange(e, 1);
+                    scrollBottom(e, PanelRef1);
+                  }}
                   className={style.response36}
                 >
                   {t("analytics")}
@@ -267,7 +281,10 @@ const Products = () => {
                   startIcon={
                     <img src="/products/p5.svg" className={style.icon} />
                   }
-                  onClick={(e) => {handleChange(e, 2);scrollBottom(e,PanelRef1)}}
+                  onClick={(e) => {
+                    handleChange(e, 2);
+                    scrollBottom(e, PanelRef1);
+                  }}
                   className={style.response36}
                 >
                   {t("developer")}
@@ -285,14 +302,14 @@ const Products = () => {
               key={index}
             >
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
-                  sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43"}}
+                  component="dt"
+                  sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("benefits")}
                 </Typography>
@@ -300,11 +317,11 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dd"}
-                      display={"flex"}
+                      component="dd"
+                      display="flex"
                       sx={{
                         color: "#202A43",
-                        alignItems:"baseline",
+                        alignItems: "baseline",
                         [theme.breakpoints.down("laptop")]: {
                           fontSize: "16px",
                         },
@@ -323,14 +340,14 @@ const Products = () => {
                 })}
               </Stack>
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
-                  sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43", }}
+                  component="dt"
+                  sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("usecases")}
                 </Typography>
@@ -338,10 +355,10 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dl"}
+                      component="dl"
                       sx={{
                         color: "#202A43",
-                        alignItems:"baseline",
+                        alignItems: "baseline",
                         [theme.breakpoints.down("laptop")]: {
                           fontSize: "16px",
                         },
@@ -413,10 +430,10 @@ const Products = () => {
               />,
               <Typography
                 color="#EE3131"
-                component={"span"}
+                component="span"
                 display="inline"
                 sx={{
-                  textShadow:'0px 0px 20px #ffffff',
+                  textShadow: "0px 0px 20px #ffffff",
                   [theme.breakpoints.down("laptop")]: {
                     fontSize: "24px",
                     fontWeight: "700",
@@ -433,9 +450,9 @@ const Products = () => {
           />
 
           <Stack
-            direction={"column"}
-            alignItems={"center"}
-            justifyContent={"center"}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
             sx={{
               mb: "48px",
@@ -460,25 +477,25 @@ const Products = () => {
                     label={t("analytics")}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                 </StyledTabs>
                 <StyledTabs value={v2} onChange={handleChange2}>
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
-                    label={""}
+                    label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
@@ -498,7 +515,10 @@ const Products = () => {
                   startIcon={
                     <img src="/products/p3.svg" className={style.icon} />
                   }
-                  onClick={(e) => {handleChange2(e, 0);scrollBottom(e,PanelRef2)}}
+                  onClick={(e) => {
+                    handleChange2(e, 0);
+                    scrollBottom(e, PanelRef2);
+                  }}
                   className={style.response}
                 >
                   {t("validator-infrastructure")}
@@ -507,7 +527,10 @@ const Products = () => {
                   startIcon={
                     <img src="/products/p6.svg" className={style.icon} />
                   }
-                  onClick={(e) => {handleChange2(e, 1);scrollBottom(e,PanelRef2)}}
+                  onClick={(e) => {
+                    handleChange2(e, 1);
+                    scrollBottom(e, PanelRef2);
+                  }}
                   className={style.response}
                 >
                   {t("staking")}
@@ -516,17 +539,23 @@ const Products = () => {
                   startIcon={
                     <img src="/products/p4.svg" className={style.icon} />
                   }
-                  onClick={(e) => {handleChange2(e, 2);scrollBottom(e,PanelRef2)}}
+                  onClick={(e) => {
+                    handleChange2(e, 2);
+                    scrollBottom(e, PanelRef2);
+                  }}
                   className={style.response}
                 >
                   {t("analytics")}
                 </CtaButton>
-                <Stack direction={"row"} spacing={1}>
+                <Stack direction="row" spacing={1}>
                   <CtaButton
                     startIcon={
                       <img src="/products/p5.svg" className={style.icon} />
                     }
-                    onClick={(e) => {handleChange2(e, 3);scrollBottom(e,PanelRef2)}}
+                    onClick={(e) => {
+                      handleChange2(e, 3);
+                      scrollBottom(e, PanelRef2);
+                    }}
                     className={style.response}
                   >
                     {t("developer")}
@@ -535,7 +564,10 @@ const Products = () => {
                     startIcon={
                       <img src="/products/p7.svg" className={style.icon} />
                     }
-                    onClick={(e) => {handleChange2(e, 4);scrollBottom(e,PanelRef2)}}
+                    onClick={(e) => {
+                      handleChange2(e, 4);
+                      scrollBottom(e, PanelRef2);
+                    }}
                     className={style.response}
                   >
                     {t("enterprise-solution")}
@@ -554,14 +586,14 @@ const Products = () => {
               key={index}
             >
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
-                  sx={{ fontSize: "24px", fontWeight: 700 , color: "#202A43",}}
+                  component="dt"
+                  sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("benefits")}
                 </Typography>
@@ -569,11 +601,11 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dd"}
-                      display={"flex"}
+                      component="dd"
+                      display="flex"
                       sx={{
                         color: "#202A43",
-                        alignItems:"baseline",
+                        alignItems: "baseline",
                         [theme.breakpoints.down("laptop")]: {
                           fontSize: "16px",
                         },
@@ -592,14 +624,14 @@ const Products = () => {
                 })}
               </Stack>
               <Stack
-                component={"dl"}
+                component="dl"
                 sx={{
                   gap: "16px",
                 }}
               >
                 <Typography
-                  component={"dt"}
-                  sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43", }}
+                  component="dt"
+                  sx={{ fontSize: "24px", fontWeight: 700, color: "#202A43" }}
                 >
                   {t("usecases")}
                 </Typography>
@@ -607,11 +639,11 @@ const Products = () => {
                   return (
                     <Typography
                       key={k}
-                      component={"dd"}
-                      display={"flex"}
+                      component="dd"
+                      display="flex"
                       sx={{
                         color: "#202A43",
-                        alignItems:"baseline",
+                        alignItems: "baseline",
                         [theme.breakpoints.down("laptop")]: {
                           fontSize: "16px",
                         },

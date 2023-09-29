@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material';
+import * as React from "react";
+import { useTheme } from "@mui/material";
 
 const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -26,10 +26,10 @@ export const useWindowDimensions = () => {
     }
 
     handleResize(); // <-- invoke this function on component mount
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

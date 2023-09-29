@@ -1,8 +1,8 @@
-import { selector } from 'recoil';
-import { mergeStateChange } from '@utils/merge_state_change';
-import { THEME_KEY, setItem } from '@utils/localStorage';
-import { atomState } from './atom';
-import { Theme } from './types';
+import { selector } from "recoil";
+import { mergeStateChange } from "@utils/merge_state_change";
+import { THEME_KEY, setItem } from "@utils/localStorage";
+import { atomState } from "./atom";
+import { Theme } from "./types";
 
 const getTheme = ({ get }: any): Theme => {
   const state = get(atomState);
@@ -10,7 +10,7 @@ const getTheme = ({ get }: any): Theme => {
 };
 
 export const writeTheme = selector({
-  key: 'settings.write.theme',
+  key: "settings.write.theme",
   get: getTheme,
   set: ({ get, set }, newTheme: any) => {
     setItem(THEME_KEY, newTheme);
@@ -23,6 +23,6 @@ export const writeTheme = selector({
 });
 
 export const readTheme = selector({
-  key: 'settings.read.theme',
+  key: "settings.read.theme",
   get: getTheme,
 });

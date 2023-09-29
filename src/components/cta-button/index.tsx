@@ -1,8 +1,9 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import { LoadingButton,LoadingButtonProps } from "@mui/lab";
+import { LoadingButton, LoadingButtonProps } from "@mui/lab";
+
 const ColorButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
-  flexShrink:0,
+  flexShrink: 0,
   borderRadius: "45px",
   color: "rgba(235, 238, 245, 1)",
   background: "linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%)",
@@ -15,9 +16,9 @@ const ColorButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
   //   borderRadius: "24px",
   // },
   // [theme.breakpoints.up("tablet")]: {
-    height: "45px",
-    fontSize: "16px",
-    padding: " 0px 16px",
+  height: "45px",
+  fontSize: "16px",
+  padding: " 0px 16px",
   // },
   "&:hover": {
     background:
@@ -34,5 +35,5 @@ const ColorButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
 }));
 
 export default function CtaButton(props: LoadingButtonProps) {
-  return <ColorButton {...props}></ColorButton>;
+  return <ColorButton {...props} />;
 }

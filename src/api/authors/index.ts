@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { ghostApi as api } from '../index';
+import { ghostApi as api } from "../index";
 // import { IPost } from "./interface";
 
 /** Get blog posts by tag */
@@ -23,10 +23,10 @@ export const getPostsByAuthor = async (query: {
   try {
     const posts = await api.posts.browse({
       filter: `author:${query.author}`,
-      include: 'tags,authors',
+      include: "tags,authors",
       limit: 5,
       page: query?.page || 1,
-      formats: 'html',
+      formats: "html",
     });
     return posts ?? null;
   } catch (err) {

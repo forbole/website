@@ -1,5 +1,5 @@
-import ReactMarkdown from 'markdown-to-jsx';
-import { Typography, Link } from '@mui/material';
+import ReactMarkdown from "markdown-to-jsx";
+import { Typography, Link } from "@mui/material";
 
 const options = {
   disableParsingRawHTML: true,
@@ -8,61 +8,61 @@ const options = {
     h1: {
       component: Typography,
       props: {
-        variant: 'h1',
+        variant: "h1",
       },
     },
     h2: {
       component: Typography,
       props: {
-        variant: 'h2',
+        variant: "h2",
       },
     },
     h3: {
       component: Typography,
       props: {
-        variant: 'h3',
+        variant: "h3",
       },
     },
     h4: {
       component: Typography,
       props: {
-        variant: 'h4',
+        variant: "h4",
       },
     },
     h5: {
       component: Typography,
       props: {
-        variant: 'h5',
+        variant: "h5",
       },
     },
     h6: {
       component: Typography,
       props: {
-        variant: 'h6',
+        variant: "h6",
       },
     },
     default: {
       component: Typography,
       props: {
-        variant: 'h6',
+        variant: "h6",
       },
     },
     p: {
       component: Typography,
       props: {
-        variant: 'body1',
+        variant: "body1",
       },
     },
     span: {
       component: Typography,
       props: {
-        variant: 'body1',
+        variant: "body1",
       },
     },
     a: {
       component: Link,
       props: {
-        target: '_blank',
+        target: "_blank",
         onClick: (e: any) => e.stopPropagation(),
       },
     },

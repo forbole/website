@@ -7,6 +7,7 @@ import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { CSSProperties } from "react";
 import Arraw, { Direction } from "../arrow";
 import { BoxCSS } from "./BoxCSS";
+
 SwiperCore.use([Navigation]);
 type Props = {
   imagesList: string[];
@@ -16,14 +17,15 @@ const CardSwiper = ({ imagesList, style }: Props) => {
   const theme = useTheme();
   return (
     <BoxCSS>
-      <Box position={'relative'}>
-        <Swiper className={"scale"}
+      <Box position="relative">
+        <Swiper
+          className="scale"
           style={{
             ...style,
           }}
           spaceBetween={-80}
-          slidesPerView= {3}
-          centeredSlides={true}
+          slidesPerView={3}
+          centeredSlides
           initialSlide={1}
           navigation={{
             nextEl: ".c-next", // 下一个箭头的类名或DOM元素
@@ -43,16 +45,15 @@ const CardSwiper = ({ imagesList, style }: Props) => {
           }}
         >
           {imagesList.map((item, index) => (
-            <SwiperSlide
-              className={"scale"}
-              key={index}
-            >
-              <Stack sx={{
-                [theme.breakpoints.down('laptop')]:{
-                  width:"100%",
-                }
-              }}>
-                <Image src={item} alt="" />
+            <SwiperSlide className="scale" key={index}>
+              <Stack
+                sx={{
+                  [theme.breakpoints.down("laptop")]: {
+                    width: "100%",
+                  },
+                }}
+              >
+                {item && <Image src={item} alt="" />}
               </Stack>
             </SwiperSlide>
           ))}

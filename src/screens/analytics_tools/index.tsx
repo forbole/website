@@ -1,22 +1,23 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
-import { Layout, ScrollToTop } from '@src/components';
-import React, { useMemo } from 'react';
+import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Layout, ScrollToTop } from "@src/components";
+import React, { useMemo } from "react";
 
-import Section from '@src/components/section';
-import HeaderCard from '@src/components/header-card';
-import CtaButton from '@src/components/cta-button';
-import IntroPanel from '@src/components/Intro_panel';
-import useTranslation from 'next-translate/useTranslation';
-import CardSwiper from '@src/components/cardSwiper';
-import { useRouter } from 'next/router';
-
+import Section from "@src/components/section";
+import HeaderCard from "@src/components/header-card";
+import CtaButton from "@src/components/cta-button";
+import IntroPanel from "@src/components/Intro_panel";
+import useTranslation from "next-translate/useTranslation";
+import CardSwiper from "@src/components/cardSwiper";
+import { useRouter } from "next/router";
 
 const AnalyticsTools = () => {
   const topRef = React.useRef(null);
   const theme = useTheme();
   const router = useRouter();
   const { t } = useTranslation("analytics_tools");
-  const isMobile=useMediaQuery(theme.breakpoints.down('tablet'),{noSsr:true})
+  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
+    noSsr: true,
+  });
   const imagesList = useMemo(() => {
     if (isMobile) {
       return [
@@ -46,7 +47,7 @@ const AnalyticsTools = () => {
     ];
   }, [isMobile]);
   return (
-    <Layout title={t('title')} navLink="/products" footer>
+    <Layout title={t("title")} navLink="/products" footer>
       <Container
         maxWidth="desktop"
         ref={topRef}
@@ -82,7 +83,7 @@ const AnalyticsTools = () => {
                 my: "32px",
               },
             }}
-            onClick={()=>router.push('https://bigdipper.live/')}
+            onClick={() => router.push("https://bigdipper.live/")}
           >
             {t("try_now")}
           </CtaButton>
@@ -118,8 +119,8 @@ const AnalyticsTools = () => {
         />
       </Container>
       <Stack>
-        <CardSwiper imagesList={noteBook} style={{marginTop:'40px'}}/>
-        <ScrollToTop topRef={topRef}/>
+        <CardSwiper imagesList={noteBook} style={{ marginTop: "40px" }} />
+        <ScrollToTop topRef={topRef} />
       </Stack>
     </Layout>
   );

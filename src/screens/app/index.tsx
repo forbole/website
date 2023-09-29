@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Head from 'next/head';
-import { AppProps } from 'next/app';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import { RecoilRoot } from 'recoil';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { init } from '@socialgouv/matomo-next';
-import createEmotionCache from '../../misc/createEmotionCache';
-import InnerApp from './innerApp';
+import * as React from "react";
+import Head from "next/head";
+import { AppProps } from "next/app";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import { RecoilRoot } from "recoil";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { init } from "@socialgouv/matomo-next";
+import createEmotionCache from "../../misc/createEmotionCache";
+import InnerApp from "./innerApp";
 
 const apolloClient = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_GRAPHQL_API,
@@ -37,7 +37,10 @@ export default function MyApp(props: MyAppProps) {
       <CacheProvider value={emotionCache}>
         <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
-          <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+          <meta
+            name="viewport"
+            content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+          />
           {/* 解决图片403防盗链问题  */}
           <meta name="referrer" content="no-referrer" />
         </Head>

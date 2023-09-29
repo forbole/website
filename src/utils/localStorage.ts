@@ -5,7 +5,7 @@
  * @returns the localstorage item
  */
 export const getItem = <P>(key: string, value: P): P => {
-  const isClient = typeof window === 'object';
+  const isClient = typeof window === "object";
   if (isClient) {
     const persistedString = localStorage.getItem(key);
     if (persistedString === null) {
@@ -24,7 +24,7 @@ export const getItem = <P>(key: string, value: P): P => {
  * @param value
  */
 export const setItem = <P>(key: string, value: P) => {
-  const isClient = typeof window === 'object';
+  const isClient = typeof window === "object";
   if (isClient) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -33,4 +33,4 @@ export const setItem = <P>(key: string, value: P) => {
 // ================================
 // Current keys in localstorage
 // ================================
-export const THEME_KEY = 'themeSelection';
+export const THEME_KEY = "themeSelection";
