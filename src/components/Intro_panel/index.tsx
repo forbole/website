@@ -1,15 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import {
-  Button,
-  ButtonBase,
-  Grid,
-  Skeleton,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import CtaButton from "../cta-button";
 

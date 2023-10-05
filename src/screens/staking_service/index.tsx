@@ -12,7 +12,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 
 const StakingService = () => {
-  const { t, lang } = useTranslation("staking_service");
+  const { t } = useTranslation("staking_service");
   const topRef = React.useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {

@@ -34,6 +34,12 @@
     "react/jsx-props-no-spreading": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
+    "jsx-a11y/alt-text": "off",
+    "react/no-unescaped-entities": "off",
+    "react/require-default-props": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+
     "react/no-array-index-key": "off",
     "import/no-absolute-path": "off",
     "global-require": "off",
@@ -43,15 +49,7 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
-    "react/function-component-definition": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        "ignoreRestSiblings": true,
-        "destructuredArrayIgnorePattern": "[A-Z]",
-        "caughtErrors": "none"
-      }
-    ]
+    "react/function-component-definition": "off"
   },
   "overrides": [
     {
