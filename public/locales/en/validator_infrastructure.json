@@ -1,8 +1,8 @@
 {
-  "stake_now":"Stake now",
-  "see_more_networks":"See more networks",
-  "toggle_btn_left":"Our Infrastructure",
-  "toggle_btn_right":"Our Expertise",
+  "stake_now": "Stake now",
+  "see_more_networks": "See more networks",
+  "toggle_btn_left": "Our Infrastructure",
+  "toggle_btn_right": "Our Expertise",
 
   "page_title": "Validator Infrastructure",
   "headercard_title": "Validator Infrastructure",
@@ -25,17 +25,17 @@
   "grid_3rd_title": "Wormhole",
   "grid_3rd_desc": "The Wormhole Network is a cross-chain messaging protocol that facilitates interoperability among decentralized applications built on various blockchains. Wormhole supports a wide range of cross-chain use cases, ranging from tokens, DeFi, NFTs and governance. Forbole is one of the 19 guardians who secure the Wormhole Network and operate its governance process.",
 
-  "infrastructure_item1":"Trusted by 60+ networks and bridges worldwide",
-  "infrastructure_item2":"Enterprise grade setup including remote signer, DDoS protection and double-signing prevention",
-  "infrastructure_item3":"Industry leading security protocols",
-  "infrastructure_item4":"Self-owned and cloud-based servers across the world",
-  "infrastructure_item5":"High-availability nodes",
-  "infrastructure_item6":"Achieve 99.9% uptime",
+  "infrastructure_item1": "Trusted by 60+ networks and bridges worldwide",
+  "infrastructure_item2": "Enterprise grade setup including remote signer, DDoS protection and double-signing prevention",
+  "infrastructure_item3": "Industry leading security protocols",
+  "infrastructure_item4": "Self-owned and cloud-based servers across the world",
+  "infrastructure_item5": "High-availability nodes",
+  "infrastructure_item6": "Achieve 99.9% uptime",
 
-  "expertise_item1":"Extensive blockchain protocol and cyber-security knowledge",
-  "expertise_item2":"24/7 On-call roster & monitoring",
-  "expertise_item3":"Active participation in community and governance",
-  "expertise_item4":"Contributor to major projects' codebase",
-  "expertise_item5":"Responsive and proactive with projects' development",
-  "expertise_item6":"Award-winning team of experienced network engineers"
+  "expertise_item1": "Extensive blockchain protocol and cyber-security knowledge",
+  "expertise_item2": "24/7 On-call roster & monitoring",
+  "expertise_item3": "Active participation in community and governance",
+  "expertise_item4": "Contributor to major projects' codebase",
+  "expertise_item5": "Responsive and proactive with projects' development",
+  "expertise_item6": "Award-winning team of experienced network engineers"
 }

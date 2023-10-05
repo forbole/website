@@ -1,8 +1,8 @@
 {
-  "stake_now":"立即質押",
-  "see_more_networks":"查看更多網絡",
-  "toggle_btn_left":"我們的基礎建設",
-  "toggle_btn_right":"我們的專業技能",
+  "stake_now": "立即質押",
+  "see_more_networks": "查看更多網絡",
+  "toggle_btn_left": "我們的基礎建設",
+  "toggle_btn_right": "我們的專業技能",
 
   "page_title": "驗證人基礎建設",
   "headercard_title": "驗證人基礎建設",
@@ -25,17 +25,17 @@
   "grid_3rd_title": "Wormhole",
   "grid_3rd_desc": "Wormhole 網絡建立消息傳遞的跨鏈協議，可促進各區塊鏈所建設的去中心化應用程式間的互操作性。Wormhole 支援多個不同範疇的實例，包括通證、DeFi、NFT 和治理。 Forbole 是確保 Wormhole 網絡能營運其治理流程的 19 名維護者之一。",
 
-  "infrastructure_item1":"獲得超過 60 個網絡及跨鏈橋的信任",
-  "infrastructure_item2":"企業級設置，包括遠端簽署、DDoS 保護和雙重支付防護",
-  "infrastructure_item3":"行業領先的安全協議",
-  "infrastructure_item4":"自家擁有的雲伺服器遍佈全球",
-  "infrastructure_item5":"高可用性節點",
-  "infrastructure_item6":"實現 99.9% 的運行時間",
+  "infrastructure_item1": "獲得超過 60 個網絡及跨鏈橋的信任",
+  "infrastructure_item2": "企業級設置，包括遠端簽署、DDoS 保護和雙重支付防護",
+  "infrastructure_item3": "行業領先的安全協議",
+  "infrastructure_item4": "自家擁有的雲伺服器遍佈全球",
+  "infrastructure_item5": "高可用性節點",
+  "infrastructure_item6": "實現 99.9% 的運行時間",
 
-  "expertise_item1":"淵博的協議及網絡安全知識",
-  "expertise_item2":"24/7 全天候服務和監控",
-  "expertise_item3":"積極參與社區和治理",
-  "expertise_item4":"為重要項目的代碼庫作出貢獻",
-  "expertise_item5":"負責並積極推動項目發展",
-  "expertise_item6":"獲獎及經驗豐富的網絡工程師團隊" 
+  "expertise_item1": "淵博的協議及網絡安全知識",
+  "expertise_item2": "24/7 全天候服務和監控",
+  "expertise_item3": "積極參與社區和治理",
+  "expertise_item4": "為重要項目的代碼庫作出貢獻",
+  "expertise_item5": "負責並積極推動項目發展",
+  "expertise_item6": "獲獎及經驗豐富的網絡工程師團隊"
 }
