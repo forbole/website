@@ -16,7 +16,6 @@
   "rules": {
     "max-len": "warn",
     "import/no-extraneous-dependencies": "off",
-    "global-require": "warn",
     "import/no-dynamic-require": "warn",
     "@typescript-eslint/no-var-requires": "off",
     "import/prefer-default-export": "off",
@@ -36,6 +35,8 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-array-index-key": "off",
+    "import/no-absolute-path": "off",
+    "global-require": "off",
     "react/jsx-filename-extension": [
       2,
       {

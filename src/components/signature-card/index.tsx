@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
-type Props = {};
 const data = [
   {
     title: "websocket_service",
@@ -15,17 +14,12 @@ const data = [
     active: false,
   },
   {
-    title: "sui_indexer",
-    desc: "rpc",
-    active: false,
-  },
-  {
     title: "extra_chain",
-    desc: "rpc_api",
+    desc: "rpc_api_graphql",
     active: false,
   },
 ];
-function SignatureCard(props: Props) {
+function SignatureCard() {
   const { t } = useTranslation("developer_tools");
   return (
     <Grid
@@ -34,18 +28,18 @@ function SignatureCard(props: Props) {
       columnSpacing={{ laptop: "16px", mobile: "0" }}
     >
       {data.map((d, k) => (
-        <Grid item laptop={3} mobile={12} key={k}>
+        <Grid item laptop={4} mobile={12} key={k}>
           <Stack
             sx={{
               position: "relative",
-              p: "12px 32px",
+              p: "12px 16px",
               borderRadius: "16px",
               background: "#FFF",
               boxShadow: "4px 8px 24px 0px rgba(90, 117, 255, 0.24)",
               alignItems: "center",
             }}
           >
-            <Box>
+            <Box style={{ width: "100%" }}>
               <Typography
                 sx={{
                   fontSize: "18px",
@@ -65,23 +59,26 @@ function SignatureCard(props: Props) {
                 sx={{ flexDirection: "row", gap: "5px", alignItems: "center" }}
               >
                 <img
-                  style={{ width: "20px", height: "20px" }}
+                  style={{ width: "20px", height: "40px" }}
                   src="/images/assets/25.svg"
                   alt=""
                 />
-                <Typography
-                  sx={{
-                    color: "#202A43",
-                    fontSize: "12px",
-                    fontStyle: "normal",
-                    fontWeight: "400",
-                    lineHeight: "16px",
-                    whiteSpace: "nowrap",
-                    letterSpacing: "-0.216px",
-                  }}
-                >
-                  {t(d.desc)}
-                </Typography>
+                <Box>
+                  <Typography
+                    sx={{
+                      color: "#202A43",
+                      fontSize: "12px",
+                      fontStyle: "normal",
+                      fontWeight: "400",
+                      lineHeight: "16px",
+                      whiteSpace: "nowrap",
+                      letterSpacing: "-0.216px",
+                      textWrap: "wrap",
+                    }}
+                  >
+                    {t(d.desc)}
+                  </Typography>
+                </Box>
               </Stack>
             </Box>
             {d.active && (
@@ -113,7 +110,7 @@ function SignatureCard(props: Props) {
                     letterSpacing: "-0.408px",
                   }}
                 >
-                  Unlimited Usage
+                  {t("unlimited_usage")}
                 </Typography>
               </Stack>
             )}

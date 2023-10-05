@@ -10,11 +10,8 @@ type Props = { btnHref: () => void };
 const FourTable = ({ btnHref }: Props) => {
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
-  const [clickItem, setClickItem] = useState<number | null>(2);
+  const [clickItem] = useState<number | null>(2);
   const router = useRouter();
-  // const handleClick = (index: number) => {
-  //   setClickItem(index);
-  // };
 
   return (
     <Stack
@@ -28,15 +25,13 @@ const FourTable = ({ btnHref }: Props) => {
           justifyContent: "center",
           alignItems: "center",
           gap: "24px",
-          // minHeight:'1200px',
         },
       }}
     >
-      {plans.map((Plan, index) => (
+      {plans.map((Plan, indexTop) => (
         <Box
-          key={index}
-          // onClick={() => handleClick(index)}
-          className={index === clickItem ? styles.active : ""}
+          key={indexTop}
+          className={indexTop === clickItem ? styles.active : ""}
           sx={{
             position: "relative",
             height: "496px",
@@ -54,22 +49,14 @@ const FourTable = ({ btnHref }: Props) => {
               flexBasis: "max-content",
               width: "75%",
             },
-            // transition: theme.transitions.create([
-            //   "flex-basis",
-            //   "height",
-            //   'box-shadow',
-            //   'width',
-            // ],
-            //
-            // ),
           }}
         >
           <Stack
             direction="row"
-            className={index === clickItem ? styles.popular : styles.none}
+            className={indexTop === clickItem ? styles.popular : styles.none}
           >
-            <img src="/icons/Group.png" />
-            <Typography component="span">Popular!</Typography>
+            <img src="/icons/Group.png" alt="" />
+            <Typography component="span">{t("popular")}</Typography>
           </Stack>
           <Typography
             sx={{
@@ -92,16 +79,13 @@ const FourTable = ({ btnHref }: Props) => {
             }}
           >
             <Typography
-              className={index === clickItem ? styles.money : ""}
+              className={indexTop === clickItem ? styles.money : ""}
               sx={{
                 color: "#202A43",
                 fontSize: "32px",
                 fontWeight: "590",
                 marginTop: "-23px",
                 pr: "7px",
-                // transition: theme.transitions.create([
-                //   "font-size",
-                // ]),
                 letterSpacing: "-0.508px",
               }}
             >
@@ -128,16 +112,12 @@ const FourTable = ({ btnHref }: Props) => {
           >
             {t(Plan.description)}
           </Typography>
-          <Box
-          // sx={{
-          //   width: "80%",
-          // }}
-          >
+          <Box>
             <Divider
               style={{
                 marginTop: "24px",
               }}
-             />
+            />
             {Array.isArray(Plan.features) ? (
               Plan.features.map((item, index) => (
                 <Box
@@ -165,7 +145,7 @@ const FourTable = ({ btnHref }: Props) => {
               ))
             ) : (
               <Box
-                key={index}
+                key={indexTop}
                 sx={{
                   marginTop: "20px",
                   display: "flex",

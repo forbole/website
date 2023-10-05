@@ -6,7 +6,7 @@ const plans = [
     description: "plan_item1_description",
     features: "plan_item1_features",
     image: "/images/assets/24.png",
-    btnName: "contact_sales",
+    btnName: "contact_us",
     btnHref: "",
   },
   {
@@ -16,7 +16,7 @@ const plans = [
     description: "plan_item2_description",
     features: "plan_item2_features",
     image: "/images/assets/24.png",
-    btnName: "contact_sales",
+    btnName: "contact_us",
     btnHref: "",
   },
   {
@@ -30,7 +30,7 @@ const plans = [
       "plan_item3_features_3",
     ],
     image: "/images/assets/24.png",
-    btnName: "contact_sales",
+    btnName: "contact_us",
     btnHref: "",
   },
   {
@@ -46,7 +46,7 @@ const plans = [
       "plan_item4_features_5",
     ],
     image: "/images/assets/24.png",
-    btnName: "contact_sales",
+    btnName: "contact_us",
     btnHref: "",
   },
 ];

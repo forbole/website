@@ -85,7 +85,7 @@ const DeveloperTools = () => {
                 setShow(true);
               }}
             >
-              {t("purchase_premium_plans")}
+              {t("sign_up_now")}
             </CtaButton>
           </Stack>
           <Grid container spacing={theme.spacing(2)}>
@@ -179,7 +179,7 @@ const DeveloperTools = () => {
               setShow(true);
             }}
           >
-            {t("sign_up_now")}
+            {t("try_now")}
           </CtaButton>
         </Stack>
 
