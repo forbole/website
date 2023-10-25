@@ -1,104 +1,83 @@
 /* eslint-disable no-unused-expressions */
+
 /* eslint-disable array-callback-return */
+
 /* eslint-disable no-console */
-import { useState, useMemo } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+import { useStakingContext } from "@contexts";
 import {
-  getEachCosmosBondedToken,
   getEachCosmosAPY,
+  getEachCosmosBondedToken,
   getEachCosmosTVL,
-  getElrondBondedToken,
   getElrondAPY,
+  getElrondBondedToken,
   getElrondTVL,
-  getSolanaTVL,
+  getOasisBondedToken,
   getOasisTVL,
+  getRadixBondedToken,
   getRadixTVL,
   getSolanaBondedToken,
-  getOasisBondedToken,
-  getRadixBondedToken,
+  getSolanaTVL,
 } from "@graphql/queries";
-import { useStakingContext } from "@contexts";
 import { networkFunctions } from "@utils/network_functions";
+import { useMemo, useState } from "react";
+
 import {
+  allNetworkKeys,
   cosmosNetworkParams,
   elrondNetworkParams,
-  solanaNetworkParams,
   oasisNetworkParams,
   radixNetworkParams,
-  allNetworkKeys,
+  solanaNetworkParams,
 } from "./config";
 
 export const useNetworkHook = () => {
   const [cosmosNetworks, setCosmosNetworks] = useState(cosmosNetworkParams);
-  const { loading: cosmosBondedLoading, data: cosmosBondedData } = useQuery(
-    gql`
-      ${getEachCosmosBondedToken()}
-    `
-  );
-  const { loading: cosmosAPYLoading, data: cosmosAPYData } = useQuery(
-    gql`
-      ${getEachCosmosAPY()}
-    `
-  );
-  const { loading: cosmosTVLLoading, data: cosmosTVLData } = useQuery(
-    gql`
-      ${getEachCosmosTVL()}
-    `
-  );
+  const { loading: cosmosBondedLoading, data: cosmosBondedData } = useQuery(gql`
+    ${getEachCosmosBondedToken()}
+  `);
+  const { loading: cosmosAPYLoading, data: cosmosAPYData } = useQuery(gql`
+    ${getEachCosmosAPY()}
+  `);
+  const { loading: cosmosTVLLoading, data: cosmosTVLData } = useQuery(gql`
+    ${getEachCosmosTVL()}
+  `);
 
   const [elrondNetwork, setElrondNetwork] = useState(elrondNetworkParams);
   const elrondNetworkFunctions = networkFunctions.elrond;
-  const { loading: elrondBondedLoading, data: elrondBondedData } = useQuery(
-    gql`
-      ${getElrondBondedToken()}
-    `
-  );
-  const { loading: elrondAPYLoading, data: elrondAPYData } = useQuery(
-    gql`
-      ${getElrondAPY()}
-    `
-  );
-  const { loading: elrondTVLLoading, data: elrondTVLData } = useQuery(
-    gql`
-      ${getElrondTVL()}
-    `
-  );
+  const { loading: elrondBondedLoading, data: elrondBondedData } = useQuery(gql`
+    ${getElrondBondedToken()}
+  `);
+  const { loading: elrondAPYLoading, data: elrondAPYData } = useQuery(gql`
+    ${getElrondAPY()}
+  `);
+  const { loading: elrondTVLLoading, data: elrondTVLData } = useQuery(gql`
+    ${getElrondTVL()}
+  `);
 
   const [solanaNetwork, setSolanaNetwork] = useState(solanaNetworkParams);
-  const { loading: solanaBondedLoading, data: solanaBondedData } = useQuery(
-    gql`
-      ${getSolanaBondedToken()}
-    `
-  );
-  const { loading: solanaTVLLoading, data: solanaTVLData } = useQuery(
-    gql`
-      ${getSolanaTVL()}
-    `
-  );
+  const { loading: solanaBondedLoading, data: solanaBondedData } = useQuery(gql`
+    ${getSolanaBondedToken()}
+  `);
+  const { loading: solanaTVLLoading, data: solanaTVLData } = useQuery(gql`
+    ${getSolanaTVL()}
+  `);
 
   const [oasisNetwork, setOasisNetwork] = useState(oasisNetworkParams);
-  const { loading: oasisBondedLoading, data: oasisBondedData } = useQuery(
-    gql`
-      ${getOasisBondedToken()}
-    `
-  );
-  const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(
-    gql`
-      ${getOasisTVL()}
-    `
-  );
+  const { loading: oasisBondedLoading, data: oasisBondedData } = useQuery(gql`
+    ${getOasisBondedToken()}
+  `);
+  const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(gql`
+    ${getOasisTVL()}
+  `);
 
   const [radixNetwork, setRadixNetwork] = useState(radixNetworkParams);
-  const { loading: radixBondedLoading, data: radixBondedData } = useQuery(
-    gql`
-      ${getRadixBondedToken()}
-    `
-  );
-  const { loading: radixTVLLoading, data: radixTVLData } = useQuery(
-    gql`
-      ${getRadixTVL()}
-    `
-  );
+  const { loading: radixBondedLoading, data: radixBondedData } = useQuery(gql`
+    ${getRadixBondedToken()}
+  `);
+  const { loading: radixTVLLoading, data: radixTVLData } = useQuery(gql`
+    ${getRadixTVL()}
+  `);
 
   const { setNetworkNumber } = useStakingContext();
   const networkLength = allNetworkKeys.length;

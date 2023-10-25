@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from "react";
-import useTranslation from "next-translate/useTranslation";
 import { Box, useTheme } from "@mui/material";
 import CtaButton from "@src/components/cta-button";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import * as React from "react";
+
+import CompanyMenuButton from "../company_menu_button";
 import { navItems } from "../config";
 import LangMenuButton from "../lang_menu_button";
-import CompanyMenuButton from "../company_menu_button";
 import ProductsMenuButton from "../products_menu_button";
 import classes from "./index.module.css";
 

@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
 /* eslint-disable react/void-dom-elements-no-children */
-import React, { useEffect } from "react";
-import useTranslation from "next-translate/useTranslation";
-import { Box, Container, Typography, useTheme } from "@mui/material";
 import { Layout, ScrollToTop } from "@components";
 import { useWindowDimensions } from "@hooks";
+import { Box, Container, Typography, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import React, { useEffect } from "react";
+
 import { TNCCSS } from "./styles";
 
 const TermsAndConditions = () => {
@@ -29,14 +31,14 @@ const TermsAndConditions = () => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
         d.style.height = `${h}px`;
-      }
+      },
     );
     (document.querySelectorAll(".t2") as NodeListOf<HTMLElement>).forEach(
       (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
         d.style.height = `${h}px`;
-      }
+      },
     );
   });
   return (

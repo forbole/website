@@ -1,6 +1,6 @@
-import React from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+import React from "react";
 
 const data = [
   {

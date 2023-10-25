@@ -1,6 +1,7 @@
-import * as React from "react";
-import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
+import Document, { Head, Html, Main, NextScript } from "next/document";
+import * as React from "react";
+
 // import { darkTemplate as theme } from '@src/styles';
 import createEmotionCache from "../misc/createEmotionCache";
 

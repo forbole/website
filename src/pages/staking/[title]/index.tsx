@@ -1,14 +1,15 @@
 /* eslint-disable consistent-return */
+
 /* eslint-disable no-console */
-import type { NextPage } from "next";
+import { getNetworkPosts } from "@api/networks";
+import { getSinglePost } from "@api/posts";
+import { Post } from "@models";
 // import BlogDetails from '@screens/blog_details';
 // import CareersDetails from '@screens/careers_details';
 // import Guide from '@screens/network_guides/components/guide';
 import NetworkGuides from "@screens/network_guides";
-import { getSinglePost } from "@api/posts";
-import { getNetworkPosts } from "@api/networks";
-import { Post } from "@models";
 import { removeInternalTags } from "@utils/remove_internal_tags";
+import type { NextPage } from "next";
 
 const StakingDetailsPage: NextPage = (props: any) => {
   return <NetworkGuides {...props} />;
@@ -27,7 +28,7 @@ export async function getServerSideProps(context: { query: any; res: any }) {
     ]);
     const formattedPost = Post.fromJson(post);
     formattedSidePosts = sidePosts.map((sidePost: any) =>
-      Post.fromJson(sidePost, {})
+      Post.fromJson(sidePost, {}),
     );
     if (post) {
       post.tags = removeInternalTags(post.tags);

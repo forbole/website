@@ -1,5 +1,5 @@
+import { Link, Typography } from "@mui/material";
 import ReactMarkdown from "markdown-to-jsx";
-import { Typography, Link } from "@mui/material";
 
 const options = {
   disableParsingRawHTML: true,

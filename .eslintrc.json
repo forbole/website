@@ -14,9 +14,9 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "max-len": "warn",
+    "max-len": "error",
     "import/no-extraneous-dependencies": "off",
-    "import/no-dynamic-require": "warn",
+    "import/no-dynamic-require": "error",
     "@typescript-eslint/no-var-requires": "off",
     "import/prefer-default-export": "off",
     "import/extensions": [
@@ -52,12 +52,6 @@
     "react/function-component-definition": "off"
   },
   "overrides": [
-    {
-      "files": ["src/**/types.ts"],
-      "rules": {
-        "no-unused-vars": "off"
-      }
-    },
     {
       "files": ["tests/**/*"],
       "rules": {

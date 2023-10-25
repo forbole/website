@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import { Layout, Markdown, ScrollToTop, Tags } from "@components";
 import { Box, Typography, useTheme } from "@mui/material";
-import { Layout, Tags, ScrollToTop, Markdown } from "@components";
+import React from "react";
+
 import { Author, SocialMedia } from "./components";
-import { ContentBox, ContentCSS, MobileCSS, LaptopCSS } from "./styles";
+import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
 const BlogDetails = ({ post }: any) => {
   const theme = useTheme();

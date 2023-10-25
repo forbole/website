@@ -6,8 +6,8 @@ const plans = [
     description: "plan_item1_description",
     features: "plan_item1_features",
     image: "/images/assets/24.png",
-    btnName: "contact_us",
-    btnHref: "",
+    btnName: "try_now",
+    btnHref: "https://devtools.forbole.com",
   },
   {
     title: "plan_item2_title",

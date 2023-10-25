@@ -1,14 +1,15 @@
 import {
-  Typography,
-  Box,
-  Stack,
-  useTheme,
-  useMediaQuery,
-  Modal,
   Backdrop,
+  Box,
+  Modal,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import React, { forwardRef } from "react";
 import Image from "next/image";
+import React, { forwardRef } from "react";
+
 import { Close } from "../icons";
 
 type Props = {
@@ -94,7 +95,7 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
                 alignSelf: "flex-start",
                 boxSizing: "content-box",
               }}
-             />
+            />
           )}
         </Stack>
         <Box
@@ -135,7 +136,7 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
         )}
       </Stack>
     );
-  }
+  },
 );
 export default function SuccessModal({
   fixed,

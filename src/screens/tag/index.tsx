@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
-import { Box, useTheme } from "@mui/material";
 import { Layout, Tags } from "@components";
+import { Box, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
+
 import { TitlePosts, Twitter } from "../blog/components";
 import { TagPosts } from "./components";
 import { useBlogHook } from "./hooks";

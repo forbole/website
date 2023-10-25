@@ -1,9 +1,9 @@
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
-import validator from "validator";
 import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
-import { toast, ToastContent } from "react-toastify";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
+import { ToastContent, toast } from "react-toastify";
+import validator from "validator";
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = React.useState({
@@ -74,7 +74,7 @@ const useTalkModalForm = () => {
           html: `
           <p>Dear Administrator,</p>
           <p>A new customer: ${sanitize(
-            inputs.email
+            inputs.email,
           )} just wanted to talk to us.</p>
           <p>Here is the details:</p>
           <p>Customer's Name: ${sanitize(inputs.name)}</p>

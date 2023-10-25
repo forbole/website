@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
-import useStyles from "./useStyles";
+
 import { StatsCard } from "./components";
 import { useStatsHook } from "./hooks";
+import useStyles from "./useStyles";
 
 const Stats = () => {
   const styles = useStyles();

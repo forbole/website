@@ -1,11 +1,15 @@
 /* eslint-disable no-param-reassign */
+
 /* eslint-disable no-nested-ternary */
+
 /* eslint-disable no-undef */
+
 /* eslint-disable react/no-unstable-nested-components */
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
 import { Box, Typography } from "@mui/material";
 import { convertToMoney } from "@utils/convert_to_money";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
+
 import useStyles from "./useStyles";
 
 const InfoCard = ({ title, stats, type }: any) => {

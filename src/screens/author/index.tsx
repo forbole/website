@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
-import useTranslation from "next-translate/useTranslation";
-import { Box, Typography, useTheme } from "@mui/material";
 import { Layout } from "@components";
+import { Box, Typography, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+
 import { AuthorPosts } from "./components";
 import { useBlogHook } from "./hooks";
 

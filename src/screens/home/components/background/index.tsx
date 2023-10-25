@@ -1,7 +1,7 @@
-import { useLottie } from "lottie-react";
-import { useTheme, useMediaQuery } from "@mui/material";
-import HomeAnimationLaptopJsonData from "@public/images/assets/lotties/home-animation.json";
+import { useMediaQuery, useTheme } from "@mui/material";
 import HomeAnimationMobileJsonData from "@public/images/assets/lotties/home-animation-mobile.json";
+import HomeAnimationLaptopJsonData from "@public/images/assets/lotties/home-animation.json";
+import { useLottie } from "lottie-react";
 
 const BackgroundAnimation = () => {
   const theme = useTheme();

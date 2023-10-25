@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import Blog from "@screens/blog";
-import type { NextPage } from "next";
-import { getPosts, getAllPosts, getTags } from "@api/posts";
+import { getAllPosts, getPosts, getTags } from "@api/posts";
 import { Post, Tag } from "@models";
+import Blog from "@screens/blog";
 import { removeInternalTags } from "@utils/remove_internal_tags";
+import type { NextPage } from "next";
 
 const BlogPage: NextPage = (props: any) => {
   return <Blog {...props} />;

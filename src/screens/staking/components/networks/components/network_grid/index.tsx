@@ -1,12 +1,13 @@
 /* eslint-disable no-bitwise */
-import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { LayoutGroup } from "framer-motion";
 import { getNetworkInfo } from "@src/utils/network_info";
+import { LayoutGroup } from "framer-motion";
+import React, { useState } from "react";
+
 import { NetworkCard } from "./components";
-import { allNetworkKeys, NetworkProps } from "./config";
-import useStyles from "./useStyles";
+import { NetworkProps, allNetworkKeys } from "./config";
 import { useNetworkHook } from "./hooks";
+import useStyles from "./useStyles";
 
 const NetworkGrid = () => {
   const styles = useStyles();
@@ -19,7 +20,7 @@ const NetworkGrid = () => {
     radixNetwork,
   } = useNetworkHook();
   const allNetworkData = allNetworkKeys.map((x: string | number) =>
-    getNetworkInfo(x)
+    getNetworkInfo(x),
   );
   const allNetworkInfo: NetworkProps = {
     ...cosmosNetworks,

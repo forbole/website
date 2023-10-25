@@ -1,43 +1,38 @@
 /* eslint-disable no-unused-expressions */
+
 /* eslint-disable array-callback-return */
+
 /* eslint-disable no-console */
-import { useState, useMemo } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import {
   getEachCosmosAPY,
-  getEachCosmosTVL,
   getEachCosmosCommission,
+  getEachCosmosTVL,
   getEachCosmosUnbondingTime,
 } from "@graphql/queries";
+import { useMemo, useState } from "react";
+
 import { cosmosNetworkGuideParams } from "./config";
 
 export const useNetworkGuidesHook = () => {
   const [cosmosNetworkGuides, setCosmosNetworkGuides] = useState(
-    cosmosNetworkGuideParams
+    cosmosNetworkGuideParams,
   );
 
   const { loading: cosmosComissionLoading, data: cosmosComissionData } =
-    useQuery(
-      gql`
-        ${getEachCosmosCommission()}
-      `
-    );
-  const { loading: cosmosAPYLoading, data: cosmosAPYData } = useQuery(
-    gql`
-      ${getEachCosmosAPY()}
-    `
-  );
-  const { loading: cosmosTVLLoading, data: cosmosTVLData } = useQuery(
-    gql`
-      ${getEachCosmosTVL()}
-    `
-  );
+    useQuery(gql`
+      ${getEachCosmosCommission()}
+    `);
+  const { loading: cosmosAPYLoading, data: cosmosAPYData } = useQuery(gql`
+    ${getEachCosmosAPY()}
+  `);
+  const { loading: cosmosTVLLoading, data: cosmosTVLData } = useQuery(gql`
+    ${getEachCosmosTVL()}
+  `);
   const { loading: cosmosUnbondingTimeLoading, data: cosmosUnbondingTimeData } =
-    useQuery(
-      gql`
-        ${getEachCosmosUnbondingTime()}
-      `
-    );
+    useQuery(gql`
+      ${getEachCosmosUnbondingTime()}
+    `);
 
   useMemo(() => {
     if (!cosmosComissionLoading) {

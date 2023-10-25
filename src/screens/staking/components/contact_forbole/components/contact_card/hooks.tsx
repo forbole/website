@@ -1,9 +1,9 @@
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
-import validator from "validator";
 import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
 import { toast } from "react-toastify";
+import validator from "validator";
 
 const useContactCard = () => {
   const [inputs, setInputs] = React.useState({

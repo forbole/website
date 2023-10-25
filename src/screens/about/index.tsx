@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import useTranslation from "next-translate/useTranslation";
+import { Layout, ScrollToTop } from "@components";
 import {
   Box,
   Container,
@@ -9,14 +8,15 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Layout, ScrollToTop } from "@components";
+import { ImgBox, YTBSwiperCSS } from "@screens/about/SwiperCSS";
+import Arraw, { Direction } from "@src/components/arrow";
 import { Horse } from "@src/components/icons";
+import Trans from "next-translate/Trans";
+import useTranslation from "next-translate/useTranslation";
+import React, { useState } from "react";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
-import SwiperCore, { Autoplay, Navigation } from "swiper";
-import Arraw, { Direction } from "@src/components/arrow";
-import Trans from "next-translate/Trans";
-import { ImgBox, YTBSwiperCSS } from "@screens/about/SwiperCSS";
 
 // 挂载到当前swiper实例
 SwiperCore.use([Navigation, Autoplay]);
@@ -353,7 +353,7 @@ const About = () => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   onLoad={() => setLoading(false)}
-                 />
+                />
               </SwiperSlide>
             ))}
           </Swiper>

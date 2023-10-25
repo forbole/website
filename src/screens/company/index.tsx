@@ -1,5 +1,5 @@
+import { Layout, ScrollToBottom, ScrollToTop } from "@components";
 import React from "react";
-import { Layout, ScrollToTop, ScrollToBottom } from "@components";
 
 const Company = () => {
   return (

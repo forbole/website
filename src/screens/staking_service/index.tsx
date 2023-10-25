@@ -1,15 +1,15 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { Layout, ScrollToTop } from "@src/components";
-import React from "react";
+import IntroPanel from "@src/components/Intro_panel";
+import CtaButton from "@src/components/cta-button";
+import HeaderCard from "@src/components/header-card";
+import { Horse } from "@src/components/icons";
 import KeyData from "@src/components/key_data";
 import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
-import HeaderCard from "@src/components/header-card";
-import CtaButton from "@src/components/cta-button";
-import IntroPanel from "@src/components/Intro_panel";
-import { Horse } from "@src/components/icons";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
+import React from "react";
 
 const StakingService = () => {
   const { t } = useTranslation("staking_service");

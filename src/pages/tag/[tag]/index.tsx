@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import TagTitlePosts from "@screens/tag";
-import { getPostsByTag } from "@api/tags";
 import { getPosts, getTags } from "@api/posts";
+import { getPostsByTag } from "@api/tags";
 import { Post, Tag } from "@models";
+import TagTitlePosts from "@screens/tag";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const TagDetailsPage = (props: any) => {
@@ -38,7 +38,7 @@ export async function getServerSideProps(context: { query: any }) {
     // formattedPosts.tags = posts.map((x) => removeInternalTags(x.tags));
     formattedPost = posts.map((y: any) => Post.fromJson(y, {}));
     formattedPost.tags = posts.map((x: { tags: any[] }) =>
-      removeInternalTags(x.tags)
+      removeInternalTags(x.tags),
     );
   } catch (err) {
     error = true;

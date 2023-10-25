@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-expressions */
+
 /* eslint-disable no-shadow */
-import React from "react";
-import * as R from "ramda";
 import { Box, Pagination, useTheme } from "@mui/material";
+import * as R from "ramda";
+import React from "react";
+
 import Post from "./components/post";
-import { IProps } from "./interface";
 import { useBlogPostsHook } from "./hooks";
+import { IProps } from "./interface";
 
 const TagPosts = ({ main, blogs, meta }: IProps) => {
   const theme = useTheme();

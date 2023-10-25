@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
 import InfrastructurePage from "@src/screens/Infrastructure";
+import type { NextPage } from "next";
 
 const Infrastructure: NextPage = () => <InfrastructurePage />;
 

@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
-import useTranslation from "next-translate/useTranslation";
-import { Box, Container, Typography, useTheme } from "@mui/material";
 import { Layout, ScrollToTop } from "@components";
 import { useWindowDimensions } from "@hooks";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 import Link from "@mui/material/Link";
+import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
+import React, { useEffect } from "react";
+
 import { TNCCSS } from "../terms_and_conditions/styles";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
@@ -24,7 +25,7 @@ const Policy = () => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
         d.style.height = `${h}px`;
-      }
+      },
     );
   });
   return (

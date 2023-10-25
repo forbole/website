@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
+import React from "react";
 
 type Props = {
   title?: string;
@@ -95,7 +95,7 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
         </Stack>
       </Box>
     );
-  }
+  },
 );
 
 export default productPanel;

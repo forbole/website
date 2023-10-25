@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 /* eslint-disable no-undef */
 import axios from "axios";
 
@@ -11,17 +12,17 @@ declare module "axios" {
     post<T = any>(
       url: string,
       data?: any,
-      config?: AxiosRequestConfig
+      config?: AxiosRequestConfig,
     ): Promise<T>;
     put<T = any>(
       url: string,
       data?: any,
-      config?: AxiosRequestConfig
+      config?: AxiosRequestConfig,
     ): Promise<T>;
     patch<T = any>(
       url: string,
       data?: any,
-      config?: AxiosRequestConfig
+      config?: AxiosRequestConfig,
     ): Promise<T>;
   }
 }

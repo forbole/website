@@ -1,5 +1,5 @@
-import { SxProps } from "@mui/system";
 import { Theme } from "@mui/material";
+import { SxProps } from "@mui/system";
 
 export const styles: { [index: string]: SxProps<Theme> } = {
   tagCSS: {

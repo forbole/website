@@ -1,8 +1,8 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import { Opacity } from "@mui/icons-material";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import { styled } from "@mui/material/styles";
+import * as React from "react";
 
 interface StyledTabsProps {
   children?: React.ReactNode;

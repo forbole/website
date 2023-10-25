@@ -1,14 +1,16 @@
 /* eslint-disable no-unused-expressions */
+
 /* eslint-disable no-shadow */
-import React from "react";
-import * as R from "ramda";
+import { useWindowDimensions } from "@hooks";
+import { Box, Button, Pagination, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { Box, Button, Pagination, useTheme } from "@mui/material";
-import { useWindowDimensions } from "@hooks";
+import * as R from "ramda";
+import React from "react";
+
 import Post from "./components/post";
-import { IProps } from "./interface";
 import { useBlogPostsHook } from "./hooks";
+import { IProps } from "./interface";
 
 const BlogPosts = ({ main, blogs, meta }: IProps) => {
   const { t } = useTranslation("blog");
@@ -35,7 +37,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
       }
       return node;
     },
-    [lastView]
+    [lastView],
   );
 
   const seeMorePages = (e: any, { limit, blogs }: any) => {

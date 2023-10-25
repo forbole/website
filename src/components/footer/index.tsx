@@ -1,13 +1,13 @@
 /* eslint-disable react/require-default-props */
 import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
-
-import useTranslation from "next-translate/useTranslation";
 import { useWindowDimensions } from "@src/hooks";
+import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
+
+import CtaButton from "../cta-button";
 import { FooterItems, SocialMedia } from "./components";
 import { FooterProps } from "./types";
-import CtaButton from "../cta-button";
 
 const Footer = ({ red, itemColor }: FooterProps) => {
   const theme = useTheme();

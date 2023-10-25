@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import dynamic from "next/dynamic";
-import useTranslation from "next-translate/useTranslation";
-import DOMPurify from "isomorphic-dompurify";
 import { Box, Typography, useTheme } from "@mui/material";
+import DOMPurify from "isomorphic-dompurify";
+import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
+
 import { GuideDetails } from "./components";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });

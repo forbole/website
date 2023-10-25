@@ -1,5 +1,6 @@
 import { ThemeOptions } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
+
 import { darkThemeOverride } from "./dark";
 import { lightThemeOverride } from "./light";
 
@@ -61,7 +62,7 @@ export const common: ThemeOptions = {
 
 export const lightTemplate: ThemeOptions = deepmerge(
   lightThemeOverride,
-  common
+  common,
 );
 
 export const darkTemplate: ThemeOptions = deepmerge(darkThemeOverride, common);

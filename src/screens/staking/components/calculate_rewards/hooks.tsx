@@ -1,21 +1,26 @@
 /* eslint-disable no-undef */
+
 /* eslint-disable array-callback-return */
+
 /* eslint-disable no-unused-expressions */
+
 /* eslint-disable no-unused-vars */
+
 /* eslint-disable no-unsafe-optional-chaining */
-import { useState, useEffect, useMemo } from "react";
-import * as R from "ramda";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { useQuery, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import {
+  getEachCosmosBondedToken,
   getEachCosmosCommission,
   getEachCosmosInflation,
-  getEachCosmosBondedToken,
   getEachCosmosTokenSupply,
 } from "@graphql/queries";
 import { convertToMoney, convertWithDecimal } from "@utils/convert_to_money";
 import { getNetworkInfo } from "@utils/network_info";
+import axios from "axios";
+import * as R from "ramda";
+import { useEffect, useMemo, useState } from "react";
+import { toast } from "react-toastify";
+
 import { getStakingParams } from "./config";
 import { defaultFunctions, networkFunctions, toFixed } from "./utils";
 
@@ -48,30 +53,22 @@ export const useCalculateRewardsHook = (t: any) => {
   const { commissionRate, inflation, stakingRatio } = stakingParamState;
 
   const { loading: cosmosCommissionLoading, data: cosmosCommissionData } =
-    useQuery(
-      gql`
-        ${getEachCosmosCommission()}
-      `
-    );
+    useQuery(gql`
+      ${getEachCosmosCommission()}
+    `);
 
   const { loading: cosmosInflationLoading, data: cosmosInflationData } =
-    useQuery(
-      gql`
-        ${getEachCosmosInflation()}
-      `
-    );
+    useQuery(gql`
+      ${getEachCosmosInflation()}
+    `);
 
-  const { loading: cosmosBondedLoading, data: cosmosBondedData } = useQuery(
-    gql`
-      ${getEachCosmosBondedToken()}
-    `
-  );
+  const { loading: cosmosBondedLoading, data: cosmosBondedData } = useQuery(gql`
+    ${getEachCosmosBondedToken()}
+  `);
 
-  const { loading: cosmosSupplyLoading, data: cosmosSupplyData } = useQuery(
-    gql`
-      ${getEachCosmosTokenSupply()}
-    `
-  );
+  const { loading: cosmosSupplyLoading, data: cosmosSupplyData } = useQuery(gql`
+    ${getEachCosmosTokenSupply()}
+  `);
 
   useMemo(() => {
     if (!cosmosCommissionLoading) {
@@ -250,7 +247,7 @@ export const useCalculateRewardsHook = (t: any) => {
     // raw calcs
     // ===============================
     const annualRewards = toFixed(
-      tokens?.value * (inflation / stakingRatio) * (1 - commissionRate)
+      tokens?.value * (inflation / stakingRatio) * (1 - commissionRate),
     );
     const monthlyRewards = (annualRewards / 12) * monthlyPeriods;
     const dailyRewards = monthlyRewards / 30;

@@ -20,7 +20,7 @@ export const getPageByTag = async (tag: string) => {
       const window = parseMd(res.html);
       const list: string[] = [];
       Array.from(window.document.querySelectorAll("p")).forEach((i: any) =>
-        list.push(i.innerHTML)
+        list.push(i.innerHTML),
       );
       return {
         title: res.title,

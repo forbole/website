@@ -1,7 +1,8 @@
-import React from "react";
-import Box from "@mui/material/Box";
 import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import Box from "@mui/material/Box";
 import Image, { StaticImageData } from "next/image";
+import React from "react";
+
 import CtaButton from "../cta-button";
 
 type Props = {

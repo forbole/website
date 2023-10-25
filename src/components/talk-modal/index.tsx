@@ -1,21 +1,22 @@
 import {
-  Typography,
-  Stack,
-  useTheme,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
   Grid,
   Input,
-  Modal,
   List,
   ListItem,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
+  Modal,
+  Stack,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import React, { useEffect, useMemo, useRef } from "react";
 import useTranslation from "next-translate/useTranslation";
-import { Close } from "../icons";
-import FormInput from "../formInput";
+import React, { useEffect, useMemo, useRef } from "react";
+
 import CtaButton from "../cta-button";
+import FormInput from "../formInput";
+import { Close } from "../icons";
 
 interface Props {
   close?: (b: boolean) => void;
@@ -145,7 +146,7 @@ const TalkModal = ({
                 border: "8px solid transparent",
                 boxSizing: "content-box",
               }}
-             />
+            />
           )}
         </Stack>
         <Grid

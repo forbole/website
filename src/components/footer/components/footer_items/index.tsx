@@ -1,7 +1,8 @@
-import React from "react";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import React from "react";
+
 import { FooterProps } from "../../types";
 import useStyles from "./useStyles";
 
@@ -37,7 +38,7 @@ const FooterItems = ({ staking }: FooterProps) => {
             pt: "12px",
             // color: theme.palette.custom.forbole.indigo,
             gap: "8px",
-            borderTop: `1px solid ${  theme.palette.custom.forbole.grey02}`,
+            borderTop: `1px solid ${theme.palette.custom.forbole.grey02}`,
           },
           [theme.breakpoints.up("laptop")]: {
             // color: theme.palette.primary.main,

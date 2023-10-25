@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import useTranslation from "next-translate/useTranslation";
+import { Layout } from "@components";
 import {
   Box,
   Checkbox,
@@ -17,13 +16,15 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Layout } from "@components";
-import FormInput from "@src/components/formInput";
 import CtaButton from "@src/components/cta-button";
+import FormInput from "@src/components/formInput";
 import SuccessModal from "@src/components/success-modal";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { styles } from "./styles";
+import React, { useRef } from "react";
+
 import useContactForm from "./hooks";
+import { styles } from "./styles";
 
 const Contact = () => {
   const { t } = useTranslation("contact");

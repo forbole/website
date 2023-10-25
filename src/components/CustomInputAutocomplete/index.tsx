@@ -1,6 +1,7 @@
-import * as React from "react";
-import Autocomplete from "@mui/material/Autocomplete";
 import { Box, useTheme } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import * as React from "react";
+
 import FormInput from "../formInput";
 
 type Props = {

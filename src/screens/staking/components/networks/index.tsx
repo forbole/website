@@ -1,8 +1,9 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import useTranslation from "next-translate/useTranslation";
 import { Box, Typography, useTheme } from "@mui/material";
-import { SearchBar, NetworkGrid } from "./components";
+import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
+import React from "react";
+
+import { NetworkGrid, SearchBar } from "./components";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 

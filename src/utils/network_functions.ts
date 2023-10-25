@@ -57,7 +57,7 @@ export const defaultFunctions = (converter: any) => ({
   gecko: "",
   marketPrice: (data: any) => {
     return toFixed(
-      Number(R.pathOr(0, ["market_data", "current_price", "usd"], data))
+      Number(R.pathOr(0, ["market_data", "current_price", "usd"], data)),
     );
   },
   converter,

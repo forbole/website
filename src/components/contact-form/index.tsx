@@ -1,18 +1,18 @@
-import React, { forwardRef } from "react";
-import {
-  Typography,
-  Stack,
-  useTheme,
-  Grid,
-  Select,
-  MenuItem,
-  FormControl,
-} from "@mui/material";
-
-import useTranslation from "next-translate/useTranslation";
 import { KeyboardArrowDownTwoTone } from "@mui/icons-material";
-import FormInput from "../formInput";
+import {
+  FormControl,
+  Grid,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import React, { forwardRef } from "react";
+
 import CtaButton from "../cta-button";
+import FormInput from "../formInput";
 
 type Props = {
   // submit:(b:boolean)=>void
@@ -59,7 +59,7 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
       canSubmit,
       isLoading,
     },
-    ref
+    ref,
   ) => {
     const theme = useTheme();
     const { t } = useTranslation("enterprise_solution");
@@ -230,6 +230,6 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
         </Grid>
       </Stack>
     );
-  }
+  },
 );
 export default ContactFrom;

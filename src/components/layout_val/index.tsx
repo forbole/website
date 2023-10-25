@@ -1,19 +1,23 @@
 /* eslint-disable no-undef */
+
 /* eslint-disable no-nested-ternary */
+
 /* eslint-disable no-unused-vars */
+
 /* eslint-disable react/require-default-props */
-import React, { ReactNode, RefObject } from "react";
-import Head from "next/head";
-import * as R from "ramda";
-import validator from "validator";
-import { useRouter } from "next/router";
 import { Box, useTheme } from "@mui/material";
-import { useRecoilState, SetterOrUpdater } from "recoil";
-import { Theme } from "@recoil/settings/types";
 import { writeTheme } from "@recoil/settings";
+import { Theme } from "@recoil/settings/types";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import * as R from "ramda";
+import React, { ReactNode, RefObject } from "react";
+import { SetterOrUpdater, useRecoilState } from "recoil";
+import validator from "validator";
+
 import Footer from "../footer";
-import Nav from "../nav";
 import GuideNav from "../guide_nav";
+import Nav from "../nav";
 
 type Props = {
   navLink: string | null;
@@ -55,7 +59,7 @@ const LayoutVal = ({
   const theme = useTheme();
   const [themeMode, setTheme] = useRecoilState(writeTheme) as [
     Theme,
-    SetterOrUpdater<Theme>
+    SetterOrUpdater<Theme>,
   ];
   const router = useRouter();
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;

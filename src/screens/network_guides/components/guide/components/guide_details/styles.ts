@@ -52,7 +52,8 @@ export const GuideContentCSS = styled.div<ContentProps>`
     overflow: hidden;
     width: 100%;
     height: 100%;
-    box-shadow: 0px 6px 14px -6px rgba(2, 38, 225, 0.12),
+    box-shadow:
+      0px 6px 14px -6px rgba(2, 38, 225, 0.12),
       0px 10px 32px -4px rgba(2, 38, 225, 0.1);
     border-radius: 4px;
   }
@@ -295,7 +296,9 @@ export const GuideContentBox = styled.div<any>`
     padding: 16px 20px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
-    box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.4);
+    box-shadow:
+      0 2px 6px -2px rgba(0, 0, 0, 0.1),
+      0 0 1px rgba(0, 0, 0, 0.4);
   }
 
   .kg-embed-card {
@@ -363,7 +366,9 @@ export const GuideContentBox = styled.div<any>`
     font-family: var(--font-sans-serif);
     text-decoration: none;
     border-radius: 5px;
-    box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.4);
+    box-shadow:
+      0 2px 6px -2px rgba(0, 0, 0, 0.1),
+      0 0 1px rgba(0, 0, 0, 0.4);
     overflow: hidden;
   }
 
@@ -489,7 +494,9 @@ export const GuideContentBox = styled.div<any>`
   }
 
   tbody tr:nth-of-type(2n + 2) td:last-child {
-    box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow:
+      inset 1px 0 rgba(0, 0, 0, 0.1),
+      inset -1px 0 rgba(0, 0, 0, 0.1);
   }
 
   tbody tr:nth-of-type(2n + 2) td {

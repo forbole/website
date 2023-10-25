@@ -1,7 +1,7 @@
-import React from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { useWindowDimensions } from "@src/hooks";
 import Image from "next/image";
+import React from "react";
 
 type Props = {
   title: string;

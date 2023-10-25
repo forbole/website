@@ -1,10 +1,7 @@
 import { atomState, navigationId } from "./atom";
-
-import { writeTheme, readTheme } from "./selectors";
-
-import { THEME_LIST, THEME_DICTIONARY } from "./utils";
-
 import { useSettingsRecoil } from "./hooks";
+import { readTheme, writeTheme } from "./selectors";
+import { THEME_DICTIONARY, THEME_LIST } from "./utils";
 
 export {
   THEME_LIST,

@@ -1,12 +1,11 @@
-import React from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import List from "@mui/material/List";
 import MenuItem from "@mui/material/MenuItem";
-import useTranslation from "next-translate/useTranslation";
-
-import Link from "next/link";
-import { useRecoilState } from "recoil";
 import { anchorElState } from "@src/recoil/settings/anchorEl";
+import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
+import React from "react";
+import { useRecoilState } from "recoil";
 
 const CompanyMenuButton = () => {
   const { t } = useTranslation("common");

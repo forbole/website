@@ -1,12 +1,13 @@
 /* eslint-disable react/require-default-props */
-import React from "react";
-import { Box, useTheme, Input, Button, Container, Stack } from "@mui/material";
+import { Box, Button, Container, Input, Stack, useTheme } from "@mui/material";
+import CtaButton from "@src/components/cta-button";
 import { getSocialMediaInfo } from "@utils/social_media_info";
-import useTranslation from "next-translate/useTranslation";
 import axios from "axios";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
 import { ToastContent, toast } from "react-toastify";
 import validator from "validator";
-import CtaButton from "@src/components/cta-button";
+
 import classes from "./classes.module.css";
 import { socialKeys } from "./config";
 
@@ -101,7 +102,7 @@ const SocialMedia = () => {
           value={inputs.email}
           name="email"
           onInput={handleInputChange}
-         />
+        />
         <CtaButton onClick={handleSubmit} loading={isLoading}>
           {t("subscribe-us")}
         </CtaButton>

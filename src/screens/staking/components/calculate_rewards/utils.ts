@@ -72,12 +72,12 @@ export const defaultFunctions = (converter?: any) => ({
   },
   commissionRate: (data: any) => {
     return Number(
-      R.pathOr(0, ["result", "commission", "commission_rates", "rate"], data)
+      R.pathOr(0, ["result", "commission", "commission_rates", "rate"], data),
     );
   },
   marketPrice: (data: any) => {
     return toFixed(
-      Number(R.pathOr(0, ["market_data", "current_price", "usd"], data))
+      Number(R.pathOr(0, ["market_data", "current_price", "usd"], data)),
     );
   },
   converter,

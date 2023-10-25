@@ -1,21 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from "react";
-import useTranslation from "next-translate/useTranslation";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
+import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { LangIcon, MenuIcon, Forbole as ForboleLogo } from "@components/icons";
 import { Collapse, ListItem, Stack, useTheme } from "@mui/material";
-import { useWindowDimensions } from "@src/hooks";
-
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
 import CtaButton from "@src/components/cta-button";
-import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
+import { useWindowDimensions } from "@src/hooks";
 import { anchorElState } from "@src/recoil/settings/anchorEl";
-import ProductsMenuButton from "../products_menu_button";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import * as React from "react";
+import { useRecoilState } from "recoil";
+
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
+import ProductsMenuButton from "../products_menu_button";
 
 interface NavMenuProps {
   link: string | null;

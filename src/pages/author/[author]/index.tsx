@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import AuthorTitlePosts from "@screens/author";
-import { getPostsByAuthor, getAuthorBySlug } from "@api/authors";
+import { getAuthorBySlug, getPostsByAuthor } from "@api/authors";
 import { getPosts, getTags } from "@api/posts";
 import { Post, Tag } from "@models";
+import AuthorTitlePosts from "@screens/author";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const AuthorDetailsPage = (props: any) => {
@@ -39,7 +39,7 @@ export async function getServerSideProps(context: { query: any }) {
     meta = posts?.meta;
     authorPosts = posts.map((y: any) => Post.fromJson(y, {}));
     authorPosts.tags = posts.map((x: { tags: any[] }) =>
-      removeInternalTags(x.tags)
+      removeInternalTags(x.tags),
     );
   } catch (err) {
     error = true;

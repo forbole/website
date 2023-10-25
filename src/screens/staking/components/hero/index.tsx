@@ -1,10 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import useTranslation from "next-translate/useTranslation";
+import { ScrollToBottom } from "@components";
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { ScrollToBottom } from "@components";
 import { useWindowDimensions } from "@src/hooks";
+import useTranslation from "next-translate/useTranslation";
+import Image from "next/image";
+import React from "react";
+
 import { Stats } from "./components";
 import useStyles from "./useStyles";
 

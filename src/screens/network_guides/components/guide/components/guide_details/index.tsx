@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
-import DOMPurify from "isomorphic-dompurify";
 import { Box, Button, useTheme } from "@mui/material";
 import { getNetworkInfo } from "@src/utils/network_info";
+import DOMPurify from "isomorphic-dompurify";
+
 import {
   GuideContentBox,
   GuideContentCSS,
-  MobileCSS,
   LaptopCSS,
+  MobileCSS,
 } from "./styles";
 
 const GuideDetails = ({ post }: any) => {

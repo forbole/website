@@ -1,17 +1,18 @@
-import React from "react";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import useTranslation from "next-translate/useTranslation";
+import { ExpandIcon } from "@icons";
 import {
   Accordion,
-  AccordionSummary,
   AccordionDetails,
+  AccordionSummary,
   Box,
-  Typography,
   ListItem,
+  Typography,
   useTheme,
 } from "@mui/material";
-import { ExpandIcon } from "@icons";
+import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import React from "react";
+
 import { FAQProps } from "../../config";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });

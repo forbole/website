@@ -1,31 +1,31 @@
 .icon {
-    width: 24px;
-    height: 24px;
-    background-repeat: no-repeat;
-    background-size: 100%;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .desktop {
-    display: block;
+  display: block;
 }
 
 .mobile {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 768px) {
-    .icon {
-        width: 16px;
-        height: 16px;
-    }
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media (max-width: 1025px) {
-    .mobile {
-        display: block;
-    }
+  .mobile {
+    display: block;
+  }
 
-    .desktop {
-        display: none;
-    }
+  .desktop {
+    display: none;
+  }
 }

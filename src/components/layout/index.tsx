@@ -1,13 +1,16 @@
 /* eslint-disable no-nested-ternary */
+
 /* eslint-disable no-unused-vars */
+
 /* eslint-disable react/require-default-props */
-import React, { ReactNode, useEffect } from "react";
-import Head from "next/head";
-import * as R from "ramda";
-import validator from "validator";
-import { useRouter } from "next/router";
 import { Box, useTheme } from "@mui/material";
 import useColor from "@src/styles/useColor";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import * as R from "ramda";
+import React, { ReactNode, useEffect } from "react";
+import validator from "validator";
+
 import Footer from "../footer";
 import Nav from "../nav";
 

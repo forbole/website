@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-expressions */
-import React from "react";
-import { styled, Switch, SwitchProps } from "@mui/material";
-import { useRecoilState, SetterOrUpdater } from "recoil";
-import { Theme } from "@recoil/settings/types";
+import { Switch, SwitchProps, styled } from "@mui/material";
 import { writeTheme } from "@recoil/settings";
+import { Theme } from "@recoil/settings/types";
+import React from "react";
+import { SetterOrUpdater, useRecoilState } from "recoil";
 
 const ThemeSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -83,7 +83,7 @@ const ThemeSwitch = styled((props: SwitchProps) => (
 export default function ThemeModeSwitch() {
   const [theme, setTheme] = useRecoilState(writeTheme) as [
     Theme,
-    SetterOrUpdater<Theme>
+    SetterOrUpdater<Theme>,
   ];
 
   const handleChangeTheme = () => {

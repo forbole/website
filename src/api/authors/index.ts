@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { ghostApi as api } from "../index";
+
 // import { IPost } from "./interface";
 
 /** Get blog posts by tag */

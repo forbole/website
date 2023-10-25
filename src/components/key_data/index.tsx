@@ -1,5 +1,6 @@
-import React from "react";
 import { Stack, useTheme } from "@mui/material";
+import React from "react";
+
 import { Stats } from "./components";
 
 type Props = {};

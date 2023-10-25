@@ -1,10 +1,10 @@
-import FAQ from "./faq";
-import ContactForbole from "./contact_forbole";
 import CalculateRewards from "./calculate_rewards";
-import WhyForbole from "./why_forbole";
+import ContactForbole from "./contact_forbole";
+import FAQ from "./faq";
+import Hero from "./hero";
 import HowItWorks from "./how_it_works";
 import Networks from "./networks";
-import Hero from "./hero";
+import WhyForbole from "./why_forbole";
 
 export {
   Hero,

@@ -1,6 +1,6 @@
-import { Telegram, Medium, Twitter, Github, LinkedIn, Instagram } from "@icons";
-import * as React from "react";
+import { Github, Instagram, LinkedIn, Medium, Telegram, Twitter } from "@icons";
 import { useRouter } from "next/router";
+import * as React from "react";
 
 interface SocialMediaProps {
   key: string;

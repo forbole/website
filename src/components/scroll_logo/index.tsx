@@ -1,7 +1,8 @@
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
-import React, { useMemo } from "react";
 import { getNetworkInfo } from "@src/utils/network_info";
 import dynamic from "next/dynamic";
+import React, { useMemo } from "react";
+
 import { allNetworkKeys } from "./config";
 import { TransitionCSS } from "./style";
 
@@ -17,7 +18,7 @@ const ScrollLogo = () => {
     return result;
   }
   const allNetworkData = allNetworkKeys.map((x: string | number) =>
-    getNetworkInfo(x)
+    getNetworkInfo(x),
   );
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
     noSsr: true,
@@ -26,9 +27,9 @@ const ScrollLogo = () => {
     () =>
       splitArray(
         allNetworkData,
-        allNetworkData.length / (onlyLargeScreen ? 4 : 3)
+        allNetworkData.length / (onlyLargeScreen ? 4 : 3),
       ),
-    [onlyLargeScreen]
+    [onlyLargeScreen],
   );
   console.log("data", data);
   return (
@@ -61,7 +62,7 @@ const ScrollLogo = () => {
                 animationName:
                   index == 1
                     ? " horizontalRightMove"
-                    : `horizontalMove${  index}`,
+                    : `horizontalMove${index}`,
                 // [theme.breakpoints.down("laptop")]: {
                 //   animationDuration: '50s'
                 // },

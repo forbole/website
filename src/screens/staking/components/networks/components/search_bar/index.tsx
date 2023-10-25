@@ -1,35 +1,39 @@
 /* eslint-disable no-use-before-define */
+
 /* eslint-disable no-undef */
+
 /* eslint-disable no-shadow */
+
 /* eslint-disable no-unused-vars */
-import React, {
-  ComponentProps,
-  FC,
-  FocusEventHandler,
-  HTMLAttributes,
-  useState,
-  useCallback,
-} from "react";
-import Image from "next/image";
-import useTranslation from "next-translate/useTranslation";
-import ListItem from "@mui/material/ListItem";
+import { SearchIcon } from "@icons";
 import {
   Autocomplete,
   Box,
   Button,
-  TextField,
+  InputAdornment,
   ListItemIcon,
   ListItemText,
   Paper,
   PaperProps,
   Popper,
   PopperProps,
-  InputAdornment,
+  TextField,
   createFilterOptions,
   useTheme,
 } from "@mui/material";
+import ListItem from "@mui/material/ListItem";
 import { getNetworkInfo, logos } from "@src/utils/network_info";
-import { SearchIcon } from "@icons";
+import useTranslation from "next-translate/useTranslation";
+import Image from "next/image";
+import React, {
+  ComponentProps,
+  FC,
+  FocusEventHandler,
+  HTMLAttributes,
+  useCallback,
+  useState,
+} from "react";
+
 import { SearchBarProps } from "./types";
 import useStyles from "./useStyles";
 
@@ -145,7 +149,7 @@ const SearchBar: FC<SearchBarProps> = () => {
         sx={styles.textField}
       />
     ),
-    []
+    [],
   );
   const [focused, setFocused] = useState(false);
   const handleFocus: FocusEventHandler = useCallback((event) => {

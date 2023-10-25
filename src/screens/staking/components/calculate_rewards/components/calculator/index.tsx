@@ -1,23 +1,24 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import Image from "next/image";
-import useTranslation from "next-translate/useTranslation";
+import { DropDownIcon } from "@icons";
 import {
   Box,
   Button,
   FormControl,
   Grid,
-  Typography,
-  Select,
-  Slider,
-  OutlinedInput,
   InputAdornment,
   MenuItem,
-  useTheme,
+  OutlinedInput,
+  Select,
+  Slider,
+  Typography,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { getNetworkInfo } from "@src/utils/network_info";
-import { DropDownIcon } from "@icons";
+import useTranslation from "next-translate/useTranslation";
+import Image from "next/image";
+import React from "react";
+
 import { calculatorKeys } from "./config";
 import { styles } from "./styles";
 
@@ -37,7 +38,7 @@ const Calculator = (props: any) => {
   } = props;
 
   const networkData = calculatorKeys.map((x: string | number) =>
-    getNetworkInfo(x)
+    getNetworkInfo(x),
   );
 
   React.useEffect(() => {
@@ -64,7 +65,7 @@ const Calculator = (props: any) => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonthlyPeriods(
-      event.target.value === "" ? "" : Number(event.target.value)
+      event.target.value === "" ? "" : Number(event.target.value),
     );
   };
 

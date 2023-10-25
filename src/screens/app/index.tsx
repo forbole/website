@@ -1,10 +1,11 @@
-import * as React from "react";
-import Head from "next/head";
-import { AppProps } from "next/app";
-import { CacheProvider, EmotionCache } from "@emotion/react";
-import { RecoilRoot } from "recoil";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { CacheProvider, EmotionCache } from "@emotion/react";
 import { init } from "@socialgouv/matomo-next";
+import { AppProps } from "next/app";
+import Head from "next/head";
+import * as React from "react";
+import { RecoilRoot } from "recoil";
+
 import createEmotionCache from "../../misc/createEmotionCache";
 import InnerApp from "./innerApp";
 

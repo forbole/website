@@ -7,19 +7,20 @@ import {
   useTheme,
 } from "@mui/material";
 import { Layout, ScrollToTop } from "@src/components";
-import React from "react";
+import Carousel from "@src/components/Carousel";
 import IntroPanel from "@src/components/Intro_panel";
 import CtaButton from "@src/components/cta-button";
-import { StyledTab, StyledTabs } from "@src/components/selection-tab";
-import ProductPanel from "@src/components/product-panel";
 import HeaderCard from "@src/components/header-card";
 import KeyData from "@src/components/key_data";
+import ProductPanel from "@src/components/product-panel";
 import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
-import useTranslation from "next-translate/useTranslation";
-import Carousel from "@src/components/Carousel";
-import { useRouter } from "next/router";
+import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import { scrollBottom } from "@src/utils/scroll";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import React from "react";
+
 import style from "./index.module.css";
 
 type Props = {};

@@ -1,8 +1,8 @@
+import { THEME_DICTIONARY, atomState } from "@recoil/settings";
+import { AtomState, Theme } from "@recoil/settings/types";
+import { THEME_KEY, getItem } from "@utils/localStorage";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { atomState, THEME_DICTIONARY } from "@recoil/settings";
-import { AtomState, Theme } from "@recoil/settings/types";
-import { getItem, THEME_KEY } from "@utils/localStorage";
 
 export const useSettingsRecoil = () => {
   const [settings, setSettings] = useRecoilState(atomState);

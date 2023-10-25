@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import Image from "next/image";
-import dynamic from "next/dynamic";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import React from "react";
+
 import { reasons } from "./config";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });

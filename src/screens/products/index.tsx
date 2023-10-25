@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { Layout, ScrollToTop } from "@components";
 import {
   Container,
@@ -8,15 +7,17 @@ import {
   useTheme,
 } from "@mui/material";
 import CtaButton from "@src/components/cta-button";
-import { StyledTab, StyledTabs } from "@src/components/selection-tab";
-import ProductPanel from "@src/components/product-panel";
 import HeaderCard from "@src/components/header-card";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
+import ProductPanel from "@src/components/product-panel";
+import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import { scrollBottom } from "@src/utils/scroll";
-import style from "./index.module.css";
+import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import React, { useRef } from "react";
+
 import { businesses, individuals } from "./config";
+import style from "./index.module.css";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
   ssr: false,

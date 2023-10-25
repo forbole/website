@@ -1,14 +1,15 @@
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import React from "react";
-import Card from "@mui/material/Card";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import "swiper/swiper.min.css";
-import SwiperCore, { Navigation } from "swiper";
 // 挂载到当前swiper实例
 import { Box, useMediaQuery, useTheme } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 import useTranslation from "next-translate/useTranslation";
+import React from "react";
+import SwiperCore, { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
+
 import Arraw, { Direction } from "../arrow";
 import { BoxCSS } from "./BoxCSS";
 

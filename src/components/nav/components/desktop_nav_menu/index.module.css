@@ -4,7 +4,7 @@
   cursor: pointer;
 }
 
-.navItem:hover>.boxItem {
+.navItem:hover > .boxItem {
   display: block;
 }
 
@@ -17,11 +17,13 @@
   display: none;
 }
 
-.boxItem>.boxItemList {
+.boxItem > .boxItemList {
   padding: 16px 0;
   border-radius: 24px;
   background: rgba(255, 255, 255);
-  box-shadow: 0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12);
+  box-shadow:
+    0px 10px 32px -4px rgba(2, 38, 225, 0.1),
+    0px 6px 14px -6px rgba(2, 38, 225, 0.12);
   overflow: hidden;
   /* backdrop-filter: blur(12px); */
 }
@@ -37,7 +39,7 @@
   display: none;
 }
 
-.navItem:hover>.boxItemStaek {
+.navItem:hover > .boxItemStaek {
   display: block;
 }
 

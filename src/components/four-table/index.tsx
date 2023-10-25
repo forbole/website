@@ -1,10 +1,11 @@
+import CtaButton from "@components/cta-button";
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { useState } from "react";
-import CtaButton from "@components/cta-button";
 import { useRouter } from "next/router";
-import styles from "./styles.module.css";
+import { useState } from "react";
+
 import plans from "./config";
+import styles from "./styles.module.css";
 
 type Props = { btnHref: () => void };
 const FourTable = ({ btnHref }: Props) => {

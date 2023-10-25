@@ -8,7 +8,7 @@ export default interface ContactFormProps {
   };
   handleInputChange: (event: any) => void;
   handleMouseDownClear: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   handleSubmit: (event: any) => void;
   handleClear: (field: any) => void;

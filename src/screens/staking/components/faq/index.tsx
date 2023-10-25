@@ -1,6 +1,7 @@
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
 import { Box, Typography, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
+
 import { Card } from "./components";
 import { faq } from "./config";
 
@@ -71,7 +72,7 @@ const FAQ = () => {
                     expanded={expanded === question}
                     setExpanded={() =>
                       setExpanded((prev) =>
-                        prev === question ? undefined : question
+                        prev === question ? undefined : question,
                       )
                     }
                     question={question}
@@ -114,7 +115,7 @@ const FAQ = () => {
                     expanded={expanded === question}
                     setExpanded={() =>
                       setExpanded((prev) =>
-                        prev === question ? undefined : question
+                        prev === question ? undefined : question,
                       )
                     }
                     question={question}

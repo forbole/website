@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import { Box, Divider, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import { Box, Divider, Typography, useTheme } from "@mui/material";
+import React from "react";
+
 import { styles } from "./styles";
 
 const TitlePosts = (props: any) => {

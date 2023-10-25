@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React from "react";
+import { LangIcon } from "@icons";
 import {
   Box,
   Button,
@@ -9,14 +9,15 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import Link from "next/link";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
-import { useWindowDimensions } from "@src/hooks";
-import { LangIcon } from "@icons";
-import useColor from "@src/styles/useColor";
-import { useRecoilState } from "recoil";
 import { anchorElState } from "@recoil/settings/anchorEl";
+import { useWindowDimensions } from "@src/hooks";
+import useColor from "@src/styles/useColor";
+import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
+import { useRecoilState } from "recoil";
+
 import useStyles from "./useStyles";
 
 const LangMenuButton = () => {

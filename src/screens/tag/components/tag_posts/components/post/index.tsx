@@ -1,10 +1,12 @@
 /* eslint-disable no-nested-ternary */
+
 /* eslint-disable react/destructuring-assignment */
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Link from "next/link";
-import Image from "next/image";
+import { useHKT, useWindowDimensions } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
-import { useWindowDimensions, useHKT } from "@hooks";
+import Image from "next/image";
+import Link from "next/link";
 
 const Post = (props: any) => {
   const theme = useTheme();

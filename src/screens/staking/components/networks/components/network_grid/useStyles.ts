@@ -17,7 +17,7 @@ const useStyles = () => {
         padding: theme.spacing(3, 0, 12, 0),
         display: "grid",
         gridTemplateColumns: `repeat(auto-fit, minmax(${theme.spacing(
-          15
+          15,
         )}, 1fr))`,
         justifyContent: "space-between",
         gridGap: theme.spacing(2),

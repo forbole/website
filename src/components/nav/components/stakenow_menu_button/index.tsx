@@ -1,12 +1,11 @@
-import React from "react";
-import { Box, useTheme, useMediaQuery, Collapse, SvgIcon } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-
+import { Box, Collapse, SvgIcon, useMediaQuery, useTheme } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
+import React from "react";
 
 const StakenowMenuButton = () => {
   const theme = useTheme();

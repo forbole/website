@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import axios from "axios";
+
 import { ghostApi as api } from "../index";
 import { IPost } from "./interface";
 
@@ -66,7 +67,7 @@ export const getSinglePost = async (slug: string) => {
       {
         include: "tags,authors",
         formats: "html",
-      }
+      },
     );
   } catch (err) {
     console.error(err);
@@ -83,7 +84,7 @@ export const getSinglePostById = async (id: string, options?: any) => {
         `${process.env.NEXT_PUBLIC_URL}/api/post-preview`,
         {
           id,
-        }
+        },
       );
       return post.data ?? null;
     }
@@ -93,7 +94,7 @@ export const getSinglePostById = async (id: string, options?: any) => {
       {
         include: "tags,authors",
         formats: "html",
-      }
+      },
     );
   } catch (err) {
     console.error(err);

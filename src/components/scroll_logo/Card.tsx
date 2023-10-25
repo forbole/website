@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Container,
@@ -10,9 +9,11 @@ import {
   useTheme,
 } from "@mui/material";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React from "react";
 import SwiperCore, { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
+
 // 挂载到当前swiper实例
 SwiperCore.use([Autoplay]);
 type Props = {

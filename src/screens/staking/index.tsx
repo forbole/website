@@ -1,14 +1,15 @@
-import React, { useRef } from "react";
 import { LayoutVal } from "@components";
 import { StakingContextProvider } from "@src/contexts";
+import React, { useRef } from "react";
+
 import {
-  WhyForbole,
   CalculateRewards,
   ContactForbole,
   FAQ,
+  Hero,
   HowItWorks,
   Networks,
-  Hero,
+  WhyForbole,
 } from "./components";
 import { LaptopCSS } from "./styles";
 

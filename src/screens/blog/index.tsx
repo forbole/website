@@ -1,7 +1,8 @@
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
+import { Layout, ScrollToTop, Tags } from "@components";
 import { Box, useTheme } from "@mui/material";
-import { Layout, Tags, ScrollToTop } from "@components";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
+
 import { BlogPosts, TitlePosts, Twitter } from "./components";
 import { useBlogHook } from "./hooks";
 import { styles } from "./styles";

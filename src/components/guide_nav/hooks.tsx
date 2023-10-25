@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useEffect, useState } from "react";
 
 export const useNavHook = () => {
   const [displayBackground, setDisplayBackground] = useState(false);

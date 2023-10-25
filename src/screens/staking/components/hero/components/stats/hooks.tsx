@@ -1,21 +1,23 @@
 /* eslint-disable array-callback-return */
+
 /* eslint-disable no-console */
-import { useState, useMemo, useEffect } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+import { useStakingContext } from "@contexts";
 import {
   getAllCosmosTVL,
-  getElrondTVL,
-  getSolanaTVL,
-  getOasisTVL,
-  getRadixTVL,
   getCosmosUsersCount,
-  getSolanaUsersCount,
+  getElrondTVL,
   getElrondUsersCount,
+  getOasisTVL,
   getOasisUsersCount,
+  getRadixTVL,
   getRadixUsersCount,
+  getSolanaTVL,
+  getSolanaUsersCount,
 } from "@graphql/queries";
-import { useStakingContext } from "@contexts";
 import { networkFunctions } from "@utils/network_functions";
+import { useEffect, useMemo, useState } from "react";
+
 import { statsItems } from "./config";
 
 export const useStatsHook = () => {
@@ -34,66 +36,46 @@ export const useStatsHook = () => {
   const [radixUser, setRadixUser] = useState(0);
   const [totalUsers, setTotalUsers] = useState(0);
 
-  const { loading: cosmosTotalTVLLoading, data: cosmosTotalTVL } = useQuery(
-    gql`
-      ${getAllCosmosTVL()}
-    `
-  );
+  const { loading: cosmosTotalTVLLoading, data: cosmosTotalTVL } = useQuery(gql`
+    ${getAllCosmosTVL()}
+  `);
 
   const { loading: cosmosUsersCountLoading, data: cosmosUsersCountData } =
-    useQuery(
-      gql`
-        ${getCosmosUsersCount()}
-      `
-    );
+    useQuery(gql`
+      ${getCosmosUsersCount()}
+    `);
 
-  const { loading: elrondTVLLoading, data: elrondTVLData } = useQuery(
-    gql`
-      ${getElrondTVL()}
-    `
-  );
+  const { loading: elrondTVLLoading, data: elrondTVLData } = useQuery(gql`
+    ${getElrondTVL()}
+  `);
 
-  const { loading: solanaTVLLoading, data: solanaTVLData } = useQuery(
-    gql`
-      ${getSolanaTVL()}
-    `
-  );
+  const { loading: solanaTVLLoading, data: solanaTVLData } = useQuery(gql`
+    ${getSolanaTVL()}
+  `);
 
-  const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(
-    gql`
-      ${getOasisTVL()}
-    `
-  );
+  const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(gql`
+    ${getOasisTVL()}
+  `);
 
-  const { loading: radixTVLLoading, data: radixTVLData } = useQuery(
-    gql`
-      ${getRadixTVL()}
-    `
-  );
+  const { loading: radixTVLLoading, data: radixTVLData } = useQuery(gql`
+    ${getRadixTVL()}
+  `);
 
-  const { loading: solanaUserLoading, data: solanaUserData } = useQuery(
-    gql`
-      ${getSolanaUsersCount()}
-    `
-  );
+  const { loading: solanaUserLoading, data: solanaUserData } = useQuery(gql`
+    ${getSolanaUsersCount()}
+  `);
 
-  const { loading: elrondUserLoading, data: elrondUserData } = useQuery(
-    gql`
-      ${getElrondUsersCount()}
-    `
-  );
+  const { loading: elrondUserLoading, data: elrondUserData } = useQuery(gql`
+    ${getElrondUsersCount()}
+  `);
 
-  const { loading: oasisUserLoading, data: oasisUserData } = useQuery(
-    gql`
-      ${getOasisUsersCount()}
-    `
-  );
+  const { loading: oasisUserLoading, data: oasisUserData } = useQuery(gql`
+    ${getOasisUsersCount()}
+  `);
 
-  const { loading: radixUserLoading, data: radixUserData } = useQuery(
-    gql`
-      ${getRadixUsersCount()}
-    `
-  );
+  const { loading: radixUserLoading, data: radixUserData } = useQuery(gql`
+    ${getRadixUsersCount()}
+  `);
 
   useEffect(() => {
     if (!cosmosUsersCountLoading) {
@@ -160,7 +142,7 @@ export const useStatsHook = () => {
               stats: totalUsers,
             },
           }))
-        : null
+        : null,
     );
   }, [
     cosmosUser,
@@ -239,7 +221,7 @@ export const useStatsHook = () => {
               stats: totalTVL,
             },
           }))
-        : null
+        : null,
     );
     return stats;
   }, [
@@ -263,7 +245,7 @@ export const useStatsHook = () => {
                 stats: networkNumber,
               },
             }))
-          : null
+          : null,
       );
     }
     return stats;

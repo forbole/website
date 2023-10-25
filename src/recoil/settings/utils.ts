@@ -1,4 +1,5 @@
-import { lightTemplate, darkTemplate } from "@styles/index";
+import { darkTemplate, lightTemplate } from "@styles/index";
+
 import { Theme } from "./types";
 
 // ================================

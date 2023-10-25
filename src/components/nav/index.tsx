@@ -1,14 +1,19 @@
 /* eslint-disable no-unsafe-optional-chaining */
+
 /* eslint-disable no-undef */
+
 /* eslint-disable no-nested-ternary */
+
 /* eslint-disable react/require-default-props */
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { RefObject } from "react";
-import Link from "next/link";
-import { Box, Button, useTheme } from "@mui/material";
 import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
+import { Box, Button, useTheme } from "@mui/material";
 import useColor from "@src/styles/useColor";
-import { MobileNavMenu, DesktopNavMenu } from "./components";
+import Link from "next/link";
+import React, { RefObject } from "react";
+
+import { DesktopNavMenu, MobileNavMenu } from "./components";
 import { useNavHook } from "./hooks";
 
 interface NavProps {

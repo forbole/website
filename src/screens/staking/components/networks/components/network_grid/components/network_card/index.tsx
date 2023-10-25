@@ -1,20 +1,22 @@
 /* eslint-disable react/require-default-props */
-/* eslint-disable no-undef */
-/* eslint-disable react/no-unstable-nested-components */
 
-import React, {
-  Dispatch,
-  SetStateAction,
-  FC,
-  MouseEventHandler,
-  useCallback,
-} from "react";
-import Image from "next/image";
+/* eslint-disable no-undef */
+
+/* eslint-disable react/no-unstable-nested-components */
+import { CloseIcon, InfoIcon } from "@icons";
+import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
+import { convertToMoney } from "@utils/convert_to_money";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
-import { Box, Button, Stack, LinearProgress, Typography } from "@mui/material";
-import { CloseIcon, InfoIcon } from "@icons";
-import { convertToMoney } from "@utils/convert_to_money";
+import Image from "next/image";
+import React, {
+  Dispatch,
+  FC,
+  MouseEventHandler,
+  SetStateAction,
+  useCallback,
+} from "react";
+
 import { ParamsProps } from "../../config";
 import useStyles from "./useStyles";
 
@@ -36,14 +38,14 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const handleMobileAnchorClick: MouseEventHandler<HTMLButtonElement> =
     useCallback(
       () => setShowMobilePopover(network.name),
-      [network.name, setShowMobilePopover]
+      [network.name, setShowMobilePopover],
     );
   const handleMobilPopoverClick: MouseEventHandler<Element> = useCallback(
     (event) => {
       event.stopPropagation();
       setShowMobilePopover("");
     },
-    [setShowMobilePopover]
+    [setShowMobilePopover],
   );
   const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(
     (event) => {
@@ -52,11 +54,11 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       if (network.guide)
         window.open(
           `${process.env.NEXT_PUBLIC_URL}/staking/${network.guide}`,
-          "_top"
+          "_top",
         );
       else if (network.delegate) window.open(network.delegate, "_top");
     },
-    [network.denom, network.key, network.delegate]
+    [network.denom, network.key, network.delegate],
   );
 
   /* A variable that is used to render the popover. */
@@ -98,7 +100,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
                 <Typography>-%</Typography>
               ) : (
                 <Typography>{`${Math.round(
-                  networkSummary.APY * 100
+                  networkSummary.APY * 100,
                 )}%`}</Typography>
               )}
             </Box>

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { Box, SxProps, Theme, useTheme } from "@mui/material";
+import React, { useEffect, useState } from "react";
+
 import { BottomIcon } from "../icons";
 
 export enum Direction {
@@ -62,7 +63,7 @@ export default function Arraw({ className, sx, direction }: Props) {
         ...sx,
       }}
     >
-      <BottomIcon style={{ transform: `rotate(${  rotate  }deg)` }} />
+      <BottomIcon style={{ transform: `rotate(${rotate}deg)` }} />
     </Box>
   );
 }

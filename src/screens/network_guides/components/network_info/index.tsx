@@ -1,8 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
-import DOMPurify from "isomorphic-dompurify";
+import { CopyIcon } from "@icons";
 import {
   Alert,
   Box,
@@ -13,15 +10,19 @@ import {
   IconButton,
   Snackbar,
   Typography,
-  useTheme,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import { CopyIcon } from "@icons";
 import { getNetworkInfo } from "@src/utils/network_info";
 import { getMiddleEllipsis } from "@utils/get_middle_ellipsis";
-import { ContentCSS, ContentBox } from "./styles";
+import DOMPurify from "isomorphic-dompurify";
+import useTranslation from "next-translate/useTranslation";
+import Image from "next/image";
+import React from "react";
+
 import { InfoCard } from "./components";
 import { useNetworkGuidesHook } from "./hooks";
+import { ContentBox, ContentCSS } from "./styles";
 
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
@@ -50,11 +51,11 @@ const NetworkInfo = ({ post }: any) => {
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation();
       navigator.clipboard.writeText(
-        networkData ? networkData.address : "coming soon"
+        networkData ? networkData.address : "coming soon",
       );
       setIsCopySuccess(true);
     },
-    [networkData?.address]
+    [networkData?.address],
   );
   const coverImage = networkData
     ? `/images/guides/how_to_stake_${networkData.graphql}.png`

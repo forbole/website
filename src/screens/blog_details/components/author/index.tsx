@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Link from "next/link";
-import { Box, Typography, useTheme } from "@mui/material";
 import { useHKT } from "@hooks";
+import { Box, Typography, useTheme } from "@mui/material";
+import Link from "next/link";
 
 const Author = ({ post }: any) => {
   const { primaryAuthor: author, publishedAt } = post;

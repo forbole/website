@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
-import { useRouter } from "next/router";
+import { Facebook, LinkedIn, Telegram, Twitter } from "@icons";
 import { Box, useTheme } from "@mui/material";
-import { Telegram, Facebook, Twitter, LinkedIn } from "@icons";
+import { useRouter } from "next/router";
+import React from "react";
 
 const SocialMedia = (props: any) => {
   const theme = useTheme();
@@ -32,7 +33,7 @@ const SocialMedia = (props: any) => {
       "",
       Object.keys(config)
         .map((key) => `${key}=${config[key]}`)
-        .join(", ")
+        .join(", "),
     );
   };
   return (
@@ -55,7 +56,7 @@ const SocialMedia = (props: any) => {
       <span
         onClick={() =>
           handleClick(
-            `https://telegram.me/share/?url=${shareUrl}&text=${title}`
+            `https://telegram.me/share/?url=${shareUrl}&text=${title}`,
           )
         }
       >
@@ -64,7 +65,7 @@ const SocialMedia = (props: any) => {
       <span
         onClick={() =>
           handleClick(
-            `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${title}`
+            `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${title}`,
           )
         }
       >
@@ -73,7 +74,7 @@ const SocialMedia = (props: any) => {
       <span
         onClick={() =>
           handleClick(
-            `https://twitter.com/intent/tweet?url=${shareUrl}&text=${title}`
+            `https://twitter.com/intent/tweet?url=${shareUrl}&text=${title}`,
           )
         }
       >
@@ -82,7 +83,7 @@ const SocialMedia = (props: any) => {
       <span
         onClick={() =>
           handleClick(
-            `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}&text=${title}`
+            `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}&text=${title}`,
           )
         }
       >

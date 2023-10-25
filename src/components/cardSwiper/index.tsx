@@ -1,10 +1,11 @@
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
-import "swiper/swiper.min.css";
-import SwiperCore, { Navigation } from "swiper";
 import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
+import Image from "next/image";
 import { CSSProperties } from "react";
+import SwiperCore, { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
+
 import Arraw, { Direction } from "../arrow";
 import { BoxCSS } from "./BoxCSS";
 

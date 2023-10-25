@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import useTranslation from "next-translate/useTranslation";
-import { Box, Typography, useTheme } from "@mui/material";
 import { LayoutVal } from "@components";
-import { NetworkInfo, Guide } from "./components";
+import { Box, Typography, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
+
+import { Guide, NetworkInfo } from "./components";
 import { LaptopCSS } from "./styles";
 
 const NetworkGuides = ({ post }: any) => {

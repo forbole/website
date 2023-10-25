@@ -1,6 +1,7 @@
-import { selector } from "recoil";
-import { mergeStateChange } from "@utils/merge_state_change";
 import { THEME_KEY, setItem } from "@utils/localStorage";
+import { mergeStateChange } from "@utils/merge_state_change";
+import { selector } from "recoil";
+
 import { atomState } from "./atom";
 import { Theme } from "./types";
 
