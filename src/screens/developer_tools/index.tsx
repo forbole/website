@@ -1,3 +1,4 @@
+import SignatureCard from "@components/signature-card";
 import {
   Box,
   Container,
@@ -7,17 +8,17 @@ import {
   useTheme,
 } from "@mui/material";
 import { Layout, ScrollToTop } from "@src/components";
-import React, { useState } from "react";
-import Section from "@src/components/section";
-import CtaButton from "@src/components/cta-button";
 import IntroPanel from "@src/components/Intro_panel";
+import CtaButton from "@src/components/cta-button";
 import FourTable from "@src/components/four-table";
 import HeaderCard from "@src/components/header-card";
-import useTranslation from "next-translate/useTranslation";
-import TalkModal from "@src/components/talk-modal";
-
+import Section from "@src/components/section";
 import SuccessModal from "@src/components/success-modal";
-import SignatureCard from "@components/signature-card";
+import TalkModal from "@src/components/talk-modal";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+
 import useTalkModalForm from "./hooks";
 
 const DeveloperTools = () => {
@@ -32,6 +33,7 @@ const DeveloperTools = () => {
     setSuccess,
     isLoading,
   } = useTalkModalForm();
+  const router = useRouter();
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
@@ -82,7 +84,7 @@ const DeveloperTools = () => {
           >
             <CtaButton
               onClick={() => {
-                setShow(true);
+                router.push("https://devtools.forbole.com");
               }}
             >
               {t("sign_up_now")}
@@ -123,10 +125,7 @@ const DeveloperTools = () => {
         </Stack>
 
         <Stack>
-          <Section
-            title={t("section_2nd_title")}
-            // title_large={t("section_2nd_large_title")}
-          />
+          <Section title={t("section_2nd_title")} />
           <CtaButton
             sx={{
               display: "block",
@@ -136,7 +135,7 @@ const DeveloperTools = () => {
               },
             }}
             onClick={() => {
-              setShow(true);
+              router.push("https://devtools.forbole.com");
             }}
           >
             {t("start_trial")}
