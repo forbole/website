@@ -1,15 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable consistent-return */
-/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-shadow */
+
 /* eslint-disable no-console */
+import axios from "axios";
+import cors from "cors";
 import "dotenv-defaults/config";
 import express, { Request, Response } from "express";
-import next from "next";
-import cors from "cors";
-import nodemailer from "nodemailer";
-import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
+import next from "next";
+import nodemailer from "nodemailer";
 
 const { sanitize } = DOMPurify;
 
@@ -25,7 +23,8 @@ const upload = multer({
   storage: multer.memoryStorage(),
   fileFilter: (_req: any, file: any, cb: any) => {
     if (!whitelist.includes(file.mimetype)) {
-      return cb(new Error("file is not allowed"));
+      cb(new Error("file is not allowed"));
+      return;
     }
 
     cb(null, true);
@@ -85,7 +84,7 @@ const ghostAdminApi = new GhostAdminAPI({
         } catch (e) {
           next(e);
         }
-      }
+      },
     );
     // 订阅
     server.post(
@@ -98,12 +97,12 @@ const ghostAdminApi = new GhostAdminAPI({
               from: inputs.email,
               to: "newsletter@forbole.com",
               subject: `A new customer: ${sanitize(
-                inputs.email
+                inputs.email,
               )} just subscribed our newsletter`,
               html: `
               <p>Dear Administrator,</p>
               <p>A new customer: ${sanitize(
-                inputs.email
+                inputs.email,
               )} just subscribed our newsletter.</p>
               <p>Regards,</p>
               <p>Forbole web system</p>
@@ -116,7 +115,7 @@ const ghostAdminApi = new GhostAdminAPI({
         } catch (e) {
           next(e);
         }
-      }
+      },
     );
 
     server.post(
@@ -132,7 +131,7 @@ const ghostAdminApi = new GhostAdminAPI({
                 to: "career@forbole.com",
                 subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
                 html: `<p>${sanitize(
-                  inputs.message
+                  inputs.message,
                 )}</p> <p>Applicant's phone number: +${
                   inputs.countryCode + inputs.number
                 }</p>`,
@@ -155,7 +154,7 @@ const ghostAdminApi = new GhostAdminAPI({
                 to: "career@forbole.com",
                 subject: `[Careers] ${inputs.firstName} ${inputs.lastName}'s Job Application for ${inputs.title}`,
                 html: `<p>${sanitize(
-                  inputs.message
+                  inputs.message,
                 )}</p> <p>Applicant's phone number: +${
                   inputs.countryCode + inputs.number
                 }</p>`,
@@ -175,10 +174,11 @@ const ghostAdminApi = new GhostAdminAPI({
         } catch (e: any) {
           next(e);
         }
-      }
+      },
     );
 
     // catch Multer file fields' error
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     server.use((error: any, _req: any, _res: any, _next: any) => {
       console.log("This is the rejected field ->", error.field, error);
     });
@@ -196,14 +196,14 @@ const ghostAdminApi = new GhostAdminAPI({
         } catch (err) {
           next(err);
         }
-      }
+      },
     );
 
     server.post(
       "/api/post-preview",
       async (req: Request, res: Response, next: any) => {
         try {
-          const { id } = req?.body;
+          const { id } = req?.body || {};
           const [blog] = await ghostAdminApi.posts
             .browse({
               filter: `uuid:${id}`,
@@ -219,7 +219,7 @@ const ghostAdminApi = new GhostAdminAPI({
         } catch (err) {
           next(err);
         }
-      }
+      },
     );
 
     server.all("*", (req: Request, res: Response) => {

@@ -18,6 +18,7 @@ module.exports = {
     "/analytics-tools": ["analytics_tools"],
     "/enterprise-solution": ["enterprise_solution"],
     "/staking": ["staking"],
+    "/staking/[title]": ["staking"],
     "/blog": ["blog"],
     "/blog/[title]": ["blog"],
     "/tag/[tag]": ["blog"],

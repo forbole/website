@@ -74,9 +74,7 @@ const LayoutVal = ({
   if (!validator.isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
-  React.useEffect(() => {
-    if (theme.palette.mode === "light") setTheme("dark");
-  }, [navLink]);
+
   return (
     <Box position="relative">
       <Head>
