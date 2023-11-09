@@ -20,7 +20,7 @@ import {
   getSolanaTVL,
 } from "@graphql/queries";
 import { networkFunctions } from "@utils/network_functions";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   allNetworkKeys,
@@ -80,8 +80,11 @@ export const useNetworkHook = () => {
   `);
 
   const { setNetworkNumber } = useStakingContext();
-  const networkLength = allNetworkKeys.length;
-  setNetworkNumber(networkLength);
+
+  useEffect(() => {
+    const networkLength = allNetworkKeys.length;
+    setNetworkNumber(networkLength);
+  }, [setNetworkNumber]);
 
   useMemo(() => {
     if (!cosmosBondedLoading) {

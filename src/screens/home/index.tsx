@@ -22,13 +22,12 @@ type Props = {
 };
 
 const Home: React.FC<Props> = ({ pages }) => {
-  const { t, lang } = useTranslation("home");
+  const { t } = useTranslation("home");
   const theme = useTheme();
   const topRef = React.useRef(null);
   const bottomRef = React.useRef(null);
   const router = useRouter();
-  const { windowDimensions, isMobile, isTablet } = useWindowDimensions();
-  const { width } = windowDimensions;
+  const { isMobile, isTablet } = useWindowDimensions();
   return (
     <Layout
       navLink="/"
@@ -231,20 +230,22 @@ const Home: React.FC<Props> = ({ pages }) => {
             {t("What_is_New?")}
           </Typography>
           <Grid container spacing={theme.spacing(2)}>
-            {pages.map(({ title, list, imageHref, btnName, btnClick, id }) => {
-              return (
-                <Grid item laptop={4} mobile={12} key={id}>
-                  <IntroCard
-                    title={title}
-                    list={list}
-                    imageHref={imageHref}
-                    btnName={btnName}
-                    btnClick={() => router.push(btnClick)}
-                    disabled={!btnClick || false}
-                  />
-                </Grid>
-              );
-            })}
+            {pages.map(
+              ({ title, list, imageHref, btnName, btnClick, id }, idx) => {
+                return (
+                  <Grid item laptop={4} mobile={12} key={`${id}_${idx}`}>
+                    <IntroCard
+                      title={title}
+                      list={list}
+                      imageHref={imageHref}
+                      btnName={btnName}
+                      btnClick={() => router.push(btnClick)}
+                      disabled={!btnClick || false}
+                    />
+                  </Grid>
+                );
+              },
+            )}
           </Grid>
           <Box mt="100px">
             <ScrollToTop topRef={topRef} />

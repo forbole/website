@@ -121,7 +121,7 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
           <ForboleLogo color="#BD081C" height="20px" width="106px" />
           <CtaButton
             onClick={() => {
-              router.push("https://www.forbole.com/staking");
+              router.push("/staking");
             }}
           >
             {t("StakeNow")}
