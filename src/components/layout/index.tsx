@@ -1,14 +1,10 @@
-/* eslint-disable no-nested-ternary */
-
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable react/require-default-props */
 import { Box, useTheme } from "@mui/material";
 import useColor from "@src/styles/useColor";
+import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import * as R from "ramda";
-import React, { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import validator from "validator";
 
 import Footer from "../footer";
@@ -34,7 +30,7 @@ const Layout = ({
   children,
   title = "Forbole",
   footer,
-  description = "Forbole is an experienced professional blockchain node operator and staking provider. Delegate to us and earn your crypto rewards now!",
+  description,
   keywords = [],
   type = "website",
   image,
@@ -58,6 +54,7 @@ const Layout = ({
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
   const color = useColor();
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     if (blueBg) {
@@ -116,7 +113,7 @@ const Layout = ({
         {!!(url === "https://staging.forbole.com") && (
           <meta name="googlebot" content="noindex" />
         )}
-        <meta name="description" content={description} />
+        <meta name="description" content={description || t("description")} />
         <meta name="keywords" content={formattedKeyworks.join(", ")} />
         <meta
           name="viewport"
@@ -145,7 +142,7 @@ const Layout = ({
         <meta
           prefix="og: http://ogp.me/ns#"
           property="og:description"
-          content={description}
+          content={description || t("description")}
         />
         <meta
           prefix="og: http://ogp.me/ns#"
