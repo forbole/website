@@ -3,7 +3,7 @@
   "empowering": "Empowering you with real-time on-chain data",
   "data_visualization": "Data Visualization",
   "free": "<0>Free and easy access to <1>real-time</1> on-chain data</0>",
-  "our": "Our award-winning block explorer Big Dipper empowers token holders and blockchain developers with easy access to on-chain data. Big Dipper currently supports more than 35 blockchain networks and has been forked over 700 times. Big Dipper is also a user-friendly tool for staking and voting on governance proposals on multi-chains.",
+  "our": "Our award-winning block explorer Big Dipper empowers token holders and blockchain developers with easy access to on-chain data. Big Dipper currently supports more than 50 blockchain networks and has been forked over 700 times. Big Dipper is also a user-friendly tool for staking and voting on governance proposals on multi-chains.",
   "try_now": "Try now",
   "always": "Always Open Source",
   "desc_1": "Since the birth of Big Dipper at HackAtom3 by Cosmos in 2018, it has been an open source project to give all token holders free access to on-chain data. Fork now for your project, or contact us if you would like us to build a Big Dipper for your project with customised requirements.",
@@ -12,6 +12,6 @@
   "governance_tool": "Free Governance Tool",
   "desc_3": "Being a token holder does not only mean you have an economic interest, you also have a say in the governance of the projects. Connect your wallet with Big Dipper to vote on governance proposals of the relevant chain.",
   "customizable": "Customizable for any blockchains",
-  "networks": "<0>Supporting over <1>35 networks</1></0>",
+  "networks": "<0>Supporting over <1>50 networks</1></0>",
   "big_dipper": "Big Dipper is the only full-feature block explorer that is completely open-source. The modularize development of Big Dipper enables fast and easy deployment."
 }
