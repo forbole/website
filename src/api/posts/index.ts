@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-import axios from "axios";
-
 import { ghostApi as api } from "../index";
 import { IPost } from "./interface";
 
@@ -8,7 +5,6 @@ import { IPost } from "./interface";
 export const getPosts = async ({
   limit = 11,
   page = 1,
-  // filter = "tag:-[hash-zhs,hash-zht]",
   filter = "tags:-[careers]",
 }: IPost) => {
   try {
@@ -20,6 +16,7 @@ export const getPosts = async ({
       formats: "html",
     });
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     return [];
   }
@@ -28,7 +25,6 @@ export const getPosts = async ({
 /** Gets posts from remote based on See More on mobile device */
 export const getAllPosts = async ({
   limit,
-  // filter = "tag:-[hash-zhs,hash-zht]",
   filter = "tags:-[careers]",
 }: IPost) => {
   try {
@@ -39,23 +35,9 @@ export const getAllPosts = async ({
       formats: "html",
     });
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     return [];
-  }
-};
-
-/** Gets the main feature post from remote */
-export const getFeaturedPost = async () => {
-  try {
-    return await api.posts.browse({
-      limit: 1,
-      filter: "tag:fiction+tag:-fables",
-      order: "created_at ASC",
-      formats: "html",
-    });
-  } catch (err) {
-    console.error(err);
-    return null;
   }
 };
 
@@ -70,33 +52,7 @@ export const getSinglePost = async (slug: string) => {
       },
     );
   } catch (err) {
-    console.error(err);
-    return null;
-  }
-};
-
-/** Get single post by id */
-export const getSinglePostById = async (id: string, options?: any) => {
-  const { preview = false } = options ?? {};
-  try {
-    if (preview) {
-      const post = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/post-preview`,
-        {
-          id,
-        },
-      );
-      return post.data ?? null;
-    }
-
-    return await api.posts.read(
-      { id },
-      {
-        include: "tags,authors",
-        formats: "html",
-      },
-    );
-  } catch (err) {
+    // eslint-disable-next-line
     console.error(err);
     return null;
   }
@@ -111,6 +67,7 @@ export const getTags = async () => {
       include: "count.posts",
     });
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     return [];
   }

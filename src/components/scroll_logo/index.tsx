@@ -1,9 +1,8 @@
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
-import { getNetworkInfo } from "@src/utils/network_info";
+import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
-import { allNetworkKeys } from "./config";
 import { TransitionCSS } from "./style";
 
 const Card = dynamic(() => import("./Card"), { ssr: false });

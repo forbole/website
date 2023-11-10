@@ -1,11 +1,11 @@
 /* eslint-disable no-bitwise */
 import { Box } from "@mui/material";
-import { getNetworkInfo } from "@src/utils/network_info";
+import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 import { LayoutGroup } from "framer-motion";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { NetworkCard } from "./components";
-import { NetworkProps, allNetworkKeys } from "./config";
+import { NetworkProps } from "./config";
 import { useNetworkHook } from "./hooks";
 import useStyles from "./useStyles";
 

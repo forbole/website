@@ -1,4 +1,4 @@
-export const infoItems = [
+const infoItems = [
   {
     title: "staked by forbole",
     stats: "-",
@@ -21,7 +21,7 @@ export const infoItems = [
   },
 ];
 
-export type ParamsProps = {
+type ParamsProps = {
   title: string;
   stats: number | string;
   type: string;
@@ -63,34 +63,3 @@ export const cosmosNetworkGuideParams: NetworkGuideProps = {
   stride: infoItems,
   teritori: infoItems,
 };
-
-export const cosmosNetworkKeys = [
-  "emoney",
-  "cosmos",
-  "akash",
-  "agoric",
-  "assetmantle",
-  "axelar",
-  "bitcanna",
-  "bitsong",
-  "cheqd",
-  "chihuahua",
-  "comdex",
-  "crescent",
-  "ixo",
-  "kava",
-  "likecoin",
-  "osmosis",
-  "persistence",
-  "secret",
-  "sentinelhub",
-  "nomic",
-  "gravity_bridge",
-  "crypto.org",
-  "evmos",
-  "juno",
-  "sommelier",
-  "stargaze",
-  "stride",
-  "teritori",
-].sort();

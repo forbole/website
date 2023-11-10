@@ -1,8 +1,4 @@
-/* eslint-disable array-callback-return */
-
-/* eslint-disable no-console */
 import { gql, useQuery } from "@apollo/client";
-import { useStakingContext } from "@contexts";
 import {
   getAllCosmosTVL,
   getCosmosUsersCount,
@@ -16,12 +12,12 @@ import {
   getSolanaUsersCount,
 } from "@graphql/queries";
 import { networkFunctions } from "@utils/network_functions";
+import { networkNumber } from "@utils/network_info";
 import { useEffect, useMemo, useState } from "react";
 
 import { statsItems } from "./config";
 
 export const useStatsHook = () => {
-  const { networkNumber } = useStakingContext();
   const [stats, setStats] = useState(statsItems);
   const [cosmosTVL, setCosmosTVL] = useState(0);
   const [elrondTotalTVL, setElrondTotalTVL] = useState(0);
