@@ -15,19 +15,16 @@ export default function CustomInputAutocomplete({
   const theme = useTheme();
   return (
     <Autocomplete
-      sx={{
-        display: "block",
-      }}
       disablePortal
-      onChange={onChange}
       id="custom-input-demo"
+      onChange={onChange}
       options={options}
       renderInput={(params) => (
         <Box
           ref={params.InputProps.ref}
           sx={{
-            display: "block",
-            position: "relative",
+            "display": "block",
+            "position": "relative",
             "& input:focus": {
               outlineColor: theme.palette.custom.forbole.indigo,
             },
@@ -80,11 +77,14 @@ export default function CustomInputAutocomplete({
           <input
             type="text"
             {...params.inputProps}
-            placeholder={label}
             name="11"
+            placeholder={label}
           />
         </Box>
       )}
+      sx={{
+        display: "block",
+      }}
     />
   );
 }

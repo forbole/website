@@ -16,18 +16,17 @@ const ScrollToBottom = ({ bottomRef }: any) => {
 
   return (
     <Box
-      position="relative"
       alignSelf="center"
-      zIndex={2}
+      position="relative"
       sx={{
-        m: "28px",
-        mb: "24px",
-        width: "48px",
-        height: "48px",
-        borderRadius: "48px",
-        boxShadow:
+        "m": "28px",
+        "mb": "24px",
+        "width": "48px",
+        "height": "48px",
+        "borderRadius": "48px",
+        "boxShadow":
           "0px 10px 32px -4px rgba(125, 92, 255, 0.10), 0px 6px 14px -6px rgba(126, 94, 255, 0.28)",
-        filter:
+        "filter":
           "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
         [theme.breakpoints.down("laptop")]: {
           m: "6px",
@@ -35,11 +34,11 @@ const ScrollToBottom = ({ bottomRef }: any) => {
           height: "36px",
           mb: "24px",
         },
-        cursor: "pointer",
+        "cursor": "pointer",
         "& svg": {
-          transition: "all 0.3s",
+          "transition": "all 0.3s",
 
-          fill: " #FFF",
+          "fill": " #FFF",
           "& path": {
             stroke: theme.palette.custom.forbole.blue,
           },
@@ -48,6 +47,7 @@ const ScrollToBottom = ({ bottomRef }: any) => {
           },
         },
       }}
+      zIndex={2}
     >
       <BottomIcon
         onClick={(e: React.MouseEvent<HTMLElement>) =>

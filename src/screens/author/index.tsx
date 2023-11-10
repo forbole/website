@@ -14,13 +14,13 @@ const AuthorTitlePosts = (props: any) => {
   useBlogHook(error, t);
   return (
     <Layout
-      title={post.title}
+      blueBg
       description={excerpt}
-      type="article"
+      footer
       image={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? "")}
-      blueBg
-      footer
+      title={post.title}
+      type="article"
     >
       <Box
         sx={{
@@ -63,31 +63,31 @@ const AuthorTitlePosts = (props: any) => {
               }}
             >
               <img
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  borderRadius: "8px",
-                }}
+                alt={author.name}
                 src={
                   author.profile_image == null
                     ? "/images/assets/blog-placeholder.png"
                     : author.profile_image
                 }
-                alt={author.name}
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "8px",
+                }}
               />
               <span>
                 <Typography
-                  variant="body1"
                   sx={{
                     color: theme.palette.primary.main,
                     paddingTop: theme.spacing(3),
                   }}
+                  variant="body1"
                 >
                   {author.name}
                 </Typography>
               </span>
             </Box>
-            <AuthorPosts main={post[0]} blogs={post.slice(1)} meta={meta} />
+            <AuthorPosts blogs={post.slice(1)} main={post[0]} meta={meta} />
           </Box>
         </Box>
       </Box>

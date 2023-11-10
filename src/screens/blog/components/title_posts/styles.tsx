@@ -3,9 +3,9 @@ import { SxProps } from "@mui/system";
 
 export const styles: { [index: string]: SxProps<Theme> } = {
   titlePostCSS: (theme) => ({
-    padding: theme.spacing(7, 3, 0, 3),
-    color: theme.palette.primary.main,
-    listStyleType: "none",
+    "padding": theme.spacing(7, 3, 0, 3),
+    "color": theme.palette.primary.main,
+    "listStyleType": "none",
     "& a": {
       color: theme.palette.primary.main,
       fontSize: theme.spacing(2),

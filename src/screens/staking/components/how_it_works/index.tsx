@@ -16,11 +16,11 @@ const HowItWorks = () => {
     <Box display="flex" justifyContent="center">
       <Box
         sx={{
-          padding: theme.spacing(5, 3),
+          "padding": theme.spacing(5, 3),
           "> .h3": {
-            fontWeight: 700,
-            fontSize: theme.spacing(3),
-            textAlign: "center",
+            "fontWeight": 700,
+            "fontSize": theme.spacing(3),
+            "textAlign": "center",
             [theme.breakpoints.up("laptop")]: {
               fontSize: theme.spacing(5),
             },
@@ -35,7 +35,7 @@ const HowItWorks = () => {
             },
           },
           [theme.breakpoints.up("laptop")]: {
-            maxWidth: "1200px",
+            "maxWidth": "1200px",
             "> .h3": {
               margin: "auto",
               width: "65%",
@@ -44,7 +44,6 @@ const HowItWorks = () => {
         }}
       >
         <Typography
-          variant="h4"
           sx={{
             textShadow:
               "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
@@ -58,11 +57,11 @@ const HowItWorks = () => {
               fontSize: theme.spacing(3),
             },
           }}
+          variant="h4"
         >
           {t("how it works")}
         </Typography>
         <Trans
-          i18nKey={t("how it works title")}
           components={[
             <Box
               className="h3"
@@ -80,6 +79,7 @@ const HowItWorks = () => {
               }}
             />,
           ]}
+          i18nKey={t("how it works title")}
         />
         <Box
           sx={{
@@ -97,10 +97,10 @@ const HowItWorks = () => {
           {howTos.map((howTo) => (
             <HowToCard
               key={howTo.id}
+              desc={howTo.desc}
               id={howTo.id}
               image={howTo.image}
               title={howTo.title}
-              desc={howTo.desc}
             />
           ))}
         </Box>

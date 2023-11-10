@@ -21,8 +21,8 @@ const Tags = (props: TagsProps) => {
   return (
     <Box
       sx={{
-        padding: theme.spacing(7, 3),
-        color: theme.palette.primary.main,
+        "padding": theme.spacing(7, 3),
+        "color": theme.palette.primary.main,
         "& h3": {
           fontWeight: 700,
           fontSize: theme.spacing(3),
@@ -36,13 +36,13 @@ const Tags = (props: TagsProps) => {
         },
       }}
     >
-      <Typography variant="h3" color={theme.palette.primary.main}>
+      <Typography color={theme.palette.primary.main} variant="h3">
         {t("tags")}
       </Typography>
       <Box component="ul" sx={styles.tagCSS}>
         {tags.map((tag: any) => (
-          <Box component="li" key={tag.slug} sx={styles.listCSS}>
-            <Link href="/tag/[tag]" as={`/tag/${tag.slug}`}>
+          <Box key={tag.slug} component="li" sx={styles.listCSS}>
+            <Link as={`/tag/${tag.slug}`} href="/tag/[tag]">
               <a>{tag.name}</a>
             </Link>
           </Box>

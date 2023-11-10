@@ -21,7 +21,6 @@ const FAQ = () => {
         }}
       >
         <Typography
-          variant="h3"
           sx={{
             textShadow:
               "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
@@ -34,6 +33,7 @@ const FAQ = () => {
               fontSize: theme.spacing(5),
             },
           }}
+          variant="h3"
         >
           {t("faq")}
         </Typography>
@@ -44,7 +44,7 @@ const FAQ = () => {
             },
           }}
         >
-          <Box display="flex" flexWrap="wrap" alignContent="flex-start">
+          <Box alignContent="flex-start" display="flex" flexWrap="wrap">
             <Box
               sx={{
                 flexBasis: "100%",
@@ -69,21 +69,21 @@ const FAQ = () => {
                 return (
                   <Card
                     key={question}
+                    bullet1={bullet1}
+                    bullet2={bullet2}
+                    bullet3={bullet3}
+                    desc={desc}
                     expanded={expanded === question}
+                    para1={para1}
+                    para2={para2}
+                    para3={para3}
+                    question={question}
                     setExpanded={() =>
                       setExpanded((prev) =>
                         prev === question ? undefined : question,
                       )
                     }
-                    question={question}
-                    para1={para1}
-                    para2={para2}
-                    para3={para3}
                     trans={trans}
-                    desc={desc}
-                    bullet1={bullet1}
-                    bullet2={bullet2}
-                    bullet3={bullet3}
                   />
                 );
               })}
@@ -112,21 +112,21 @@ const FAQ = () => {
                 return (
                   <Card
                     key={question}
+                    bullet1={bullet1}
+                    bullet2={bullet2}
+                    bullet3={bullet3}
+                    desc={desc}
                     expanded={expanded === question}
+                    para1={para1}
+                    para2={para2}
+                    para3={para3}
+                    question={question}
                     setExpanded={() =>
                       setExpanded((prev) =>
                         prev === question ? undefined : question,
                       )
                     }
-                    question={question}
-                    para1={para1}
-                    para2={para2}
-                    para3={para3}
                     trans={trans}
-                    desc={desc}
-                    bullet1={bullet1}
-                    bullet2={bullet2}
-                    bullet3={bullet3}
                   />
                 );
               })}

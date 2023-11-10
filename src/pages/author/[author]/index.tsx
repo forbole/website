@@ -5,9 +5,7 @@ import { Post, Tag } from "@models";
 import AuthorTitlePosts from "@screens/author";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
-const AuthorDetailsPage = (props: any) => {
-  return <AuthorTitlePosts {...props} />;
-};
+const AuthorDetailsPage = (props: any) => <AuthorTitlePosts {...props} />;
 
 export async function getServerSideProps(context: { query: any }) {
   let authorPosts: any = [];

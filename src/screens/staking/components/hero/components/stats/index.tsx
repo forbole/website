@@ -17,8 +17,8 @@ const Stats = () => {
         return (
           <StatsCard
             key={key}
-            title={statsItem.title}
             stats={statsItem.stats}
+            title={statsItem.title}
           />
         );
       })}

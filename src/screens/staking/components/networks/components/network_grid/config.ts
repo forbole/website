@@ -147,6 +147,4 @@ const getNetworkKeysArray = () => {
 
 export const allNetworkKeys = getNetworkKeysArray();
 
-export const getNetworkParams = (key: string) => {
-  return cosmosNetworkParams[key] ?? {};
-};
+export const getNetworkParams = (key: string) => cosmosNetworkParams[key] ?? {};

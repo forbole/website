@@ -56,10 +56,10 @@ const About = () => {
   ];
   // @ts-ignore
   return (
-    <Layout title={t("page_title")} footer redBgFooter>
+    <Layout footer redBgFooter title={t("page_title")}>
       <Container
-        maxWidth="desktop"
         ref={topRef}
+        maxWidth="desktop"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -94,8 +94,8 @@ const About = () => {
           }}
         >
           <Stack
-            spacing={3}
             maxWidth="1000px"
+            spacing={3}
             sx={{
               alignItems: "center",
               textAlign: "center",
@@ -132,7 +132,6 @@ const About = () => {
               {t("headercard_1st_desc")}
             </Typography>
             <Trans
-              i18nKey={t("headercard_2nd_desc")}
               components={[
                 <Typography
                   sx={{
@@ -162,6 +161,7 @@ const About = () => {
                   }}
                 />,
               ]}
+              i18nKey={t("headercard_2nd_desc")}
             />
           </Stack>
           <Box
@@ -178,26 +178,26 @@ const About = () => {
           >
             <ImgBox>
               <Swiper
-                className="swiper-style"
-                slidesPerView="auto"
-                centeredSlides
-                spaceBetween={24}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: true,
+                  stopOnLastSlide: false,
+                }}
                 breakpoints={{
                   1023: {
                     spaceBetween: 16,
                     centeredSlides: false,
                   },
                 }}
+                centeredSlides
+                className="swiper-style"
                 loop // 循环滚动
                 navigation={{
                   nextEl: ".h-next",
                   prevEl: ".h-prev",
                 }}
-                autoplay={{
-                  delay: 2000,
-                  disableOnInteraction: true,
-                  stopOnLastSlide: false,
-                }}
+                slidesPerView="auto"
+                spaceBetween={24}
               >
                 {imagList.map((item) => (
                   <SwiperSlide
@@ -209,8 +209,11 @@ const About = () => {
                     }}
                   >
                     <img
-                      src={item}
                       alt=""
+                      onError={(e: any) => {
+                        e.target.style.width = "300px";
+                      }}
+                      src={item}
                       style={{
                         height: "100%",
                         width: "auto",
@@ -219,9 +222,6 @@ const About = () => {
                         overflow: "hidden",
                         boxShadow:
                           "0px 7.8450517654418945px 25.10416603088379px -3.1380207538604736px rgba(2, 38, 225, 0.10), 0px 4.70703125px 10.983072280883789px -4.70703125px rgba(2, 38, 225, 0.12)",
-                      }}
-                      onError={(e: any) => {
-                        e.target.style.width = "300px";
                       }}
                     />
                   </SwiperSlide>
@@ -315,17 +315,17 @@ const About = () => {
         >
           <Swiper
             className="swiper-no-swiping"
+            navigation={{
+              nextEl: ".v-next",
+              prevEl: ".v-prev",
+            }}
+            slidesPerView={onlyLargeScreen ? 2 : "auto"}
+            spaceBetween={16}
             style={{
               width: "100%",
               height: "100%",
               overflow: onlyLargeScreen ? "visible" : "hidden",
               padding: onlyLargeScreen ? "0" : "0 32px",
-            }}
-            slidesPerView={onlyLargeScreen ? 2 : "auto"}
-            spaceBetween={16}
-            navigation={{
-              nextEl: ".v-next",
-              prevEl: ".v-prev",
             }}
           >
             {vidoeList.map((item, indexUpper) => (
@@ -339,18 +339,18 @@ const About = () => {
                 }}
               >
                 <Skeleton
-                  variant="rectangular"
                   sx={{ display: loading ? "block" : "none", height: "100%" }}
+                  variant="rectangular"
                 />
                 <iframe
-                  height="100%"
-                  width="100%"
-                  src={item.src}
-                  title={item.title}
-                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  frameBorder="0"
+                  height="100%"
                   onLoad={() => setLoading(false)}
+                  src={item.src}
+                  title={item.title}
+                  width="100%"
                 />
               </SwiperSlide>
             ))}
@@ -385,7 +385,6 @@ const About = () => {
             }}
           >
             <Trans
-              i18nKey={t("section_2nd_large_title")}
               components={[
                 <Typography
                   display="inline"
@@ -401,9 +400,9 @@ const About = () => {
                   }}
                 />,
                 <Typography
-                  display="inline"
-                  component="span"
                   color="#EE3131"
+                  component="span"
+                  display="inline"
                   sx={{
                     fontSize: "40px",
                     fontWeight: "590",
@@ -416,6 +415,7 @@ const About = () => {
                   }}
                 />,
               ]}
+              i18nKey={t("section_2nd_large_title")}
             />
 
             <Typography

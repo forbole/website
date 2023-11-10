@@ -13,14 +13,14 @@ const BlogDetails = ({ post }: any) => {
 
   return (
     <Layout
-      title={post.title}
-      description={excerpt}
-      type="article"
-      image={featureImage}
-      twitterImage={featureImage}
-      keywords={tags.map((x: { name: any }) => x.name ?? "")}
       blueBg
+      description={excerpt}
       footer
+      image={featureImage}
+      keywords={tags.map((x: { name: any }) => x.name ?? "")}
+      title={post.title}
+      twitterImage={featureImage}
+      type="article"
     >
       <MobileCSS>
         <Box
@@ -33,13 +33,13 @@ const BlogDetails = ({ post }: any) => {
             <Author post={post} />
             <SocialMedia title={post.title} />
             <Typography
-              variant="h3"
               sx={{
                 color: theme.palette.primary.main,
                 fontWeight: 600,
                 paddingBottom: theme.spacing(4),
                 fontSize: theme.spacing(3.5),
               }}
+              variant="h3"
             >
               {title}
             </Typography>
@@ -52,12 +52,12 @@ const BlogDetails = ({ post }: any) => {
               }
             >
               <img
+                alt={title}
                 src={
                   post.featureImage == null
                     ? "/images/assets/blog-placeholder.png"
                     : post.featureImage
                 }
-                alt={title}
                 style={{
                   width: "100%",
                   height: "auto",
@@ -66,12 +66,12 @@ const BlogDetails = ({ post }: any) => {
               />
               {featureImageCaption === null ? null : (
                 <Typography
-                  variant="body1"
                   sx={{
                     color: theme.palette.primary.main,
                     padding: theme.spacing(2, 0, 8, 0),
                     fontSize: theme.spacing(1.75),
                   }}
+                  variant="body1"
                 >
                   <Markdown>{featureImageCaption}</Markdown>
                 </Typography>
@@ -101,12 +101,12 @@ const BlogDetails = ({ post }: any) => {
             }}
           >
             <Typography
-              variant="h3"
               sx={{
                 color: theme.palette.primary.main,
                 fontWeight: 600,
                 fontSize: theme.spacing(5),
               }}
+              variant="h3"
             >
               {title}
             </Typography>
@@ -126,16 +126,16 @@ const BlogDetails = ({ post }: any) => {
             </Box>
             <Box
               display="flex"
-              justifyContent="center"
               flexDirection="column"
+              justifyContent="center"
               paddingBottom={
                 featureImageCaption === null ? theme.spacing(8) : 0
               }
             >
               {featureImage === null ? (
                 <img
-                  src="/images/assets/blog-placeholder.png"
                   alt={title}
+                  src="/images/assets/blog-placeholder.png"
                   style={{
                     width: "100%",
                     height: "auto",
@@ -145,8 +145,8 @@ const BlogDetails = ({ post }: any) => {
                 />
               ) : (
                 <img
-                  src={featureImage}
                   alt={title}
+                  src={featureImage}
                   style={{
                     width: "100%",
                     height: "auto",
@@ -157,7 +157,6 @@ const BlogDetails = ({ post }: any) => {
               )}
               {featureImageCaption === null ? null : (
                 <Typography
-                  variant="body1"
                   sx={{
                     color: theme.palette.primary.main,
                     padding: theme.spacing(4, 0, 8, 0),
@@ -167,6 +166,7 @@ const BlogDetails = ({ post }: any) => {
                       color: theme.palette.primary.main,
                     },
                   }}
+                  variant="body1"
                 >
                   <Markdown>{featureImageCaption}</Markdown>
                 </Typography>
@@ -183,7 +183,7 @@ const BlogDetails = ({ post }: any) => {
                   width: "100%",
                 }}
               >
-                <Tags tags={tags} details noPadding />
+                <Tags details noPadding tags={tags} />
               </Box>
             </Box>
           </Box>

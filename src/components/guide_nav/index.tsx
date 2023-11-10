@@ -103,7 +103,6 @@ const GuideNav = ({ staking }: GuideNavProps) => {
             </Link>
           </Box>
           <Button
-            variant="contained"
             href="#stake-now"
             sx={{
               display: "none",
@@ -122,6 +121,7 @@ const GuideNav = ({ staking }: GuideNavProps) => {
                 height: "45px",
               },
             }}
+            variant="contained"
           >
             Stake Now
           </Button>

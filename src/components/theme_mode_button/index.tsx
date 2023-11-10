@@ -6,18 +6,18 @@ import React from "react";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 
 const ThemeSwitch = styled((props: SwitchProps) => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+  <Switch disableRipple focusVisibleClassName=".Mui-focusVisible" {...props} />
 ))(({ theme }) => ({
-  width: 47,
-  height: 26,
-  padding: 0,
+  "width": 47,
+  "height": 26,
+  "padding": 0,
   "& .MuiSwitch-switchBase": {
-    padding: 0,
-    margin: 2,
-    transitionDuration: "300ms",
+    "padding": 0,
+    "margin": 2,
+    "transitionDuration": "300ms",
     "&.Mui-checked": {
-      transform: "translateX(21px)",
-      color: "#fff",
+      "transform": "translateX(21px)",
+      "color": "#fff",
       "& + .MuiSwitch-track": {
         backgroundColor: "rgba(54, 33, 135, 1)",
         backgroundImage: "url(/images/assets/icon_dark_mode.svg)",

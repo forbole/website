@@ -5,14 +5,14 @@ const useStyles = () => {
 
   return {
     root: css({
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      padding: theme.spacing(4, 3),
-      background: theme.palette.common.white,
-      boxShadow:
+      "display": "flex",
+      "flexDirection": "column",
+      "alignItems": "center",
+      "padding": theme.spacing(4, 3),
+      "background": theme.palette.common.white,
+      "boxShadow":
         "0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)",
-      borderRadius: theme.spacing(3),
+      "borderRadius": theme.spacing(3),
       "& .MuiTypography-h3": {
         paddingTop: theme.spacing(2),
         fontWeight: 700,

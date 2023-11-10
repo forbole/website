@@ -19,18 +19,6 @@ const CardSwiper = ({ imagesList, style }: Props) => {
     <BoxCSS>
       <Box position="relative">
         <Swiper
-          className="scale"
-          style={{
-            ...style,
-          }}
-          spaceBetween={-80}
-          slidesPerView={3}
-          centeredSlides
-          initialSlide={1}
-          navigation={{
-            nextEl: ".c-next", // 下一个箭头的类名或DOM元素
-            prevEl: ".c-prev", // 上一个箭头的类名或DOM元素
-          }}
           breakpoints={{
             375: {
               spaceBetween: -30,
@@ -43,9 +31,21 @@ const CardSwiper = ({ imagesList, style }: Props) => {
               initialSlide: 1,
             },
           }}
+          centeredSlides
+          className="scale"
+          initialSlide={1}
+          navigation={{
+            nextEl: ".c-next", // 下一个箭头的类名或DOM元素
+            prevEl: ".c-prev", // 上一个箭头的类名或DOM元素
+          }}
+          slidesPerView={3}
+          spaceBetween={-80}
+          style={{
+            ...style,
+          }}
         >
           {imagesList.map((item, index) => (
-            <SwiperSlide className="scale" key={index}>
+            <SwiperSlide key={index} className="scale">
               <Stack
                 sx={{
                   [theme.breakpoints.down("laptop")]: {
@@ -53,7 +53,7 @@ const CardSwiper = ({ imagesList, style }: Props) => {
                   },
                 }}
               >
-                {item && <Image src={item} alt="" />}
+                {item && <Image alt="" src={item} />}
               </Stack>
             </SwiperSlide>
           ))}

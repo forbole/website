@@ -92,43 +92,36 @@ const Calculator = (props: any) => {
       }}
     >
       <Typography
-        variant="body1"
         sx={{
           fontSize: theme.spacing(2),
           fontWeight: 600,
           color: theme.palette.custom.forbole.blue,
           paddingBottom: theme.spacing(1),
         }}
+        variant="body1"
       >
         {t("select token")}
       </Typography>
       <Box sx={styles.select}>
         <FormControl>
           <Select
-            open={isOpen}
-            onOpen={() => {
-              setIsOpen(true);
-            }}
-            onClose={() => {
-              setIsOpen(false);
-            }}
             displayEmpty
-            labelId="demo-simple-select-label"
+            IconComponent={DropDownIcon}
             id="demo-simple-select"
-            value={selectedToken}
+            labelId="demo-simple-select-label"
             MenuProps={{
               variant: "menu",
               disableScrollLock: true,
               PaperProps: {
                 sx: {
-                  height: "50vh",
-                  bgcolor: theme.palette.primary.main,
-                  marginTop: 1,
-                  boxShadow:
+                  "height": "50vh",
+                  "bgcolor": theme.palette.primary.main,
+                  "marginTop": 1,
+                  "boxShadow":
                     "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
-                  borderRadius: 1,
+                  "borderRadius": 1,
                   "& .MuiMenuItem-root": {
-                    padding: 2,
+                    "padding": 2,
                     "&:hover": {
                       background:
                         " linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)",
@@ -138,16 +131,23 @@ const Calculator = (props: any) => {
               },
             }}
             onChange={(e) => setSelectedToken(e.target.value)}
-            IconComponent={DropDownIcon}
+            onClose={() => {
+              setIsOpen(false);
+            }}
+            onOpen={() => {
+              setIsOpen(true);
+            }}
+            open={isOpen}
+            value={selectedToken}
           >
             {networkData.map((network, i) => (
               <MenuItem key={i} value={network}>
                 <Box
                   sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignContent: "center",
-                    justifyContent: "flex-start",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "alignContent": "center",
+                    "justifyContent": "flex-start",
                     "& .image": {
                       width: `${theme.spacing(6.5)} !important`,
                       height: `${theme.spacing(6.5)} !important`,
@@ -160,11 +160,11 @@ const Calculator = (props: any) => {
                   <Box className="image">
                     {network.image && (
                       <Image
-                        src={network.image}
-                        objectFit="contain"
-                        width="52px"
                         height="52px"
+                        objectFit="contain"
                         quality={100}
+                        src={network.image}
+                        width="52px"
                       />
                     )}
                   </Box>
@@ -178,18 +178,18 @@ const Calculator = (props: any) => {
                     }}
                   >
                     <Typography
-                      variant="h4"
                       sx={{ fontWeight: 600, fontSize: theme.spacing(2.5) }}
+                      variant="h4"
                     >
                       {network.denom.toUpperCase()}
                     </Typography>
                     <Typography
-                      variant="body1"
                       sx={{
                         fontWeight: 400,
                         fontSize: theme.spacing(1.5),
                         color: "#878787",
                       }}
+                      variant="body1"
                     >
                       {network.label}
                     </Typography>
@@ -201,130 +201,130 @@ const Calculator = (props: any) => {
         </FormControl>
       </Box>
       <Typography
-        variant="body1"
         sx={{
           fontSize: theme.spacing(2),
           fontWeight: 600,
           color: theme.palette.custom.forbole.blue,
           padding: theme.spacing(4, 0, 1, 0),
         }}
+        variant="body1"
       >
         {t("token amount")}
       </Typography>
       <Box sx={styles.input}>
         <OutlinedInput
-          value={tokens?.display}
           onChange={handleChange}
           placeholder={t("token amount placeholder")}
+          value={tokens?.display}
         />
       </Box>
       <Typography
-        variant="body1"
         sx={{
           fontSize: theme.spacing(2),
           fontWeight: 600,
           color: theme.palette.custom.forbole.blue,
           padding: theme.spacing(4, 0, 1, 0),
         }}
+        variant="body1"
       >
         {t("length of time")}
       </Typography>
       <Box sx={styles.input}>
         <Grid
-          container
-          spacing={onlyLargeScreen ? 1 : 0}
           columns={12}
-          marginLeft={0}
-          width="100%"
+          container
           justifyContent="space-between"
+          marginLeft={0}
+          spacing={onlyLargeScreen ? 1 : 0}
+          width="100%"
         >
           <Grid
-            container
-            spacing={1}
-            mobile={12}
-            laptop={8}
-            display="flex"
             alignItems="center"
+            container
+            display="flex"
+            laptop={8}
+            mobile={12}
+            spacing={1}
           >
-            <Grid item mobile={1} laptop={1} height="100%" display="flex">
+            <Grid display="flex" height="100%" item laptop={1} mobile={1}>
               <Typography
-                variant="body1"
                 sx={{
                   fontSize: theme.spacing(2),
                   fontWeight: 600,
                   color: theme.palette.custom.forbole.blue,
                   alignSelf: "center",
                 }}
+                variant="body1"
               >
                 0
               </Typography>
             </Grid>
             <Grid
-              item
-              mobile={8}
-              laptop={10}
-              height="100%"
-              display="flex"
               alignItems="center"
+              display="flex"
+              height="100%"
+              item
+              laptop={10}
+              mobile={8}
             >
               <Slider
-                size="small"
                 defaultValue={0}
-                onChange={handleSliderChange}
-                value={monthlyPeriods}
-                step={1}
-                min={0}
                 max={12}
+                min={0}
+                onChange={handleSliderChange}
+                size="small"
+                step={1}
                 sx={styles.slider}
+                value={monthlyPeriods}
               />
             </Grid>
             <Grid
-              item
-              mobile={1}
-              laptop={1}
-              height="100%"
-              display="flex"
               alignItems="center"
+              display="flex"
+              height="100%"
+              item
+              laptop={1}
+              mobile={1}
             >
               <Typography
-                variant="body1"
                 sx={{
                   fontSize: theme.spacing(2),
                   fontWeight: 600,
                   color: theme.palette.custom.forbole.blue,
                 }}
+                variant="body1"
               >
                 12
               </Typography>
             </Grid>
           </Grid>
-          <Grid item mobile={12} laptop={4}>
+          <Grid item laptop={4} mobile={12}>
             <OutlinedInput
-              value={monthlyPeriods}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-              sx={styles.inputBase}
-              inputProps={{
-                step: 1,
-                min: 0,
-                max: 12,
-                type: "number",
-                "aria-labelledby": "input-slider",
-              }}
               endAdornment={
                 <InputAdornment position="end">
                   <Typography
-                    variant="body1"
                     sx={{
                       fontSize: theme.spacing(2),
                       fontWeight: 600,
                       color: theme.palette.custom.forbole.blue,
                     }}
+                    variant="body1"
                   >
                     {t("months")}
                   </Typography>
                 </InputAdornment>
               }
+              inputProps={{
+                "step": 1,
+                "min": 0,
+                "max": 12,
+                "type": "number",
+                "aria-labelledby": "input-slider",
+              }}
+              onBlur={handleBlur}
+              onChange={handleInputChange}
+              sx={styles.inputBase}
+              value={monthlyPeriods}
             />
           </Grid>
         </Grid>
@@ -333,13 +333,13 @@ const Calculator = (props: any) => {
       totalEarnings.monthlyEarnings.amount !== "0" ? (
         <>
           <Typography
-            variant="body1"
             sx={{
               fontSize: theme.spacing(2),
               fontWeight: 600,
               color: theme.palette.custom.forbole.blue,
               padding: theme.spacing(4, 0, 2, 0),
             }}
+            variant="body1"
           >
             {t("estimated earning")}
           </Typography>
@@ -348,44 +348,44 @@ const Calculator = (props: any) => {
               <Box className="image">
                 {selectedToken.image && (
                   <Image
-                    src={selectedToken.image}
-                    objectFit="contain"
-                    width="28px"
                     height="28px"
+                    objectFit="contain"
                     quality={100}
+                    src={selectedToken.image}
+                    width="28px"
                   />
                 )}
               </Box>
               <Typography
-                variant="h4"
-                fontWeight="600"
-                fontSize={theme.spacing(2.25)}
                 color={theme.palette.custom.forbole.blue}
+                fontSize={theme.spacing(2.25)}
+                fontWeight="600"
                 paddingLeft={1}
+                variant="h4"
               >
                 {selectedToken.denom.toUpperCase()}
               </Typography>
             </Box>
             <Box sx={styles.amountResult}>
               <Typography
-                variant="h4"
-                fontWeight="600"
-                fontSize={theme.spacing(2)}
                 color={theme.palette.custom.forbole.blue}
+                fontSize={theme.spacing(2)}
+                fontWeight="600"
+                variant="h4"
               >
                 {totalEarnings.monthlyEarnings.tokens}
               </Typography>
               <Typography
-                variant="h4"
-                fontWeight="400"
-                fontSize={theme.spacing(2)}
                 color="#878787"
-                padding={theme.spacing(0.5, 0, 0, 0)}
                 display={
                   totalEarnings.monthlyEarnings.amount === "0.00"
                     ? "none"
                     : "block"
                 }
+                fontSize={theme.spacing(2)}
+                fontWeight="400"
+                padding={theme.spacing(0.5, 0, 0, 0)}
+                variant="h4"
               >
                 $ {totalEarnings.monthlyEarnings.amount} USD
               </Typography>
@@ -393,10 +393,10 @@ const Calculator = (props: any) => {
           </Box>
           <Box sx={styles.buttonDiv}>
             <Button
-              sx={styles.button}
-              href={selectedToken.delegate || ""}
               disabled={!selectedToken.delegate}
+              href={selectedToken.delegate || ""}
               rel="noreferrer"
+              sx={styles.button}
               target="_blank"
             >
               {t("stake with us!")}

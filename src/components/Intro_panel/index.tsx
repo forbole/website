@@ -1,7 +1,6 @@
 import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Image, { StaticImageData } from "next/image";
-import React from "react";
 
 import CtaButton from "../cta-button";
 
@@ -28,22 +27,22 @@ const IntroPanel = (props: Props) => {
   const matches = useMediaQuery(theme.breakpoints.down(500));
   return (
     <Stack
-      component="div"
-      justifyContent="space-between"
-      minHeight="100%"
       bgcolor="white"
       borderRadius="24px"
       boxShadow="0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12);"
       color="black"
-      overflow="hidden"
+      component="div"
       gap="8px"
+      justifyContent="space-between"
+      minHeight="100%"
+      overflow="hidden"
     >
       <Box p="24px">
         <Stack
+          alignItems="center"
           direction="row"
           justifyContent="space-between"
           mb="12px"
-          alignItems="center"
         >
           <Typography
             sx={{
@@ -63,9 +62,9 @@ const IntroPanel = (props: Props) => {
           </Typography>
           {btnName && (
             <CtaButton
-              variant="contained"
               disabled={disabled}
               onClick={btn_Click}
+              variant="contained"
             >
               {btnName}
             </CtaButton>
@@ -85,10 +84,8 @@ const IntroPanel = (props: Props) => {
         </Box>
       </Box>
       <Box
-        position="relative"
-        // justifyContent="flex-end"
-        // alignItems=" flex-end"
         flex="0 0 250px"
+        position="relative"
         sx={{
           [theme.breakpoints.down("tablet")]: {
             flex: img_not_response ? "" : "0 0 220px",
@@ -97,11 +94,11 @@ const IntroPanel = (props: Props) => {
       >
         {imageHref && (
           <Image
-            src={imageHref}
             alt=""
             layout="fill"
             objectFit={matches ? "fill" : "contain"}
             objectPosition="bottom right"
+            src={imageHref}
           />
         )}
       </Box>

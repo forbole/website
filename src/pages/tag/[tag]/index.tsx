@@ -5,9 +5,7 @@ import { Post, Tag } from "@models";
 import TagTitlePosts from "@screens/tag";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
-const TagDetailsPage = (props: any) => {
-  return <TagTitlePosts {...props} />;
-};
+const TagDetailsPage = (props: any) => <TagTitlePosts {...props} />;
 
 export async function getServerSideProps(context: { query: any }) {
   let formattedPost: any = [];

@@ -95,16 +95,16 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
           <Post
             key={post.id}
             id={i}
-            refProp={i === lastView ? postRef : null}
             post={post}
+            refProp={i === lastView ? postRef : null}
           />
         ))}
       </Box>
       {width >= responsive.mobile.breakpoint.max ? (
         <Pagination
           count={totalPages}
-          page={currentPage}
           onChange={handlePageChange}
+          page={currentPage}
           shape="rounded"
           showFirstButton
           showLastButton
@@ -146,16 +146,16 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
         />
       ) : (
         <Button
-          variant="text"
+          onClick={(e) =>
+            seeMorePages(e, { limit: limitUpper, blogs: blogsUpper })
+          }
           sx={{
             color: theme.palette.primary.main,
             paddingTop: theme.spacing(10),
             fontWeight: 600,
             fontSize: theme.spacing(2),
           }}
-          onClick={(e) =>
-            seeMorePages(e, { limit: limitUpper, blogs: blogsUpper })
-          }
+          variant="text"
         >
           {t("see more")}
         </Button>

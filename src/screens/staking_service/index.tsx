@@ -21,10 +21,10 @@ const StakingService = () => {
   const router = useRouter();
 
   return (
-    <Layout title={t("page_title")} footer>
+    <Layout footer title={t("page_title")}>
       <Container
-        maxWidth="desktop"
         ref={topRef}
+        maxWidth="desktop"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -35,13 +35,13 @@ const StakingService = () => {
         }}
       >
         <HeaderCard
-          title={t("title")}
           desc_1st={t("desc")}
           head_bg={
             isMobile
               ? "/staking_service/head_bg_m@2x.png"
               : "/staking_service/head_bg@2x.png"
           }
+          title={t("title")}
         />
 
         <KeyData />
@@ -55,20 +55,23 @@ const StakingService = () => {
           }}
         >
           <Section
+            desc={t("section_1st_desc")}
             title={t("section_1st_title")}
             title_large_trans={t("section_1st_large_title")}
-            desc={t("section_1st_desc")}
           />
           <ScrollLogo />
         </Stack>
 
         <Stack>
           <Section
+            desc={t("section_2nd_desc")}
             title={t("section_2nd_title")}
             title_large_trans={t("section_2nd_large_title")}
-            desc={t("section_2nd_desc")}
           />
           <CtaButton
+            onClick={() => {
+              router.push("/staking");
+            }}
             sx={{
               display: "block",
               margin: "54px auto",
@@ -76,44 +79,41 @@ const StakingService = () => {
                 my: "32px",
               },
             }}
-            onClick={() => {
-              router.push("/staking");
-            }}
           >
             {t("stake_now")}
           </CtaButton>
           <Grid container spacing={theme.spacing(2)}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("grid_1st_title")}
                 desc={t("grid_1st_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/staking_service/mobile_section_3@2x.png")
                     : require("/public/staking_service/desk_section_3@2x.png")
                 }
+                title={t("grid_1st_title")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("grid_2nd_title")}
                 desc={t("grid_2nd_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/staking_service/mobile_section_1@2x.png")
                     : require("/public/staking_service/desk_section_1@2x.png")
                 }
+                title={t("grid_2nd_title")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("grid_3rd_title")}
                 desc={t("grid_3rd_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/staking_service/mobile_section_2@2x.png")
                     : require("/public/staking_service/desk_section_2@2x.png")
                 }
+                title={t("grid_3rd_title")}
               />
             </Grid>
           </Grid>
@@ -121,9 +121,9 @@ const StakingService = () => {
 
         <Stack>
           <Section
+            desc={t("section_3rd_desc")}
             title={t("section_3rd_title")}
             title_large_trans={t("section_3rd_large_title")}
-            desc={t("section_3rd_desc")}
           />
           <CtaButton
             onClick={() => {

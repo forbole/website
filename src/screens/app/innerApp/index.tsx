@@ -21,7 +21,7 @@ const InnerApp = (props: any) => {
     <ThemeProvider theme={muiTheme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
-      <ToastContainer position="top-center" autoClose={6000} />
+      <ToastContainer autoClose={6000} position="top-center" />
       <Component {...pageProps} />
     </ThemeProvider>
   );

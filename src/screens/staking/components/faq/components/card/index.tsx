@@ -45,12 +45,12 @@ const Card = (props: FAQProps) => {
         expanded={expanded}
         onChange={setExpanded}
         sx={{
-          background: theme.palette.primary.main,
-          borderRadius: `${theme.spacing(2)} !important` as any,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          boxShadow: "4px 8px 24px rgba(116, 81, 255, 0.28)",
+          "background": theme.palette.primary.main,
+          "borderRadius": `${theme.spacing(2)} !important` as any,
+          "display": "flex",
+          "flexDirection": "column",
+          "alignItems": "flex-start",
+          "boxShadow": "4px 8px 24px rgba(116, 81, 255, 0.28)",
           "& .MuiAccordionSummary-content": {
             flexGrow: 12,
           },
@@ -60,9 +60,10 @@ const Card = (props: FAQProps) => {
         }}
       >
         <AccordionSummary
+          expandIcon={<ExpandIcon />}
           sx={{
-            width: "100%",
-            padding: expanded
+            "width": "100%",
+            "padding": expanded
               ? theme.spacing(3, 5, 2, 3)
               : theme.spacing(3, 5, 3, 3),
             "> .MuiAccordionSummary-expandIconWrapper": {
@@ -79,10 +80,8 @@ const Card = (props: FAQProps) => {
               },
             },
           }}
-          expandIcon={<ExpandIcon />}
         >
           <Typography
-            variant="h3"
             sx={{
               color: theme.palette.custom.forbole.blue,
               textShadow:
@@ -93,6 +92,7 @@ const Card = (props: FAQProps) => {
               fontWeight: 600,
               width: "80%",
             }}
+            variant="h3"
           >
             {t(question)}
           </Typography>
@@ -100,11 +100,11 @@ const Card = (props: FAQProps) => {
         <AccordionDetails
           sx={{
             p: {
-              letterSpacing: "-0.012em",
-              color: theme.palette.custom.forbole.blue,
-              padding: theme.spacing(0, 3, 3, 3),
+              "letterSpacing": "-0.012em",
+              "color": theme.palette.custom.forbole.blue,
+              "padding": theme.spacing(0, 3, 3, 3),
               "> p": {
-                paddingBottom: theme.spacing(2),
+                "paddingBottom": theme.spacing(2),
                 "&:last-child": {
                   paddingBottom: theme.spacing(1),
                 },
@@ -119,10 +119,8 @@ const Card = (props: FAQProps) => {
           {para2 && <Typography variant="body1">{t(para2)}</Typography>}
           {trans && (
             <Trans
-              i18nKey={t(trans)}
               components={[
                 <Typography
-                  variant="body1"
                   color={theme.palette.custom.forbole.blue}
                   sx={{
                     fontSize: theme.spacing(2),
@@ -130,6 +128,7 @@ const Card = (props: FAQProps) => {
                       fontSize: theme.spacing(2),
                     },
                   }}
+                  variant="body1"
                 />,
                 <Link href="/stake-now">
                   <Typography
@@ -146,6 +145,7 @@ const Card = (props: FAQProps) => {
                   />
                 </Link>,
               ]}
+              i18nKey={t(trans)}
             />
           )}
           {para3 && <Typography variant="body1">{t(para3)}</Typography>}

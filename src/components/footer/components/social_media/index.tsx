@@ -81,31 +81,29 @@ const SocialMedia = () => {
       }}
     >
       <Box display="flex" gap="20px">
-        {socialMediaInfo.map((x) => {
-          return (
-            <a
-              key={x.key}
-              href={x.url}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "currentcolor" }}
-            >
-              <x.component />
-            </a>
-          );
-        })}
+        {socialMediaInfo.map((x) => (
+          <a
+            key={x.key}
+            href={x.url}
+            rel="noreferrer"
+            style={{ color: "currentcolor" }}
+            target="_blank"
+          >
+            <x.component />
+          </a>
+        ))}
       </Box>
       {/* 输入框 */}
       <Stack className={classes.inpboxitem}>
         <Input
           className={classes.input}
-          placeholder={t("placeholder")}
           disableUnderline
-          value={inputs.email}
           name="email"
           onInput={handleInputChange}
+          placeholder={t("placeholder")}
+          value={inputs.email}
         />
-        <CtaButton onClick={handleSubmit} loading={isLoading}>
+        <CtaButton loading={isLoading} onClick={handleSubmit}>
           {t("subscribe-us")}
         </CtaButton>
       </Stack>

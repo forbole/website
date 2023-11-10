@@ -11,9 +11,9 @@ import NetworkGuides from "@screens/network_guides";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 import type { NextPage } from "next";
 
-const StakingDetailsPage: NextPage = (props: any) => {
-  return <NetworkGuides {...props} />;
-};
+const StakingDetailsPage: NextPage = (props: any) => (
+  <NetworkGuides {...props} />
+);
 
 export async function getServerSideProps(context: { query: any; res: any }) {
   let formattedSidePosts = [];

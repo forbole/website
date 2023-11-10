@@ -68,9 +68,9 @@ const Hero = () => {
             }}
           >
             <Image
-              src="/images/assets/image_horse_blur.png"
               layout="fill"
               objectFit="contain"
+              src="/images/assets/image_horse_blur.png"
             />
           </Box>
           <Typography
@@ -127,15 +127,15 @@ const Hero = () => {
             }}
           >
             <Image
-              src="/images/assets/image_water_shadow.png"
               layout="fill"
               objectFit="contain"
+              src="/images/assets/image_water_shadow.png"
             />
           </Box>
         </Box>
-        <ScrollToBottom staking bottomRef={ref} />
+        <ScrollToBottom bottomRef={ref} staking />
       </Box>
-      <Box css={styles.stats} ref={ref}>
+      <Box ref={ref} css={styles.stats}>
         <Stats />
       </Box>
     </Box>

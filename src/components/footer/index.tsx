@@ -36,8 +36,8 @@ const Footer = ({ red, itemColor }: FooterProps) => {
     >
       {red && (
         <Container
-          maxWidth={isTablet ? "tablet" : "desktop"}
           disableGutters
+          maxWidth={isTablet ? "tablet" : "desktop"}
           sx={{
             pt: "64px",
             display: "flex",
@@ -45,7 +45,7 @@ const Footer = ({ red, itemColor }: FooterProps) => {
             justifyContent: "flex-end",
           }}
         >
-          <Stack direction="column" justifyContent="center" alignItems="center">
+          <Stack alignItems="center" direction="column" justifyContent="center">
             <Box
               sx={{
                 mt: "20px",
@@ -59,15 +59,15 @@ const Footer = ({ red, itemColor }: FooterProps) => {
             >
               {isMobile ? (
                 <Image
-                  src={require("/public/images/footer/Build_m@2x.png")}
                   alt="Picture of the author"
                   objectFit="contain"
+                  src={require("/public/images/footer/Build_m@2x.png")}
                 />
               ) : (
                 <Image
-                  src={require("/public/images/footer/Build@2x.png")}
                   alt="Picture of the author"
                   objectFit="contain"
+                  src={require("/public/images/footer/Build@2x.png")}
                 />
               )}
             </Box>
@@ -112,8 +112,8 @@ const Footer = ({ red, itemColor }: FooterProps) => {
         }}
       >
         <Stack
-          maxWidth={isTablet ? "tablet" : "desktop"}
           margin="0 auto"
+          maxWidth={isTablet ? "tablet" : "desktop"}
           sx={{
             pt: "64px",
             px: "16px",

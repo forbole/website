@@ -23,12 +23,12 @@ function SignatureCard() {
   const { t } = useTranslation("developer_tools");
   return (
     <Grid
+      columnSpacing={{ laptop: "16px", mobile: "0" }}
       container
       rowSpacing={{ laptop: "0", mobile: "16px" }}
-      columnSpacing={{ laptop: "16px", mobile: "0" }}
     >
       {data.map((d, k) => (
-        <Grid item laptop={4} mobile={12} key={k}>
+        <Grid key={k} item laptop={4} mobile={12}>
           <Stack
             sx={{
               position: "relative",
@@ -59,9 +59,9 @@ function SignatureCard() {
                 sx={{ flexDirection: "row", gap: "5px", alignItems: "center" }}
               >
                 <img
-                  style={{ width: "20px", height: "40px" }}
-                  src="/images/assets/25.svg"
                   alt=""
+                  src="/images/assets/25.svg"
+                  style={{ width: "20px", height: "40px" }}
                 />
                 <Box>
                   <Typography
@@ -98,7 +98,7 @@ function SignatureCard() {
                   gap: "4px",
                 }}
               >
-                <img src="/images/assets/26.svg" alt="√" />
+                <img alt="√" src="/images/assets/26.svg" />
                 <Typography
                   sx={{
                     color: "#EE3131",

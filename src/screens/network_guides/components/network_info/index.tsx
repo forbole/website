@@ -32,9 +32,8 @@ const NetworkInfo = ({ post }: any) => {
   const [isCopySuccess, setIsCopySuccess] = React.useState(false);
   const [readMore, setReadMore] = React.useState(false);
   const { sanitize } = DOMPurify;
-  const cmsLoader = ({ src, width, quality }: any) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
-  };
+  const cmsLoader = ({ src, width, quality }: any) =>
+    `${src}?w=${width}&q=${quality || 75}`;
   const networkData =
     // eslint-disable-next-line no-nested-ternary
     tags.length <= 1
@@ -63,10 +62,10 @@ const NetworkInfo = ({ post }: any) => {
 
   return (
     <Box
-      display="flex"
-      justifyContent="center"
       alignItems="center"
+      display="flex"
       flexDirection="column"
+      justifyContent="center"
       sx={{
         padding: theme.spacing(15, 3),
         [theme.breakpoints.up("laptop")]: {
@@ -91,10 +90,10 @@ const NetworkInfo = ({ post }: any) => {
           }}
         >
           <CardMedia
+            alt="network feature image"
             component="img"
             height={onlyLargeScreen ? 240 : 106}
             image={coverImage || featureImage}
-            alt="network feature image"
             sx={{
               objectFit: "cover",
               objectPosition: "0% 37%",
@@ -129,41 +128,41 @@ const NetworkInfo = ({ post }: any) => {
                 }}
               >
                 <Image
+                  alt={title}
+                  height={onlyLargeScreen ? "90px" : "52px"}
                   loader={cmsLoader}
+                  objectFit="contain"
+                  quality={100}
                   src={
                     !networkData.image
                       ? "/images/assets/blog-placeholder.png"
                       : networkData.image
                   }
-                  alt={title}
                   width={onlyLargeScreen ? "90px" : "52px"}
-                  height={onlyLargeScreen ? "90px" : "52px"}
-                  quality={100}
-                  objectFit="contain"
                 />
               </Box>
               <Box pl={onlyLargeScreen ? 2 : 1}>
                 <Typography
-                  variant="h3"
                   sx={{
                     fontWeight: 600,
                     fontSize: theme.spacing(2),
                     paddingBottom: theme.spacing(1),
                   }}
+                  variant="h3"
                 >
                   {networkData.name}
                 </Typography>
                 {networkData.address && (
                   <Box
-                    display="flex"
                     alignItems="center"
+                    display="flex"
                     flexDirection="row"
                     mt={-1}
                   >
                     <Typography
+                      className="value"
                       color="#76819B"
                       variant="body2"
-                      className="value"
                     >
                       {!onlyLargeScreen
                         ? getMiddleEllipsis(networkData.address, {
@@ -182,9 +181,8 @@ const NetworkInfo = ({ post }: any) => {
             </Box>
             <Box>
               <Button
-                variant="contained"
-                href={networkData.delegate ? networkData.delegate : ""}
                 disabled={!networkData.delegate}
+                href={networkData.delegate ? networkData.delegate : ""}
                 sx={{
                   display: "none",
                   width: "97px",
@@ -203,6 +201,7 @@ const NetworkInfo = ({ post }: any) => {
                     display: "inline-flex",
                   },
                 }}
+                variant="contained"
               >
                 Stake Now
               </Button>
@@ -221,7 +220,7 @@ const NetworkInfo = ({ post }: any) => {
               }}
             >
               {!onlyLargeScreen ? (
-                <Box textAlign="center" sx={{ padding: theme.spacing(0, 2) }}>
+                <Box sx={{ padding: theme.spacing(0, 2) }} textAlign="center">
                   {readMore ? (
                     <ContentCSS theme={theme}>
                       <ContentBox
@@ -233,24 +232,24 @@ const NetworkInfo = ({ post }: any) => {
                   ) : (
                     <>
                       <Typography
-                        color={theme.palette.custom.forbole.blue}
-                        variant="body2"
                         className="value"
+                        color={theme.palette.custom.forbole.blue}
                         sx={{
                           display: "contents",
                           textAlign: "center",
                           WebkitLineClamp: readMore ? "unset" : "inherit",
                         }}
+                        variant="body2"
                       >
                         {excerpt}
                       </Typography>
                       <Button
+                        onClick={() => setReadMore((prevCheck) => !prevCheck)}
                         sx={{
                           color: "#007FFF",
                           display: readMore ? "none" : "inline-block",
                           padding: 0,
                         }}
-                        onClick={() => setReadMore((prevCheck) => !prevCheck)}
                       >
                         {t("more")}
                       </Button>
@@ -284,8 +283,8 @@ const NetworkInfo = ({ post }: any) => {
                   <InfoCard
                     key={i}
                     info={networkData.key}
-                    title={info.title}
                     stats={info.stats}
+                    title={info.title}
                     type={info.type}
                   />
                 ))}
@@ -295,9 +294,9 @@ const NetworkInfo = ({ post }: any) => {
         </Card>
       </Box>
       <Snackbar
-        open={isCopySuccess}
         autoHideDuration={5000}
         onClose={() => setIsCopySuccess(false)}
+        open={isCopySuccess}
         sx={{ justifyContent: "center" }}
       >
         <Alert onClose={() => setIsCopySuccess(false)} severity="success">

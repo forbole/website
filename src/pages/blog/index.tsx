@@ -5,9 +5,7 @@ import Blog from "@screens/blog";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 import type { NextPage } from "next";
 
-const BlogPage: NextPage = (props: any) => {
-  return <Blog {...props} />;
-};
+const BlogPage: NextPage = (props: any) => <Blog {...props} />;
 
 export async function getServerSideProps(context: { query: any }) {
   let formattedPosts = [];

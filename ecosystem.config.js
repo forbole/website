@@ -5,7 +5,7 @@ module.exports = {
         script: "dist/index.js",
         watch: true,
         env: {
-          "NODE_ENV": "production",
+          NODE_ENV: "production",
         }
       }
   ]

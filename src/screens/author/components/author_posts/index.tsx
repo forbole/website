@@ -48,8 +48,8 @@ const AuthorPosts = ({ main, blogs, meta }: IProps) => {
       </Box>
       <Pagination
         count={totalPages}
-        page={currentPage}
         onChange={handleAuthorPageChange}
+        page={currentPage}
         shape="rounded"
         showFirstButton
         showLastButton

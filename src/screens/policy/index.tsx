@@ -28,7 +28,7 @@ const Policy = () => {
     );
   });
   return (
-    <Layout title={t("title")} footer>
+    <Layout footer title={t("title")}>
       <Container maxWidth="desktop">
         <Box
           ref={topRef}
@@ -48,7 +48,6 @@ const Policy = () => {
         >
           <Box>
             <Typography
-              variant="h2"
               sx={{
                 display: "none",
                 [theme.breakpoints.up("laptop")]: {
@@ -60,6 +59,7 @@ const Policy = () => {
                   textAlign: "center",
                 },
               }}
+              variant="h2"
             >
               {t("title")}
             </Typography>
@@ -88,7 +88,6 @@ const Policy = () => {
                 }}
               >
                 <Typography
-                  variant="h2"
                   sx={{
                     color: "#000",
                     fontSize: `${theme.spacing(3)} !important` as any,
@@ -100,29 +99,29 @@ const Policy = () => {
                       display: "none",
                     },
                   }}
+                  variant="h2"
                 >
                   {t("title")}
                 </Typography>
                 <Typography
-                  variant="body1"
                   sx={{
                     color: "#000",
                     fontSize: theme.spacing(1.75),
                     fontWeight: 600,
                   }}
+                  variant="body1"
                 >
                   {t("updatedDate")}
                 </Typography>
                 <Trans
-                  i18nKey={t("description1")}
                   components={[
                     <Typography
-                      variant="body1"
                       sx={{
                         color: "#000",
                         fontSize: theme.spacing(1.375),
                         fontWeight: 400,
                       }}
+                      variant="body1"
                     />,
                     <Typography
                       color="#000"
@@ -140,7 +139,6 @@ const Policy = () => {
                       color="#000"
                       href="https://forbole.com"
                       rel="noreferrer"
-                      target="_blank"
                       sx={{
                         fontWeight: 500,
                         display: "inline",
@@ -150,17 +148,19 @@ const Policy = () => {
                           display: "inline",
                         },
                       }}
+                      target="_blank"
                     />,
                   ]}
+                  i18nKey={t("description1")}
                 />
                 <Typography
-                  variant="body1"
                   sx={{
                     color: "#000",
                     fontSize: theme.spacing(1.75),
                     fontWeight: 600,
                     paddingBottom: theme.spacing(5),
                   }}
+                  variant="body1"
                 >
                   {t("description2")}
                 </Typography>

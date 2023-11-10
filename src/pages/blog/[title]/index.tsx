@@ -7,9 +7,7 @@ import BlogDetails from "@screens/blog_details";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 import type { NextPage } from "next";
 
-const BlogDetailsPage: NextPage = (props: any) => {
-  return <BlogDetails {...props} />;
-};
+const BlogDetailsPage: NextPage = (props: any) => <BlogDetails {...props} />;
 
 export async function getServerSideProps(context: { query: any }) {
   try {

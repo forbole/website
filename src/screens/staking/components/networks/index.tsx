@@ -14,11 +14,11 @@ const Networks = () => {
     <Box display="flex" justifyContent="center">
       <Box
         sx={{
-          padding: theme.spacing(5, 3),
+          "padding": theme.spacing(5, 3),
           "> .h3": {
-            fontWeight: 700,
-            fontSize: theme.spacing(3),
-            textAlign: "center",
+            "fontWeight": 700,
+            "fontSize": theme.spacing(3),
+            "textAlign": "center",
             [theme.breakpoints.up("laptop")]: {
               fontSize: theme.spacing(5),
             },
@@ -33,7 +33,7 @@ const Networks = () => {
             },
           },
           [theme.breakpoints.up("laptop")]: {
-            maxWidth: "1200px",
+            "maxWidth": "1200px",
             "> .h3": {
               margin: "auto",
               width: "65%",
@@ -42,7 +42,6 @@ const Networks = () => {
         }}
       >
         <Typography
-          variant="h4"
           sx={{
             textShadow:
               "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
@@ -56,11 +55,11 @@ const Networks = () => {
               fontSize: theme.spacing(3),
             },
           }}
+          variant="h4"
         >
           {t("stake with Forbole")}
         </Typography>
         <Trans
-          i18nKey={t("stake with Forbole title")}
           components={[
             <Box
               className="h3"
@@ -78,9 +77,9 @@ const Networks = () => {
               }}
             />,
           ]}
+          i18nKey={t("stake with Forbole title")}
         />
         <Typography
-          variant="body1"
           sx={{
             textShadow:
               "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
@@ -94,6 +93,7 @@ const Networks = () => {
               fontSize: theme.spacing(3),
             },
           }}
+          variant="body1"
         >
           {t("stake with Forbole desc")}
         </Typography>

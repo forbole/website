@@ -14,13 +14,9 @@ type NetworkProps = {
   [key: string]: NetworkDataProps;
 };
 
-export const toFixed = (num: number): number => {
-  return Number(num?.toFixed(2) ?? "0");
-};
+export const toFixed = (num: number): number => Number(num?.toFixed(2) ?? "0");
 
-export const defaultConverter = (ratio: number) => (num: number) => {
-  return num / ratio;
-};
+export const defaultConverter = (ratio: number) => (num: number) => num / ratio;
 export const uAtomToAtom = defaultConverter(1000000);
 
 export const uLunaToLuna = defaultConverter(1000000);
@@ -61,25 +57,16 @@ export const uFlowToFlow = defaultConverter(1);
 export const uSolanaToSolana = defaultConverter(1);
 
 export const defaultFunctions = (converter?: any) => ({
-  bonded: (data: any) => {
-    return converter(Number(R.pathOr(0, ["result", "bonded_tokens"], data)));
-  },
-  inflation: (data: any) => {
-    return toFixed(Number(R.pathOr(0, ["result"], data))) ?? 0;
-  },
-  supply: (data: any) => {
-    return converter(Number(R.pathOr(0, ["result"], data)));
-  },
-  commissionRate: (data: any) => {
-    return Number(
+  bonded: (data: any) =>
+    converter(Number(R.pathOr(0, ["result", "bonded_tokens"], data))),
+  inflation: (data: any) => toFixed(Number(R.pathOr(0, ["result"], data))) ?? 0,
+  supply: (data: any) => converter(Number(R.pathOr(0, ["result"], data))),
+  commissionRate: (data: any) =>
+    Number(
       R.pathOr(0, ["result", "commission", "commission_rates", "rate"], data),
-    );
-  },
-  marketPrice: (data: any) => {
-    return toFixed(
-      Number(R.pathOr(0, ["market_data", "current_price", "usd"], data)),
-    );
-  },
+    ),
+  marketPrice: (data: any) =>
+    toFixed(Number(R.pathOr(0, ["market_data", "current_price", "usd"], data))),
   converter,
 });
 
@@ -157,7 +144,7 @@ export const networkFunctions: NetworkProps = {
   "band-protocol": band,
   cryptoOrg,
   sentinel,
-  fetchai: fetchAI,
+  "fetchai": fetchAI,
   "regen-network": regen,
   bitsong,
   "oasis-protocol": oasis,

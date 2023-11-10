@@ -59,11 +59,11 @@ const MobileNavMenu = () => {
   return (
     <div>
       <IconButton
-        aria-label="more"
-        id="long-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-expanded={open ? "true" : undefined}
         aria-haspopup="true"
+        aria-label="more"
+        id="long-button"
         onClick={handleClick}
         sx={{
           [theme.breakpoints.up("laptop")]: {
@@ -75,13 +75,13 @@ const MobileNavMenu = () => {
         <MenuIcon color="#fff" />
       </IconButton>
       <Menu
+        anchorEl={anchorEl}
         id="basic-menu"
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
-        anchorEl={anchorEl}
-        open={open}
         onClose={handleClose}
+        open={open}
         slotProps={{
           paper: {
             sx: {
@@ -106,12 +106,12 @@ const MobileNavMenu = () => {
         }}
       >
         <Stack
+          alignItems="center"
           direction="row"
+          justifyContent="space-between"
+          mb="24px"
           px="32px"
           py="16px"
-          mb="24px"
-          justifyContent="space-between"
-          alignItems="center"
         >
           <ForboleLogo color="#BD081C" height="20px" width="106px" />
           <CtaButton
@@ -124,21 +124,21 @@ const MobileNavMenu = () => {
         </Stack>
         <ListItem
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: theme.spacing(2),
-            fontWeight: 700,
-            height: theme.spacing(7),
-            padding: theme.spacing(0, 4),
+            "display": "flex",
+            "justifyContent": "space-between",
+            "fontSize": theme.spacing(2),
+            "fontWeight": 700,
+            "height": theme.spacing(7),
+            "padding": theme.spacing(0, 4),
             "> a": {
               width: "100%",
               textAlign: "left",
               textDecoration: "none",
             },
-            background: openShowProducts
+            "background": openShowProducts
               ? "linear-gradient(139deg, #623DF5 0%, #362187 100%)"
               : "",
-            color: openShowProducts
+            "color": openShowProducts
               ? theme.palette.common.white
               : theme.palette.custom.forbole.indigo,
           }}
@@ -167,28 +167,28 @@ const MobileNavMenu = () => {
         </Collapse>
 
         <ListItem
+          onClick={() => {
+            handlerCLickShowCompany();
+          }}
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: theme.spacing(2),
-            fontWeight: 700,
+            "display": "flex",
+            "justifyContent": "space-between",
+            "fontSize": theme.spacing(2),
+            "fontWeight": 700,
 
-            height: theme.spacing(7),
-            padding: theme.spacing(0, 4),
+            "height": theme.spacing(7),
+            "padding": theme.spacing(0, 4),
             "> a": {
               width: "100%",
               textAlign: "left",
               textDecoration: "none",
             },
-            background: openShowCompany
+            "background": openShowCompany
               ? "linear-gradient(139deg, #623DF5 0%, #362187 100%)"
               : "",
-            color: openShowCompany
+            "color": openShowCompany
               ? theme.palette.common.white
               : theme.palette.custom.forbole.indigo,
-          }}
-          onClick={() => {
-            handlerCLickShowCompany();
           }}
         >
           <div>{t("Company")}</div>
@@ -230,37 +230,37 @@ const MobileNavMenu = () => {
         </Collapse> */}
 
         <ListItem
+          onClick={handleDropdownClick}
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: theme.spacing(2),
-            fontWeight: 700,
+            "display": "flex",
+            "justifyContent": "space-between",
+            "fontSize": theme.spacing(2),
+            "fontWeight": 700,
 
-            height: theme.spacing(7),
-            padding: theme.spacing(0, 4),
+            "height": theme.spacing(7),
+            "padding": theme.spacing(0, 4),
             "> a": {
               width: "100%",
               textAlign: "left",
               textDecoration: "none",
             },
-            background: openDrawer
+            "background": openDrawer
               ? "linear-gradient(139deg, #623DF5 0%, #362187 100%)"
               : "",
-            color: openDrawer
+            "color": openDrawer
               ? theme.palette.common.white
               : theme.palette.custom.forbole.indigo,
           }}
-          onClick={handleDropdownClick}
         >
-          <Stack direction="row" gap="8px" alignItems="center">
+          <Stack alignItems="center" direction="row" gap="8px">
             <LangIcon
-              width={20}
-              height={20}
               fill={
                 openDrawer
                   ? theme.palette.common.white
                   : theme.palette.custom.forbole.indigo
               }
+              height={20}
+              width={20}
             />
             {t(lang)}
           </Stack>

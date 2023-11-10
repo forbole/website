@@ -222,9 +222,7 @@ const ghostAdminApi = new GhostAdminAPI({
       },
     );
 
-    server.all("*", (req: Request, res: Response) => {
-      return handle(req, res);
-    });
+    server.all("*", (req: Request, res: Response) => handle(req, res));
 
     server.listen(port, (err?: any) => {
       if (err) throw err;

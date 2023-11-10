@@ -16,9 +16,9 @@ const Stats = () => {
         const statsItem = stats[key];
         return (
           <StatsCard
-            title={statsItem.title}
-            stats={statsItem.stats}
             key={index}
+            stats={statsItem.stats}
+            title={statsItem.title}
           />
         );
       })}

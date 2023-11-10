@@ -20,8 +20,8 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
     }
     return (
       <Box
-        component="div"
         ref={ref}
+        component="div"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -63,13 +63,13 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
         >
           <Box
             sx={{
-              position: "relative",
-              width: "420px",
-              height: "max-content",
-              m: "16px",
-              borderRadius: "8px",
-              overflow: "hidden",
-              boxShadow:
+              "position": "relative",
+              "width": "420px",
+              "height": "max-content",
+              "m": "16px",
+              "borderRadius": "8px",
+              "overflow": "hidden",
+              "boxShadow":
                 "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
               "& img": {
                 display: "block",
@@ -83,7 +83,7 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
               },
             }}
           >
-            <img src={imageHref} alt="" loading="lazy" />
+            <img alt="" loading="lazy" src={imageHref} />
           </Box>
           <Stack
             sx={{

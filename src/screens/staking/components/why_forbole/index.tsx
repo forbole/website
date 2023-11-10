@@ -34,23 +34,23 @@ const WhyForbole = () => {
         >
           <Box
             sx={{
-              background:
+              "background":
                 "linear-gradient(179.61deg, #FFFFFF 0.33%, rgba(255, 255, 255, 0) 34.99%, #FFFFFF 99.66%)",
-              boxShadow:
+              "boxShadow":
                 "0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)",
-              borderRadius: theme.spacing(5),
-              padding: theme.spacing(5, 3),
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
+              "borderRadius": theme.spacing(5),
+              "padding": theme.spacing(5, 3),
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "alignItems": "center",
               "> .h3": {
-                fontWeight: 700,
-                fontSize: theme.spacing(3),
-                textAlign: "center",
-                textShadow:
+                "fontWeight": 700,
+                "fontSize": theme.spacing(3),
+                "textAlign": "center",
+                "textShadow":
                   "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
-                paddingBottom: theme.spacing(3),
+                "paddingBottom": theme.spacing(3),
                 [theme.breakpoints.up("laptop")]: {
                   fontSize: theme.spacing(5),
                 },
@@ -72,7 +72,6 @@ const WhyForbole = () => {
             }}
           >
             <Typography
-              variant="body1"
               color={theme.palette.custom.forbole.blue}
               sx={{
                 fontWeight: 600,
@@ -83,11 +82,11 @@ const WhyForbole = () => {
                   fontSize: theme.spacing(3),
                 },
               }}
+              variant="body1"
             >
               {t("why forbole?")}
             </Typography>
             <Trans
-              i18nKey={t("why forbole title")}
               components={[
                 <Box
                   className="h3"
@@ -107,6 +106,7 @@ const WhyForbole = () => {
                   }}
                 />,
               ]}
+              i18nKey={t("why forbole title")}
             />
             {reasons.map((reason, i) => (
               <Box
@@ -124,21 +124,20 @@ const WhyForbole = () => {
               >
                 {reason?.image && (
                   <Image
-                    src={reason.image}
-                    objectFit="contain"
-                    width={onlyLargeScreen ? "314px" : "220px"}
                     height={onlyLargeScreen ? "370px" : "260px"}
+                    objectFit="contain"
+                    src={reason.image}
+                    width={onlyLargeScreen ? "314px" : "220px"}
                   />
                 )}
                 <Box
+                  alignItems={onlyLargeScreen ? "flex-start" : "center"}
                   display="flex"
                   flexDirection="column"
                   justifyContent={onlyLargeScreen ? "flex-start" : "center"}
-                  alignItems={onlyLargeScreen ? "flex-start" : "center"}
                   sx={{ [theme.breakpoints.up("laptop")]: { width: "50%" } }}
                 >
                   <Typography
-                    variant="h4"
                     color={theme.palette.custom.forbole.blue}
                     fontSize={
                       onlyLargeScreen ? theme.spacing(4) : theme.spacing(2.25)
@@ -150,11 +149,11 @@ const WhyForbole = () => {
                         paddingTop: 0,
                       },
                     }}
+                    variant="h4"
                   >
                     {t(reason.title)}
                   </Typography>
                   <Typography
-                    variant="body1"
                     color={theme.palette.custom.forbole.blue}
                     fontSize={
                       onlyLargeScreen ? theme.spacing(2) : theme.spacing(1.75)
@@ -167,6 +166,7 @@ const WhyForbole = () => {
                         lineHeight: theme.spacing(3),
                       },
                     }}
+                    variant="body1"
                   >
                     {t(reason.desc)}
                   </Typography>

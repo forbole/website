@@ -59,13 +59,13 @@ const LangMenuButton = () => {
       <Box css={styles.desktop}>
         <Button
           aria-label="language"
-          onClick={(e) => setAnchor(e.currentTarget)}
           css={styles.navBarButton}
+          onClick={(e) => setAnchor(e.currentTarget)}
           startIcon={
             <LangIcon
-              width={20}
-              height={20}
               fill={theme.palette.common.white}
+              height={20}
+              width={20}
             />
           }
         >
@@ -79,17 +79,13 @@ const LangMenuButton = () => {
             vertical: "bottom",
             horizontal: "right",
           }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          keepMounted
-          open={!!anchor}
-          onClose={onClose}
           id="basic-menu"
+          keepMounted
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}
+          onClose={onClose}
+          open={!!anchor}
           PaperProps={{
             sx: {
               backgroundImage: "none",
@@ -103,6 +99,10 @@ const LangMenuButton = () => {
               // backdropFilter: 'blur(12px)',
             },
           }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
         >
           {locales?.map((l) => (
             <div key={l}>
@@ -110,14 +110,14 @@ const LangMenuButton = () => {
                 <MenuItem
                   component="a"
                   sx={{
-                    display: "flex",
-                    color: theme.palette.custom.forbole.indigo,
-                    gap: "8px",
-                    justifyContent: "flex-start",
-                    fontSize: theme.spacing(2),
-                    fontWeight: 700,
-                    height: theme.spacing(7),
-                    padding: theme.spacing(0, 4),
+                    "display": "flex",
+                    "color": theme.palette.custom.forbole.indigo,
+                    "gap": "8px",
+                    "justifyContent": "flex-start",
+                    "fontSize": theme.spacing(2),
+                    "fontWeight": 700,
+                    "height": theme.spacing(7),
+                    "padding": theme.spacing(0, 4),
                     "> a": {
                       width: "100%",
                       textAlign: "left",
@@ -129,7 +129,7 @@ const LangMenuButton = () => {
                     },
                   }}
                 >
-                  <LangIcon width={20} height={20} fill="currentColor" />
+                  <LangIcon fill="currentColor" height={20} width={20} />
                   {t(l)}
                 </MenuItem>
               </Link>
@@ -138,8 +138,8 @@ const LangMenuButton = () => {
         </Menu>
       </Box>
       <List
-        css={styles.mobile}
         component="div"
+        css={styles.mobile}
         disablePadding
         sx={{ background: "rgba(107, 97, 254, 0.24)" }}
       >
@@ -147,17 +147,17 @@ const LangMenuButton = () => {
           <div key={l} style={{ display: lang !== l ? "block" : "none" }}>
             <Link href={{ pathname, query }} locale={l} passHref>
               <MenuItem
-                onClick={handleClose}
                 component="a"
+                onClick={handleClose}
                 sx={{
-                  display: "flex",
-                  gap: "8px",
-                  justifyContent: "flex-start",
-                  fontSize: theme.spacing(2),
-                  fontWeight: 700,
-                  height: theme.spacing(7),
-                  padding: theme.spacing(0, 4),
-                  color: theme.palette.custom.forbole.indigo,
+                  "display": "flex",
+                  "gap": "8px",
+                  "justifyContent": "flex-start",
+                  "fontSize": theme.spacing(2),
+                  "fontWeight": 700,
+                  "height": theme.spacing(7),
+                  "padding": theme.spacing(0, 4),
+                  "color": theme.palette.custom.forbole.indigo,
                   "> a": {
                     width: "100%",
                     textAlign: "left",
@@ -169,7 +169,7 @@ const LangMenuButton = () => {
                   },
                 }}
               >
-                <LangIcon width={20} height={20} fill="currentColor" />
+                <LangIcon fill="currentColor" height={20} width={20} />
                 {t(l)}
               </MenuItem>
             </Link>
