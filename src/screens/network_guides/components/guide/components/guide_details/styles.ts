@@ -5,23 +5,6 @@ type ContentProps = {
   theme: ThemeOptions;
 };
 
-export const MobileCSS = styled.div<any>`
-  @media only screen and (min-width: 1024px) {
-    display: none;
-  }
-`;
-
-export const LaptopCSS = styled.div<any>`
-  @media only screen and (max-width: 1024px) {
-    display: none;
-  }
-  @media only screen and (min-width: 1024px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
-
 export const GuideContentCSS = styled.div<ContentProps>`
   overflow: visible;
   word-break: break-word;

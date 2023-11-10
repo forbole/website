@@ -16,45 +16,43 @@ type NetworkProps = {
 
 export const toFixed = (num: number): number => Number(num?.toFixed(2) ?? "0");
 
-export const defaultConverter = (ratio: number) => (num: number) => num / ratio;
-export const uAtomToAtom = defaultConverter(1000000);
+const defaultConverter = (ratio: number) => (num: number) => num / ratio;
+const uAtomToAtom = defaultConverter(1000000);
 
-export const uLunaToLuna = defaultConverter(1000000);
+const uLunaToLuna = defaultConverter(1000000);
 
-export const uKavaToKava = defaultConverter(1000000);
+const uKavaToKava = defaultConverter(1000000);
 
-export const uAktToAkash = defaultConverter(1000000);
+const uAktToAkash = defaultConverter(1000000);
 
-export const uBandToBand = defaultConverter(1000000);
+const uBandToBand = defaultConverter(1000000);
 
-export const uIovToIov = defaultConverter(1000000);
+const uIovToIov = defaultConverter(1000000);
 
-export const uEMoneyToEMoney = defaultConverter(1000000);
+const uIrisToIris = defaultConverter(1000000);
 
-export const uIrisToIris = defaultConverter(1000000);
+const nanoLikeToLike = defaultConverter(1000000000);
 
-export const nanoLikeToLike = defaultConverter(1000000000);
+const uCryptoOrgToCryptoOrg = defaultConverter(100000000);
 
-export const uCryptoOrgToCryptoOrg = defaultConverter(100000000);
-
-export const uSentinelToSentinel = defaultConverter(1000000);
+const uSentinelToSentinel = defaultConverter(1000000);
 
 // Need adjusting the converter
-export const uFetchAIToFetchAI = defaultConverter(1000000000000000000);
+const uFetchAIToFetchAI = defaultConverter(1000000000000000000);
 
 // Regen Network not listed on Coingecko yet
-export const uRegenToRegen = defaultConverter(1000000);
+const uRegenToRegen = defaultConverter(1000000);
 
-export const uBitsongToBitsong = defaultConverter(1000000);
+const uBitsongToBitsong = defaultConverter(1000000);
 
-export const uOasisToOasis = defaultConverter(1);
+const uOasisToOasis = defaultConverter(1);
 
 // need to adjust the converter
-export const uKusamaToKusama = defaultConverter(1);
+const uKusamaToKusama = defaultConverter(1);
 
-export const uFlowToFlow = defaultConverter(1);
+const uFlowToFlow = defaultConverter(1);
 
-export const uSolanaToSolana = defaultConverter(1);
+const uSolanaToSolana = defaultConverter(1);
 
 export const defaultFunctions = (converter?: any) => ({
   bonded: (data: any) =>

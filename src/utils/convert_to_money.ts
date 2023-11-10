@@ -20,12 +20,3 @@ export const convertWithDecimal = (num: number | string) => {
   const formatFull = full.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   return `${formatFull}${decimal ? "." : ""}${decimal ?? ""}`;
 };
-
-export const moneyToInt = (money: string) => {
-  if (!money || money === "boolean") {
-    return 0;
-  } else {
-    const num = money.replace(/,/g, "");
-    return parseInt(num);
-  }
-};

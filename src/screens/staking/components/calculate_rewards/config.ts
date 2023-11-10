@@ -6,7 +6,7 @@ type ParamsProps = {
   totalSupply?: number;
 };
 
-export type NetworkProps = {
+type NetworkProps = {
   [key: string]: ParamsProps;
 };
 

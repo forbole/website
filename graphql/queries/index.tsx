@@ -1,44 +1,30 @@
+import { getEachCosmosAPY, getElrondAPY } from "./apy";
 import {
   getEachCosmosBondedToken,
   getElrondBondedToken,
+  getOasisBondedToken,
   getRadixBondedToken,
   getSolanaBondedToken,
-  getOasisBondedToken,
-} from './bondedToken';
-import { getEachCosmosAPY, getElrondAPY } from './apy';
+} from "./bondedToken";
+import { getEachCosmosCommission } from "./commission";
+import { getEachCosmosInflation } from "./inflation";
+import { getEachCosmosTokenSupply } from "./tokenSupply";
 import {
-  getEachCosmosCommission,
-  getSolanaCommission,
-  getElrondCommission,
-  getOasisCommission,
-} from './commission';
-import {
-  getEachCosmosTVL,
   getAllCosmosTVL,
-  getSolanaTVL,
+  getEachCosmosTVL,
   getElrondTVL,
   getOasisTVL,
   getRadixTVL,
-} from './tvl';
+  getSolanaTVL,
+} from "./tvl";
+import { getEachCosmosUnbondingTime } from "./unbondingTime";
 import {
   getCosmosUsersCount,
-  getSolanaUsersCount,
   getElrondUsersCount,
   getOasisUsersCount,
   getRadixUsersCount,
-} from './usersCount';
-import {
-  getEachCosmosTokenSupply,
-  getRadixTokenSupply,
-  getElrondTokenSupply,
-} from './tokenSupply';
-import { getEachCosmosInflation } from './inflation';
-import {
-  getEachCosmosUnbondingTime,
-  getRadixUnbondingTime,
-  getSolanaUnbondingTime,
-  getElrondUnbondingTime,
-} from './unbondingTime';
+  getSolanaUsersCount,
+} from "./usersCount";
 
 export {
   getEachCosmosBondedToken,
@@ -49,9 +35,6 @@ export {
   getEachCosmosAPY,
   getElrondAPY,
   getEachCosmosCommission,
-  getSolanaCommission,
-  getElrondCommission,
-  getOasisCommission,
   getEachCosmosTVL,
   getAllCosmosTVL,
   getSolanaTVL,
@@ -64,11 +47,6 @@ export {
   getOasisUsersCount,
   getRadixUsersCount,
   getEachCosmosTokenSupply,
-  getRadixTokenSupply,
-  getElrondTokenSupply,
   getEachCosmosInflation,
   getEachCosmosUnbondingTime,
-  getRadixUnbondingTime,
-  getSolanaUnbondingTime,
-  getElrondUnbondingTime,
 };

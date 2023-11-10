@@ -1,10 +1,5 @@
 /* eslint-disable no-unused-expressions */
-
-/* eslint-disable array-callback-return */
-
-/* eslint-disable no-console */
 import { gql, useQuery } from "@apollo/client";
-import { useStakingContext } from "@contexts";
 import {
   getEachCosmosAPY,
   getEachCosmosBondedToken,
@@ -20,10 +15,9 @@ import {
   getSolanaTVL,
 } from "@graphql/queries";
 import { networkFunctions } from "@utils/network_functions";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import {
-  allNetworkKeys,
   cosmosNetworkParams,
   elrondNetworkParams,
   oasisNetworkParams,
@@ -79,17 +73,10 @@ export const useNetworkHook = () => {
     ${getRadixTVL()}
   `);
 
-  const { setNetworkNumber } = useStakingContext();
-
-  useEffect(() => {
-    const networkLength = allNetworkKeys.length;
-    setNetworkNumber(networkLength);
-  }, [setNetworkNumber]);
-
   useMemo(() => {
     if (!cosmosBondedLoading) {
       const { eachCosmosBondedToken } = cosmosBondedData;
-      eachCosmosBondedToken.map((data: any) => {
+      eachCosmosBondedToken.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
         keys.includes(data.metric.instance)
           ? setCosmosNetworks((prev) => ({
@@ -108,7 +95,7 @@ export const useNetworkHook = () => {
   useMemo(() => {
     if (!cosmosAPYLoading) {
       const { eachCosmosAPY } = cosmosAPYData;
-      eachCosmosAPY.map((data: any) => {
+      eachCosmosAPY.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
         keys.includes(data.metric.instance)
           ? setCosmosNetworks((prev) => ({
@@ -127,7 +114,7 @@ export const useNetworkHook = () => {
   useMemo(() => {
     if (!cosmosTVLLoading) {
       const { eachCosmosTVL } = cosmosTVLData;
-      eachCosmosTVL.map((data: any) => {
+      eachCosmosTVL.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
         keys.includes(data.metric.instance)
           ? setCosmosNetworks((prev) => ({
@@ -146,7 +133,7 @@ export const useNetworkHook = () => {
   useMemo(() => {
     if (!elrondBondedLoading) {
       const { elrondBondedToken } = elrondBondedData;
-      elrondBondedToken.map((data: any) => {
+      elrondBondedToken.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
         key.includes(data.metric.instance)
           ? setElrondNetwork((prev) => ({
@@ -164,7 +151,7 @@ export const useNetworkHook = () => {
   useMemo(() => {
     if (!elrondAPYLoading) {
       const { elrondAPY } = elrondAPYData;
-      elrondAPY.map((data: any) => {
+      elrondAPY.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
         key.includes(data.metric.instance)
           ? setElrondNetwork((prev) => ({
@@ -182,7 +169,7 @@ export const useNetworkHook = () => {
   useMemo(() => {
     if (!elrondTVLLoading) {
       const { elrondTVL } = elrondTVLData;
-      elrondTVL.map((data: any) => {
+      elrondTVL.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
         key.includes(data.metric.instance)
           ? setElrondNetwork((prev) => ({

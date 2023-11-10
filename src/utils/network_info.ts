@@ -1,7 +1,3 @@
-/* eslint-disable no-useless-computed-key */
-
-/* eslint-disable no-use-before-define */
-
 interface IStringIndex extends Record<string, any> {}
 
 /**
@@ -66,7 +62,7 @@ export const logos: IStringIndex = {
         "https://api.akash.forbole.com/staking/validators/akashvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0uzn073",
     },
   },
-  ["band-protocol"]: {
+  "band-protocol": {
     image: "/images/network/band_protocol.png",
     name: "Band Protocol",
     label: "Band Protocol - BAND",
@@ -117,7 +113,7 @@ export const logos: IStringIndex = {
     graphql: "desmos",
     bigDipper: "https://morpheus.desmos.network/",
   },
-  ["e-money"]: {
+  "e-money": {
     image: "/images/network/e_money.png",
     name: "eMoney",
     denom: "ngm",
@@ -149,7 +145,7 @@ export const logos: IStringIndex = {
     address: "evmosvaloper1ak9t7kwk44azu6cefqdydqmy3hen28nvdjjvz0",
     guide: "how-to-stake-evmos-on-evmos",
   },
-  ["fetch-ai"]: {
+  "fetch-ai": {
     image: "/images/network/fetch_ai.png",
     name: "Fetch.ai",
     label: "Fetch.ai - FET",
@@ -216,7 +212,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-huahua-on-chihuahua",
     delegate: "https://chihuahua.omniflix.co/",
   },
-  ["terra_classic"]: {
+  "terra_classic": {
     image: "/images/network/terra_classic.png",
     name: "Terra Classic",
     label: "Terra Classic - LUNC",
@@ -441,7 +437,7 @@ export const logos: IStringIndex = {
     key: "ethereum",
     graphql: "ethereum",
   },
-  ["gravity_bridge"]: {
+  "gravity_bridge": {
     image: "/images/network/gravity_bridge.png",
     name: "Gravity Bridge",
     denom: "GRAVITON",
@@ -739,3 +735,73 @@ export const logos: IStringIndex = {
 };
 
 export const getNetworkInfo = (key: string | number) => logos[key] ?? {};
+
+const cosmosNetworkKeys = [
+  "e-money",
+  "akash",
+  "bitsong",
+  "agoric",
+  "fetch-ai",
+  "crypto.org",
+  "evmos",
+  "comdex",
+  "axelar",
+  "cheqd",
+  "persistence",
+  "crescent",
+  "injective",
+  "kava",
+  "band",
+  "likecoin",
+  "assetmantle",
+  "osmosis",
+  "provenance",
+  "regen",
+  "sentinel",
+  "stafihub",
+  "stride",
+
+  // bonded data not available:
+  // 'band-protocol',
+
+  "cosmos",
+  // 'desmos',
+  "ethereum",
+  "gravity_bridge",
+  "jackal",
+  "nomic",
+  "nym",
+  "omniflix",
+  "passage",
+  "celer",
+  "quicksilver",
+  "ssv",
+  "stargaze",
+  "teritori",
+  "tgrade",
+  "wormhole",
+  "vsys",
+  "xpla",
+  "ununifi",
+  "mars",
+  "archway",
+  "coreum",
+  "gitopia",
+  "kyve",
+  "humansai",
+  "neutron",
+  "nolus",
+  "picasso",
+  "sui",
+].sort();
+
+const getNetworkKeysArray = () => {
+  const arr = [];
+  cosmosNetworkKeys.map((key) => arr.push(key));
+  arr.push("elrond", "solana", "oasis", "radix");
+  arr.sort();
+  return arr;
+};
+
+export const allNetworkKeys = getNetworkKeysArray();
+export const networkNumber = allNetworkKeys.length;

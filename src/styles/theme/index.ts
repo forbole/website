@@ -5,7 +5,7 @@ import { darkThemeOverride } from "./dark";
 import { lightThemeOverride } from "./light";
 
 /** Common themes that don't change across light and dark theme */
-export const common: ThemeOptions = {
+const common: ThemeOptions = {
   breakpoints: {
     keys: ["mobile", "tablet", "laptop", "desktop"],
     values: {

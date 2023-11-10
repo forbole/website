@@ -1,5 +1,4 @@
 import { LayoutVal } from "@components";
-import { StakingContextProvider } from "@src/contexts";
 import React, { useRef } from "react";
 
 import {
@@ -30,14 +29,12 @@ const Staking = () => {
       stakeNowRef={stakeNowRef}
       twitterImage="/images/assets/image_forbole_validator_website_preview.png"
     >
-      <StakingContextProvider>
-        <LaptopCSS>
-          <Hero />
-        </LaptopCSS>
-        <LaptopCSS>
-          <Networks />
-        </LaptopCSS>
-      </StakingContextProvider>
+      <LaptopCSS>
+        <Hero />
+      </LaptopCSS>
+      <LaptopCSS>
+        <Networks />
+      </LaptopCSS>
       <LaptopCSS>
         <HowItWorks />
       </LaptopCSS>

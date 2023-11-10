@@ -9,36 +9,3 @@ export const getEachCosmosUnbondingTime = () => `
         }
     }
 `;
-
-export const getRadixUnbondingTime = () => `
-    query RadixUnbondingTime {
-        radixUnbondingTime {
-        metric {
-            instance
-        }
-        unbondingTime
-        }
-    }
-`;
-
-export const getSolanaUnbondingTime = () => `
-    query SolanaUnbondingTime {
-        solanaUnbondingTime {
-        metric {
-            instance
-        }
-        unbondingTime
-        }
-    }
-`;
-
-export const getElrondUnbondingTime = () => `
-    query ElrondUnbondingTime {
-        elrondUnbondingTime {
-        metric {
-            instance
-        }
-        unbondingTime
-        }
-    }
-`;

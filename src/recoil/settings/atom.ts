@@ -10,8 +10,3 @@ export const atomState = atom<AtomState>({
   key: "settings",
   default: initialState,
 });
-
-export const navigationId = atom<null | number>({
-  key: "navigation",
-  default: null,
-});
