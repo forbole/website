@@ -1,8 +1,5 @@
 import { ghostApi as api } from "../index";
 
-// import { IPost } from "./interface";
-
-/** Get blog posts by tag */
 export const getPostsByTag = async (query: { tag: string; page?: number }) => {
   try {
     const posts = await api.posts.browse({

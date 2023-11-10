@@ -1,6 +1,6 @@
 {
-  "name": "forbole-website-v3",
-  "version": "0.2.0",
+  "name": "forbole-website",
+  "version": "4.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
