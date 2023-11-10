@@ -194,9 +194,6 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-bcna-on-bitcanna",
     delegate: "https://wallet.bitcanna.io/",
   },
-  // bifrost: {
-  //   guide: 'how-to-stake-bnc-on-bifrost',
-  // },
   cheqd: {
     image: "/images/network/cheqd.svg",
     name: "Cheqd",
@@ -730,6 +727,14 @@ export const logos: IStringIndex = {
     denom: "",
     key: "sui",
     graphql: "sui",
+  },
+  picasso: {
+    image: "/images/network/picasso.svg",
+    name: "Picasso",
+    label: "Picasso - PICA",
+    denom: "PICA",
+    key: "picasso",
+    graphql: "picasso",
   },
 };
 
