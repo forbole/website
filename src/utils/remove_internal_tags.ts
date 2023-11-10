@@ -1,3 +1,2 @@
-export const removeInternalTags = (tags: any[]) => {
-  return tags.filter((x) => x.visibility === "public");
-};
+export const removeInternalTags = (tags: any[]) =>
+  tags.filter((x) => x.visibility === "public");

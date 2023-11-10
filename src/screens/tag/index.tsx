@@ -15,7 +15,7 @@ const TagTitlePosts = (props: any) => {
   useBlogHook(error, t);
 
   return (
-    <Layout title={t("title")} footer blueBg>
+    <Layout blueBg footer title={t("title")}>
       <Box sx={styles.flexBox}>
         <Box
           sx={{
@@ -26,7 +26,7 @@ const TagTitlePosts = (props: any) => {
             },
           }}
         >
-          <TagPosts main={post[0]} blogs={post.slice(1)} meta={meta} />
+          <TagPosts blogs={post.slice(1)} main={post[0]} meta={meta} />
           <Box sx={styles.sideCSS}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />

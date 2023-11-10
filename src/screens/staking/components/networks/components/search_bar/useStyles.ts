@@ -9,18 +9,18 @@ const useStyles = () => {
       },
       "&&.searchbox__focused": {
         [theme.breakpoints.down("tablet")]: {
-          position: "fixed !important",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 10,
-          height: theme.spacing(8),
-          display: "flex",
-          gap: theme.spacing(2),
-          alignItems: "center",
-          padding: theme.spacing(0, 2, 0, 4),
-          backdropFilter: "blur(16px)",
-          background:
+          "position": "fixed !important",
+          "top": 0,
+          "left": 0,
+          "right": 0,
+          "zIndex": 10,
+          "height": theme.spacing(8),
+          "display": "flex",
+          "gap": theme.spacing(2),
+          "alignItems": "center",
+          "padding": theme.spacing(0, 2, 0, 4),
+          "backdropFilter": "blur(16px)",
+          "background":
             "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
           "& .searchbox__cancel-btn": {
             display: "inline-flex",
@@ -35,7 +35,7 @@ const useStyles = () => {
         display: "none",
       },
       "& .MuiAutocomplete-root": {
-        width: "100%",
+        "width": "100%",
         [theme.breakpoints.up("tablet")]: {
           width: theme.spacing(36.375),
           minWidth: theme.spacing(36.375),
@@ -60,17 +60,17 @@ const useStyles = () => {
       },
     },
     listItem: {
-      height: `${theme.spacing(7)} !important`,
-      display: "flex !important",
-      flexFlow: "row nowrap !important",
-      justifyContent: "space-between !important",
-      alignItems: "center !important",
-      cursor: "pointer !important",
-      padding: `0 !important`,
+      "height": `${theme.spacing(7)} !important`,
+      "display": "flex !important",
+      "flexFlow": "row nowrap !important",
+      "justifyContent": "space-between !important",
+      "alignItems": "center !important",
+      "cursor": "pointer !important",
+      "padding": `0 !important`,
       "& .MuiListItemIcon-root": {
-        flex: `0 0 ${theme.spacing(7)} !important`,
-        justifyContent: "center !important",
-        width: theme.spacing(7),
+        "flex": `0 0 ${theme.spacing(7)} !important`,
+        "justifyContent": "center !important",
+        "width": theme.spacing(7),
         "& .image": {
           display: "flex",
           justifyContent: "center",
@@ -105,7 +105,7 @@ const useStyles = () => {
       borderRadius: theme.spacing(1.5),
     },
     popper: {
-      zIndex: "2001 !important",
+      "zIndex": "2001 !important",
       "& .MuiPaper-root": {
         boxShadow:
           "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",

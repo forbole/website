@@ -37,16 +37,16 @@ export default function MyApp(props: MyAppProps) {
     <RecoilRoot>
       <CacheProvider value={emotionCache}>
         <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <meta content="initial-scale=1, width=device-width" name="viewport" />
           <meta
-            name="viewport"
             content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+            name="viewport"
           />
           {/* 解决图片403防盗链问题  */}
-          <meta name="referrer" content="no-referrer" />
+          <meta content="no-referrer" name="referrer" />
         </Head>
         <ApolloProvider client={apolloClient}>
-          <InnerApp pageProps={pageProps} Component={Component} />
+          <InnerApp Component={Component} pageProps={pageProps} />
         </ApolloProvider>
       </CacheProvider>
     </RecoilRoot>

@@ -1,14 +1,10 @@
 import * as R from "ramda";
 
-export const toFixed = (num: number): number => {
-  return Number(num?.toFixed(2) ?? "0");
-};
+export const toFixed = (num: number): number => Number(num?.toFixed(2) ?? "0");
 
 // converter needed for querying from external APIs:
 
-export const defaultConverter = (ratio: number) => (num: number) => {
-  return num / ratio;
-};
+export const defaultConverter = (ratio: number) => (num: number) => num / ratio;
 
 export const uAtomToAtom = defaultConverter(1000000);
 
@@ -55,11 +51,8 @@ export const uSolanaToSolana = defaultConverter(1);
 
 export const defaultFunctions = (converter: any) => ({
   gecko: "",
-  marketPrice: (data: any) => {
-    return toFixed(
-      Number(R.pathOr(0, ["market_data", "current_price", "usd"], data)),
-    );
-  },
+  marketPrice: (data: any) =>
+    toFixed(Number(R.pathOr(0, ["market_data", "current_price", "usd"], data))),
   converter,
 });
 

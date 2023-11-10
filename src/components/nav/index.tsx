@@ -31,16 +31,16 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
   return (
     <Box
       sx={{
-        boxSizing: "content-box",
-        display: "flex",
-        justifyContent: "center",
-        position: "fixed",
-        top: 0,
-        zIndex: 5,
-        width: "100%",
-        height: "100px",
-        transition: "all .3s",
-        background: (() => {
+        "boxSizing": "content-box",
+        "display": "flex",
+        "justifyContent": "center",
+        "position": "fixed",
+        "top": 0,
+        "zIndex": 5,
+        "width": "100%",
+        "height": "100px",
+        "transition": "all .3s",
+        "background": (() => {
           if (displayBackground && !staking) {
             return "rgba(47, 58, 86, 0.60)";
           }
@@ -48,7 +48,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
             ? " rgba(47, 58, 86, 0.60)"
             : "transparent";
         })(),
-        backdropFilter: displayBackground ? "blur(16px)" : "none",
+        "backdropFilter": displayBackground ? "blur(16px)" : "none",
         [theme.breakpoints.up("laptop")]: {
           height: "100px",
         },
@@ -117,7 +117,6 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
           </Box>
           {staking ? (
             <Button
-              variant="contained"
               onClick={(e: React.MouseEvent<HTMLElement>) => scrollToRef(e)}
               sx={{
                 width: "97px",
@@ -136,6 +135,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
                   height: "45px",
                 },
               }}
+              variant="contained"
             >
               Stake Now
             </Button>

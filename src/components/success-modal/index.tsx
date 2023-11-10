@@ -46,9 +46,9 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
         }}
       >
         <Stack
+          alignItems="center"
           direction="row"
           justifyContent="space-between"
-          alignItems="center"
         >
           <Stack>
             {up_word && (
@@ -111,15 +111,15 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
         >
           {matches ? (
             <Image
-              src={require("/public/home/Success-m@2x.png")}
-              objectFit="contain"
               alt=""
+              objectFit="contain"
+              src={require("/public/home/Success-m@2x.png")}
             />
           ) : (
             <Image
-              src={require("/public/home/Success@2x.png")}
-              objectFit="contain"
               alt=""
+              objectFit="contain"
+              src={require("/public/home/Success@2x.png")}
             />
           )}
         </Box>
@@ -148,22 +148,19 @@ export default function SuccessModal({
   if (!fixed) {
     return (
       <Alert
-        fixed={fixed}
-        close={close}
-        up_word={up_word}
-        middle_word={middle_word}
         bottom_word={bottom_word}
+        close={close}
+        fixed={fixed}
+        middle_word={middle_word}
+        up_word={up_word}
       />
     );
   }
   return (
     <Modal
       disableEnforceFocus
-      open={open}
       onClose={() => close?.(false)}
-      sx={{
-        overflow: "auto",
-      }}
+      open={open}
       slotProps={{
         backdrop: {
           sx() {
@@ -174,13 +171,16 @@ export default function SuccessModal({
           },
         },
       }}
+      sx={{
+        overflow: "auto",
+      }}
     >
       <Alert
-        fixed={fixed}
-        up_word={up_word}
-        close={close}
-        middle_word={middle_word}
         bottom_word={bottom_word}
+        close={close}
+        fixed={fixed}
+        middle_word={middle_word}
+        up_word={up_word}
       />
     </Modal>
   );

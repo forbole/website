@@ -42,10 +42,10 @@ const DeveloperTools = () => {
   const topRef = React.useRef(null);
   const [show, setShow] = useState(false);
   return (
-    <Layout title={t("page_title")} footer>
+    <Layout footer title={t("page_title")}>
       <Container
-        maxWidth="desktop"
         ref={topRef}
+        maxWidth="desktop"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -56,7 +56,6 @@ const DeveloperTools = () => {
         }}
       >
         <HeaderCard
-          title={t("headercard_title")}
           desc_1st={t("headercard_1st_desc")}
           desc_2nd={t("headercard_2nd_desc")}
           head_bg={
@@ -64,13 +63,14 @@ const DeveloperTools = () => {
               ? "/developer_tools/mobile_headercard@2x.png"
               : "/developer_tools/desk_headercard@2x.png"
           }
+          title={t("headercard_title")}
         />
 
         <Stack>
           <Section
+            desc={t("section_1st_desc")}
             title={t("section_1st_title")}
             title_large={t("section_1st_large_title")}
-            desc={t("section_1st_desc")}
           />
           <Stack
             sx={{
@@ -93,32 +93,32 @@ const DeveloperTools = () => {
           <Grid container spacing={theme.spacing(2)}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("pinfo_item1")}
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_3@2x.png")
                     : require("/public/developer_tools/mobile_productcard_item_3@2x.png")
                 }
+                title={t("pinfo_item1")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("pinfo_item2")}
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_1@2x.png")
                     : require("/public/developer_tools/mobile_productcard_item_1@2x.png")
                 }
+                title={t("pinfo_item2")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("pinfo_item3")}
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_2@2x.png")
                     : require("/public/developer_tools/mobile_productcard_item_2@2x.png")
                 }
+                title={t("pinfo_item3")}
               />
             </Grid>
           </Grid>
@@ -127,15 +127,15 @@ const DeveloperTools = () => {
         <Stack>
           <Section title={t("section_2nd_title")} />
           <CtaButton
+            onClick={() => {
+              router.push("https://devtools.forbole.com");
+            }}
             sx={{
               display: "block",
               margin: "40px auto",
               [theme.breakpoints.down("laptop")]: {
                 my: "32px",
               },
-            }}
-            onClick={() => {
-              router.push("https://devtools.forbole.com");
             }}
           >
             {t("start_trial")}
@@ -163,19 +163,19 @@ const DeveloperTools = () => {
 
         <Stack maxWidth="desktop">
           <Section
-            title_large_trans={t("section_4th_title")}
             desc={t("section_4th_large_title")}
+            title_large_trans={t("section_4th_title")}
           />
           <CtaButton
+            onClick={() => {
+              setShow(true);
+            }}
             sx={{
               display: "block",
               margin: "40px auto",
               [theme.breakpoints.down("laptop")]: {
                 my: "32px",
               },
-            }}
-            onClick={() => {
-              setShow(true);
             }}
           >
             {t("try_now")}
@@ -186,26 +186,26 @@ const DeveloperTools = () => {
       </Container>
 
       <TalkModal
-        open={show}
+        canSubmit={canSubmit}
         close={setShow}
-        inputs={inputs}
+        handleCheckedChange={handleCheckedChange}
+        handleClear={handleClear}
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
-        handleClear={handleClear}
-        canSubmit={canSubmit}
-        handleCheckedChange={handleCheckedChange}
+        inputs={inputs}
         isLoading={isLoading}
+        open={show}
       />
       <SuccessModal
-        open={success}
-        fixed
+        bottom_word={isMobile ? t("thanks") : ""}
         close={(b) => {
           setSuccess(b);
           setShow(b);
         }}
-        up_word={t("contact")}
+        fixed
         middle_word={!isMobile ? t("thanks") : ""}
-        bottom_word={isMobile ? t("thanks") : ""}
+        open={success}
+        up_word={t("contact")}
       />
     </Layout>
   );

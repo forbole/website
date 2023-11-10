@@ -14,7 +14,7 @@ const Blog = (props: any) => {
   useBlogHook(error, t);
   const topRef = React.useRef(null);
   return (
-    <Layout title={t("title")} footer blueBg>
+    <Layout blueBg footer title={t("title")}>
       <Box sx={styles.flexBox}>
         <Box
           ref={topRef}
@@ -26,7 +26,7 @@ const Blog = (props: any) => {
             },
           }}
         >
-          <BlogPosts main={posts[0]} blogs={posts.slice(1)} meta={meta} />
+          <BlogPosts blogs={posts.slice(1)} main={posts[0]} meta={meta} />
           <Box sx={styles.sideCSS}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />
@@ -48,9 +48,9 @@ const Blog = (props: any) => {
           </Box>
         </Box>
         <Box
+          bottom="10%"
           position="fixed"
           right="5%"
-          bottom="10%"
           sx={{
             display: "block",
             [theme.breakpoints.up("laptop")]: {

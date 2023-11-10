@@ -30,9 +30,9 @@ const MenuProps = {
   PaperProps: {
     style: {},
     sx: {
-      backgroundColor: "white",
-      borderRadius: "8px",
-      boxShadow: "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
+      "backgroundColor": "white",
+      "borderRadius": "8px",
+      "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
       "& li:hover": {
         backgroundColor: "rgba(107, 97, 254, 0.24)",
       },
@@ -67,8 +67,8 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Stack
-        component="div"
         ref={ref}
+        component="div"
         sx={{
           maxWidth: "776px",
           padding: "40px",
@@ -87,9 +87,9 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
         }}
       >
         <Grid
+          columnSpacing={theme.spacing(4)}
           container
           rowSpacing={{ mobile: theme.spacing(3), desktop: theme.spacing(4) }}
-          columnSpacing={theme.spacing(4)}
         >
           <Grid item laptop={6} mobile={12}>
             <Typography
@@ -102,10 +102,10 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
               <span style={{ color: "#FF426B" }}>*</span>
             </Typography>
             <FormInput
-              placeholder={t("name")}
-              onInput={handleInputChange}
-              value={inputs.name}
               name="name"
+              onInput={handleInputChange}
+              placeholder={t("name")}
+              value={inputs.name}
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
@@ -118,10 +118,10 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
               {t("your_company")}
             </Typography>
             <FormInput
-              placeholder={t("company")}
-              onInput={handleInputChange}
-              value={inputs.company}
               name="company"
+              onInput={handleInputChange}
+              placeholder={t("company")}
+              value={inputs.company}
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
@@ -135,10 +135,10 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
               <span style={{ color: "#FF426B" }}>*</span>
             </Typography>
             <FormInput
-              placeholder={t("email")}
-              onInput={handleInputChange}
-              value={inputs.email}
               name="email"
+              onInput={handleInputChange}
+              placeholder={t("email")}
+              value={inputs.email}
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
@@ -155,11 +155,20 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
             <FormControl fullWidth>
               <Select
                 displayEmpty
-                value={inputs.help}
-                onChange={handleInputChange}
                 IconComponent={KeyboardArrowDownTwoTone}
+                MenuProps={MenuProps}
+                name="help"
+                onChange={handleInputChange}
+                renderValue={(selected) => {
+                  if (selected.length === 0) {
+                    return (
+                      <span style={{ color: "#878787" }}>{t("select")}</span>
+                    );
+                  }
+                  return selected;
+                }}
                 sx={{
-                  borderRadius: "8px",
+                  "borderRadius": "8px",
                   "&>.MuiOutlinedInput-notchedOutline": {
                     borderWidth: "2px",
                     borderColor:
@@ -171,22 +180,13 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                     borderColor: theme.palette.custom.forbole.indigo,
                   },
-                  boxShadow: "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
-                  fontSize: "16px",
+                  "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
+                  "fontSize": "16px",
                   "&>div": {
                     padding: "14px 18px",
                   },
                 }}
-                renderValue={(selected) => {
-                  if (selected.length === 0) {
-                    return (
-                      <span style={{ color: "#878787" }}>{t("select")}</span>
-                    );
-                  }
-                  return selected;
-                }}
-                name="help"
-                MenuProps={MenuProps}
+                value={inputs.help}
               >
                 {helpList.map((i, j) => (
                   <MenuItem key={j} value={i.label}>
@@ -198,9 +198,9 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
           </Grid>
           <Grid item laptop={12}>
             <CtaButton
-              onClick={handleSubmit}
               disabled={!canSubmit}
               loading={isLoading}
+              onClick={handleSubmit}
             >
               {t("touch")}
             </CtaButton>

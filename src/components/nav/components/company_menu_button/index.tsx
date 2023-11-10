@@ -39,16 +39,16 @@ const CompanyMenuButton = () => {
             <MenuItem
               component="a"
               sx={{
-                display: "flex",
+                "display": "flex",
                 // color: theme.palette.common.white,
-                filter: l.link ? "" : "opacity(0.1)",
-                width: "220px",
-                color: theme.palette.custom.forbole.indigo,
-                padding: "0px 32px",
-                justifyContent: "flex-start",
-                fontSize: theme.spacing(2),
-                fontWeight: 700,
-                height: theme.spacing(7),
+                "filter": l.link ? "" : "opacity(0.1)",
+                "width": "220px",
+                "color": theme.palette.custom.forbole.indigo,
+                "padding": "0px 32px",
+                "justifyContent": "flex-start",
+                "fontSize": theme.spacing(2),
+                "fontWeight": 700,
+                "height": theme.spacing(7),
                 // padding: theme.spacing(0, 3),
                 "> a": {
                   width: "100%",
@@ -81,14 +81,14 @@ const CompanyMenuButton = () => {
               component="a"
               onClick={handleClose}
               sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                fontSize: theme.spacing(2),
-                fontWeight: 700,
-                height: theme.spacing(7),
-                padding: theme.spacing(0, 4),
-                color: theme.palette.custom.forbole.indigo,
-                filter: l.link ? "" : "opacity(0.1)",
+                "display": "flex",
+                "justifyContent": "flex-start",
+                "fontSize": theme.spacing(2),
+                "fontWeight": 700,
+                "height": theme.spacing(7),
+                "padding": theme.spacing(0, 4),
+                "color": theme.palette.custom.forbole.indigo,
+                "filter": l.link ? "" : "opacity(0.1)",
                 "> a": {
                   width: "100%",
                   textAlign: "left",

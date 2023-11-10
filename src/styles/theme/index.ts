@@ -18,7 +18,7 @@ export const common: ThemeOptions = {
   typography: {
     fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
     h1: {
-      fontSize: "32px",
+      "fontSize": "32px",
       "@media (min-width: 769px)": {
         fontSize: "64px",
       },

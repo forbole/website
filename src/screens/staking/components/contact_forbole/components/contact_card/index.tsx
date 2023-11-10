@@ -68,13 +68,13 @@ const ContactCard = () => {
         >
           <Box sx={styles.nameBox}>
             <Typography
-              gutterBottom
-              variant="h6"
               component="div"
-              textAlign="left"
-              fontWeight={600}
               fontSize={theme.spacing(2)}
+              fontWeight={600}
+              gutterBottom
               pb={theme.spacing(1)}
+              textAlign="left"
+              variant="h6"
             >
               {t("your name")}
             </Typography>
@@ -82,21 +82,21 @@ const ContactCard = () => {
               helperText=" "
               id="demo-helper-text-aligned-no-helper"
               name="name"
-              placeholder={t("name")}
               onChange={handleInputChange}
-              value={inputs.name}
+              placeholder={t("name")}
               sx={styles.inputField}
+              value={inputs.name}
             />
           </Box>
           <Box sx={styles.mailBox}>
             <Typography
-              gutterBottom
-              variant="h6"
               component="div"
-              textAlign="left"
-              fontWeight={600}
               fontSize={theme.spacing(2)}
+              fontWeight={600}
+              gutterBottom
               pb={theme.spacing(1)}
+              textAlign="left"
+              variant="h6"
             >
               {t("your email")}
             </Typography>
@@ -104,53 +104,44 @@ const ContactCard = () => {
               helperText=" "
               id="demo-helper-text-aligned-no-helper"
               name="email"
-              placeholder={t("email")}
               onChange={handleInputChange}
-              value={inputs.email}
+              placeholder={t("email")}
               sx={styles.inputField}
+              value={inputs.email}
             />
           </Box>
           <Box sx={styles.select}>
             <Typography
-              gutterBottom
-              variant="h6"
               component="div"
-              textAlign="left"
-              fontWeight={600}
               fontSize={theme.spacing(2)}
+              fontWeight={600}
+              gutterBottom
               pb={theme.spacing(1)}
+              textAlign="left"
+              variant="h6"
             >
               {t("how can we help you")}
             </Typography>
             <FormControl>
               {inputs.option === "" ? (
-                <InputLabel shrink={false} focused={false} id="item_type_label">
+                <InputLabel focused={false} id="item_type_label" shrink={false}>
                   {t(options[0])}
                 </InputLabel>
               ) : null}
               <Select
-                variant="outlined"
-                open={isOpen}
-                onOpen={() => {
-                  setIsOpen(true);
-                }}
-                onClose={() => {
-                  setIsOpen(false);
-                }}
-                value={inputs.option}
                 IconComponent={(props) => <ExpandIcon {...props} />}
                 MenuProps={{
                   variant: "menu",
                   disableScrollLock: true,
                   PaperProps: {
                     sx: {
-                      bgcolor: theme.palette.primary.main,
-                      marginTop: 1,
-                      boxShadow:
+                      "bgcolor": theme.palette.primary.main,
+                      "marginTop": 1,
+                      "boxShadow":
                         "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
-                      borderRadius: 1,
+                      "borderRadius": 1,
                       "& .MuiMenuItem-root": {
-                        padding: 2,
+                        "padding": 2,
                         "&:hover": {
                           background:
                             " linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)",
@@ -166,6 +157,15 @@ const ContactCard = () => {
                     option: value,
                   }));
                 }}
+                onClose={() => {
+                  setIsOpen(false);
+                }}
+                onOpen={() => {
+                  setIsOpen(true);
+                }}
+                open={isOpen}
+                value={inputs.option}
+                variant="outlined"
               >
                 {options.slice(1).map((option, i) => (
                   <MenuItem key={i} value={t(option)}>
@@ -176,7 +176,7 @@ const ContactCard = () => {
             </FormControl>
           </Box>
           <CardActions sx={styles.buttonDiv}>
-            <Button type="submit" disabled={!canSubmit} sx={styles.button}>
+            <Button disabled={!canSubmit} sx={styles.button} type="submit">
               {t("get in touch!")}
             </Button>
           </CardActions>

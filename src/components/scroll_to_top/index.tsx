@@ -19,24 +19,24 @@ const ScrollToTop = ({ topRef }: TopProps) => {
     });
   };
   return (
-    <Box position="relative" alignSelf="center" zIndex={2}>
+    <Box alignSelf="center" position="relative" zIndex={2}>
       <Box
         sx={{
-          my: "60px",
-          mx: "auto",
-          width: "48px",
-          height: "48px",
+          "my": "60px",
+          "mx": "auto",
+          "width": "48px",
+          "height": "48px",
           [theme.breakpoints.down("laptop")]: {
             my: "24px",
             width: "36px",
             height: "36px",
           },
-          cursor: "pointer",
+          "cursor": "pointer",
           "& svg": {
-            filter:
+            "filter":
               "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
-            fill: " #FFF",
-            transition: "all 0.3s",
+            "fill": " #FFF",
+            "transition": "all 0.3s",
             "& :last-child": {
               stroke: theme.palette.custom.forbole.blue,
             },

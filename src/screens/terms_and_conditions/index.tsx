@@ -41,7 +41,7 @@ const TermsAndConditions = () => {
     );
   });
   return (
-    <Layout title={t("title")} footer>
+    <Layout footer title={t("title")}>
       <Container maxWidth="desktop">
         <Box
           ref={topRef}
@@ -61,7 +61,6 @@ const TermsAndConditions = () => {
         >
           <Box>
             <Typography
-              variant="h2"
               sx={{
                 display: "none",
                 [theme.breakpoints.up("laptop")]: {
@@ -73,6 +72,7 @@ const TermsAndConditions = () => {
                   textAlign: "center",
                 },
               }}
+              variant="h2"
             >
               {t("title")}
             </Typography>
@@ -97,8 +97,6 @@ const TermsAndConditions = () => {
                 }}
               >
                 <Typography
-                  variant="h2"
-                  // ref={topRef}
                   sx={{
                     color: "#000",
                     fontSize: `${theme.spacing(3)} !important` as any,
@@ -110,16 +108,17 @@ const TermsAndConditions = () => {
                       display: "none",
                     },
                   }}
+                  variant="h2"
                 >
                   {t("title")}
                 </Typography>
                 <Typography
-                  variant="body1"
                   sx={{
                     color: "#000",
                     fontSize: theme.spacing(1.75),
                     fontWeight: 600,
                   }}
+                  variant="body1"
                 >
                   {t("updatedDate")}
                 </Typography>
@@ -136,8 +135,8 @@ const TermsAndConditions = () => {
                   &nbsp;Please in particular read &nbsp;
                   <a
                     href=""
-                    style={{ textDecoration: "underline" }}
                     onClick={(e) => scrollToRef(e, ref2)}
+                    style={{ textDecoration: "underline" }}
                   >
                     Section 2 Additional Terms for Staking Service
                   </a>
@@ -164,7 +163,7 @@ const TermsAndConditions = () => {
                   Terms on their behalf.
                 </p>
 
-                <span style={{ textDecoration: "underline" }} ref={ref1}>
+                <span ref={ref1} style={{ textDecoration: "underline" }}>
                   <p>Section 1 General Terms</p>
                 </span>
 
@@ -184,8 +183,8 @@ const TermsAndConditions = () => {
                   refer to&nbsp;
                   <a
                     href=""
-                    style={{ textDecoration: "underline" }}
                     onClick={(e) => scrollToRef(e, ref2)}
+                    style={{ textDecoration: "underline" }}
                   >
                     Section 2 Additional Terms for Staking Service
                   </a>
@@ -197,8 +196,8 @@ const TermsAndConditions = () => {
                   and crypto analytics tool (please refer to&nbsp;
                   <a
                     href=""
-                    style={{ textDecoration: "underline" }}
                     onClick={(e) => scrollToRef(e, ref3)}
+                    style={{ textDecoration: "underline" }}
                   >
                     Section 3 Additional Terms for Big Dipper
                   </a>
@@ -210,8 +209,8 @@ const TermsAndConditions = () => {
                   investment arm of Forbole &nbsp;(please refer to&nbsp;{" "}
                   <a
                     href=""
-                    style={{ textDecoration: "underline" }}
                     onClick={(e) => scrollToRef(e, ref4)}
+                    style={{ textDecoration: "underline" }}
                   >
                     Section 4 Additional Terms for Forbole Ventures
                   </a>

@@ -39,15 +39,15 @@ const StakenowMenuButton = () => {
             handlerCLickShowStakeNow();
           }}
           sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            fontSize: theme.spacing(2),
-            fontWeight: 700,
+            "display": "flex",
+            "justifyContent": "flex-start",
+            "alignItems": "center",
+            "fontSize": theme.spacing(2),
+            "fontWeight": 700,
             // color: theme.palette.common.white,
-            color: "#362187",
-            height: theme.spacing(5),
-            padding: theme.spacing(0, 3),
+            "color": "#362187",
+            "height": theme.spacing(5),
+            "padding": theme.spacing(0, 3),
             "> a": {
               width: "100%",
               textAlign: "left",
@@ -66,7 +66,7 @@ const StakenowMenuButton = () => {
             }}
           >
             <SvgIcon>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <title>earth</title>
                 <path d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
               </svg>
@@ -89,13 +89,13 @@ const StakenowMenuButton = () => {
             <MenuItem
               component="a"
               sx={{
-                display: "flex",
-                color: theme.palette.common.white,
-                justifyContent: "flex-start",
-                fontSize: theme.spacing(2),
-                fontWeight: 700,
-                height: theme.spacing(5),
-                padding: theme.spacing(0, 3),
+                "display": "flex",
+                "color": theme.palette.common.white,
+                "justifyContent": "flex-start",
+                "fontSize": theme.spacing(2),
+                "fontWeight": 700,
+                "height": theme.spacing(5),
+                "padding": theme.spacing(0, 3),
                 "> a": {
                   width: "100%",
                   textAlign: "left",

@@ -53,10 +53,9 @@ const Products = () => {
     setV2(newValue);
   };
   return (
-    <Layout title={t("product")} footer>
-      <Container maxWidth="desktop" ref={topRef}>
+    <Layout footer title={t("product")}>
+      <Container ref={topRef} maxWidth="desktop">
         <HeaderCard
-          title={t("product")}
           desc_1st={t("desc")}
           desc_2nd={t("customized")}
           head_bg={
@@ -64,6 +63,7 @@ const Products = () => {
               ? "/products/head_bg@2x.png"
               : "/products/head_bg_m@2x.png"
           }
+          title={t("product")}
         />
         <Stack
           sx={{
@@ -93,7 +93,6 @@ const Products = () => {
           </Typography>
 
           <Trans
-            i18nKey={t("bridging")}
             components={[
               <Typography
                 display="inline"
@@ -114,8 +113,8 @@ const Products = () => {
                 }}
               />,
               <Typography
-                component="span"
                 color="#EE3131"
+                component="span"
                 sx={{
                   textShadow: "0px 0px 20px #ffffff",
                   [theme.breakpoints.down("laptop")]: {
@@ -131,6 +130,7 @@ const Products = () => {
                 }}
               />,
             ]}
+            i18nKey={t("bridging")}
           />
           <Stack
             direction="row"
@@ -138,16 +138,16 @@ const Products = () => {
             spacing={{ mobile: 1, desktop: 2 }}
           >
             <CtaButton
-              onClick={(e) => scrollToRef(e, individualsRef)}
               className={style.response}
-              startIcon={<img src="/products/p1.svg" className={style.icon} />}
+              onClick={(e) => scrollToRef(e, individualsRef)}
+              startIcon={<img className={style.icon} src="/products/p1.svg" />}
             >
               {t("for-individuals")}
             </CtaButton>
             <CtaButton
-              onClick={(e) => scrollToRef(e, businessesRef)}
               className={style.response}
-              startIcon={<img src="/products/p2.svg" className={style.icon} />}
+              onClick={(e) => scrollToRef(e, businessesRef)}
+              startIcon={<img className={style.icon} src="/products/p2.svg" />}
             >
               {t("for-businesses")}
             </CtaButton>
@@ -182,7 +182,6 @@ const Products = () => {
           </Typography>
 
           <Trans
-            i18nKey={t("safe-path")}
             components={[
               <Typography
                 display="inline"
@@ -219,10 +218,11 @@ const Products = () => {
                 }}
               />,
             ]}
+            i18nKey={t("safe-path")}
           />
           <Stack
-            direction="column"
             alignItems="center"
+            direction="column"
             justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
             sx={{
@@ -235,19 +235,19 @@ const Products = () => {
             {!isMobile && (
               <StyledTabs
                 aria-label="basic tabs example"
-                value={v1}
                 onChange={handleChange}
+                value={v1}
               >
                 <StyledTab
-                  icon={<img src="/products/p3.svg" className={style.icon} />}
+                  icon={<img className={style.icon} src="/products/p3.svg" />}
                   label={t("staking")}
                 />
                 <StyledTab
-                  icon={<img src="/products/p4.svg" className={style.icon} />}
+                  icon={<img className={style.icon} src="/products/p4.svg" />}
                   label={t("analytics")}
                 />
                 <StyledTab
-                  icon={<img src="/products/p5.svg" className={style.icon} />}
+                  icon={<img className={style.icon} src="/products/p5.svg" />}
                   label={t("developer")}
                 />
               </StyledTabs>
@@ -255,38 +255,38 @@ const Products = () => {
             {isMobile && (
               <>
                 <CtaButton
-                  startIcon={
-                    <img src="/products/p3.svg" className={style.icon} />
-                  }
+                  className={style.response36}
                   onClick={(e) => {
                     handleChange(e, 0);
                     scrollBottom(e, PanelRef1);
                   }}
-                  className={style.response36}
+                  startIcon={
+                    <img className={style.icon} src="/products/p3.svg" />
+                  }
                 >
                   {t("staking")}
                 </CtaButton>
                 <CtaButton
-                  startIcon={
-                    <img src="/products/p4.svg" className={style.icon} />
-                  }
+                  className={style.response36}
                   onClick={(e) => {
                     handleChange(e, 1);
                     scrollBottom(e, PanelRef1);
                   }}
-                  className={style.response36}
+                  startIcon={
+                    <img className={style.icon} src="/products/p4.svg" />
+                  }
                 >
                   {t("analytics")}
                 </CtaButton>
                 <CtaButton
-                  startIcon={
-                    <img src="/products/p5.svg" className={style.icon} />
-                  }
+                  className={style.response36}
                   onClick={(e) => {
                     handleChange(e, 2);
                     scrollBottom(e, PanelRef1);
                   }}
-                  className={style.response36}
+                  startIcon={
+                    <img className={style.icon} src="/products/p5.svg" />
+                  }
                 >
                   {t("developer")}
                 </CtaButton>
@@ -295,12 +295,12 @@ const Products = () => {
           </Stack>
           {individuals.map((item, index) => (
             <ProductPanel
+              key={index}
               ref={PanelRef1}
-              title={t(item.title)}
               imageHref={isMobile ? item.imageHref_m : item.imageHref}
               index={index}
+              title={t(item.title)}
               value={v1}
-              key={index}
             >
               <Stack
                 component="dl"
@@ -314,31 +314,29 @@ const Products = () => {
                 >
                   {t("benefits")}
                 </Typography>
-                {item.benefits.map((i, k) => {
-                  return (
-                    <Typography
-                      key={k}
-                      component="dd"
-                      display="flex"
-                      sx={{
-                        color: "#202A43",
-                        alignItems: "baseline",
-                        [theme.breakpoints.down("laptop")]: {
-                          fontSize: "16px",
-                        },
-                        [theme.breakpoints.up("laptop")]: {
-                          fontSize: "20px",
-                        },
-                        "&:before": {
-                          content: "url(/icons/outlined.svg)",
-                          marginRight: "16px",
-                        },
-                      }}
-                    >
-                      {t(i)}
-                    </Typography>
-                  );
-                })}
+                {item.benefits.map((i, k) => (
+                  <Typography
+                    key={k}
+                    component="dd"
+                    display="flex"
+                    sx={{
+                      "color": "#202A43",
+                      "alignItems": "baseline",
+                      [theme.breakpoints.down("laptop")]: {
+                        fontSize: "16px",
+                      },
+                      [theme.breakpoints.up("laptop")]: {
+                        fontSize: "20px",
+                      },
+                      "&:before": {
+                        content: "url(/icons/outlined.svg)",
+                        marginRight: "16px",
+                      },
+                    }}
+                  >
+                    {t(i)}
+                  </Typography>
+                ))}
               </Stack>
               <Stack
                 component="dl"
@@ -352,31 +350,29 @@ const Products = () => {
                 >
                   {t("usecases")}
                 </Typography>
-                {item.usecases.map((i, k) => {
-                  return (
-                    <Typography
-                      key={k}
-                      component="dl"
-                      sx={{
-                        color: "#202A43",
-                        alignItems: "baseline",
-                        [theme.breakpoints.down("laptop")]: {
-                          fontSize: "16px",
-                        },
-                        [theme.breakpoints.up("laptop")]: {
-                          fontSize: "20px",
-                        },
-                        "&:before": {
-                          content: "url(/icons/outlined.svg)",
-                          marginRight: "16px",
-                          verticalAlign: "middle",
-                        },
-                      }}
-                    >
-                      {t(i)}
-                    </Typography>
-                  );
-                })}
+                {item.usecases.map((i, k) => (
+                  <Typography
+                    key={k}
+                    component="dl"
+                    sx={{
+                      "color": "#202A43",
+                      "alignItems": "baseline",
+                      [theme.breakpoints.down("laptop")]: {
+                        fontSize: "16px",
+                      },
+                      [theme.breakpoints.up("laptop")]: {
+                        fontSize: "20px",
+                      },
+                      "&:before": {
+                        content: "url(/icons/outlined.svg)",
+                        marginRight: "16px",
+                        verticalAlign: "middle",
+                      },
+                    }}
+                  >
+                    {t(i)}
+                  </Typography>
+                ))}
               </Stack>
               <CtaButton onClick={() => router.push(item.btnHref)}>
                 {t(item.btnName)}
@@ -412,7 +408,6 @@ const Products = () => {
             {t("for-businesses")}
           </Typography>
           <Trans
-            i18nKey={t("trusted")}
             components={[
               <Typography
                 sx={{
@@ -448,11 +443,12 @@ const Products = () => {
                 }}
               />,
             ]}
+            i18nKey={t("trusted")}
           />
 
           <Stack
-            direction="column"
             alignItems="center"
+            direction="column"
             justifyContent="center"
             spacing={{ mobile: 1, desktop: 2 }}
             sx={{
@@ -464,17 +460,17 @@ const Products = () => {
           >
             {!isMobile && (
               <>
-                <StyledTabs value={v2} onChange={handleChange2}>
+                <StyledTabs onChange={handleChange2} value={v2}>
                   <StyledTab
-                    icon={<img src="/products/p3.svg" className={style.icon} />}
+                    icon={<img className={style.icon} src="/products/p3.svg" />}
                     label={t("validator-infrastructure")}
                   />
                   <StyledTab
-                    icon={<img src="/products/p6.svg" className={style.icon} />}
+                    icon={<img className={style.icon} src="/products/p6.svg" />}
                     label={t("staking")}
                   />
                   <StyledTab
-                    icon={<img src="/products/p4.svg" className={style.icon} />}
+                    icon={<img className={style.icon} src="/products/p4.svg" />}
                     label={t("analytics")}
                   />
                   <StyledTab
@@ -486,7 +482,7 @@ const Products = () => {
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                 </StyledTabs>
-                <StyledTabs value={v2} onChange={handleChange2}>
+                <StyledTabs onChange={handleChange2} value={v2}>
                   <StyledTab
                     label=""
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
@@ -500,11 +496,11 @@ const Products = () => {
                     sx={{ minWidth: "0", minHeight: 0, padding: 0 }}
                   />
                   <StyledTab
-                    icon={<img src="/products/p5.svg" className={style.icon} />}
+                    icon={<img className={style.icon} src="/products/p5.svg" />}
                     label={t("developer")}
                   />
                   <StyledTab
-                    icon={<img src="/products/p7.svg" className={style.icon} />}
+                    icon={<img className={style.icon} src="/products/p7.svg" />}
                     label={t("enterprise-solution")}
                   />
                 </StyledTabs>
@@ -513,63 +509,63 @@ const Products = () => {
             {isMobile && (
               <>
                 <CtaButton
-                  startIcon={
-                    <img src="/products/p3.svg" className={style.icon} />
-                  }
+                  className={style.response}
                   onClick={(e) => {
                     handleChange2(e, 0);
                     scrollBottom(e, PanelRef2);
                   }}
-                  className={style.response}
+                  startIcon={
+                    <img className={style.icon} src="/products/p3.svg" />
+                  }
                 >
                   {t("validator-infrastructure")}
                 </CtaButton>
                 <CtaButton
-                  startIcon={
-                    <img src="/products/p6.svg" className={style.icon} />
-                  }
+                  className={style.response}
                   onClick={(e) => {
                     handleChange2(e, 1);
                     scrollBottom(e, PanelRef2);
                   }}
-                  className={style.response}
+                  startIcon={
+                    <img className={style.icon} src="/products/p6.svg" />
+                  }
                 >
                   {t("staking")}
                 </CtaButton>
                 <CtaButton
-                  startIcon={
-                    <img src="/products/p4.svg" className={style.icon} />
-                  }
+                  className={style.response}
                   onClick={(e) => {
                     handleChange2(e, 2);
                     scrollBottom(e, PanelRef2);
                   }}
-                  className={style.response}
+                  startIcon={
+                    <img className={style.icon} src="/products/p4.svg" />
+                  }
                 >
                   {t("analytics")}
                 </CtaButton>
                 <Stack direction="row" spacing={1}>
                   <CtaButton
-                    startIcon={
-                      <img src="/products/p5.svg" className={style.icon} />
-                    }
+                    className={style.response}
                     onClick={(e) => {
                       handleChange2(e, 3);
                       scrollBottom(e, PanelRef2);
                     }}
-                    className={style.response}
+                    startIcon={
+                      <img className={style.icon} src="/products/p5.svg" />
+                    }
                   >
                     {t("developer")}
                   </CtaButton>
                   <CtaButton
-                    startIcon={
-                      <img src="/products/p7.svg" className={style.icon} />
-                    }
+                    className={style.response}
                     onClick={(e) => {
                       handleChange2(e, 4);
                       scrollBottom(e, PanelRef2);
                     }}
-                    className={style.response}
+                    startIcon={
+                      <img className={style.icon} src="/products/p7.svg" />
+                    }
                   >
                     {t("enterprise-solution")}
                   </CtaButton>
@@ -579,12 +575,12 @@ const Products = () => {
           </Stack>
           {businesses.map((item, index) => (
             <ProductPanel
+              key={index}
               ref={PanelRef2}
-              title={t(item.title)}
               imageHref={isMobile ? item.imageHref_m : item.imageHref}
               index={index}
+              title={t(item.title)}
               value={v2}
-              key={index}
             >
               <Stack
                 component="dl"
@@ -598,31 +594,29 @@ const Products = () => {
                 >
                   {t("benefits")}
                 </Typography>
-                {item.benefits.map((i, k) => {
-                  return (
-                    <Typography
-                      key={k}
-                      component="dd"
-                      display="flex"
-                      sx={{
-                        color: "#202A43",
-                        alignItems: "baseline",
-                        [theme.breakpoints.down("laptop")]: {
-                          fontSize: "16px",
-                        },
-                        [theme.breakpoints.up("laptop")]: {
-                          fontSize: "20px",
-                        },
-                        "&:before": {
-                          content: "url(/icons/outlined.svg)",
-                          marginRight: "16px",
-                        },
-                      }}
-                    >
-                      {t(i)}
-                    </Typography>
-                  );
-                })}
+                {item.benefits.map((i, k) => (
+                  <Typography
+                    key={k}
+                    component="dd"
+                    display="flex"
+                    sx={{
+                      "color": "#202A43",
+                      "alignItems": "baseline",
+                      [theme.breakpoints.down("laptop")]: {
+                        fontSize: "16px",
+                      },
+                      [theme.breakpoints.up("laptop")]: {
+                        fontSize: "20px",
+                      },
+                      "&:before": {
+                        content: "url(/icons/outlined.svg)",
+                        marginRight: "16px",
+                      },
+                    }}
+                  >
+                    {t(i)}
+                  </Typography>
+                ))}
               </Stack>
               <Stack
                 component="dl"
@@ -636,31 +630,29 @@ const Products = () => {
                 >
                   {t("usecases")}
                 </Typography>
-                {item.usecases.map((i, k) => {
-                  return (
-                    <Typography
-                      key={k}
-                      component="dd"
-                      display="flex"
-                      sx={{
-                        color: "#202A43",
-                        alignItems: "baseline",
-                        [theme.breakpoints.down("laptop")]: {
-                          fontSize: "16px",
-                        },
-                        [theme.breakpoints.up("laptop")]: {
-                          fontSize: "20px",
-                        },
-                        "&:before": {
-                          content: "url(/icons/outlined.svg)",
-                          marginRight: "16px",
-                        },
-                      }}
-                    >
-                      {t(i)}
-                    </Typography>
-                  );
-                })}
+                {item.usecases.map((i, k) => (
+                  <Typography
+                    key={k}
+                    component="dd"
+                    display="flex"
+                    sx={{
+                      "color": "#202A43",
+                      "alignItems": "baseline",
+                      [theme.breakpoints.down("laptop")]: {
+                        fontSize: "16px",
+                      },
+                      [theme.breakpoints.up("laptop")]: {
+                        fontSize: "20px",
+                      },
+                      "&:before": {
+                        content: "url(/icons/outlined.svg)",
+                        marginRight: "16px",
+                      },
+                    }}
+                  >
+                    {t(i)}
+                  </Typography>
+                ))}
               </Stack>
               <CtaButton onClick={() => router.push(item.btnHref)}>
                 {t(item.btnName)}

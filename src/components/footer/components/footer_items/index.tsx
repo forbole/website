@@ -39,7 +39,7 @@ const FooterItems = ({ staking }: FooterProps) => {
             borderTop: `1px solid ${theme.palette.custom.forbole.grey02}`,
           },
           [theme.breakpoints.up("laptop")]: {
-            flexDirection: "row",
+            "flexDirection": "row",
             "& hr": {
               mx: 2,
             },
@@ -58,9 +58,8 @@ const FooterItems = ({ staking }: FooterProps) => {
           {t("copyright", { year })}
         </Typography>
         <Divider
-          orientation="vertical"
-          variant="middle"
           flexItem
+          orientation="vertical"
           sx={{
             my: "4px",
             borderColor: staking
@@ -70,6 +69,7 @@ const FooterItems = ({ staking }: FooterProps) => {
               display: "none",
             },
           }}
+          variant="middle"
         />
         <Link href="/terms-and-conditions" passHref>
           <Typography component="a" css={styles.word}>
@@ -77,9 +77,8 @@ const FooterItems = ({ staking }: FooterProps) => {
           </Typography>
         </Link>
         <Divider
-          orientation="vertical"
-          variant="middle"
           flexItem
+          orientation="vertical"
           sx={{
             my: "4px",
             borderColor: staking
@@ -89,6 +88,7 @@ const FooterItems = ({ staking }: FooterProps) => {
               display: "none",
             },
           }}
+          variant="middle"
         />
         <Link href="/privacy-policy" passHref>
           <Typography component="a" css={styles.word}>
@@ -107,10 +107,10 @@ const FooterItems = ({ staking }: FooterProps) => {
               gap: "12px",
             },
             [theme.breakpoints.up("laptop")]: {
-              flexDirection: "row",
-              alignItems: "center",
-              paddingTop: 0,
-              paddingBottom: 0,
+              "flexDirection": "row",
+              "alignItems": "center",
+              "paddingTop": 0,
+              "paddingBottom": 0,
               "& hr": {
                 mx: 2,
               },
@@ -126,9 +126,8 @@ const FooterItems = ({ staking }: FooterProps) => {
             </Typography>
           </Link>
           <Divider
-            orientation="vertical"
-            variant="middle"
             flexItem
+            orientation="vertical"
             sx={{
               my: "4px",
               borderColor: staking
@@ -138,6 +137,7 @@ const FooterItems = ({ staking }: FooterProps) => {
                 display: "none",
               },
             }}
+            variant="middle"
           />
           <Link href="/blog" passHref>
             <Typography component="a" css={styles.word}>

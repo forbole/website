@@ -53,10 +53,10 @@ const FourTable = ({ btnHref }: Props) => {
           }}
         >
           <Stack
-            direction="row"
             className={indexTop === clickItem ? styles.popular : styles.none}
+            direction="row"
           >
-            <img src="/icons/Group.png" alt="" />
+            <img alt="" src="/icons/Group.png" />
             <Typography component="span">{t("popular")}</Typography>
           </Stack>
           <Typography
@@ -129,9 +129,9 @@ const FourTable = ({ btnHref }: Props) => {
                   }}
                 >
                   <img
-                    style={{ width: "25px", height: "25px" }}
-                    src={Plan.image}
                     alt=""
+                    src={Plan.image}
+                    style={{ width: "25px", height: "25px" }}
                   />
                   <Typography
                     sx={{
@@ -156,9 +156,9 @@ const FourTable = ({ btnHref }: Props) => {
                 }}
               >
                 <img
-                  style={{ width: "25px", height: "25px" }}
-                  src={Plan.image}
                   alt=""
+                  src={Plan.image}
+                  style={{ width: "25px", height: "25px" }}
                 />
                 <Typography
                   sx={{
@@ -173,6 +173,7 @@ const FourTable = ({ btnHref }: Props) => {
             )}
           </Box>
           <CtaButton
+            onClick={Plan.btnHref ? () => router.push(Plan.btnHref) : btnHref}
             sx={{
               position: "absolute",
               left: "24px",
@@ -180,7 +181,6 @@ const FourTable = ({ btnHref }: Props) => {
               bottom: "24px",
               [theme.breakpoints.down("laptop")]: { display: "none" },
             }}
-            onClick={Plan.btnHref ? () => router.push(Plan.btnHref) : btnHref}
           >
             {t(Plan.btnName)}
           </CtaButton>

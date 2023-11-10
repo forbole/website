@@ -12,30 +12,30 @@ const Twitter = () => {
   return (
     <Box sx={styles.twitterCSS}>
       <Typography
-        variant="h3"
         sx={{
           fontWeight: 700,
           fontSize: theme.spacing(3),
           paddingBottom: theme.spacing(1.5),
         }}
+        variant="h3"
       >
         {t("twitter")}
       </Typography>
       <Box>
         <TwitterTimelineEmbed
-          noHeader
-          sourceType="profile"
-          screenName="forbole"
-          options={{
-            height: 500,
-          }}
-          theme="dark"
+          borderColor="rgba(116, 136, 188, 0.3)"
           linkColor={
             theme.palette.mode === "dark"
               ? theme.palette.primary.main
               : theme.palette.text.primary
           }
-          borderColor="rgba(116, 136, 188, 0.3)"
+          noHeader
+          options={{
+            height: 500,
+          }}
+          screenName="forbole"
+          sourceType="profile"
+          theme="dark"
           transparent
         />
       </Box>

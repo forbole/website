@@ -1,9 +1,6 @@
-FROM node:14.15.0-alpine
+FROM node:20-alpine
 
 ENV PORT 3000
-
-# Install git for ui and internal packages
-RUN apk add --no-cache git
 
 # Set app directory
 WORKDIR /app

@@ -4,18 +4,18 @@ const useStyles = () => {
   const theme = useTheme();
   return {
     root: css({
-      minWidth: theme.spacing(15),
-      minHeight: theme.spacing(10),
-      borderRadius: theme.spacing(3),
-      backgroundColor: alpha(theme.palette.common.white, 0.6),
+      "minWidth": theme.spacing(15),
+      "minHeight": theme.spacing(10),
+      "borderRadius": theme.spacing(3),
+      "backgroundColor": alpha(theme.palette.common.white, 0.6),
       /* Shadow/Secondary (Validator)/Drop Shadow 02 */
-      boxShadow:
+      "boxShadow":
         "0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)",
-      display: "inline-flex",
-      justifyContent: "center",
-      flexFlow: "row wrap",
-      alignItems: "center",
-      textAlign: "center",
+      "display": "inline-flex",
+      "justifyContent": "center",
+      "flexFlow": "row wrap",
+      "alignItems": "center",
+      "textAlign": "center",
       "& .MuiLinearProgress-root": {
         width: "100%",
       },
@@ -43,20 +43,21 @@ const useStyles = () => {
           "0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)",
       },
       "& .networkbox__explore-btn": {
-        padding: "0.75rem 1rem",
-        borderRadius: "200px",
+        "padding": "0.75rem 1rem",
+        "borderRadius": "200px",
         /* Primary Color/BD Red Gradient 02 */
-        backgroundColor: "#F6504B",
-        backgroundImage: "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
+        "backgroundColor": "#F6504B",
+        "backgroundImage":
+          "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
         /* Neutral Color/White */
-        color: "#FFFFFF",
-        width: "111px",
-        height: "45px",
+        "color": "#FFFFFF",
+        "width": "111px",
+        "height": "45px",
         "&:hover": {
           filter: "brightness(1.2)",
         },
         // additional style:
-        fontSize: theme.typography.body1.fontSize,
+        "fontSize": theme.typography.body1.fontSize,
       },
       "& .networkbox__close-btn": {
         position: "absolute",
@@ -68,26 +69,26 @@ const useStyles = () => {
       },
       "& .networkbox__desktop-anchor, & .networkbox__mobile-anchor": {
         /* Secondary Color/Royal Blue 01 */
-        color: theme.palette.custom.forbole.indigo6,
-        fontSize: theme.spacing(2),
-        borderRadius: theme.spacing(1.5),
-        width: "100%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexFlow: "row wrap",
-        gap: theme.spacing(0.5),
-        padding: "20% 0",
+        "color": theme.palette.custom.forbole.indigo6,
+        "fontSize": theme.spacing(2),
+        "borderRadius": theme.spacing(1.5),
+        "width": "100%",
+        "height": "100%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "flexFlow": "row wrap",
+        "gap": theme.spacing(0.5),
+        "padding": "20% 0",
         "&:hover": {
           opacity: 1,
         },
       },
       "& .networkbox__desktop-anchor": {
-        display: "none",
-        position: "relative",
-        cursor: "pointer",
+        "display": "none",
+        "position": "relative",
+        "cursor": "pointer",
         [theme.breakpoints.up("tablet")]: {
-          display: "flex",
+          "display": "flex",
           "&:hover .networkbox__popover": {
             display: "flex !important",
           },
@@ -105,9 +106,9 @@ const useStyles = () => {
         },
       },
       "& .networkbox__mobile-anchor": {
-        display: "flex",
-        position: "static",
-        gap: theme.spacing(3),
+        "display": "flex",
+        "position": "static",
+        "gap": theme.spacing(3),
         "&:hover": {
           // backgroundColor: theme.palette.grey[500],
           backgroundColor: theme.palette.primary.light,
@@ -117,9 +118,9 @@ const useStyles = () => {
         },
       },
       "& .networkbox__mobile-popover-contaier": {
-        display: "block",
-        alignSelf: "flex-start",
-        cursor: "pointer",
+        "display": "block",
+        "alignSelf": "flex-start",
+        "cursor": "pointer",
         [theme.breakpoints.up("tablet")]: {
           display: "none",
         },
@@ -151,10 +152,10 @@ const useStyles = () => {
         },
       },
       "& .networkbox__popover": {
-        position: "absolute",
-        display: "none",
-        zIndex: 3,
-        padding: theme.spacing(3),
+        "position": "absolute",
+        "display": "none",
+        "zIndex": 3,
+        "padding": theme.spacing(3),
         [theme.breakpoints.down("tablet")]: {
           marginTop: `-${theme.spacing(1)}`,
         },
@@ -164,7 +165,7 @@ const useStyles = () => {
           maxWidth: theme.spacing(34),
           maxHeight: theme.spacing(27.25),
         },
-        boxShadow:
+        "boxShadow":
           "10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)",
         "&::before": {
           content: '""',
@@ -188,12 +189,12 @@ const useStyles = () => {
             maxHeight: theme.spacing(27.25),
           },
         },
-        color: theme.palette.text.primary,
-        borderRadius: theme.spacing(3),
-        flexFlow: "row wrap",
-        gap: theme.spacing(2),
-        justifyContent: "center",
-        alignItems: "flex-start",
+        "color": theme.palette.text.primary,
+        "borderRadius": theme.spacing(3),
+        "flexFlow": "row wrap",
+        "gap": theme.spacing(2),
+        "justifyContent": "center",
+        "alignItems": "flex-start",
         "& .MuiTypography-h6": {
           textAlign: "left",
         },
@@ -210,17 +211,17 @@ const useStyles = () => {
           width: "100%",
         },
         "& > .MuiBox-root:nth-of-type(2)": {
-          display: "flex",
-          flexFlow: "column nowrap",
-          justifyContent: "space-between",
-          gap: theme.spacing(1),
-          width: "100%",
+          "display": "flex",
+          "flexFlow": "column nowrap",
+          "justifyContent": "space-between",
+          "gap": theme.spacing(1),
+          "width": "100%",
           "& > .MuiBox-root": {
-            display: "flex",
-            flexFlow: "row nowrap",
-            justifyContent: "space-between",
-            gap: theme.spacing(3),
-            alignItems: "center",
+            "display": "flex",
+            "flexFlow": "row nowrap",
+            "justifyContent": "space-between",
+            "gap": theme.spacing(3),
+            "alignItems": "center",
             "& > .MuiBox-root": {
               flex: "1 0 auto",
             },

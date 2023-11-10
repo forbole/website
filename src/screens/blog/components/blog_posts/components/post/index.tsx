@@ -13,18 +13,17 @@ const Post = (props: any) => {
   const { isDesktop, isMobile } = useWindowDimensions();
   const { post, main = false } = props;
   const { featureImage, title, excerpt, publishedAt, slug, author } = post;
-  const cmsLoader = ({ src, width, quality }: any) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
-  };
+  const cmsLoader = ({ src, width, quality }: any) =>
+    `${src}?w=${width}&q=${quality || 75}`;
   const time = useHKT(publishedAt);
   return (
     <Box
       sx={{
-        border: "1px solid rgba(195, 204, 226, 0.3)",
-        borderRadius: theme.spacing(1.5),
-        color: theme.palette.primary.main,
-        background: "transparent",
-        height: "100%",
+        "border": "1px solid rgba(195, 204, 226, 0.3)",
+        "borderRadius": theme.spacing(1.5),
+        "color": theme.palette.primary.main,
+        "background": "transparent",
+        "height": "100%",
         "& a": {
           color: theme.palette.primary.main,
           textDecoration: "none",
@@ -41,7 +40,7 @@ const Post = (props: any) => {
       }}
     >
       <Box ref={props.refProp} sx={{ padding: 0 }}>
-        <Link href="/blog/[title]" as={`/blog/${slug}`}>
+        <Link as={`/blog/${slug}`} href="/blog/[title]">
           <a>
             <Box
               height={
@@ -51,43 +50,36 @@ const Post = (props: any) => {
                   ? ("156px!important" as any)
                   : ("156px!important" as any)
               }
-              width={
-                isDesktop && main
-                  ? ("100%!important" as any)
-                  : isMobile
-                  ? ("100%!important" as any)
-                  : ("100%!important" as any)
-              }
               sx={{
                 "> span": {
                   width: "100%!important" as any,
                 },
               }}
+              width={
+                isDesktop && main
+                  ? ("100%!important" as any)
+                  : isMobile
+                  ? ("100%!important" as any)
+                  : ("100%!important" as any)
+              }
             >
               <Image
+                alt={title}
+                height={
+                  isDesktop && main ? "324px" : isMobile ? "156px" : "156px"
+                }
                 loader={cmsLoader}
+                objectFit="cover"
+                quality={100}
                 src={
                   !featureImage
                     ? "/images/assets/blog-placeholder.png"
                     : featureImage
                 }
-                alt={title}
                 width={isDesktop && main ? "100%" : isMobile ? "270px" : "100%"}
-                height={
-                  isDesktop && main ? "324px" : isMobile ? "156px" : "156px"
-                }
-                quality={100}
-                objectFit="cover"
               />
             </Box>
             <Box
-              width={
-                isDesktop && main
-                  ? ("690px!important" as any)
-                  : isMobile
-                  ? ("270px!important" as any)
-                  : ("100%!important" as any)
-              }
               sx={{
                 padding: theme.spacing(2.5, 2.5, 0, 2.5),
                 [theme.breakpoints.up("laptop")]: {
@@ -96,26 +88,33 @@ const Post = (props: any) => {
                     : ("380px!important" as any),
                 },
               }}
+              width={
+                isDesktop && main
+                  ? ("690px!important" as any)
+                  : isMobile
+                  ? ("270px!important" as any)
+                  : ("100%!important" as any)
+              }
             >
               <Typography
-                variant="h3"
                 sx={{
                   fontWeight: 700,
                   fontSize: theme.spacing(3),
                   paddingBottom: theme.spacing(3),
                   overflowWrap: "break-word",
                 }}
+                variant="h3"
               >
                 {title}
               </Typography>
               <Typography
-                variant="body1"
                 sx={{
                   fontWeight: 400,
                   fontSize: theme.spacing(2),
                   overflowWrap: "break-word",
                   lineHeight: 1.8,
                 }}
+                variant="body1"
               >
                 {excerpt}
               </Typography>
@@ -145,7 +144,7 @@ const Post = (props: any) => {
           >
             <p>
               Posted by{" "}
-              <Link href="/author/[author]" as={`/author/${author.slug}`}>
+              <Link as={`/author/${author.slug}`} href="/author/[author]">
                 <a
                   style={{
                     textDecoration: "underline",

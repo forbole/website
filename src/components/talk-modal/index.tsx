@@ -23,15 +23,15 @@ interface Props {
   staking?: any;
   open?: boolean;
   inputs: {
-    name: string;
-    email: string;
-    company: string;
-    telegram: string;
-    agree: boolean;
-    specify: string;
+    "name": string;
+    "email": string;
+    "company": string;
+    "telegram": string;
+    "agree": boolean;
+    "specify": string;
     "Data API": boolean;
-    GraphQL: boolean;
-    Other: boolean;
+    "GraphQL": boolean;
+    "Other": boolean;
     "RPC Endpoints": boolean;
   };
   handleInputChange: (event: any) => void;
@@ -77,11 +77,8 @@ const TalkModal = ({
   ] as const;
   return (
     <Modal
-      open={open}
       onClose={() => close?.(false)}
-      sx={{
-        overflow: "auto",
-      }}
+      open={open}
       slotProps={{
         backdrop: {
           sx() {
@@ -91,6 +88,9 @@ const TalkModal = ({
             };
           },
         },
+      }}
+      sx={{
+        overflow: "auto",
       }}
     >
       <Stack
@@ -164,10 +164,10 @@ const TalkModal = ({
               <span style={{ color: "#FF426B" }}>*</span>
             </Typography>
             <FormInput
-              value={inputs.name}
               name="name"
-              placeholder={t("name")}
               onInput={handleInputChange}
+              placeholder={t("name")}
+              value={inputs.name}
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
@@ -180,10 +180,10 @@ const TalkModal = ({
               {t("label_company")}
             </Typography>
             <FormInput
-              value={inputs.company}
               name="company"
-              placeholder={t("Company")}
               onInput={handleInputChange}
+              placeholder={t("Company")}
+              value={inputs.company}
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
@@ -197,11 +197,11 @@ const TalkModal = ({
               <span style={{ color: "#FF426B" }}>*</span>
             </Typography>
             <FormInput
-              value={inputs.email}
               name="email"
-              type="email"
-              placeholder={t("Email")}
               onInput={handleInputChange}
+              placeholder={t("Email")}
+              type="email"
+              value={inputs.email}
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
@@ -214,10 +214,10 @@ const TalkModal = ({
               {t("label_telegram")}
             </Typography>
             <FormInput
-              value={inputs.telegram}
               name="telegram"
-              placeholder={t("Telegram")}
               onInput={handleInputChange}
+              placeholder={t("Telegram")}
+              value={inputs.telegram}
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
@@ -242,70 +242,68 @@ const TalkModal = ({
                 py: 0,
               }}
             >
-              {selectList.map((value) => {
-                return (
-                  <ListItem
-                    key={value.label}
+              {selectList.map((value) => (
+                <ListItem
+                  key={value.label}
+                  sx={{
+                    bgcolor: "#ffffff",
+                    borderBottom: "2px solid rgba(96, 60, 238, 0.28)",
+                  }}
+                >
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={inputs[value.name]}
+                        name={value.name}
+                        onChange={handleToggle}
+                        sx={{
+                          "py": "0",
+                          "color": "#AFAFAF",
+                          "&.Mui-checked": {
+                            color: "#EE3131",
+                          },
+                        }}
+                        value={value.name}
+                      />
+                    }
+                    id={t(value.label)}
+                    label={t(value.label)}
+                    labelPlacement="start"
                     sx={{
-                      bgcolor: "#ffffff",
-                      borderBottom: "2px solid rgba(96, 60, 238, 0.28)",
+                      width: "100%",
+                      justifyContent: "space-between",
+                      m: 0,
+                      p: "12px 0",
+                      fontSize: "16px",
+                      lineHeight: "30px",
                     }}
-                  >
-                    <FormControlLabel
-                      id={t(value.label)}
-                      sx={{
-                        width: "100%",
-                        justifyContent: "space-between",
-                        m: 0,
-                        p: "12px 0",
-                        fontSize: "16px",
-                        lineHeight: "30px",
-                      }}
-                      labelPlacement="start"
-                      control={
-                        <Checkbox
-                          name={value.name}
-                          value={value.name}
-                          checked={inputs[value.name]}
-                          onChange={handleToggle}
-                          sx={{
-                            py: "0",
-                            color: "#AFAFAF",
-                            "&.Mui-checked": {
-                              color: "#EE3131",
-                            },
-                          }}
-                        />
-                      }
-                      label={t(value.label)}
-                    />
-                  </ListItem>
-                );
-              })}
+                  />
+                </ListItem>
+              ))}
               <ListItem
                 disablePadding
                 sx={{
-                  width: "auto",
+                  "width": "auto",
                   "&:last-child": { borderBottom: "0" },
-                  bgcolor: "#ffffff",
-                  borderBottom: "2px solid rgba(96, 60, 238, 0.28)",
+                  "bgcolor": "#ffffff",
+                  "borderBottom": "2px solid rgba(96, 60, 238, 0.28)",
                 }}
               >
                 <Input
-                  onInput={handleInputChange}
                   ref={inputRef}
-                  value={inputs.specify}
-                  name="specify"
-                  placeholder={t("item_5")}
-                  fullWidth
-                  disableUnderline
                   disabled={!inputs.Other}
+                  disableUnderline
+                  fullWidth
+                  name="specify"
+                  onInput={handleInputChange}
+                  placeholder={t("item_5")}
                   sx={{
                     p: "12px",
                     fontSize: "16px",
                     lineHeight: "30px",
                     color: "#878787",
                   }}
+                  value={inputs.specify}
                 />
               </ListItem>
             </List>
@@ -313,20 +311,12 @@ const TalkModal = ({
           <Grid item mobile={12}>
             <FormGroup>
               <FormControlLabel
-                sx={{
-                  mr: 0,
-                  verticalAlign: "top",
-                  lineHeight: "30px",
-                  alignItems: "flex-start",
-                }}
-                name="agree"
                 checked={inputs.agree}
-                onChange={handleCheckedChange}
                 control={
                   <Checkbox
                     sx={{
-                      py: "0",
-                      color: "#AFAFAF",
+                      "py": "0",
+                      "color": "#AFAFAF",
                       "&.Mui-checked": {
                         color: "#EE3131",
                       },
@@ -334,14 +324,22 @@ const TalkModal = ({
                   />
                 }
                 label={t("check_word")}
+                name="agree"
+                onChange={handleCheckedChange}
+                sx={{
+                  mr: 0,
+                  verticalAlign: "top",
+                  lineHeight: "30px",
+                  alignItems: "flex-start",
+                }}
               />
             </FormGroup>
           </Grid>
           <Grid item laptop={12}>
             <CtaButton
-              onClick={handleSubmit}
               disabled={!canSubmit}
               loading={isLoading}
+              onClick={handleSubmit}
             >
               {t("submit")}
             </CtaButton>

@@ -30,11 +30,11 @@ const Home: React.FC<Props> = ({ pages }) => {
   const { isMobile, isTablet } = useWindowDimensions();
   return (
     <Layout
-      title={t("coBuildingInterchain")}
       description={t("description")}
       footer
-      redBgFooter
       redBg
+      redBgFooter
+      title={t("coBuildingInterchain")}
     >
       <Box ref={topRef}>
         <Container
@@ -90,9 +90,9 @@ const Home: React.FC<Props> = ({ pages }) => {
           </Stack>
         </Container>
         <Container
+          ref={bottomRef}
           maxWidth={isTablet ? "tablet" : "desktop"}
           sx={{ zIndex: "1" }}
-          ref={bottomRef}
         >
           <Typography
             sx={{
@@ -112,102 +112,102 @@ const Home: React.FC<Props> = ({ pages }) => {
             {t("title")}
           </Typography>
           <Grid
+            columnSpacing={{ mobile: "0", laptop: theme.spacing(2) }}
             container
             rowSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(3) }}
-            columnSpacing={{ mobile: "0", laptop: theme.spacing(2) }}
           >
-            <Grid item mobile={12} laptop={8}>
+            <Grid item laptop={8} mobile={12}>
               <IntroPanel
-                title={t("Validator_Infrastructure_title")}
-                desc={t("Validator_Infrastructure_desc")}
-                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("infrastructure");
                 }}
+                btnName={t("see_more")}
+                desc={t("Validator_Infrastructure_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/home/mobile@2x.png")
                     : require("/public/home/Desktop@2x.png")
                 }
                 img_not_response
+                title={t("Validator_Infrastructure_title")}
               />
             </Grid>
-            <Grid item mobile={12} laptop={4}>
+            <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("Native_Staking_Service_title")}
-                desc={t("Native_Staking_Service_desc")}
-                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("staking-service");
                 }}
+                btnName={t("see_more")}
+                desc={t("Native_Staking_Service_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/home/mobile-1@2x.png")
                     : require("/public/home/Desktop-1@2x.png")
                 }
                 img_not_response
+                title={t("Native_Staking_Service_title")}
               />
             </Grid>
-            <Grid item mobile={12} laptop={4}>
+            <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("Blockchain_Data_Analytics_Tools_title")}
-                desc={t("Blockchain_Data_Analytics_Tools_desc")}
-                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("analytics-tools");
                 }}
+                btnName={t("see_more")}
+                desc={t("Blockchain_Data_Analytics_Tools_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/home/mobile-2@2x.png")
                     : require("/public/home/Desktop-2@2x.png")
                 }
                 img_not_response
+                title={t("Blockchain_Data_Analytics_Tools_title")}
               />
             </Grid>
-            <Grid item mobile={12} laptop={8}>
+            <Grid item laptop={8} mobile={12}>
               <IntroPanel
-                title={t("Developer_Tools_title")}
-                desc={t("Developer_Tools_desc")}
-                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("developer-tools");
                 }}
+                btnName={t("see_more")}
+                desc={t("Developer_Tools_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/home/mobile-3@2x.png")
                     : require("/public/home/Desktop-3@2x.png")
                 }
                 img_not_response
+                title={t("Developer_Tools_title")}
               />
             </Grid>
-            <Grid item mobile={12} laptop={8}>
+            <Grid item laptop={8} mobile={12}>
               <IntroPanel
-                title={t("Enterprise_Solution_title")}
-                desc={t("Enterprise_Solution_desc")}
-                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("enterprise-solution");
                 }}
+                btnName={t("see_more")}
+                desc={t("Enterprise_Solution_desc")}
                 imageHref={
                   isMobile
                     ? require("/public/home/mobile-4@2x.png")
                     : require("/public/home/Desktop-4@2x.png")
                 }
                 img_not_response
+                title={t("Enterprise_Solution_title")}
               />
             </Grid>
-            <Grid item mobile={12} laptop={4}>
+            <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("Forbole_Academy_title")}
-                desc={t("Forbole_Academy_desc")}
                 btnName={t("coming_soon")}
+                desc={t("Forbole_Academy_desc")}
+                disabled
                 imageHref={
                   isMobile
                     ? require("/public/home/mobile-5@2x.png")
                     : require("/public/home/Desktop-5@2x.png")
                 }
                 img_not_response
-                disabled
+                title={t("Forbole_Academy_title")}
               />
             </Grid>
           </Grid>
@@ -230,20 +230,18 @@ const Home: React.FC<Props> = ({ pages }) => {
           </Typography>
           <Grid container spacing={theme.spacing(2)}>
             {pages.map(
-              ({ title, list, imageHref, btnName, btnClick, id }, idx) => {
-                return (
-                  <Grid item laptop={4} mobile={12} key={`${id}_${idx}`}>
-                    <IntroCard
-                      title={title}
-                      list={list}
-                      imageHref={imageHref}
-                      btnName={btnName}
-                      btnClick={() => router.push(btnClick)}
-                      disabled={!btnClick || false}
-                    />
-                  </Grid>
-                );
-              },
+              ({ title, list, imageHref, btnName, btnClick, id }, idx) => (
+                <Grid key={`${id}_${idx}`} item laptop={4} mobile={12}>
+                  <IntroCard
+                    btnClick={() => router.push(btnClick)}
+                    btnName={btnName}
+                    disabled={!btnClick || false}
+                    imageHref={imageHref}
+                    list={list}
+                    title={title}
+                  />
+                </Grid>
+              ),
             )}
           </Grid>
           <Box mt="100px">

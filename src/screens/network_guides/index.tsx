@@ -17,14 +17,14 @@ const NetworkGuides = ({ post }: any) => {
 
   return (
     <LayoutVal
-      title={post.title}
       description={post.excerpt}
-      type="article"
+      footer
       image={post.featureImage}
-      twitterImage={post.featureImage}
       keywords={post.tags.map((x: { name: any }) => x.name ?? "")}
       stakingGuide
-      footer
+      title={post.title}
+      twitterImage={post.featureImage}
+      type="article"
     >
       <LaptopCSS>
         <NetworkInfo post={post} />

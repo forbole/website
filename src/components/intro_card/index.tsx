@@ -38,7 +38,7 @@ const IntroCard = (props: Props) => {
           "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
       }}
     >
-      {imageHref && <img src={imageHref} alt="" />}
+      {imageHref && <img alt="" src={imageHref} />}
       <Box
         component="div"
         sx={{
@@ -80,12 +80,13 @@ const IntroCard = (props: Props) => {
               <Typography
                 key={index}
                 component="li"
+                px="10px"
                 sx={{
-                  display: "flex",
-                  fontSize: "16px",
-                  lineHeight: "22px",
-                  fontWeight: "400",
-                  color: "#202A43",
+                  "display": "flex",
+                  "fontSize": "16px",
+                  "lineHeight": "22px",
+                  "fontWeight": "400",
+                  "color": "#202A43",
                   "&:before": {
                     content: '" "',
                     display: "inline-block",
@@ -99,7 +100,6 @@ const IntroCard = (props: Props) => {
                     flex: "0 0 auto",
                   },
                 }}
-                px="10px"
               >
                 {item}
               </Typography>

@@ -53,8 +53,8 @@ function addSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
   const startAdornment = (
     <InputAdornment position="start">
       <SearchIcon
-        stroke={theme.palette.custom.forbole.indigo04}
         fontSize="small"
+        stroke={theme.palette.custom.forbole.indigo04}
       />
     </InputAdornment>
   );
@@ -69,16 +69,16 @@ interface OptionsProps {
 const Options: FC<OptionsProps> = ({ props, network }) => {
   const styles = useStyles();
   return (
-    <ListItem {...props} title={network.delegate} sx={styles.listItem}>
+    <ListItem {...props} sx={styles.listItem} title={network.delegate}>
       <ListItemIcon>
         <Box className="image">
           {network.image && (
             <Image
-              src={network.image}
-              objectFit="contain"
-              width="32px"
               height="32px"
+              objectFit="contain"
               quality={100}
+              src={network.image}
+              width="32px"
             />
           )}
         </Box>
@@ -96,7 +96,7 @@ const Options: FC<OptionsProps> = ({ props, network }) => {
  */
 function renderOption(props: HTMLAttributes<HTMLLIElement>, option: unknown) {
   const { network } = option as { network: Network };
-  return <Options key={network.name} props={props} network={network} />;
+  return <Options key={network.name} network={network} props={props} />;
 }
 
 /**
@@ -144,8 +144,8 @@ const SearchBar: FC<SearchBarProps> = () => {
     ({ InputProps, ...params }) => (
       <TextField
         {...params}
-        placeholder={t("searchNetwork")}
         InputProps={addSearch(InputProps)}
+        placeholder={t("searchNetwork")}
         sx={styles.textField}
       />
     ),
@@ -181,24 +181,24 @@ const SearchBar: FC<SearchBarProps> = () => {
       sx={styles.root}
     >
       <Autocomplete
-        openOnFocus
+        filterOptions={filterOptions}
         inputMode="search"
-        popupIcon={null}
         noOptionsText={t("noResultsFound")}
+        onBlurCapture={handleBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        openOnFocus
         options={options}
         PaperComponent={PaperComponent}
         PopperComponent={PopperComponent}
-        renderOption={renderOption}
+        popupIcon={null}
         renderInput={renderInput}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlurCapture={handleBlur}
-        filterOptions={filterOptions}
+        renderOption={renderOption}
       />
       <Button
-        variant="text"
         className="searchbox__cancel-btn"
         onClick={handleBlur}
+        variant="text"
       >
         {t("cancel")}
       </Button>

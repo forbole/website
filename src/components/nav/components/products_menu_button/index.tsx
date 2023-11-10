@@ -51,16 +51,16 @@ const ProductsMenuButton = () => {
             <MenuItem
               component="a"
               sx={{
-                display: "flex",
+                "display": "flex",
                 // color: theme.palette.common.white,
-                padding: "0px 32px",
-                justifyContent: "flex-start",
-                fontSize: theme.spacing(2),
-                fontWeight: 700,
-                height: theme.spacing(7),
+                "padding": "0px 32px",
+                "justifyContent": "flex-start",
+                "fontSize": theme.spacing(2),
+                "fontWeight": 700,
+                "height": theme.spacing(7),
                 // padding: theme.spacing(0, 3),
-                filter: l.link !== "#!" ? "" : "opacity(0.1)",
-                color: theme.palette.custom.forbole.indigo,
+                "filter": l.link !== "#!" ? "" : "opacity(0.1)",
+                "color": theme.palette.custom.forbole.indigo,
                 "> a": {
                   width: "100%",
                   textAlign: "left",
@@ -85,19 +85,19 @@ const ProductsMenuButton = () => {
       sx={{ background: "rgba(107, 97, 254, 0.24)" }}
     >
       {menuProductsList?.map((l, i) => (
-        <Link href={l.link} passHref key={i}>
+        <Link key={i} href={l.link} passHref>
           <MenuItem
-            onClick={handleClose}
             component="a"
+            onClick={handleClose}
             sx={{
-              display: "flex",
-              justifyContent: "flex-start",
-              fontSize: theme.spacing(2),
-              fontWeight: 700,
-              height: theme.spacing(7),
-              padding: theme.spacing(0, 4),
-              filter: l.link !== "#!" ? "" : "opacity(0.1)",
-              color: theme.palette.custom.forbole.indigo,
+              "display": "flex",
+              "justifyContent": "flex-start",
+              "fontSize": theme.spacing(2),
+              "fontWeight": 700,
+              "height": theme.spacing(7),
+              "padding": theme.spacing(0, 4),
+              "filter": l.link !== "#!" ? "" : "opacity(0.1)",
+              "color": theme.palette.custom.forbole.indigo,
               "> a": {
                 width: "100%",
                 textAlign: "left",

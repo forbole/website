@@ -57,9 +57,8 @@ const GuideDetails = ({ post }: any) => {
           }}
         >
           <Button
-            variant="contained"
-            href={networkData.delegate ? networkData.delegate : ""}
             disabled={!networkData.delegate}
+            href={networkData.delegate ? networkData.delegate : ""}
             sx={{
               width: "97px",
               height: "32px",
@@ -76,6 +75,7 @@ const GuideDetails = ({ post }: any) => {
                 height: "45px",
               },
             }}
+            variant="contained"
           >
             Stake Now
           </Button>

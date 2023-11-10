@@ -10,11 +10,11 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     },
   },
   listCSS: (theme) => ({
-    display: "inline-block",
-    padding: theme.spacing(1, 2),
-    background: theme.palette.secondary.main,
-    borderRadius: theme.spacing(25),
-    margin: theme.spacing(0, 1, 1, 0),
+    "display": "inline-block",
+    "padding": theme.spacing(1, 2),
+    "background": theme.palette.secondary.main,
+    "borderRadius": theme.spacing(25),
+    "margin": theme.spacing(0, 1, 1, 0),
     "& a": {
       color: theme.palette.primary.main,
       textDecoration: "none",

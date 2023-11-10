@@ -5,10 +5,10 @@ const useStyles = () => {
   return {
     navBarButton: css({
       // width: "68px",
-      padding: "8px 12px",
-      fontSize: "16px",
-      borderRadius: "40px",
-      backgroundColor: "transparent",
+      "padding": "8px 12px",
+      "fontSize": "16px",
+      "borderRadius": "40px",
+      "backgroundColor": "transparent",
       "&:hover": {
         backgroundColor: "rgba(107, 97, 254, 0.24)",
       },

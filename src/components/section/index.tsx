@@ -70,7 +70,6 @@ const Section = ({
 
       {title_large_trans && (
         <Trans
-          i18nKey={title_large_trans}
           components={[
             <Typography
               display="inline"
@@ -85,9 +84,9 @@ const Section = ({
               }}
             />,
             <Typography
-              display="inline"
-              component="span"
               color="#EE3131"
+              component="span"
+              display="inline"
               sx={{
                 textShadow: "0px 0px 20px #ffffff",
                 fontSize: "40px",
@@ -99,6 +98,7 @@ const Section = ({
               }}
             />,
           ]}
+          i18nKey={title_large_trans}
         />
       )}
 

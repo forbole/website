@@ -39,9 +39,9 @@ const SocialMedia = (props: any) => {
   return (
     <Box
       sx={{
-        paddingBottom: theme.spacing(3),
+        "paddingBottom": theme.spacing(3),
         "& svg": {
-          marginRight: theme.spacing(2),
+          "marginRight": theme.spacing(2),
           "& path": {
             fill: theme.palette.primary.main,
           },

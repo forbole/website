@@ -112,11 +112,11 @@ export default function HeaderCard({
       >
         {head_bg && (
           <Image
-            src={head_bg}
             alt=""
-            objectFit="cover"
             layout="fill"
+            objectFit="cover"
             priority
+            src={head_bg}
           />
         )}
       </Box>

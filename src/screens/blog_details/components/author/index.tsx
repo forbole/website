@@ -16,12 +16,12 @@ const Author = ({ post }: any) => {
       }}
     >
       <img
+        alt={author.name}
         src={
           author.profileImage == null
             ? "/images/assets/blog-placeholder.png"
             : author.profileImage
         }
-        alt={author.name}
         style={{
           borderRadius: "50%",
           width: theme.spacing(5),
@@ -39,28 +39,28 @@ const Author = ({ post }: any) => {
       >
         <Link
           key={post.id}
-          href="/author/[author]"
           as={`/author/${author.slug}`}
+          href="/author/[author]"
         >
           <a style={{ textDecoration: "none" }}>
             <Typography
-              variant="body1"
               sx={{
                 color: theme.palette.primary.main,
                 fontWeight: 600,
                 fontSize: theme.spacing(1.75),
               }}
+              variant="body1"
             >
               {author.name}
             </Typography>
             <Typography
-              variant="body1"
               sx={{
                 opacity: 0.5,
                 color: theme.palette.primary.main,
                 fontWeight: 400,
                 fontSize: theme.spacing(1.75),
               }}
+              variant="body1"
             >
               {time}
             </Typography>

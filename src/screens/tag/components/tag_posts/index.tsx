@@ -49,8 +49,8 @@ const TagPosts = ({ main, blogs, meta }: IProps) => {
       </Box>
       <Pagination
         count={totalPages}
-        page={currentPage}
         onChange={handleTagPageChange}
+        page={currentPage}
         shape="rounded"
         showFirstButton
         showLastButton

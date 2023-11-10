@@ -39,10 +39,10 @@ const EnterpriseSolution = () => {
   };
 
   return (
-    <Layout title={t("page_title")} footer>
+    <Layout footer title={t("page_title")}>
       <Container
-        maxWidth="desktop"
         ref={topRef}
+        maxWidth="desktop"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -53,22 +53,25 @@ const EnterpriseSolution = () => {
         }}
       >
         <HeaderCard
-          title={t("enterprise_solution")}
           desc_1st={t("trusted")}
           head_bg={
             isMobile
               ? "/enterprise_solution/head_bg_m@2x.png"
               : "/enterprise_solution/head_bg@2x.png"
           }
+          title={t("enterprise_solution")}
         />
         <Stack>
           <Section
+            desc={t("provides")}
             maxWidth="900px"
             title={t("technical_consultation")}
             title_large_trans={t("customized")}
-            desc={t("provides")}
           />
           <CtaButton
+            onClick={(e: React.MouseEvent<HTMLElement>) =>
+              scrollToRef(e, ContactRef)
+            }
             sx={{
               display: "block",
               margin: "80px auto",
@@ -76,41 +79,38 @@ const EnterpriseSolution = () => {
                 my: "32px",
               },
             }}
-            onClick={(e: React.MouseEvent<HTMLElement>) =>
-              scrollToRef(e, ContactRef)
-            }
           >
             {t("talk_to_us")}
           </CtaButton>
           <Grid container spacing={theme.spacing(2)}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("API")}
                 imageHref={
                   isMobile
                     ? require("/public/enterprise_solution/c1_m@2x.png")
                     : require("/public/enterprise_solution/c1@2x.png")
                 }
+                title={t("API")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("collection")}
                 imageHref={
                   isMobile
                     ? require("/public/enterprise_solution/c2_m@2x.png")
                     : require("/public/enterprise_solution/c2@2x.png")
                 }
+                title={t("collection")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("decentralized")}
                 imageHref={
                   isMobile
                     ? require("/public/enterprise_solution/c3_m@2x.png")
                     : require("/public/enterprise_solution/c3@2x.png")
                 }
+                title={t("decentralized")}
               />
             </Grid>
           </Grid>
@@ -141,28 +141,28 @@ const EnterpriseSolution = () => {
  */}
         <Stack mx="auto">
           <Section
+            desc={t("our")}
             maxWidth="750px"
             title={t("contact")}
             title_large_trans={t("get")}
-            desc={t("our")}
           />
           <ContactFrom
             ref={ContactRef}
-            inputs={inputs}
+            canSubmit={canSubmit}
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmit}
-            canSubmit={canSubmit}
+            inputs={inputs}
             isLoading={isLoading}
           />
           <ScrollToTop topRef={topRef} />
         </Stack>
         <SuccessModal
-          fixed
-          open={success}
-          close={setSuccess}
-          up_word={t("contact_soon")}
-          middle_word={!isMobile ? t("success") : ""}
           bottom_word={isMobile ? t("thanks") : ""}
+          close={setSuccess}
+          fixed
+          middle_word={!isMobile ? t("success") : ""}
+          open={success}
+          up_word={t("contact_soon")}
         />
       </Container>
     </Layout>

@@ -65,19 +65,19 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const popover = (
     <Box className="networkbox__popover">
       <CloseIcon
-        fontSize="small"
         className="networkbox__close-btn"
+        fontSize="small"
         onClickCapture={handleMobilPopoverClick}
       />
       <Box onClickCapture={handleMobilPopoverClick}>
         <Box className="image">
           {network?.image && (
             <Image
-              src={network.image || ""}
-              objectFit="contain"
-              width="48px"
               height="48px"
+              objectFit="contain"
               quality={100}
+              src={network.image || ""}
+              width="48px"
             />
           )}
         </Box>
@@ -107,7 +107,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
           )}
           {!!networkSummary.TVL && (
             <Box>
-              <Stack direction="row" alignItems="center" gap={1}>
+              <Stack alignItems="center" direction="row" gap={1}>
                 <Typography variant="h6">TVL</Typography>
                 <InfoIcon />
               </Stack>
@@ -117,10 +117,10 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         </Box>
       )}
       <Button
-        variant="contained"
-        color="secondary"
         className="networkbox__explore-btn"
+        color="secondary"
         onClickCapture={handleExploreClick}
+        variant="contained"
       >
         {t("stake now")}
       </Button>
@@ -132,12 +132,12 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
     <motion.div
       ref={ref}
       css={styles.root}
+      initial="initial"
+      transition={{ duration: 0.3 }}
       variants={{
         initial: { opacity: 0, scale: 0.8 },
         appear: { opacity: 1, scale: 1 },
       }}
-      transition={{ duration: 0.3 }}
-      initial="initial"
       whileInView="appear"
     >
       <Box
@@ -154,29 +154,29 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         <Box className="image">
           {network.image && (
             <Image
-              src={network.image}
-              objectFit="contain"
-              width="48px"
               height="48px"
+              objectFit="contain"
               quality={100}
+              src={network.image}
+              width="48px"
             />
           )}
         </Box>
         <Typography variant="h4">{network.name}</Typography>
       </Box>
       <Button
-        variant="text"
         className="networkbox__mobile-anchor"
         onClick={handleMobileAnchorClick}
+        variant="text"
       >
         <Box className="image">
           {network.image && (
             <Image
-              src={network.image}
-              objectFit="contain"
-              width="48px"
               height="48px"
+              objectFit="contain"
               quality={100}
+              src={network.image}
+              width="48px"
             />
           )}
         </Box>

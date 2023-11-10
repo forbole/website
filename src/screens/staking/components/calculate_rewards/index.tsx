@@ -24,11 +24,11 @@ const CalculateRewards = () => {
     <Box display="flex" justifyContent="center">
       <Box
         sx={{
-          padding: theme.spacing(5, 3),
+          "padding": theme.spacing(5, 3),
           "> .h3": {
-            fontWeight: 700,
-            fontSize: theme.spacing(3),
-            textAlign: "center",
+            "fontWeight": 700,
+            "fontSize": theme.spacing(3),
+            "textAlign": "center",
             [theme.breakpoints.up("laptop")]: {
               fontSize: theme.spacing(5),
             },
@@ -43,7 +43,7 @@ const CalculateRewards = () => {
             },
           },
           [theme.breakpoints.up("laptop")]: {
-            maxWidth: "1200px",
+            "maxWidth": "1200px",
             "> .h3": {
               margin: "auto",
             },
@@ -51,7 +51,6 @@ const CalculateRewards = () => {
         }}
       >
         <Trans
-          i18nKey={t("calculate rewards title")}
           components={[
             <Box
               className="h3"
@@ -69,9 +68,9 @@ const CalculateRewards = () => {
               }}
             />,
           ]}
+          i18nKey={t("calculate rewards title")}
         />
         <Typography
-          variant="body1"
           sx={{
             textShadow:
               "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
@@ -86,17 +85,18 @@ const CalculateRewards = () => {
               paddingBottom: theme.spacing(7),
             },
           }}
+          variant="body1"
         >
           {t("calculate rewards desc")}
         </Typography>
         <Calculator
+          handleChange={handleChange}
+          monthlyPeriods={monthlyPeriods}
           selectedToken={selectedToken}
+          setMonthlyPeriods={setMonthlyPeriods}
           setSelectedToken={setSelectedToken}
           tokens={tokens}
           totalEarnings={totalEarnings}
-          handleChange={handleChange}
-          monthlyPeriods={monthlyPeriods}
-          setMonthlyPeriods={setMonthlyPeriods}
         />
       </Box>
     </Box>

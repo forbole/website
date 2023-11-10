@@ -13,12 +13,12 @@ const TitlePosts = (props: any) => {
   return (
     <Box component="ul" sx={styles.titlePostCSS}>
       <Typography
-        variant="h3"
         sx={{
           fontWeight: 700,
           fontSize: theme.spacing(3),
           paddingBottom: theme.spacing(1.5),
         }}
+        variant="h3"
       >
         {t("contents")}
       </Typography>
@@ -29,7 +29,7 @@ const TitlePosts = (props: any) => {
               padding: theme.spacing(3, 0),
             }}
           >
-            <Link href="/blog/[title]" as={`/blog/${post.slug}`} key={post.id}>
+            <Link key={post.id} as={`/blog/${post.slug}`} href="/blog/[title]">
               <a>
                 <li
                   style={{

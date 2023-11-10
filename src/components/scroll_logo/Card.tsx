@@ -11,7 +11,7 @@ type Props = {
 const Card = ({ networkData, sx }: Props) => {
   const theme = useTheme();
   return (
-    <Box sx={sx} display="flex" maxWidth="max-content">
+    <Box display="flex" maxWidth="max-content" sx={sx}>
       {networkData.map((item: any, index) => (
         <Box
           key={index}
@@ -44,10 +44,10 @@ const Card = ({ networkData, sx }: Props) => {
           >
             {item.image && (
               <Image
-                src={item.image}
-                objectFit="contain"
-                layout="fill"
                 alt=""
+                layout="fill"
+                objectFit="contain"
+                src={item.image}
               />
             )}
           </Box>

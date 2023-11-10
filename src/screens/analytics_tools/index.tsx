@@ -46,10 +46,10 @@ const AnalyticsTools = () => {
     ];
   }, [isMobile]);
   return (
-    <Layout title={t("title")} footer>
+    <Layout footer title={t("title")}>
       <Container
-        maxWidth="desktop"
         ref={topRef}
+        maxWidth="desktop"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -60,21 +60,22 @@ const AnalyticsTools = () => {
         }}
       >
         <HeaderCard
-          title={t("title")}
           desc_1st={t("empowering")}
           head_bg={
             isMobile
               ? "/data_visualization/head_bg_m@2x.png"
               : "/data_visualization/head_bg@2x.png"
           }
+          title={t("title")}
         />
         <Stack>
           <Section
+            desc={t("our")}
             title={t("data_visualization")}
             title_large_trans={t("free")}
-            desc={t("our")}
           />
           <CtaButton
+            onClick={() => router.push("https://bigdipper.live/")}
             sx={{
               display: "block",
               margin: "40px auto",
@@ -82,39 +83,38 @@ const AnalyticsTools = () => {
                 my: "32px",
               },
             }}
-            onClick={() => router.push("https://bigdipper.live/")}
           >
             {t("try_now")}
           </CtaButton>
           <Grid container spacing={theme.spacing(2)}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("always")}
                 desc={t("desc_1")}
                 imageHref={imagesList[0]}
+                title={t("always")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("staking_tool")}
                 desc={t("desc_2")}
                 imageHref={imagesList[1]}
+                title={t("staking_tool")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                title={t("governance_tool")}
                 desc={t("desc_3")}
                 imageHref={imagesList[2]}
+                title={t("governance_tool")}
               />
             </Grid>
           </Grid>
         </Stack>
 
         <Section
+          desc={t("big_dipper")}
           title={t("customizable")}
           title_large_trans={t("networks")}
-          desc={t("big_dipper")}
         />
       </Container>
       <Stack>

@@ -14,13 +14,13 @@ const HowToCard = (props: any) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: theme.spacing(4, 3),
-        background: theme.palette.common.white,
-        borderRadius: theme.spacing(3),
-        boxShadow:
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "flex-start",
+        "padding": theme.spacing(4, 3),
+        "background": theme.palette.common.white,
+        "borderRadius": theme.spacing(3),
+        "boxShadow":
           "0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)",
         "& span": {
           marginLeft:
@@ -34,16 +34,15 @@ const HowToCard = (props: any) => {
       }}
     >
       {image && (
-        <Image src={image} objectFit="contain" width="100%" height="60px" />
+        <Image height="60px" objectFit="contain" src={image} width="100%" />
       )}
       <Box
+        alignItems="flex-start"
         display="flex"
         flexDirection="column"
         justifyContent="flex-start"
-        alignItems="flex-start"
       >
         <Typography
-          variant="h4"
           color={theme.palette.custom.forbole.blue}
           fontWeight={600}
           sx={{
@@ -54,11 +53,11 @@ const HowToCard = (props: any) => {
               padding: theme.spacing(2.5, 0),
             },
           }}
+          variant="h4"
         >
           {t(title)}
         </Typography>
         <Typography
-          variant="body1"
           color={theme.palette.custom.forbole.blue}
           fontSize={onlyLargeScreen ? theme.spacing(2) : theme.spacing(1.75)}
           sx={{
@@ -68,6 +67,7 @@ const HowToCard = (props: any) => {
               lineHeight: theme.spacing(3),
             },
           }}
+          variant="body1"
         >
           {t(desc)}
         </Typography>

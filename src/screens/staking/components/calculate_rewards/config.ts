@@ -64,6 +64,4 @@ const stakingParams: NetworkProps = {
   teritori: baseState,
 };
 
-export const getStakingParams = (key: string) => {
-  return stakingParams[key] ?? {};
-};
+export const getStakingParams = (key: string) => stakingParams[key] ?? {};

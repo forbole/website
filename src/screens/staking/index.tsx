@@ -25,10 +25,10 @@ const Staking = () => {
 
   return (
     <LayoutVal
-      stakeNowRef={stakeNowRef}
-      image="/images/assets/image_forbole_validator_website_preview.png"
-      twitterImage="/images/assets/image_forbole_validator_website_preview.png"
       footer
+      image="/images/assets/image_forbole_validator_website_preview.png"
+      stakeNowRef={stakeNowRef}
+      twitterImage="/images/assets/image_forbole_validator_website_preview.png"
     >
       <StakingContextProvider>
         <LaptopCSS>

@@ -2,15 +2,15 @@ import { LoadingButton, LoadingButtonProps } from "@mui/lab";
 import { styled } from "@mui/material/styles";
 
 const ColorButton = styled(LoadingButton)<LoadingButtonProps>(() => ({
-  flexShrink: 0,
-  borderRadius: "45px",
-  color: "rgba(235, 238, 245, 1)",
-  background: "linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%)",
-  whiteSpace: "nowrap",
-  fontWeight: "590",
-  height: "45px",
-  fontSize: "16px",
-  padding: " 0px 16px",
+  "flexShrink": 0,
+  "borderRadius": "45px",
+  "color": "rgba(235, 238, 245, 1)",
+  "background": "linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%)",
+  "whiteSpace": "nowrap",
+  "fontWeight": "590",
+  "height": "45px",
+  "fontSize": "16px",
+  "padding": " 0px 16px",
   "&:hover": {
     background:
       "linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%),linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32))",

@@ -21,53 +21,51 @@ const DesktopNavMenu = ({ itemColor }: NavMenuProps) => {
 
   return (
     <Box
-      width="100%"
+      alignItems="center"
       display="flex"
       flexDirection="row"
-      alignItems="center"
-      justifyContent="flex-end"
       gap="16px"
+      justifyContent="flex-end"
+      width="100%"
     >
-      {navItems.map((item, i) => {
-        return (
-          <Box
-            key={i}
-            className={classes.navItem}
-            sx={{
-              color: "white",
-              fontWeight: 600,
-              fontSize: theme.spacing(2),
-              "&:hover": {
-                color: itemColor || theme.palette.custom.forbole.indigo,
-              },
-              userSelect: "none",
-            }}
-          >
-            <Link href={item.link} passHref>
-              <Box
-                component="a"
-                style={{ color: "inherit", textDecoration: "none" }}
-              >
-                {t(item.display)}
+      {navItems.map((item, i) => (
+        <Box
+          key={i}
+          className={classes.navItem}
+          sx={{
+            "color": "white",
+            "fontWeight": 600,
+            "fontSize": theme.spacing(2),
+            "&:hover": {
+              color: itemColor || theme.palette.custom.forbole.indigo,
+            },
+            "userSelect": "none",
+          }}
+        >
+          <Link href={item.link} passHref>
+            <Box
+              component="a"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {t(item.display)}
+            </Box>
+          </Link>
+          {i === 0 && (
+            <Box className={classes.boxItem}>
+              <Box className={classes.boxItemList}>
+                <ProductsMenuButton />
               </Box>
-            </Link>
-            {i === 0 && (
-              <Box className={classes.boxItem}>
-                <Box className={classes.boxItemList}>
-                  <ProductsMenuButton />
-                </Box>
+            </Box>
+          )}
+          {i === 1 && (
+            <Box className={classes.boxItem}>
+              <Box className={classes.boxItemList}>
+                <CompanyMenuButton />
               </Box>
-            )}
-            {i === 1 && (
-              <Box className={classes.boxItem}>
-                <Box className={classes.boxItemList}>
-                  <CompanyMenuButton />
-                </Box>
-              </Box>
-            )}
-          </Box>
-        );
-      })}
+            </Box>
+          )}
+        </Box>
+      ))}
       <Box>
         <Link href="/staking" passHref>
           <a>

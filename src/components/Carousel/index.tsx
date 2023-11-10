@@ -19,83 +19,81 @@ type PersonInfo = {
   img: string;
 };
 
-const PersonCard = ({ desc, name, position, img }: PersonInfo) => {
-  return (
-    <Card
-      sx={{
-        display: "flex",
-        gap: "20px",
-        boxSizing: "border-box",
-        height: "100%",
-        minHeight: "368px",
-        padding: "32px 24px",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        borderRadius: "24px",
-        background:
-          "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.89) 34.90%, #FFF 100%)",
-        boxShadow:
-          "0px 10px 32px -4px rgba(96, 60, 238, 0.20), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
-      }}
-    >
-      {img && (
-        <Avatar
-          alt="Phoebe Poon"
-          src={img}
-          sx={{
-            width: 100,
-            height: 100,
-            boxShadow:
-              "0px 10px 32px -4px rgba(96, 60, 238, 0.50), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
-          }}
-        />
-      )}
-      <Box>
-        {/* 姓名 */}
-        <Typography
-          sx={{
-            fontSize: { mobile: 24, laptop: 20 },
-            fontStyle: "normal",
-            fontWeight: 700,
-            lineHeight: "normal",
-            letterSpacing: 0.036,
-            color: "#202A43",
-          }}
-        >
-          {name}
-        </Typography>
-
-        {/* 职位 */}
-        <Typography
-          sx={{
-            fontSize: { mobile: 18, laptop: 16 },
-            fontStyle: "normal",
-            fontWeight: 400,
-            lineHeight: "normal",
-            letterSpacing: -0.36,
-            color: "#202A43",
-          }}
-        >
-          {position}
-        </Typography>
-      </Box>
-      {/* 描述 */}
+const PersonCard = ({ desc, name, position, img }: PersonInfo) => (
+  <Card
+    sx={{
+      display: "flex",
+      gap: "20px",
+      boxSizing: "border-box",
+      height: "100%",
+      minHeight: "368px",
+      padding: "32px 24px",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      borderRadius: "24px",
+      background:
+        "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.89) 34.90%, #FFF 100%)",
+      boxShadow:
+        "0px 10px 32px -4px rgba(96, 60, 238, 0.20), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
+    }}
+  >
+    {img && (
+      <Avatar
+        alt="Phoebe Poon"
+        src={img}
+        sx={{
+          width: 100,
+          height: 100,
+          boxShadow:
+            "0px 10px 32px -4px rgba(96, 60, 238, 0.50), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
+        }}
+      />
+    )}
+    <Box>
+      {/* 姓名 */}
       <Typography
         sx={{
-          width: "100%",
-          fontSize: { mobile: 14, laptop: 16 },
+          fontSize: { mobile: 24, laptop: 20 },
           fontStyle: "normal",
-          fontWeight: 400,
-          lineHeight: { mobile: "20px", laptop: "22px" },
-          letterSpacing: { mobile: "-0.112px", laptop: "-0.192px" },
-          color: "#2A1A6A",
+          fontWeight: 700,
+          lineHeight: "normal",
+          letterSpacing: 0.036,
+          color: "#202A43",
         }}
       >
-        {desc}
+        {name}
       </Typography>
-    </Card>
-  );
-};
+
+      {/* 职位 */}
+      <Typography
+        sx={{
+          fontSize: { mobile: 18, laptop: 16 },
+          fontStyle: "normal",
+          fontWeight: 400,
+          lineHeight: "normal",
+          letterSpacing: -0.36,
+          color: "#202A43",
+        }}
+      >
+        {position}
+      </Typography>
+    </Box>
+    {/* 描述 */}
+    <Typography
+      sx={{
+        width: "100%",
+        fontSize: { mobile: 14, laptop: 16 },
+        fontStyle: "normal",
+        fontWeight: 400,
+        lineHeight: { mobile: "20px", laptop: "22px" },
+        letterSpacing: { mobile: "-0.112px", laptop: "-0.192px" },
+        color: "#2A1A6A",
+      }}
+    >
+      {desc}
+    </Typography>
+  </Card>
+);
 type CarouselProps = {
   personList?: PersonInfo[];
 };
@@ -138,15 +136,6 @@ const Carousel = ({ personList }: CarouselProps) => {
         }}
       >
         <Swiper
-          className="swiper-no-swiping"
-          spaceBetween={-16}
-          slidesPerView={3}
-          centeredSlides
-          initialSlide={1}
-          navigation={{
-            nextEl: ".c-next",
-            prevEl: ".c-prev",
-          }}
           breakpoints={{
             375: {
               slidesPerView: 1,
@@ -159,15 +148,24 @@ const Carousel = ({ personList }: CarouselProps) => {
               initialSlide: 1,
             },
           }}
+          centeredSlides
+          className="swiper-no-swiping"
+          initialSlide={1}
+          navigation={{
+            nextEl: ".c-next",
+            prevEl: ".c-prev",
+          }}
+          slidesPerView={3}
+          spaceBetween={-16}
         >
           {usedList?.map((item, index) => (
             <SwiperSlide key={index}>
               <PersonCard
-                name={item.name}
-                position={item.position}
+                key={index}
                 desc={item.desc}
                 img={item.img}
-                key={index}
+                name={item.name}
+                position={item.position}
               />
             </SwiperSlide>
           ))}

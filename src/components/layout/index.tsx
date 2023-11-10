@@ -109,65 +109,65 @@ const Layout = ({
       <Head>
         <title>{title}</title>
         {!!(url === "https://staging.forbole.com") && (
-          <meta name="googlebot" content="noindex" />
+          <meta content="noindex" name="googlebot" />
         )}
-        <meta name="description" content={description || t("description")} />
-        <meta name="keywords" content={formattedKeyworks.join(", ")} />
+        <meta content={description || t("description")} name="description" />
+        <meta content={formattedKeyworks.join(", ")} name="keywords" />
         <meta
-          name="viewport"
           content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+          name="viewport"
         />
         <meta
+          content={type}
           prefix="og: http://ogp.me/ns#"
           property="og:type"
-          content={type}
         />
         <meta
+          content={title}
           prefix="og: http://ogp.me/ns#"
           property="og:title"
-          content={title}
         />
         <meta
+          content="Forbole"
           prefix="og: http://ogp.me/ns#"
           property="og:site_name"
-          content="Forbole"
         />
         <meta
+          content={`${url}${currentPath}`}
           prefix="og: http://ogp.me/ns#"
           property="og:url"
-          content={`${url}${currentPath}`}
         />
         <meta
+          content={description || t("description")}
           prefix="og: http://ogp.me/ns#"
           property="og:description"
-          content={description || t("description")}
         />
         <meta
+          content={ogImage}
           prefix="og: http://ogp.me/ns#"
           property="og:image"
-          content={ogImage}
         />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={metaTwitterImage} />
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta content={metaTwitterImage} name="twitter:image" />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
           href={`${url}/icons/favicon-96x96.png`}
+          rel="icon"
+          sizes="96x96"
+          type="image/png"
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
           href={`${url}/icons/favicon-32x32.png`}
+          rel="icon"
+          sizes="32x32"
+          type="image/png"
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
           href={`${url}/icons/favicon-16x16.png`}
+          rel="icon"
+          sizes="16x16"
+          type="image/png"
         />
-        <link rel="manifest" href={`${url}/icons/manifest.json`} />
+        <link href={`${url}/icons/manifest.json`} rel="manifest" />
       </Head>
       <Box>
         <Box
@@ -180,7 +180,7 @@ const Layout = ({
         >
           <Nav itemColor={itemColor} />
           {children}
-          {!!footer && <Footer red={redBgFooter} itemColor={itemColor} />}
+          {!!footer && <Footer itemColor={itemColor} red={redBgFooter} />}
         </Box>
       </Box>
     </Box>

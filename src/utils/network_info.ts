@@ -9,7 +9,7 @@ interface IStringIndex extends Record<string, any> {}
  */
 
 export const logos: IStringIndex = {
-  cosmos: {
+  "cosmos": {
     image: "/images/network/cosmos_hub.png",
     name: "Cosmos Hub",
     label: "Cosmos Hub - ATOM",
@@ -32,7 +32,7 @@ export const logos: IStringIndex = {
         "http://lcd.cosmoshub.bigdipper.live/staking/validators/cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj",
     },
   },
-  agoric: {
+  "agoric": {
     image: "/images/network/agoric.png",
     name: "Agoric",
     denom: "bld",
@@ -44,7 +44,7 @@ export const logos: IStringIndex = {
     bigDipper: "https://testnet.explorer.agoric.net/",
     guide: "how-to-stake-bld-on-agoric",
   },
-  akash: {
+  "akash": {
     image: "/images/network/akash.png",
     name: "Akash",
     label: "Akash - AKT",
@@ -86,7 +86,7 @@ export const logos: IStringIndex = {
         "http://lcd.band.forbole.com/staking/validators/bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z",
     },
   },
-  bitsong: {
+  "bitsong": {
     image: "/images/network/bitsong.png",
     name: "BitSong",
     denom: "btsg",
@@ -109,7 +109,7 @@ export const logos: IStringIndex = {
     address: "crocncl15xphw2m025acwnjd2ucq9t5ku4ggaqyecekzqa",
     guide: "how-to-stake-cro-on-crypto-org",
   },
-  desmos: {
+  "desmos": {
     image: "/images/network/desmos.png",
     name: "Desmos",
     denom: "dsm",
@@ -138,7 +138,7 @@ export const logos: IStringIndex = {
         "http://lcd.emoney.forbole.com/staking/validators/emoneyvaloper1293pqwtzu67zp8txuya4yts03ccw5kgf98hz9y",
     },
   },
-  evmos: {
+  "evmos": {
     image: "/images/network/evmos.png",
     name: "Evmos",
     label: "Evmos - EVMOS",
@@ -161,7 +161,7 @@ export const logos: IStringIndex = {
     bigDipper: "https://explore.fetch.ai/",
     address: "fetchvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0dzxfx3",
   },
-  comdex: {
+  "comdex": {
     image: "/images/network/comdex.png",
     name: "Comdex",
     label: "Comdex - CMDX",
@@ -172,7 +172,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-cmdx-on-comdex",
     delegate: "https://comdex.omniflix.co/",
   },
-  axelar: {
+  "axelar": {
     image: "/images/network/axelar.png",
     name: "Axelar",
     label: "Axelar - AXL",
@@ -183,7 +183,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-axl-on-axelar",
     delegate: "https://wallet.keplr.app/chains/axelar",
   },
-  bitcanna: {
+  "bitcanna": {
     image: "/images/network/bitcanna.png",
     name: "Bitcanna",
     label: "BitCanna - BCNA",
@@ -194,7 +194,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-bcna-on-bitcanna",
     delegate: "https://wallet.bitcanna.io/",
   },
-  cheqd: {
+  "cheqd": {
     image: "/images/network/cheqd.svg",
     name: "Cheqd",
     label: "CHEQD Network - CHEQ",
@@ -205,7 +205,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-cheq-on-cheqd",
     delegate: "https://wallet.cheqd.io",
   },
-  chihuahua: {
+  "chihuahua": {
     image: "/images/network/chihuahua.png",
     name: "Chihuahua",
     label: "Chihuahua Chain - HUAHUA",
@@ -225,7 +225,7 @@ export const logos: IStringIndex = {
     graphql: "terra_classic",
     address: "terravaloper1v6pfkm0nxpudgantwxwhz786l8me0wfs4lnpuw",
   },
-  persistence: {
+  "persistence": {
     image: "/images/network/persistence.png",
     name: "Persistence",
     label: "Persistence - XPRT",
@@ -236,7 +236,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-xprt-on-persistence",
     delegate: "https://wallet.keplr.app/chains/persistence",
   },
-  crescent: {
+  "crescent": {
     image: "/images/network/crescent.png",
     name: "Crescent",
     label: "Crescent Network - CRE",
@@ -247,7 +247,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-cre-on-crescent",
     delegate: "https://crescent.disperze.network/",
   },
-  ixo: {
+  "ixo": {
     image: "/images/network/ixo.png",
     name: "ixo",
     label: "IXO - IXO",
@@ -258,7 +258,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-ixo-on-ixo",
     delegate: "https://wallet.keplr.app/chains/ixo",
   },
-  injective: {
+  "injective": {
     image: "/images/network/injective.png",
     name: "Injective",
     label: "Injective - INJ",
@@ -267,7 +267,7 @@ export const logos: IStringIndex = {
     graphql: "injective",
     address: "injvaloper12s9d7l53ef2c8avrn7pgd6dfeeg2yzel58ztfx",
   },
-  juno: {
+  "juno": {
     image: "/images/network/juno.png",
     name: "Juno",
     label: "Juno - JUNO",
@@ -278,7 +278,7 @@ export const logos: IStringIndex = {
     address: "junovaloper1pvwqfze548z95sdhun58trrvxhlhfrvky5ejtk",
     guide: "how-to-stake-juno-on-juno",
   },
-  kava: {
+  "kava": {
     image: "/images/network/kava.png",
     name: "Kava",
     label: "Kava - KAVA",
@@ -289,7 +289,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-kava-on-kava",
     delegate: "https://wallet.keplr.app/chains/kava",
   },
-  band: {
+  "band": {
     image: "/images/network/band_protocol.png",
     name: "Band Protocol",
     denom: "band",
@@ -299,7 +299,7 @@ export const logos: IStringIndex = {
     address: "bandvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0wz502z",
     delegate: "https://atomicwallet.io/band-staking",
   },
-  likecoin: {
+  "likecoin": {
     image: "/images/network/likecoin.png",
     name: "Likecoin",
     label: "Likecoin - LIKE",
@@ -310,7 +310,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-like-on-likecoin",
     delegate: "https://dao.like.co/",
   },
-  assetmantle: {
+  "assetmantle": {
     image: "/images/network/assetmantle.png",
     name: "Assetmantle",
     label: "Assetmantle - MNTL",
@@ -321,7 +321,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-mntl-on-assetmantle",
     delegate: "https://wallet.assetmantle.one/",
   },
-  osmosis: {
+  "osmosis": {
     image: "/images/network/osmosis.png",
     name: "Osmosis",
     label: "Osmosis - OSMO",
@@ -332,7 +332,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-osmo-on-osmosis",
     delegate: "https://wallet.keplr.app/chains/osmosis",
   },
-  provenance: {
+  "provenance": {
     image: "/images/network/provenance.png",
     name: "Provenance",
     denom: "hash",
@@ -340,7 +340,7 @@ export const logos: IStringIndex = {
     graphql: "provenance",
     address: "pbvaloper1plh34z4gmfcypecdzudcfhytcyeulyxj0l8t75",
   },
-  regen: {
+  "regen": {
     image: "/images/network/regen.png",
     name: "Regen",
     label: "Regen - REGEN",
@@ -349,7 +349,7 @@ export const logos: IStringIndex = {
     graphql: "regen",
     address: "regenvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0c7xhe5",
   },
-  secret: {
+  "secret": {
     image: "/images/network/secret.png",
     name: "Secret",
     label: "Secret - SCRT",
@@ -360,7 +360,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-scrt-on-secret-network",
     delegate: "https://wallet.keplr.app/chains/secret-network",
   },
-  sentinel: {
+  "sentinel": {
     image: "/images/network/sentinel.png",
     name: "Sentinel",
     label: "Sentinel - DVPN",
@@ -371,7 +371,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-dvpn-on-sentinel",
     delegate: "https://wallet.keplr.app/chains/sentinel",
   },
-  shentu: {
+  "shentu": {
     image: "/images/network/shentu.png",
     name: "Shentu",
     label: "Shentu - CTK",
@@ -380,7 +380,7 @@ export const logos: IStringIndex = {
     graphql: "shentu",
     address: "certikvaloper17agcmyws85x5yw08r60zwgdqa6zqy38d7zm33g",
   },
-  sommelier: {
+  "sommelier": {
     image: "/images/network/sommelier.png",
     name: "Sommelier",
     label: "Sommelier - SOMM",
@@ -391,7 +391,7 @@ export const logos: IStringIndex = {
     delegate: "https://wallet.keplr.app/chains/sommelier",
     guide: "how-to-stake-somm-on-sommelier",
   },
-  stafihub: {
+  "stafihub": {
     image: "/images/network/stafihub.png",
     name: "Stafihub",
     label: "Stafi - FIS",
@@ -400,7 +400,7 @@ export const logos: IStringIndex = {
     graphql: "stafihub",
     address: "stafivaloper1pvwqfze548z95sdhun58trrvxhlhfrvkwtr9vz",
   },
-  stride: {
+  "stride": {
     image: "/images/network/stride.png",
     name: "Stride",
     label: "Stride - STRD",
@@ -411,7 +411,7 @@ export const logos: IStringIndex = {
     delegate: "https://wallet.keplr.app/chains/stride",
     guide: "how-to-stake-strd-on-stride",
   },
-  elrond: {
+  "elrond": {
     image: "/images/network/elrond.png",
     name: "Elrond",
     denom: "egld",
@@ -419,7 +419,7 @@ export const logos: IStringIndex = {
     graphql: "elrond",
     address: "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqq40llllsfjmn54",
   },
-  solana: {
+  "solana": {
     image: "/images/network/solana.png",
     name: "Solana",
     denom: "SOL",
@@ -427,14 +427,14 @@ export const logos: IStringIndex = {
     graphql: "solana",
     address: "76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857",
   },
-  cardano: {
+  "cardano": {
     image: "/images/network/cardano.png",
     name: "Cardano",
     denom: "ADA",
     key: "cardano",
     graphql: "cardano",
   },
-  ethereum: {
+  "ethereum": {
     image: "/images/network/ethereum.png",
     name: "Ethereum",
     denom: "ETH",
@@ -452,7 +452,7 @@ export const logos: IStringIndex = {
     delegate: "https://wallet.keplr.app/chains/gravity-bridge",
     address: "gravityvaloper1xwkkam88aep5jcu2hcj0a2hy79eyvcw6yhfgv6",
   },
-  jackal: {
+  "jackal": {
     image: "/images/network/jackal.png",
     name: "Jackal Protocol",
     label: "Jackal Protocol - JKL",
@@ -460,14 +460,14 @@ export const logos: IStringIndex = {
     key: "jackal",
     graphql: "jackal",
   },
-  kusama: {
+  "kusama": {
     image: "/images/network/kusama.png",
     name: "Kusama",
     denom: "KSM",
     key: "kusama",
     graphql: "kusama",
   },
-  terra: {
+  "terra": {
     image: "/images/network/terra.png",
     name: "Terra",
     denom: "LUNA",
@@ -475,7 +475,7 @@ export const logos: IStringIndex = {
     key: "terra",
     graphql: "terra",
   },
-  nomic: {
+  "nomic": {
     image: "/images/network/nomic.png",
     name: "Nomic Network",
     denom: "NOM",
@@ -486,7 +486,7 @@ export const logos: IStringIndex = {
     delegate: "https://app.nomic.io/",
     address: "nomic1yvzvykkvqruhrvwn7776tm6ppmaf4gcnazas2e",
   },
-  nym: {
+  "nym": {
     image: "/images/network/neutron.png",
     name: "NYM",
     label: "NYM - NYX",
@@ -494,14 +494,14 @@ export const logos: IStringIndex = {
     key: "nym",
     graphql: "nym",
   },
-  oasis: {
+  "oasis": {
     image: "/images/network/oasis.png",
     name: "Oasis Network",
     denom: "ROSE",
     key: "oasis",
     graphql: "oasis",
   },
-  omniflix: {
+  "omniflix": {
     image: "/images/network/omniflix.png",
     name: "Omniflix Network",
     label: "Omniflix Network - FLIX",
@@ -509,42 +509,42 @@ export const logos: IStringIndex = {
     key: "omniflix",
     graphql: "omniflix",
   },
-  passage: {
+  "passage": {
     image: "/images/network/passage.png",
     name: "Passage",
     denom: "PASG",
     key: "passage",
     graphql: "passage",
   },
-  celer: {
+  "celer": {
     image: "/images/network/celer.png",
     name: "Celer",
     denom: "CELER",
     key: "celer",
     graphql: "celer",
   },
-  quicksilver: {
+  "quicksilver": {
     image: "/images/network/quicksilver.png",
     name: "Quicksilver Protocol",
     denom: "QCK",
     key: "quicksilver",
     graphql: "quicksilver",
   },
-  radix: {
+  "radix": {
     image: "/images/network/radix.png",
     name: "Radix",
     denom: "XRD",
     key: "radix",
     graphql: "radix",
   },
-  ssv: {
+  "ssv": {
     image: "/images/network/ssv.png",
     name: "SSV Network",
     denom: "SSV",
     key: "ssv",
     graphql: "ssv",
   },
-  stargaze: {
+  "stargaze": {
     image: "/images/network/stargaze.png",
     name: "Stargaze",
     label: "Stargaze - STARS",
@@ -555,7 +555,7 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-stars-on-stargaze",
     address: "starsvaloper12k8za208e5kt0j34w6au6v8py6t6cat2sqjzvw",
   },
-  teritori: {
+  "teritori": {
     image: "/images/network/teritori.png",
     name: "Teritori",
     denom: "TORI",
@@ -566,28 +566,28 @@ export const logos: IStringIndex = {
     guide: "how-to-stake-tori-on-teritori",
     address: "torivaloper138664l4407d7hfwe8a82q25fk4vht53j9yl3e9",
   },
-  tgrade: {
+  "tgrade": {
     image: "/images/network/tgrade.png",
     name: "Tgrade",
     denom: "TGD",
     key: "tgrade",
     graphql: "tgrade",
   },
-  wormhole: {
+  "wormhole": {
     image: "/images/network/wormhole.png",
     name: "Wormhole",
     // denom: 'NUL',
     key: "wormhole",
     graphql: "wormhole",
   },
-  vsys: {
+  "vsys": {
     image: "/images/network/v-systems.png",
     name: "V Systems",
     denom: "VSYS",
     key: "vsys",
     graphql: "vsys",
   },
-  ununifi: {
+  "ununifi": {
     image: "/images/network/ununifi.png",
     name: "Ununifi",
     label: "Ununifi - GUU",
@@ -595,7 +595,7 @@ export const logos: IStringIndex = {
     key: "ununifi",
     graphql: "ununifi",
   },
-  xpla: {
+  "xpla": {
     image: "/images/network/xpla.png",
     name: "XPLA",
     label: "XPLA - XPLA",
@@ -603,7 +603,7 @@ export const logos: IStringIndex = {
     key: "xpla",
     graphql: "xpla",
   },
-  onomy: {
+  "onomy": {
     image: "/images/network/onomy.png",
     name: "Onomy Protocol",
     label: "Onomy Protocol - NOM",
@@ -611,7 +611,7 @@ export const logos: IStringIndex = {
     key: "onomy",
     graphql: "onomy",
   },
-  mars: {
+  "mars": {
     image: "/images/network/mars.png",
     name: "Mars Protocol",
     label: "Mars Protocol - MARS",
@@ -624,7 +624,7 @@ export const logos: IStringIndex = {
       "https://explorer.marsprotocol.io/validators/marsvaloper1799t9vxshqssrk5cgnywvlx0fnlk2ekdz328aa",
   },
   // 追加的数据
-  archway: {
+  "archway": {
     image: "/images/network/archway.png",
     name: "Archway",
     label: "",
@@ -632,7 +632,7 @@ export const logos: IStringIndex = {
     key: "archway",
     graphql: "archway",
   },
-  coreum: {
+  "coreum": {
     image: "/images/network/coreum.png",
     name: "Coreum",
     label: "",
@@ -640,7 +640,7 @@ export const logos: IStringIndex = {
     key: "coreum",
     graphql: "coreum",
   },
-  humansai: {
+  "humansai": {
     image: "/images/network/humansai.png",
     name: "Humans.ai",
     label: "",
@@ -648,7 +648,7 @@ export const logos: IStringIndex = {
     key: "humansai",
     graphql: "humansai",
   },
-  islamic_coin: {
+  "islamic_coin": {
     image: "/images/network/islamic_coin.png",
     name: "Islamic Coin",
     label: "",
@@ -656,7 +656,7 @@ export const logos: IStringIndex = {
     key: "islamic_coin",
     graphql: "islamic_coin",
   },
-  kyve: {
+  "kyve": {
     image: "/images/network/kyve.png",
     name: "KYVE",
     label: "",
@@ -664,7 +664,7 @@ export const logos: IStringIndex = {
     key: "kyve",
     graphql: "kyve",
   },
-  lido: {
+  "lido": {
     image: "/images/network/lido.png",
     name: "Lido",
     label: "",
@@ -672,7 +672,7 @@ export const logos: IStringIndex = {
     key: "lido",
     graphql: "lido",
   },
-  multiversx: {
+  "multiversx": {
     image: "/images/network/multiversx.png",
     name: "MultiversX",
     label: "",
@@ -680,7 +680,7 @@ export const logos: IStringIndex = {
     key: "multiversx",
     graphql: "multiversx",
   },
-  nolus: {
+  "nolus": {
     image: "/images/network/nolus.png",
     name: "Nolus",
     label: "",
@@ -688,7 +688,7 @@ export const logos: IStringIndex = {
     key: "nolus",
     graphql: "nolus",
   },
-  neutron: {
+  "neutron": {
     image: "/images/network/neutron.png",
     name: "Neutron",
     label: "",
@@ -696,7 +696,7 @@ export const logos: IStringIndex = {
     key: "neutron",
     graphql: "neutron",
   },
-  quasar: {
+  "quasar": {
     image: "/images/network/quasar.png",
     name: "Quasar",
     label: "",
@@ -704,7 +704,7 @@ export const logos: IStringIndex = {
     key: "quasar",
     graphql: "quasar",
   },
-  gitopia: {
+  "gitopia": {
     image: "/images/network/gitopia.png",
     name: "Gitopia",
     label: "",
@@ -712,7 +712,7 @@ export const logos: IStringIndex = {
     key: "gitopia",
     graphql: "gitopia",
   },
-  rizon: {
+  "rizon": {
     image: "/images/network/rizon.png",
     name: "Rizon",
     label: "",
@@ -720,7 +720,7 @@ export const logos: IStringIndex = {
     key: "rizon",
     graphql: "rizon",
   },
-  sui: {
+  "sui": {
     image: "/images/network/sui.png",
     name: "Sui",
     label: "",
@@ -728,7 +728,7 @@ export const logos: IStringIndex = {
     key: "sui",
     graphql: "sui",
   },
-  picasso: {
+  "picasso": {
     image: "/images/network/picasso.svg",
     name: "Picasso",
     label: "Picasso - PICA",
@@ -738,6 +738,4 @@ export const logos: IStringIndex = {
   },
 };
 
-export const getNetworkInfo = (key: string | number) => {
-  return logos[key] ?? {};
-};
+export const getNetworkInfo = (key: string | number) => logos[key] ?? {};

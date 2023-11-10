@@ -125,10 +125,10 @@ const Infrastructure = () => {
   ];
 
   return (
-    <Layout title={t("page_title")} footer>
+    <Layout footer title={t("page_title")}>
       <Container
-        maxWidth="desktop"
         ref={topRef}
+        maxWidth="desktop"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -139,13 +139,13 @@ const Infrastructure = () => {
         }}
       >
         <HeaderCard
-          title={t("headercard_title")}
           desc_1st={t("headercard_desc")}
           head_bg={
             isMobile
               ? "/validator_infastructure/head_bg_m@2x.png"
               : "/validator_infastructure/head_bg@2x.png"
           }
+          title={t("headercard_title")}
         />
         <KeyData />
         <ScrollLogo />
@@ -160,50 +160,50 @@ const Infrastructure = () => {
           }}
         >
           <Section
+            desc={t("section_1st_desc")}
             title={t("section_1st_title")}
             title_large_trans={t("section_1st_large_title")}
-            desc={t("section_1st_desc")}
           />
           <CtaButton
-            onClick={() => router.push("/staking")}
             className={style.mobile}
+            onClick={() => router.push("/staking")}
           >
             {t("see_more_networks")}
           </CtaButton>
           <Grid
-            container
-            rowSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(3) }}
             columnSpacing={{
               mobile: theme.spacing(2),
               laptop: theme.spacing(2),
             }}
+            container
+            rowSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(3) }}
           >
-            <Grid item mobile={12} tablet={6} laptop={4}>
+            <Grid item laptop={4} mobile={12} tablet={6}>
               <IntroPanel
-                title={t("grid_1st_title")}
                 desc={t("grid_1st_desc")}
                 imageHref={require("/public/validator_infastructure/grid_1@2x.png")}
+                title={t("grid_1st_title")}
               />
             </Grid>
-            <Grid item mobile={12} tablet={6} laptop={4}>
+            <Grid item laptop={4} mobile={12} tablet={6}>
               <IntroPanel
-                title={t("grid_2nd_title")}
                 desc={t("grid_2nd_desc")}
                 imageHref={require("/public/validator_infastructure/grid_2@2x.png")}
+                title={t("grid_2nd_title")}
               />
             </Grid>
-            <Grid item mobile={12} tablet={6} laptop={4}>
+            <Grid item laptop={4} mobile={12} tablet={6}>
               <IntroPanel
-                title={t("grid_3rd_title")}
                 desc={t("grid_3rd_desc")}
                 imageHref={require("/public/validator_infastructure/grid_3@2x.png")}
+                title={t("grid_3rd_title")}
               />
             </Grid>
           </Grid>
 
           <CtaButton
-            onClick={() => router.push("/staking")}
             className={style.desktop}
+            onClick={() => router.push("/staking")}
           >
             {t("see_more_networks")}
           </CtaButton>
@@ -223,27 +223,27 @@ const Infrastructure = () => {
             title_large_trans={t("section_2nd_large_title")}
           />
 
-          <StyledTabs value={v1} onChange={handleChange}>
+          <StyledTabs onChange={handleChange} value={v1}>
             <StyledTab
-              label={t("toggle_btn_left")}
               icon={
                 <img
-                  src="/validator_infastructure/tab1.svg"
                   className={style.icon}
+                  src="/validator_infastructure/tab1.svg"
                 />
               }
+              label={t("toggle_btn_left")}
               onClick={(e: any) => {
                 scrollBottom(e, PanelRef);
               }}
             />
             <StyledTab
-              label={t("toggle_btn_right")}
               icon={
                 <img
-                  src="/validator_infastructure/tab2.svg"
                   className={style.icon}
+                  src="/validator_infastructure/tab2.svg"
                 />
               }
+              label={t("toggle_btn_right")}
               onClick={(e: any) => {
                 scrollBottom(e, PanelRef);
               }}
@@ -254,12 +254,12 @@ const Infrastructure = () => {
             { title: "expertise_item", img: "desk_toggle_2@2x.png" },
           ].map((opt, indexUpper) => (
             <ProductPanel
+              key={indexUpper}
               ref={PanelRef}
               imageHref={`/validator_infastructure/${opt.img}`}
+              imgFull
               index={indexUpper}
               value={v1}
-              key={indexUpper}
-              imgFull
             >
               <Stack
                 sx={{
@@ -271,9 +271,9 @@ const Infrastructure = () => {
                   <Typography
                     key={index}
                     sx={{
-                      display: "flex",
-                      alignItems: "baseline",
-                      maxWidth: "489px",
+                      "display": "flex",
+                      "alignItems": "baseline",
+                      "maxWidth": "489px",
                       [theme.breakpoints.down("laptop")]: {
                         fontSize: "16px",
                       },
@@ -304,9 +304,9 @@ const Infrastructure = () => {
           }}
         >
           <Section
+            desc={t("section_3rd_desc")}
             title={t("section_3rd_title")}
             title_large_trans={t("section_3rd_large_title")}
-            desc={t("section_3rd_desc")}
           />
           <CtaButton
             onClick={() => {

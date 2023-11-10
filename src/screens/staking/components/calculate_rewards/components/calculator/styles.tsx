@@ -5,8 +5,8 @@ import { SxProps } from "@mui/system";
 export const styles: { [index: string]: SxProps<Theme> } = {
   select: (theme) => ({
     ".MuiOutlinedInput-root": {
-      background: theme.palette.primary.main,
-      borderRadius: theme.spacing(1),
+      "background": theme.palette.primary.main,
+      "borderRadius": theme.spacing(1),
       "> .MuiSvgIcon-root": {
         fill: "#878787",
       },
@@ -56,13 +56,14 @@ export const styles: { [index: string]: SxProps<Theme> } = {
   }),
   slider: (theme) => ({
     "& .MuiSlider-thumb": {
-      height: theme.spacing(2.25),
-      width: theme.spacing(2.25),
-      background: "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-      border: "2px solid linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-      boxShadow: "none",
+      "height": theme.spacing(2.25),
+      "width": theme.spacing(2.25),
+      "background": "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
+      "border":
+        "2px solid linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
+      "boxShadow": "none",
       "&:focus, &:hover, &.Mui-active": {
-        boxShadow: "none",
+        "boxShadow": "none",
         "@media (hover: none)": {
           boxShadow:
             "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)",
@@ -79,14 +80,14 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     },
   }),
   inputBase: (theme) => ({
-    height: theme.spacing(7),
-    display: "flex",
-    justifyContent: "flex-end",
-    boxShadow:
+    "height": theme.spacing(7),
+    "display": "flex",
+    "justifyContent": "flex-end",
+    "boxShadow":
       "0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)",
-    borderRadius: theme.spacing(1),
-    background: theme.palette.primary.main,
-    paddingRight: 1,
+    "borderRadius": theme.spacing(1),
+    "background": theme.palette.primary.main,
+    "paddingRight": 1,
     "> input": {
       padding: theme.spacing(0.5, 0, 0.5, 1.5),
       width: "fit-content",
@@ -108,9 +109,9 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     },
   }),
   tokenResult: (theme) => ({
-    display: "flex",
-    alignItems: "center",
-    paddingBottom: theme.spacing(2),
+    "display": "flex",
+    "alignItems": "center",
+    "paddingBottom": theme.spacing(2),
     "& .image": {
       width: `${theme.spacing(3.5)} !important`,
       height: `${theme.spacing(3.5)} !important`,

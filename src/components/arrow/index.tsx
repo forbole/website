@@ -39,28 +39,28 @@ export default function Arraw({ className, sx, direction }: Props) {
   return (
     <Box
       className={className}
-      zIndex={2}
       sx={{
-        userSelect: "none",
-        display: "flex",
-        width: "48px",
-        height: "48px",
+        "userSelect": "none",
+        "display": "flex",
+        "width": "48px",
+        "height": "48px",
         [theme.breakpoints.down("laptop")]: {
           width: "36px",
           height: "36px",
         },
-        cursor: "pointer",
+        "cursor": "pointer",
         "& svg": {
-          transition: "fill 0.3s",
-          filter:
+          "transition": "fill 0.3s",
+          "filter":
             "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
-          fill: " #FFF",
+          "fill": " #FFF",
           "& path": {
             stroke: theme.palette.custom.forbole.blue,
           },
         },
         ...sx,
       }}
+      zIndex={2}
     >
       <BottomIcon style={{ transform: `rotate(${rotate}deg)` }} />
     </Box>

@@ -7,15 +7,15 @@ import validator from "validator";
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = React.useState({
-    name: "",
-    email: "",
-    company: "",
-    telegram: "",
-    specify: "",
-    agree: false,
+    "name": "",
+    "email": "",
+    "company": "",
+    "telegram": "",
+    "specify": "",
+    "agree": false,
     "Data API": false,
-    GraphQL: false,
-    Other: false,
+    "GraphQL": false,
+    "Other": false,
     "RPC Endpoints": false,
   });
   const [canSubmit, setCanSubmit] = React.useState(false);
@@ -89,15 +89,15 @@ const useTalkModalForm = () => {
         .then((res) => {
           if (res.status === 200) {
             setInputs({
-              name: "",
-              email: "",
-              company: "",
-              telegram: "",
-              agree: false,
-              specify: "",
+              "name": "",
+              "email": "",
+              "company": "",
+              "telegram": "",
+              "agree": false,
+              "specify": "",
               "Data API": false,
-              GraphQL: false,
-              Other: false,
+              "GraphQL": false,
+              "Other": false,
               "RPC Endpoints": false,
             });
           }

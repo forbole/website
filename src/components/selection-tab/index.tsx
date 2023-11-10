@@ -15,9 +15,9 @@ export const StyledTabs = styled((props: StyledTabsProps) => (
     TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
   />
 ))({
-  padding: "4px",
-  borderRadius: "24px",
-  background: "#1D1E22",
+  "padding": "4px",
+  "borderRadius": "24px",
+  "background": "#1D1E22",
   "& .MuiTabs-indicator": {
     display: "flex",
     justifyContent: "center",
@@ -40,13 +40,13 @@ interface StyledTabProps {
 export const StyledTab = styled((props: StyledTabProps) => (
   <Tab disableRipple {...props} iconPosition="start" />
 ))(({ theme }) => ({
-  textTransform: "none",
-  minHeight: "45px",
-  color: "#fff",
-  borderRadius: "200px",
-  fontSize: "16px",
-  fontWeight: 590,
-  textShadow: "none",
+  "textTransform": "none",
+  "minHeight": "45px",
+  "color": "#fff",
+  "borderRadius": "200px",
+  "fontSize": "16px",
+  "fontWeight": 590,
+  "textShadow": "none",
   "&.Mui-selected": {
     background:
       "linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%),linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%)",
