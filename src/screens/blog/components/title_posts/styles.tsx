@@ -13,7 +13,6 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       textDecoration: "none",
     },
     [theme.breakpoints.up("laptop")]: {
-      // padding: 0,
       padding: theme.spacing(3.75),
       background: "rgba(255, 255, 255, 0.1)",
       backdropFilter: "blur(8px)",

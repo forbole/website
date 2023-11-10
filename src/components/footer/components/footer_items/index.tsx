@@ -1,7 +1,6 @@
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
 
 import { FooterProps } from "../../types";
 import useStyles from "./useStyles";
@@ -36,12 +35,10 @@ const FooterItems = ({ staking }: FooterProps) => {
           alignItems: "center",
           [theme.breakpoints.down("laptop")]: {
             pt: "12px",
-            // color: theme.palette.custom.forbole.indigo,
             gap: "8px",
             borderTop: `1px solid ${theme.palette.custom.forbole.grey02}`,
           },
           [theme.breakpoints.up("laptop")]: {
-            // color: theme.palette.primary.main,
             flexDirection: "row",
             "& hr": {
               mx: 2,
@@ -108,10 +105,8 @@ const FooterItems = ({ staking }: FooterProps) => {
             alignItems: "center",
             [theme.breakpoints.down("laptop")]: {
               gap: "12px",
-              // color: theme.palette.custom.forbole.indigo,
             },
             [theme.breakpoints.up("laptop")]: {
-              // color: theme.palette.primary.main,
               flexDirection: "row",
               alignItems: "center",
               paddingTop: 0,
@@ -149,34 +144,6 @@ const FooterItems = ({ staking }: FooterProps) => {
               {t("blog")}
             </Typography>
           </Link>
-          {/* <Divider
-            orientation="vertical"
-            variant="middle"
-            flexItem
-            sx={{
-               my:'4px',
-              borderColor: staking
-                ? theme.palette.custom.forbole.indigo
-                : theme.palette.primary.main,
-              [theme.breakpoints.down("laptop")]: {
-                display: "none",
-              },
-            }}
-          /> */}
-          {/* <Link href="/" > */}
-          {/* <Typography
-            fontSize="14px"
-            sx={{
-              opacity: "0.3",
-              "&:hover": {
-                cursor: "pointer",
-                color: theme.palette.custom.forbole.purple,
-              },
-            }}
-          >
-            {t("careers")}
-          </Typography> */}
-          {/* </Link> */}
         </Box>
       </Box>
     </Box>

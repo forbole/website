@@ -58,9 +58,6 @@ export default function Arraw({ className, sx, direction }: Props) {
           "& path": {
             stroke: theme.palette.custom.forbole.blue,
           },
-          // "&:hover circle": {
-          //   fill: "rgba(255, 255, 255,.7)",
-          // },
         },
         ...sx,
       }}

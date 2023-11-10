@@ -43,7 +43,6 @@ export const useNetworkGuidesHook = () => {
           ? setCosmosNetworkGuides((prev) => ({
               ...prev,
               [data.metric.instance]: [
-                // ...prev[data.metric.instance],
                 {
                   title: "commission",
                   stats: data.commissionRate,

@@ -1,4 +1,3 @@
-// Import Swiper React components
 import { Box, Stack, useTheme } from "@mui/material";
 import Image from "next/image";
 import { CSSProperties } from "react";

@@ -113,17 +113,6 @@ const Policy = () => {
                 >
                   {t("updatedDate")}
                 </Typography>
-                {/* <Typography
-                variant="body1"
-                sx={{
-                  color: '#000',
-                  fontSize: theme.spacing(1.75),
-                  fontWeight: 600,
-                  paddingBottom: theme.spacing(5),
-                }}
-              >
-                {t('description1', {})}
-              </Typography> */}
                 <Trans
                   i18nKey={t("description1")}
                   components={[
@@ -133,7 +122,6 @@ const Policy = () => {
                         color: "#000",
                         fontSize: theme.spacing(1.375),
                         fontWeight: 400,
-                        // paddingBottom: theme.spacing(5),
                       }}
                     />,
                     <Typography

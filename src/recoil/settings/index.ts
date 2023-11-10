@@ -9,7 +9,6 @@ export {
   useSettingsRecoil,
   atomState,
   writeTheme,
-  //   getThemeTemplate,
   readTheme,
   navigationId,
 };

@@ -239,7 +239,6 @@ const NetworkInfo = ({ post }: any) => {
                         sx={{
                           display: "contents",
                           textAlign: "center",
-                          // WebkitLineClamp: readMore ? 10 : 5,
                           WebkitLineClamp: readMore ? "unset" : "inherit",
                         }}
                       >

@@ -25,20 +25,26 @@ export const calculatorKeys = [
   "shentu",
   "stafihub",
   "stride",
+
   // coingecko not updating its market price:
   // 'provenance',
+
   // awaiting for back-end data:
   // 'sommelier',
+
   "gravity_bridge",
   "jackal",
   "terra",
+
   // annual rewards not available:
   // 'nym',
   // 'xpla',
+
   // token price not on Coingecko:
   // 'omniflix',
   // 'ununifi',
   // 'onomy',
+
   "stargaze",
   "teritori",
 ].sort();

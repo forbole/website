@@ -43,7 +43,6 @@ const useStyles = () => {
           "0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)",
       },
       "& .networkbox__explore-btn": {
-        // ...theme.mixins.button:
         padding: "0.75rem 1rem",
         borderRadius: "200px",
         /* Primary Color/BD Red Gradient 02 */
@@ -132,12 +131,10 @@ const useStyles = () => {
           right: theme.spacing(3),
         },
         "& .MuiTypography-h3": {
-          // fontSize: theme.typography.h5.fontSize,
           fontSize: theme.spacing(2),
           color: theme.palette.custom.forbole.indigo6,
         },
         "& .MuiTypography-h6, & .MuiTypography-body1": {
-          // fontSize: theme.typography.body2.fontSize,
           fontSize: theme.spacing(2),
           color: theme.palette.custom.forbole.indigo6,
         },

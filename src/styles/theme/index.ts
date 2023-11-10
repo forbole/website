@@ -4,20 +4,11 @@ import { deepmerge } from "@mui/utils";
 import { darkThemeOverride } from "./dark";
 import { lightThemeOverride } from "./light";
 
-// interface CustomPalette extends Palette {
-//   background: { default: string };
-// }
-
-// export interface CustomTheme extends Theme {
-//   palette: CustomPalette;
-// }
-
 /** Common themes that don't change across light and dark theme */
 export const common: ThemeOptions = {
   breakpoints: {
     keys: ["mobile", "tablet", "laptop", "desktop"],
     values: {
-      // mobile: 320,
       mobile: 375,
       tablet: 768,
       laptop: 1025,
@@ -43,21 +34,6 @@ export const common: ThemeOptions = {
       },
     },
   },
-
-  // components: {
-  //   MuiCssBaseline: {
-  //     styleOverrides: `
-  //       @font-face {
-  //         font-family: chinese font;
-  //         font-style: normal;
-  //         font-weight: 400;
-  //         src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
-  //         unicodeRange: U+4E00–9FFF;
-  //         letter-spacing: 0.2rem;
-  //       }
-  //     `,
-  //   },
-  // },
 };
 
 export const lightTemplate: ThemeOptions = deepmerge(
