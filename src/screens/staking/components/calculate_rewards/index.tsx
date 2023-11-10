@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
-import React from "react";
 
 import { Calculator } from "./components";
 import { useCalculateRewardsHook } from "./hooks";
@@ -20,7 +18,6 @@ const CalculateRewards = () => {
     tokens,
     monthlyPeriods,
     setMonthlyPeriods,
-    loading,
   } = useCalculateRewardsHook(t);
 
   return (

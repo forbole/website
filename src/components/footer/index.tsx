@@ -30,9 +30,7 @@ const Footer = ({ red, itemColor }: FooterProps) => {
         [theme.breakpoints.down("laptop")]: {
           backgroundImage: red ? "url(/images/footer/foot_m.png)" : "",
           minHeight: "320px",
-          //   "linear-gradient(180deg, rgba(114, 28, 78, 0.00) 0%, rgba(114, 28, 78, 0.10) 31.25%)",
           backdropFilter: "blur(8px)",
-          // backgroundImage: "url(/images/footer/foot_m.png)",
         },
       }}
     >
