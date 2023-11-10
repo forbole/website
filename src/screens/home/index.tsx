@@ -10,16 +10,16 @@ import React from "react";
 
 import { FilterBG } from "./styles";
 
-type Props = {
-  pages: {
-    title: string;
-    list: string[];
-    imageHref: string;
-    btnName: string;
-    btnClick: string;
-    id: string;
-  }[];
+export type Page = {
+  title: string;
+  list: string[];
+  imageHref: string;
+  btnName: string;
+  btnClick: string;
+  id: string;
 };
+
+type Props = { pages: Page[] };
 
 const Home: React.FC<Props> = ({ pages }) => {
   const { t } = useTranslation("home");

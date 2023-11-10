@@ -1,7 +1,5 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-import { useWindowDimensions } from "@src/hooks";
 import Image from "next/image";
-import React from "react";
 
 type Props = {
   title: string;
@@ -17,7 +15,6 @@ export default function HeaderCard({
   desc_2nd,
 }: Props) {
   const theme = useTheme();
-  const { isMobile, isDesktop } = useWindowDimensions();
 
   return (
     <Stack

@@ -1,6 +1,4 @@
-import React from "react";
-
-const Github = ({ fill = "currentColor" }) => {
+const Github = ({ fill = "currentColor" }: { fill?: string }) => {
   return (
     <svg
       width="28"

@@ -1,6 +1,4 @@
-import React from "react";
-
-const Telegram = ({ fill = "currentColor" }) => {
+const Telegram = ({ fill = "currentColor" }: { fill?: string }) => {
   return (
     <svg
       width="28"

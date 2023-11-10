@@ -1,11 +1,8 @@
 import { Stack, useTheme } from "@mui/material";
-import React from "react";
 
 import { Stats } from "./components";
 
-type Props = {};
-
-const KeyData = (props: Props) => {
+const KeyData = () => {
   const theme = useTheme();
   return (
     <Stack

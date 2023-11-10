@@ -1,12 +1,3 @@
-/* eslint-disable no-undef */
-
-/* eslint-disable array-callback-return */
-
-/* eslint-disable no-unused-expressions */
-
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable no-unsafe-optional-chaining */
 import { gql, useQuery } from "@apollo/client";
 import {
   getEachCosmosBondedToken,
@@ -19,13 +10,12 @@ import { getNetworkInfo } from "@utils/network_info";
 import axios from "axios";
 import * as R from "ramda";
 import { useEffect, useMemo, useState } from "react";
-import { toast } from "react-toastify";
 
 import { getStakingParams } from "./config";
 import { defaultFunctions, networkFunctions, toFixed } from "./utils";
 
-export const useCalculateRewardsHook = (t: any) => {
-  const [loading, setLoading] = useState(false);
+export const useCalculateRewardsHook = () => {
+  const [loading] = useState(false);
   const [tokens, setTokens] = useState<any | null>({
     value: "",
     display: "",
@@ -73,14 +63,15 @@ export const useCalculateRewardsHook = (t: any) => {
   useMemo(() => {
     if (!cosmosCommissionLoading) {
       const { eachCosmosCommission } = cosmosCommissionData;
-      eachCosmosCommission.map((data: any) => {
+      eachCosmosCommission.forEach((data: any) => {
         const key = selectedToken.graphql;
-        key === data.metric.instance
-          ? setStakingParamState((prev) => ({
-              ...prev,
-              commissionRate: parseFloat(data.commissionRate),
-            }))
-          : null;
+
+        if (key === data.metric.instance) {
+          setStakingParamState((prev) => ({
+            ...prev,
+            commissionRate: parseFloat(data.commissionRate),
+          }));
+        }
       });
     }
     return stakingParamState;
@@ -94,14 +85,14 @@ export const useCalculateRewardsHook = (t: any) => {
   useMemo(() => {
     if (!cosmosInflationLoading) {
       const { eachCosmosInflationRate } = cosmosInflationData;
-      eachCosmosInflationRate.map((data: any) => {
+      eachCosmosInflationRate.forEach((data: any) => {
         const key = selectedToken.graphql;
-        key === data.metric.instance
-          ? setStakingParamState((prev) => ({
-              ...prev,
-              inflation: parseFloat(data.inflationRate),
-            }))
-          : null;
+        if (key === data.metric.instance) {
+          setStakingParamState((prev) => ({
+            ...prev,
+            inflation: parseFloat(data.inflationRate),
+          }));
+        }
       });
     }
     return stakingParamState;
@@ -115,14 +106,14 @@ export const useCalculateRewardsHook = (t: any) => {
   useMemo(() => {
     if (!cosmosBondedLoading) {
       const { eachCosmosBondedToken } = cosmosBondedData;
-      eachCosmosBondedToken.map((data: any) => {
+      eachCosmosBondedToken.forEach((data: any) => {
         const key = selectedToken.graphql;
-        key === data.metric.instance
-          ? setStakingParamState((prev) => ({
-              ...prev,
-              bondedToken: parseFloat(data.bondedToken),
-            }))
-          : null;
+        if (key === data.metric.instance) {
+          setStakingParamState((prev) => ({
+            ...prev,
+            bondedToken: parseFloat(data.bondedToken),
+          }));
+        }
       });
     }
     return stakingParamState;
@@ -131,14 +122,14 @@ export const useCalculateRewardsHook = (t: any) => {
   useMemo(() => {
     if (!cosmosSupplyLoading) {
       const { eachCosmosTokenSupply } = cosmosSupplyData;
-      eachCosmosTokenSupply.map((data: any) => {
+      eachCosmosTokenSupply.forEach((data: any) => {
         const key = selectedToken.graphql;
-        key === data.metric.instance
-          ? setStakingParamState((prev) => ({
-              ...prev,
-              totalSupply: parseFloat(data.supply),
-            }))
-          : null;
+        if (key === data.metric.instance) {
+          setStakingParamState((prev) => ({
+            ...prev,
+            totalSupply: parseFloat(data.supply),
+          }));
+        }
       });
     }
     return stakingParamState;
@@ -247,6 +238,7 @@ export const useCalculateRewardsHook = (t: any) => {
     // raw calcs
     // ===============================
     const annualRewards = toFixed(
+      // eslint-disable-next-line no-unsafe-optional-chaining
       tokens?.value * (inflation / stakingRatio) * (1 - commissionRate),
     );
     const monthlyRewards = (annualRewards / 12) * monthlyPeriods;
@@ -276,17 +268,6 @@ export const useCalculateRewardsHook = (t: any) => {
         amount: formatAnnualPrice,
       },
     });
-  };
-
-  const handleCalculations = async () => {
-    try {
-      setLoading(true);
-      await handleDefaultCalculation();
-      setLoading(false);
-    } catch (err) {
-      toast.error(t("error"));
-      setLoading(false);
-    }
   };
 
   useEffect(() => {

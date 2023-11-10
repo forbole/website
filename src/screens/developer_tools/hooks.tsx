@@ -18,7 +18,6 @@ const useTalkModalForm = () => {
     Other: false,
     "RPC Endpoints": false,
   });
-  console.log(inputs);
   const [canSubmit, setCanSubmit] = React.useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("contact");
@@ -106,8 +105,8 @@ const useTalkModalForm = () => {
           setLoading(false);
         })
         .catch((err) => {
-          // eslint-disable-next-line no-console
           setLoading(false);
+          // eslint-disable-next-line no-console
           console.log(err);
           toast.error(t("error") as ToastContent<unknown>);
         });

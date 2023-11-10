@@ -14,7 +14,7 @@ export const useNavHook = () => {
     }
   }, []);
 
-  useScrollPosition(({ prevPos, currPos }) => {
+  useScrollPosition(({ currPos }) => {
     if (currPos.y === 0 && displayBackground) {
       setDisplayBackground(false);
     }

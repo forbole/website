@@ -1,6 +1,4 @@
-import React from "react";
-
-const Twitter = ({ fill = "currentColor" }) => {
+const Twitter = ({ fill = "currentColor" }: { fill?: string }) => {
   return (
     <svg
       width="28"

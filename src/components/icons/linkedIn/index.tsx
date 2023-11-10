@@ -1,6 +1,4 @@
-import React from "react";
-
-const LinkedIn = ({ fill = "currentColor" }) => {
+const LinkedIn = ({ fill = "currentColor" }: { fill?: string }) => {
   return (
     <svg
       width="28"

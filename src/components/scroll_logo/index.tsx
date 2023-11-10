@@ -1,7 +1,7 @@
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import { getNetworkInfo } from "@src/utils/network_info";
 import dynamic from "next/dynamic";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
 import { allNetworkKeys } from "./config";
 import { TransitionCSS } from "./style";
@@ -31,7 +31,7 @@ const ScrollLogo = () => {
       ),
     [onlyLargeScreen],
   );
-  console.log("data", data);
+
   return (
     <Container
       disableGutters
@@ -60,12 +60,9 @@ const ScrollLogo = () => {
                 animation:
                   "35s linear 0s infinite alternate none running jss634",
                 animationName:
-                  index == 1
+                  index === 1
                     ? " horizontalRightMove"
                     : `horizontalMove${index}`,
-                // [theme.breakpoints.down("laptop")]: {
-                //   animationDuration: '50s'
-                // },
               }}
             >
               <Card networkData={networkData.concat(networkData)} />

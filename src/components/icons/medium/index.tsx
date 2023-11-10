@@ -1,6 +1,4 @@
-import React from "react";
-
-const Medium = ({ fill = "currentColor" }) => {
+const Medium = ({ fill = "currentColor" }: { fill?: string }) => {
   return (
     <svg
       width="28"

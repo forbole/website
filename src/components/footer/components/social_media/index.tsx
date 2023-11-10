@@ -1,5 +1,4 @@
-/* eslint-disable react/require-default-props */
-import { Box, Button, Container, Input, Stack, useTheme } from "@mui/material";
+import { Box, Input, Stack, useTheme } from "@mui/material";
 import CtaButton from "@src/components/cta-button";
 import { getSocialMediaInfo } from "@utils/social_media_info";
 import axios from "axios";
@@ -36,8 +35,11 @@ const SocialMedia = () => {
     }));
   };
   const handleSubmit = (event: any) => {
-    if (!canSubmit)
-      return toast.warn(t("send_email_warn") as ToastContent<unknown>);
+    if (!canSubmit) {
+      toast.warn(t("send_email_warn") as ToastContent<unknown>);
+      return;
+    }
+
     if (event) {
       event.preventDefault();
       setLoading(true);

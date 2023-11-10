@@ -1,5 +1,4 @@
 import {
-  Backdrop,
   Box,
   Modal,
   Stack,
@@ -8,7 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Image from "next/image";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { Close } from "../icons";
 

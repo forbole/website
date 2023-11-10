@@ -1,4 +1,3 @@
-import { Opacity } from "@mui/icons-material";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { styled } from "@mui/material/styles";
@@ -59,7 +58,6 @@ export const StyledTab = styled((props: StyledTabProps) => (
   },
   "&.Mui-disabled": {
     color: "#fff",
-    // background: "linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%),linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32))",
     boxShadow: "4px 8px 24px 0px rgba(42, 34, 194, 0.16)",
     opacity: "0.5",
   },

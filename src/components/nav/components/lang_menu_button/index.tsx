@@ -22,13 +22,13 @@ import useStyles from "./useStyles";
 
 const LangMenuButton = () => {
   const { t, lang } = useTranslation("common");
-  const { locales, pathname, query, locale } = useRouter();
+  const { locales, pathname, query } = useRouter();
   const styles = useStyles();
   const { windowDimensions } = useWindowDimensions();
   const { width } = windowDimensions;
   const [anchor, setAnchor] = React.useState<Element>();
   const theme = useTheme();
-  const [anchorEl, setAnchorEl] = useRecoilState(anchorElState);
+  const [, setAnchorEl] = useRecoilState(anchorElState);
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -144,7 +144,7 @@ const LangMenuButton = () => {
         sx={{ background: "rgba(107, 97, 254, 0.24)" }}
       >
         {locales?.map((l) => (
-          <div key={l} style={{ display: lang != l ? "block" : "none" }}>
+          <div key={l} style={{ display: lang !== l ? "block" : "none" }}>
             <Link href={{ pathname, query }} locale={l} passHref>
               <MenuItem
                 onClick={handleClose}

@@ -1,6 +1,4 @@
-import React from "react";
-
-const Instagram = ({ fill = "currentColor" }) => {
+const Instagram = ({ fill = "currentColor" }: { fill?: string }) => {
   return (
     <svg
       width="28"

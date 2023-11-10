@@ -12,7 +12,7 @@ import Post from "./components/post";
 import { useBlogPostsHook } from "./hooks";
 import { IProps } from "./interface";
 
-const BlogPosts = ({ main, blogs, meta }: IProps) => {
+const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
   const { t } = useTranslation("blog");
   const router = useRouter();
   const theme = useTheme();
@@ -24,7 +24,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
   const totalPages = R.pathOr(0, ["pagination", "pages"], meta);
   const totalPosts = R.pathOr(0, ["pagination", "total"], meta);
 
-  const [limit, setLimit] = React.useState(15);
+  const [limitUpper, setLimitUpper] = React.useState(15);
   const [lastView, setLastView] = React.useState(0);
   const postRef = React.useCallback(
     (node: any) => {
@@ -40,9 +40,11 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
     [lastView],
   );
 
-  const seeMorePages = (e: any, { limit, blogs }: any) => {
+  const seeMorePages = (_e: any, { limit, blogs }: any) => {
     const lastPost = blogs.length;
-    limit + 15 >= totalPosts ? setLimit(totalPosts) : setLimit(limit + 15);
+    limit + 15 >= totalPosts
+      ? setLimitUpper(totalPosts)
+      : setLimitUpper(limit + 15);
     setLastView(lastPost);
     router.push({
       pathname: router.pathname,
@@ -89,7 +91,7 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
         }}
       >
         {!!main && <Post main post={main} />}
-        {blogs.map((post, i) => (
+        {blogsUpper.map((post, i) => (
           <Post
             key={post.id}
             id={i}
@@ -151,7 +153,9 @@ const BlogPosts = ({ main, blogs, meta }: IProps) => {
             fontWeight: 600,
             fontSize: theme.spacing(2),
           }}
-          onClick={(e) => seeMorePages(e, { limit, blogs })}
+          onClick={(e) =>
+            seeMorePages(e, { limit: limitUpper, blogs: blogsUpper })
+          }
         >
           {t("see more")}
         </Button>

@@ -9,7 +9,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       gridGap: 0,
     },
   }),
-  iconBox: (theme) => ({
+  iconBox: () => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useEffect, useState } from "react";
 
@@ -14,7 +13,7 @@ export const useNavHook = () => {
     }
   }, []);
 
-  useScrollPosition(({ prevPos, currPos }) => {
+  useScrollPosition(({ currPos }) => {
     if (currPos.y === 0 && displayBackground) {
       setDisplayBackground(false);
     }

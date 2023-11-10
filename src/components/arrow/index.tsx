@@ -1,5 +1,5 @@
 import { Box, SxProps, Theme, useTheme } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { BottomIcon } from "../icons";
 
@@ -9,6 +9,7 @@ export enum Direction {
   Left,
   Right,
 }
+
 type Props = {
   className: string;
   sx?: SxProps<Theme>;
@@ -18,7 +19,8 @@ type Props = {
 export default function Arraw({ className, sx, direction }: Props) {
   const theme = useTheme();
   const [rotate, setRotate] = useState(0);
-  function movePlayer(direction: Direction | undefined) {
+
+  function movePlayer() {
     if (direction === Direction.Up) {
       setRotate(180);
     } else if (direction === Direction.Down) {
@@ -32,7 +34,7 @@ export default function Arraw({ className, sx, direction }: Props) {
     }
   }
   useEffect(() => {
-    movePlayer(direction);
+    movePlayer();
   }, []);
   return (
     <Box
