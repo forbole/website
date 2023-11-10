@@ -56,7 +56,7 @@ const About = () => {
   ];
   // @ts-ignore
   return (
-    <Layout title={t("page_title")} navLink="/about" footer redBgFooter>
+    <Layout title={t("page_title")} footer redBgFooter>
       <Container
         maxWidth="desktop"
         ref={topRef}
@@ -199,7 +199,7 @@ const About = () => {
                   stopOnLastSlide: false,
                 }}
               >
-                {imagList.map((item, index) => (
+                {imagList.map((item) => (
                   <SwiperSlide
                     key={item}
                     style={{
@@ -327,11 +327,10 @@ const About = () => {
               nextEl: ".v-next",
               prevEl: ".v-prev",
             }}
-            // loop={true}
           >
-            {vidoeList.map((item, index) => (
+            {vidoeList.map((item, indexUpper) => (
               <SwiperSlide
-                key={index}
+                key={indexUpper}
                 style={{
                   height: "100%",
                   maxWidth: onlyLargeScreen ? "576px" : "90%",
@@ -347,7 +346,6 @@ const About = () => {
                   height="100%"
                   width="100%"
                   src={item.src}
-                  // src={'http://baidu.com'}
                   title={item.title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

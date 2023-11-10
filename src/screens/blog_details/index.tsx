@@ -19,7 +19,6 @@ const BlogDetails = ({ post }: any) => {
       image={featureImage}
       twitterImage={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? "")}
-      navLink="/blog"
       blueBg
       footer
     >

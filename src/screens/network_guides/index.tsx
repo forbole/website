@@ -1,14 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { LayoutVal } from "@components";
-import { Box, Typography, useTheme } from "@mui/material";
-import useTranslation from "next-translate/useTranslation";
+import { Box, useTheme } from "@mui/material";
 import React from "react";
 
 import { Guide, NetworkInfo } from "./components";
 import { LaptopCSS } from "./styles";
 
 const NetworkGuides = ({ post }: any) => {
-  const { t } = useTranslation("staking");
   const theme = useTheme();
   React.useEffect(() => {
     window.scrollTo({
@@ -26,7 +23,6 @@ const NetworkGuides = ({ post }: any) => {
       image={post.featureImage}
       twitterImage={post.featureImage}
       keywords={post.tags.map((x: { name: any }) => x.name ?? "")}
-      navLink="staking"
       stakingGuide
       footer
     >

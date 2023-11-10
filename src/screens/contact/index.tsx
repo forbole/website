@@ -9,11 +9,8 @@ import {
   Input,
   List,
   ListItem,
-  ListItemButton,
-  ListItemText,
   Stack,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import CtaButton from "@src/components/cta-button";
@@ -21,7 +18,7 @@ import FormInput from "@src/components/formInput";
 import SuccessModal from "@src/components/success-modal";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 import useContactForm from "./hooks";
 import { styles } from "./styles";
@@ -52,7 +49,7 @@ const Contact = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleToggle = (e: any) => {
     const { name, checked } = e.target;
-    if (name == "other") {
+    if (name === "other") {
       if (checked) {
         setTimeout(() => {
           inputRef.current?.querySelector("input")?.focus();
@@ -64,7 +61,7 @@ const Contact = () => {
     handleCheckedChange(e);
   };
   return (
-    <Layout title={t("page_title")} navLink="/contact" footer>
+    <Layout title={t("page_title")} footer>
       <Container>
         <Stack
           sx={{

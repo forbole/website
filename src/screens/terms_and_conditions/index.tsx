@@ -1,8 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 /* eslint-disable react/void-dom-elements-no-children */
 import { Layout, ScrollToTop } from "@components";
-import { useWindowDimensions } from "@hooks";
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect } from "react";
@@ -12,8 +9,6 @@ import { TNCCSS } from "./styles";
 const TermsAndConditions = () => {
   const { t } = useTranslation("terms_and_conditions");
   const theme = useTheme();
-
-  const { isDesktop } = useWindowDimensions();
 
   const topRef = React.useRef(null);
   const ref1 = React.useRef(null);
@@ -26,23 +21,27 @@ const TermsAndConditions = () => {
     window.scrollTo(0, ref.current.offsetTop - 100);
   };
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(
       (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
+        // eslint-disable-next-line no-param-reassign
         d.style.height = `${h}px`;
       },
     );
+    // eslint-disable-next-line no-undef
     (document.querySelectorAll(".t2") as NodeListOf<HTMLElement>).forEach(
       (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
+        // eslint-disable-next-line no-param-reassign
         d.style.height = `${h}px`;
       },
     );
   });
   return (
-    <Layout title={t("title")} navLink="/terms-and-conditions" footer>
+    <Layout title={t("title")} footer>
       <Container maxWidth="desktop">
         <Box
           ref={topRef}

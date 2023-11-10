@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { Layout, Tags } from "@components";
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
 
 import { TitlePosts, Twitter } from "../blog/components";
 import { TagPosts } from "./components";
@@ -17,7 +15,7 @@ const TagTitlePosts = (props: any) => {
   useBlogHook(error, t);
 
   return (
-    <Layout title={t("title")} navLink="/blog" footer blueBg>
+    <Layout title={t("title")} footer blueBg>
       <Box sx={styles.flexBox}>
         <Box
           sx={{

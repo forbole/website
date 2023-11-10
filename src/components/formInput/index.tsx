@@ -1,6 +1,5 @@
 import InputBase from "@mui/material/InputBase";
-import { alpha, styled } from "@mui/material/styles";
-import * as React from "react";
+import { styled } from "@mui/material/styles";
 
 const FormInput = styled(InputBase)(({ theme }) => ({
   display: "block",

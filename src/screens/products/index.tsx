@@ -46,14 +46,14 @@ const Products = () => {
     });
   };
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setV1(newValue);
   };
-  const handleChange2 = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange2 = (_event: React.SyntheticEvent, newValue: number) => {
     setV2(newValue);
   };
   return (
-    <Layout title={t("product")} navLink="/products" footer>
+    <Layout title={t("product")} footer>
       <Container maxWidth="desktop" ref={topRef}>
         <HeaderCard
           title={t("product")}

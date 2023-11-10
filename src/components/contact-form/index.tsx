@@ -9,13 +9,12 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 import CtaButton from "../cta-button";
 import FormInput from "../formInput";
 
 type Props = {
-  // submit:(b:boolean)=>void
   inputs: {
     name: string;
     email: string;
@@ -23,9 +22,7 @@ type Props = {
     help: string;
   };
   handleInputChange: (event: any) => void;
-  handleCheckedChange: (event: any) => void;
   handleSubmit: (event: any) => void;
-  handleClear: (field: any) => void;
   canSubmit: boolean;
   isLoading: boolean;
 };
@@ -49,25 +46,10 @@ const MenuProps = {
   },
 };
 const ContactFrom = forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      inputs,
-      handleInputChange,
-      handleCheckedChange,
-      handleSubmit,
-      handleClear,
-      canSubmit,
-      isLoading,
-    },
-    ref,
-  ) => {
+  ({ inputs, handleInputChange, handleSubmit, canSubmit, isLoading }, ref) => {
     const theme = useTheme();
     const { t } = useTranslation("enterprise_solution");
-    // const [age, setAge] = React.useState('');
 
-    // const handleChange = (event: any) => {
-    //   setAge(event.target.value);
-    // };
     const helpList = [
       {
         label: t("support"),
@@ -171,15 +153,11 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
               <span style={{ color: "#FF426B" }}>*</span>
             </Typography>
             <FormControl fullWidth>
-              {/* <InputLabel id="demo-multiple-name-label" sx={{ color: '#878787',fontSize:'16px'}} >{t("select")}</InputLabel> */}
               <Select
                 displayEmpty
                 value={inputs.help}
                 onChange={handleInputChange}
                 IconComponent={KeyboardArrowDownTwoTone}
-                // sx={{
-                //   width: "calc(100% - 18px)",'& .MuiInputBase-input:focus':{borderRadius: "8px"},'& .MuiInputBase-input':{mt:0}
-                // }}
                 sx={{
                   borderRadius: "8px",
                   "&>.MuiOutlinedInput-notchedOutline": {

@@ -14,7 +14,7 @@ const Blog = (props: any) => {
   useBlogHook(error, t);
   const topRef = React.useRef(null);
   return (
-    <Layout title={t("title")} navLink="/blog" footer blueBg>
+    <Layout title={t("title")} footer blueBg>
       <Box sx={styles.flexBox}>
         <Box
           ref={topRef}
@@ -58,7 +58,7 @@ const Blog = (props: any) => {
             },
           }}
         >
-          <ScrollToTop topRef={topRef} mobile />
+          <ScrollToTop topRef={topRef} />
         </Box>
       </Box>
     </Layout>

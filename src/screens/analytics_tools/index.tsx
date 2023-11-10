@@ -46,7 +46,7 @@ const AnalyticsTools = () => {
     ];
   }, [isMobile]);
   return (
-    <Layout title={t("title")} navLink="/products" footer>
+    <Layout title={t("title")} footer>
       <Container
         maxWidth="desktop"
         ref={topRef}

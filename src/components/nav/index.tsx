@@ -1,12 +1,3 @@
-/* eslint-disable no-unsafe-optional-chaining */
-
-/* eslint-disable no-undef */
-
-/* eslint-disable no-nested-ternary */
-
-/* eslint-disable react/require-default-props */
-
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
 import { Box, Button, useTheme } from "@mui/material";
 import useColor from "@src/styles/useColor";
@@ -17,13 +8,12 @@ import { DesktopNavMenu, MobileNavMenu } from "./components";
 import { useNavHook } from "./hooks";
 
 interface NavProps {
-  navLink: string | null;
   staking?: boolean;
   stakeNowRef?: RefObject<HTMLElement>;
   itemColor?: string;
 }
 
-const Nav = ({ navLink, staking, stakeNowRef, itemColor }: NavProps) => {
+const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
   const theme = useTheme();
   const colors = useColor();
   const { displayBackground } = useNavHook();
@@ -50,12 +40,14 @@ const Nav = ({ navLink, staking, stakeNowRef, itemColor }: NavProps) => {
         width: "100%",
         height: "100px",
         transition: "all .3s",
-        background:
-          displayBackground && !staking
-            ? "rgba(47, 58, 86, 0.60)"
-            : displayBackground && staking
+        background: (() => {
+          if (displayBackground && !staking) {
+            return "rgba(47, 58, 86, 0.60)";
+          }
+          return displayBackground && staking
             ? " rgba(47, 58, 86, 0.60)"
-            : "transparent",
+            : "transparent";
+        })(),
         backdropFilter: displayBackground ? "blur(16px)" : "none",
         [theme.breakpoints.up("laptop")]: {
           height: "100px",
@@ -156,7 +148,7 @@ const Nav = ({ navLink, staking, stakeNowRef, itemColor }: NavProps) => {
                   },
                 }}
               >
-                <MobileNavMenu link={navLink} />
+                <MobileNavMenu />
               </Box>
               <Box
                 sx={{

@@ -6,8 +6,6 @@ import { TopIcon } from "../icons";
 
 interface TopProps {
   topRef: any;
-  mobile?: boolean;
-  height?: string;
 }
 
 const ScrollToTop = ({ topRef }: TopProps) => {

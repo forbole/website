@@ -23,10 +23,8 @@ import React from "react";
 
 import style from "./index.module.css";
 
-type Props = {};
-const Infrastructure = (props: Props) => {
+const Infrastructure = () => {
   const theme = useTheme();
-  // const { isMobile } = useWindowDimensions();
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
@@ -34,7 +32,7 @@ const Infrastructure = (props: Props) => {
   const topRef = React.useRef(null);
   const PanelRef = React.useRef(null);
   const { t } = useTranslation("validator_infrastructure");
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setV1(newValue);
   };
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
@@ -127,7 +125,7 @@ const Infrastructure = (props: Props) => {
   ];
 
   return (
-    <Layout title={t("page_title")} navLink="/products" footer>
+    <Layout title={t("page_title")} footer>
       <Container
         maxWidth="desktop"
         ref={topRef}
@@ -254,13 +252,13 @@ const Infrastructure = (props: Props) => {
           {[
             { title: "infrastructure_item", img: "desk_toggle_1@2x.png" },
             { title: "expertise_item", img: "desk_toggle_2@2x.png" },
-          ].map((opt, index) => (
+          ].map((opt, indexUpper) => (
             <ProductPanel
               ref={PanelRef}
               imageHref={`/validator_infastructure/${opt.img}`}
-              index={index}
+              index={indexUpper}
               value={v1}
-              key={index}
+              key={indexUpper}
               imgFull
             >
               <Stack
@@ -269,7 +267,7 @@ const Infrastructure = (props: Props) => {
                   maxWidth: "490px",
                 }}
               >
-                {textList[index].map((item, index) => (
+                {textList[indexUpper].map((item, index) => (
                   <Typography
                     key={index}
                     sx={{

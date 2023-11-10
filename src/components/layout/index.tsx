@@ -11,7 +11,6 @@ import Footer from "../footer";
 import Nav from "../nav";
 
 type Props = {
-  navLink: string | null;
   children?: ReactNode;
   title?: string;
   footer?: boolean;
@@ -26,7 +25,6 @@ type Props = {
 };
 
 const Layout = ({
-  navLink,
   children,
   title = "Forbole",
   footer,
@@ -180,7 +178,7 @@ const Layout = ({
             ...background,
           }}
         >
-          <Nav navLink={navLink} itemColor={itemColor} />
+          <Nav itemColor={itemColor} />
           {children}
           {!!footer && <Footer red={redBgFooter} itemColor={itemColor} />}
         </Box>

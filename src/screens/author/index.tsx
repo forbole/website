@@ -19,7 +19,6 @@ const AuthorTitlePosts = (props: any) => {
       type="article"
       image={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? "")}
-      navLink="/blog"
       blueBg
       footer
     >

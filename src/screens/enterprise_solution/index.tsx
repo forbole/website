@@ -16,9 +16,7 @@ const EnterpriseSolution = () => {
     inputs,
     handleInputChange,
     handleSubmit,
-    handleClear,
     canSubmit,
-    handleCheckedChange,
     success,
     setSuccess,
     isLoading,
@@ -32,7 +30,6 @@ const EnterpriseSolution = () => {
   });
   const { t } = useTranslation("enterprise_solution");
   const scrollToRef = (e: any, ref: any) => {
-    console.log("ref", ref);
     e.preventDefault();
     window.scrollTo({
       left: 0,
@@ -42,7 +39,7 @@ const EnterpriseSolution = () => {
   };
 
   return (
-    <Layout title={t("page_title")} navLink="/products" footer>
+    <Layout title={t("page_title")} footer>
       <Container
         maxWidth="desktop"
         ref={topRef}
@@ -154,9 +151,7 @@ const EnterpriseSolution = () => {
             inputs={inputs}
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmit}
-            handleClear={handleClear}
             canSubmit={canSubmit}
-            handleCheckedChange={handleCheckedChange}
             isLoading={isLoading}
           />
           <ScrollToTop topRef={topRef} />

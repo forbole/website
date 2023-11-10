@@ -18,6 +18,9 @@
     "import/no-extraneous-dependencies": "off",
     "import/no-dynamic-require": "error",
     "@typescript-eslint/no-var-requires": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "camelcase": "off",
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",

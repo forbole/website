@@ -30,7 +30,6 @@ const Home: React.FC<Props> = ({ pages }) => {
   const { isMobile, isTablet } = useWindowDimensions();
   return (
     <Layout
-      navLink="/"
       title={t("coBuildingInterchain")}
       description={t("description")}
       footer

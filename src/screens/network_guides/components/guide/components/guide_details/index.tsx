@@ -1,14 +1,8 @@
-/* eslint-disable no-unused-vars */
 import { Box, Button, useTheme } from "@mui/material";
 import { getNetworkInfo } from "@src/utils/network_info";
 import DOMPurify from "isomorphic-dompurify";
 
-import {
-  GuideContentBox,
-  GuideContentCSS,
-  LaptopCSS,
-  MobileCSS,
-} from "./styles";
+import { GuideContentBox, GuideContentCSS } from "./styles";
 
 const GuideDetails = ({ post }: any) => {
   const theme = useTheme();

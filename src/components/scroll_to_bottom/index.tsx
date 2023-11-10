@@ -3,7 +3,7 @@ import React from "react";
 
 import { BottomIcon } from "../icons";
 
-const ScrollToBottom = ({ bottomRef, staking }: any) => {
+const ScrollToBottom = ({ bottomRef }: any) => {
   const theme = useTheme();
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();

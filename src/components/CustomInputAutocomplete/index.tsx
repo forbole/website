@@ -1,14 +1,12 @@
 import { Box, useTheme } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import * as React from "react";
-
-import FormInput from "../formInput";
 
 type Props = {
   options: any;
   label: string;
   onChange: (even: any, label: any) => void;
 };
+
 export default function CustomInputAutocomplete({
   options,
   label,

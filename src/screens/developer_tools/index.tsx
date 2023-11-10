@@ -42,7 +42,7 @@ const DeveloperTools = () => {
   const topRef = React.useRef(null);
   const [show, setShow] = useState(false);
   return (
-    <Layout title={t("page_title")} navLink="/products" footer>
+    <Layout title={t("page_title")} footer>
       <Container
         maxWidth="desktop"
         ref={topRef}

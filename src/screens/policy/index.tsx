@@ -1,5 +1,4 @@
 import { Layout, ScrollToTop } from "@components";
-import { useWindowDimensions } from "@hooks";
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import Link from "@mui/material/Link";
 import useTranslation from "next-translate/useTranslation";
@@ -16,20 +15,20 @@ const Policy = () => {
   const { t } = useTranslation("policy");
   const theme = useTheme();
 
-  const { isDesktop } = useWindowDimensions();
-
   const topRef = React.useRef(null);
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(
       (d) => {
         if (!d.parentElement) return;
         const h = d.parentElement.offsetHeight - 1;
+        // eslint-disable-next-line no-param-reassign
         d.style.height = `${h}px`;
       },
     );
   });
   return (
-    <Layout title={t("title")} navLink="/terms-and-conditions" footer>
+    <Layout title={t("title")} footer>
       <Container maxWidth="desktop">
         <Box
           ref={topRef}

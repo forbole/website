@@ -125,7 +125,7 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       paddingBottom: 0,
     },
   }),
-  amountResult: (theme) => ({
+  amountResult: () => ({
     display: "flex",
     flexDirection: "column",
   }),

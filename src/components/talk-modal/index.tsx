@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useRef } from "react";
 
 import CtaButton from "../cta-button";
 import FormInput from "../formInput";
@@ -58,7 +58,7 @@ const TalkModal = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const handleToggle = (e: any) => {
     const { name, checked } = e.target;
-    if (name == "Other") {
+    if (name === "Other") {
       if (checked) {
         setTimeout(() => {
           inputRef.current?.querySelector("input")?.focus();

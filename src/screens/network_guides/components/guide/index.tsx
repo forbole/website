@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import { Box, Typography, useTheme } from "@mui/material";
-import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
@@ -12,10 +10,6 @@ const Guide = ({ post }: any) => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
   const { title } = post;
-  const { sanitize } = DOMPurify;
-  const cmsLoader = ({ src, width, quality }: any) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
-  };
   const titleArray = title.split(" ");
   const coloredTitle = title.split(" ")[2] + title.split(" ")[3];
   return (

@@ -21,7 +21,7 @@ const StakingService = () => {
   const router = useRouter();
 
   return (
-    <Layout title={t("page_title")} navLink="/products" footer>
+    <Layout title={t("page_title")} footer>
       <Container
         maxWidth="desktop"
         ref={topRef}

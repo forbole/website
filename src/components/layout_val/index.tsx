@@ -1,18 +1,9 @@
-/* eslint-disable no-undef */
-
-/* eslint-disable no-nested-ternary */
-
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable react/require-default-props */
 import { Box, useTheme } from "@mui/material";
-import { writeTheme } from "@recoil/settings";
-import { Theme } from "@recoil/settings/types";
+import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import * as R from "ramda";
-import React, { ReactNode, RefObject } from "react";
-import { SetterOrUpdater, useRecoilState } from "recoil";
+import { ReactNode, RefObject } from "react";
 import validator from "validator";
 
 import Footer from "../footer";
@@ -20,7 +11,6 @@ import GuideNav from "../guide_nav";
 import Nav from "../nav";
 
 type Props = {
-  navLink: string | null;
   children?: ReactNode;
   title?: string;
   footer?: boolean;
@@ -29,39 +19,25 @@ type Props = {
   type?: string;
   image?: string;
   twitterImage?: string;
-  themeModeButton?: boolean;
-  waveBG?: boolean;
-  homeAnimation?: boolean;
-  staking?: boolean;
-  searchBar?: boolean;
   stakingGuide?: boolean;
   stakeNowRef?: RefObject<HTMLElement>;
 };
 
 const LayoutVal = ({
-  navLink,
   children,
   title = "Forbole Validator Website",
   footer,
-  description = "Forbole is an experienced professional blockchain node operator and staking provider. Delegate to us and earn your crypto rewards now!",
+  description,
   keywords = [],
   type = "website",
   image,
   twitterImage,
-  themeModeButton,
-  waveBG,
-  homeAnimation,
-  staking,
-  searchBar,
   stakingGuide,
   stakeNowRef,
 }: Props) => {
   const theme = useTheme();
-  const [themeMode, setTheme] = useRecoilState(writeTheme) as [
-    Theme,
-    SetterOrUpdater<Theme>,
-  ];
   const router = useRouter();
+  const { t } = useTranslation();
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
   let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
@@ -82,7 +58,7 @@ const LayoutVal = ({
         {!!(url === "https://staging.forbole.com") && (
           <meta name="googlebot" content="noindex" />
         )}
-        <meta name="description" content={description} />
+        <meta name="description" content={description || t("description")} />
         <meta name="keywords" content={formattedKeyworks.join(", ")} />
         <meta
           prefix="og: http://ogp.me/ns#"
@@ -107,7 +83,7 @@ const LayoutVal = ({
         <meta
           prefix="og: http://ogp.me/ns#"
           property="og:description"
-          content={description}
+          content={description || t("description")}
         />
         <meta
           prefix="og: http://ogp.me/ns#"
@@ -174,7 +150,7 @@ const LayoutVal = ({
           {stakingGuide ? (
             <GuideNav staking />
           ) : (
-            <Nav stakeNowRef={stakeNowRef} navLink={navLink} staking />
+            <Nav stakeNowRef={stakeNowRef} staking />
           )}
 
           {children}

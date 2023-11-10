@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -17,11 +16,7 @@ import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
 import ProductsMenuButton from "../products_menu_button";
 
-interface NavMenuProps {
-  link: string | null;
-}
-
-const MobileNavMenu = ({ link }: NavMenuProps) => {
+const MobileNavMenu = () => {
   const router = useRouter();
   const { t, lang } = useTranslation("common");
   const theme = useTheme();
@@ -36,19 +31,19 @@ const MobileNavMenu = ({ link }: NavMenuProps) => {
     setAnchorEl(null);
   };
   const [openDrawer, setOpenDrawer] = React.useState(false);
+  const [openShowCompany, setOpenShowCompany] = React.useState(false);
+  const [openShowProducts, setOpenShowProducts] = React.useState(false);
   const handleDropdownClick = () => {
     setOpenDrawer((prevState) => !prevState);
     setOpenShowCompany(() => false);
     setOpenShowProducts(() => false);
   };
 
-  const [openShowCompany, setOpenShowCompany] = React.useState(false);
   const handlerCLickShowCompany = () => {
     setOpenDrawer(() => false);
     setOpenShowCompany((prevState) => !prevState);
     setOpenShowProducts(() => false);
   };
-  const [openShowProducts, setOpenShowProducts] = React.useState(false);
   const handlerCLickShowProducts = () => {
     setOpenDrawer(() => false);
     setOpenShowCompany(() => false);

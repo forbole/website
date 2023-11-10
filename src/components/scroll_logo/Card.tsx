@@ -1,20 +1,8 @@
-import {
-  Box,
-  Container,
-  Stack,
-  SxProps,
-  Theme,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, SxProps, Theme, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 import SwiperCore, { Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
-// 挂载到当前swiper实例
 SwiperCore.use([Autoplay]);
 type Props = {
   networkData: { image: string; name: string }[];
