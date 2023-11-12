@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "npm run build:next && npm run build:server",
-    "build:next": "cross-env NODE_ENV=production next build",
+    "build:next": "cross-env NODE_ENV=production next build && next-sitemap",
     "build:server": "tsc --project tsconfig.server.json",
     "dev": "next dev",
     "lint": "bash scripts/lint.sh",
@@ -43,6 +43,7 @@
     "moment-timezone": "^0.5.41",
     "multer": "^1.4.5-lts.1",
     "next": "^12.1.5",
+    "next-sitemap": "^4.2.3",
     "next-translate": "^1.4.0",
     "nodemailer": "^6.7.5",
     "ramda": "^0.28.0",

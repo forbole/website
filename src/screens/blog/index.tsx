@@ -1,6 +1,7 @@
 import { Layout, ScrollToTop, Tags } from "@components";
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 import React from "react";
 
 import { BlogPosts, TitlePosts, Twitter } from "./components";
@@ -14,7 +15,10 @@ const Blog = (props: any) => {
   useBlogHook(error, t);
   const topRef = React.useRef(null);
   return (
-    <Layout blueBg footer title={t("title")}>
+    <Layout blueBg footer skipLocale title={t("title")}>
+      <Head>
+        <link href="https://forbole.com/blog" rel="canonical" />
+      </Head>
       <Box sx={styles.flexBox}>
         <Box
           ref={topRef}
