@@ -1,80 +1,49 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
-    "incremental": true,
-    "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/types/"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
     "paths": {
-      "@src/*": [
-        "src/*"
-      ],
-      "@screens/*": [
-        "src/screens/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@styles": [
-        "src/styles"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@recoil/*": [
-        "src/recoil/*"
-      ],
-      "@components": [
-        "src/components"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@tests/*": [
-        "tests/*"
-      ],
-      "@icons": [
-        "src/components/icons"
-      ],
-      "@icons/*": [
-        "src/components/icons/*"
-      ],
-      "@hooks": [
-        "src/hooks"
-      ],
-      "@public/*": [
-        "public/*"
-      ],
-      "@api/*": [
-        "src/api/*"
-      ],
-      "@models": [
-        "src/models"
-      ],
-      "@graphql/*": [
-        "graphql/*"
-      ],
-      "@contexts": [
-        "src/contexts"
-      ]
-    }
+      "@api/*": ["src/api/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@contexts": ["src/contexts"],
+      "@graphql/*": ["graphql/*"],
+      "@hooks": ["src/hooks"],
+      "@icons": ["src/components/icons"],
+      "@icons/*": ["src/components/icons/*"],
+      "@models": ["src/models"],
+      "@public/*": ["public/*"],
+      "@recoil/*": ["src/recoil/*"],
+      "@screens/*": ["src/screens/*"],
+      "@src/*": ["src/*"],
+      "@styles": ["src/styles"],
+      "@styles/*": ["src/styles/*"],
+      "@tests/*": ["tests/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es5",
+    "typeRoots": ["./node_modules/@types", "./src/types/"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",  "tests/utils/mock_i18n.js",
-    "tests/utils/mock_apollo_provider.tss", "environment.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "tests/utils/mock_i18n.js",
+    "tests/utils/mock_apollo_provider.tss",
+    "environment.d.ts"
+  ]
 }

@@ -11,31 +11,33 @@ import Footer from "../footer";
 import Nav from "../nav";
 
 type Props = {
-  children?: ReactNode;
-  title?: string;
-  footer?: boolean;
-  description?: string;
-  keywords?: string[];
-  type?: string;
-  image?: string;
-  twitterImage?: string;
-  redBgFooter?: boolean;
-  redBg?: boolean;
   blueBg?: boolean;
+  children?: ReactNode;
+  description?: string;
+  footer?: boolean;
+  image?: string;
+  keywords?: string[];
+  redBg?: boolean;
+  redBgFooter?: boolean;
+  skipLocale?: boolean;
+  title?: string;
+  twitterImage?: string;
+  type?: string;
 };
 
 const Layout = ({
-  children,
-  title = "Forbole",
-  footer,
-  description,
-  keywords = [],
-  type = "website",
-  image,
-  twitterImage,
-  redBgFooter, // 首页红色页脚
-  redBg, // 首页红色背景
   blueBg,
+  children,
+  description,
+  footer,
+  image,
+  keywords = [],
+  redBg,
+  redBgFooter,
+  skipLocale,
+  title = "Forbole",
+  twitterImage,
+  type = "website",
 }: Props) => {
   const theme = useTheme();
   const router = useRouter();
@@ -52,7 +54,7 @@ const Layout = ({
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
   const color = useColor();
-  const { t } = useTranslation("common");
+  const { t, lang } = useTranslation("common");
 
   useEffect(() => {
     if (blueBg) {
@@ -104,6 +106,12 @@ const Layout = ({
     return "";
   })();
 
+  const locale = (() => {
+    if (lang === "en" || !lang) return "en_US";
+
+    return lang.replace(/-/, "_");
+  })();
+
   return (
     <Box position="relative">
       <Head>
@@ -137,6 +145,13 @@ const Layout = ({
           prefix="og: http://ogp.me/ns#"
           property="og:url"
         />
+        {!skipLocale && (
+          <meta
+            content={locale}
+            prefix="og: http://ogp.me/ns#"
+            property="og:locale"
+          />
+        )}
         <meta
           content={description || t("description")}
           prefix="og: http://ogp.me/ns#"

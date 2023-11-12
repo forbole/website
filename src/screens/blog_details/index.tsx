@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { Layout, Markdown, ScrollToTop, Tags } from "@components";
 import { Box, Typography, useTheme } from "@mui/material";
+import Head from "next/head";
 import React from "react";
 
 import { Author, SocialMedia } from "./components";
@@ -9,7 +9,8 @@ import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
   const topRef = React.useRef(null);
-  const { title, tags, excerpt, featureImage, featureImageCaption } = post;
+  const { title, tags, excerpt, featureImage, featureImageCaption, slug } =
+    post;
 
   return (
     <Layout
@@ -18,10 +19,16 @@ const BlogDetails = ({ post }: any) => {
       footer
       image={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? "")}
+      skipLocale
       title={post.title}
       twitterImage={featureImage}
       type="article"
     >
+      <Head>
+        {slug && (
+          <link href={`https://forbole.com/blog/${slug}`} rel="canonical" />
+        )}
+      </Head>
       <MobileCSS>
         <Box
           sx={{

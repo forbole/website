@@ -19,6 +19,7 @@ const AuthorTitlePosts = (props: any) => {
       footer
       image={featureImage}
       keywords={tags.map((x: { name: any }) => x.name ?? "")}
+      skipLocale
       title={post.title}
       type="article"
     >
