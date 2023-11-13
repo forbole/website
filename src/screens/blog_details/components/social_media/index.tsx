@@ -1,10 +1,6 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Facebook, LinkedIn, Telegram, Twitter } from "@icons";
 import { Box, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
 
 const SocialMedia = (props: any) => {
   const theme = useTheme();

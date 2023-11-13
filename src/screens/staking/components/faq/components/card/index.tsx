@@ -11,7 +11,6 @@ import {
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import React from "react";
 
 import { FAQProps } from "../../config";
 

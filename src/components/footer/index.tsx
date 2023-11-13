@@ -16,6 +16,7 @@ const Footer = ({ red, itemColor }: FooterProps) => {
 
   return (
     <Box
+      data-test="footer"
       sx={{
         zIndex: 1,
         userSelect: "none",

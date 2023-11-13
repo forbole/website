@@ -1,5 +1,3 @@
-import React from "react";
-
 const Menu = ({ color }: any) => (
   <svg
     fill="none"

@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import React from "react";
 
 import { reasons } from "./config";
 

@@ -36,7 +36,7 @@ const useContactCard = () => {
         })
         .then((res) => {
           if (res.status === 200) {
-            toast.success(t("success"));
+            toast.success(t("success") as string);
             setInputs({
               name: "",
               option: "",
@@ -47,7 +47,7 @@ const useContactCard = () => {
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.log(err);
-          toast.error(t("error"));
+          toast.error(t("error") as string);
         });
     }
   };

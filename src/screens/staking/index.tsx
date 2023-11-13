@@ -1,4 +1,5 @@
 import { LayoutVal } from "@components";
+import useTranslation from "next-translate/useTranslation";
 import React, { useRef } from "react";
 
 import {
@@ -13,6 +14,7 @@ import {
 import { LaptopCSS } from "./styles";
 
 const Staking = () => {
+  const { t } = useTranslation("staking");
   const stakeNowRef = useRef(null);
   React.useEffect(() => {
     window.scrollTo({
@@ -27,6 +29,7 @@ const Staking = () => {
       footer
       image="/images/assets/image_forbole_validator_website_preview.png"
       stakeNowRef={stakeNowRef}
+      title={t("title")}
       twitterImage="/images/assets/image_forbole_validator_website_preview.png"
     >
       <LaptopCSS>

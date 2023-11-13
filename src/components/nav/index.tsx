@@ -1,6 +1,7 @@
 import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
 import { Box, Button, useTheme } from "@mui/material";
 import useColor from "@src/styles/useColor";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { RefObject } from "react";
 
@@ -17,6 +18,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
   const theme = useTheme();
   const colors = useColor();
   const { displayBackground } = useNavHook();
+  const { t } = useTranslation("staking");
   const scrollToRef = (e: any) => {
     e.preventDefault();
     if (stakeNowRef !== undefined && stakeNowRef.current !== null) {
@@ -30,6 +32,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
 
   return (
     <Box
+      data-test="nav"
       sx={{
         "boxSizing": "content-box",
         "display": "flex",
@@ -137,7 +140,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
               }}
               variant="contained"
             >
-              Stake Now
+              {t("stake_now")}
             </Button>
           ) : (
             <>

@@ -6,7 +6,7 @@ import IntroCard from "@src/components/intro_card";
 import { useWindowDimensions } from "@src/hooks";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React from "react";
+import { FC, useRef } from "react";
 
 import { FilterBG } from "./styles";
 
@@ -21,11 +21,11 @@ export type Page = {
 
 type Props = { pages: Page[] };
 
-const Home: React.FC<Props> = ({ pages }) => {
+const Home: FC<Props> = ({ pages }) => {
   const { t } = useTranslation("home");
   const theme = useTheme();
-  const topRef = React.useRef(null);
-  const bottomRef = React.useRef(null);
+  const topRef = useRef(null);
+  const bottomRef = useRef(null);
   const router = useRouter();
   const { isMobile, isTablet } = useWindowDimensions();
   return (

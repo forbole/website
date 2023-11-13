@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-expressions */
-
-/* eslint-disable no-shadow */
 import { useWindowDimensions } from "@hooks";
 import { Box, Button, Pagination, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
@@ -42,9 +39,12 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
 
   const seeMorePages = (_e: any, { limit, blogs }: any) => {
     const lastPost = blogs.length;
-    limit + 15 >= totalPosts
-      ? setLimitUpper(totalPosts)
-      : setLimitUpper(limit + 15);
+    if (limit + 15 >= totalPosts) {
+      setLimitUpper(totalPosts);
+    } else {
+      setLimitUpper(limit + 15);
+    }
+
     setLastView(lastPost);
     router.push({
       pathname: router.pathname,
