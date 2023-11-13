@@ -5,7 +5,7 @@ export const useCounter = (targetValue: unknown) => {
   const counterRef = useRef(null);
   const divisor = useRef<number | null>(null);
   const intervalId = useRef<number | null>(null);
-  const hasViewed = useRef(false);
+  const hasViewed = useRef<unknown>(false);
 
   const clearInterval = () => {
     if (intervalId.current) {
@@ -16,10 +16,12 @@ export const useCounter = (targetValue: unknown) => {
 
   useEffect(() => {
     const init = () => {
-      if (typeof targetValue === "number" && !hasViewed.current) {
+      if (hasViewed.current === targetValue) return;
+
+      if (typeof targetValue === "number") {
         setCounterValue(0);
 
-        divisor.current = Math.ceil(targetValue / 100);
+        divisor.current = Math.ceil(targetValue / 200);
 
         clearInterval();
 
@@ -46,21 +48,16 @@ export const useCounter = (targetValue: unknown) => {
       }
     };
 
-    if (
-      typeof IntersectionObserver === "undefined" ||
-      !counterRef?.current ||
-      hasViewed.current
-    ) {
+    if (typeof IntersectionObserver === "undefined" || !counterRef?.current) {
       init();
-      return () => {
-        clearInterval();
-      };
+
+      return () => {};
     }
 
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        hasViewed.current = true;
         init();
+        hasViewed.current = targetValue;
       }
     });
 
@@ -68,9 +65,15 @@ export const useCounter = (targetValue: unknown) => {
 
     return () => {
       observer.disconnect();
-      clearInterval();
     };
   }, [targetValue]);
+
+  useEffect(
+    () => () => {
+      clearInterval();
+    },
+    [],
+  );
 
   return {
     counterRef,
