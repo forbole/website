@@ -1,12 +1,6 @@
-/* eslint-disable consistent-return */
-
-/* eslint-disable no-console */
 import { getNetworkPosts } from "@api/networks";
 import { getSinglePost } from "@api/posts";
 import { Post } from "@models";
-// import BlogDetails from '@screens/blog_details';
-// import CareersDetails from '@screens/careers_details';
-// import Guide from '@screens/network_guides/components/guide';
 import NetworkGuides from "@screens/network_guides";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 import type { NextPage } from "next";
@@ -40,10 +34,11 @@ export async function getServerSideProps(context: { query: any; res: any }) {
         },
       };
     }
-    return { post: null };
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err, "error");
   }
+  return { props: { post: { tags: [] } } };
 }
 
 export default StakingDetailsPage;

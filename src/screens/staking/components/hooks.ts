@@ -16,7 +16,7 @@ export const useCounter = (targetValue: unknown) => {
 
   useEffect(() => {
     const init = () => {
-      if (typeof targetValue === "number") {
+      if (typeof targetValue === "number" && !hasViewed.current) {
         setCounterValue(0);
 
         divisor.current = Math.ceil(targetValue / 100);

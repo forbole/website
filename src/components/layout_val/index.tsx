@@ -25,7 +25,7 @@ type Props = {
 
 const LayoutVal = ({
   children,
-  title = "Forbole Validator Website",
+  title = "Forbole",
   footer,
   description,
   keywords = [],
