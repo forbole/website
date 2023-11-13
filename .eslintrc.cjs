@@ -73,16 +73,9 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["tests/**/*"],
+      files: ["server/**/*"],
       rules: {
-        "no-undef": "off",
-      },
-    },
-    {
-      files: ["src/**/*.test.tsx", "src/**/*.test.ts", "**/*.spec.ts"],
-      rules: {
-        "no-undef": "off",
-        "import/no-extraneous-dependencies": "off",
+        "no-console": "off",
       },
     },
   ],

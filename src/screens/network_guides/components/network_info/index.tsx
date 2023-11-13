@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { CopyIcon } from "@icons";
 import {
   Alert,

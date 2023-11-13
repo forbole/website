@@ -9,7 +9,7 @@ import { useWindowDimensions } from "@src/hooks";
 import { anchorElState } from "@src/recoil/settings/anchorEl";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import * as React from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 import CompanyMenuButton from "../company_menu_button";
@@ -24,15 +24,15 @@ const MobileNavMenu = () => {
   const { width } = windowDimensions;
   const [anchorEl, setAnchorEl] = useRecoilState(anchorElState);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const [openDrawer, setOpenDrawer] = React.useState(false);
-  const [openShowCompany, setOpenShowCompany] = React.useState(false);
-  const [openShowProducts, setOpenShowProducts] = React.useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openShowCompany, setOpenShowCompany] = useState(false);
+  const [openShowProducts, setOpenShowProducts] = useState(false);
   const handleDropdownClick = () => {
     setOpenDrawer((prevState) => !prevState);
     setOpenShowCompany(() => false);
@@ -49,8 +49,8 @@ const MobileNavMenu = () => {
     setOpenShowCompany(() => false);
     setOpenShowProducts((prevState) => !prevState);
   };
-  // close other drawer
-  React.useEffect(() => {
+
+  useEffect(() => {
     setOpenDrawer(() => false);
     setOpenShowCompany(() => false);
     setOpenShowProducts(() => false);

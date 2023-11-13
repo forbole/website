@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-
-/* eslint-disable no-console */
 import axios from "axios";
 import cors from "cors";
 import "dotenv-defaults/config";
@@ -76,7 +74,21 @@ const ghostAdminApi = new GhostAdminAPI({
       async (req: Request, res: Response, next: any) => {
         try {
           if (process.env.NODE_ENV === "production") {
-            await transporter.sendMail(req.body);
+            const { source, ...restBody } = req.body;
+            const subject =
+              {
+                devtools:
+                  "A new customer just wanted to get in touch with us via Developer Tools form",
+                staking: "Inquiry From Forbole Validator Website",
+                enterprise:
+                  "A new customer just wanted to get in touch with us via Contact form",
+              }[source as string] || "A new enquiry from Forbole's website";
+
+            await transporter.sendMail({
+              ...restBody,
+              subject,
+              to: process.env.SEND_EMAIL_TO || "rpc@forbole.com",
+            });
           }
           res.status(200).json({
             success: true,

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ghostApi as api } from "../index";
 import { IPost } from "./interface";
 
@@ -18,6 +17,7 @@ export const getNetworkPosts = async ({
       formats: "html",
     });
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     return [];
   }

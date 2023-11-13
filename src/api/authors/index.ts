@@ -1,9 +1,5 @@
-/* eslint-disable no-console */
 import { ghostApi as api } from "../index";
 
-// import { IPost } from "./interface";
-
-/** Get blog posts by tag */
 export const getAuthorBySlug = async (query: { author: string }) => {
   try {
     const authorInfo = await api.authors.read({
@@ -11,12 +7,12 @@ export const getAuthorBySlug = async (query: { author: string }) => {
     });
     return authorInfo ?? null;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(`tag: ${err}`);
     return [];
   }
 };
 
-/** Get blog posts by author */
 export const getPostsByAuthor = async (query: {
   author: string;
   page?: number;
@@ -31,6 +27,7 @@ export const getPostsByAuthor = async (query: {
     });
     return posts ?? null;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(`tag: ${err}`);
     return [];
   }

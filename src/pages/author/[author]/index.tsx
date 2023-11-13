@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { getAuthorBySlug, getPostsByAuthor } from "@api/authors";
 import { getPosts, getTags } from "@api/posts";
 import { Post, Tag } from "@models";
@@ -41,6 +40,7 @@ export async function getServerSideProps(context: { query: any }) {
     );
   } catch (err) {
     error = true;
+    // eslint-disable-next-line no-console
     console.log(error, "error");
   }
   return {

@@ -20,6 +20,14 @@ test.describe.parallel("Main Pages", () => {
       await expect(page.locator('[data-test="nav"]')).toBeVisible();
     });
   });
+
+  test.describe.parallel("Contact Page", () => {
+    test("Main components", async ({ page }) => {
+      await page.goto("/contact");
+
+      await expect(page.locator('[data-test="contact-submit"]')).toBeVisible();
+    });
+  });
 });
 
 test.describe.parallel("Blog", () => {

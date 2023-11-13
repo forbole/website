@@ -1,12 +1,12 @@
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { styled } from "@mui/material/styles";
-import * as React from "react";
+import { ReactElement, ReactNode, SyntheticEvent } from "react";
 
 interface StyledTabsProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   value: number;
-  onChange: (event: React.SyntheticEvent, newValue: number) => void;
+  onChange: (event: SyntheticEvent, newValue: number) => void;
 }
 
 export const StyledTabs = styled((props: StyledTabsProps) => (
@@ -31,7 +31,7 @@ export const StyledTabs = styled((props: StyledTabsProps) => (
 
 interface StyledTabProps {
   label: string;
-  icon?: string | React.ReactElement;
+  icon?: string | ReactElement;
   disabled?: boolean;
   value?: string;
   onClick?: (e: any) => void;

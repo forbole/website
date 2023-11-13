@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useEffect, useState } from "react";
 

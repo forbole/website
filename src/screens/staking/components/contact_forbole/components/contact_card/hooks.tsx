@@ -29,8 +29,7 @@ const useContactCard = () => {
       axios
         .post("/api/contact", {
           from: inputs.email,
-          to: "info@forbole.com",
-          subject: "Inquiry From Forbole Validator Website",
+          source: "staking",
           text: sanitize(inputs.option),
           html: `<p>${sanitize(inputs.option)}</p>`,
         })

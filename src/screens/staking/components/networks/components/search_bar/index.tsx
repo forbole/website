@@ -1,10 +1,3 @@
-/* eslint-disable no-use-before-define */
-
-/* eslint-disable no-undef */
-
-/* eslint-disable no-shadow */
-
-/* eslint-disable no-unused-vars */
 import { SearchIcon } from "@icons";
 import {
   Autocomplete,
@@ -22,10 +15,10 @@ import {
   useTheme,
 } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
-import { getNetworkInfo, logos } from "@src/utils/network_info";
+import { Network, getNetworkInfo, logos } from "@src/utils/network_info";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import React, {
+import {
   ComponentProps,
   FC,
   FocusEventHandler,
@@ -40,6 +33,10 @@ import useStyles from "./useStyles";
 const filterOptions = createFilterOptions({
   matchFrom: "start",
 });
+
+function scrollLock() {
+  window.scrollTo(0, 0);
+}
 
 /**
  * It takes an object with a property called `startAdornment` and returns an object with a property
@@ -205,9 +202,5 @@ const SearchBar: FC<SearchBarProps> = () => {
     </Box>
   );
 };
-
-function scrollLock() {
-  window.scrollTo(0, 0);
-}
 
 export default SearchBar;

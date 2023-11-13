@@ -1,11 +1,11 @@
 import { Github, Instagram, LinkedIn, Medium, Telegram, Twitter } from "@icons";
 import { useRouter } from "next/router";
-import * as React from "react";
+import { FunctionComponent } from "react";
 
 interface SocialMediaProps {
   key: string;
   url: string;
-  component: React.FunctionComponent<{ fill?: string }>;
+  component: FunctionComponent<{ fill?: string }>;
 }
 
 interface SocialMediasProps {

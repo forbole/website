@@ -67,9 +67,7 @@ const useTalkModalForm = () => {
       axios
         .post("/api/contact", {
           from: inputs.email,
-          to: "info@forbole.com",
-          subject:
-            "A new customer just wanted to get in touch with us via Developer Tools form",
+          source: "devtools",
           html: `
           <p>Dear Administrator,</p>
           <p>A new customer: ${sanitize(

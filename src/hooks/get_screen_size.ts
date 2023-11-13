@@ -1,5 +1,5 @@
 import { useTheme } from "@mui/material";
-import * as React from "react";
+import { useEffect, useState } from "react";
 
 const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -10,17 +10,17 @@ const getWindowDimensions = () => {
 };
 
 export const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = React.useState({
+  const [windowDimensions, setWindowDimensions] = useState({
     width: 0,
     height: 0,
   }); // <-- don't invoke the function here
 
   const theme = useTheme();
-  const [isDesktop, setIsDesktop] = React.useState<boolean>(false);
-  const [isTablet, setIsTablet] = React.useState<boolean>(false);
-  const [isMobile, setIsMobile] = React.useState<boolean>(true);
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+  const [isTablet, setIsTablet] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
@@ -33,7 +33,7 @@ export const useWindowDimensions = () => {
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const width = windowDimensions?.width ?? 0;
     // is mobile
     if (width < theme?.breakpoints?.values?.tablet) {
