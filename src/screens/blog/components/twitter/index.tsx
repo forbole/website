@@ -1,6 +1,5 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 import { styles } from "./styles";

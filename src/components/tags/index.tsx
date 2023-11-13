@@ -1,10 +1,6 @@
-/* eslint-disable react/require-default-props */
-
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
 
 import { styles } from "./styles";
 

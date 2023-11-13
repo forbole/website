@@ -47,8 +47,8 @@ const Post = (props: any) => {
                 isDesktop && main
                   ? ("324px!important" as any)
                   : isMobile
-                  ? ("156px!important" as any)
-                  : ("156px!important" as any)
+                    ? ("156px!important" as any)
+                    : ("156px!important" as any)
               }
               sx={{
                 "> span": {
@@ -59,8 +59,8 @@ const Post = (props: any) => {
                 isDesktop && main
                   ? ("100%!important" as any)
                   : isMobile
-                  ? ("100%!important" as any)
-                  : ("100%!important" as any)
+                    ? ("100%!important" as any)
+                    : ("100%!important" as any)
               }
             >
               <Image
@@ -92,8 +92,8 @@ const Post = (props: any) => {
                 isDesktop && main
                   ? ("690px!important" as any)
                   : isMobile
-                  ? ("270px!important" as any)
-                  : ("100%!important" as any)
+                    ? ("270px!important" as any)
+                    : ("100%!important" as any)
               }
             >
               <Typography

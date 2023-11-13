@@ -4,7 +4,6 @@ import MenuItem from "@mui/material/MenuItem";
 import { anchorElState } from "@src/recoil/settings/anchorEl";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
 import { useRecoilState } from "recoil";
 
 const CompanyMenuButton = () => {

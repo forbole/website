@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { ExpandIcon } from "@icons";
 import {
   Box,
@@ -20,6 +19,10 @@ import React from "react";
 import { options } from "./config";
 import useContactCard from "./hooks";
 import { styles } from "./styles";
+
+const ExpandIconWrapper = (props: Record<string, unknown>) => (
+  <ExpandIcon {...props} />
+);
 
 const ContactCard = () => {
   const theme = useTheme();
@@ -129,7 +132,7 @@ const ContactCard = () => {
                 </InputLabel>
               ) : null}
               <Select
-                IconComponent={(props) => <ExpandIcon {...props} />}
+                IconComponent={ExpandIconWrapper}
                 MenuProps={{
                   variant: "menu",
                   disableScrollLock: true,

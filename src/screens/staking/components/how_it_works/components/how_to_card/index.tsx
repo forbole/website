@@ -1,10 +1,7 @@
 /* eslint-disable no-nested-ternary */
-
-/* eslint-disable no-unused-vars */
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import React from "react";
 
 const HowToCard = (props: any) => {
   const { t } = useTranslation("staking");
@@ -27,8 +24,8 @@ const HowToCard = (props: any) => {
             id <= 2
               ? ("-19px !important" as any)
               : id === 3
-              ? ("-15px !important" as any)
-              : ("-5px !important" as any),
+                ? ("-15px !important" as any)
+                : ("-5px !important" as any),
           maxWidth: "150% !important" as any,
         },
       }}

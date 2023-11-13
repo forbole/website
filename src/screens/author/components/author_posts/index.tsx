@@ -1,9 +1,5 @@
-/* eslint-disable no-unused-expressions */
-
-/* eslint-disable no-shadow */
 import { Box, Pagination, useTheme } from "@mui/material";
 import * as R from "ramda";
-import React from "react";
 
 import Post from "./components/post";
 import { useBlogPostsHook } from "./hooks";

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { DropDownIcon } from "@icons";
 import {
   Box,

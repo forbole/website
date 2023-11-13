@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useHKT, useWindowDimensions } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import Link from "next/link";
 const Post = (props: any) => {
   const theme = useTheme();
   const { isDesktop, isMobile } = useWindowDimensions();
-  const { post, main = false } = props;
+  const { post, main = false, refProp } = props;
   const { featureImage, title, excerpt, publishedAt, slug, author } = post;
   const cmsLoader = ({ src, width, quality }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
@@ -36,7 +37,7 @@ const Post = (props: any) => {
         },
       }}
     >
-      <Box ref={props.refProp} sx={{ padding: 0 }}>
+      <Box ref={refProp} sx={{ padding: 0 }}>
         <Link as={`/blog/${slug}`} href="/blog/[title]">
           <a>
             <Box

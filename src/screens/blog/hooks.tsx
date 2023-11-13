@@ -1,8 +1,8 @@
-import React from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 export const useBlogHook = (error: unknown, t: any) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (error) {
       toast.error(t("error"));
     }

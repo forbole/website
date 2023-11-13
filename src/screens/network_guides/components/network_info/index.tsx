@@ -39,8 +39,8 @@ const NetworkInfo = ({ post }: any) => {
     tags.length <= 1
       ? null
       : tags[1].slug === "crypto-org"
-      ? getNetworkInfo("crypto.org")
-      : getNetworkInfo(tags[1].slug);
+        ? getNetworkInfo("crypto.org")
+        : getNetworkInfo(tags[1].slug);
 
   const { cosmosNetworkGuides } = useNetworkGuidesHook();
 

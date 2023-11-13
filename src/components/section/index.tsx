@@ -1,6 +1,5 @@
 import { Stack, Typography, useTheme } from "@mui/material";
 import dynamic from "next/dynamic";
-import React from "react";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
   ssr: false,

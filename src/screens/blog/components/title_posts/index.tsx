@@ -2,7 +2,6 @@
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
 
 import { styles } from "./styles";
 
