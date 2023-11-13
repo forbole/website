@@ -4,12 +4,6 @@ const localePrefixes = ["", "/zh-HK", "/zh-CN"];
 
 module.exports = nextTranslate({
   poweredByHeader: false,
-  nextConfig: {
-    reactStrictMode: true,
-  },
-  experimental: {
-    outputStandalone: true,
-  },
   images: {
     unoptimized: true,
   },
