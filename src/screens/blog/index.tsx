@@ -4,7 +4,7 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import React from "react";
 
-import { BlogPosts, TitlePosts, Twitter } from "./components";
+import { BlogPosts, TitlePosts } from "./components";
 import { useBlogHook } from "./hooks";
 import { styles } from "./styles";
 
@@ -36,7 +36,6 @@ const Blog = (props: any) => {
           <Box sx={styles.sideCSS}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />
-            {false && <Twitter />}
           </Box>
           <Box
             sx={{

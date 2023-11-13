@@ -147,6 +147,7 @@ const MobileNavMenu = () => {
             onClick={() => {
               router.push("/products").finally(handleClose);
             }}
+            role="button"
           >
             {t("Products")}
           </div>
@@ -154,6 +155,7 @@ const MobileNavMenu = () => {
             onClick={() => {
               handlerCLickShowProducts();
             }}
+            role="button"
           >
             {openShowProducts ? (
               <KeyboardArrowUpIcon />

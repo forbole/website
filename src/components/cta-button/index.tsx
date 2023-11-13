@@ -11,7 +11,9 @@ const ColorButton = styled(LoadingButton)<LoadingButtonProps>(() => ({
   "height": "45px",
   "fontSize": "16px",
   "padding": " 0px 16px",
+  "transition": "transform 0.2s ease-in-out",
   "&:hover": {
+    transform: "scale(1.02)",
     background:
       "linear-gradient(175.41deg, #623DF5 11.57%, #362187 173.5%),linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32))",
     boxShadow:

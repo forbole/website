@@ -28,6 +28,14 @@ test.describe.parallel("Main Pages", () => {
       await expect(page.locator('[data-test="contact-submit"]')).toBeVisible();
     });
   });
+
+  test.describe.parallel("DevTools Page", () => {
+    test("Main components", async ({ page }) => {
+      await page.goto("/developer-tools");
+
+      await expect(page.locator('[data-test="devtools-cta"]')).toBeVisible();
+    });
+  });
 });
 
 test.describe.parallel("Blog", () => {

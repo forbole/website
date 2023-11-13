@@ -43,13 +43,13 @@ const NetworkInfo = ({ post }: any) => {
 
   const { cosmosNetworkGuides } = useNetworkGuidesHook();
 
-  const networkStats = cosmosNetworkGuides[networkData.graphql];
+  const networkStats = cosmosNetworkGuides[networkData?.graphql || ""];
 
   const copyText = React.useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation();
       navigator.clipboard.writeText(
-        networkData ? networkData.address : "coming soon",
+        networkData ? networkData.address || "" : "coming soon",
       );
       setIsCopySuccess(true);
     },
@@ -133,7 +133,7 @@ const NetworkInfo = ({ post }: any) => {
                   objectFit="contain"
                   quality={100}
                   src={
-                    !networkData.image
+                    !networkData?.image
                       ? "/images/assets/blog-placeholder.png"
                       : networkData.image
                   }
@@ -149,9 +149,9 @@ const NetworkInfo = ({ post }: any) => {
                   }}
                   variant="h3"
                 >
-                  {networkData.name}
+                  {networkData?.name || ""}
                 </Typography>
-                {networkData.address && (
+                {networkData?.address && (
                   <Box
                     alignItems="center"
                     display="flex"
@@ -180,8 +180,8 @@ const NetworkInfo = ({ post }: any) => {
             </Box>
             <Box>
               <Button
-                disabled={!networkData.delegate}
-                href={networkData.delegate ? networkData.delegate : ""}
+                disabled={!networkData?.delegate}
+                href={networkData?.delegate ? networkData.delegate : ""}
                 sx={{
                   display: "none",
                   width: "97px",
@@ -281,7 +281,7 @@ const NetworkInfo = ({ post }: any) => {
                 {networkStats.map((info, i) => (
                   <InfoCard
                     key={i}
-                    info={networkData.key}
+                    info={networkData?.key}
                     stats={info.stats}
                     title={info.title}
                     type={info.type}

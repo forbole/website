@@ -2,7 +2,7 @@ import { Layout, Tags } from "@components";
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
-import { TitlePosts, Twitter } from "../blog/components";
+import { TitlePosts } from "../blog/components";
 import { TagPosts } from "./components";
 import { useBlogHook } from "./hooks";
 import { styles } from "./styles";
@@ -30,7 +30,6 @@ const TagTitlePosts = (props: any) => {
           <Box sx={styles.sideCSS}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />
-            {false && <Twitter />}
           </Box>
         </Box>
       </Box>

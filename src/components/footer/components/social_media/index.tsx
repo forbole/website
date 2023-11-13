@@ -84,6 +84,7 @@ const SocialMedia = () => {
         {socialMediaInfo.map((x) => (
           <a
             key={x.key}
+            className={classes.icon}
             href={x.url}
             rel="noreferrer"
             style={{ color: "currentcolor" }}

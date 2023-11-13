@@ -83,6 +83,7 @@ const DeveloperTools = () => {
             }}
           >
             <CtaButton
+              data-test="devtools-cta"
               onClick={() => {
                 router.push("https://devtools.forbole.com");
               }}

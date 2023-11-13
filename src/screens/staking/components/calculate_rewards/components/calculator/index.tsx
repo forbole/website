@@ -140,6 +140,7 @@ const Calculator = (props: any) => {
             value={selectedToken}
           >
             {networkData.map((network, i) => (
+              // @ts-expect-error
               <MenuItem key={i} value={network}>
                 <Box
                   sx={{
@@ -180,7 +181,7 @@ const Calculator = (props: any) => {
                       sx={{ fontWeight: 600, fontSize: theme.spacing(2.5) }}
                       variant="h4"
                     >
-                      {network.denom.toUpperCase()}
+                      {network?.denom?.toUpperCase() || ""}
                     </Typography>
                     <Typography
                       sx={{

@@ -20,3 +20,9 @@
   outline: none;
   vertical-align: middle;
 }
+.icon {
+  transition: all 0.2s ease-in-out;
+}
+.icon:hover {
+  transform: scale(1.5);
+}

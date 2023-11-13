@@ -1,15 +1,15 @@
 import { Box, Pagination, useTheme } from "@mui/material";
-import * as R from "ramda";
+import Post from "@screens/blog/components/blog_posts/components/post";
+import { pathOr } from "ramda";
 
-import Post from "./components/post";
 import { useBlogPostsHook } from "./hooks";
 import { IProps } from "./interface";
 
 const AuthorPosts = ({ main, blogs, meta }: IProps) => {
   const theme = useTheme();
 
-  const currentPage = R.pathOr(0, ["pagination", "page"], meta);
-  const totalPages = R.pathOr(0, ["pagination", "pages"], meta);
+  const currentPage = pathOr(0, ["pagination", "page"], meta);
+  const totalPages = pathOr(0, ["pagination", "pages"], meta);
 
   const { handleAuthorPageChange } = useBlogPostsHook();
   return (

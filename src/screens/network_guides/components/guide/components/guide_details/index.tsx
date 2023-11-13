@@ -57,8 +57,8 @@ const GuideDetails = ({ post }: any) => {
           }}
         >
           <Button
-            disabled={!networkData.delegate}
-            href={networkData.delegate ? networkData.delegate : ""}
+            disabled={!networkData?.delegate}
+            href={networkData?.delegate ? networkData.delegate : ""}
             sx={{
               width: "97px",
               height: "32px",
