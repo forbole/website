@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useHKT } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
 import Link from "next/link";

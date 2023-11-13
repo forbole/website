@@ -33,7 +33,6 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/control-has-associated-label": "off",
     "jsx-a11y/interactive-supports-focus": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
 
     "import/extensions": [
       "error",
@@ -73,16 +72,9 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["tests/**/*"],
+      files: ["server/**/*"],
       rules: {
-        "no-undef": "off",
-      },
-    },
-    {
-      files: ["src/**/*.test.tsx", "src/**/*.test.ts", "**/*.spec.ts"],
-      rules: {
-        "no-undef": "off",
-        "import/no-extraneous-dependencies": "off",
+        "no-console": "off",
       },
     },
   ],

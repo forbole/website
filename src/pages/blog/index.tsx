@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { getAllPosts, getPosts, getTags } from "@api/posts";
 import { Post, Tag } from "@models";
 import Blog from "@screens/blog";
@@ -39,6 +38,7 @@ export async function getServerSideProps(context: { query: any }) {
     meta = posts.meta;
   } catch (err) {
     error = true;
+    // eslint-disable-next-line no-console
     console.log(err, "error");
   }
 

@@ -1,6 +1,3 @@
-/* eslint-disable react/require-default-props */
-
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
 import { Box, Button, useTheme } from "@mui/material";
 import Link from "next/link";

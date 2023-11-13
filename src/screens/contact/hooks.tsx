@@ -66,7 +66,6 @@ const useContactForm = () => {
       axios
         .post("/api/contact", {
           from: inputs.email,
-          to: "rpc@forbole.com",
           subject:
             "A new customer just wanted to get in touch with us via Enterprise form",
           html: `

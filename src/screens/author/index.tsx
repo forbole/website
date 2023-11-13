@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Layout } from "@components";
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";

@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Box, useTheme } from "@mui/material";
 import CtaButton from "@src/components/cta-button";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import * as React from "react";
 
 import CompanyMenuButton from "../company_menu_button";
 import { navItems } from "../config";
@@ -11,11 +9,7 @@ import LangMenuButton from "../lang_menu_button";
 import ProductsMenuButton from "../products_menu_button";
 import classes from "./index.module.css";
 
-interface NavMenuProps {
-  itemColor: string | undefined;
-}
-
-const DesktopNavMenu = ({ itemColor }: NavMenuProps) => {
+const DesktopNavMenu = () => {
   const { t } = useTranslation("common");
   const theme = useTheme();
 
@@ -37,7 +31,9 @@ const DesktopNavMenu = ({ itemColor }: NavMenuProps) => {
             "fontWeight": 600,
             "fontSize": theme.spacing(2),
             "&:hover": {
-              color: itemColor || theme.palette.custom.forbole.indigo,
+              background: "rgba(0,0,0,0.2)",
+              borderRadius: "24px",
+              color: theme.palette.common.white,
             },
             "userSelect": "none",
           }}

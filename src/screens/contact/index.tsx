@@ -337,6 +337,7 @@ const Contact = () => {
             </Grid>
             <Grid item laptop={12}>
               <CtaButton
+                data-test="contact-submit"
                 disabled={!canSubmit}
                 loading={isLoading}
                 onClick={handleSubmit}

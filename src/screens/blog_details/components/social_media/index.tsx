@@ -38,6 +38,7 @@ const SocialMedia = (props: any) => {
         "paddingBottom": theme.spacing(3),
         "& svg": {
           "marginRight": theme.spacing(2),
+          "transition": "transform 0.2s ease-in-out",
           "& path": {
             fill: theme.palette.primary.main,
           },
@@ -45,6 +46,7 @@ const SocialMedia = (props: any) => {
             cursor: "pointer",
             borderRadius: "50%",
             background: theme.palette.custom.forbole.indigo,
+            transform: "scale(1.5)",
           },
         },
       }}
@@ -55,6 +57,7 @@ const SocialMedia = (props: any) => {
             `https://telegram.me/share/?url=${shareUrl}&text=${title}`,
           )
         }
+        role="button"
       >
         <Telegram />
       </span>
@@ -64,6 +67,7 @@ const SocialMedia = (props: any) => {
             `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${title}`,
           )
         }
+        role="button"
       >
         <Facebook />
       </span>
@@ -73,6 +77,7 @@ const SocialMedia = (props: any) => {
             `https://twitter.com/intent/tweet?url=${shareUrl}&text=${title}`,
           )
         }
+        role="button"
       >
         <Twitter />
       </span>
@@ -82,6 +87,7 @@ const SocialMedia = (props: any) => {
             `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}&text=${title}`,
           )
         }
+        role="button"
       >
         <LinkedIn />
       </span>

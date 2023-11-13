@@ -1,11 +1,11 @@
 import { useTheme } from "@mui/material";
-import * as React from "react";
+import { useDebugValue } from "react";
 
 export default function useColor() {
   const theme = useTheme();
   const colorObj = theme.palette.custom.forbole;
   if (process.env.NODE_ENV !== "production") {
-    React.useDebugValue(colorObj);
+    useDebugValue(colorObj);
   }
 
   return colorObj;

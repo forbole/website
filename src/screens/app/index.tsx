@@ -3,7 +3,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { init } from "@socialgouv/matomo-next";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import * as React from "react";
+import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
 
 import createEmotionCache from "../../misc/createEmotionCache";
@@ -27,7 +27,7 @@ const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  React.useEffect(() => {
+  useEffect(() => {
     init({
       url: MATOMO_URL,
       siteId: MATOMO_SITE_ID,

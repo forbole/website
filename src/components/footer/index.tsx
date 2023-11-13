@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 import { useWindowDimensions } from "@src/hooks";
 import useTranslation from "next-translate/useTranslation";

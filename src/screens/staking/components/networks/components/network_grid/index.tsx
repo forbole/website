@@ -1,4 +1,3 @@
-/* eslint-disable no-bitwise */
 import { Box } from "@mui/material";
 import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 import { LayoutGroup } from "framer-motion";

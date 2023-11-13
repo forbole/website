@@ -1,4 +1,3 @@
-/* eslint-disable react/void-dom-elements-no-children */
 import { Layout, ScrollToTop } from "@components";
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";

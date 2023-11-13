@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Theme } from "@mui/material";
 import { SxProps } from "@mui/system";
 

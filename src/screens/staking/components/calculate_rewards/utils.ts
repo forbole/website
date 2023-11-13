@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import * as R from "ramda";
 
 type NetworkDataProps = {

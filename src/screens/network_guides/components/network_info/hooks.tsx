@@ -1,8 +1,4 @@
 /* eslint-disable no-unused-expressions */
-
-/* eslint-disable array-callback-return */
-
-/* eslint-disable no-console */
 import { gql, useQuery } from "@apollo/client";
 import {
   getEachCosmosAPY,
@@ -37,7 +33,7 @@ export const useNetworkGuidesHook = () => {
   useMemo(() => {
     if (!cosmosComissionLoading) {
       const { eachCosmosCommission } = cosmosComissionData;
-      eachCosmosCommission.map((data: any) => {
+      eachCosmosCommission.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworkGuides);
         keys.includes(data.metric.instance)
           ? setCosmosNetworkGuides((prev) => ({
@@ -59,7 +55,7 @@ export const useNetworkGuidesHook = () => {
   useMemo(() => {
     if (!cosmosAPYLoading) {
       const { eachCosmosAPY } = cosmosAPYData;
-      eachCosmosAPY.map((data: any) => {
+      eachCosmosAPY.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworkGuides);
         keys.includes(data.metric.instance)
           ? setCosmosNetworkGuides((prev) => ({
@@ -82,7 +78,7 @@ export const useNetworkGuidesHook = () => {
   useMemo(() => {
     if (!cosmosTVLLoading) {
       const { eachCosmosTVL } = cosmosTVLData;
-      eachCosmosTVL.map((data: any) => {
+      eachCosmosTVL.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworkGuides);
         keys.includes(data.metric.instance)
           ? setCosmosNetworkGuides((prev) => ({
@@ -105,7 +101,7 @@ export const useNetworkGuidesHook = () => {
   useMemo(() => {
     if (!cosmosUnbondingTimeLoading) {
       const { eachCosmosUnbondingTime } = cosmosUnbondingTimeData;
-      eachCosmosUnbondingTime.map((data: any) => {
+      eachCosmosUnbondingTime.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworkGuides);
         keys.includes(data.metric.instance)
           ? setCosmosNetworkGuides((prev) => ({

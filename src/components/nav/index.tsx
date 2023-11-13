@@ -162,7 +162,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
                   },
                 }}
               >
-                <DesktopNavMenu itemColor={itemColor} />
+                <DesktopNavMenu />
               </Box>
             </>
           )}

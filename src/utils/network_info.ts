@@ -1,4 +1,26 @@
-interface IStringIndex extends Record<string, any> {}
+export type Network = {
+  address?: string;
+  bigDipper?: string;
+  color?: string;
+  delegate?: string;
+  denom?: string;
+  graphql: string;
+  heightSocket?: string;
+  image: string;
+  key: string;
+  label?: string;
+  name: string;
+  value?: string;
+  guide?: string;
+  calculator?: {
+    bonded: string;
+    inflation: string;
+    supply: string;
+    stakingParams: string;
+  };
+};
+
+interface IStringIndex extends Record<string, Network> {}
 
 /**
  * Takes the key name and returns the location. Will return null if undefined
