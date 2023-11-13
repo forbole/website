@@ -11,7 +11,7 @@ const Stats = () => {
   // so Object.keys returns an array of the objects keys that you can loop over:
   const statsKeys = Object.keys(stats);
   return (
-    <Box css={styles.grid}>
+    <Box css={styles.grid} data-test="stats-cards">
       {statsKeys.map((key: any) => {
         const statsItem = stats[key];
         return (

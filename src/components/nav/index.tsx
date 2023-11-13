@@ -30,6 +30,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
 
   return (
     <Box
+      data-test="nav"
       sx={{
         "boxSizing": "content-box",
         "display": "flex",

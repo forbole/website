@@ -12,8 +12,10 @@ const Blog = (props: any) => {
   const theme = useTheme();
   const { posts = [], meta = {}, tags = [], sidePosts = [], error } = props;
   const { t } = useTranslation("blog");
-  useBlogHook(error, t);
   const topRef = React.useRef(null);
+
+  useBlogHook(error, t);
+
   return (
     <Layout blueBg footer skipLocale title={t("title")}>
       <Head>

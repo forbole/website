@@ -1,8 +1,3 @@
-/* eslint-disable no-nested-ternary */
-
-/* eslint-disable react/destructuring-assignment */
-
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useHKT, useWindowDimensions } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
@@ -16,8 +11,10 @@ const Post = (props: any) => {
   const cmsLoader = ({ src, width, quality }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
   const time = useHKT(publishedAt);
+
   return (
     <Box
+      data-test="post-summary-item"
       sx={{
         "border": "1px solid rgba(195, 204, 226, 0.3)",
         "borderRadius": theme.spacing(1.5),
@@ -47,8 +44,8 @@ const Post = (props: any) => {
                 isDesktop && main
                   ? ("324px!important" as any)
                   : isMobile
-                  ? ("156px!important" as any)
-                  : ("156px!important" as any)
+                    ? ("156px!important" as any)
+                    : ("156px!important" as any)
               }
               sx={{
                 "> span": {
@@ -59,8 +56,8 @@ const Post = (props: any) => {
                 isDesktop && main
                   ? ("100%!important" as any)
                   : isMobile
-                  ? ("100%!important" as any)
-                  : ("100%!important" as any)
+                    ? ("100%!important" as any)
+                    : ("100%!important" as any)
               }
             >
               <Image
@@ -92,8 +89,8 @@ const Post = (props: any) => {
                 isDesktop && main
                   ? ("690px!important" as any)
                   : isMobile
-                  ? ("270px!important" as any)
-                  : ("100%!important" as any)
+                    ? ("270px!important" as any)
+                    : ("100%!important" as any)
               }
             >
               <Typography

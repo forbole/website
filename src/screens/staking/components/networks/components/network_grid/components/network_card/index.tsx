@@ -63,7 +63,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
 
   /* A variable that is used to render the popover. */
   const popover = (
-    <Box className="networkbox__popover">
+    <Box className="networkbox__popover" data-test="network-item">
       <CloseIcon
         className="networkbox__close-btn"
         fontSize="small"
