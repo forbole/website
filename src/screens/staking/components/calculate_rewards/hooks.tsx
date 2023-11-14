@@ -5,11 +5,12 @@ import {
   getEachCosmosInflation,
   getEachCosmosTokenSupply,
 } from "@graphql/queries";
-import { convertToMoney, convertWithDecimal } from "@utils/convert_to_money";
-import { getNetworkInfo } from "@utils/network_info";
 import axios from "axios";
 import { pathOr } from "ramda";
 import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { convertToMoney, convertWithDecimal } from "@utils/convert_to_money";
+import { getNetworkInfo } from "@utils/network_info";
 
 import { getStakingParams } from "./config";
 import { defaultFunctions, networkFunctions, toFixed } from "./utils";

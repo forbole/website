@@ -11,10 +11,11 @@ import {
   getSolanaTVL,
   getSolanaUsersCount,
 } from "@graphql/queries";
-import { networkFunctions } from "@utils/network_functions";
-import { networkNumber } from "@utils/network_info";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useMemo, useState } from "react";
+
+import { networkFunctions } from "@utils/network_functions";
+import { networkNumber } from "@utils/network_info";
 
 export const useStatsHook = () => {
   const { t } = useTranslation("common");

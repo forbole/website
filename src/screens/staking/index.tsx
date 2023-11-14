@@ -1,6 +1,7 @@
-import { LayoutVal } from "@components";
 import useTranslation from "next-translate/useTranslation";
 import React, { useRef } from "react";
+
+import { LayoutVal } from "@components";
 
 import {
   CalculateRewards,

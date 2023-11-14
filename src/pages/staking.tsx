@@ -1,5 +1,6 @@
-import StakingPage from "@src/screens/staking";
 import type { NextPage } from "next";
+
+import StakingPage from "@src/screens/staking";
 
 const Staking: NextPage = () => <StakingPage />;
 

@@ -6,6 +6,10 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import { SyntheticEvent, useMemo, useRef, useState } from "react";
+
 import { Layout, ScrollToTop } from "@src/components";
 import Carousel from "@src/components/Carousel";
 import IntroPanel from "@src/components/Intro_panel";
@@ -17,9 +21,6 @@ import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import { scrollBottom } from "@src/utils/scroll";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
-import { SyntheticEvent, useMemo, useRef, useState } from "react";
 
 import style from "./index.module.css";
 

@@ -1,5 +1,9 @@
 {
-  "importOrder": ["^~(.*)$", "^[./]"],
+  "importOrder": [
+    "^~(.*)$",
+    "@(src|utils|components|screens|models|api)",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "plugins": ["@trivago/prettier-plugin-sort-imports"],

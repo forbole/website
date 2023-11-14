@@ -1,4 +1,3 @@
-import { Layout, ScrollToTop } from "@components";
 import {
   Container,
   Stack,
@@ -6,15 +5,17 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import React, { useMemo, useRef } from "react";
+
+import { Layout, ScrollToTop } from "@components";
 import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import ProductPanel from "@src/components/product-panel";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import { scrollBottom } from "@src/utils/scroll";
-import useTranslation from "next-translate/useTranslation";
-import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
-import React, { useMemo, useRef } from "react";
 
 import style from "./index.module.css";
 

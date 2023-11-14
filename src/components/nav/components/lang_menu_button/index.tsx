@@ -9,13 +9,14 @@ import {
   useTheme,
 } from "@mui/material";
 import { anchorElState } from "@recoil/settings/anchorEl";
-import { useWindowDimensions } from "@src/hooks";
-import useColor from "@src/styles/useColor";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useRecoilState } from "recoil";
+
+import { useWindowDimensions } from "@src/hooks";
+import useColor from "@src/styles/useColor";
 
 import useStyles from "./useStyles";
 

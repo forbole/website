@@ -1,8 +1,9 @@
-import CtaButton from "@components/cta-button";
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
+import CtaButton from "@components/cta-button";
 
 import usePlans from "./config";
 import styles from "./styles.module.css";

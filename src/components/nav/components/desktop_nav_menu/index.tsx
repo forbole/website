@@ -1,8 +1,9 @@
 import { Box, useTheme } from "@mui/material";
-import CtaButton from "@src/components/cta-button";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useMemo } from "react";
+
+import CtaButton from "@src/components/cta-button";
 
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";

@@ -1,4 +1,3 @@
-import { Layout } from "@components";
 import {
   Box,
   Checkbox,
@@ -13,12 +12,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import CtaButton from "@src/components/cta-button";
-import FormInput from "@src/components/formInput";
-import SuccessModal from "@src/components/success-modal";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useRef } from "react";
+
+import { Layout } from "@components";
+import CtaButton from "@src/components/cta-button";
+import FormInput from "@src/components/formInput";
+import SuccessModal from "@src/components/success-modal";
 
 import useContactForm from "./hooks";
 import { styles } from "./styles";

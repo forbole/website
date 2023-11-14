@@ -1,6 +1,7 @@
 import { Box, Button, useTheme } from "@mui/material";
-import { getNetworkInfo } from "@src/utils/network_info";
 import DOMPurify from "isomorphic-dompurify";
+
+import { getNetworkInfo } from "@src/utils/network_info";
 
 import { GuideContentBox, GuideContentCSS } from "./styles";
 

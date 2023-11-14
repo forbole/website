@@ -1,12 +1,13 @@
 import { Box, Input, Stack, useTheme } from "@mui/material";
-import CtaButton from "@src/components/cta-button";
-import { socialMedia } from "@utils/social_media_info";
 import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React from "react";
 import { ToastContent, toast } from "react-toastify";
 import validator from "validator";
+
+import CtaButton from "@src/components/cta-button";
+import { socialMedia } from "@utils/social_media_info";
 
 import classes from "./classes.module.css";
 

@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import { Box, Typography } from "@mui/material";
-import { convertToMoney } from "@utils/convert_to_money";
 import useTranslation from "next-translate/useTranslation";
+
+import { convertToMoney } from "@utils/convert_to_money";
 
 import useStyles from "./useStyles";
 

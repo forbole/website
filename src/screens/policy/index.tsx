@@ -1,9 +1,10 @@
-import { Layout, ScrollToTop } from "@components";
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import Link from "@mui/material/Link";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
+
+import { Layout, ScrollToTop } from "@components";
 
 import { TNCCSS } from "../terms_and_conditions/styles";
 

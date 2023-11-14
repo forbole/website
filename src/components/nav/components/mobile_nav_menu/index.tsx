@@ -1,16 +1,17 @@
-import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Collapse, ListItem, Stack, useTheme } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
-import CtaButton from "@src/components/cta-button";
-import { useWindowDimensions } from "@src/hooks";
-import { anchorElState } from "@src/recoil/settings/anchorEl";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+
+import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
+import CtaButton from "@src/components/cta-button";
+import { useWindowDimensions } from "@src/hooks";
+import { anchorElState } from "@src/recoil/settings/anchorEl";
 
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
