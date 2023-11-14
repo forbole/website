@@ -6,11 +6,14 @@ import {
   getEachCosmosTVL,
   getEachCosmosUnbondingTime,
 } from "@graphql/queries";
+import useTranslation from "next-translate/useTranslation";
 import { useMemo, useState } from "react";
 
-import { cosmosNetworkGuideParams } from "./config";
+import { useCosmosNetworkGuideParams } from "./config";
 
 export const useNetworkGuidesHook = () => {
+  const { t } = useTranslation("staking");
+  const cosmosNetworkGuideParams = useCosmosNetworkGuideParams();
   const [cosmosNetworkGuides, setCosmosNetworkGuides] = useState(
     cosmosNetworkGuideParams,
   );
@@ -40,9 +43,9 @@ export const useNetworkGuidesHook = () => {
               ...prev,
               [data.metric.instance]: [
                 {
-                  title: "commission",
+                  title: t("commission"),
                   stats: data.commissionRate,
-                  type: "percentage",
+                  type: t("percentage"),
                 },
               ],
             }))
@@ -50,7 +53,8 @@ export const useNetworkGuidesHook = () => {
       });
     }
     return cosmosNetworkGuides;
-  }, [cosmosComissionData, cosmosComissionLoading, cosmosNetworkGuides]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosComissionData, cosmosComissionLoading]);
 
   useMemo(() => {
     if (!cosmosAPYLoading) {
@@ -63,17 +67,18 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance]: [
                 ...prev[data.metric.instance],
                 {
-                  title: "apy",
+                  title: t("apy"),
                   stats: data.APY,
-                  type: "percentage",
+                  type: t("percentage"),
                 },
               ],
             }))
           : null;
       });
     }
-    return cosmosNetworkGuides;
-  }, [cosmosAPYData, cosmosAPYLoading, cosmosNetworkGuides]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosAPYData, cosmosAPYLoading]);
 
   useMemo(() => {
     if (!cosmosTVLLoading) {
@@ -86,17 +91,17 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance]: [
                 ...prev[data.metric.instance],
                 {
-                  title: "staked by forbole",
+                  title: t("staked by forbole"),
                   stats: data.TVL,
-                  type: "money",
+                  type: t("money"),
                 },
               ],
             }))
           : null;
       });
     }
-    return cosmosNetworkGuides;
-  }, [cosmosTVLData, cosmosTVLLoading, cosmosNetworkGuides]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosTVLData, cosmosTVLLoading]);
 
   useMemo(() => {
     if (!cosmosUnbondingTimeLoading) {
@@ -109,21 +114,17 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance]: [
                 ...prev[data.metric.instance],
                 {
-                  title: "unbonding period",
+                  title: t("unbonding period"),
                   stats: data.unbondingTime,
-                  type: "string",
+                  type: t("string"),
                 },
               ],
             }))
           : null;
       });
     }
-    return cosmosNetworkGuides;
-  }, [
-    cosmosUnbondingTimeData,
-    cosmosUnbondingTimeLoading,
-    cosmosNetworkGuides,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosUnbondingTimeData, cosmosUnbondingTimeLoading]);
 
   return {
     cosmosNetworkGuides,

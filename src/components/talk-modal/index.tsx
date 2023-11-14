@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
 import CtaButton from "../cta-button";
 import FormInput from "../formInput";
@@ -69,12 +69,16 @@ const TalkModal = ({
     }
     handleCheckedChange(e);
   };
-  const selectList = [
-    { label: "item_1", name: "RPC Endpoints" },
-    { label: "item_2", name: "GraphQL" },
-    { label: "item_3", name: "Data API" },
-    { label: "item_4", name: "Other" },
-  ] as const;
+  const selectList = useMemo(
+    () =>
+      [
+        { label: t("item_1"), name: "RPC Endpoints" },
+        { label: t("item_2"), name: "GraphQL" },
+        { label: t("item_3"), name: "Data API" },
+        { label: t("item_4"), name: "Other" },
+      ] as const,
+    [t],
+  );
   return (
     <Modal
       onClose={() => close?.(false)}
@@ -266,8 +270,8 @@ const TalkModal = ({
                         value={value.name}
                       />
                     }
-                    id={t(value.label)}
-                    label={t(value.label)}
+                    id={value.label}
+                    label={value.label}
                     labelPlacement="start"
                     sx={{
                       width: "100%",

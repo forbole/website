@@ -1,6 +1,7 @@
-import { LayoutVal } from "@components";
 import { Box, useTheme } from "@mui/material";
 import React from "react";
+
+import { LayoutVal } from "@components";
 
 import { Guide, NetworkInfo } from "./components";
 import { LaptopCSS } from "./styles";

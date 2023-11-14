@@ -1,7 +1,8 @@
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
-import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
+
+import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 
 import { TransitionCSS } from "./style";
 

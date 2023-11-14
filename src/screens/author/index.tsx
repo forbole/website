@@ -1,6 +1,7 @@
-import { Layout } from "@components";
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+
+import { Layout } from "@components";
 
 import { AuthorPosts } from "./components";
 import { useBlogHook } from "./hooks";

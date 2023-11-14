@@ -1,7 +1,5 @@
 import { CloseIcon, InfoIcon } from "@icons";
 import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
-import { convertToMoney } from "@utils/convert_to_money";
-import { Network } from "@utils/network_info";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
@@ -12,6 +10,9 @@ import React, {
   SetStateAction,
   useCallback,
 } from "react";
+
+import { convertToMoney } from "@utils/convert_to_money";
+import { Network } from "@utils/network_info";
 
 import { ParamsProps } from "../../config";
 import useStyles from "./useStyles";

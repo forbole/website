@@ -1,8 +1,9 @@
-import { Layout, ScrollToTop, Tags } from "@components";
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import React from "react";
+
+import { Layout, ScrollToTop, Tags } from "@components";
 
 import { BlogPosts, TitlePosts } from "./components";
 import { useBlogHook } from "./hooks";

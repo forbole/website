@@ -1,10 +1,8 @@
 {
   "contents": "內容",
-  "error": "Unable to fetch blogs. Please try again later.",
-  "excerpt": "Forbole provides staking service, blockchain tools, and run our own blockchain by a global team of software engineers, financial experts, and creative marketers.",
-  "forbole": "Forbole",
+  "error": "無法取得部落格。請稍後再試。",
+  "Posted by": "發表者",
   "see more": "閱讀更多",
   "tags": "標籤",
-  "title": "Blog",
-  "twitter": "Twitter"
+  "title": "部落格"
 }

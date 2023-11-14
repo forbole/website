@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export const useBlogHook = (error: any, t: any) => {
   useEffect(() => {
     if (error) {
-      toast.error(t("error"));
+      toast.error(t("blog:error"));
     }
   }, [error, t]);
 };

@@ -46,7 +46,7 @@ const useContactCard = () => {
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.log(err);
-          toast.error(t("error") as string);
+          toast.error(t("common:error") as string);
         });
     }
   };

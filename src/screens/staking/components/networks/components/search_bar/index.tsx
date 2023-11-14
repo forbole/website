@@ -15,7 +15,6 @@ import {
   useTheme,
 } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
-import { Network, getNetworkInfo, logos } from "@src/utils/network_info";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import {
@@ -26,6 +25,8 @@ import {
   useCallback,
   useState,
 } from "react";
+
+import { Network, getNetworkInfo, logos } from "@src/utils/network_info";
 
 import { SearchBarProps } from "./types";
 import useStyles from "./useStyles";

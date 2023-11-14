@@ -1,14 +1,11 @@
 {
-  "page_title": "About",
-  "headercard_title": "About",
   "headercard_1st_desc": "Connecting the world one node at a time",
   "headercard_2nd_desc": "<0>Forbole Tech is a blockchain technology company founded in 2017 that offers <1>reliable</1>, <1>native</1> and <1>scalable</1> blockchain infrastructure solutions to help businesses and individuals navigate the Web3 world.</0>",
-
-  "section_1st_title": "Reliable infrastructure solutions",
+  "headercard_title": "About",
+  "page_title": "About",
   "section_1st_sesc": "Founded by a team of blockchain veterans, we provide secure and innovative blockchain solutions to deliver long-term reward and sustainable growth to our customers and partners.",
-
-  "section_2nd_large_title": "<0>We're here for the <1>long haul</1></0>",
+  "section_1st_title": "Reliable infrastructure solutions",
   "section_2nd_desc": "In 1971, the world's first email was sent. Few people could have predicted that we would be so accustomed to instant messaging today. But over the past fifty years, many companies and teams have made contributions in various aspects, improving transmission speed bit by bit, expanding storage space little by little. The Internet usage at our present scale would not be possible without these small, incremental improvements. ",
-
+  "section_2nd_large_title": "<0>We're here for the <1>long haul</1></0>",
   "section_3rd_desc": "In 2023, most Internet users still find blockchain technology incomprehensible, but progress has silently been made by many teams around the world. Having gone through multiple market cycles, Forbole remains single-mindedly dedicated to building the most efficient and resilient blockchain infrastructure and the most reliable and user-friendly blockchain products, to pave the way for mass adoption of blockchain technology."
 }

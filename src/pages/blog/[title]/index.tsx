@@ -1,8 +1,9 @@
+import type { NextPage } from "next";
+
 import { getSinglePost } from "@api/posts";
 import { Post } from "@models";
 import BlogDetails from "@screens/blog_details";
 import { removeInternalTags } from "@utils/remove_internal_tags";
-import type { NextPage } from "next";
 
 const BlogDetailsPage: NextPage = (props: any) => <BlogDetails {...props} />;
 

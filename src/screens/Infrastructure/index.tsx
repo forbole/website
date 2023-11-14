@@ -6,6 +6,10 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import { SyntheticEvent, useMemo, useRef, useState } from "react";
+
 import { Layout, ScrollToTop } from "@src/components";
 import Carousel from "@src/components/Carousel";
 import IntroPanel from "@src/components/Intro_panel";
@@ -17,9 +21,6 @@ import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import { scrollBottom } from "@src/utils/scroll";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
-import React from "react";
 
 import style from "./index.module.css";
 
@@ -28,11 +29,11 @@ const Infrastructure = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
-  const [v1, setV1] = React.useState(0);
-  const topRef = React.useRef(null);
-  const PanelRef = React.useRef(null);
+  const [v1, setV1] = useState(0);
+  const topRef = useRef(null);
+  const PanelRef = useRef(null);
   const { t } = useTranslation("validator_infrastructure");
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setV1(newValue);
   };
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
@@ -40,7 +41,7 @@ const Infrastructure = () => {
   });
 
   const router = useRouter();
-  const personList = React.useMemo(() => {
+  const personList = useMemo(() => {
     if (onlyLargeScreen) {
       return [
         {
@@ -104,23 +105,22 @@ const Infrastructure = () => {
       },
     ];
   }, [onlyLargeScreen]);
+
   const textList = [
-    // 专业技能和优势对应的文本
     [
-      "infrastructure_item1",
-      "infrastructure_item2",
-      "infrastructure_item3",
-      "infrastructure_item4",
-      "infrastructure_item5",
-      // "infrastructure_item6",
+      t("infrastructure_item1"),
+      t("infrastructure_item2"),
+      t("infrastructure_item3"),
+      t("infrastructure_item4"),
+      t("infrastructure_item5"),
     ],
     [
-      "expertise_item1",
-      "expertise_item2",
-      "expertise_item3",
-      "expertise_item4",
-      "expertise_item5",
-      "expertise_item6",
+      t("expertise_item1"),
+      t("expertise_item2"),
+      t("expertise_item3"),
+      t("expertise_item4"),
+      t("expertise_item5"),
+      t("expertise_item6"),
     ],
   ];
 
@@ -286,7 +286,7 @@ const Infrastructure = () => {
                       },
                     }}
                   >
-                    {t(`${item}`)}
+                    {item}
                   </Typography>
                 ))}
               </Stack>

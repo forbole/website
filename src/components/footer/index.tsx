@@ -1,8 +1,9 @@
 import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
-import { useWindowDimensions } from "@src/hooks";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
+
+import { useWindowDimensions } from "@src/hooks";
 
 import CtaButton from "../cta-button";
 import { FooterItems, SocialMedia } from "./components";

@@ -14,8 +14,9 @@ import {
   getSolanaBondedToken,
   getSolanaTVL,
 } from "@graphql/queries";
-import { networkFunctions } from "@utils/network_functions";
 import { useMemo, useState } from "react";
+
+import { networkFunctions } from "@utils/network_functions";
 
 import {
   cosmosNetworkParams,

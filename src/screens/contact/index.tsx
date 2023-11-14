@@ -1,4 +1,3 @@
-import { Layout } from "@components";
 import {
   Box,
   Checkbox,
@@ -13,12 +12,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import CtaButton from "@src/components/cta-button";
-import FormInput from "@src/components/formInput";
-import SuccessModal from "@src/components/success-modal";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useRef } from "react";
+
+import { Layout } from "@components";
+import CtaButton from "@src/components/cta-button";
+import FormInput from "@src/components/formInput";
+import SuccessModal from "@src/components/success-modal";
 
 import useContactForm from "./hooks";
 import { styles } from "./styles";
@@ -40,10 +41,10 @@ const Contact = () => {
   const router = useRouter();
 
   const selectList = [
-    { label: "item_1", name: "collaboration" },
-    { label: "item_2", name: "enterprise_solution" },
-    { label: "item_3", name: "careers" },
-    { label: "item_4", name: "other" },
+    { label: t("item_1"), name: "collaboration" },
+    { label: t("item_2"), name: "enterprise_solution" },
+    { label: t("item_3"), name: "careers" },
+    { label: t("item_4"), name: "other" },
   ] as const;
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -266,8 +267,8 @@ const Contact = () => {
                           value={value.name}
                         />
                       }
-                      id={t(value.label)}
-                      label={t(value.label)}
+                      id={value.label}
+                      label={value.label}
                       labelPlacement="start"
                       sx={{
                         width: "100%",

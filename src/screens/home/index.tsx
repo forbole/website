@@ -1,12 +1,13 @@
-import { Layout, ScrollToBottom, ScrollToTop } from "@components";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import IntroPanel from "@src/components/Intro_panel";
-import IntroCard from "@src/components/intro_card";
-import { useWindowDimensions } from "@src/hooks";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { FC, useRef } from "react";
+
+import { Layout, ScrollToBottom, ScrollToTop } from "@components";
+import IntroPanel from "@src/components/Intro_panel";
+import IntroCard from "@src/components/intro_card";
+import { useWindowDimensions } from "@src/hooks";
 
 import { FilterBG } from "./styles";
 
