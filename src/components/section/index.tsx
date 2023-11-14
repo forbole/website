@@ -13,7 +13,7 @@ type Props = {
   desc?: string;
 };
 
-// Rename the component so the parsed doesn't try to parse it
+// Rename the component so the i18next parser doesn't try to parse it
 const Translate = Trans;
 
 const Section = ({

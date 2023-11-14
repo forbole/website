@@ -9,10 +9,11 @@ import {
 import useTranslation from "next-translate/useTranslation";
 import { useMemo, useState } from "react";
 
-import { cosmosNetworkGuideParams } from "./config";
+import { useCosmosNetworkGuideParams } from "./config";
 
 export const useNetworkGuidesHook = () => {
   const { t } = useTranslation("staking");
+  const cosmosNetworkGuideParams = useCosmosNetworkGuideParams();
   const [cosmosNetworkGuides, setCosmosNetworkGuides] = useState(
     cosmosNetworkGuideParams,
   );
@@ -52,7 +53,8 @@ export const useNetworkGuidesHook = () => {
       });
     }
     return cosmosNetworkGuides;
-  }, [cosmosComissionData, cosmosComissionLoading, cosmosNetworkGuides, t]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosComissionData, cosmosComissionLoading]);
 
   useMemo(() => {
     if (!cosmosAPYLoading) {
@@ -74,8 +76,9 @@ export const useNetworkGuidesHook = () => {
           : null;
       });
     }
-    return cosmosNetworkGuides;
-  }, [cosmosAPYData, cosmosAPYLoading, cosmosNetworkGuides, t]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosAPYData, cosmosAPYLoading]);
 
   useMemo(() => {
     if (!cosmosTVLLoading) {
@@ -97,8 +100,8 @@ export const useNetworkGuidesHook = () => {
           : null;
       });
     }
-    return cosmosNetworkGuides;
-  }, [cosmosTVLData, cosmosTVLLoading, cosmosNetworkGuides, t]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosTVLData, cosmosTVLLoading]);
 
   useMemo(() => {
     if (!cosmosUnbondingTimeLoading) {
@@ -120,13 +123,8 @@ export const useNetworkGuidesHook = () => {
           : null;
       });
     }
-    return cosmosNetworkGuides;
-  }, [
-    cosmosUnbondingTimeData,
-    cosmosUnbondingTimeLoading,
-    cosmosNetworkGuides,
-    t,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmosUnbondingTimeData, cosmosUnbondingTimeLoading]);
 
   return {
     cosmosNetworkGuides,

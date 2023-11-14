@@ -30,8 +30,8 @@ const Products = () => {
     () => [
       {
         title: t("staking"),
-        benefits: ["earn", "secure", "ownership"],
-        usecases: ["stake", "income"],
+        benefits: [t("earn"), t("secure"), t("ownership")],
+        usecases: [t("stake"), t("income")],
         imageHref: "/products/tab2@2x.png",
         imageHref_m: "/products/tab2_m@2x.png",
         btnName: t("seemore"),
@@ -39,8 +39,8 @@ const Products = () => {
       },
       {
         title: t("analytics"),
-        benefits: ["real-time", "bird-eye-view", "free"],
-        usecases: ["transactions", "viewandvote"],
+        benefits: [t("real-time"), t("bird-eye-view"), t("free")],
+        usecases: [t("transactions"), t("viewandvote")],
         imageHref: "/products/tab3@2x.png",
         imageHref_m: "/products/tab3_m@2x.png",
         btnName: t("seemore"),
@@ -48,8 +48,8 @@ const Products = () => {
       },
       {
         title: t("developer"),
-        benefits: ["nodes", "free-trial", "pricing"],
-        usecases: ["RPC", "GraphQL", "data-api"],
+        benefits: [t("nodes"), t("free-trial"), t("pricing")],
+        usecases: [t("RPC"), t("GraphQL"), t("data-api")],
         imageHref: "/products/tab4@2x.png",
         imageHref_m: "/products/tab4_m@2x.png",
         btnName: t("seemore"),

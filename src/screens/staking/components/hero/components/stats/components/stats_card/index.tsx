@@ -7,7 +7,7 @@ import { convertToMoney } from "@utils/convert_to_money";
 import useStyles from "./useStyles";
 
 const StatsCard = ({ title, stats }: any) => {
-  const { t } = useTranslation("staking");
+  const { t } = useTranslation("common");
   const styles = useStyles();
   const { counterValue, counterRef } = useCounter(stats);
 
