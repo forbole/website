@@ -28,6 +28,7 @@ const Home: FC<Props> = ({ pages }) => {
   const bottomRef = useRef(null);
   const router = useRouter();
   const { isMobile, isTablet } = useWindowDimensions();
+  console.log(pages)
   return (
     <Layout
       description={t("description")}
@@ -70,7 +71,8 @@ const Home: FC<Props> = ({ pages }) => {
                 letterSpacing: "0.832px",
                 [theme.breakpoints.up("laptop")]: {
                   fontSize: "64px",
-                  mb: "65px",
+                  mt: "-100px",
+                  mb: "-15px"
                 },
                 [theme.breakpoints.up("tablet")]: {
                   fontSize: "48px",

@@ -88,9 +88,9 @@ const Layout = ({
         ? "url(/images/assets/bg1.png)"
         : "url(/images/assets/bg2.png)",
       backgroundRepeat: "no-repeat",
-      backgroundPosition: redBg ? "0 -10vw" : "0 0",
+      backgroundPosition: redBg ? "0 -4vw" : "0 0",
       backgroundColor: color.primary,
-      backgroundSize: "100% auto",
+      backgroundSize: "100% 98vw",
       [theme.breakpoints.between("mobile", 550)]: {
         backgroundImage: redBg
           ? "url(/images/assets/bg1.png)"
