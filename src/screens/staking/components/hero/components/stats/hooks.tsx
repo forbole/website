@@ -13,11 +13,30 @@ import {
 } from "@graphql/queries";
 import { networkFunctions } from "@utils/network_functions";
 import { networkNumber } from "@utils/network_info";
+import useTranslation from "next-translate/useTranslation";
 import { useEffect, useMemo, useState } from "react";
 
-import { statsItems } from "./config";
-
 export const useStatsHook = () => {
+  const { t } = useTranslation("common");
+
+  const statsItems = useMemo(
+    () => [
+      {
+        title: t("full tvl"),
+        stats: "-",
+      },
+      {
+        title: t("users staking"),
+        stats: "-",
+      },
+      {
+        title: t("supporting networks"),
+        stats: 0,
+      },
+    ],
+    [t],
+  );
+
   const [stats, setStats] = useState(statsItems);
   const [cosmosTVL, setCosmosTVL] = useState(0);
   const [elrondTotalTVL, setElrondTotalTVL] = useState(0);
@@ -130,7 +149,7 @@ export const useStatsHook = () => {
       setTotalUsers(userCount);
     }
     statsItems.map((item, i) =>
-      item.title === "users staking"
+      item.title === t("users staking")
         ? setStats((prevStats) => ({
             ...prevStats,
             [i]: {
@@ -141,6 +160,7 @@ export const useStatsHook = () => {
         : null,
     );
   }, [
+    statsItems,
     cosmosUser,
     solanaUser,
     elrondUser,
@@ -148,6 +168,7 @@ export const useStatsHook = () => {
     radixUser,
     totalUsers,
     setTotalUsers,
+    t,
   ]);
 
   useEffect(() => {
@@ -209,7 +230,7 @@ export const useStatsHook = () => {
       setTotalTVL(tvl);
     }
     statsItems.map((item, i) =>
-      item.title === "full tvl"
+      item.title === t("full tvl")
         ? setStats((prevStats) => ({
             ...prevStats,
             [i]: {
@@ -225,14 +246,16 @@ export const useStatsHook = () => {
     solanaTotalTVL,
     oasisTotalTVL,
     radixTotalTVL,
+    statsItems,
     totalTVL,
     setTotalTVL,
+    t,
   ]);
 
   useMemo(() => {
     if (networkNumber !== 0) {
       statsItems.map((item, i) =>
-        item.title === "supporting networks"
+        item.title === t("supporting networks")
           ? setStats((prevStats) => ({
               ...prevStats,
               [i]: {
@@ -243,7 +266,7 @@ export const useStatsHook = () => {
           : null,
       );
     }
-  }, []);
+  }, [t, statsItems]);
 
   return stats;
 };

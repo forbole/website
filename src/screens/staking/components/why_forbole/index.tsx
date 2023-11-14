@@ -2,13 +2,34 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-
-import { reasons } from "./config";
+import { useMemo } from "react";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const WhyForbole = () => {
   const { t } = useTranslation("staking");
+
+  const reasons = useMemo(
+    () => [
+      {
+        title: t("reputable validator"),
+        desc: t("reputable validator desc"),
+        image: "/images/assets/image_journey.png",
+      },
+      {
+        title: t("security focus"),
+        desc: t("security focus desc"),
+        image: "/images/assets/image_security.png",
+      },
+      {
+        title: t("our future"),
+        desc: t("our future desc"),
+        image: "/images/assets/image_future.png",
+      },
+    ],
+    [t],
+  );
+
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   return (

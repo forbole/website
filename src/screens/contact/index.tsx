@@ -40,10 +40,10 @@ const Contact = () => {
   const router = useRouter();
 
   const selectList = [
-    { label: "item_1", name: "collaboration" },
-    { label: "item_2", name: "enterprise_solution" },
-    { label: "item_3", name: "careers" },
-    { label: "item_4", name: "other" },
+    { label: t("item_1"), name: "collaboration" },
+    { label: t("item_2"), name: "enterprise_solution" },
+    { label: t("item_3"), name: "careers" },
+    { label: t("item_4"), name: "other" },
   ] as const;
 
   const inputRef = useRef<HTMLInputElement>(null);
