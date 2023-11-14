@@ -37,7 +37,7 @@ const LayoutVal = ({
 }: Props) => {
   const theme = useTheme();
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t } = useTranslation("staking");
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
   let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
