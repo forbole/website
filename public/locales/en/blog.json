@@ -1,6 +1,7 @@
 {
   "contents": "Contents",
   "error": "Unable to fetch blogs. Please try again later.",
+  "Posted by": "Posted by",
   "see more": "See More",
   "tags": "Tags",
   "title": "Blog"
