@@ -78,39 +78,40 @@ export const useNetworkHook = () => {
       const { eachCosmosBondedToken } = cosmosBondedData;
       eachCosmosBondedToken.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
-        keys.includes(data.metric.instance)
-          ? setCosmosNetworks((prev) => ({
-              ...prev,
-              [data.metric.instance]: {
-                ...cosmosNetworks[data.metric.instance],
-                bonded: data.bondedToken,
-              },
-            }))
-          : null;
+
+        if (
+          keys.includes(data.metric.instance) &&
+          cosmosNetworks?.[data.metric.instance]?.bonded !== data?.bondedToken
+        ) {
+          setCosmosNetworks((prev) => ({
+            ...prev,
+            [data.metric.instance]: {
+              ...cosmosNetworks[data.metric.instance],
+              bonded: data.bondedToken,
+            },
+          }));
+        }
       });
     }
-    return cosmosNetworks;
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosBondedData, cosmosBondedLoading]);
+  }, [cosmosBondedData, cosmosBondedLoading, cosmosNetworks]);
 
   useMemo(() => {
     if (!cosmosAPYLoading) {
       const { eachCosmosAPY } = cosmosAPYData;
       eachCosmosAPY.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
-        keys.includes(data.metric.instance)
-          ? setCosmosNetworks((prev) => ({
-              ...prev,
-              [data.metric.instance]: {
-                ...cosmosNetworks[data.metric.instance],
-                APY: data.APY,
-              },
-            }))
-          : null;
+
+        if (keys.includes(data.metric.instance)) {
+          setCosmosNetworks((prev) => ({
+            ...prev,
+            [data.metric.instance]: {
+              ...cosmosNetworks[data.metric.instance],
+              APY: data.APY,
+            },
+          }));
+        }
       });
     }
-    return cosmosNetworks;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosAPYData, cosmosAPYLoading]);
@@ -120,15 +121,16 @@ export const useNetworkHook = () => {
       const { eachCosmosTVL } = cosmosTVLData;
       eachCosmosTVL.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
-        keys.includes(data.metric.instance)
-          ? setCosmosNetworks((prev) => ({
-              ...prev,
-              [data.metric.instance]: {
-                ...cosmosNetworks[data.metric.instance],
-                TVL: data.TVL,
-              },
-            }))
-          : null;
+
+        if (keys.includes(data.metric.instance)) {
+          setCosmosNetworks((prev) => ({
+            ...prev,
+            [data.metric.instance]: {
+              ...cosmosNetworks[data.metric.instance],
+              TVL: data.TVL,
+            },
+          }));
+        }
       });
     }
     return cosmosNetworks;
@@ -141,15 +143,16 @@ export const useNetworkHook = () => {
       const { elrondBondedToken } = elrondBondedData;
       elrondBondedToken.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
-        key.includes(data.metric.instance)
-          ? setElrondNetwork((prev) => ({
-              ...prev,
-              [data.metric.instance]: {
-                ...elrondNetwork[data.metric.instance],
-                bonded: elrondNetworkFunctions.converter(data.bondedToken),
-              },
-            }))
-          : null;
+
+        if (key.includes(data.metric.instance)) {
+          setElrondNetwork((prev) => ({
+            ...prev,
+            [data.metric.instance]: {
+              ...elrondNetwork[data.metric.instance],
+              bonded: elrondNetworkFunctions.converter(data.bondedToken),
+            },
+          }));
+        }
       });
     }
 
@@ -161,15 +164,15 @@ export const useNetworkHook = () => {
       const { elrondAPY } = elrondAPYData;
       elrondAPY.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
-        key.includes(data.metric.instance)
-          ? setElrondNetwork((prev) => ({
-              ...prev,
-              [data.metric.instance]: {
-                ...elrondNetwork[data.metric.instance],
-                APY: elrondNetworkFunctions.converter(data.APY),
-              },
-            }))
-          : null;
+        if (key.includes(data.metric.instance)) {
+          setElrondNetwork((prev) => ({
+            ...prev,
+            [data.metric.instance]: {
+              ...elrondNetwork[data.metric.instance],
+              APY: elrondNetworkFunctions.converter(data.APY),
+            },
+          }));
+        }
       });
     }
 
@@ -181,15 +184,15 @@ export const useNetworkHook = () => {
       const { elrondTVL } = elrondTVLData;
       elrondTVL.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
-        key.includes(data.metric.instance)
-          ? setElrondNetwork((prev) => ({
-              ...prev,
-              [data.metric.instance]: {
-                ...elrondNetwork[data.metric.instance],
-                TVL: elrondNetworkFunctions.converter(data.TVL),
-              },
-            }))
-          : null;
+        if (key.includes(data.metric.instance)) {
+          setElrondNetwork((prev) => ({
+            ...prev,
+            [data.metric.instance]: {
+              ...elrondNetwork[data.metric.instance],
+              TVL: elrondNetworkFunctions.converter(data.TVL),
+            },
+          }));
+        }
       });
     }
 
@@ -244,47 +247,55 @@ export const useNetworkHook = () => {
   useMemo(() => {
     if (!oasisBondedLoading) {
       const { oasisBondedToken } = oasisBondedData;
-      setOasisNetwork((prev) => ({
-        ...prev,
-        [oasisBondedToken[0].metric.instance]: {
-          ...oasisNetwork[oasisBondedToken[0].metric.instance],
-          bonded: oasisBondedToken[0].bondedToken,
-        },
-      }));
-    }
+      const key = oasisBondedToken[0].metric.instance;
+      const bonded = oasisBondedToken[0].bondedToken;
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [oasisBondedData, oasisBondedLoading]);
+      if (oasisNetwork[key]?.bonded !== bonded) {
+        setOasisNetwork((prev) => ({
+          ...prev,
+          [key]: {
+            ...oasisNetwork[key],
+            bonded,
+          },
+        }));
+      }
+    }
+  }, [oasisBondedData, oasisBondedLoading, oasisNetwork]);
 
   useMemo(() => {
     if (!radixTVLLoading) {
       const { radixTVL } = radixTVLData;
-      setRadixNetwork((prev) => ({
-        ...prev,
-        [radixTVL[0].metric.instance]: {
-          ...radixNetwork[radixTVL[0].metric.instance],
-          TVL: radixTVL[0].TVL,
-        },
-      }));
-    }
+      const key = radixTVL[0].metric.instance;
+      const { TVL } = radixTVL[0];
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [radixTVLLoading, radixTVLData]);
+      if (radixNetwork[key]?.TVL !== TVL) {
+        setRadixNetwork((prev) => ({
+          ...prev,
+          [key]: {
+            ...radixNetwork[key],
+            TVL,
+          },
+        }));
+      }
+    }
+  }, [radixTVLLoading, radixTVLData, radixNetwork]);
 
   useMemo(() => {
     if (!radixBondedLoading) {
       const { allRadixStakedTokens } = radixBondedData;
-      setRadixNetwork((prev) => ({
-        ...prev,
-        [allRadixStakedTokens[0].metric.instance]: {
-          ...oasisNetwork[allRadixStakedTokens[0].metric.instance],
-          bonded: allRadixStakedTokens[0].bondedToken,
-        },
-      }));
+      const key = allRadixStakedTokens[0].metric.instance;
+      const bonded = allRadixStakedTokens[0].bondedToken;
+      if (radixNetwork[key]?.bonded !== bonded) {
+        setRadixNetwork((prev) => ({
+          ...prev,
+          [key]: {
+            ...radixNetwork[key],
+            bonded,
+          },
+        }));
+      }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [radixBondedData, radixBondedLoading]);
+  }, [radixBondedData, radixBondedLoading, radixNetwork]);
 
   return {
     cosmosNetworks,
