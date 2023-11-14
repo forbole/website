@@ -37,10 +37,6 @@ const ProductsMenuButton = () => {
       name: "enterprise-solution",
       link: "/enterprise-solution",
     },
-    {
-      name: "forbole-academy",
-      link: "#!",
-    },
   ];
 
   return onlyLargeScreen ? (
