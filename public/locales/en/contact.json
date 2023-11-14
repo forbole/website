@@ -1,9 +1,8 @@
 {
-  "Company": "Company",
-  "Email": "Email",
-  "Telegram": "Telegram",
   "check_word": "I want to receive the Forbole newsletter & other marketing materials from Forbole.",
+  "Company": "Company",
   "contact": "We will contact you shortly!",
+  "Email": "Email",
   "form_desc": "Our team of experienced consultants is ready to help!",
   "form_title": "Get in touch",
   "get_start": "How can we help you?",
@@ -20,5 +19,6 @@
   "name": "Name",
   "page_title": "Contact",
   "submit": "Submit",
+  "Telegram": "Telegram",
   "thanks": "Thank you for your submission!"
 }

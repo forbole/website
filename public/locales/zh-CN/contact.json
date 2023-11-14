@@ -1,9 +1,8 @@
 {
-  "Company": "公司",
-  "Email": "电邮",
-  "Telegram": "Telegram",
   "check_word": "我希望收到 Forbole 的通讯和其他市场推广资料。",
+  "Company": "公司",
   "contact": "我们将会尽快与你联络。",
+  "Email": "电邮",
   "form_desc": "我们经验丰富的团队随时准备提供协助！",
   "form_title": "联络Forbole Tech",
   "get_start": "我们如何为你服务??",
@@ -20,5 +19,6 @@
   "name": "姓名",
   "page_title": "联络",
   "submit": "提交",
+  "Telegram": "Telegram",
   "thanks": "你已成功提交。"
 }
