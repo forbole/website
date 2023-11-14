@@ -28,6 +28,15 @@ const Home: FC<Props> = ({ pages }) => {
   const bottomRef = useRef(null);
   const router = useRouter();
   const { isMobile, isTablet } = useWindowDimensions();
+  const filteredPages = pages.reduce((pageList: Page[], current) => {
+    // filter out forbole academy page
+    if (current.title !== "Open for registration now") {
+      pageList.push(current);
+    }
+
+    return pageList;
+  }, []);
+
   return (
     <Layout
       description={t("description")}
@@ -228,8 +237,14 @@ const Home: FC<Props> = ({ pages }) => {
           >
             {t("What_is_New?")}
           </Typography>
-          <Grid container spacing={theme.spacing(2)}>
-            {pages.map(
+          <Grid
+            container
+            spacing={theme.spacing(2)}
+            sx={{
+              justifyContent: "center",
+            }}
+          >
+            {filteredPages.map(
               ({ title, list, imageHref, btnName, btnClick, id }, idx) => (
                 <Grid key={`${id}_${idx}`} item laptop={4} mobile={12}>
                   <IntroCard
