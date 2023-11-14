@@ -170,7 +170,7 @@ const WhyForbole = () => {
                     }}
                     variant="h4"
                   >
-                    {t(reason.title)}
+                    {reason.title}
                   </Typography>
                   <Typography
                     color={theme.palette.custom.forbole.blue}
@@ -187,7 +187,7 @@ const WhyForbole = () => {
                     }}
                     variant="body1"
                   >
-                    {t(reason.desc)}
+                    {reason.desc}
                   </Typography>
                 </Box>
               </Box>

@@ -12,22 +12,22 @@ const StatsCard = ({ title, stats }: any) => {
 
   return (
     <Box ref={counterRef} css={styles.root}>
-      <Typography variant="h6">{t(title)}</Typography>
-      {title === "full tvl" && stats === "-" && (
+      <Typography variant="h6">{title}</Typography>
+      {title === t("full tvl") && stats === "-" && (
         <Typography variant="h3">{`$ ${stats}`}</Typography>
       )}
-      {title === "full tvl" && stats !== "-" && (
+      {title === t("full tvl") && stats !== "-" && (
         <Typography variant="h3">{`$ ${convertToMoney(
           counterValue,
         )}`}</Typography>
       )}
-      {title === "users staking" && stats === "-" && (
+      {title === t("users staking") && stats === "-" && (
         <Typography variant="h3">{`${stats}`}</Typography>
       )}
-      {title === "users staking" && stats !== "-" && (
+      {title === t("users staking") && stats !== "-" && (
         <Typography variant="h3">{convertToMoney(counterValue)}</Typography>
       )}
-      {title === "supporting networks" && (
+      {title === t("supporting networks") && (
         <Typography variant="h3">{convertToMoney(counterValue)}</Typography>
       )}
     </Box>

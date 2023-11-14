@@ -11,19 +11,19 @@ const InfoCard = ({ title, stats, type }: any) => {
 
   return (
     <Box css={styles.root}>
-      <Typography variant="h6">{t(title)}</Typography>
-      {title === "staked by forbole" ? (
+      <Typography variant="h6">{title}</Typography>
+      {title === t("staked by forbole") ? (
         <Typography variant="h3">
-          {t(type)}
+          {type}
           {stats === "-" ? stats : convertToMoney(stats)}
         </Typography>
-      ) : title === "apy" ? (
+      ) : title === t("apy") ? (
         <Typography variant="h3">
-          {(parseFloat(stats) * 100).toFixed(1)} {t(type)}
+          {(parseFloat(stats) * 100).toFixed(1)} {type}
         </Typography>
-      ) : title === "commission" ? (
+      ) : title === t("commission") ? (
         <Typography variant="h3">
-          {parseFloat(stats) * 100} {t(type)}
+          {parseFloat(stats) * 100} {type}
         </Typography>
       ) : (
         <Typography variant="h3">{stats}</Typography>

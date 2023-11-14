@@ -14,9 +14,8 @@ import { scrollBottom } from "@src/utils/scroll";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
-import { businesses, individuals } from "./config";
 import style from "./index.module.css";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
@@ -25,6 +24,97 @@ const Trans = dynamic(async () => import("next-translate/Trans"), {
 
 const Products = () => {
   const { t } = useTranslation("products");
+
+  const individuals = useMemo(
+    () => [
+      {
+        title: t("staking"),
+        benefits: ["earn", "secure", "ownership"],
+        usecases: ["stake", "income"],
+        imageHref: "/products/tab2@2x.png",
+        imageHref_m: "/products/tab2_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/staking-service",
+      },
+      {
+        title: t("analytics"),
+        benefits: ["real-time", "bird-eye-view", "free"],
+        usecases: ["transactions", "viewandvote"],
+        imageHref: "/products/tab3@2x.png",
+        imageHref_m: "/products/tab3_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/analytics-tools",
+      },
+      {
+        title: t("developer"),
+        benefits: ["nodes", "free-trial", "pricing"],
+        usecases: ["RPC", "GraphQL", "data-api"],
+        imageHref: "/products/tab4@2x.png",
+        imageHref_m: "/products/tab4_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/developer-tools",
+      },
+    ],
+    [t],
+  );
+  const businesses = useMemo(
+    () => [
+      {
+        title: t("validator-infrastructure"),
+        benefits: [t("security"), t("expertise"), t("record")],
+        usecases: [t("new-network"), t("strengthen-network")],
+        imageHref: "/products/tab1@2x.png",
+        imageHref_m: "/products/tab1_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/infrastructure",
+      },
+      {
+        title: t("staking"),
+        benefits: [t("100% control"), t("asset-variety"), t("balance")],
+        usecases: [t("stake-token"), t("stake-of-clients")],
+        imageHref: "/products/tab2@2x.png",
+        imageHref_m: "/products/tab2_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/staking-service",
+      },
+      {
+        title: t("analytics"),
+        benefits: [
+          t("custom-visualization"),
+          t("modularized-development"),
+          t("fast"),
+        ],
+        usecases: [t("own-explorer"), t("query-data")],
+        imageHref: "/products/tab3@2x.png",
+        imageHref_m: "/products/tab3_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/analytics-tools",
+      },
+      {
+        title: t("developer"),
+        benefits: [t("high"), t("custom-offering"), t("team-support")],
+        usecases: [
+          t("run-decentralized-apps"),
+          t("analyze-decentralized-apps"),
+        ],
+        imageHref: "/products/tab4@2x.png",
+        imageHref_m: "/products/tab4_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/developer-tools",
+      },
+      {
+        title: t("enterprise-solution"),
+        benefits: [t("free-consultation"), t("iteration"), t("end-to-end")],
+        usecases: [t("staking-API"), t("Implementation")],
+        imageHref: "/products/tab5@2x.png",
+        imageHref_m: "/products/tab5_m@2x.png",
+        btnName: t("seemore"),
+        btnHref: "/enterprise-solution",
+      },
+    ],
+    [t],
+  );
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
@@ -299,7 +389,7 @@ const Products = () => {
               ref={PanelRef1}
               imageHref={isMobile ? item.imageHref_m : item.imageHref}
               index={index}
-              title={t(item.title)}
+              title={item.title}
               value={v1}
             >
               <Stack
@@ -334,7 +424,7 @@ const Products = () => {
                       },
                     }}
                   >
-                    {t(i)}
+                    {i}
                   </Typography>
                 ))}
               </Stack>
@@ -370,12 +460,12 @@ const Products = () => {
                       },
                     }}
                   >
-                    {t(i)}
+                    {i}
                   </Typography>
                 ))}
               </Stack>
               <CtaButton onClick={() => router.push(item.btnHref)}>
-                {t(item.btnName)}
+                {item.btnName}
               </CtaButton>
             </ProductPanel>
           ))}
@@ -579,7 +669,7 @@ const Products = () => {
               ref={PanelRef2}
               imageHref={isMobile ? item.imageHref_m : item.imageHref}
               index={index}
-              title={t(item.title)}
+              title={item.title}
               value={v2}
             >
               <Stack
@@ -614,7 +704,7 @@ const Products = () => {
                       },
                     }}
                   >
-                    {t(i)}
+                    {i}
                   </Typography>
                 ))}
               </Stack>
@@ -650,12 +740,12 @@ const Products = () => {
                       },
                     }}
                   >
-                    {t(i)}
+                    {i}
                   </Typography>
                 ))}
               </Stack>
               <CtaButton onClick={() => router.push(item.btnHref)}>
-                {t(item.btnName)}
+                {item.btnName}
               </CtaButton>
             </ProductPanel>
           ))}

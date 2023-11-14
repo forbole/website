@@ -36,7 +36,14 @@ const LangMenuButton = () => {
   React.useEffect(() => {
     onClose();
   }, [lang, onClose]);
+
   const colors = useColor();
+  const localeToDisplay = {
+    "en": t("en"),
+    "zh-HK": t("zh-HK"),
+    "zh-CN": t("zh-CN"),
+  };
+
   let lan = "";
   switch (lang) {
     case "en":
@@ -54,7 +61,6 @@ const LangMenuButton = () => {
   }
   return (
     <>
-      {/* {onlyLargeScreen ? ( */}
       <Box css={styles.desktop}>
         <Button
           aria-label="language"
@@ -95,7 +101,6 @@ const LangMenuButton = () => {
               background: "rgba(255, 255, 255)",
               boxShadow:
                 "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
-              // backdropFilter: 'blur(12px)',
             },
           }}
           transformOrigin={{
@@ -129,7 +134,7 @@ const LangMenuButton = () => {
                   }}
                 >
                   <LangIcon fill="currentColor" height={20} width={20} />
-                  {t(l)}
+                  {localeToDisplay[l as keyof typeof localeToDisplay]}
                 </MenuItem>
               </Link>
             </div>
@@ -169,13 +174,12 @@ const LangMenuButton = () => {
                 }}
               >
                 <LangIcon fill="currentColor" height={20} width={20} />
-                {t(l)}
+                {localeToDisplay[l as keyof typeof localeToDisplay]}
               </MenuItem>
             </Link>
           </div>
         ))}
       </List>
-      {/* )} */}
     </>
   );
 };

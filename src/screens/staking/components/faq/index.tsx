@@ -3,12 +3,13 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 import { Card } from "./components";
-import { faq } from "./config";
+import { useFaq } from "./config";
 
 const FAQ = () => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
   const [expanded, setExpanded] = React.useState<string>();
+  const faq = useFaq();
   const middleIndex = Math.ceil(faq.length / 2) - 1;
 
   return (

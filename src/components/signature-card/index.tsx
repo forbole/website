@@ -1,25 +1,31 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+import { useMemo } from "react";
 
-const data = [
-  {
-    title: "websocket_service",
-    desc: "rpc",
-    active: true,
-  },
-  {
-    title: "archive_node",
-    desc: "rpc",
-    active: false,
-  },
-  {
-    title: "extra_chain",
-    desc: "rpc_api_graphql",
-    active: false,
-  },
-];
 function SignatureCard() {
   const { t } = useTranslation("developer_tools");
+
+  const data = useMemo(
+    () => [
+      {
+        title: t("websocket_service"),
+        desc: t("rpc"),
+        active: true,
+      },
+      {
+        title: t("archive_node"),
+        desc: t("rpc"),
+        active: false,
+      },
+      {
+        title: t("extra_chain"),
+        desc: t("rpc_api_graphql"),
+        active: false,
+      },
+    ],
+    [t],
+  );
+
   return (
     <Grid
       columnSpacing={{ laptop: "16px", mobile: "0" }}
@@ -52,7 +58,7 @@ function SignatureCard() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {t(d.title)}
+                {d.title}
               </Typography>
               <Stack
                 sx={{ flexDirection: "row", gap: "5px", alignItems: "center" }}
@@ -75,7 +81,7 @@ function SignatureCard() {
                       textWrap: "wrap",
                     }}
                   >
-                    {t(d.desc)}
+                    {d.desc}
                   </Typography>
                 </Box>
               </Stack>

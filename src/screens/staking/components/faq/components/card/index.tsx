@@ -9,12 +9,8 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import dynamic from "next/dynamic";
-import Link from "next/link";
 
 import { FAQProps } from "../../config";
-
-const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const Card = (props: FAQProps) => {
   const theme = useTheme();
@@ -93,7 +89,7 @@ const Card = (props: FAQProps) => {
             }}
             variant="h3"
           >
-            {t(question)}
+            {question}
           </Typography>
         </AccordionSummary>
         <AccordionDetails
@@ -114,49 +110,19 @@ const Card = (props: FAQProps) => {
             },
           }}
         >
-          {para1 && <Typography variant="body1">{t(para1)}</Typography>}
-          {para2 && <Typography variant="body1">{t(para2)}</Typography>}
-          {trans && (
-            <Trans
-              components={[
-                <Typography
-                  color={theme.palette.custom.forbole.blue}
-                  sx={{
-                    fontSize: theme.spacing(2),
-                    [theme.breakpoints.up("laptop")]: {
-                      fontSize: theme.spacing(2),
-                    },
-                  }}
-                  variant="body1"
-                />,
-                <Link href="/stake-now">
-                  <Typography
-                    color="primary.main"
-                    fontWeight={900}
-                    sx={{
-                      display: "inline",
-                      fontSize: theme.spacing(1.5),
-                      [theme.breakpoints.up("laptop")]: {
-                        fontSize: theme.spacing(2),
-                        display: "inline",
-                      },
-                    }}
-                  />
-                </Link>,
-              ]}
-              i18nKey={t(trans)}
-            />
-          )}
-          {para3 && <Typography variant="body1">{t(para3)}</Typography>}
-          {desc && <Typography variant="body1">{t(desc)}</Typography>}
+          {para1 && <Typography variant="body1">{para1}</Typography>}
+          {para2 && <Typography variant="body1">{para2}</Typography>}
+          {trans || null}
+          {para3 && <Typography variant="body1">{para3}</Typography>}
+          {desc && <Typography variant="body1">{desc}</Typography>}
           {bullet1 && (
-            <ListItem sx={{ display: "list-item" }}>{t(bullet1)}</ListItem>
+            <ListItem sx={{ display: "list-item" }}>{bullet1}</ListItem>
           )}
           {bullet2 && (
-            <ListItem sx={{ display: "list-item" }}>{t(bullet2)}</ListItem>
+            <ListItem sx={{ display: "list-item" }}>{bullet2}</ListItem>
           )}
           {bullet3 && (
-            <ListItem sx={{ display: "list-item" }}>{t(bullet3)}</ListItem>
+            <ListItem sx={{ display: "list-item" }}>{bullet3}</ListItem>
           )}
         </AccordionDetails>
       </Accordion>

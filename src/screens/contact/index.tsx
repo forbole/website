@@ -266,8 +266,8 @@ const Contact = () => {
                           value={value.name}
                         />
                       }
-                      id={t(value.label)}
-                      label={t(value.label)}
+                      id={value.label}
+                      label={value.label}
                       labelPlacement="start"
                       sx={{
                         width: "100%",

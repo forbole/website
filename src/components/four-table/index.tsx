@@ -4,7 +4,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import plans from "./config";
+import usePlans from "./config";
 import styles from "./styles.module.css";
 
 type Props = { btnHref: () => void };
@@ -13,6 +13,7 @@ const FourTable = ({ btnHref }: Props) => {
   const theme = useTheme();
   const [clickItem] = useState<number | null>(2);
   const router = useRouter();
+  const plans = usePlans();
 
   return (
     <Stack
@@ -66,7 +67,7 @@ const FourTable = ({ btnHref }: Props) => {
               fontWeight: "590",
             }}
           >
-            {t(Plan.title)}
+            {Plan.title}
           </Typography>
           <Box
             sx={{
@@ -100,9 +101,9 @@ const FourTable = ({ btnHref }: Props) => {
               >
                 $
               </Typography>
-              {t(Plan.price)}
+              {Plan.price}
             </Typography>
-            {t(Plan.currency)}
+            {Plan.currency}
           </Box>
           <Typography
             sx={{
@@ -111,7 +112,7 @@ const FourTable = ({ btnHref }: Props) => {
               fontWeight: "400",
             }}
           >
-            {t(Plan.description)}
+            {Plan.description}
           </Typography>
           <Box>
             <Divider
@@ -140,7 +141,7 @@ const FourTable = ({ btnHref }: Props) => {
                       paddingLeft: "5px",
                     }}
                   >
-                    {t(item)}
+                    {item}
                   </Typography>
                 </Box>
               ))
@@ -167,7 +168,7 @@ const FourTable = ({ btnHref }: Props) => {
                     paddingLeft: "5px",
                   }}
                 >
-                  {t(Plan.features)}
+                  {Plan.features}
                 </Typography>
               </Box>
             )}
@@ -182,7 +183,7 @@ const FourTable = ({ btnHref }: Props) => {
               [theme.breakpoints.down("laptop")]: { display: "none" },
             }}
           >
-            {t(Plan.btnName)}
+            {Plan.btnName}
           </CtaButton>
         </Box>
       ))}
