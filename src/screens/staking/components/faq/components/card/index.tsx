@@ -8,13 +8,11 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import useTranslation from "next-translate/useTranslation";
 
 import { FAQProps } from "../../config";
 
 const Card = (props: FAQProps) => {
   const theme = useTheme();
-  const { t } = useTranslation("staking");
   const {
     question,
     para1,
