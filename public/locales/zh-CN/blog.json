@@ -1,7 +1,7 @@
 {
   "contents": "內容",
-  "error": "Unable to fetch blogs. Please try again later.",
-  "see more": "閱讀更多",
-  "tags": "標籤",
-  "title": "Blog"
+  "error": "无法取得部落格。请稍后再试。",
+  "see more": "阅读更多",
+  "tags": "标签",
+  "title": "部落格"
 }
