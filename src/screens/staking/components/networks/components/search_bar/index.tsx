@@ -131,10 +131,15 @@ const SearchBar: FC<SearchBarProps> = () => {
   const networkData: Array<Network> = keys
     .sort()
     .map((x: string) => getNetworkInfo(x));
-  const options = networkData.map((network) => ({
-    label: network.name,
-    network,
-  }));
+
+  const networkNames = networkData.map((network) => network.name);
+  const options = networkData
+    .map((network) => ({
+      label: network.name,
+      network,
+    }))
+    .filter((network, idx) => networkNames.indexOf(network.label) === idx);
+
   const styles = useStyles();
 
   const RenderInput: StyledAutocompleteProps["renderInput"] = useCallback(
