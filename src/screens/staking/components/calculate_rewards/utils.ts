@@ -1,4 +1,4 @@
-import * as R from "ramda";
+import { clone, pathOr } from "ramda";
 
 type NetworkDataProps = {
   bonded?: (data: any) => number;
@@ -55,74 +55,74 @@ const uSolanaToSolana = defaultConverter(1);
 
 export const defaultFunctions = (converter?: any) => ({
   bonded: (data: any) =>
-    converter(Number(R.pathOr(0, ["result", "bonded_tokens"], data))),
-  inflation: (data: any) => toFixed(Number(R.pathOr(0, ["result"], data))) ?? 0,
-  supply: (data: any) => converter(Number(R.pathOr(0, ["result"], data))),
+    converter(Number(pathOr(0, ["result", "bonded_tokens"], data))),
+  inflation: (data: any) => toFixed(Number(pathOr(0, ["result"], data))) ?? 0,
+  supply: (data: any) => converter(Number(pathOr(0, ["result"], data))),
   commissionRate: (data: any) =>
     Number(
-      R.pathOr(0, ["result", "commission", "commission_rates", "rate"], data),
+      pathOr(0, ["result", "commission", "commission_rates", "rate"], data),
     ),
   marketPrice: (data: any) =>
-    toFixed(Number(R.pathOr(0, ["market_data", "current_price", "usd"], data))),
+    toFixed(Number(pathOr(0, ["market_data", "current_price", "usd"], data))),
   converter,
 });
 
-const cosmos: any = R.clone(defaultFunctions(uAtomToAtom));
+const cosmos: any = clone(defaultFunctions(uAtomToAtom));
 cosmos.gecko = "https://api.coingecko.com/api/v3/coins/cosmos";
 
-const terra: any = R.clone(defaultFunctions(uLunaToLuna));
+const terra: any = clone(defaultFunctions(uLunaToLuna));
 terra.gecko = "https://api.coingecko.com/api/v3/coins/terra-luna";
 
-const kava: any = R.clone(defaultFunctions(uKavaToKava));
+const kava: any = clone(defaultFunctions(uKavaToKava));
 kava.gecko = "https://api.coingecko.com/api/v3/coins/kava";
 
-const akash: any = R.clone(defaultFunctions(uAktToAkash));
+const akash: any = clone(defaultFunctions(uAktToAkash));
 akash.gecko = "https://api.coingecko.com/api/v3/coins/akash-network";
 
-const band: any = R.clone(defaultFunctions(uBandToBand));
+const band: any = clone(defaultFunctions(uBandToBand));
 band.gecko = "https://api.coingecko.com/api/v3/coins/band-protocol";
 
-const iov: any = R.clone(defaultFunctions(uIovToIov));
+const iov: any = clone(defaultFunctions(uIovToIov));
 iov.gecko = "https://api.coingecko.com/api/v3/coins/starname";
 
-const likecoin: any = R.clone(defaultFunctions(nanoLikeToLike));
+const likecoin: any = clone(defaultFunctions(nanoLikeToLike));
 likecoin.gecko = "https://api.coingecko.com/api/v3/coins/likecoin";
 
-const vsys: any = R.clone(defaultFunctions(uBandToBand));
+const vsys: any = clone(defaultFunctions(uBandToBand));
 vsys.gecko = "https://api.coingecko.com/api/v3/coins/v-systems";
 
-const emoney: any = R.clone(defaultFunctions(uBandToBand));
+const emoney: any = clone(defaultFunctions(uBandToBand));
 emoney.gecko = "https://api.coingecko.com/api/v3/coins/iris-network";
 
-const iris: any = R.clone(defaultFunctions(uIrisToIris));
+const iris: any = clone(defaultFunctions(uIrisToIris));
 iris.gecko = "https://api.coingecko.com/api/v3/coins/iris-network";
 
-const cryptoOrg: any = R.clone(defaultFunctions(uCryptoOrgToCryptoOrg));
+const cryptoOrg: any = clone(defaultFunctions(uCryptoOrgToCryptoOrg));
 cryptoOrg.gecko = "https://api.coingecko.com/api/v3/coins/crypto-com-chain";
 
-const sentinel: any = R.clone(defaultFunctions(uSentinelToSentinel));
+const sentinel: any = clone(defaultFunctions(uSentinelToSentinel));
 sentinel.gecko = "https://api.coingecko.com/api/v3/coins/sentinel";
 
-const fetchAI: any = R.clone(defaultFunctions(uFetchAIToFetchAI));
+const fetchAI: any = clone(defaultFunctions(uFetchAIToFetchAI));
 fetchAI.gecko = "https://api.coingecko.com/api/v3/coins/fetch-ai";
 
 // Regen Network not listed on Coingecko yet
-const regen: any = R.clone(defaultFunctions(uRegenToRegen));
+const regen: any = clone(defaultFunctions(uRegenToRegen));
 // regen.gecko = "https://api.coingecko.com/api/v3/coins/regen-network";
 
-const bitsong: any = R.clone(defaultFunctions(uBitsongToBitsong));
+const bitsong: any = clone(defaultFunctions(uBitsongToBitsong));
 bitsong.gecko = "https://api.coingecko.com/api/v3/coins/bitsong";
 
-const oasis: any = R.clone(defaultFunctions(uOasisToOasis));
+const oasis: any = clone(defaultFunctions(uOasisToOasis));
 oasis.gecko = "https://api.coingecko.com/api/v3/coins/oasis-network";
 
-const kusama: any = R.clone(defaultFunctions(uKusamaToKusama));
+const kusama: any = clone(defaultFunctions(uKusamaToKusama));
 kusama.gecko = "https://api.coingecko.com/api/v3/coins/kusama";
 
-const flow: any = R.clone(defaultFunctions(uFlowToFlow));
+const flow: any = clone(defaultFunctions(uFlowToFlow));
 flow.gecko = "https://api.coingecko.com/api/v3/coins/flow";
 
-const solana: any = R.clone(defaultFunctions(uSolanaToSolana));
+const solana: any = clone(defaultFunctions(uSolanaToSolana));
 solana.gecko = "https://api.coingecko.com/api/v3/coins/solana";
 
 // available networks for calculations

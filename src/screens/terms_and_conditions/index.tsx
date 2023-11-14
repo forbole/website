@@ -20,24 +20,18 @@ const TermsAndConditions = () => {
     window.scrollTo(0, ref.current.offsetTop - 100);
   };
   useEffect(() => {
-    // eslint-disable-next-line no-undef
-    (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(
-      (d) => {
-        if (!d.parentElement) return;
-        const h = d.parentElement.offsetHeight - 1;
-        // eslint-disable-next-line no-param-reassign
-        d.style.height = `${h}px`;
-      },
-    );
-    // eslint-disable-next-line no-undef
-    (document.querySelectorAll(".t2") as NodeListOf<HTMLElement>).forEach(
-      (d) => {
-        if (!d.parentElement) return;
-        const h = d.parentElement.offsetHeight - 1;
-        // eslint-disable-next-line no-param-reassign
-        d.style.height = `${h}px`;
-      },
-    );
+    document.querySelectorAll(".t1").forEach((d) => {
+      if (!d.parentElement) return;
+      const h = d.parentElement.offsetHeight - 1;
+      // eslint-disable-next-line no-param-reassign
+      (d as HTMLElement).style.height = `${h}px`;
+    });
+    document.querySelectorAll(".t2").forEach((d) => {
+      if (!d.parentElement) return;
+      const h = d.parentElement.offsetHeight - 1;
+      // eslint-disable-next-line no-param-reassign
+      (d as HTMLElement).style.height = `${h}px`;
+    });
   });
   return (
     <Layout footer title={t("title")}>

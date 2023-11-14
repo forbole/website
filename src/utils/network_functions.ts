@@ -1,4 +1,4 @@
-import * as R from "ramda";
+import { clone, pathOr } from "ramda";
 
 const toFixed = (num: number): number => Number(num?.toFixed(2) ?? "0");
 
@@ -25,38 +25,38 @@ const uEGLDToEGLD = defaultConverter(1000000000000000000);
 const defaultFunctions = (converter: any) => ({
   gecko: "",
   marketPrice: (data: any) =>
-    toFixed(Number(R.pathOr(0, ["market_data", "current_price", "usd"], data))),
+    toFixed(Number(pathOr(0, ["market_data", "current_price", "usd"], data))),
   converter,
 });
 
-const cosmos = R.clone(defaultFunctions(uAtomToAtom));
+const cosmos = clone(defaultFunctions(uAtomToAtom));
 cosmos.gecko = "https://api.coingecko.com/api/v3/coins/cosmos";
 
-const terra = R.clone(defaultFunctions(uLunaToLuna));
+const terra = clone(defaultFunctions(uLunaToLuna));
 terra.gecko = "https://api.coingecko.com/api/v3/coins/terra-luna";
 
-const kava = R.clone(defaultFunctions(uKavaToKava));
+const kava = clone(defaultFunctions(uKavaToKava));
 kava.gecko = "https://api.coingecko.com/api/v3/coins/kava";
 
-const akash = R.clone(defaultFunctions(uAktToAkash));
+const akash = clone(defaultFunctions(uAktToAkash));
 akash.gecko = "https://api.coingecko.com/api/v3/coins/akash-network";
 
-const band = R.clone(defaultFunctions(uBandToBand));
+const band = clone(defaultFunctions(uBandToBand));
 band.gecko = "https://api.coingecko.com/api/v3/coins/band-protocol";
 
-const iov = R.clone(defaultFunctions(uIovToIov));
+const iov = clone(defaultFunctions(uIovToIov));
 iov.gecko = "https://api.coingecko.com/api/v3/coins/starname";
 
-const likecoin = R.clone(defaultFunctions(nanoLikeToLike));
+const likecoin = clone(defaultFunctions(nanoLikeToLike));
 likecoin.gecko = "https://api.coingecko.com/api/v3/coins/likecoin";
 
-const vsys = R.clone(defaultFunctions(uBandToBand));
+const vsys = clone(defaultFunctions(uBandToBand));
 vsys.gecko = "https://api.coingecko.com/api/v3/coins/v-systems";
 
-const emoney = R.clone(defaultFunctions(uBandToBand));
+const emoney = clone(defaultFunctions(uBandToBand));
 emoney.gecko = "https://api.coingecko.com/api/v3/coins/e-money";
 
-const elrond = R.clone(defaultFunctions(uEGLDToEGLD));
+const elrond = clone(defaultFunctions(uEGLDToEGLD));
 
 // networks needed for converter
 export const networkFunctions = {

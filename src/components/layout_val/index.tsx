@@ -2,7 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import * as R from "ramda";
+import { concat, uniq } from "ramda";
 import { ReactNode, RefObject } from "react";
 import validator from "validator";
 
@@ -43,7 +43,7 @@ const LayoutVal = ({
   let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
   let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ["Forbole", "blockchain", "social network"];
-  const formattedKeyworks = R.uniq(R.concat(keywords, baseKeywords));
+  const formattedKeyworks = uniq(concat(keywords, baseKeywords));
   if (!validator.isURL(ogImage)) {
     ogImage = `${url}${ogImage}`;
   }

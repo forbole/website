@@ -8,7 +8,7 @@ import {
 import { convertToMoney, convertWithDecimal } from "@utils/convert_to_money";
 import { getNetworkInfo } from "@utils/network_info";
 import axios from "axios";
-import * as R from "ramda";
+import { pathOr } from "ramda";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { getStakingParams } from "./config";
@@ -292,7 +292,7 @@ export const useCalculateRewardsHook = () => {
   }, [selectedToken, setSelectedToken, tokens, monthlyPeriods]);
 
   const handleChange = (e: any) => {
-    const value: any = R.pathOr(0, ["target", "value"], e);
+    const value: any = pathOr(0, ["target", "value"], e);
     if (!value) {
       setTokens({
         value: "",
