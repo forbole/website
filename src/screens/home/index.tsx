@@ -30,7 +30,10 @@ const Home: FC<Props> = ({ pages }) => {
   const { isMobile, isTablet } = useWindowDimensions();
   const filteredPages = pages.reduce((pageList: Page[], current) => {
     // filter out forbole academy page
-    if (current.btnClick !== "https://www.eventbrite.hk/e/-aug-22-29-tickets-686420260477?ref=forbole") {
+    if (
+      current.btnClick !==
+      "https://www.eventbrite.hk/e/-aug-22-29-tickets-686420260477?ref=forbole"
+    ) {
       pageList.push(current);
     }
 
