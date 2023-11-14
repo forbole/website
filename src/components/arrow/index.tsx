@@ -20,22 +20,23 @@ export default function Arraw({ className, sx, direction }: Props) {
   const theme = useTheme();
   const [rotate, setRotate] = useState(0);
 
-  function movePlayer() {
-    if (direction === Direction.Up) {
-      setRotate(180);
-    } else if (direction === Direction.Down) {
-      setRotate(0);
-    } else if (direction === Direction.Left) {
-      setRotate(90);
-    } else if (direction === Direction.Right) {
-      setRotate(-90);
-    } else {
-      setRotate(90);
-    }
-  }
   useEffect(() => {
+    function movePlayer() {
+      if (direction === Direction.Up) {
+        setRotate(180);
+      } else if (direction === Direction.Down) {
+        setRotate(0);
+      } else if (direction === Direction.Left) {
+        setRotate(90);
+      } else if (direction === Direction.Right) {
+        setRotate(-90);
+      } else {
+        setRotate(90);
+      }
+    }
+
     movePlayer();
-  }, []);
+  }, [direction]);
   return (
     <Box
       className={className}

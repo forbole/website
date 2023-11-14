@@ -28,7 +28,7 @@ const ScrollLogo = () => {
         allNetworkData,
         allNetworkData.length / (onlyLargeScreen ? 4 : 3),
       ),
-    [onlyLargeScreen],
+    [onlyLargeScreen, allNetworkData],
   );
 
   return (

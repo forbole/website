@@ -50,7 +50,7 @@ export const useNetworkGuidesHook = () => {
       });
     }
     return cosmosNetworkGuides;
-  }, [cosmosComissionData, cosmosComissionLoading]);
+  }, [cosmosComissionData, cosmosComissionLoading, cosmosNetworkGuides]);
 
   useMemo(() => {
     if (!cosmosAPYLoading) {
@@ -73,7 +73,7 @@ export const useNetworkGuidesHook = () => {
       });
     }
     return cosmosNetworkGuides;
-  }, [cosmosAPYData, cosmosAPYLoading]);
+  }, [cosmosAPYData, cosmosAPYLoading, cosmosNetworkGuides]);
 
   useMemo(() => {
     if (!cosmosTVLLoading) {
@@ -96,7 +96,7 @@ export const useNetworkGuidesHook = () => {
       });
     }
     return cosmosNetworkGuides;
-  }, [cosmosTVLData, cosmosTVLLoading]);
+  }, [cosmosTVLData, cosmosTVLLoading, cosmosNetworkGuides]);
 
   useMemo(() => {
     if (!cosmosUnbondingTimeLoading) {
@@ -119,7 +119,11 @@ export const useNetworkGuidesHook = () => {
       });
     }
     return cosmosNetworkGuides;
-  }, [cosmosUnbondingTimeData, cosmosUnbondingTimeLoading]);
+  }, [
+    cosmosUnbondingTimeData,
+    cosmosUnbondingTimeLoading,
+    cosmosNetworkGuides,
+  ]);
 
   return {
     cosmosNetworkGuides,

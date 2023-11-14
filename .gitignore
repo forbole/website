@@ -2,6 +2,7 @@
 
 # Sitemaps
 public/*.xml
+test-results
 
 # dependencies
 /node_modules

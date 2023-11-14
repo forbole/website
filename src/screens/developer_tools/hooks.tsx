@@ -37,7 +37,7 @@ const useTalkModalForm = () => {
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+  }, [inputs, canSubmit]);
   const get_started = React.useMemo(() => {
     const str = [];
     if (inputs["Data API"]) {
@@ -53,12 +53,7 @@ const useTalkModalForm = () => {
       str.push("RPC Endpoints");
     }
     return str;
-  }, [
-    inputs["Data API"],
-    inputs.GraphQL,
-    inputs.Other,
-    inputs["RPC Endpoints"],
-  ]);
+  }, [inputs]);
 
   const handleSubmit = (event: any) => {
     if (event) {

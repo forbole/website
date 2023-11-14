@@ -23,7 +23,7 @@ const useContactForm = () => {
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+  }, [inputs, canSubmit]);
 
   const handleSubmit = (event: any) => {
     if (event) {

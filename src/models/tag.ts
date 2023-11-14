@@ -1,4 +1,4 @@
-import * as R from "ramda";
+import { pathOr } from "ramda";
 
 class Tag {
   public name: string;
@@ -21,7 +21,7 @@ class Tag {
       name: data.name,
       slug: data.slug ?? data.name,
       url: data.url ?? data.name,
-      count: { posts: R.pathOr("", ["count", "posts"], data) },
+      count: { posts: pathOr("", ["count", "posts"], data) },
     });
   }
 }

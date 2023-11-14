@@ -44,7 +44,7 @@ const Calculator = (props: any) => {
     if (selectedToken === "") {
       setSelectedToken(networkData[0]);
     }
-  }, [selectedToken]);
+  }, [selectedToken, networkData, setSelectedToken]);
 
   const [isOpen, setIsOpen] = React.useState(false);
 

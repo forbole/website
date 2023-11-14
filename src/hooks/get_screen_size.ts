@@ -57,7 +57,11 @@ export const useWindowDimensions = () => {
     } else {
       setIsDesktop(false);
     }
-  }, [windowDimensions.width]);
+  }, [
+    windowDimensions.width,
+    theme?.breakpoints?.values?.tablet,
+    theme?.breakpoints?.values?.laptop,
+  ]);
 
   return { windowDimensions, isDesktop, isTablet, isMobile };
 };

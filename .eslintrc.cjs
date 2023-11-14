@@ -12,7 +12,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: ["react", "@typescript-eslint", "prettier", "react-hooks"],
   rules: {
     "arrow-body-style": "error",
     "camelcase": "off",
@@ -22,6 +22,7 @@ module.exports = {
     "no-unused-vars": "off",
     "object-shorthand": "error",
     "prefer-const": "error",
+    "prefer-template": "error",
     "quote-props": ["error", "consistent-as-needed"],
 
     "@typescript-eslint/no-shadow": "error",
@@ -57,7 +58,6 @@ module.exports = {
       },
     ],
 
-    "prefer-template": "error",
     "react/function-component-definition": "off",
     "react/jsx-boolean-value": "error",
     "react/jsx-one-expression-per-line": "off",
@@ -69,6 +69,9 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "react/self-closing-comp": "error",
+
+    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "error",
   },
   overrides: [
     {

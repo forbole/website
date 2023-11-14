@@ -53,7 +53,7 @@ const NetworkInfo = ({ post }: any) => {
       );
       setIsCopySuccess(true);
     },
-    [networkData?.address],
+    [networkData],
   );
   const coverImage = networkData
     ? `/images/guides/how_to_stake_${networkData.graphql}.png`

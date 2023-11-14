@@ -37,7 +37,7 @@ const useContactForm = () => {
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+  }, [inputs, canSubmit]);
   const get_started = React.useMemo(() => {
     const str = [];
     if (inputs.collaboration) {
