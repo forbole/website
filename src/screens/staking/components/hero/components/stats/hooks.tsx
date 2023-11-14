@@ -219,7 +219,6 @@ export const useStatsHook = () => {
           }))
         : null,
     );
-    return stats;
   }, [
     cosmosTVL,
     elrondTotalTVL,
@@ -244,8 +243,7 @@ export const useStatsHook = () => {
           : null,
       );
     }
-    return stats;
-  }, [networkNumber]);
+  }, []);
 
   return stats;
 };

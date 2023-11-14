@@ -90,6 +90,8 @@ export const useNetworkHook = () => {
       });
     }
     return cosmosNetworks;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosBondedData, cosmosBondedLoading]);
 
   useMemo(() => {
@@ -109,6 +111,8 @@ export const useNetworkHook = () => {
       });
     }
     return cosmosNetworks;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosAPYData, cosmosAPYLoading]);
 
   useMemo(() => {
@@ -128,6 +132,8 @@ export const useNetworkHook = () => {
       });
     }
     return cosmosNetworks;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosTVLData, cosmosTVLLoading]);
 
   useMemo(() => {
@@ -146,6 +152,8 @@ export const useNetworkHook = () => {
           : null;
       });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elrondBondedData, elrondBondedLoading]);
 
   useMemo(() => {
@@ -164,6 +172,8 @@ export const useNetworkHook = () => {
           : null;
       });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elrondAPYData, elrondAPYLoading]);
 
   useMemo(() => {
@@ -182,6 +192,8 @@ export const useNetworkHook = () => {
           : null;
       });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elrondTVLData, elrondTVLLoading]);
 
   useMemo(() => {
@@ -195,6 +207,8 @@ export const useNetworkHook = () => {
         },
       }));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [solanaTVLLoading, solanaTVLData]);
 
   useMemo(() => {
@@ -208,6 +222,8 @@ export const useNetworkHook = () => {
         },
       }));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [solanaBondedData, solanaBondedLoading]);
 
   useMemo(() => {
@@ -221,6 +237,8 @@ export const useNetworkHook = () => {
         },
       }));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [oasisTVLLoading, oasisTVLData]);
 
   useMemo(() => {
@@ -234,6 +252,8 @@ export const useNetworkHook = () => {
         },
       }));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [oasisBondedData, oasisBondedLoading]);
 
   useMemo(() => {
@@ -247,6 +267,8 @@ export const useNetworkHook = () => {
         },
       }));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [radixTVLLoading, radixTVLData]);
 
   useMemo(() => {
@@ -260,6 +282,8 @@ export const useNetworkHook = () => {
         },
       }));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [radixBondedData, radixBondedLoading]);
 
   return {

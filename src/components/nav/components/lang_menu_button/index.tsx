@@ -35,7 +35,7 @@ const LangMenuButton = () => {
 
   React.useEffect(() => {
     onClose();
-  }, [lang]);
+  }, [lang, onClose]);
   const colors = useColor();
   let lan = "";
   switch (lang) {

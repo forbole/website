@@ -6,5 +6,5 @@ export const useBlogHook = (error: any, t: any) => {
     if (error) {
       toast.error(t("error"));
     }
-  }, [error]);
+  }, [error, t]);
 };

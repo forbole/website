@@ -34,7 +34,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
       }
       return node;
     },
-    [lastView],
+    [lastView, isMobile],
   );
 
   const seeMorePages = (_e: any, { limit, blogs }: any) => {

@@ -75,6 +75,7 @@ export const useCalculateRewardsHook = () => {
       });
     }
     return stakingParamState;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     cosmosCommissionLoading,
     cosmosCommissionData,
@@ -96,6 +97,7 @@ export const useCalculateRewardsHook = () => {
       });
     }
     return stakingParamState;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     cosmosInflationLoading,
     cosmosInflationData,
@@ -117,6 +119,7 @@ export const useCalculateRewardsHook = () => {
       });
     }
     return stakingParamState;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosBondedData, cosmosBondedLoading, selectedToken, setSelectedToken]);
 
   useMemo(() => {
@@ -133,6 +136,7 @@ export const useCalculateRewardsHook = () => {
       });
     }
     return stakingParamState;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosSupplyData, cosmosSupplyLoading, selectedToken, setSelectedToken]);
 
   useMemo(() => {
@@ -149,6 +153,7 @@ export const useCalculateRewardsHook = () => {
         stakingRatio: ratio,
       }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     cosmosBondedData,
     cosmosBondedLoading,
@@ -274,6 +279,7 @@ export const useCalculateRewardsHook = () => {
     if (tokens.value !== "" && monthlyPeriods !== 0) {
       handleDefaultCalculation();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedToken, setSelectedToken, tokens, monthlyPeriods]);
 
   const handleChange = (e: any) => {
