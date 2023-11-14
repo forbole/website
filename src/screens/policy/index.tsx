@@ -3615,7 +3615,7 @@ const Policy = () => {
                       marginLeft: "4em",
                     }}
                   >
-                    {t("desc3")}
+                    {t("desc3")?.trim()}
                   </p>
                 </>
               </Box>

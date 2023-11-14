@@ -106,7 +106,7 @@ const useContactForm = () => {
           setLoading(false);
           // eslint-disable-next-line no-console
           console.log(err);
-          toast.error(t("error") as ToastContent<unknown>);
+          toast.error(t("common:error") as ToastContent<unknown>);
         });
     }
   };
