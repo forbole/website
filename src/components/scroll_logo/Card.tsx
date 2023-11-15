@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme, Typography, useTheme } from "@mui/material";
+import type { SxProps, Theme} from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 import SwiperCore, { Autoplay } from "swiper";
 import "swiper/swiper.min.css";

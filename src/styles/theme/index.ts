@@ -1,4 +1,4 @@
-import { ThemeOptions } from "@mui/material/styles";
+import type { ThemeOptions } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 
 import { darkThemeOverride } from "./dark";

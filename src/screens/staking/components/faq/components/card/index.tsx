@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { FAQProps } from "../../config";
+import type { FAQProps } from "../../config";
 
 const Card = (props: FAQProps) => {
   const theme = useTheme();

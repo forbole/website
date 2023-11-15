@@ -2,7 +2,8 @@
 import axios from "axios";
 import cors from "cors";
 import "dotenv-defaults/config";
-import express, { Request, Response } from "express";
+import type { Request, Response } from "express";
+import express from "express";
 import DOMPurify from "isomorphic-dompurify";
 import next from "next";
 import nodemailer from "nodemailer";

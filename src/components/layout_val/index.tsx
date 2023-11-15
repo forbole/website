@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { concat, uniq } from "ramda";
-import { ReactNode, RefObject } from "react";
+import type { ReactNode, RefObject } from "react";
 import validator from "validator";
 
 import Footer from "../footer";

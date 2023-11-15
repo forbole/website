@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme, useTheme } from "@mui/material";
+import type { SxProps, Theme} from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import { BottomIcon } from "../icons";

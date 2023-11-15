@@ -1,4 +1,7 @@
 import { SearchIcon } from "@icons";
+import type {
+  PaperProps,
+  PopperProps} from "@mui/material";
 import {
   Autocomplete,
   Box,
@@ -7,9 +10,7 @@ import {
   ListItemIcon,
   ListItemText,
   Paper,
-  PaperProps,
   Popper,
-  PopperProps,
   TextField,
   createFilterOptions,
   useTheme,
@@ -17,18 +18,20 @@ import {
 import ListItem from "@mui/material/ListItem";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import {
+import type {
   ComponentProps,
   FC,
   FocusEventHandler,
-  HTMLAttributes,
+  HTMLAttributes} from "react";
+import {
   useCallback,
   useState,
 } from "react";
 
-import { Network, getNetworkInfo, logos } from "@src/utils/network_info";
+import type { Network} from "@src/utils/network_info";
+import { getNetworkInfo, logos } from "@src/utils/network_info";
 
-import { SearchBarProps } from "./types";
+import type { SearchBarProps } from "./types";
 import useStyles from "./useStyles";
 
 const filterOptions = createFilterOptions({

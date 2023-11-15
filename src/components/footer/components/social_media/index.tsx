@@ -3,7 +3,8 @@ import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React from "react";
-import { ToastContent, toast } from "react-toastify";
+import type { ToastContent} from "react-toastify";
+import { toast } from "react-toastify";
 import validator from "validator";
 
 import CtaButton from "@src/components/cta-button";
