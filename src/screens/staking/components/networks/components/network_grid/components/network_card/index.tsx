@@ -3,14 +3,8 @@ import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import type {
-  Dispatch,
-  FC,
-  MouseEventHandler,
-  SetStateAction} from "react";
-import React, {
-  useCallback,
-} from "react";
+import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
+import React, { useCallback } from "react";
 
 import { convertToMoney } from "@utils/convert_to_money";
 import type { Network } from "@utils/network_info";

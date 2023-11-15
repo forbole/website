@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import type { MouseEvent} from "react";
+import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 

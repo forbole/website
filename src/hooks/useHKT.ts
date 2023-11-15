@@ -1,4 +1,5 @@
-import moment from "moment-timezone";
+// @ts-expect-error
+import moment from "moment-timezone/builds/moment-timezone-with-data-10-year-range";
 import { useEffect, useState } from "react";
 
 const useHKT = (publishedAt: string) => {

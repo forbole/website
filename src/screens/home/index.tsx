@@ -2,7 +2,7 @@ import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import type { FC} from "react";
+import type { FC } from "react";
 import { useRef } from "react";
 
 import { Layout, ScrollToBottom, ScrollToTop } from "@components";

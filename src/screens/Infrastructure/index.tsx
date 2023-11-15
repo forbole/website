@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import type { SyntheticEvent} from "react";
+import type { SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
 
 import { Layout, ScrollToTop } from "@src/components";

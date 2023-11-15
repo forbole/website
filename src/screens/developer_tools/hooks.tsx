@@ -2,9 +2,9 @@ import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
-import type { ToastContent} from "react-toastify";
+import type { ToastContent } from "react-toastify";
 import { toast } from "react-toastify";
-import validator from "validator";
+import isEmail from "validator/lib/isEmail";
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = React.useState({
@@ -27,7 +27,7 @@ const useTalkModalForm = () => {
 
   React.useEffect(() => {
     if (
-      validator.isEmail(inputs.email) &&
+      isEmail(inputs.email) &&
       inputs.name &&
       (inputs["Data API"] ||
         inputs.GraphQL ||

@@ -2,6 +2,8 @@ import { useHKT } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 
+import { NoSSR } from "@components/no-ssr";
+
 const Author = ({ post }: any) => {
   const { primaryAuthor: author, publishedAt } = post;
   const theme = useTheme();
@@ -52,17 +54,19 @@ const Author = ({ post }: any) => {
             >
               {author.name}
             </Typography>
-            <Typography
-              sx={{
-                opacity: 0.5,
-                color: theme.palette.primary.main,
-                fontWeight: 400,
-                fontSize: theme.spacing(1.75),
-              }}
-              variant="body1"
-            >
-              {time}
-            </Typography>
+            <NoSSR>
+              <Typography
+                sx={{
+                  opacity: 0.5,
+                  color: theme.palette.primary.main,
+                  fontWeight: 400,
+                  fontSize: theme.spacing(1.75),
+                }}
+                variant="body1"
+              >
+                {time}
+              </Typography>
+            </NoSSR>
           </a>
         </Link>
       </Box>

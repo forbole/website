@@ -2,9 +2,9 @@ import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
-import type { ToastContent} from "react-toastify";
+import type { ToastContent } from "react-toastify";
 import { toast } from "react-toastify";
-import validator from "validator";
+import isEmail from "validator/lib/isEmail";
 
 const useContactForm = () => {
   const [inputs, setInputs] = React.useState({
@@ -19,7 +19,7 @@ const useContactForm = () => {
   const [success, setSuccess] = React.useState<boolean>(false);
   const [isLoading, setLoading] = React.useState<boolean>(false);
   React.useEffect(() => {
-    if (validator.isEmail(inputs.email) && inputs.name && inputs.help) {
+    if (isEmail(inputs.email) && inputs.name && inputs.help) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);

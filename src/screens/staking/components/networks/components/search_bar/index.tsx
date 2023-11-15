@@ -1,7 +1,5 @@
 import { SearchIcon } from "@icons";
-import type {
-  PaperProps,
-  PopperProps} from "@mui/material";
+import type { PaperProps, PopperProps } from "@mui/material";
 import {
   Autocomplete,
   Box,
@@ -22,13 +20,11 @@ import type {
   ComponentProps,
   FC,
   FocusEventHandler,
-  HTMLAttributes} from "react";
-import {
-  useCallback,
-  useState,
+  HTMLAttributes,
 } from "react";
+import { useCallback, useState } from "react";
 
-import type { Network} from "@src/utils/network_info";
+import type { Network } from "@src/utils/network_info";
 import { getNetworkInfo, logos } from "@src/utils/network_info";
 
 import type { SearchBarProps } from "./types";
