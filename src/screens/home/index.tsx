@@ -209,20 +209,6 @@ const Home: FC<Props> = ({ pages }) => {
                 title={t("Enterprise_Solution_title")}
               />
             </Grid>
-            <Grid item laptop={4} mobile={12}>
-              <IntroPanel
-                btnName={t("coming_soon")}
-                desc={t("Forbole_Academy_desc")}
-                disabled
-                imageHref={
-                  isMobile
-                    ? require("/public/home/mobile-5@2x.png")
-                    : require("/public/home/Desktop-5@2x.png")
-                }
-                img_not_response
-                title={t("Forbole_Academy_title")}
-              />
-            </Grid>
           </Grid>
           <Typography
             sx={{
