@@ -3,18 +3,13 @@ import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import React, {
-  Dispatch,
-  FC,
-  MouseEventHandler,
-  SetStateAction,
-  useCallback,
-} from "react";
+import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
+import React, { useCallback } from "react";
 
 import { convertToMoney } from "@utils/convert_to_money";
-import { Network } from "@utils/network_info";
+import type { Network } from "@utils/network_info";
 
-import { ParamsProps } from "../../config";
+import type { ParamsProps } from "../../config";
 import useStyles from "./useStyles";
 
 interface CardProp {

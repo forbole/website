@@ -25,3 +25,5 @@ if [ "$EMPTY_TRANSLATIONS" -gt 0 ]; then
   echo "Empty translations"
   exit 1
 fi
+
+echo "Linting passed"

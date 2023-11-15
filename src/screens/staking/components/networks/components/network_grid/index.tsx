@@ -5,7 +5,7 @@ import { useState } from "react";
 import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 
 import { NetworkCard } from "./components";
-import { NetworkProps } from "./config";
+import type { NetworkProps } from "./config";
 import { useNetworkHook } from "./hooks";
 import useStyles from "./useStyles";
 

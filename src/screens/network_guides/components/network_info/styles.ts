@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ThemeOptions } from "@mui/material/styles";
+import type { ThemeOptions } from "@mui/material/styles";
 
 type ContentProps = {
   theme: ThemeOptions;

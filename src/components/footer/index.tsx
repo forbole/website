@@ -7,7 +7,7 @@ import { useWindowDimensions } from "@src/hooks";
 
 import CtaButton from "../cta-button";
 import { FooterItems, SocialMedia } from "./components";
-import { FooterProps } from "./types";
+import type { FooterProps } from "./types";
 
 const Footer = ({ red, itemColor }: FooterProps) => {
   const theme = useTheme();

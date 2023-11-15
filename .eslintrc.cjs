@@ -25,6 +25,7 @@ module.exports = {
     "prefer-template": "error",
     "quote-props": ["error", "consistent-as-needed"],
 
+    "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-var-requires": "off",

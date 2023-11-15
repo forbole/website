@@ -3,6 +3,7 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
+    "analyze-bundle": "BUNDLE_ANALYZER=true yarn build",
     "build": "npm run build:next && npm run build:server",
     "build:next": "cross-env NODE_ENV=production next build && next-sitemap",
     "build:server": "tsc --project tsconfig.server.json",
@@ -27,6 +28,7 @@
     "@mui/lab": "^5.0.0-alpha.138",
     "@mui/material": "^5.14.3",
     "@n8tb1t/use-scroll-position": "^2.0.3",
+    "@next/bundle-analyzer": "^14.0.2",
     "@socialgouv/matomo-next": "^1.4.0",
     "@tryghost/admin-api": "^1.13.0",
     "@tryghost/content-api": "^1.11.0",

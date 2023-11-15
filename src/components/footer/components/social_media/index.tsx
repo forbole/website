@@ -3,8 +3,9 @@ import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React from "react";
-import { ToastContent, toast } from "react-toastify";
-import validator from "validator";
+import type { ToastContent } from "react-toastify";
+import { toast } from "react-toastify";
+import isEmail from "validator/lib/isEmail";
 
 import CtaButton from "@src/components/cta-button";
 import { socialMedia } from "@utils/social_media_info";
@@ -33,7 +34,7 @@ const SocialMedia = () => {
   const [isLoading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    if (validator.isEmail(inputs.email)) {
+    if (isEmail(inputs.email)) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
@@ -96,6 +97,7 @@ const SocialMedia = () => {
         {socialMediaInfo.map((x) => (
           <a
             key={x.key}
+            aria-label={x.key}
             className={classes.icon}
             href={x.url}
             rel="noreferrer"

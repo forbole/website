@@ -1,6 +1,7 @@
 import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
-import Image, { StaticImageData } from "next/image";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import CtaButton from "../cta-button";
 

@@ -1,4 +1,4 @@
-import { PaletteMode } from "@mui/material";
+import type { PaletteMode } from "@mui/material";
 
 const backgroundDefault = "#171A4B";
 

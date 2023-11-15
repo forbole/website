@@ -1,5 +1,5 @@
-import { Theme } from "@mui/material";
-import { SxProps } from "@mui/system";
+import type { Theme } from "@mui/material";
+import type { SxProps } from "@mui/system";
 
 export const styles: { [index: string]: SxProps<Theme> } = {
   nameBox: (theme) => ({

@@ -2,7 +2,8 @@ import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
 import { Box, Button, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React, { RefObject } from "react";
+import type { RefObject } from "react";
+import React from "react";
 
 import useColor from "@src/styles/useColor";
 
@@ -105,6 +106,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
           >
             <Link href="/">
               <a
+                aria-label={t("forboleLogo")}
                 style={{
                   display: "flex",
                   alignItems: "center",

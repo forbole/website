@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-import { AnchorElState } from "./types";
+import type { AnchorElState } from "./types";
 
 const initialState: AnchorElState = null;
 

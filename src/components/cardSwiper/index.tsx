@@ -1,6 +1,6 @@
 import { Box, Stack, useTheme } from "@mui/material";
 import Image from "next/image";
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";

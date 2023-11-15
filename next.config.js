@@ -1,8 +1,13 @@
+const bundleAnalyzer = require("@next/bundle-analyzer");
 const nextTranslate = require("next-translate");
 
 const localePrefixes = ["", "/zh-HK", "/zh-CN"];
 
-module.exports = nextTranslate({
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.BUNDLE_ANALYZER === "true",
+});
+
+const baseConfig = nextTranslate({
   poweredByHeader: false,
   images: {
     unoptimized: true,
@@ -30,3 +35,5 @@ module.exports = nextTranslate({
     ignoreDuringBuilds: true,
   },
 });
+
+module.exports = withBundleAnalyzer(baseConfig);

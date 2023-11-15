@@ -1,7 +1,7 @@
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { styled } from "@mui/material/styles";
-import { ReactElement, ReactNode, SyntheticEvent } from "react";
+import type { ReactElement, ReactNode, SyntheticEvent } from "react";
 
 interface StyledTabsProps {
   children?: ReactNode;
