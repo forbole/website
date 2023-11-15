@@ -7,7 +7,7 @@ import React from "react";
 
 import Post from "./components/post";
 import { useBlogPostsHook } from "./hooks";
-import { IProps } from "./interface";
+import type { IProps } from "./interface";
 
 const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
   const { t } = useTranslation("blog");

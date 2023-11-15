@@ -4,7 +4,7 @@ import { pathOr } from "ramda";
 import Post from "@screens/blog/components/blog_posts/components/post";
 
 import { useBlogPostsHook } from "./hooks";
-import { IProps } from "./interface";
+import type { IProps } from "./interface";
 
 const TagPosts = ({ main, blogs, meta }: IProps) => {
   const theme = useTheme();

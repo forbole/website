@@ -2,7 +2,8 @@ import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { FC, useRef } from "react";
+import type { FC } from "react";
+import { useRef } from "react";
 
 import { Layout, ScrollToBottom, ScrollToTop } from "@components";
 import IntroPanel from "@src/components/Intro_panel";
@@ -207,20 +208,6 @@ const Home: FC<Props> = ({ pages }) => {
                 }
                 img_not_response
                 title={t("Enterprise_Solution_title")}
-              />
-            </Grid>
-            <Grid item laptop={4} mobile={12}>
-              <IntroPanel
-                btnName={t("coming_soon")}
-                desc={t("Forbole_Academy_desc")}
-                disabled
-                imageHref={
-                  isMobile
-                    ? require("/public/home/mobile-5@2x.png")
-                    : require("/public/home/Desktop-5@2x.png")
-                }
-                img_not_response
-                title={t("Forbole_Academy_title")}
               />
             </Grid>
           </Grid>

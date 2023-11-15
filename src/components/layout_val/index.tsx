@@ -3,8 +3,8 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { concat, uniq } from "ramda";
-import { ReactNode, RefObject } from "react";
-import validator from "validator";
+import type { ReactNode, RefObject } from "react";
+import isURL from "validator/lib/isURL";
 
 import Footer from "../footer";
 import GuideNav from "../guide_nav";
@@ -44,10 +44,10 @@ const LayoutVal = ({
   let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ["Forbole", "blockchain", "social network"];
   const formattedKeyworks = uniq(concat(keywords, baseKeywords));
-  if (!validator.isURL(ogImage)) {
+  if (!isURL(ogImage)) {
     ogImage = `${url}${ogImage}`;
   }
-  if (!validator.isURL(metaTwitterImage)) {
+  if (!isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
 

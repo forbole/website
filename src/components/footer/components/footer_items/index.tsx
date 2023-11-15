@@ -2,7 +2,7 @@ import { Box, Divider, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
-import { FooterProps } from "../../types";
+import type { FooterProps } from "../../types";
 import useStyles from "./useStyles";
 
 const FooterItems = ({ staking }: FooterProps) => {
