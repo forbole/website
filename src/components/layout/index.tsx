@@ -95,10 +95,10 @@ const Layout = ({
       backgroundSize: redBg ? "70% 55vw, 105vw" : "100vw 100vw",
       [theme.breakpoints.between("mobile", 550)]: {
         backgroundImage: redBg
-          ? "url(/images/assets/bg_mobile_horse.webp), url(/images/assets/bg_mobile_red_background.webp)" 
+          ? "url(/images/assets/bg_mobile_horse.webp), url(/images/assets/bg_mobile_red_background.webp)"
           : "url(/images/assets/bg_mobile_red_background.webp)",
-      backgroundPosition: redBg ? "-40vw 10vw, 0 0" : "0 0",
-      backgroundSize: "180vw 150vw, 110vw",
+        backgroundPosition: redBg ? "-40vw 10vw, 0 0" : "0 0",
+        backgroundSize: "180vw 150vw, 110vw",
       },
     };
   })();
