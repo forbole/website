@@ -49,7 +49,12 @@ const Card = ({ networkData, sx, imageSize }: Props) => {
               <Image
                 alt=""
                 src={item.image}
-                {...(imageSize && { width: imageSize, height: imageSize })}
+                {...(imageSize
+                  ? { width: imageSize, height: imageSize }
+                  : {
+                      layout: "fill",
+                      objectFit: "contain",
+                    })}
               />
             )}
           </Box>
