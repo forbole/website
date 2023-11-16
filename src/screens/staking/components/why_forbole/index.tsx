@@ -143,10 +143,11 @@ const WhyForbole = () => {
               >
                 {reason?.image && (
                   <Image
-                    height={onlyLargeScreen ? "370px" : "260px"}
+                    alt=""
+                    height={onlyLargeScreen ? "370" : "260"}
                     objectFit="contain"
                     src={reason.image}
-                    width={onlyLargeScreen ? "314px" : "220px"}
+                    width={onlyLargeScreen ? "314" : "220"}
                   />
                 )}
                 <Box

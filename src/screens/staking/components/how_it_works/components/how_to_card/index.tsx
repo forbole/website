@@ -29,7 +29,7 @@ const HowToCard = (props: any) => {
       }}
     >
       {image && (
-        <Image height="60px" objectFit="contain" src={image} width="100%" />
+        <Image alt="" height="60" objectFit="contain" src={image} width="700" />
       )}
       <Box
         alignItems="flex-start"

@@ -161,11 +161,12 @@ const Calculator = (props: any) => {
                   <Box className="image">
                     {network.image && (
                       <Image
-                        height="52px"
+                        alt=""
+                        height="52"
                         objectFit="contain"
                         quality={100}
                         src={network.image}
-                        width="52px"
+                        width="52"
                       />
                     )}
                   </Box>
@@ -349,11 +350,12 @@ const Calculator = (props: any) => {
               <Box className="image">
                 {selectedToken.image && (
                   <Image
-                    height="28px"
+                    alt=""
+                    height="28"
                     objectFit="contain"
                     quality={100}
                     src={selectedToken.image}
-                    width="28px"
+                    width="28"
                   />
                 )}
               </Box>

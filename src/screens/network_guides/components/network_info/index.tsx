@@ -129,7 +129,7 @@ const NetworkInfo = ({ post }: any) => {
               >
                 <Image
                   alt={title}
-                  height={onlyLargeScreen ? "90px" : "52px"}
+                  height={onlyLargeScreen ? "90" : "52"}
                   loader={cmsLoader}
                   objectFit="contain"
                   quality={100}
@@ -138,7 +138,7 @@ const NetworkInfo = ({ post }: any) => {
                       ? "/images/assets/blog-placeholder.png"
                       : networkData.image
                   }
-                  width={onlyLargeScreen ? "90px" : "52px"}
+                  width={onlyLargeScreen ? "90" : "52"}
                 />
               </Box>
               <Box pl={onlyLargeScreen ? 2 : 1}>

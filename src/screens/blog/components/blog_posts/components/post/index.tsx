@@ -67,9 +67,7 @@ const Post = (props: any) => {
             >
               <Image
                 alt={title}
-                height={
-                  isDesktop && main ? "324px" : isMobile ? "156px" : "156px"
-                }
+                height={isDesktop && main ? "324" : isMobile ? "156" : "156"}
                 loader={cmsLoader}
                 objectFit="cover"
                 quality={100}
@@ -78,7 +76,7 @@ const Post = (props: any) => {
                     ? "/images/assets/blog-placeholder.png"
                     : featureImage
                 }
-                width={isDesktop && main ? "100%" : isMobile ? "270px" : "100%"}
+                width={isDesktop && main ? "500" : isMobile ? "270" : "500"}
               />
             </Box>
             <Box

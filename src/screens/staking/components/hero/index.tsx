@@ -69,6 +69,7 @@ const Hero = () => {
             }}
           >
             <Image
+              alt=""
               layout="fill"
               objectFit="contain"
               src="/images/assets/image_horse_blur.png"
@@ -128,6 +129,7 @@ const Hero = () => {
             }}
           >
             <Image
+              alt=""
               layout="fill"
               objectFit="contain"
               src="/images/assets/image_water_shadow.png"
