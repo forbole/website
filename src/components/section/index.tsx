@@ -6,11 +6,11 @@ const Trans = dynamic(async () => import("next-translate/Trans"), {
 });
 
 type Props = {
+  desc?: string;
   maxWidth?: string;
   title?: string;
   title_large?: string;
   title_large_trans?: string;
-  desc?: string;
 };
 
 // Rename the component so the i18next parser doesn't try to parse it
