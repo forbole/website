@@ -46,6 +46,7 @@
     "next": "^14.0.3",
     "next-sitemap": "^4.2.3",
     "next-translate": "^2.6.2",
+    "next-translate-plugin": "^2.6.2",
     "nodemailer": "^6.7.5",
     "ramda": "^0.29.1",
     "react": "^18.2.0",
