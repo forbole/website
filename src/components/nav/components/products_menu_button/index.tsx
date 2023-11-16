@@ -1,10 +1,12 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import List from "@mui/material/List";
 import MenuItem from "@mui/material/MenuItem";
-import { anchorElState } from "@src/recoil/settings/anchorEl";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import { useMemo } from "react";
 import { useRecoilState } from "recoil";
+
+import { anchorElState } from "@src/recoil/settings/anchorEl";
 
 const ProductsMenuButton = () => {
   const { t } = useTranslation("common");
@@ -16,32 +18,31 @@ const ProductsMenuButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const menuProductsList = [
-    {
-      name: "validator-infrastructure",
-      link: "/infrastructure",
-    },
-    {
-      name: "native-staking-service",
-      link: "/staking-service",
-    },
-    {
-      name: "blockchain-data-analytics-tools",
-      link: "/analytics-tools",
-    },
-    {
-      name: "developer-tools",
-      link: "/developer-tools",
-    },
-    {
-      name: "enterprise-solution",
-      link: "/enterprise-solution",
-    },
-    {
-      name: "forbole-academy",
-      link: "#!",
-    },
-  ];
+  const menuProductsList = useMemo(
+    () => [
+      {
+        name: t("validator-infrastructure"),
+        link: "/infrastructure",
+      },
+      {
+        name: t("native-staking-service"),
+        link: "/staking-service",
+      },
+      {
+        name: t("blockchain-data-analytics-tools"),
+        link: "/analytics-tools",
+      },
+      {
+        name: t("developer-tools"),
+        link: "/developer-tools",
+      },
+      {
+        name: t("enterprise-solution"),
+        link: "/enterprise-solution",
+      },
+    ],
+    [t],
+  );
 
   return onlyLargeScreen ? (
     <List component="div" disablePadding>
@@ -52,13 +53,11 @@ const ProductsMenuButton = () => {
               component="a"
               sx={{
                 "display": "flex",
-                // color: theme.palette.common.white,
                 "padding": "0px 32px",
                 "justifyContent": "flex-start",
                 "fontSize": theme.spacing(2),
                 "fontWeight": 700,
                 "height": theme.spacing(7),
-                // padding: theme.spacing(0, 3),
                 "filter": l.link !== "#!" ? "" : "opacity(0.1)",
                 "color": theme.palette.custom.forbole.indigo,
                 "> a": {
@@ -72,7 +71,7 @@ const ProductsMenuButton = () => {
                 },
               }}
             >
-              {t(l.name)}
+              {l.name}
             </MenuItem>
           </Link>
         </div>
@@ -109,7 +108,7 @@ const ProductsMenuButton = () => {
               },
             }}
           >
-            {t(l.name)}
+            {l.name}
           </MenuItem>
         </Link>
       ))}

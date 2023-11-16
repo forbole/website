@@ -1,11 +1,13 @@
 import { Box, useTheme } from "@mui/material";
-import useColor from "@src/styles/useColor";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import * as R from "ramda";
-import { ReactNode, useEffect } from "react";
-import validator from "validator";
+import { concat, uniq } from "ramda";
+import type { ReactNode } from "react";
+import { useEffect } from "react";
+import isURL from "validator/lib/isURL";
+
+import useColor from "@src/styles/useColor";
 
 import Footer from "../footer";
 import Nav from "../nav";
@@ -46,11 +48,11 @@ const Layout = ({
   let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
   let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ["Forbole", "blockchain", "social network"];
-  const formattedKeyworks = R.uniq(R.concat(keywords, baseKeywords));
-  if (!validator.isURL(ogImage)) {
+  const formattedKeyworks = uniq(concat(keywords, baseKeywords));
+  if (!isURL(ogImage)) {
     ogImage = `${url}${ogImage}`;
   }
-  if (!validator.isURL(metaTwitterImage)) {
+  if (!isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
   const color = useColor();
@@ -123,10 +125,6 @@ const Layout = ({
         )}
         <meta content={description || t("description")} name="description" />
         <meta content={formattedKeyworks.join(", ")} name="keywords" />
-        <meta
-          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-          name="viewport"
-        />
         <meta
           content={type}
           prefix="og: http://ogp.me/ns#"

@@ -1,14 +1,44 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
+import { useMemo } from "react";
 
 import { HowToCard } from "./components";
-import { howTos } from "./config";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const HowItWorks = () => {
   const { t } = useTranslation("staking");
+  const howTos = useMemo(
+    () => [
+      {
+        id: 1,
+        image: "/images/assets/image_provider.png",
+        title: t("trusted provider"),
+        desc: t("trusted provider desc"),
+      },
+      {
+        id: 2,
+        image: "/images/assets/image_stake.png",
+        title: t("stake"),
+        desc: t("stake desc"),
+      },
+      {
+        id: 3,
+        image: "/images/assets/image_rewards.png",
+        title: t("rewards"),
+        desc: t("rewards desc"),
+      },
+      {
+        id: 4,
+        image: "/images/assets/image_non-custodial.png",
+        title: t("non-custodial"),
+        desc: t("non-custodial desc"),
+      },
+    ],
+    [t],
+  );
+
   const theme = useTheme();
   return (
     <Box display="flex" justifyContent="center">

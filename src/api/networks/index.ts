@@ -1,5 +1,5 @@
 import { ghostApi as api } from "../index";
-import { IPost } from "./interface";
+import type { IPost } from "./interface";
 
 /** Gets posts from remote */
 export const getNetworkPosts = async ({

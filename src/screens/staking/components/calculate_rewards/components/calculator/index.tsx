@@ -13,10 +13,11 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { getNetworkInfo } from "@src/utils/network_info";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import React from "react";
+
+import { getNetworkInfo } from "@src/utils/network_info";
 
 import { calculatorKeys } from "./config";
 import { styles } from "./styles";
@@ -44,7 +45,7 @@ const Calculator = (props: any) => {
     if (selectedToken === "") {
       setSelectedToken(networkData[0]);
     }
-  }, [selectedToken]);
+  }, [selectedToken, networkData, setSelectedToken]);
 
   const [isOpen, setIsOpen] = React.useState(false);
 

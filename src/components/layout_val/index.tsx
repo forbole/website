@@ -2,9 +2,9 @@ import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import * as R from "ramda";
-import { ReactNode, RefObject } from "react";
-import validator from "validator";
+import { concat, uniq } from "ramda";
+import type { ReactNode, RefObject } from "react";
+import isURL from "validator/lib/isURL";
 
 import Footer from "../footer";
 import GuideNav from "../guide_nav";
@@ -37,17 +37,17 @@ const LayoutVal = ({
 }: Props) => {
   const theme = useTheme();
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t } = useTranslation("staking");
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
   let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
   let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ["Forbole", "blockchain", "social network"];
-  const formattedKeyworks = R.uniq(R.concat(keywords, baseKeywords));
-  if (!validator.isURL(ogImage)) {
+  const formattedKeyworks = uniq(concat(keywords, baseKeywords));
+  if (!isURL(ogImage)) {
     ogImage = `${url}${ogImage}`;
   }
-  if (!validator.isURL(metaTwitterImage)) {
+  if (!isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
 

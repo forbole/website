@@ -1,19 +1,15 @@
 import { CloseIcon, InfoIcon } from "@icons";
 import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
-import { convertToMoney } from "@utils/convert_to_money";
-import { Network } from "@utils/network_info";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import React, {
-  Dispatch,
-  FC,
-  MouseEventHandler,
-  SetStateAction,
-  useCallback,
-} from "react";
+import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
+import React, { useCallback } from "react";
 
-import { ParamsProps } from "../../config";
+import { convertToMoney } from "@utils/convert_to_money";
+import type { Network } from "@utils/network_info";
+
+import type { ParamsProps } from "../../config";
 import useStyles from "./useStyles";
 
 interface CardProp {
@@ -46,7 +42,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(
     (event) => {
       event.stopPropagation();
-      // if (network.delegate) window.open(network.delegate, '_top');
+
       if (network.guide)
         window.open(
           `${process.env.NEXT_PUBLIC_URL}/staking/${network.guide}`,
@@ -54,7 +50,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         );
       else if (network.delegate) window.open(network.delegate, "_top");
     },
-    [network.denom, network.key, network.delegate],
+    [network.delegate, network.guide],
   );
 
   /* A variable that is used to render the popover. */

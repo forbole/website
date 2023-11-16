@@ -43,7 +43,7 @@ const ScrollToBottom = ({ bottomRef }: any) => {
             stroke: theme.palette.custom.forbole.blue,
           },
           "&:hover": {
-            fill: "rgba(241, 243, 248)",
+            transform: "scale(1.05)",
           },
         },
       }}

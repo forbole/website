@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+
 import { useStatsHook } from "@screens/staking/components/hero/components/stats/hooks";
 
 import { StatsCard } from "./components";

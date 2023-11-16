@@ -12,12 +12,13 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { getNetworkInfo } from "@src/utils/network_info";
-import { getMiddleEllipsis } from "@utils/get_middle_ellipsis";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import React from "react";
+
+import { getNetworkInfo } from "@src/utils/network_info";
+import { getMiddleEllipsis } from "@utils/get_middle_ellipsis";
 
 import { InfoCard } from "./components";
 import { useNetworkGuidesHook } from "./hooks";
@@ -53,7 +54,7 @@ const NetworkInfo = ({ post }: any) => {
       );
       setIsCopySuccess(true);
     },
-    [networkData?.address],
+    [networkData],
   );
   const coverImage = networkData
     ? `/images/guides/how_to_stake_${networkData.graphql}.png`

@@ -1,11 +1,15 @@
 /* eslint-disable no-nested-ternary */
 import { useHKT, useWindowDimensions } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
 
+import { NoSSR } from "@components/no-ssr";
+
 const Post = (props: any) => {
   const theme = useTheme();
+  const { t } = useTranslation("blog");
   const { isDesktop, isMobile } = useWindowDimensions();
   const { post, main = false, refProp } = props;
   const { featureImage, title, excerpt, publishedAt, slug, author } = post;
@@ -141,7 +145,7 @@ const Post = (props: any) => {
             }}
           >
             <p>
-              Posted by{" "}
+              {t("Posted by")}{" "}
               <Link as={`/author/${author.slug}`} href="/author/[author]">
                 <a
                   style={{
@@ -153,7 +157,9 @@ const Post = (props: any) => {
                 </a>
               </Link>
             </p>
-            <p className="date">{time}</p>
+            <NoSSR>
+              <p className="date">{time}</p>
+            </NoSSR>
           </Box>
         </Box>
       </Box>

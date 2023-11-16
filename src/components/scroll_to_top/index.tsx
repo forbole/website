@@ -17,6 +17,7 @@ const ScrollToTop = ({ topRef }: TopProps) => {
       behavior: "smooth",
     });
   };
+
   return (
     <Box alignSelf="center" position="relative" zIndex={2}>
       <Box
@@ -41,6 +42,7 @@ const ScrollToTop = ({ topRef }: TopProps) => {
             },
             "&:hover ": {
               fill: "rgba(241, 243, 248)",
+              transform: "scale(1.05)",
             },
           },
         }}

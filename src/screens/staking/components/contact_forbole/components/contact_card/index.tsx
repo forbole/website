@@ -14,9 +14,8 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useMemo } from "react";
 
-import { options } from "./config";
 import useContactCard from "./hooks";
 import { styles } from "./styles";
 
@@ -31,6 +30,17 @@ const ContactCard = () => {
     useContactCard();
 
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const options = useMemo(
+    () => [
+      t("select option"),
+      t("general support"),
+      t("partnership collab"),
+      t("marketing collab"),
+      t("others"),
+    ],
+    [t],
+  );
 
   React.useEffect(() => {
     const handler = () => {
@@ -128,7 +138,7 @@ const ContactCard = () => {
             <FormControl>
               {inputs.option === "" ? (
                 <InputLabel focused={false} id="item_type_label" shrink={false}>
-                  {t(options[0])}
+                  {options[0]}
                 </InputLabel>
               ) : null}
               <Select
@@ -171,8 +181,8 @@ const ContactCard = () => {
                 variant="outlined"
               >
                 {options.slice(1).map((option, i) => (
-                  <MenuItem key={i} value={t(option)}>
-                    {t(option)}
+                  <MenuItem key={i} value={option}>
+                    {option}
                   </MenuItem>
                 ))}
               </Select>

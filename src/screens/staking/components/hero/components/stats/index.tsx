@@ -14,6 +14,7 @@ const Stats = () => {
     <Box css={styles.grid} data-test="stats-cards">
       {statsKeys.map((key: any) => {
         const statsItem = stats[key];
+
         return (
           <StatsCard
             key={key}

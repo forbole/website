@@ -1,11 +1,12 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { readTheme } from "@recoil/settings";
-import { darkTemplate, lightTemplate } from "@src/styles";
 import { useMemo } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RecoilEnv, useRecoilValue } from "recoil";
+
+import { darkTemplate, lightTemplate } from "@src/styles";
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 const InnerApp = (props: any) => {

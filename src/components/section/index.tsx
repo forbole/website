@@ -13,6 +13,9 @@ type Props = {
   desc?: string;
 };
 
+// Rename the component so the i18next parser doesn't try to parse it
+const Translate = Trans;
+
 const Section = ({
   maxWidth = "laptop",
   title,
@@ -68,7 +71,7 @@ const Section = ({
       )}
 
       {title_large_trans && (
-        <Trans
+        <Translate
           components={[
             <Typography
               display="inline"

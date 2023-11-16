@@ -1,4 +1,5 @@
 import { SearchIcon } from "@icons";
+import type { PaperProps, PopperProps } from "@mui/material";
 import {
   Autocomplete,
   Box,
@@ -7,27 +8,26 @@ import {
   ListItemIcon,
   ListItemText,
   Paper,
-  PaperProps,
   Popper,
-  PopperProps,
   TextField,
   createFilterOptions,
   useTheme,
 } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
-import { Network, getNetworkInfo, logos } from "@src/utils/network_info";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import {
+import type {
   ComponentProps,
   FC,
   FocusEventHandler,
   HTMLAttributes,
-  useCallback,
-  useState,
 } from "react";
+import { useCallback, useState } from "react";
 
-import { SearchBarProps } from "./types";
+import type { Network } from "@src/utils/network_info";
+import { getNetworkInfo, logos } from "@src/utils/network_info";
+
+import type { SearchBarProps } from "./types";
 import useStyles from "./useStyles";
 
 const filterOptions = createFilterOptions({
@@ -45,7 +45,7 @@ function scrollLock() {
  * an object that contains a startAdornment property.
  * @returns An object with the properties of InputProps and startAdornment.
  */
-function addSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
+function useSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
   const theme = useTheme();
   const startAdornment = (
     <InputAdornment position="start">
@@ -131,22 +131,28 @@ const SearchBar: FC<SearchBarProps> = () => {
   const networkData: Array<Network> = keys
     .sort()
     .map((x: string) => getNetworkInfo(x));
-  const options = networkData.map((network) => ({
-    label: network.name,
-    network,
-  }));
+
+  const networkNames = networkData.map((network) => network.name);
+  const options = networkData
+    .map((network) => ({
+      label: network.name,
+      network,
+    }))
+    .filter((network, idx) => networkNames.indexOf(network.label) === idx);
+
   const styles = useStyles();
 
-  const renderInput: StyledAutocompleteProps["renderInput"] = useCallback(
+  const RenderInput: StyledAutocompleteProps["renderInput"] = useCallback(
     ({ InputProps, ...params }) => (
       <TextField
         {...params}
-        InputProps={addSearch(InputProps)}
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        InputProps={useSearch(InputProps)}
         placeholder={t("searchNetwork")}
         sx={styles.textField}
       />
     ),
-    [],
+    [styles.textField, t],
   );
   const [focused, setFocused] = useState(false);
   const handleFocus: FocusEventHandler = useCallback((event) => {
@@ -189,7 +195,7 @@ const SearchBar: FC<SearchBarProps> = () => {
         PaperComponent={PaperComponent}
         PopperComponent={PopperComponent}
         popupIcon={null}
-        renderInput={renderInput}
+        renderInput={RenderInput}
         renderOption={renderOption}
       />
       <Button

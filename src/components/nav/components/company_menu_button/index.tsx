@@ -1,10 +1,12 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import List from "@mui/material/List";
 import MenuItem from "@mui/material/MenuItem";
-import { anchorElState } from "@src/recoil/settings/anchorEl";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import { useMemo } from "react";
 import { useRecoilState } from "recoil";
+
+import { anchorElState } from "@src/recoil/settings/anchorEl";
 
 const CompanyMenuButton = () => {
   const { t } = useTranslation("common");
@@ -15,20 +17,23 @@ const CompanyMenuButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const menuCompanyList = [
-    {
-      name: "about",
-      link: "/about",
-    },
-    {
-      name: "blog",
-      link: "/blog",
-    },
-    {
-      name: "contact",
-      link: "/contact",
-    },
-  ];
+  const menuCompanyList = useMemo(
+    () => [
+      {
+        name: t("about"),
+        link: "/about",
+      },
+      {
+        name: t("blog"),
+        link: "/blog",
+      },
+      {
+        name: t("contact"),
+        link: "/contact",
+      },
+    ],
+    [t],
+  );
 
   return onlyLargeScreen ? (
     <List component="div" disablePadding>
@@ -39,7 +44,6 @@ const CompanyMenuButton = () => {
               component="a"
               sx={{
                 "display": "flex",
-                // color: theme.palette.common.white,
                 "filter": l.link ? "" : "opacity(0.1)",
                 "width": "220px",
                 "color": theme.palette.custom.forbole.indigo,
@@ -48,7 +52,6 @@ const CompanyMenuButton = () => {
                 "fontSize": theme.spacing(2),
                 "fontWeight": 700,
                 "height": theme.spacing(7),
-                // padding: theme.spacing(0, 3),
                 "> a": {
                   width: "100%",
                   textAlign: "left",
@@ -56,12 +59,11 @@ const CompanyMenuButton = () => {
                 },
                 "&:hover": {
                   color: theme.palette.common.white,
-                  // backgroundColor: theme.palette.custom.forbole.indigo,
                   background: "linear-gradient(to right,#623DF5,#362187)",
                 },
               }}
             >
-              {t(l.name)}
+              {l.name}
             </MenuItem>
           </Link>
         </div>
@@ -99,7 +101,7 @@ const CompanyMenuButton = () => {
                 },
               }}
             >
-              {t(l.name)}
+              {l.name}
             </MenuItem>
           </Link>
         </div>

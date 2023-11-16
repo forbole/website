@@ -1,7 +1,8 @@
-import { Layout, Markdown, ScrollToTop, Tags } from "@components";
 import { Box, Typography, useTheme } from "@mui/material";
 import Head from "next/head";
 import React from "react";
+
+import { Layout, Markdown, ScrollToTop, Tags } from "@components";
 
 import { Author, SocialMedia } from "./components";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";

@@ -1,10 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 
 const HowToCard = (props: any) => {
-  const { t } = useTranslation("staking");
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   const { id, image, title, desc } = props;
@@ -52,7 +50,7 @@ const HowToCard = (props: any) => {
           }}
           variant="h4"
         >
-          {t(title)}
+          {title}
         </Typography>
         <Typography
           color={theme.palette.custom.forbole.blue}
@@ -66,7 +64,7 @@ const HowToCard = (props: any) => {
           }}
           variant="body1"
         >
-          {t(desc)}
+          {desc}
         </Typography>
       </Box>
     </Box>

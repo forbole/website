@@ -5,11 +5,12 @@ import {
   getEachCosmosInflation,
   getEachCosmosTokenSupply,
 } from "@graphql/queries";
+import axios from "axios";
+import { pathOr } from "ramda";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
 import { convertToMoney, convertWithDecimal } from "@utils/convert_to_money";
 import { getNetworkInfo } from "@utils/network_info";
-import axios from "axios";
-import * as R from "ramda";
-import { useEffect, useMemo, useState } from "react";
 
 import { getStakingParams } from "./config";
 import { defaultFunctions, networkFunctions, toFixed } from "./utils";
@@ -65,21 +66,24 @@ export const useCalculateRewardsHook = () => {
       const { eachCosmosCommission } = cosmosCommissionData;
       eachCosmosCommission.forEach((data: any) => {
         const key = selectedToken.graphql;
+        const commissionRateNew = parseFloat(data.commissionRate);
 
-        if (key === data.metric.instance) {
+        if (
+          key === data.metric.instance &&
+          stakingParamState?.commissionRate !== commissionRateNew
+        ) {
           setStakingParamState((prev) => ({
             ...prev,
-            commissionRate: parseFloat(data.commissionRate),
+            commissionRate: commissionRateNew,
           }));
         }
       });
     }
-    return stakingParamState;
   }, [
     cosmosCommissionLoading,
     cosmosCommissionData,
     selectedToken,
-    setSelectedToken,
+    stakingParamState?.commissionRate,
   ]);
 
   useMemo(() => {
@@ -96,6 +100,7 @@ export const useCalculateRewardsHook = () => {
       });
     }
     return stakingParamState;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     cosmosInflationLoading,
     cosmosInflationData,
@@ -117,6 +122,7 @@ export const useCalculateRewardsHook = () => {
       });
     }
     return stakingParamState;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosBondedData, cosmosBondedLoading, selectedToken, setSelectedToken]);
 
   useMemo(() => {
@@ -133,6 +139,7 @@ export const useCalculateRewardsHook = () => {
       });
     }
     return stakingParamState;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosSupplyData, cosmosSupplyLoading, selectedToken, setSelectedToken]);
 
   useMemo(() => {
@@ -149,6 +156,7 @@ export const useCalculateRewardsHook = () => {
         stakingRatio: ratio,
       }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     cosmosBondedData,
     cosmosBondedLoading,
@@ -157,7 +165,7 @@ export const useCalculateRewardsHook = () => {
     selectedToken,
   ]);
 
-  const handleDefaultCalculation = async () => {
+  const handleDefaultCalculation = useCallback(async () => {
     let networkFunction = networkFunctions[selectedToken.key] ?? null;
 
     if (
@@ -268,16 +276,24 @@ export const useCalculateRewardsHook = () => {
         amount: formatAnnualPrice,
       },
     });
-  };
+  }, [
+    commissionRate,
+    inflation,
+    monthlyPeriods,
+    selectedToken.key,
+    stakingRatio,
+    tokens?.value,
+  ]);
 
   useEffect(() => {
     if (tokens.value !== "" && monthlyPeriods !== 0) {
       handleDefaultCalculation();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedToken, setSelectedToken, tokens, monthlyPeriods]);
 
   const handleChange = (e: any) => {
-    const value: any = R.pathOr(0, ["target", "value"], e);
+    const value: any = pathOr(0, ["target", "value"], e);
     if (!value) {
       setTokens({
         value: "",

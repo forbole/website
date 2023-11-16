@@ -1,6 +1,8 @@
-import { getPageByTag } from "@api/whatsnew";
-import HomePage, { Page } from "@src/screens/home";
 import type { GetStaticProps, NextPage } from "next";
+
+import { getPageByTag } from "@api/whatsnew";
+import type { Page } from "@src/screens/home";
+import HomePage from "@src/screens/home";
 
 type Props = {
   pages: Page[];

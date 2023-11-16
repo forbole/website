@@ -15,6 +15,7 @@ const Guide = ({ post }: any) => {
   return (
     <Box
       alignItems="center"
+      data-test="staking-guide-info"
       display="flex"
       flexDirection="column"
       justifyContent="center"

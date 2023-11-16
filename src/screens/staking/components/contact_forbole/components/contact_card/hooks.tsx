@@ -3,7 +3,7 @@ import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { toast } from "react-toastify";
-import validator from "validator";
+import isEmail from "validator/lib/isEmail";
 
 const useContactCard = () => {
   const [inputs, setInputs] = React.useState({
@@ -16,12 +16,12 @@ const useContactCard = () => {
   const { t } = useTranslation("staking");
 
   React.useEffect(() => {
-    if (validator.isEmail(inputs.email) && inputs.name && inputs.option) {
+    if (isEmail(inputs.email) && inputs.name && inputs.option) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+  }, [inputs, canSubmit]);
 
   const handleSubmit = (event: any) => {
     if (event) {
@@ -46,7 +46,7 @@ const useContactCard = () => {
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.log(err);
-          toast.error(t("error") as string);
+          toast.error(t("common:error") as string);
         });
     }
   };

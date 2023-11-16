@@ -2,8 +2,9 @@ import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
-import { ToastContent, toast } from "react-toastify";
-import validator from "validator";
+import type { ToastContent } from "react-toastify";
+import { toast } from "react-toastify";
+import isEmail from "validator/lib/isEmail";
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = React.useState({
@@ -26,7 +27,7 @@ const useTalkModalForm = () => {
 
   React.useEffect(() => {
     if (
-      validator.isEmail(inputs.email) &&
+      isEmail(inputs.email) &&
       inputs.name &&
       (inputs["Data API"] ||
         inputs.GraphQL ||
@@ -37,7 +38,7 @@ const useTalkModalForm = () => {
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+  }, [inputs, canSubmit]);
   const get_started = React.useMemo(() => {
     const str = [];
     if (inputs["Data API"]) {
@@ -53,12 +54,7 @@ const useTalkModalForm = () => {
       str.push("RPC Endpoints");
     }
     return str;
-  }, [
-    inputs["Data API"],
-    inputs.GraphQL,
-    inputs.Other,
-    inputs["RPC Endpoints"],
-  ]);
+  }, [inputs]);
 
   const handleSubmit = (event: any) => {
     if (event) {
@@ -106,7 +102,7 @@ const useTalkModalForm = () => {
           setLoading(false);
           // eslint-disable-next-line no-console
           console.log(err);
-          toast.error(t("error") as ToastContent<unknown>);
+          toast.error(t("common:error") as ToastContent<unknown>);
         });
     }
   };

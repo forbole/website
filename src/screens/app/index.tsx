@@ -1,7 +1,8 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { CacheProvider, EmotionCache } from "@emotion/react";
+import type { EmotionCache } from "@emotion/react";
+import { CacheProvider } from "@emotion/react";
 import { init } from "@socialgouv/matomo-next";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
@@ -37,12 +38,7 @@ export default function MyApp(props: MyAppProps) {
     <RecoilRoot>
       <CacheProvider value={emotionCache}>
         <Head>
-          <meta content="initial-scale=1, width=device-width" name="viewport" />
-          <meta
-            content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-            name="viewport"
-          />
-          {/* 解决图片403防盗链问题  */}
+          <meta content="width=device-width,initial-scale=1" name="viewport" />
           <meta content="no-referrer" name="referrer" />
         </Head>
         <ApolloProvider client={apolloClient}>

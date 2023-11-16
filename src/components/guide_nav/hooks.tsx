@@ -11,7 +11,7 @@ export const useNavHook = () => {
     if (window.pageYOffset > 0 && !displayBackground) {
       setDisplayBackground(true);
     }
-  }, []);
+  }, [displayBackground]);
 
   useScrollPosition(({ currPos }) => {
     if (currPos.y === 0 && displayBackground) {

@@ -2,12 +2,12 @@ import { useWindowDimensions } from "@hooks";
 import { Box, Button, Pagination, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import * as R from "ramda";
+import { pathOr } from "ramda";
 import React from "react";
 
 import Post from "./components/post";
 import { useBlogPostsHook } from "./hooks";
-import { IProps } from "./interface";
+import type { IProps } from "./interface";
 
 const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
   const { t } = useTranslation("blog");
@@ -17,9 +17,9 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
   const { windowDimensions, isMobile } = useWindowDimensions();
   const { width } = windowDimensions;
 
-  const currentPage = R.pathOr(0, ["pagination", "page"], meta);
-  const totalPages = R.pathOr(0, ["pagination", "pages"], meta);
-  const totalPosts = R.pathOr(0, ["pagination", "total"], meta);
+  const currentPage = pathOr(0, ["pagination", "page"], meta);
+  const totalPages = pathOr(0, ["pagination", "pages"], meta);
+  const totalPosts = pathOr(0, ["pagination", "total"], meta);
 
   const [limitUpper, setLimitUpper] = React.useState(15);
   const [lastView, setLastView] = React.useState(0);
@@ -34,7 +34,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
       }
       return node;
     },
-    [lastView],
+    [lastView, isMobile],
   );
 
   const seeMorePages = (_e: any, { limit, blogs }: any) => {

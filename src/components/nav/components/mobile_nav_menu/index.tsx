@@ -1,16 +1,18 @@
-import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Collapse, ListItem, Stack, useTheme } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import type { MouseEvent } from "react";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+
+import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import CtaButton from "@src/components/cta-button";
 import { useWindowDimensions } from "@src/hooks";
 import { anchorElState } from "@src/recoil/settings/anchorEl";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
-import { MouseEvent, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
 
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
@@ -29,6 +31,11 @@ const MobileNavMenu = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const langToDisplay = {
+    "en": t("en"),
+    "zh-HK": t("zh-HK"),
+    "zh-CN": t("zh-CN"),
   };
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openShowCompany, setOpenShowCompany] = useState(false);
@@ -92,14 +99,12 @@ const MobileNavMenu = () => {
               [theme.breakpoints.down("laptop")]: {
                 width: "100%",
                 top: "100px!important" as any,
-                // left: `${width / 6}px!important` as any,
                 left: "0",
                 right: "16px",
                 backgroundColor: "#FFFFFF",
                 background: "rgba(255, 255, 255)",
                 boxShadow:
                   "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
-                // backdropFilter: "blur(12px)",
               },
             },
           },
@@ -204,33 +209,6 @@ const MobileNavMenu = () => {
           <CompanyMenuButton />
         </Collapse>
 
-        {/* <ListItem
-          onClick={() => {
-            handlerCLickShowStakeNow()
-          }}
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            fontSize: theme.spacing(2),
-            fontWeight: 700,
-            height: theme.spacing(5),
-            padding: theme.spacing(0, 3),
-            '> a': {
-              width: '100%',
-              textAlign: 'left',
-              textDecoration: 'none',
-            },
-            background: openShowStakeNow?'linear-gradient(139deg, #623DF5 0%, #362187 100%)':'',
-            color:openShowStakeNow?theme.palette.common.white:theme.palette.custom.forbole.indigo,
-          }}
-        >
-          {t('StakeNow')}
-          {openShowStakeNow ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-        </ListItem>
-        <Collapse in={openShowStakeNow} timeout="auto" unmountOnExit>
-          <StakenowMenuButton />
-        </Collapse> */}
-
         <ListItem
           onClick={handleDropdownClick}
           sx={{
@@ -264,7 +242,7 @@ const MobileNavMenu = () => {
               height={20}
               width={20}
             />
-            {t(lang)}
+            {langToDisplay[lang as keyof typeof langToDisplay]}
           </Stack>
           {openDrawer ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </ListItem>

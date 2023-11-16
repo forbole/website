@@ -1,17 +1,30 @@
 import { Box, Input, Stack, useTheme } from "@mui/material";
-import CtaButton from "@src/components/cta-button";
-import { getSocialMediaInfo } from "@utils/social_media_info";
 import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import React from "react";
-import { ToastContent, toast } from "react-toastify";
-import validator from "validator";
+import type { ToastContent } from "react-toastify";
+import { toast } from "react-toastify";
+import isEmail from "validator/lib/isEmail";
+
+import CtaButton from "@src/components/cta-button";
+import { socialMedia } from "@utils/social_media_info";
 
 import classes from "./classes.module.css";
-import { socialKeys } from "./config";
 
 const SocialMedia = () => {
-  const socialMediaInfo = socialKeys.map((x) => getSocialMediaInfo(x));
+  const socialKeys = ["github", "twitter", "telegram", "linkedIn", "Instagram"];
+  const { locale } = useRouter();
+  const socialMediaInfo = socialKeys.map((keyParam: string) => {
+    let key = keyParam;
+    if (key === "Instagram") {
+      if (locale !== "en") {
+        key += "_zh";
+      }
+    }
+    return socialMedia[key] ?? {};
+  });
+
   const { t } = useTranslation("common");
   const theme = useTheme();
   const [inputs, setInputs] = React.useState({
@@ -21,12 +34,12 @@ const SocialMedia = () => {
   const [isLoading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    if (validator.isEmail(inputs.email)) {
+    if (isEmail(inputs.email)) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+  }, [inputs, canSubmit]);
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setInputs((input) => ({
@@ -60,7 +73,7 @@ const SocialMedia = () => {
           // eslint-disable-next-line no-console
           console.log(err);
           setLoading(false);
-          toast.error(t("error") as ToastContent<unknown>);
+          toast.error(t("common:error") as ToastContent<unknown>);
         });
     }
   };
@@ -84,6 +97,7 @@ const SocialMedia = () => {
         {socialMediaInfo.map((x) => (
           <a
             key={x.key}
+            aria-label={x.key}
             className={classes.icon}
             href={x.url}
             rel="noreferrer"
