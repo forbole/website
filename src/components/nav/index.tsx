@@ -106,7 +106,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
           >
             <Link href="/">
               <a
-                aria-label={t("forboleLogo")}
+                aria-label={t("common:forboleLogo")}
                 style={{
                   display: "flex",
                   alignItems: "center",
