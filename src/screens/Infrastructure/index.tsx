@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import type { SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
 
+import { NoSSR } from "@components/no-ssr";
 import { Layout, ScrollToTop } from "@src/components";
 import Carousel from "@src/components/Carousel";
 import IntroPanel from "@src/components/Intro_panel";
@@ -318,7 +319,9 @@ const Infrastructure = () => {
           </CtaButton>
         </Stack>
         <Stack>
-          <Carousel personList={personList} />
+          <NoSSR>
+            <Carousel personList={personList} />
+          </NoSSR>
         </Stack>
         <ScrollToTop topRef={topRef} />
       </Container>

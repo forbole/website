@@ -6,11 +6,13 @@ import "swiper/swiper.min.css";
 
 SwiperCore.use([Autoplay]);
 type Props = {
+  imageSize?: number;
   networkData: { image: string; name: string }[];
   sx?: SxProps<Theme> | undefined;
 };
-const Card = ({ networkData, sx }: Props) => {
+const Card = ({ networkData, sx, imageSize }: Props) => {
   const theme = useTheme();
+
   return (
     <Box display="flex" maxWidth="max-content" sx={sx}>
       {networkData.map((item: any, index) => (
@@ -46,9 +48,13 @@ const Card = ({ networkData, sx }: Props) => {
             {item.image && (
               <Image
                 alt=""
-                layout="fill"
-                objectFit="contain"
                 src={item.image}
+                {...(imageSize
+                  ? { width: imageSize, height: imageSize }
+                  : {
+                      layout: "fill",
+                      objectFit: "contain",
+                    })}
               />
             )}
           </Box>
