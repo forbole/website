@@ -1,5 +1,5 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 type Props = {
   title: string;

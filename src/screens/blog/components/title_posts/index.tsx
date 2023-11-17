@@ -28,17 +28,15 @@ const TitlePosts = (props: any) => {
             }}
           >
             <Link key={post.id} as={`/blog/${post.slug}`} href="/blog/[title]">
-              <a>
-                <li
-                  style={{
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {post.title}
-                </li>
-              </a>
+              <li
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {post.title}
+              </li>
             </Link>
           </Box>
           {i === posts.length - 1 ? null : (

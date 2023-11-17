@@ -77,26 +77,25 @@ const GuideNav = ({ staking }: GuideNavProps) => {
               },
             }}
           >
-            <Link href="/">
-              <a
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "100%",
-                }}
-              >
-                {staking ? (
-                  <ForboleShadowIcon />
-                ) : (
-                  <ForboleLogo
-                    color={
-                      theme.palette.mode === "dark"
-                        ? theme.palette.primary.main
-                        : theme.palette.custom.forbole.red
-                    }
-                  />
-                )}
-              </a>
+            <Link
+              href="/"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              {staking ? (
+                <ForboleShadowIcon />
+              ) : (
+                <ForboleLogo
+                  color={
+                    theme.palette.mode === "dark"
+                      ? theme.palette.primary.main
+                      : theme.palette.custom.forbole.red
+                  }
+                />
+              )}
             </Link>
           </Box>
           <Button

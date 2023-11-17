@@ -71,10 +71,8 @@ const FooterItems = ({ staking }: FooterProps) => {
           }}
           variant="middle"
         />
-        <Link href="/terms-and-conditions" passHref>
-          <Typography component="a" css={styles.word}>
-            {t("tnc")}
-          </Typography>
+        <Link css={styles.word} href="/terms-and-conditions">
+          <Typography component="span">{t("tnc")}</Typography>
         </Link>
         <Divider
           flexItem
@@ -90,10 +88,8 @@ const FooterItems = ({ staking }: FooterProps) => {
           }}
           variant="middle"
         />
-        <Link href="/privacy-policy" passHref>
-          <Typography component="a" css={styles.word}>
-            {t("policy")}
-          </Typography>
+        <Link css={styles.word} href="/privacy-policy">
+          <Typography component="span">{t("policy")}</Typography>
         </Link>
       </Box>
 
@@ -118,12 +114,10 @@ const FooterItems = ({ staking }: FooterProps) => {
           }}
         >
           <Link
+            css={styles.word}
             href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2"
-            passHref
           >
-            <Typography component="a" css={styles.word}>
-              {t("brand guide")}
-            </Typography>
+            <Typography component="span">{t("brand guide")}</Typography>
           </Link>
           <Divider
             flexItem
@@ -139,10 +133,8 @@ const FooterItems = ({ staking }: FooterProps) => {
             }}
             variant="middle"
           />
-          <Link href="/blog" passHref>
-            <Typography component="a" css={styles.word}>
-              {t("blog")}
-            </Typography>
+          <Link css={styles.word} href="/blog">
+            <Typography component="span">{t("blog")}</Typography>
           </Link>
         </Box>
       </Box>

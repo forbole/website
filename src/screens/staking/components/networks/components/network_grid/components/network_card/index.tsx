@@ -2,7 +2,7 @@ import { CloseIcon, InfoIcon } from "@icons";
 import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
 import React, { useCallback } from "react";
 

@@ -14,7 +14,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 
 import { getNetworkInfo } from "@src/utils/network_info";

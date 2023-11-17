@@ -2,7 +2,7 @@
 import { useHKT, useWindowDimensions } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 
 import { NoSSR } from "@components/no-ssr";
@@ -43,83 +43,81 @@ const Post = (props: any) => {
     >
       <Box ref={refProp} sx={{ padding: 0 }}>
         <Link as={`/blog/${slug}`} href="/blog/[title]">
-          <a>
-            <Box
-              height={
-                isDesktop && main
-                  ? ("324px!important" as any)
-                  : isMobile
-                    ? ("156px!important" as any)
-                    : ("156px!important" as any)
-              }
-              sx={{
-                "> span": {
-                  width: "100%!important" as any,
-                },
-              }}
-              width={
-                isDesktop && main
+          <Box
+            height={
+              isDesktop && main
+                ? ("324px!important" as any)
+                : isMobile
+                  ? ("156px!important" as any)
+                  : ("156px!important" as any)
+            }
+            sx={{
+              "> span": {
+                width: "100%!important" as any,
+              },
+            }}
+            width={
+              isDesktop && main
+                ? ("100%!important" as any)
+                : isMobile
                   ? ("100%!important" as any)
-                  : isMobile
-                    ? ("100%!important" as any)
-                    : ("100%!important" as any)
+                  : ("100%!important" as any)
+            }
+          >
+            <Image
+              alt={title}
+              height={isDesktop && main ? "324" : isMobile ? "156" : "156"}
+              loader={cmsLoader}
+              objectFit="cover"
+              quality={100}
+              src={
+                !featureImage
+                  ? "/images/assets/blog-placeholder.png"
+                  : featureImage
               }
-            >
-              <Image
-                alt={title}
-                height={isDesktop && main ? "324" : isMobile ? "156" : "156"}
-                loader={cmsLoader}
-                objectFit="cover"
-                quality={100}
-                src={
-                  !featureImage
-                    ? "/images/assets/blog-placeholder.png"
-                    : featureImage
-                }
-                width={isDesktop && main ? "500" : isMobile ? "270" : "500"}
-              />
-            </Box>
-            <Box
-              sx={{
-                padding: theme.spacing(2.5, 2.5, 0, 2.5),
-                [theme.breakpoints.up("laptop")]: {
-                  width: main
-                    ? ("690px!important" as any)
-                    : ("380px!important" as any),
-                },
-              }}
-              width={
-                isDesktop && main
+              width={isDesktop && main ? "500" : isMobile ? "270" : "500"}
+            />
+          </Box>
+          <Box
+            sx={{
+              padding: theme.spacing(2.5, 2.5, 0, 2.5),
+              [theme.breakpoints.up("laptop")]: {
+                width: main
                   ? ("690px!important" as any)
-                  : isMobile
-                    ? ("270px!important" as any)
-                    : ("100%!important" as any)
-              }
+                  : ("380px!important" as any),
+              },
+            }}
+            width={
+              isDesktop && main
+                ? ("690px!important" as any)
+                : isMobile
+                  ? ("270px!important" as any)
+                  : ("100%!important" as any)
+            }
+          >
+            <Typography
+              sx={{
+                fontWeight: 700,
+                fontSize: theme.spacing(3),
+                paddingBottom: theme.spacing(3),
+                overflowWrap: "break-word",
+              }}
+              variant="h3"
             >
-              <Typography
-                sx={{
-                  fontWeight: 700,
-                  fontSize: theme.spacing(3),
-                  paddingBottom: theme.spacing(3),
-                  overflowWrap: "break-word",
-                }}
-                variant="h3"
-              >
-                {title}
-              </Typography>
-              <Typography
-                sx={{
-                  fontWeight: 400,
-                  fontSize: theme.spacing(2),
-                  overflowWrap: "break-word",
-                  lineHeight: 1.8,
-                }}
-                variant="body1"
-              >
-                {excerpt}
-              </Typography>
-            </Box>
-          </a>
+              {title}
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: 400,
+                fontSize: theme.spacing(2),
+                overflowWrap: "break-word",
+                lineHeight: 1.8,
+              }}
+              variant="body1"
+            >
+              {excerpt}
+            </Typography>
+          </Box>
         </Link>
         <Box
           sx={{
@@ -144,15 +142,15 @@ const Post = (props: any) => {
           >
             <p>
               {t("Posted by")}{" "}
-              <Link as={`/author/${author.slug}`} href="/author/[author]">
-                <a
-                  style={{
-                    textDecoration: "underline",
-                    color: "rgba(255, 255, 255, 0.5)",
-                  }}
-                >
-                  {author.name}
-                </a>
+              <Link
+                as={`/author/${author.slug}`}
+                href="/author/[author]"
+                style={{
+                  textDecoration: "underline",
+                  color: "rgba(255, 255, 255, 0.5)",
+                }}
+              >
+                {author.name}
               </Link>
             </p>
             <NoSSR>

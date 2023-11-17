@@ -76,7 +76,8 @@ const Networks = () => {
               }}
             />,
           ]}
-          i18nKey={t("stake with Forbole title")}
+          i18nKey="stake with Forbole title"
+          ns="staking"
         />
         <Typography
           sx={{

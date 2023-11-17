@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from "@mui/material";
 import { Box, Typography, useTheme } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import SwiperCore, { Autoplay } from "swiper";
 import "swiper/swiper.min.css";
 
