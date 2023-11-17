@@ -1,5 +1,6 @@
 import { Box, Button, useTheme } from "@mui/material";
 import DOMPurify from "isomorphic-dompurify";
+import useTranslation from "next-translate/useTranslation";
 
 import { getNetworkInfo } from "@src/utils/network_info";
 
@@ -8,6 +9,7 @@ import { GuideContentBox, GuideContentCSS } from "./styles";
 const GuideDetails = ({ post }: any) => {
   const theme = useTheme();
   const { tags } = post;
+  const { t } = useTranslation("staking");
 
   const networkData =
     // eslint-disable-next-line no-nested-ternary
@@ -48,40 +50,41 @@ const GuideDetails = ({ post }: any) => {
             dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
           />
         </GuideContentCSS>
-        <Box
-          sx={{
-            paddingTop: theme.spacing(6),
-            display: "flex",
-            justifyContent: "flex-start",
-            [theme.breakpoints.up("laptop")]: {
-              justifyContent: "center",
-            },
-          }}
-        >
-          <Button
-            disabled={!networkData?.delegate}
-            href={networkData?.delegate ? networkData.delegate : ""}
+        {!!networkData?.delegate && (
+          <Box
             sx={{
-              width: "97px",
-              height: "32px",
-              lineHeight: "17px",
-              fontWeight: 600,
-              padding: 0,
-              background:
-                "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-              borderRadius: theme.spacing(3),
-              color: "primary.main",
-              boxShadow: "none",
+              paddingTop: theme.spacing(6),
+              display: "flex",
+              justifyContent: "flex-start",
               [theme.breakpoints.up("laptop")]: {
-                width: "111px",
-                height: "45px",
+                justifyContent: "center",
               },
             }}
-            variant="contained"
           >
-            Stake Now
-          </Button>
-        </Box>
+            <Button
+              href={networkData?.delegate ? networkData.delegate : ""}
+              sx={{
+                width: "97px",
+                height: "32px",
+                lineHeight: "17px",
+                fontWeight: 600,
+                padding: 0,
+                background:
+                  "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
+                borderRadius: theme.spacing(3),
+                color: "primary.main",
+                boxShadow: "none",
+                [theme.breakpoints.up("laptop")]: {
+                  width: "111px",
+                  height: "45px",
+                },
+              }}
+              variant="contained"
+            >
+              {t("stake_now")}
+            </Button>
+          </Box>
+        )}
       </Box>
     </Box>
   );

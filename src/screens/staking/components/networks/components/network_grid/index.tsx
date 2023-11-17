@@ -30,10 +30,6 @@ const NetworkGrid = () => {
     ...radixNetwork,
   };
 
-  const networkInfo: NetworkProps = Object.keys(allNetworkInfo)
-    .sort()
-    .reduce((r, key) => Object.assign(r, { [key]: allNetworkInfo[key] }), {});
-
   return (
     <Box css={styles.root}>
       <Box className="home__networks">
@@ -42,7 +38,7 @@ const NetworkGrid = () => {
             <NetworkCard
               key={network.name ?? index}
               network={network}
-              networkSummary={networkInfo[network.graphql]}
+              networkSummary={allNetworkInfo[network.graphql]}
               setShowMobilePopover={setShowMobilePopover}
               showMobilePopover={showMobilePopover}
             />

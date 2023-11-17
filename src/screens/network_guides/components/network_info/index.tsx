@@ -24,6 +24,8 @@ import { InfoCard } from "./components";
 import { useNetworkGuidesHook } from "./hooks";
 import { ContentBox, ContentCSS } from "./styles";
 
+const excludedNetworks = ["solana", "coreum", "gitopia", "sui"];
+
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
@@ -56,9 +58,10 @@ const NetworkInfo = ({ post }: any) => {
     },
     [networkData],
   );
-  const coverImage = networkData
-    ? `/images/guides/how_to_stake_${networkData.graphql}.png`
-    : featureImage;
+  const coverImage =
+    networkData?.graphql && !excludedNetworks.includes(networkData?.graphql)
+      ? `/images/guides/how_to_stake_${networkData.graphql}.png`
+      : featureImage;
 
   return (
     <Box
@@ -127,25 +130,34 @@ const NetworkInfo = ({ post }: any) => {
                   },
                 }}
               >
-                <Image
-                  alt={title}
-                  height={onlyLargeScreen ? "90" : "52"}
-                  loader={cmsLoader}
-                  objectFit="contain"
-                  quality={100}
-                  src={
-                    !networkData?.image
-                      ? "/images/assets/blog-placeholder.png"
-                      : networkData.image
-                  }
-                  width={onlyLargeScreen ? "90" : "52"}
-                />
+                {networkData?.image ? (
+                  <Image
+                    alt={title}
+                    height={onlyLargeScreen ? "90" : "52"}
+                    loader={cmsLoader}
+                    objectFit="contain"
+                    quality={100}
+                    src={networkData.image}
+                    width={onlyLargeScreen ? "90" : "52"}
+                  />
+                ) : (
+                  <Box
+                    id="foo"
+                    style={{
+                      height: onlyLargeScreen ? 90 : 52,
+                      width: onlyLargeScreen ? 90 : 52,
+                    }}
+                  />
+                )}
               </Box>
-              <Box pl={onlyLargeScreen ? 2 : 1}>
+              <Box pl={onlyLargeScreen && networkData?.address ? 2 : 1}>
                 <Typography
                   sx={{
-                    fontWeight: 600,
+                    background: "rgba(255, 255, 255, 0.7)",
+                    borderRadius: theme.spacing(1),
                     fontSize: theme.spacing(2),
+                    fontWeight: 600,
+                    padding: theme.spacing(1),
                     paddingBottom: theme.spacing(1),
                   }}
                   variant="h3"
@@ -179,33 +191,34 @@ const NetworkInfo = ({ post }: any) => {
                 )}
               </Box>
             </Box>
-            <Box>
-              <Button
-                disabled={!networkData?.delegate}
-                href={networkData?.delegate ? networkData.delegate : ""}
-                sx={{
-                  display: "none",
-                  width: "97px",
-                  height: "32px",
-                  lineHeight: "17px",
-                  fontWeight: 600,
-                  padding: 0,
-                  background:
-                    "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                  borderRadius: theme.spacing(3),
-                  color: "primary.main",
-                  boxShadow: "none",
-                  [theme.breakpoints.up("laptop")]: {
-                    width: "111px",
-                    height: "45px",
-                    display: "inline-flex",
-                  },
-                }}
-                variant="contained"
-              >
-                Stake Now
-              </Button>
-            </Box>
+            {!!networkData?.delegate && (
+              <Box>
+                <Button
+                  href={networkData?.delegate ? networkData.delegate : ""}
+                  sx={{
+                    display: "none",
+                    width: "97px",
+                    height: "32px",
+                    lineHeight: "17px",
+                    fontWeight: 600,
+                    padding: 0,
+                    background:
+                      "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
+                    borderRadius: theme.spacing(3),
+                    color: "primary.main",
+                    boxShadow: "none",
+                    [theme.breakpoints.up("laptop")]: {
+                      width: "111px",
+                      height: "45px",
+                      display: "inline-flex",
+                    },
+                  }}
+                  variant="contained"
+                >
+                  {t("stake_now")}
+                </Button>
+              </Box>
+            )}
           </CardContent>
           <CardContent>
             <Box
@@ -263,32 +276,34 @@ const NetworkInfo = ({ post }: any) => {
                   />
                 </ContentCSS>
               )}
-              <Box
-                sx={{
-                  display: "grid",
-                  padding: "12px 8px",
-                  gridGap: theme.spacing(2),
-                  gridTemplateColumns: "repeat(1, 1fr)",
-                  paddingTop: theme.spacing(3),
-                  width: "100%",
-                  [theme.breakpoints.up("laptop")]: {
-                    gridTemplateRows: "repeat(2, 1fr)",
-                    gridTemplateColumns: "1fr 1fr",
-                    paddingTop: 0,
-                    width: "50%",
-                  },
-                }}
-              >
-                {networkStats.map((info, i) => (
-                  <InfoCard
-                    key={i}
-                    info={networkData?.key}
-                    stats={info.stats}
-                    title={info.title}
-                    type={info.type}
-                  />
-                ))}
-              </Box>
+              {!!networkStats?.length && (
+                <Box
+                  sx={{
+                    display: "grid",
+                    padding: "12px 8px",
+                    gridGap: theme.spacing(2),
+                    gridTemplateColumns: "repeat(1, 1fr)",
+                    paddingTop: theme.spacing(3),
+                    width: "100%",
+                    [theme.breakpoints.up("laptop")]: {
+                      gridTemplateRows: "repeat(2, 1fr)",
+                      gridTemplateColumns: "1fr 1fr",
+                      paddingTop: 0,
+                      width: "50%",
+                    },
+                  }}
+                >
+                  {networkStats.map((info, i) => (
+                    <InfoCard
+                      key={i}
+                      info={networkData?.key}
+                      stats={info.stats}
+                      title={info.title}
+                      type={info.type}
+                    />
+                  ))}
+                </Box>
+              )}
             </Box>
           </CardContent>
         </Card>

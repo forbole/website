@@ -3,6 +3,7 @@ import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
+import { useRouter } from "next/router";
 import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
 import React, { useCallback } from "react";
 
@@ -21,6 +22,7 @@ interface CardProp {
 
 const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const { t } = useTranslation("staking");
+  const router = useRouter();
   const { network, networkSummary, showMobilePopover, setShowMobilePopover } =
     props;
 
@@ -32,36 +34,51 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       () => setShowMobilePopover(network.name),
       [network.name, setShowMobilePopover],
     );
-  const handleMobilPopoverClick: MouseEventHandler<Element> = useCallback(
+
+  const handleMobilePopoverClick: MouseEventHandler<Element> = useCallback(
     (event) => {
       event.stopPropagation();
       setShowMobilePopover("");
     },
     [setShowMobilePopover],
   );
+  const canClickNetwork = !!network.guide || !!network.delegate;
+
   const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(
     (event) => {
       event.stopPropagation();
 
-      if (network.guide)
-        window.open(
-          `${process.env.NEXT_PUBLIC_URL}/staking/${network.guide}`,
-          "_top",
-        );
-      else if (network.delegate) window.open(network.delegate, "_top");
+      if (network.guide) {
+        router.push(`/staking/${network.guide}`);
+      } else if (network.delegate) {
+        // Open in a new tab
+        window.open(network.delegate, "_blank");
+      }
     },
-    [network.delegate, network.guide],
+    [network.delegate, network.guide, router],
   );
+
+  const isEmptyPopover =
+    !!networkSummary &&
+    !networkSummary.bonded &&
+    !networkSummary.APY &&
+    !networkSummary.TVL;
 
   /* A variable that is used to render the popover. */
   const popover = (
-    <Box className="networkbox__popover" data-test="network-item">
+    <Box
+      className="networkbox__popover"
+      style={{
+        cursor: canClickNetwork ? "pointer" : "default",
+        visibility: isEmptyPopover ? "hidden" : "visible",
+      }}
+    >
       <CloseIcon
         className="networkbox__close-btn"
         fontSize="small"
-        onClickCapture={handleMobilPopoverClick}
+        onClickCapture={handleMobilePopoverClick}
       />
-      <Box onClickCapture={handleMobilPopoverClick}>
+      <Box onClickCapture={handleMobilePopoverClick}>
         <Box className="image">
           {network?.image && (
             <Image
@@ -77,7 +94,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       </Box>
       {!networkSummary && <LinearProgress color="secondary" />}
       {!!networkSummary && (
-        <Box onClickCapture={handleMobilPopoverClick}>
+        <Box onClickCapture={handleMobilePopoverClick}>
           {!!networkSummary.bonded && (
             <Box>
               <Typography variant="h6">
@@ -122,6 +139,21 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
 
   const styles = useStyles();
 
+  const networkImage = network.image && (
+    <Box className="image">
+      <Image
+        alt=""
+        height="48"
+        objectFit="contain"
+        quality={100}
+        src={network.image}
+        width="48"
+      />
+    </Box>
+  );
+
+  const networkName = <Typography variant="h4">{network.name}</Typography>;
+
   return (
     <motion.div
       ref={ref}
@@ -140,43 +172,28 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
             ? "networkbox__active networkbox__mobile-popover-contaier"
             : "networkbox__mobile-popover-contaier"
         }
+        data-test="network-item"
       >
         {popover}
       </Box>
-      <Box className="networkbox__desktop-anchor" onClick={handleExploreClick}>
+      <Box
+        className="networkbox__desktop-anchor"
+        onClick={handleExploreClick}
+        style={{
+          cursor: canClickNetwork ? "pointer" : "default",
+        }}
+      >
         {popover}
-        <Box className="image">
-          {network.image && (
-            <Image
-              alt=""
-              height="48"
-              objectFit="contain"
-              quality={100}
-              src={network.image}
-              width="48"
-            />
-          )}
-        </Box>
-        <Typography variant="h4">{network.name}</Typography>
+        {networkImage}
+        {networkName}
       </Box>
       <Button
         className="networkbox__mobile-anchor"
         onClick={handleMobileAnchorClick}
         variant="text"
       >
-        <Box className="image">
-          {network.image && (
-            <Image
-              alt=""
-              height="48"
-              objectFit="contain"
-              quality={100}
-              src={network.image}
-              width="48"
-            />
-          )}
-        </Box>
-        <Typography variant="h4">{network.name}</Typography>
+        {networkImage}
+        {networkName}
       </Button>
     </motion.div>
   );
