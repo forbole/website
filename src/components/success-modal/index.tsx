@@ -6,7 +6,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { forwardRef } from "react";
 
 import { Close } from "../icons";

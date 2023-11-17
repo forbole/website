@@ -76,7 +76,8 @@ const ContactForbole = () => {
               }}
             />,
           ]}
-          i18nKey={t("contact forbole title")}
+          i18nKey="contact forbole title"
+          ns="staking"
         />
         <Typography
           sx={{

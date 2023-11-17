@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import type {
   ComponentProps,
   FC,
@@ -71,11 +71,12 @@ const Options: FC<OptionsProps> = ({ props, network }) => {
         <Box className="image">
           {network.image && (
             <Image
-              height="32px"
+              alt=""
+              height="32"
               objectFit="contain"
               quality={100}
               src={network.image}
-              width="32px"
+              width="32"
             />
           )}
         </Box>

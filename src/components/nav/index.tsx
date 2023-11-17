@@ -104,21 +104,20 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
               },
             }}
           >
-            <Link href="/">
-              <a
-                aria-label={t("common:forboleLogo")}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "100%",
-                }}
-              >
-                {staking ? (
-                  <ForboleShadowIcon />
-                ) : (
-                  <ForboleLogo color={itemColor || colors.primary} />
-                )}
-              </a>
+            <Link
+              aria-label={t("common:forboleLogo")}
+              href="/"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              {staking ? (
+                <ForboleShadowIcon />
+              ) : (
+                <ForboleLogo color={itemColor || colors.primary} />
+              )}
             </Link>
           </Box>
           {staking ? (

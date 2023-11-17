@@ -43,7 +43,8 @@ const DesktopNavMenu = () => {
           key={i}
           className={classes.navItem}
           sx={{
-            "color": "white",
+            "color": theme.palette.common.white,
+            "textDecoration": "none",
             "fontWeight": 600,
             "fontSize": theme.spacing(2),
             "&:hover": {
@@ -54,13 +55,11 @@ const DesktopNavMenu = () => {
             "userSelect": "none",
           }}
         >
-          <Link href={item.link} passHref>
-            <Box
-              component="a"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              {item.display}
-            </Box>
+          <Link
+            href={item.link}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <Box component="span">{item.display}</Box>
           </Link>
           {i === 0 && (
             <Box className={classes.boxItem}>
@@ -79,10 +78,8 @@ const DesktopNavMenu = () => {
         </Box>
       ))}
       <Box>
-        <Link href="/staking" passHref>
-          <a>
-            <CtaButton>{t("StakeNow")}</CtaButton>
-          </a>
+        <Link href="/staking">
+          <CtaButton>{t("StakeNow")}</CtaButton>
         </Link>
       </Box>
       <Box>

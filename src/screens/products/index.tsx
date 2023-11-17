@@ -221,7 +221,8 @@ const Products = () => {
                 }}
               />,
             ]}
-            i18nKey={t("bridging")}
+            i18nKey="bridging"
+            ns="products"
           />
           <Stack
             direction="row"
@@ -309,7 +310,8 @@ const Products = () => {
                 }}
               />,
             ]}
-            i18nKey={t("safe-path")}
+            i18nKey="safe-path"
+            ns="products"
           />
           <Stack
             alignItems="center"
@@ -534,7 +536,8 @@ const Products = () => {
                 }}
               />,
             ]}
-            i18nKey={t("trusted")}
+            i18nKey="trusted"
+            ns="products"
           />
 
           <Stack

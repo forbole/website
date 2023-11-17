@@ -152,7 +152,8 @@ const Policy = () => {
                       target="_blank"
                     />,
                   ]}
-                  i18nKey={t("description1")}
+                  i18nKey="description1"
+                  ns="policy"
                 />
                 <Typography
                   sx={{

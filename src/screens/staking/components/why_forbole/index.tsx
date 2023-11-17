@@ -1,7 +1,7 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useMemo } from "react";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
@@ -125,7 +125,8 @@ const WhyForbole = () => {
                   }}
                 />,
               ]}
-              i18nKey={t("why forbole title")}
+              i18nKey="why forbole title"
+              ns="staking"
             />
             {reasons.map((reason, i) => (
               <Box
@@ -143,10 +144,11 @@ const WhyForbole = () => {
               >
                 {reason?.image && (
                   <Image
-                    height={onlyLargeScreen ? "370px" : "260px"}
+                    alt=""
+                    height={onlyLargeScreen ? "370" : "260"}
                     objectFit="contain"
                     src={reason.image}
-                    width={onlyLargeScreen ? "314px" : "220px"}
+                    width={onlyLargeScreen ? "314" : "220"}
                   />
                 )}
                 <Box

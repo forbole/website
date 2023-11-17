@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 
 import { getNetworkInfo } from "@src/utils/network_info";
@@ -129,7 +129,7 @@ const NetworkInfo = ({ post }: any) => {
               >
                 <Image
                   alt={title}
-                  height={onlyLargeScreen ? "90px" : "52px"}
+                  height={onlyLargeScreen ? "90" : "52"}
                   loader={cmsLoader}
                   objectFit="contain"
                   quality={100}
@@ -138,7 +138,7 @@ const NetworkInfo = ({ post }: any) => {
                       ? "/images/assets/blog-placeholder.png"
                       : networkData.image
                   }
-                  width={onlyLargeScreen ? "90px" : "52px"}
+                  width={onlyLargeScreen ? "90" : "52"}
                 />
               </Box>
               <Box pl={onlyLargeScreen ? 2 : 1}>

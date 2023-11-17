@@ -42,32 +42,31 @@ const Author = ({ post }: any) => {
           key={post.id}
           as={`/author/${author.slug}`}
           href="/author/[author]"
+          style={{ textDecoration: "none" }}
         >
-          <a style={{ textDecoration: "none" }}>
+          <Typography
+            sx={{
+              color: theme.palette.primary.main,
+              fontWeight: 600,
+              fontSize: theme.spacing(1.75),
+            }}
+            variant="body1"
+          >
+            {author.name}
+          </Typography>
+          <NoSSR>
             <Typography
               sx={{
+                opacity: 0.5,
                 color: theme.palette.primary.main,
-                fontWeight: 600,
+                fontWeight: 400,
                 fontSize: theme.spacing(1.75),
               }}
               variant="body1"
             >
-              {author.name}
+              {time}
             </Typography>
-            <NoSSR>
-              <Typography
-                sx={{
-                  opacity: 0.5,
-                  color: theme.palette.primary.main,
-                  fontWeight: 400,
-                  fontSize: theme.spacing(1.75),
-                }}
-                variant="body1"
-              >
-                {time}
-              </Typography>
-            </NoSSR>
-          </a>
+          </NoSSR>
         </Link>
       </Box>
     </Box>

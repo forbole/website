@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const HowToCard = (props: any) => {
   const theme = useTheme();
@@ -28,9 +28,21 @@ const HowToCard = (props: any) => {
         },
       }}
     >
-      {image && (
-        <Image height="60px" objectFit="contain" src={image} width="100%" />
-      )}
+      <Box
+        sx={{
+          marginLeft: theme.spacing(2),
+        }}
+      >
+        {image && (
+          <Image
+            alt=""
+            height="60"
+            objectFit="contain"
+            src={image}
+            width="70"
+          />
+        )}
+      </Box>
       <Box
         alignItems="flex-start"
         display="flex"

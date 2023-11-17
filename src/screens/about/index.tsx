@@ -162,7 +162,8 @@ const About = () => {
                   }}
                 />,
               ]}
-              i18nKey={t("headercard_2nd_desc")}
+              i18nKey="headercard_2nd_desc"
+              ns="about"
             />
           </Stack>
           <Box
@@ -416,7 +417,8 @@ const About = () => {
                   }}
                 />,
               ]}
-              i18nKey={t("section_2nd_large_title")}
+              i18nKey="section_2nd_large_title"
+              ns="about"
             />
 
             <Typography

@@ -107,7 +107,8 @@ const HowItWorks = () => {
               }}
             />,
           ]}
-          i18nKey={t("how it works title")}
+          i18nKey="how it works title"
+          ns="staking"
         />
         <Box
           sx={{

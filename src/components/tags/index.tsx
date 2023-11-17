@@ -39,7 +39,7 @@ const Tags = (props: TagsProps) => {
         {tags.map((tag: any) => (
           <Box key={tag.slug} component="li" sx={styles.listCSS}>
             <Link as={`/tag/${tag.slug}`} href="/tag/[tag]">
-              <a>{tag.name}</a>
+              {tag.name}
             </Link>
           </Box>
         ))}

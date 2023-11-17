@@ -2,7 +2,7 @@ import { CloseIcon, InfoIcon } from "@icons";
 import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
 import React, { useCallback } from "react";
 
@@ -65,11 +65,12 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         <Box className="image">
           {network?.image && (
             <Image
-              height="48px"
+              alt=""
+              height="48"
               objectFit="contain"
               quality={100}
               src={network.image || ""}
-              width="48px"
+              width="48"
             />
           )}
         </Box>
@@ -146,11 +147,12 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         <Box className="image">
           {network.image && (
             <Image
-              height="48px"
+              alt=""
+              height="48"
               objectFit="contain"
               quality={100}
               src={network.image}
-              width="48px"
+              width="48"
             />
           )}
         </Box>
@@ -164,11 +166,12 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
         <Box className="image">
           {network.image && (
             <Image
-              height="48px"
+              alt=""
+              height="48"
               objectFit="contain"
               quality={100}
               src={network.image}
-              width="48px"
+              width="48"
             />
           )}
         </Box>

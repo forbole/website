@@ -86,11 +86,13 @@ const Guide = ({ post }: any) => {
               }}
             />,
           ]}
-          i18nKey={t("staking title", {
+          i18nKey="staking title"
+          ns="staking"
+          values={{
             title1: titleArray.slice(0, 1).join(" "),
             coloredTitle,
             title2: titleArray.slice(4).join(" "),
-          })}
+          }}
         />
         <GuideDetails post={post} />
       </Box>
