@@ -5,6 +5,7 @@ import type { Theme } from "./types";
 
 const getTheme = ({ get }: any): Theme => {
   const state = get(atomState);
+
   return state.theme;
 };
 

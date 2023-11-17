@@ -2,6 +2,7 @@ import { alpha, css, useTheme } from "@mui/material";
 
 const useStyles = () => {
   const theme = useTheme();
+
   return {
     root: css({
       "minWidth": theme.spacing(15),

@@ -53,6 +53,7 @@ const useContactForm = () => {
     if (inputs.other) {
       str.push("Other");
     }
+
     return str;
   }, [
     inputs.collaboration,

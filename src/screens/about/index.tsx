@@ -55,6 +55,7 @@ const About = () => {
       title: "About Forbole",
     },
   ];
+
   // @ts-ignore
   return (
     <Layout

@@ -23,6 +23,7 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
   ({ fixed, close, up_word, middle_word, bottom_word }, ref) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("laptop"));
+
     return (
       <Stack
         ref={ref}
@@ -156,6 +157,7 @@ export default function SuccessModal({
       />
     );
   }
+
   return (
     <Modal
       disableEnforceFocus

@@ -822,6 +822,7 @@ const getNetworkKeysArray = () => {
   cosmosNetworkKeys.map((key) => arr.push(key));
   arr.push("elrond", "solana", "oasis", "radix");
   arr.sort();
+
   return arr;
 };
 

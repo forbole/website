@@ -42,6 +42,7 @@ const DeveloperTools = () => {
   });
   const topRef = React.useRef(null);
   const [show, setShow] = useState(false);
+
   return (
     <Layout
       description={t("headercard_1st_desc")}

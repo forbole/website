@@ -9,6 +9,7 @@ const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 const ContactForbole = () => {
   const { t } = useTranslation("staking");
   const theme = useTheme();
+
   return (
     <Box display="flex" justifyContent="center">
       <Box

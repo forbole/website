@@ -52,6 +52,7 @@ export const useNetworkGuidesHook = () => {
           : null;
       });
     }
+
     return cosmosNetworkGuides;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosComissionData, cosmosComissionLoading]);

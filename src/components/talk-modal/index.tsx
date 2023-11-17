@@ -79,6 +79,7 @@ const TalkModal = ({
       ] as const,
     [t],
   );
+
   return (
     <Modal
       onClose={() => close?.(false)}

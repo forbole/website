@@ -17,6 +17,7 @@ const Hero = () => {
   const { width } = windowDimensions;
   const styles = useStyles();
   const ref = React.useRef(null);
+
   return (
     <Box css={styles.root} display="flex" justifyContent="center">
       <Box

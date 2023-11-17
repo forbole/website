@@ -62,6 +62,7 @@ const Layout = ({
     if (blueBg) {
       const currentColor = document.body.style.background;
       document.body.style.background = "rgb(23, 26, 75)";
+
       return () => {
         document.body.style.background = currentColor;
       };

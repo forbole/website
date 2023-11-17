@@ -53,6 +53,7 @@ const useTalkModalForm = () => {
     if (inputs["RPC Endpoints"]) {
       str.push("RPC Endpoints");
     }
+
     return str;
   }, [inputs]);
 

@@ -40,6 +40,7 @@ const HowItWorks = () => {
   );
 
   const theme = useTheme();
+
   return (
     <Box display="flex" justifyContent="center">
       <Box

@@ -24,6 +24,7 @@ const Section = ({
   title_large_trans,
 }: Props) => {
   const theme = useTheme();
+
   return (
     <Stack
       sx={{

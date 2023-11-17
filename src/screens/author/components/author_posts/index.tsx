@@ -13,6 +13,7 @@ const AuthorPosts = ({ main, blogs, meta }: IProps) => {
   const totalPages = pathOr(0, ["pagination", "pages"], meta);
 
   const { handleAuthorPageChange } = useBlogPostsHook();
+
   return (
     <Box
       sx={{

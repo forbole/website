@@ -143,6 +143,7 @@ const Products = () => {
   const handleChange2 = (_event: React.SyntheticEvent, newValue: number) => {
     setV2(newValue);
   };
+
   return (
     <Layout description={t("desc")} footer title={t("product")}>
       <Container ref={topRef} maxWidth="desktop">

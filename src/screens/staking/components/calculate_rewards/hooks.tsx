@@ -99,6 +99,7 @@ export const useCalculateRewardsHook = () => {
         }
       });
     }
+
     return stakingParamState;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -121,6 +122,7 @@ export const useCalculateRewardsHook = () => {
         }
       });
     }
+
     return stakingParamState;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosBondedData, cosmosBondedLoading, selectedToken, setSelectedToken]);
@@ -138,6 +140,7 @@ export const useCalculateRewardsHook = () => {
         }
       });
     }
+
     return stakingParamState;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmosSupplyData, cosmosSupplyLoading, selectedToken, setSelectedToken]);
@@ -299,6 +302,7 @@ export const useCalculateRewardsHook = () => {
         value: "",
         display: "",
       });
+
       return;
     }
     // edge cases setup

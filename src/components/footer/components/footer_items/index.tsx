@@ -11,6 +11,7 @@ const FooterItems = ({ staking }: FooterProps) => {
   const today = new Date();
   const year = today.getFullYear();
   const styles = useStyles();
+
   return (
     <Box
       sx={{

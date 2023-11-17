@@ -15,6 +15,7 @@ type Props = {
 };
 const CardSwiper = ({ imagesList, style }: Props) => {
   const theme = useTheme();
+
   return (
     <BoxCSS>
       <Box position="relative">

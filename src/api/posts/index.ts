@@ -18,6 +18,7 @@ export const getPosts = async ({
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);
+
     return [];
   }
 };
@@ -37,6 +38,7 @@ export const getAllPosts = async ({
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);
+
     return [];
   }
 };
@@ -54,6 +56,7 @@ export const getSinglePost = async (slug: string) => {
   } catch (err) {
     // eslint-disable-next-line
     console.error(err);
+
     return null;
   }
 };
@@ -69,6 +72,7 @@ export const getTags = async () => {
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);
+
     return [];
   }
 };

@@ -37,8 +37,10 @@ export const useCounter = (targetValue: unknown) => {
               const newValue = prev + divisor.current;
               if (newValue >= targetValue) {
                 clearInterval();
+
                 return targetValue;
               }
+
               return newValue;
             });
           });

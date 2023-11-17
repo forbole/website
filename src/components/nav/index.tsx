@@ -49,6 +49,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
           if (displayBackground && !staking) {
             return "rgba(47, 58, 86, 0.60)";
           }
+
           return displayBackground && staking
             ? " rgba(47, 58, 86, 0.60)"
             : "transparent";

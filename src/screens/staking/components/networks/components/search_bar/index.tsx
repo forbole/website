@@ -55,6 +55,7 @@ function useSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
       />
     </InputAdornment>
   );
+
   return { ...InputProps, startAdornment };
 }
 
@@ -65,6 +66,7 @@ interface OptionsProps {
 
 const Options: FC<OptionsProps> = ({ props, network }) => {
   const styles = useStyles();
+
   return (
     <ListItem {...props} sx={styles.listItem} title={network.delegate}>
       <ListItemIcon>
@@ -94,6 +96,7 @@ const Options: FC<OptionsProps> = ({ props, network }) => {
  */
 function renderOption(props: HTMLAttributes<HTMLLIElement>, option: unknown) {
   const { network } = option as { network: Network };
+
   return <Options key={network.name} network={network} props={props} />;
 }
 
@@ -116,11 +119,13 @@ function handleChange(_event: unknown, value: unknown) {
 
 const PopperComponent = (props: PopperProps) => {
   const styles = useStyles();
+
   return <Popper {...props} sx={styles.popper} />;
 };
 
 const PaperComponent = (props: PaperProps) => {
   const styles = useStyles();
+
   return <Paper {...props} sx={styles.paper} />;
 };
 
@@ -160,6 +165,7 @@ const SearchBar: FC<SearchBarProps> = () => {
     setFocused(true);
     if (window.innerWidth < 768) {
       window.addEventListener("scroll", scrollLock);
+
       return;
     }
     const headerOffset = 100;
