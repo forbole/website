@@ -40,7 +40,7 @@ const EnterpriseSolution = () => {
   };
 
   return (
-    <Layout footer title={t("page_title")}>
+    <Layout description={t("trusted")} footer title={t("page_title")}>
       <Container
         ref={topRef}
         maxWidth="desktop"
@@ -116,30 +116,6 @@ const EnterpriseSolution = () => {
             </Grid>
           </Grid>
         </Stack>
-
-        {/*  <Stack>
-          <Section
-            title={t("testimonials")}
-            title_large_trans={t("building")}
-            desc={t("services")}
-          />
-          <Carousel></Carousel>
-          <CtaButton
-            sx={{
-              display: "block",
-              margin: "40px auto",
-              [theme.breakpoints.down("laptop")]: {
-                my: "32px",
-              },
-            }}
-            onClick={(e: React.MouseEvent<HTMLElement>) =>
-              scrollToRef(e, ContactRef)
-            }
-          >
-            {t("talk_to_us")}
-          </CtaButton>
-        </Stack>
- */}
         <Stack mx="auto">
           <Section
             desc={t("our")}

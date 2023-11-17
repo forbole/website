@@ -62,7 +62,7 @@ const Contact = () => {
     handleCheckedChange(e);
   };
   return (
-    <Layout footer title={t("page_title")}>
+    <Layout description={t("form_desc")} footer title={t("page_title")}>
       <Container>
         <Stack
           sx={{

@@ -47,7 +47,7 @@ const AnalyticsTools = () => {
     ];
   }, [isMobile]);
   return (
-    <Layout footer title={t("title")}>
+    <Layout description={t("empowering")} footer title={t("title")}>
       <Container
         ref={topRef}
         maxWidth="desktop"

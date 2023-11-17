@@ -127,7 +127,7 @@ const Infrastructure = () => {
   ];
 
   return (
-    <Layout footer title={t("page_title")}>
+    <Layout description={t("expertise_item1")} footer title={t("page_title")}>
       <Container
         ref={topRef}
         maxWidth="desktop"

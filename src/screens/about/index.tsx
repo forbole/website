@@ -57,7 +57,12 @@ const About = () => {
   ];
   // @ts-ignore
   return (
-    <Layout footer redBgFooter title={t("page_title")}>
+    <Layout
+      description={t("headercard_1st_desc")}
+      footer
+      redBgFooter
+      title={t("page_title")}
+    >
       <Container
         ref={topRef}
         maxWidth="desktop"

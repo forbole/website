@@ -144,7 +144,7 @@ const Products = () => {
     setV2(newValue);
   };
   return (
-    <Layout footer title={t("product")}>
+    <Layout description={t("desc")} footer title={t("product")}>
       <Container ref={topRef} maxWidth="desktop">
         <HeaderCard
           desc_1st={t("desc")}
