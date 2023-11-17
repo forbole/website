@@ -94,7 +94,7 @@ const Layout = ({
       backgroundPosition: redBg ? "15vw -1vw, 0 0" : "0 0",
       backgroundColor: color.primary,
       backgroundSize: redBg ? "70% 55vw, 105vw" : "100vw 100vw",
-      [theme.breakpoints.between("mobile", 550)]: {
+      [theme.breakpoints.down(550)]: {
         backgroundImage: redBg
           ? "url(/images/assets/bg_mobile_horse.webp), url(/images/assets/bg_mobile_red_background.webp)"
           : "url(/images/assets/bg_mobile_red_background.webp)",
