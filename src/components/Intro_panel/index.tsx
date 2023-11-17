@@ -38,6 +38,11 @@ const IntroPanel = (props: Props) => {
       justifyContent="space-between"
       minHeight="100%"
       overflow="hidden"
+      sx={{
+        [theme.breakpoints.down("tablet")]: {
+          maxWidth: "calc(100vw - 40px)",
+        },
+      }}
     >
       <Box p="24px">
         <Stack
