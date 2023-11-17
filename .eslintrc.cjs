@@ -20,6 +20,7 @@ module.exports = {
     "max-len": "error",
     "no-shadow": "off",
     "no-unused-vars": "off",
+    "no-useless-return": "error",
     "object-shorthand": "error",
     "prefer-const": "error",
     "prefer-template": "error",
