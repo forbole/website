@@ -95,6 +95,15 @@ const Home: FC<Props> = ({ pages }) => {
                   mb: "25px",
                   px: "10%",
                 },
+                [theme.breakpoints.down(550)]: {
+                  fontSize: "32px",
+                  px: "10%",
+                },
+                [theme.breakpoints.down("mobile")]: {
+                  fontSize: "32px",
+                  mt: "95%",
+                  px: "10%",
+                },
               }}
             >
               {t("coBuildingInterchain")}
@@ -120,6 +129,14 @@ const Home: FC<Props> = ({ pages }) => {
               [theme.breakpoints.up("laptop")]: {
                 fontSize: "40px",
                 m: "200px 0 60px 0",
+              },
+              [theme.breakpoints.down(550)]: {
+                fontSize: "24px",
+                m: "20% 0 60px 0",
+              },
+              [theme.breakpoints.down("mobile")]: {
+                fontSize: "24px",
+                m: "50% 0 60px 0",
               },
             }}
           >
