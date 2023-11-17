@@ -8,6 +8,7 @@ const TitlePosts = (props: any) => {
   const { posts } = props;
   const theme = useTheme();
   const { t } = useTranslation("blog");
+
   return (
     <Box component="ul" sx={styles.titlePostCSS}>
       <Typography

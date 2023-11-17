@@ -29,6 +29,7 @@ const baseConfig = nextTranslate({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
+
     return config;
   },
   eslint: {

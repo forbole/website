@@ -8,6 +8,7 @@ const Author = ({ post }: any) => {
   const { primaryAuthor: author, publishedAt } = post;
   const theme = useTheme();
   const time = useHKT(publishedAt);
+
   return (
     <Box
       sx={{

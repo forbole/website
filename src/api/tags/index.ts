@@ -9,10 +9,12 @@ export const getPostsByTag = async (query: { tag: string; page?: number }) => {
       page: query?.page || 1,
       formats: "html",
     });
+
     return posts ?? null;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(`tag: ${err}`);
+
     return [];
   }
 };

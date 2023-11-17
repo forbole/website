@@ -32,6 +32,7 @@ const WhyForbole = () => {
 
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
+
   return (
     <Box
       sx={{

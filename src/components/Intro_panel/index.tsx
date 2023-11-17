@@ -26,6 +26,7 @@ const IntroPanel = (props: Props) => {
   } = props;
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down(500));
+
   return (
     <Stack
       bgcolor="white"

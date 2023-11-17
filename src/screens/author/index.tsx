@@ -12,6 +12,7 @@ const AuthorTitlePosts = (props: any) => {
   const { post, tags, author, meta } = props;
   const { featureImage, excerpt, error } = post;
   useBlogHook(error, t);
+
   return (
     <Layout
       blueBg

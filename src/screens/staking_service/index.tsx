@@ -22,7 +22,7 @@ const StakingService = () => {
   const router = useRouter();
 
   return (
-    <Layout footer title={t("page_title")}>
+    <Layout description={t("desc")} footer title={t("page_title")}>
       <Container
         ref={topRef}
         maxWidth="desktop"

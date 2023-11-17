@@ -18,6 +18,7 @@ const GuideDetails = ({ post }: any) => {
         : getNetworkInfo(tags[1].slug);
 
   const { sanitize } = DOMPurify;
+
   return (
     <Box
       sx={{

@@ -165,6 +165,7 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
                       <span style={{ color: "#878787" }}>{t("select")}</span>
                     );
                   }
+
                   return selected;
                 }}
                 sx={{

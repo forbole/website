@@ -43,6 +43,7 @@ export async function getServerSideProps(context: { query: any }) {
     // eslint-disable-next-line no-console
     console.log(error, "error");
   }
+
   return {
     props: {
       author: JSON.parse(JSON.stringify(authorInfo)),

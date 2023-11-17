@@ -6,6 +6,7 @@ const HowToCard = (props: any) => {
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   const { id, image, title, desc } = props;
+
   return (
     <Box
       sx={{

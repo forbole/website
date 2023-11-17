@@ -22,6 +22,7 @@ const SocialMedia = () => {
         key += "_zh";
       }
     }
+
     return socialMedia[key] ?? {};
   });
 
@@ -50,6 +51,7 @@ const SocialMedia = () => {
   const handleSubmit = (event: any) => {
     if (!canSubmit) {
       toast.warn(t("send_email_warn") as ToastContent<unknown>);
+
       return;
     }
 
@@ -77,6 +79,7 @@ const SocialMedia = () => {
         });
     }
   };
+
   return (
     <Box
       sx={{

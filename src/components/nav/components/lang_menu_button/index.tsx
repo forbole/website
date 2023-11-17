@@ -60,6 +60,7 @@ const LangMenuButton = () => {
       lan = "EN";
       break;
   }
+
   return (
     <>
       <Box css={styles.desktop}>

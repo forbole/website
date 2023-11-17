@@ -2,6 +2,7 @@ import { alpha, useTheme } from "@mui/material";
 
 const useStyles = () => {
   const theme = useTheme();
+
   return {
     root: {
       [theme.breakpoints.down("tablet")]: {

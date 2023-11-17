@@ -26,6 +26,7 @@ const AnalyticsTools = () => {
         require("/public/data_visualization/product details_m@2x.png"),
       ];
     }
+
     return [
       require("/public/data_visualization/opensource@2x.png"),
       require("/public/data_visualization/staking@2x.png"),
@@ -40,14 +41,16 @@ const AnalyticsTools = () => {
         require("/public/data_visualization/MacBook3@2x.png"),
       ];
     }
+
     return [
       require("/public/data_visualization/MacBook2@2x.png"),
       require("/public/data_visualization/MacBook1@2x.png"),
       require("/public/data_visualization/MacBook3@2x.png"),
     ];
   }, [isMobile]);
+
   return (
-    <Layout footer title={t("title")}>
+    <Layout description={t("empowering")} footer title={t("title")}>
       <Container
         ref={topRef}
         maxWidth="desktop"

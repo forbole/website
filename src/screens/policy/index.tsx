@@ -28,6 +28,7 @@ const Policy = () => {
       },
     );
   });
+
   return (
     <Layout footer title={t("title")}>
       <Container maxWidth="desktop">

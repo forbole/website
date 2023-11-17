@@ -67,6 +67,7 @@ const FAQ = () => {
                   bullet2,
                   bullet3,
                 } = x;
+
                 return (
                   <Card
                     key={question}
@@ -110,6 +111,7 @@ const FAQ = () => {
                   bullet2,
                   bullet3,
                 } = x;
+
                 return (
                   <Card
                     key={question}

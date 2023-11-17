@@ -23,6 +23,7 @@ export async function getServerSideProps(context: { query: any }) {
     // eslint-disable-next-line no-console
     console.log(err, "error");
   }
+
   return { post: null };
 }
 

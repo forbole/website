@@ -12,6 +12,7 @@ const Guide = ({ post }: any) => {
   const { title } = post;
   const titleArray = title.split(" ");
   const coloredTitle = title.split(" ")[2] + title.split(" ")[3];
+
   return (
     <Box
       alignItems="center"

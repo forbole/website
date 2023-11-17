@@ -38,6 +38,7 @@ export default function Arraw({ className, sx, direction }: Props) {
 
     movePlayer();
   }, [direction]);
+
   return (
     <Box
       className={className}

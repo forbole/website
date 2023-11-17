@@ -14,6 +14,7 @@ const Tags = (props: TagsProps) => {
   const { t } = useTranslation("blog");
   const theme = useTheme();
   const { tags, details, noPadding } = props;
+
   return (
     <Box
       sx={{

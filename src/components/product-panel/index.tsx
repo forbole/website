@@ -18,6 +18,7 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
       // eslint-disable-next-line react/jsx-no-useless-fragment
       return <></>;
     }
+
     return (
       <Box
         ref={ref}

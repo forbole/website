@@ -11,6 +11,7 @@ interface GuideNavProps {
 const GuideNav = ({ staking }: GuideNavProps) => {
   const theme = useTheme();
   const { displayBackground } = useNavHook();
+
   return (
     <Box
       sx={{

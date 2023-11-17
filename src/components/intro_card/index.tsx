@@ -22,6 +22,7 @@ const IntroCard = (props: Props) => {
     disabled,
     btnClick,
   } = props;
+
   return (
     <Box
       component="div"

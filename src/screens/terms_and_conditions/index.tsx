@@ -34,6 +34,7 @@ const TermsAndConditions = () => {
       (d as HTMLElement).style.height = `${h}px`;
     });
   });
+
   return (
     <Layout footer title={t("title")}>
       <Container maxWidth="desktop">

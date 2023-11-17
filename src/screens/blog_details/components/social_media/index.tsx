@@ -32,6 +32,7 @@ const SocialMedia = (props: any) => {
         .join(", "),
     );
   };
+
   return (
     <Box
       sx={{
