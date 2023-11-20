@@ -75,7 +75,7 @@ export const useNetworkHook = () => {
   `);
 
   useMemo(() => {
-    if (!cosmosBondedLoading) {
+    if (!cosmosBondedLoading && cosmosBondedData) {
       const { eachCosmosBondedToken } = cosmosBondedData;
       eachCosmosBondedToken.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
@@ -97,7 +97,7 @@ export const useNetworkHook = () => {
   }, [cosmosBondedData, cosmosBondedLoading, cosmosNetworks]);
 
   useMemo(() => {
-    if (!cosmosAPYLoading) {
+    if (!cosmosAPYLoading && cosmosAPYData) {
       const { eachCosmosAPY } = cosmosAPYData;
       eachCosmosAPY.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
@@ -118,9 +118,9 @@ export const useNetworkHook = () => {
   }, [cosmosAPYData, cosmosAPYLoading]);
 
   useMemo(() => {
-    if (!cosmosTVLLoading) {
-      const { eachCosmosTVL } = cosmosTVLData;
-      eachCosmosTVL.forEach((data: any) => {
+    if (!cosmosTVLLoading && cosmosTVLData) {
+      const { eachCosmosTVL } = cosmosTVLData || {};
+      eachCosmosTVL?.forEach((data: any) => {
         const keys = Object.keys(cosmosNetworks);
 
         if (keys.includes(data.metric.instance)) {
@@ -141,7 +141,7 @@ export const useNetworkHook = () => {
   }, [cosmosTVLData, cosmosTVLLoading]);
 
   useMemo(() => {
-    if (!elrondBondedLoading) {
+    if (!elrondBondedLoading && elrondBondedData) {
       const { elrondBondedToken } = elrondBondedData;
       elrondBondedToken.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
@@ -162,7 +162,7 @@ export const useNetworkHook = () => {
   }, [elrondBondedData, elrondBondedLoading]);
 
   useMemo(() => {
-    if (!elrondAPYLoading) {
+    if (!elrondAPYLoading && elrondAPYData) {
       const { elrondAPY } = elrondAPYData;
       elrondAPY.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
@@ -182,7 +182,7 @@ export const useNetworkHook = () => {
   }, [elrondAPYData, elrondAPYLoading]);
 
   useMemo(() => {
-    if (!elrondTVLLoading) {
+    if (!elrondTVLLoading && elrondTVLData) {
       const { elrondTVL } = elrondTVLData;
       elrondTVL.forEach((data: any) => {
         const key = Object.keys(elrondNetwork);
@@ -202,7 +202,7 @@ export const useNetworkHook = () => {
   }, [elrondTVLData, elrondTVLLoading]);
 
   useMemo(() => {
-    if (!solanaTVLLoading) {
+    if (!solanaTVLLoading && solanaTVLData) {
       const { solanaTVL } = solanaTVLData;
       setSolanaNetwork((prev) => ({
         ...prev,
@@ -217,7 +217,7 @@ export const useNetworkHook = () => {
   }, [solanaTVLLoading, solanaTVLData]);
 
   useMemo(() => {
-    if (!solanaBondedLoading) {
+    if (!solanaBondedLoading && solanaBondedData) {
       const { solanaBondedToken } = solanaBondedData;
       setSolanaNetwork((prev) => ({
         ...prev,
@@ -232,7 +232,7 @@ export const useNetworkHook = () => {
   }, [solanaBondedData, solanaBondedLoading]);
 
   useMemo(() => {
-    if (!oasisTVLLoading) {
+    if (!oasisTVLLoading && oasisTVLData) {
       const { oasisTVL } = oasisTVLData;
       setOasisNetwork((prev) => ({
         ...prev,
@@ -247,7 +247,7 @@ export const useNetworkHook = () => {
   }, [oasisTVLLoading, oasisTVLData]);
 
   useMemo(() => {
-    if (!oasisBondedLoading) {
+    if (!oasisBondedLoading && oasisBondedData) {
       const { oasisBondedToken } = oasisBondedData;
       const key = oasisBondedToken[0].metric.instance;
       const bonded = oasisBondedToken[0].bondedToken;
@@ -265,7 +265,7 @@ export const useNetworkHook = () => {
   }, [oasisBondedData, oasisBondedLoading, oasisNetwork]);
 
   useMemo(() => {
-    if (!radixTVLLoading) {
+    if (!radixTVLLoading && radixTVLData) {
       const { radixTVL } = radixTVLData;
       const key = radixTVL[0].metric.instance;
       const { TVL } = radixTVL[0];
@@ -283,7 +283,7 @@ export const useNetworkHook = () => {
   }, [radixTVLLoading, radixTVLData, radixNetwork]);
 
   useMemo(() => {
-    if (!radixBondedLoading) {
+    if (!radixBondedLoading && radixBondedData) {
       const { allRadixStakedTokens } = radixBondedData;
       const key = allRadixStakedTokens[0].metric.instance;
       const bonded = allRadixStakedTokens[0].bondedToken;
