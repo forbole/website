@@ -62,7 +62,7 @@ export const useCalculateRewardsHook = () => {
   `);
 
   useMemo(() => {
-    if (!cosmosCommissionLoading) {
+    if (!cosmosCommissionLoading && cosmosCommissionData) {
       const { eachCosmosCommission } = cosmosCommissionData;
       eachCosmosCommission.forEach((data: any) => {
         const key = selectedToken.graphql;
@@ -87,7 +87,7 @@ export const useCalculateRewardsHook = () => {
   ]);
 
   useMemo(() => {
-    if (!cosmosInflationLoading) {
+    if (!cosmosInflationLoading && cosmosInflationData) {
       const { eachCosmosInflationRate } = cosmosInflationData;
       eachCosmosInflationRate.forEach((data: any) => {
         const key = selectedToken.graphql;
@@ -109,7 +109,7 @@ export const useCalculateRewardsHook = () => {
   ]);
 
   useMemo(() => {
-    if (!cosmosBondedLoading) {
+    if (!cosmosBondedLoading && cosmosBondedData) {
       const { eachCosmosBondedToken } = cosmosBondedData;
       eachCosmosBondedToken.forEach((data: any) => {
         const key = selectedToken.graphql;
@@ -126,7 +126,7 @@ export const useCalculateRewardsHook = () => {
   }, [cosmosBondedData, cosmosBondedLoading, selectedToken, setSelectedToken]);
 
   useMemo(() => {
-    if (!cosmosSupplyLoading) {
+    if (!cosmosSupplyLoading && cosmosSupplyData) {
       const { eachCosmosTokenSupply } = cosmosSupplyData;
       eachCosmosTokenSupply.forEach((data: any) => {
         const key = selectedToken.graphql;

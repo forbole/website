@@ -94,23 +94,23 @@ export const useStatsHook = () => {
   `);
 
   useEffect(() => {
-    if (!cosmosUsersCountLoading) {
+    if (!cosmosUsersCountLoading && cosmosUsersCountData) {
       const { cosmosUsersCount } = cosmosUsersCountData;
       setCosmosUser(cosmosUsersCount[0].usersCount);
     }
-    if (!solanaUserLoading) {
+    if (!solanaUserLoading && solanaUserData) {
       const { solanaUsers } = solanaUserData;
       setSolanaUser(solanaUsers.usersCount);
     }
-    if (!elrondUserLoading) {
+    if (!elrondUserLoading && elrondUserData) {
       const { elrondUsers } = elrondUserData;
       setElrondUser(elrondUsers[0].usersCount);
     }
-    if (!oasisUserLoading) {
+    if (!oasisUserLoading && oasisUserData) {
       const { oasisUsers } = oasisUserData;
       setOasisUser(oasisUsers[0].usersCount);
     }
-    if (!radixUserLoading) {
+    if (!radixUserLoading && radixUserData) {
       const { radixUsers } = radixUserData;
       setRadixUser(radixUsers[0].usersCount);
     }
@@ -173,25 +173,25 @@ export const useStatsHook = () => {
   ]);
 
   useEffect(() => {
-    if (!cosmosTotalTVLLoading) {
+    if (!cosmosTotalTVLLoading && cosmosTotalTVL) {
       const { allCosmosTVL } = cosmosTotalTVL;
       setCosmosTVL(allCosmosTVL[0].cosmosTVL);
     }
-    if (!elrondTVLLoading) {
+    if (!elrondTVLLoading && elrondTVLData) {
       const { elrondTVL } = elrondTVLData;
       const elrondNetworkFunctions = networkFunctions.elrond;
       const TVL = elrondNetworkFunctions.converter(elrondTVL[0].TVL);
       setElrondTotalTVL(TVL);
     }
-    if (!solanaTVLLoading) {
+    if (!solanaTVLLoading && solanaTVLData) {
       const { solanaTVL } = solanaTVLData;
       setSolanaTotalTVL(solanaTVL.TVL);
     }
-    if (!oasisTVLLoading) {
+    if (!oasisTVLLoading && oasisTVLData) {
       const { oasisTVL } = oasisTVLData;
       setOasisTotalTVL(oasisTVL[0].TVL);
     }
-    if (!radixTVLLoading) {
+    if (!radixTVLLoading && radixTVLData) {
       const { radixTVL } = radixTVLData;
       setRadixTotalTVL(radixTVL[0].TVL);
     }
