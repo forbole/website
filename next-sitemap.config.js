@@ -38,7 +38,7 @@ module.exports = {
     return posts
       .map((p) => {
         if (!p.slug) return null;
-        if (p.slug.statrtsWith("how-to-stake")) return `/staking/${p.slug}`;
+        if (p.slug.startsWith("how-to-stake")) return `/staking/${p.slug}`;
 
         return `/blog/${p.slug}`;
       })
