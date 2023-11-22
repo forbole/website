@@ -5,7 +5,7 @@ module.exports = {
   priority: null,
 
   generateRobotsTxt: false,
-  siteUrl: "https://forbole.com",
+  siteUrl: "https://www.forbole.com",
   additionalPaths: async () => {
     if (!process.env.GHOST_PRIVATE_KEY || !process.env.NEXT_PUBLIC_GHOST_API)
       return [];
@@ -38,7 +38,7 @@ module.exports = {
     return posts
       .map((p) => {
         if (!p.slug) return null;
-        if (p.slug.includes("page/")) return null;
+        if (p.slug.statrtsWith("how-to-stake")) return `/staking/${p.slug}`;
 
         return `/blog/${p.slug}`;
       })
