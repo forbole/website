@@ -34,9 +34,8 @@ const ContactCard = () => {
   const options = useMemo(
     () => [
       t("select option"),
-      t("general support"),
-      t("partnership collab"),
-      t("marketing collab"),
+      t("technical_support"),
+      t("business_support"),
       t("others"),
     ],
     [t],

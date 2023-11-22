@@ -18,6 +18,7 @@ const NetworkGuides = ({ post }: any) => {
 
   return (
     <LayoutVal
+      canonical={`https://www.forbole.com/staking/${post.slug}`}
       description={post.excerpt}
       footer
       image={post.featureImage}

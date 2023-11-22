@@ -17,6 +17,7 @@ import { LaptopCSS } from "./styles";
 const Staking = () => {
   const { t } = useTranslation("staking");
   const stakeNowRef = useRef(null);
+
   React.useEffect(() => {
     window.scrollTo({
       left: 0,

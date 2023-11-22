@@ -189,7 +189,11 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       </Box>
       <Button
         className="networkbox__mobile-anchor"
-        onClick={handleMobileAnchorClick}
+        onClick={
+          isEmptyPopover && canClickNetwork
+            ? handleExploreClick
+            : handleMobileAnchorClick
+        }
         variant="text"
       >
         {networkImage}

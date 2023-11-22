@@ -112,26 +112,32 @@ const LangMenuButton = () => {
         >
           {locales?.map((l) => (
             <div key={l}>
-              <Link href={{ pathname, query }} locale={l}>
+              <Link
+                href={{ pathname, query }}
+                locale={l}
+                style={{
+                  textDecoration: "none",
+                }}
+              >
                 <MenuItem
                   component="span"
                   sx={{
-                    "display": "flex",
                     "color": theme.palette.custom.forbole.indigo,
-                    "gap": "8px",
-                    "justifyContent": "flex-start",
+                    "display": "flex",
                     "fontSize": theme.spacing(2),
                     "fontWeight": 700,
+                    "gap": "8px",
                     "height": theme.spacing(7),
+                    "justifyContent": "flex-start",
                     "padding": theme.spacing(0, 4),
+
                     "> a": {
                       width: "100%",
                       textAlign: "left",
-                      textDecoration: "none",
                     },
                     "&:hover": {
-                      color: theme.palette.common.white,
                       background: "linear-gradient(to right,#623DF5,#362187)",
+                      color: theme.palette.common.white,
                     },
                   }}
                 >
@@ -151,23 +157,29 @@ const LangMenuButton = () => {
       >
         {locales?.map((l) => (
           <div key={l} style={{ display: lang !== l ? "block" : "none" }}>
-            <Link href={{ pathname, query }} locale={l}>
+            <Link
+              href={{ pathname, query }}
+              locale={l}
+              style={{
+                textDecoration: "none",
+              }}
+            >
               <MenuItem
                 component="span"
                 onClick={handleClose}
                 sx={{
+                  "color": theme.palette.custom.forbole.indigo,
                   "display": "flex",
-                  "gap": "8px",
-                  "justifyContent": "flex-start",
                   "fontSize": theme.spacing(2),
                   "fontWeight": 700,
+                  "gap": "8px",
                   "height": theme.spacing(7),
+                  "justifyContent": "flex-start",
                   "padding": theme.spacing(0, 4),
-                  "color": theme.palette.custom.forbole.indigo,
+
                   "> a": {
                     width: "100%",
                     textAlign: "left",
-                    textDecoration: "none",
                   },
                   "&:hover": {
                     color: theme.palette.common.white,

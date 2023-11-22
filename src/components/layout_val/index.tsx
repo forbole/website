@@ -11,29 +11,31 @@ import GuideNav from "../guide_nav";
 import Nav from "../nav";
 
 type Props = {
+  canonical?: string;
   children?: ReactNode;
-  title?: string;
-  footer?: boolean;
   description?: string;
-  keywords?: string[];
-  type?: string;
+  footer?: boolean;
   image?: string;
-  twitterImage?: string;
-  stakingGuide?: boolean;
+  keywords?: string[];
   stakeNowRef?: RefObject<HTMLElement>;
+  stakingGuide?: boolean;
+  title?: string;
+  twitterImage?: string;
+  type?: string;
 };
 
 const LayoutVal = ({
+  canonical,
   children,
-  title = "Forbole",
-  footer,
   description,
-  keywords = [],
-  type = "website",
+  footer,
   image,
-  twitterImage,
-  stakingGuide,
+  keywords = [],
   stakeNowRef,
+  stakingGuide,
+  title = "Forbole",
+  twitterImage,
+  type = "website",
 }: Props) => {
   const theme = useTheme();
   const router = useRouter();
@@ -111,6 +113,7 @@ const LayoutVal = ({
           type="image/png"
         />
         <link href={`${url}/icons/manifest.json`} rel="manifest" />
+        {canonical && <link href={canonical} rel="canonical" />}
       </Head>
       <Box
         sx={{
