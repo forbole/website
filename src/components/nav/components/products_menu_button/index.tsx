@@ -48,9 +48,9 @@ const ProductsMenuButton = () => {
     <List component="div" disablePadding>
       {menuProductsList?.map((l, i) => (
         <div key={i}>
-          <Link href={l.link} passHref>
+          <Link href={l.link} style={{ textDecoration: "none" }}>
             <MenuItem
-              component="a"
+              component="span"
               sx={{
                 "display": "flex",
                 "padding": "0px 32px",
@@ -84,9 +84,9 @@ const ProductsMenuButton = () => {
       sx={{ background: "rgba(107, 97, 254, 0.24)" }}
     >
       {menuProductsList?.map((l, i) => (
-        <Link key={i} href={l.link} passHref>
+        <Link key={i} href={l.link} style={{ textDecoration: "none" }}>
           <MenuItem
-            component="a"
+            component="span"
             onClick={handleClose}
             sx={{
               "display": "flex",

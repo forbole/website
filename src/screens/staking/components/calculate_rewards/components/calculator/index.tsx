@@ -14,7 +14,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 
 import { getNetworkInfo } from "@src/utils/network_info";
@@ -54,6 +54,7 @@ const Calculator = (props: any) => {
       setIsOpen(false);
     };
     window.addEventListener("scroll", handler);
+
     return () => {
       window.removeEventListener("scroll", handler);
     };
@@ -161,11 +162,12 @@ const Calculator = (props: any) => {
                   <Box className="image">
                     {network.image && (
                       <Image
-                        height="52px"
+                        alt=""
+                        height="52"
                         objectFit="contain"
                         quality={100}
                         src={network.image}
-                        width="52px"
+                        width="52"
                       />
                     )}
                   </Box>
@@ -349,11 +351,12 @@ const Calculator = (props: any) => {
               <Box className="image">
                 {selectedToken.image && (
                   <Image
-                    height="28px"
+                    alt=""
+                    height="28"
                     objectFit="contain"
                     quality={100}
                     src={selectedToken.image}
-                    width="28px"
+                    width="28"
                   />
                 )}
               </Box>

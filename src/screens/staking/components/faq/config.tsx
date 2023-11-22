@@ -82,6 +82,7 @@ export const useFaq = (): FAQProps[] => {
                 </Link>,
               ]}
               i18nKey="reward para 2"
+              ns="staking"
             />
           ),
           para3: t("reward para 3"),

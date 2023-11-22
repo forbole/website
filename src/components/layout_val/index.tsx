@@ -114,10 +114,6 @@ const LayoutVal = ({
       </Head>
       <Box
         sx={{
-          //   backgroundImage: homeAnimation
-          //     ? ''
-          //     : 'url(/images/assets/image_val_BG_desktop.png)',
-          // background: 'url(/images/assets/image_BG_FVH.png)',
           background: "transparent",
         }}
       >
@@ -126,13 +122,6 @@ const LayoutVal = ({
             display: "flex",
             flexDirection: "column",
             minHeight: "100vh",
-            // background: waveBG
-            //   ? 'rgba(37, 35, 69, 1)'
-            //   : theme.palette.mode === 'dark'
-            //   ? 'url(/images/assets/image_BG.png)'
-            //   : theme.palette.primary.main,
-            // backgroundImage: 'url(/images/assets/image_BG_staking_mobile.png)',
-            // background: theme.palette.primary.main,
             background: stakingGuide
               ? "url(/images/assets/image_BG_FVH_guide.png)"
               : "url(/images/assets/bg_mobile.webp)",

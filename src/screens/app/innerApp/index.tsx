@@ -16,8 +16,10 @@ const InnerApp = (props: any) => {
     if (theme === "dark") {
       return createTheme(darkTemplate);
     }
+
     return createTheme(lightTemplate);
   }, [theme]);
+
   return (
     <ThemeProvider theme={muiTheme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

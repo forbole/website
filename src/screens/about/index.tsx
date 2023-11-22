@@ -55,9 +55,15 @@ const About = () => {
       title: "About Forbole",
     },
   ];
+
   // @ts-ignore
   return (
-    <Layout footer redBgFooter title={t("page_title")}>
+    <Layout
+      description={t("headercard_1st_desc")}
+      footer
+      redBgFooter
+      title={t("page_title")}
+    >
       <Container
         ref={topRef}
         maxWidth="desktop"
@@ -162,7 +168,8 @@ const About = () => {
                   }}
                 />,
               ]}
-              i18nKey={t("headercard_2nd_desc")}
+              i18nKey="headercard_2nd_desc"
+              ns="about"
             />
           </Stack>
           <Box
@@ -416,7 +423,8 @@ const About = () => {
                   }}
                 />,
               ]}
-              i18nKey={t("section_2nd_large_title")}
+              i18nKey="section_2nd_large_title"
+              ns="about"
             />
 
             <Typography

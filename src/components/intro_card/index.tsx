@@ -22,6 +22,7 @@ const IntroCard = (props: Props) => {
     disabled,
     btnClick,
   } = props;
+
   return (
     <Box
       component="div"
@@ -32,6 +33,7 @@ const IntroCard = (props: Props) => {
         display: "flex",
         flexDirection: "column",
         borderRadius: "24px",
+        maxWidth: "calc(100vw - 40px)",
         background: "#FFF",
         boxShadow:
           "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",

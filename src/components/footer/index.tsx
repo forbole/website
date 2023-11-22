@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 
 import { useWindowDimensions } from "@src/hooks";
@@ -87,19 +87,17 @@ const Footer = ({ red, itemColor }: FooterProps) => {
             >
               together today
             </Typography>
-            <Link href="/staking" passHref>
-              <a>
-                <CtaButton
-                  sx={{
-                    mt: "24px",
-                    [theme.breakpoints.down("laptop")]: {
-                      mb: "76px",
-                    },
-                  }}
-                >
-                  {t("StakeNow")}
-                </CtaButton>
-              </a>
+            <Link href="/staking">
+              <CtaButton
+                sx={{
+                  mt: "24px",
+                  [theme.breakpoints.down("laptop")]: {
+                    mb: "76px",
+                  },
+                }}
+              >
+                {t("StakeNow")}
+              </CtaButton>
             </Link>
           </Stack>
         </Container>

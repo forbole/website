@@ -1,22 +1,24 @@
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
-import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
+import { NoSSR } from "@components/no-ssr";
 import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 
-import { TransitionCSS } from "./style";
+import Card from "./Card";
+import classes from "./scroll_logo.module.css";
 
-const Card = dynamic(() => import("./Card"), { ssr: false });
+function splitArray(array: any[], length: number) {
+  const result = [];
+  for (let i = 0; i < array.length; i += length) {
+    result.push(array.slice(i, i + length));
+  }
+
+  return result;
+}
+
 const ScrollLogo = () => {
   const theme = useTheme();
-  // 分割数组
-  function splitArray(array: any[], length: number) {
-    const result = [];
-    for (let i = 0; i < array.length; i += length) {
-      result.push(array.slice(i, i + length));
-    }
-    return result;
-  }
+
   const allNetworkData = allNetworkKeys.map((x: string | number) =>
     getNetworkInfo(x),
   );
@@ -52,23 +54,23 @@ const ScrollLogo = () => {
           py: "10px",
         }}
       >
-        <Box position="relative" width="max-content">
-          {data.map((networkData, index) => (
-            <TransitionCSS
-              key={index}
-              style={{
-                animation:
-                  "35s linear 0s infinite alternate none running jss634",
-                animationName:
-                  index === 1
-                    ? " horizontalRightMove"
-                    : `horizontalMove${index}`,
-              }}
-            >
-              <Card networkData={networkData.concat(networkData)} />
-            </TransitionCSS>
-          ))}
-        </Box>
+        <NoSSR>
+          <Box position="relative" width="max-content">
+            {data.map((networkData, index) => (
+              <div
+                key={index}
+                className={[classes.animatedRow, classes[`left${index}`]].join(
+                  " ",
+                )}
+              >
+                <Card
+                  imageSize={30}
+                  networkData={networkData.concat(networkData)}
+                />
+              </div>
+            ))}
+          </Box>
+        </NoSSR>
       </Box>
     </Container>
   );

@@ -143,8 +143,9 @@ const Products = () => {
   const handleChange2 = (_event: React.SyntheticEvent, newValue: number) => {
     setV2(newValue);
   };
+
   return (
-    <Layout footer title={t("product")}>
+    <Layout description={t("desc")} footer title={t("product")}>
       <Container ref={topRef} maxWidth="desktop">
         <HeaderCard
           desc_1st={t("desc")}
@@ -221,7 +222,8 @@ const Products = () => {
                 }}
               />,
             ]}
-            i18nKey={t("bridging")}
+            i18nKey="bridging"
+            ns="products"
           />
           <Stack
             direction="row"
@@ -309,7 +311,8 @@ const Products = () => {
                 }}
               />,
             ]}
-            i18nKey={t("safe-path")}
+            i18nKey="safe-path"
+            ns="products"
           />
           <Stack
             alignItems="center"
@@ -534,7 +537,8 @@ const Products = () => {
                 }}
               />,
             ]}
-            i18nKey={t("trusted")}
+            i18nKey="trusted"
+            ns="products"
           />
 
           <Stack

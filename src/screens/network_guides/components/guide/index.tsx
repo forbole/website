@@ -12,6 +12,7 @@ const Guide = ({ post }: any) => {
   const { title } = post;
   const titleArray = title.split(" ");
   const coloredTitle = title.split(" ")[2] + title.split(" ")[3];
+
   return (
     <Box
       alignItems="center"
@@ -86,11 +87,13 @@ const Guide = ({ post }: any) => {
               }}
             />,
           ]}
-          i18nKey={t("staking title", {
+          i18nKey="staking title"
+          ns="staking"
+          values={{
             title1: titleArray.slice(0, 1).join(" "),
             coloredTitle,
             title2: titleArray.slice(4).join(" "),
-          })}
+          }}
         />
         <GuideDetails post={post} />
       </Box>

@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 
 import { ScrollToBottom } from "@components";
@@ -17,6 +17,7 @@ const Hero = () => {
   const { width } = windowDimensions;
   const styles = useStyles();
   const ref = React.useRef(null);
+
   return (
     <Box css={styles.root} display="flex" justifyContent="center">
       <Box
@@ -69,6 +70,7 @@ const Hero = () => {
             }}
           >
             <Image
+              alt=""
               layout="fill"
               objectFit="contain"
               src="/images/assets/image_horse_blur.png"
@@ -128,6 +130,7 @@ const Hero = () => {
             }}
           >
             <Image
+              alt=""
               layout="fill"
               objectFit="contain"
               src="/images/assets/image_water_shadow.png"

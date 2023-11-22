@@ -62,6 +62,7 @@ const Layout = ({
     if (blueBg) {
       const currentColor = document.body.style.background;
       document.body.style.background = "rgb(23, 26, 75)";
+
       return () => {
         document.body.style.background = currentColor;
       };
@@ -86,17 +87,19 @@ const Layout = ({
     }
 
     return {
-      backgroundImage: redBg
-        ? "url(/images/assets/bg1.png)"
-        : "url(/images/assets/bg2.png)",
+      background: redBg
+        ? "url(/images/assets/bg_desktop_horse.webp), url(/images/assets/bg_desktop_red_background.webp)"
+        : "url(/images/assets/bg_desktop_red_background.webp)",
       backgroundRepeat: "no-repeat",
-      backgroundPosition: redBg ? "0 -10vw" : "0 0",
+      backgroundPosition: redBg ? "15vw -1vw, 0 0" : "0 0",
       backgroundColor: color.primary,
-      backgroundSize: "100% auto",
-      [theme.breakpoints.between("mobile", 550)]: {
+      backgroundSize: redBg ? "70% 55vw, 105vw" : "100vw 100vw",
+      [theme.breakpoints.down(550)]: {
         backgroundImage: redBg
-          ? "url(/images/assets/bg1.png)"
-          : "url(/images/assets/bg2.png)",
+          ? "url(/images/assets/bg_mobile_horse.webp), url(/images/assets/bg_mobile_red_background.webp)"
+          : "url(/images/assets/bg_mobile_red_background.webp)",
+        backgroundPosition: redBg ? "-40vw 10vw, 0 0" : "0 0",
+        backgroundSize: "180vw 150vw, 110vw",
       },
     };
   })();

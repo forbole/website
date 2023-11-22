@@ -42,8 +42,13 @@ const DeveloperTools = () => {
   });
   const topRef = React.useRef(null);
   const [show, setShow] = useState(false);
+
   return (
-    <Layout footer title={t("page_title")}>
+    <Layout
+      description={t("headercard_1st_desc")}
+      footer
+      title={t("page_title")}
+    >
       <Container
         ref={topRef}
         maxWidth="desktop"

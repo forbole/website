@@ -57,6 +57,7 @@ class Post {
   static formatExcerpt(excerpt: string, limit: number) {
     const format = excerpt.slice(0, limit);
     const afterFormat = excerpt.length > limit ? "..." : "";
+
     return `${format}${afterFormat}`;
   }
 
@@ -66,6 +67,7 @@ class Post {
 
   static fromJson(data: any, options?: any) {
     const { excerptLimit = 250 } = options ?? {};
+
     return new Post({
       id: data.uuid,
       canonicalUrl: data.canonical_url,

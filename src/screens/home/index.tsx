@@ -62,7 +62,7 @@ const Home: FC<Props> = ({ pages }) => {
         >
           <Stack
             alignItems="center"
-            mt="47%"
+            mt="40%"
             sx={{
               [theme.breakpoints.between("mobile", 550)]: {
                 position: "absolute",
@@ -70,7 +70,7 @@ const Home: FC<Props> = ({ pages }) => {
                 left: "0",
                 right: "0",
                 margin: "auto",
-                marginTop: "126%",
+                marginTop: "135%",
                 zIndex: "1",
               },
             }}
@@ -78,13 +78,13 @@ const Home: FC<Props> = ({ pages }) => {
             <Typography
               sx={{
                 textAlign: "center",
-                fontWeight: "bold",
+                fontWeight: 590,
                 color: "white",
                 textShadow: "0px 0px 20px rgba(0, 0, 0, 0.60)",
                 letterSpacing: "0.832px",
                 [theme.breakpoints.up("laptop")]: {
                   fontSize: "64px",
-                  mb: "65px",
+                  mb: "0px",
                 },
                 [theme.breakpoints.up("tablet")]: {
                   fontSize: "48px",
@@ -92,7 +92,16 @@ const Home: FC<Props> = ({ pages }) => {
                 },
                 [theme.breakpoints.down("tablet")]: {
                   fontSize: "32px",
-                  mb: "22px",
+                  mb: "25px",
+                  px: "10%",
+                },
+                [theme.breakpoints.down(550)]: {
+                  fontSize: "32px",
+                  px: "10%",
+                },
+                [theme.breakpoints.down("mobile")]: {
+                  fontSize: "32px",
+                  mt: "95%",
                   px: "10%",
                 },
               }}
@@ -120,6 +129,14 @@ const Home: FC<Props> = ({ pages }) => {
               [theme.breakpoints.up("laptop")]: {
                 fontSize: "40px",
                 m: "200px 0 60px 0",
+              },
+              [theme.breakpoints.down(550)]: {
+                fontSize: "24px",
+                m: "20% 0 60px 0",
+              },
+              [theme.breakpoints.down("mobile")]: {
+                fontSize: "24px",
+                m: "50% 0 60px 0",
               },
             }}
           >

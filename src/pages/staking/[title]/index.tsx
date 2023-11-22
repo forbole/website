@@ -39,6 +39,7 @@ export async function getServerSideProps(context: { query: any; res: any }) {
     // eslint-disable-next-line no-console
     console.log(err, "error");
   }
+
   return { props: { post: { tags: [] } } };
 }
 

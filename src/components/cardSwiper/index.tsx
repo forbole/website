@@ -1,5 +1,5 @@
 import { Box, Stack, useTheme } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import type { CSSProperties } from "react";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +15,7 @@ type Props = {
 };
 const CardSwiper = ({ imagesList, style }: Props) => {
   const theme = useTheme();
+
   return (
     <BoxCSS>
       <Box position="relative">

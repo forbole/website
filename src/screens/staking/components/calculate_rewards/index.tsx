@@ -68,7 +68,8 @@ const CalculateRewards = () => {
               }}
             />,
           ]}
-          i18nKey={t("calculate rewards title")}
+          i18nKey="calculate rewards title"
+          ns="staking"
         />
         <Typography
           sx={{

@@ -49,6 +49,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
           if (displayBackground && !staking) {
             return "rgba(47, 58, 86, 0.60)";
           }
+
           return displayBackground && staking
             ? " rgba(47, 58, 86, 0.60)"
             : "transparent";
@@ -104,21 +105,20 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
               },
             }}
           >
-            <Link href="/">
-              <a
-                aria-label={t("forboleLogo")}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "100%",
-                }}
-              >
-                {staking ? (
-                  <ForboleShadowIcon />
-                ) : (
-                  <ForboleLogo color={itemColor || colors.primary} />
-                )}
-              </a>
+            <Link
+              aria-label={t("common:forboleLogo")}
+              href="/"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              {staking ? (
+                <ForboleShadowIcon />
+              ) : (
+                <ForboleLogo color={itemColor || colors.primary} />
+              )}
             </Link>
           </Box>
           {staking ? (

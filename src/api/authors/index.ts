@@ -5,10 +5,12 @@ export const getAuthorBySlug = async (query: { author: string }) => {
     const authorInfo = await api.authors.read({
       slug: `${query.author}`,
     });
+
     return authorInfo ?? null;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(`tag: ${err}`);
+
     return [];
   }
 };
@@ -25,10 +27,12 @@ export const getPostsByAuthor = async (query: {
       page: query?.page || 1,
       formats: "html",
     });
+
     return posts ?? null;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(`tag: ${err}`);
+
     return [];
   }
 };

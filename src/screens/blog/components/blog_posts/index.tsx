@@ -32,6 +32,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
           inline: "nearest",
         });
       }
+
       return node;
     },
     [lastView, isMobile],

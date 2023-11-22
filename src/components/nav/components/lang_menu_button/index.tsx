@@ -60,6 +60,7 @@ const LangMenuButton = () => {
       lan = "EN";
       break;
   }
+
   return (
     <>
       <Box css={styles.desktop}>
@@ -111,9 +112,9 @@ const LangMenuButton = () => {
         >
           {locales?.map((l) => (
             <div key={l}>
-              <Link href={{ pathname, query }} locale={l} passHref>
+              <Link href={{ pathname, query }} locale={l}>
                 <MenuItem
-                  component="a"
+                  component="span"
                   sx={{
                     "display": "flex",
                     "color": theme.palette.custom.forbole.indigo,
@@ -150,9 +151,9 @@ const LangMenuButton = () => {
       >
         {locales?.map((l) => (
           <div key={l} style={{ display: lang !== l ? "block" : "none" }}>
-            <Link href={{ pathname, query }} locale={l} passHref>
+            <Link href={{ pathname, query }} locale={l}>
               <MenuItem
-                component="a"
+                component="span"
                 onClick={handleClose}
                 sx={{
                   "display": "flex",

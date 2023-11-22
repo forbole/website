@@ -9,6 +9,7 @@ const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 const ContactForbole = () => {
   const { t } = useTranslation("staking");
   const theme = useTheme();
+
   return (
     <Box display="flex" justifyContent="center">
       <Box
@@ -76,7 +77,8 @@ const ContactForbole = () => {
               }}
             />,
           ]}
-          i18nKey={t("contact forbole title")}
+          i18nKey="contact forbole title"
+          ns="staking"
         />
         <Typography
           sx={{

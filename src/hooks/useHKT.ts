@@ -10,6 +10,7 @@ const useHKT = (publishedAt: string) => {
       .format("Do MMM YYYY, h:mm a");
     setTime(hkt);
   }, [publishedAt]);
+
   return time;
 };
 

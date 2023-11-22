@@ -8,6 +8,7 @@ export const convertToMoney = (num: any, decimal = 0) => {
     retNum = parseInt(retNum, 10);
   }
   retNum = retNum.toFixed(decimal);
+
   return retNum.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 };
 
@@ -18,5 +19,6 @@ export const convertWithDecimal = (num: number | string) => {
   const stringNum = num.toString();
   const [full, decimal] = stringNum.split(".");
   const formatFull = full.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+
   return `${formatFull}${decimal ? "." : ""}${decimal ?? ""}`;
 };

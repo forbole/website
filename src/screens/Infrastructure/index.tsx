@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import type { SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
 
+import { NoSSR } from "@components/no-ssr";
 import { Layout, ScrollToTop } from "@src/components";
 import Carousel from "@src/components/Carousel";
 import IntroPanel from "@src/components/Intro_panel";
@@ -75,6 +76,7 @@ const Infrastructure = () => {
         },
       ];
     }
+
     return [
       {
         name: "Boz Menzalji",
@@ -126,7 +128,7 @@ const Infrastructure = () => {
   ];
 
   return (
-    <Layout footer title={t("page_title")}>
+    <Layout description={t("expertise_item1")} footer title={t("page_title")}>
       <Container
         ref={topRef}
         maxWidth="desktop"
@@ -318,7 +320,9 @@ const Infrastructure = () => {
           </CtaButton>
         </Stack>
         <Stack>
-          <Carousel personList={personList} />
+          <NoSSR>
+            <Carousel personList={personList} />
+          </NoSSR>
         </Stack>
         <ScrollToTop topRef={topRef} />
       </Container>

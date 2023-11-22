@@ -1,5 +1,5 @@
 const bundleAnalyzer = require("@next/bundle-analyzer");
-const nextTranslate = require("next-translate");
+const nextTranslate = require("next-translate-plugin");
 
 const localePrefixes = ["", "/zh-HK", "/zh-CN"];
 
@@ -29,6 +29,7 @@ const baseConfig = nextTranslate({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
+
     return config;
   },
   eslint: {

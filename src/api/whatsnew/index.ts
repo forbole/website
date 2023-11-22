@@ -6,6 +6,7 @@ const { JSDOM } = jsdom;
 const parseMd = (html = "") => {
   const dom = new JSDOM(html);
   const { window } = dom;
+
   // return window
   return window;
 };
@@ -22,6 +23,7 @@ export const getPageByTag = async (tag: string) => {
       Array.from(window.document.querySelectorAll("p")).forEach((i: any) =>
         list.push(i.innerHTML),
       );
+
       return {
         title: res.title,
         list,
@@ -37,10 +39,12 @@ export const getPageByTag = async (tag: string) => {
       btnClick: string;
       id: string;
     }[];
+
     return data ?? null;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(`tag: ${err}`);
+
     return [];
   }
 };

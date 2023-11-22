@@ -8,6 +8,7 @@ const TitlePosts = (props: any) => {
   const { posts } = props;
   const theme = useTheme();
   const { t } = useTranslation("blog");
+
   return (
     <Box component="ul" sx={styles.titlePostCSS}>
       <Typography
@@ -28,17 +29,15 @@ const TitlePosts = (props: any) => {
             }}
           >
             <Link key={post.id} as={`/blog/${post.slug}`} href="/blog/[title]">
-              <a>
-                <li
-                  style={{
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {post.title}
-                </li>
-              </a>
+              <li
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {post.title}
+              </li>
             </Link>
           </Box>
           {i === posts.length - 1 ? null : (

@@ -34,6 +34,7 @@ export default function MyApp(props: MyAppProps) {
       siteId: MATOMO_SITE_ID,
     });
   }, []);
+
   return (
     <RecoilRoot>
       <CacheProvider value={emotionCache}>
