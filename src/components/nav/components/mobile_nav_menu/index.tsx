@@ -213,12 +213,12 @@ const MobileNavMenu = () => {
           onClick={handleDropdownClick}
           sx={{
             "display": "flex",
-            "justifyContent": "space-between",
             "fontSize": theme.spacing(2),
             "fontWeight": 700,
-
             "height": theme.spacing(7),
+            "justifyContent": "space-between",
             "padding": theme.spacing(0, 4),
+
             "> a": {
               width: "100%",
               textAlign: "left",

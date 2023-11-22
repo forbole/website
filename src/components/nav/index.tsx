@@ -8,6 +8,7 @@ import React from "react";
 import useColor from "@src/styles/useColor";
 
 import { DesktopNavMenu, MobileNavMenu } from "./components";
+import LangMenuButton from "./components/lang_menu_button";
 import { useNavHook } from "./hooks";
 
 interface NavProps {
@@ -21,7 +22,8 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
   const colors = useColor();
   const { displayBackground } = useNavHook();
   const { t } = useTranslation("staking");
-  const scrollToRef = (e: any) => {
+
+  const scrollToRef = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (stakeNowRef !== undefined && stakeNowRef.current !== null) {
       window.scrollTo({
@@ -36,15 +38,17 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
     <Box
       data-test="nav"
       sx={{
+        "backdropFilter": displayBackground ? "blur(16px)" : "none",
         "boxSizing": "content-box",
         "display": "flex",
+        "height": "100px",
         "justifyContent": "center",
         "position": "fixed",
         "top": 0,
-        "zIndex": 5,
-        "width": "100%",
-        "height": "100px",
         "transition": "all .3s",
+        "width": "100%",
+        "zIndex": 5,
+
         "background": (() => {
           if (displayBackground && !staking) {
             return "rgba(47, 58, 86, 0.60)";
@@ -54,7 +58,6 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
             ? " rgba(47, 58, 86, 0.60)"
             : "transparent";
         })(),
-        "backdropFilter": displayBackground ? "blur(16px)" : "none",
         [theme.breakpoints.up("laptop")]: {
           height: "100px",
         },
@@ -66,13 +69,14 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
       <Box
         sx={{
           boxSizing: "border-box",
-          width: "100%",
           height: "auto",
-          position: "fixed",
-          top: 0,
-          px: "16px",
-          zIndex: 2,
           maxWidth: "desktop",
+          position: "fixed",
+          px: "16px",
+          top: 0,
+          width: "100%",
+          zIndex: 2,
+
           [theme.breakpoints.up("laptop")]: {
             top: 30,
             margin: "auto",
@@ -84,12 +88,13 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
       >
         <Box
           sx={{
+            alignItems: "center",
             background: "transparent",
-            padding: theme.spacing(5, 0, 0, 0),
             display: "flex",
             flexDirection: "row",
-            alignItems: "center",
             justifyContent: "space-between",
+            padding: theme.spacing(5, 0, 0, 0),
+
             [theme.breakpoints.up("laptop")]: {
               padding: theme.spacing(5.5, 0, 0, 0),
               justifyContent: "space-between",
@@ -122,29 +127,49 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
             </Link>
           </Box>
           {staking ? (
-            <Button
-              onClick={(e: React.MouseEvent<HTMLElement>) => scrollToRef(e)}
-              sx={{
-                width: "97px",
-                height: "32px",
-                lineHeight: "17px",
-                fontWeight: 600,
-                padding: 0,
-                whiteSpace: "nowrap",
-                background:
-                  "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                borderRadius: theme.spacing(3),
-                color: "primary.main",
-                boxShadow: "none",
-                [theme.breakpoints.up("laptop")]: {
-                  width: "111px",
-                  height: "45px",
-                },
+            <Box
+              style={{
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+                justifyContent: "center",
               }}
-              variant="contained"
             >
-              {t("stake_now")}
-            </Button>
+              <Button
+                onClick={scrollToRef}
+                sx={{
+                  background:
+                    "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
+                  borderRadius: theme.spacing(3),
+                  boxShadow: "none",
+                  color: "primary.main",
+                  fontWeight: 600,
+                  height: "32px",
+                  lineHeight: "17px",
+                  padding: 0,
+                  whiteSpace: "nowrap",
+                  width: "97px",
+
+                  [theme.breakpoints.up("laptop")]: {
+                    width: "111px",
+                    height: "45px",
+                  },
+                }}
+                variant="contained"
+              >
+                {t("stake_now")}
+              </Button>
+              <Box
+                sx={{
+                  [theme.breakpoints.down("laptop")]: {
+                    display: "none",
+                  },
+                }}
+              >
+                <LangMenuButton />
+              </Box>
+            </Box>
           ) : (
             <>
               <Box
