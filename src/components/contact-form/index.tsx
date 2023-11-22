@@ -52,13 +52,10 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
 
     const helpList = [
       {
-        label: t("support"),
+        label: t("technical_support"),
       },
       {
-        label: t("partnership"),
-      },
-      {
-        label: t("marketing"),
+        label: t("business_support"),
       },
       {
         label: t("other"),
