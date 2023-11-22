@@ -703,7 +703,7 @@ export const logos: IStringIndex = {
     name: "MultiversX",
   },
   "nolus": {
-    denom: "",
+    denom: "NLS",
     graphql: "nolus",
     image: "/images/network/nolus.png",
     key: "nolus",
