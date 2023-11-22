@@ -21,12 +21,16 @@ export const useCounter = (targetValue: unknown) => {
       if (typeof targetValue === "number") {
         setCounterValue(0);
 
-        divisor.current = Math.ceil(targetValue / 200);
+        divisor.current = targetValue * (targetValue > 100 ? 0.01 : 0.006);
 
         clearInterval();
 
+        let pending = false;
         intervalId.current = window.setInterval(() => {
+          if (pending) return;
+          pending = true;
           window.requestAnimationFrame(() => {
+            pending = false;
             setCounterValue((prev: unknown) => {
               if (
                 typeof prev !== "number" ||
@@ -44,7 +48,7 @@ export const useCounter = (targetValue: unknown) => {
               return newValue;
             });
           });
-        }, 16);
+        });
       } else {
         setCounterValue(targetValue);
       }

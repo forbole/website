@@ -29,7 +29,9 @@ const StatsCard = ({ title, stats }: any) => {
         <Typography variant="h3">{convertToMoney(counterValue)}</Typography>
       )}
       {title === t("supporting networks") && (
-        <Typography variant="h3">{convertToMoney(counterValue)}</Typography>
+        <Typography variant="h3">
+          {Math.floor(counterValue as number)}
+        </Typography>
       )}
     </Box>
   );
