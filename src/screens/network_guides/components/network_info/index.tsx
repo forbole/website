@@ -24,7 +24,19 @@ import { InfoCard } from "./components";
 import { useNetworkGuidesHook } from "./hooks";
 import { ContentBox, ContentCSS } from "./styles";
 
-const excludedNetworks = ["solana", "coreum", "gitopia", "sui"];
+const excludedImgChains = new Set([
+  "archway",
+  "coreum",
+  "gitopia",
+  "solana",
+  "sui",
+]);
+
+const mappings: Record<string, string> = {
+  "archway-network": "archway",
+  "crypto-org": "crypto.org",
+  "mars-protocol": "mars",
+};
 
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
@@ -36,13 +48,17 @@ const NetworkInfo = ({ post }: any) => {
   const { sanitize } = DOMPurify;
   const cmsLoader = ({ src, width, quality }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
-  const networkData =
-    // eslint-disable-next-line no-nested-ternary
-    tags.length <= 1
-      ? null
-      : tags[1].slug === "crypto-org"
-        ? getNetworkInfo("crypto.org")
-        : getNetworkInfo(tags[1].slug);
+
+  const networkData = (() => {
+    if (tags.length <= 1) return null;
+
+    const mapping = mappings[tags[1].slug as string];
+    if (mapping) {
+      return getNetworkInfo(mapping);
+    }
+
+    return getNetworkInfo(tags[1].slug);
+  })();
 
   const { cosmosNetworkGuides } = useNetworkGuidesHook();
 
@@ -58,8 +74,9 @@ const NetworkInfo = ({ post }: any) => {
     },
     [networkData],
   );
+
   const coverImage =
-    networkData?.graphql && !excludedNetworks.includes(networkData?.graphql)
+    networkData?.graphql && !excludedImgChains.has(networkData?.graphql)
       ? `/images/guides/how_to_stake_${networkData.graphql}.png`
       : featureImage;
 
@@ -142,7 +159,6 @@ const NetworkInfo = ({ post }: any) => {
                   />
                 ) : (
                   <Box
-                    id="foo"
                     style={{
                       height: onlyLargeScreen ? 90 : 52,
                       width: onlyLargeScreen ? 90 : 52,
@@ -151,19 +167,21 @@ const NetworkInfo = ({ post }: any) => {
                 )}
               </Box>
               <Box pl={onlyLargeScreen && networkData?.address ? 2 : 1}>
-                <Typography
-                  sx={{
-                    background: "rgba(255, 255, 255, 0.7)",
-                    borderRadius: theme.spacing(1),
-                    fontSize: theme.spacing(2),
-                    fontWeight: 600,
-                    padding: theme.spacing(1),
-                    paddingBottom: theme.spacing(1),
-                  }}
-                  variant="h3"
-                >
-                  {networkData?.name || ""}
-                </Typography>
+                {networkData?.name && (
+                  <Typography
+                    sx={{
+                      background: "rgba(255, 255, 255, 0.7)",
+                      borderRadius: theme.spacing(1),
+                      fontSize: theme.spacing(2),
+                      fontWeight: 600,
+                      padding: theme.spacing(1),
+                      paddingBottom: theme.spacing(1),
+                    }}
+                    variant="h3"
+                  >
+                    {networkData.name}
+                  </Typography>
+                )}
                 {networkData?.address && (
                   <Box
                     alignItems="center"
