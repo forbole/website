@@ -20,6 +20,8 @@ interface CardProp {
   setShowMobilePopover: Dispatch<SetStateAction<string>>;
 }
 
+const networksWithoutPopover = new Set(["radix"]);
+
 const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const { t } = useTranslation("staking");
   const router = useRouter();
@@ -59,10 +61,11 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   );
 
   const isEmptyPopover =
-    !!networkSummary &&
-    !networkSummary.bonded &&
-    !networkSummary.APY &&
-    !networkSummary.TVL;
+    networksWithoutPopover.has(network.graphql) ||
+    (!!networkSummary &&
+      !networkSummary.bonded &&
+      !networkSummary.APY &&
+      !networkSummary.TVL);
 
   /* A variable that is used to render the popover. */
   const popover = (

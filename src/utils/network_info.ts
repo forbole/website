@@ -457,7 +457,7 @@ export const logos: IStringIndex = {
   "ethereum": {
     denom: "ETH",
     graphql: "ethereum",
-    image: "/images/network/ethereum.png",
+    image: "/images/network/ethereum.svg",
     key: "ethereum",
     name: "Ethereum",
   },
@@ -509,7 +509,7 @@ export const logos: IStringIndex = {
   "nym": {
     denom: "NYX",
     graphql: "nym",
-    image: "/images/network/nym.png",
+    image: "/images/network/nym.svg",
     key: "nym",
     label: "NYM - NYX",
     name: "NYM",
@@ -665,7 +665,7 @@ export const logos: IStringIndex = {
   "humansai": {
     denom: "HEART",
     graphql: "humansai",
-    image: "/images/network/humansai.png",
+    image: "/images/network/humansai.svg",
     key: "humansai",
     label: "",
     name: "Humans.ai",
@@ -681,7 +681,7 @@ export const logos: IStringIndex = {
   "kyve": {
     denom: "",
     graphql: "kyve",
-    image: "/images/network/kyve.png",
+    image: "/images/network/kyve.svg",
     key: "kyve",
     label: "",
     name: "KYVE",
@@ -705,7 +705,7 @@ export const logos: IStringIndex = {
   "nolus": {
     denom: "NLS",
     graphql: "nolus",
-    image: "/images/network/nolus.png",
+    image: "/images/network/nolus.svg",
     key: "nolus",
     label: "",
     name: "Nolus",
@@ -713,7 +713,7 @@ export const logos: IStringIndex = {
   "neutron": {
     denom: "",
     graphql: "neutron",
-    image: "/images/network/neutron.png",
+    image: "/images/network/neutron.svg",
     key: "neutron",
     label: "",
     name: "Neutron",
