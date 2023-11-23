@@ -435,7 +435,7 @@ export const logos: IStringIndex = {
     graphql: "elrond",
     image: "/images/network/elrond.png",
     key: "elrond",
-    name: "Elrond",
+    name: "MultiversX",
   },
   "solana": {
     address: "76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857",
@@ -509,7 +509,7 @@ export const logos: IStringIndex = {
   "nym": {
     denom: "NYX",
     graphql: "nym",
-    image: "/images/network/neutron.png",
+    image: "/images/network/nym.png",
     key: "nym",
     label: "NYM - NYX",
     name: "NYM",
@@ -648,22 +648,22 @@ export const logos: IStringIndex = {
     denom: "ARCH",
     graphql: "archway",
     guide: "how-to-stake-arch-on-archway-network",
-    image: "/images/network/archway.png",
+    image: "/images/network/archway.svg",
     key: "archway",
     label: "Archway",
     name: "Archway",
   },
   "coreum": {
-    denom: "",
+    denom: "CORE",
     graphql: "coreum",
     guide: "how-to-stake-core-on-coreum",
-    image: "/images/network/coreum.png",
+    image: "/images/network/coreum.svg",
     key: "coreum",
     label: "",
     name: "Coreum",
   },
   "humansai": {
-    denom: "",
+    denom: "HEART",
     graphql: "humansai",
     image: "/images/network/humansai.png",
     key: "humansai",
@@ -728,10 +728,10 @@ export const logos: IStringIndex = {
     name: "Quasar",
   },
   "gitopia": {
-    denom: "",
+    denom: "LORE",
     graphql: "gitopia",
     guide: "how-to-stake-lore-on-gitopia",
-    image: "/images/network/gitopia.png",
+    image: "/images/network/gitopia.svg",
     key: "gitopia",
     label: "",
     name: "Gitopia",
@@ -748,7 +748,7 @@ export const logos: IStringIndex = {
     denom: "",
     graphql: "sui",
     guide: "how-to-stake-sui-on-sui-network",
-    image: "/images/network/sui.png",
+    image: "/images/network/sui.svg",
     key: "sui",
     label: "",
     name: "Sui",
@@ -827,6 +827,7 @@ const cosmosNetworkKeys = [
 const getNetworkKeysArray = () => {
   const arr = [];
   cosmosNetworkKeys.map((key) => arr.push(key));
+
   arr.push("elrond", "solana", "oasis", "radix");
   arr.sort();
 
