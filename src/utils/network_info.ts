@@ -435,7 +435,7 @@ export const logos: IStringIndex = {
     graphql: "elrond",
     image: "/images/network/elrond.png",
     key: "elrond",
-    name: "Elrond",
+    name: "MultiversX",
   },
   "solana": {
     address: "76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857",
@@ -509,7 +509,7 @@ export const logos: IStringIndex = {
   "nym": {
     denom: "NYX",
     graphql: "nym",
-    image: "/images/network/neutron.png",
+    image: "/images/network/nym.png",
     key: "nym",
     label: "NYM - NYX",
     name: "NYM",
@@ -827,6 +827,7 @@ const cosmosNetworkKeys = [
 const getNetworkKeysArray = () => {
   const arr = [];
   cosmosNetworkKeys.map((key) => arr.push(key));
+
   arr.push("elrond", "solana", "oasis", "radix");
   arr.sort();
 

@@ -30,11 +30,15 @@ const NetworkGrid = () => {
     ...radixNetwork,
   };
 
+  const sortedNetworks = [...allNetworkData].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
+
   return (
     <Box css={styles.root}>
       <Box className="home__networks">
         <LayoutGroup>
-          {allNetworkData.map((network, index) => (
+          {sortedNetworks.map((network, index) => (
             <NetworkCard
               key={network.name ?? index}
               network={network}
