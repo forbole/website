@@ -17,12 +17,17 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import React from "react";
 
-import { getNetworkInfo } from "@src/utils/network_info";
+import { handleNetworkClick } from "@src/utils/network_functions";
+import {
+  allNetworkKeys,
+  getNetworkInfo,
+  skippedRewardsNetworks,
+} from "@src/utils/network_info";
 
-import { calculatorKeys } from "./config";
+import { useCalculateRewardsHook } from "../../hooks";
 import { styles } from "./styles";
 
-const Calculator = (props: any) => {
+const Calculator = () => {
   const { t } = useTranslation("staking");
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
@@ -35,11 +40,12 @@ const Calculator = (props: any) => {
     tokens,
     monthlyPeriods,
     setMonthlyPeriods,
-  } = props;
+  } = useCalculateRewardsHook();
 
-  const networkData = calculatorKeys.map((x: string | number) =>
-    getNetworkInfo(x),
-  );
+  const networkData = allNetworkKeys
+    .map((x: string | number) => getNetworkInfo(x))
+    .filter((x) => !skippedRewardsNetworks.has(x.key))
+    .filter((x) => x.delegate);
 
   React.useEffect(() => {
     if (selectedToken === "") {
@@ -60,13 +66,9 @@ const Calculator = (props: any) => {
     };
   }, []);
 
-  const handleSliderChange = (_event: Event, newValue: number | number[]) => {
-    setMonthlyPeriods(newValue);
-  };
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonthlyPeriods(
-      event.target.value === "" ? "" : Number(event.target.value),
+      event.target.value === "" ? 0 : Number(event.target.value),
     );
   };
 
@@ -274,7 +276,9 @@ const Calculator = (props: any) => {
                 defaultValue={0}
                 max={12}
                 min={0}
-                onChange={handleSliderChange}
+                onChange={(_, newValue) =>
+                  setMonthlyPeriods(newValue as number)
+                }
                 size="small"
                 step={1}
                 sx={styles.slider}
@@ -398,10 +402,10 @@ const Calculator = (props: any) => {
           <Box sx={styles.buttonDiv}>
             <Button
               disabled={!selectedToken.delegate}
-              href={selectedToken.delegate || ""}
-              rel="noreferrer"
+              onClick={() => {
+                handleNetworkClick(selectedToken);
+              }}
               sx={styles.button}
-              target="_blank"
             >
               {t("stake with us!")}
             </Button>

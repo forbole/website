@@ -3,22 +3,12 @@ import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
 import { Calculator } from "./components";
-import { useCalculateRewardsHook } from "./hooks";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const CalculateRewards = () => {
   const { t } = useTranslation("staking");
   const theme = useTheme();
-  const {
-    selectedToken,
-    setSelectedToken,
-    totalEarnings,
-    handleChange,
-    tokens,
-    monthlyPeriods,
-    setMonthlyPeriods,
-  } = useCalculateRewardsHook();
 
   return (
     <Box display="flex" justifyContent="center">
@@ -92,15 +82,7 @@ const CalculateRewards = () => {
         >
           {t("calculate rewards desc")}
         </Typography>
-        <Calculator
-          handleChange={handleChange}
-          monthlyPeriods={monthlyPeriods}
-          selectedToken={selectedToken}
-          setMonthlyPeriods={setMonthlyPeriods}
-          setSelectedToken={setSelectedToken}
-          tokens={tokens}
-          totalEarnings={totalEarnings}
-        />
+        <Calculator />
       </Box>
     </Box>
   );
