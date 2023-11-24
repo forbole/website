@@ -2,37 +2,20 @@ import { Box } from "@mui/material";
 import { LayoutGroup } from "framer-motion";
 import { useState } from "react";
 
-import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
+import type { Network } from "@utils/network_info";
 
 import { NetworkCard } from "./components";
 import type { NetworkProps } from "./config";
-import { useNetworkHook } from "./hooks";
 import useStyles from "./useStyles";
 
-const NetworkGrid = () => {
+type Props = {
+  sortedNetworks: Network[];
+  allNetworkInfo: NetworkProps;
+};
+
+const NetworkGrid = ({ sortedNetworks, allNetworkInfo }: Props) => {
   const styles = useStyles();
   const [showMobilePopover, setShowMobilePopover] = useState("");
-  const {
-    cosmosNetworks,
-    elrondNetwork,
-    solanaNetwork,
-    oasisNetwork,
-    radixNetwork,
-  } = useNetworkHook();
-  const allNetworkData = allNetworkKeys.map((x: string | number) =>
-    getNetworkInfo(x),
-  );
-  const allNetworkInfo: NetworkProps = {
-    ...cosmosNetworks,
-    ...elrondNetwork,
-    ...solanaNetwork,
-    ...oasisNetwork,
-    ...radixNetwork,
-  };
-
-  const sortedNetworks = [...allNetworkData].sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
 
   return (
     <Box css={styles.root}>

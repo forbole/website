@@ -1,4 +1,7 @@
-import { clone, pathOr } from "ramda";
+import Router from "next/router";
+import { clone } from "ramda";
+
+import type { Network } from "./network_info";
 
 const toFixed = (num: number): number => Number(num?.toFixed(2) ?? "0");
 
@@ -25,7 +28,7 @@ const uEGLDToEGLD = defaultConverter(1000000000000000000);
 const defaultFunctions = (converter: any) => ({
   gecko: "",
   marketPrice: (data: any) =>
-    toFixed(Number(pathOr(0, ["market_data", "current_price", "usd"], data))),
+    toFixed(Number(data?.market_data?.current_price?.usd || 0)),
   converter,
 });
 
@@ -61,4 +64,16 @@ const elrond = clone(defaultFunctions(uEGLDToEGLD));
 // networks needed for converter
 export const networkFunctions = {
   elrond,
+};
+
+export const getCanClickNetwork = (network: Network) =>
+  !!network.guide || !!network.delegate;
+
+export const handleNetworkClick = (network: Network) => {
+  if (network.guide) {
+    Router.push(`/staking/${network.guide}`);
+  } else if (network.delegate) {
+    // Open in a new tab
+    window.open(network.delegate, "_blank");
+  }
 };

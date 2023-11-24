@@ -187,6 +187,7 @@ const Products = () => {
           <Trans
             components={[
               <Typography
+                key="0"
                 display="inline"
                 sx={{
                   maxWidth: "950px",
@@ -205,6 +206,7 @@ const Products = () => {
                 }}
               />,
               <Typography
+                key="1"
                 color="#EE3131"
                 component="span"
                 sx={{
@@ -277,6 +279,7 @@ const Products = () => {
           <Trans
             components={[
               <Typography
+                key="0"
                 display="inline"
                 sx={{
                   color: "#202A43",
@@ -293,6 +296,7 @@ const Products = () => {
                 }}
               />,
               <Typography
+                key="1"
                 color="#EE3131"
                 component="span"
                 display="inline"
@@ -504,6 +508,7 @@ const Products = () => {
           <Trans
             components={[
               <Typography
+                key="0"
                 sx={{
                   color: "#202A43",
                   [theme.breakpoints.down("laptop")]: {
@@ -519,6 +524,7 @@ const Products = () => {
                 }}
               />,
               <Typography
+                key="1"
                 color="#EE3131"
                 component="span"
                 display="inline"

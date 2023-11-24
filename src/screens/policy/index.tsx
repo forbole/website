@@ -118,6 +118,7 @@ const Policy = () => {
                 <Trans
                   components={[
                     <Typography
+                      key="0"
                       sx={{
                         color: "#000",
                         fontSize: theme.spacing(1.375),
@@ -126,6 +127,7 @@ const Policy = () => {
                       variant="body1"
                     />,
                     <Typography
+                      key="1"
                       color="#000"
                       component="span"
                       sx={{
@@ -138,6 +140,7 @@ const Policy = () => {
                       }}
                     />,
                     <Link
+                      key="2"
                       color="#000"
                       href="https://forbole.com"
                       rel="noreferrer"

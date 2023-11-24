@@ -3,10 +3,13 @@ import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
-import { useRouter } from "next/router";
 import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
 import React, { useCallback } from "react";
 
+import {
+  getCanClickNetwork,
+  handleNetworkClick,
+} from "@src/utils/network_functions";
 import { convertToMoney } from "@utils/convert_to_money";
 import type { Network } from "@utils/network_info";
 
@@ -24,7 +27,6 @@ const networksWithoutPopover = new Set(["radix"]);
 
 const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const { t } = useTranslation("staking");
-  const router = useRouter();
   const { network, networkSummary, showMobilePopover, setShowMobilePopover } =
     props;
 
@@ -44,20 +46,15 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
     },
     [setShowMobilePopover],
   );
-  const canClickNetwork = !!network.guide || !!network.delegate;
+  const canClickNetwork = getCanClickNetwork(network);
 
   const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(
     (event) => {
       event.stopPropagation();
 
-      if (network.guide) {
-        router.push(`/staking/${network.guide}`);
-      } else if (network.delegate) {
-        // Open in a new tab
-        window.open(network.delegate, "_blank");
-      }
+      handleNetworkClick(network);
     },
-    [network.delegate, network.guide, router],
+    [network],
   );
 
   const isEmptyPopover =

@@ -72,12 +72,14 @@ const Guide = ({ post }: any) => {
         <Trans
           components={[
             <Box
+              key="0"
               className="h3"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}
             />,
             <Box
+              key="1"
               className="h3"
               sx={{
                 background:

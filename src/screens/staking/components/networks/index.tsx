@@ -2,13 +2,39 @@ import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
+import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
+
 import { NetworkGrid, SearchBar } from "./components";
+import type { NetworkProps } from "./components/network_grid/config";
+import { useNetworkHook } from "./components/network_grid/hooks";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const Networks = () => {
   const { t } = useTranslation("staking");
   const theme = useTheme();
+
+  const {
+    cosmosNetworks,
+    elrondNetwork,
+    solanaNetwork,
+    oasisNetwork,
+    radixNetwork,
+  } = useNetworkHook();
+  const allNetworkInfo: NetworkProps = {
+    ...cosmosNetworks,
+    ...elrondNetwork,
+    ...solanaNetwork,
+    ...oasisNetwork,
+    ...radixNetwork,
+  };
+  const allNetworkData = allNetworkKeys.map((x: string | number) =>
+    getNetworkInfo(x),
+  );
+
+  const sortedNetworks = [...allNetworkData].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
 
   return (
     <Box display="flex" justifyContent="center">
@@ -62,12 +88,14 @@ const Networks = () => {
         <Trans
           components={[
             <Box
+              key="0"
               className="h3"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}
             />,
             <Box
+              key="1"
               className="h3"
               sx={{
                 background:
@@ -99,8 +127,14 @@ const Networks = () => {
           {t("stake with Forbole desc")}
         </Typography>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <SearchBar label="" network={[]} />
-          <NetworkGrid />
+          <SearchBar
+            allNetworkInfo={allNetworkInfo}
+            sortedNetworks={sortedNetworks}
+          />
+          <NetworkGrid
+            allNetworkInfo={allNetworkInfo}
+            sortedNetworks={sortedNetworks}
+          />
         </Box>
       </Box>
     </Box>

@@ -75,6 +75,7 @@ const Section = ({
         <Translate
           components={[
             <Typography
+              key="0"
               display="inline"
               sx={{
                 fontSize: "40px",
@@ -87,6 +88,7 @@ const Section = ({
               }}
             />,
             <Typography
+              key="1"
               color="#EE3131"
               component="span"
               display="inline"

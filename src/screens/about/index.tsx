@@ -141,6 +141,7 @@ const About = () => {
             <Trans
               components={[
                 <Typography
+                  key="0"
                   sx={{
                     textShadow:
                       "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
@@ -154,6 +155,7 @@ const About = () => {
                   }}
                 />,
                 <Typography
+                  key="1"
                   component="span"
                   sx={{
                     textShadow:
@@ -395,6 +397,7 @@ const About = () => {
             <Trans
               components={[
                 <Typography
+                  key="0"
                   display="inline"
                   sx={{
                     fontSize: "40px",
@@ -408,6 +411,7 @@ const About = () => {
                   }}
                 />,
                 <Typography
+                  key="1"
                   color="#EE3131"
                   component="span"
                   display="inline"

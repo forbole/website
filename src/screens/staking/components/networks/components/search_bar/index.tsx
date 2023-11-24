@@ -24,14 +24,17 @@ import type {
 } from "react";
 import { useCallback, useState } from "react";
 
+import {
+  getCanClickNetwork,
+  handleNetworkClick,
+} from "@src/utils/network_functions";
 import type { Network } from "@src/utils/network_info";
-import { getNetworkInfo, logos } from "@src/utils/network_info";
 
-import type { SearchBarProps } from "./types";
+import type { NetworkProps } from "../network_grid/config";
 import useStyles from "./useStyles";
 
 const filterOptions = createFilterOptions({
-  matchFrom: "start",
+  matchFrom: "any",
 });
 
 function scrollLock() {
@@ -100,20 +103,10 @@ function renderOption(props: HTMLAttributes<HTMLLIElement>, option: unknown) {
   return <Options key={network.name} network={network} props={props} />;
 }
 
-/**
- * `handleChange` is a function that takes an event and a value, and if the value is truthy,
- * it opens a new window to the URL of the network
- * @param {unknown} _event - unknown - This is the event that is triggered when
- * the user clicks on thedropdown.
- * @param {unknown} value - The value of the selected item.
- */
 function handleChange(_event: unknown, value: unknown) {
   if (value) {
     const { network } = value as { network: Network };
-    const { delegate } = network;
-    if (delegate) {
-      window.open(delegate, "_top");
-    }
+    handleNetworkClick(network);
   }
 }
 
@@ -131,20 +124,25 @@ const PaperComponent = (props: PaperProps) => {
 
 type StyledAutocompleteProps = ComponentProps<typeof Autocomplete>;
 
-const SearchBar: FC<SearchBarProps> = () => {
-  const { t } = useTranslation("staking");
-  const keys = Object.keys(logos);
-  const networkData: Array<Network> = keys
-    .sort()
-    .map((x: string) => getNetworkInfo(x));
+type Props = {
+  sortedNetworks: Network[];
+  allNetworkInfo: NetworkProps;
+};
 
-  const networkNames = networkData.map((network) => network.name);
-  const options = networkData
+const SearchBar = ({ sortedNetworks }: Props) => {
+  const { t } = useTranslation("staking");
+
+  const optionsFull = sortedNetworks
     .map((network) => ({
       label: network.name,
       network,
     }))
-    .filter((network, idx) => networkNames.indexOf(network.label) === idx);
+    .filter((item) => getCanClickNetwork(item.network));
+
+  const optionsNames = optionsFull.map((item) => item.label);
+  const options = optionsFull.filter(
+    (item, idx) => optionsNames.indexOf(item.label) === idx,
+  );
 
   const styles = useStyles();
 
@@ -176,6 +174,7 @@ const SearchBar: FC<SearchBarProps> = () => {
       behavior: "smooth",
     });
   }, []);
+
   const handleBlur = useCallback(() => {
     window.removeEventListener("scroll", scrollLock);
     setFocused(false);
