@@ -76,6 +76,7 @@ const Section = ({
           components={[
             <Typography
               display="inline"
+              key="0"
               sx={{
                 fontSize: "40px",
                 fontWeight: "590",
@@ -90,6 +91,7 @@ const Section = ({
               color="#EE3131"
               component="span"
               display="inline"
+              key="1"
               sx={{
                 textShadow: "0px 0px 20px #ffffff",
                 fontSize: "40px",

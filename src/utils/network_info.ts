@@ -22,11 +22,7 @@ export type Network = {
 
 interface IStringIndex extends Record<string, Network> {}
 
-/**
- * Takes the key name and returns the location. Will return null if undefined
- */
-
-export const logos: IStringIndex = {
+const logos: IStringIndex = {
   "cosmos": {
     address: "cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj",
     bigDipper: "https://cosmos.bigdipper.live/",

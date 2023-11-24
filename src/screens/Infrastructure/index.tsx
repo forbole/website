@@ -130,8 +130,8 @@ const Infrastructure = () => {
   return (
     <Layout description={t("expertise_item1")} footer title={t("page_title")}>
       <Container
-        ref={topRef}
         maxWidth="desktop"
+        ref={topRef}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -257,11 +257,11 @@ const Infrastructure = () => {
             { title: "expertise_item", img: "desk_toggle_2@2x.png" },
           ].map((opt, indexUpper) => (
             <ProductPanel
-              key={indexUpper}
-              ref={PanelRef}
               imageHref={`/validator_infastructure/${opt.img}`}
               imgFull
               index={indexUpper}
+              key={indexUpper}
+              ref={PanelRef}
               value={v1}
             >
               <Stack

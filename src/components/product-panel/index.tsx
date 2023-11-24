@@ -21,8 +21,8 @@ const productPanel = React.forwardRef<HTMLDivElement, Props>(
 
     return (
       <Box
-        ref={ref}
         component="div"
+        ref={ref}
         sx={{
           display: "flex",
           flexDirection: "column",

@@ -113,8 +113,8 @@ const Home: FC<Props> = ({ pages }) => {
           </Stack>
         </Container>
         <Container
-          ref={bottomRef}
           maxWidth={isTablet ? "tablet" : "desktop"}
+          ref={bottomRef}
           sx={{ zIndex: "1" }}
         >
           <Typography
@@ -149,10 +149,10 @@ const Home: FC<Props> = ({ pages }) => {
           >
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("infrastructure");
                 }}
-                btnName={t("see_more")}
                 desc={t("Validator_Infrastructure_desc")}
                 imageHref={
                   isMobile
@@ -165,10 +165,10 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
+                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("staking-service");
                 }}
-                btnName={t("see_more")}
                 desc={t("Native_Staking_Service_desc")}
                 imageHref={
                   isMobile
@@ -181,10 +181,10 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
+                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("analytics-tools");
                 }}
-                btnName={t("see_more")}
                 desc={t("Blockchain_Data_Analytics_Tools_desc")}
                 imageHref={
                   isMobile
@@ -197,10 +197,10 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("developer-tools");
                 }}
-                btnName={t("see_more")}
                 desc={t("Developer_Tools_desc")}
                 imageHref={
                   isMobile
@@ -213,10 +213,10 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnName={t("see_more")}
                 btn_Click={() => {
                   router.push("enterprise-solution");
                 }}
-                btnName={t("see_more")}
                 desc={t("Enterprise_Solution_desc")}
                 imageHref={
                   isMobile
@@ -254,7 +254,7 @@ const Home: FC<Props> = ({ pages }) => {
           >
             {filteredPages.map(
               ({ title, list, imageHref, btnName, btnClick, id }, idx) => (
-                <Grid key={`${id}_${idx}`} item laptop={4} mobile={12}>
+                <Grid item key={`${id}_${idx}`} laptop={4} mobile={12}>
                   <IntroCard
                     btnClick={() => router.push(btnClick)}
                     btnName={btnName}

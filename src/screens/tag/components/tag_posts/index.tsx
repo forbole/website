@@ -41,7 +41,7 @@ const TagPosts = ({ main, blogs, meta }: IProps) => {
       >
         {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
-          <Post key={post.id} id={i} post={post} />
+          <Post id={i} key={post.id} post={post} />
         ))}
       </Box>
       <Pagination

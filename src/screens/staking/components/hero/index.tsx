@@ -139,7 +139,7 @@ const Hero = () => {
         </Box>
         <ScrollToBottom bottomRef={ref} staking />
       </Box>
-      <Box ref={ref} css={styles.stats}>
+      <Box css={styles.stats} ref={ref}>
         <Stats />
       </Box>
     </Box>

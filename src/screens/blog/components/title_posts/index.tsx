@@ -28,7 +28,7 @@ const TitlePosts = (props: any) => {
               padding: theme.spacing(3, 0),
             }}
           >
-            <Link key={post.id} as={`/blog/${post.slug}`} href="/blog/[title]">
+            <Link as={`/blog/${post.slug}`} href="/blog/[title]" key={post.id}>
               <li
                 style={{
                   whiteSpace: "nowrap",

@@ -40,8 +40,8 @@ const DesktopNavMenu = () => {
     >
       {navItems.map((item, i) => (
         <Box
-          key={i}
           className={classes.navItem}
+          key={i}
           sx={{
             "color": theme.palette.common.white,
             "textDecoration": "none",

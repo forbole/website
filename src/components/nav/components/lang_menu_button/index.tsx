@@ -81,18 +81,9 @@ const LangMenuButton = () => {
           </Typography>
         </Button>
         <Menu
-          anchorEl={anchor}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          id="basic-menu"
-          keepMounted
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}
-          onClose={onClose}
-          open={!!anchor}
           PaperProps={{
             sx: {
               backgroundImage: "none",
@@ -105,6 +96,15 @@ const LangMenuButton = () => {
                 "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
             },
           }}
+          anchorEl={anchor}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          id="basic-menu"
+          keepMounted
+          onClose={onClose}
+          open={!!anchor}
           transformOrigin={{
             vertical: "top",
             horizontal: "right",

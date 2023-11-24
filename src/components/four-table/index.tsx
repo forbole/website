@@ -33,8 +33,8 @@ const FourTable = ({ btnHref }: Props) => {
     >
       {plans.map((Plan, indexTop) => (
         <Box
-          key={indexTop}
           className={indexTop === clickItem ? styles.active : ""}
+          key={indexTop}
           sx={{
             position: "relative",
             height: "496px",

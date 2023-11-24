@@ -99,10 +99,10 @@ const SocialMedia = () => {
       <Box display="flex" gap="20px">
         {socialMediaInfo.map((x) => (
           <a
-            key={x.key}
             aria-label={x.key}
             className={classes.icon}
             href={x.url}
+            key={x.key}
             rel="noreferrer"
             style={{ color: "currentcolor" }}
             target="_blank"

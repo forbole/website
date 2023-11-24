@@ -46,7 +46,7 @@ const CardSwiper = ({ imagesList, style }: Props) => {
           }}
         >
           {imagesList.map((item, index) => (
-            <SwiperSlide key={index} className="scale">
+            <SwiperSlide className="scale" key={index}>
               <Stack
                 sx={{
                   [theme.breakpoints.down("laptop")]: {

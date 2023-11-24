@@ -58,6 +58,7 @@ export const useFaq = (): FAQProps[] => {
               components={[
                 <Typography
                   color={theme.palette.custom.forbole.blue}
+                  key="0"
                   sx={{
                     fontSize: theme.spacing(2),
                     [theme.breakpoints.up("laptop")]: {
@@ -66,7 +67,7 @@ export const useFaq = (): FAQProps[] => {
                   }}
                   variant="body1"
                 />,
-                <Link href="/stake-now">
+                <Link href="/stake-now" key="1">
                   <Typography
                     color="primary.main"
                     fontWeight={900}

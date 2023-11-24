@@ -94,12 +94,14 @@ const HowItWorks = () => {
           components={[
             <Box
               className="h3"
+              key="0"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}
             />,
             <Box
               className="h3"
+              key="1"
               sx={{
                 background:
                   "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
@@ -126,10 +128,10 @@ const HowItWorks = () => {
         >
           {howTos.map((howTo) => (
             <HowToCard
-              key={howTo.id}
               desc={howTo.desc}
               id={howTo.id}
               image={howTo.image}
+              key={howTo.id}
               title={howTo.title}
             />
           ))}

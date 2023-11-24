@@ -58,10 +58,10 @@ const ScrollLogo = () => {
           <Box position="relative" width="max-content">
             {data.map((networkData, index) => (
               <div
-                key={index}
                 className={[classes.animatedRow, classes[`left${index}`]].join(
                   " ",
                 )}
+                key={index}
               >
                 <Card
                   imageSize={30}

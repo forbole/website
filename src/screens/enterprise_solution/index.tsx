@@ -42,8 +42,8 @@ const EnterpriseSolution = () => {
   return (
     <Layout description={t("trusted")} footer title={t("page_title")}>
       <Container
-        ref={topRef}
         maxWidth="desktop"
+        ref={topRef}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -124,12 +124,12 @@ const EnterpriseSolution = () => {
             title_large_trans={t("get")}
           />
           <ContactFrom
-            ref={ContactRef}
             canSubmit={canSubmit}
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmit}
             inputs={inputs}
             isLoading={isLoading}
+            ref={ContactRef}
           />
           <ScrollToTop topRef={topRef} />
         </Stack>

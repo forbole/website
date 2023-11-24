@@ -73,12 +73,14 @@ const Guide = ({ post }: any) => {
           components={[
             <Box
               className="h3"
+              key="0"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}
             />,
             <Box
               className="h3"
+              key="1"
               sx={{
                 background:
                   "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",

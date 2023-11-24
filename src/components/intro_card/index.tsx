@@ -79,8 +79,8 @@ const IntroCard = (props: Props) => {
           <ul style={{ listStyle: "none" }}>
             {list?.map((item, index) => (
               <Typography
-                key={index}
                 component="li"
+                key={index}
                 px="10px"
                 sx={{
                   "display": "flex",

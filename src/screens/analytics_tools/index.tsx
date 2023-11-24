@@ -52,8 +52,8 @@ const AnalyticsTools = () => {
   return (
     <Layout description={t("empowering")} footer title={t("title")}>
       <Container
-        ref={topRef}
         maxWidth="desktop"
+        ref={topRef}
         sx={{
           display: "flex",
           flexDirection: "column",

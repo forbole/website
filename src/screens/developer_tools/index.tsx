@@ -50,8 +50,8 @@ const DeveloperTools = () => {
       title={t("page_title")}
     >
       <Container
-        ref={topRef}
         maxWidth="desktop"
+        ref={topRef}
         sx={{
           display: "flex",
           flexDirection: "column",

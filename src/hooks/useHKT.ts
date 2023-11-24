@@ -1,4 +1,4 @@
-// @ts-expect-error
+// @ts-expect-error Missing declaration file
 import moment from "moment-timezone/builds/moment-timezone-with-data-10-year-range";
 import { useEffect, useState } from "react";
 
