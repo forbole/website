@@ -142,8 +142,7 @@ const Calculator = (props: any) => {
             value={selectedToken}
           >
             {networkData.map((network, i) => (
-              // @ts-expect-error
-              <MenuItem key={i} value={network}>
+              <MenuItem key={i}>
                 <Box
                   sx={{
                     "display": "flex",

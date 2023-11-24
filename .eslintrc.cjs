@@ -10,12 +10,16 @@ module.exports = {
       version: "detect",
     },
   },
-  extends: ["plugin:react/recommended", "prettier"],
+  extends: [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
   },
-  plugins: ["react", "@typescript-eslint", "prettier", "react-hooks"],
+  plugins: ["@typescript-eslint", "react-hooks"],
   rules: {
     "arrow-body-style": "error",
     "camelcase": "off",
@@ -34,21 +38,19 @@ module.exports = {
     ],
 
     "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-var-requires": "off",
 
-    "jsx-a11y/alt-text": "off",
-    "jsx-a11y/anchor-is-valid": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/control-has-associated-label": "off",
-    "jsx-a11y/interactive-supports-focus": "off",
+    "@next/next/no-img-element": "off",
 
-    "react/jsx-filename-extension": [0],
+    "jsx-a11y/alt-text": "off",
 
     "react/display-name": "off",
     "react/function-component-definition": "off",
     "react/jsx-boolean-value": "error",
+    "react/jsx-filename-extension": "off",
     "react/jsx-fragments": "error",
     "react/jsx-key": ["error", { warnOnDuplicates: true }],
     "react/jsx-no-useless-fragment": "error",

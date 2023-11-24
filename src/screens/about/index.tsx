@@ -56,7 +56,6 @@ const About = () => {
     },
   ];
 
-  // @ts-ignore
   return (
     <Layout
       description={t("headercard_1st_desc")}

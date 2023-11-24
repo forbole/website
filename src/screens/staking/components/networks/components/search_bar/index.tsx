@@ -16,12 +16,7 @@ import {
 import ListItem from "@mui/material/ListItem";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
-import type {
-  ComponentProps,
-  FC,
-  FocusEventHandler,
-  HTMLAttributes,
-} from "react";
+import type { ComponentProps, FocusEventHandler, HTMLAttributes } from "react";
 import { useCallback, useState } from "react";
 
 import {
@@ -30,7 +25,6 @@ import {
 } from "@src/utils/network_functions";
 import type { Network } from "@src/utils/network_info";
 
-import type { NetworkProps } from "../network_grid/config";
 import useStyles from "./useStyles";
 
 const filterOptions = createFilterOptions({
@@ -67,7 +61,7 @@ interface OptionsProps {
   network: Network;
 }
 
-const Options: FC<OptionsProps> = ({ props, network }) => {
+const Options = ({ props, network }: OptionsProps) => {
   const styles = useStyles();
 
   return (
@@ -124,10 +118,9 @@ const PaperComponent = (props: PaperProps) => {
 
 type StyledAutocompleteProps = ComponentProps<typeof Autocomplete>;
 
-type Props = {
+interface Props {
   sortedNetworks: Network[];
-  allNetworkInfo: NetworkProps;
-};
+}
 
 const SearchBar = ({ sortedNetworks }: Props) => {
   const { t } = useTranslation("staking");
