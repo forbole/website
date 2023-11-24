@@ -127,9 +127,9 @@ const Policy = () => {
                       variant="body1"
                     />,
                     <Typography
-                      key="1"
                       color="#000"
                       component="span"
+                      key="1"
                       sx={{
                         fontWeight: 700,
                         color: "#000",
@@ -140,9 +140,9 @@ const Policy = () => {
                       }}
                     />,
                     <Link
-                      key="2"
                       color="#000"
                       href="https://forbole.com"
+                      key="2"
                       rel="noreferrer"
                       sx={{
                         fontWeight: 500,

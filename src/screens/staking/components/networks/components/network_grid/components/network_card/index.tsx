@@ -156,9 +156,9 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
 
   return (
     <motion.div
-      ref={ref}
       css={styles.root}
       initial="initial"
+      ref={ref}
       transition={{ duration: 0.3 }}
       variants={{
         initial: { opacity: 0, scale: 0.8 },

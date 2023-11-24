@@ -82,11 +82,11 @@ const MobileNavMenu = () => {
         <MenuIcon color="#fff" />
       </IconButton>
       <Menu
-        anchorEl={anchorEl}
-        id="basic-menu"
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
+        anchorEl={anchorEl}
+        id="basic-menu"
         onClose={handleClose}
         open={open}
         slotProps={{

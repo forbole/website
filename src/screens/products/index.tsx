@@ -146,7 +146,7 @@ const Products = () => {
 
   return (
     <Layout description={t("desc")} footer title={t("product")}>
-      <Container ref={topRef} maxWidth="desktop">
+      <Container maxWidth="desktop" ref={topRef}>
         <HeaderCard
           desc_1st={t("desc")}
           desc_2nd={t("customized")}
@@ -187,8 +187,8 @@ const Products = () => {
           <Trans
             components={[
               <Typography
-                key="0"
                 display="inline"
+                key="0"
                 sx={{
                   maxWidth: "950px",
                   mx: "auto",
@@ -206,9 +206,9 @@ const Products = () => {
                 }}
               />,
               <Typography
-                key="1"
                 color="#EE3131"
                 component="span"
+                key="1"
                 sx={{
                   textShadow: "0px 0px 20px #ffffff",
                   [theme.breakpoints.down("laptop")]: {
@@ -279,8 +279,8 @@ const Products = () => {
           <Trans
             components={[
               <Typography
-                key="0"
                 display="inline"
+                key="0"
                 sx={{
                   color: "#202A43",
                   [theme.breakpoints.down("laptop")]: {
@@ -296,10 +296,10 @@ const Products = () => {
                 }}
               />,
               <Typography
-                key="1"
                 color="#EE3131"
                 component="span"
                 display="inline"
+                key="1"
                 sx={{
                   textShadow: "0px 0px 20px #ffffff",
                   [theme.breakpoints.down("laptop")]: {
@@ -393,10 +393,10 @@ const Products = () => {
           </Stack>
           {individuals.map((item, index) => (
             <ProductPanel
-              key={index}
-              ref={PanelRef1}
               imageHref={isMobile ? item.imageHref_m : item.imageHref}
               index={index}
+              key={index}
+              ref={PanelRef1}
               title={item.title}
               value={v1}
             >
@@ -414,9 +414,9 @@ const Products = () => {
                 </Typography>
                 {item.benefits.map((i, k) => (
                   <Typography
-                    key={k}
                     component="dd"
                     display="flex"
+                    key={k}
                     sx={{
                       "color": "#202A43",
                       "alignItems": "baseline",
@@ -450,8 +450,8 @@ const Products = () => {
                 </Typography>
                 {item.usecases.map((i, k) => (
                   <Typography
-                    key={k}
                     component="dl"
+                    key={k}
                     sx={{
                       "color": "#202A43",
                       "alignItems": "baseline",
@@ -524,10 +524,10 @@ const Products = () => {
                 }}
               />,
               <Typography
-                key="1"
                 color="#EE3131"
                 component="span"
                 display="inline"
+                key="1"
                 sx={{
                   textShadow: "0px 0px 20px #ffffff",
                   [theme.breakpoints.down("laptop")]: {
@@ -676,10 +676,10 @@ const Products = () => {
           </Stack>
           {businesses.map((item, index) => (
             <ProductPanel
-              key={index}
-              ref={PanelRef2}
               imageHref={isMobile ? item.imageHref_m : item.imageHref}
               index={index}
+              key={index}
+              ref={PanelRef2}
               title={item.title}
               value={v2}
             >
@@ -697,9 +697,9 @@ const Products = () => {
                 </Typography>
                 {item.benefits.map((i, k) => (
                   <Typography
-                    key={k}
                     component="dd"
                     display="flex"
+                    key={k}
                     sx={{
                       "color": "#202A43",
                       "alignItems": "baseline",
@@ -733,9 +733,9 @@ const Products = () => {
                 </Typography>
                 {item.usecases.map((i, k) => (
                   <Typography
-                    key={k}
                     component="dd"
                     display="flex"
+                    key={k}
                     sx={{
                       "color": "#202A43",
                       "alignItems": "baseline",

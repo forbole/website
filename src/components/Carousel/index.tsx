@@ -161,9 +161,9 @@ const Carousel = ({ personList }: CarouselProps) => {
           {usedList?.map((item, index) => (
             <SwiperSlide key={index}>
               <PersonCard
-                key={index}
                 desc={item.desc}
                 img={item.img}
+                key={index}
                 name={item.name}
                 position={item.position}
               />

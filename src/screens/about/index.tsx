@@ -65,8 +65,8 @@ const About = () => {
       title={t("page_title")}
     >
       <Container
-        ref={topRef}
         maxWidth="desktop"
+        ref={topRef}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -155,8 +155,8 @@ const About = () => {
                   }}
                 />,
                 <Typography
-                  key="1"
                   component="span"
+                  key="1"
                   sx={{
                     textShadow:
                       "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
@@ -397,8 +397,8 @@ const About = () => {
             <Trans
               components={[
                 <Typography
-                  key="0"
                   display="inline"
+                  key="0"
                   sx={{
                     fontSize: "40px",
                     fontWeight: "590",
@@ -411,10 +411,10 @@ const About = () => {
                   }}
                 />,
                 <Typography
-                  key="1"
                   color="#EE3131"
                   component="span"
                   display="inline"
+                  key="1"
                   sx={{
                     fontSize: "40px",
                     fontWeight: "590",

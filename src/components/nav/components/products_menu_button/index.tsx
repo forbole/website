@@ -84,7 +84,7 @@ const ProductsMenuButton = () => {
       sx={{ background: "rgba(107, 97, 254, 0.24)" }}
     >
       {menuProductsList?.map((l, i) => (
-        <Link key={i} href={l.link} style={{ textDecoration: "none" }}>
+        <Link href={l.link} key={i} style={{ textDecoration: "none" }}>
           <MenuItem
             component="span"
             onClick={handleClose}

@@ -292,13 +292,13 @@ const Contact = () => {
                   }}
                 >
                   <Input
-                    ref={inputRef}
-                    disabled={!inputs.other}
                     disableUnderline
+                    disabled={!inputs.other}
                     fullWidth
                     name="specify"
                     onInput={handleInputChange}
                     placeholder={t("item_5")}
+                    ref={inputRef}
                     sx={{
                       p: "12px",
                       fontSize: "16px",

@@ -190,6 +190,8 @@ const SearchBar = ({ sortedNetworks }: Props) => {
       sx={styles.root}
     >
       <Autocomplete
+        PaperComponent={PaperComponent}
+        PopperComponent={PopperComponent}
         filterOptions={filterOptions}
         inputMode="search"
         noOptionsText={t("noResultsFound")}
@@ -198,8 +200,6 @@ const SearchBar = ({ sortedNetworks }: Props) => {
         onFocus={handleFocus}
         openOnFocus
         options={options}
-        PaperComponent={PaperComponent}
-        PopperComponent={PopperComponent}
         popupIcon={null}
         renderInput={RenderInput}
         renderOption={renderOption}

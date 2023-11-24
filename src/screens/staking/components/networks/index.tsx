@@ -88,15 +88,15 @@ const Networks = () => {
         <Trans
           components={[
             <Box
-              key="0"
               className="h3"
+              key="0"
               sx={{
                 color: theme.palette.custom.forbole.indigo6,
               }}
             />,
             <Box
-              key="1"
               className="h3"
+              key="1"
               sx={{
                 background:
                   "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
@@ -127,10 +127,7 @@ const Networks = () => {
           {t("stake with Forbole desc")}
         </Typography>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <SearchBar
-            allNetworkInfo={allNetworkInfo}
-            sortedNetworks={sortedNetworks}
-          />
+          <SearchBar sortedNetworks={sortedNetworks} />
           <NetworkGrid
             allNetworkInfo={allNetworkInfo}
             sortedNetworks={sortedNetworks}

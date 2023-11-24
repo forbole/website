@@ -70,12 +70,12 @@ const FAQ = () => {
 
                 return (
                   <Card
-                    key={question}
                     bullet1={bullet1}
                     bullet2={bullet2}
                     bullet3={bullet3}
                     desc={desc}
                     expanded={expanded === question}
+                    key={question}
                     para1={para1}
                     para2={para2}
                     para3={para3}
@@ -114,12 +114,12 @@ const FAQ = () => {
 
                 return (
                   <Card
-                    key={question}
                     bullet1={bullet1}
                     bullet2={bullet2}
                     bullet3={bullet3}
                     desc={desc}
                     expanded={expanded === question}
+                    key={question}
                     para1={para1}
                     para2={para2}
                     para3={para3}

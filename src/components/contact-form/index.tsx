@@ -64,8 +64,8 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Stack
-        ref={ref}
         component="div"
+        ref={ref}
         sx={{
           maxWidth: "776px",
           padding: "40px",
@@ -151,9 +151,9 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
             </Typography>
             <FormControl fullWidth>
               <Select
-                displayEmpty
                 IconComponent={KeyboardArrowDownTwoTone}
                 MenuProps={MenuProps}
+                displayEmpty
                 name="help"
                 onChange={handleInputChange}
                 renderValue={(selected) => {

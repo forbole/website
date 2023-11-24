@@ -106,10 +106,7 @@ const Calculator = (props: any) => {
       <Box sx={styles.select}>
         <FormControl>
           <Select
-            displayEmpty
             IconComponent={DropDownIcon}
-            id="demo-simple-select"
-            labelId="demo-simple-select-label"
             MenuProps={{
               variant: "menu",
               disableScrollLock: true,
@@ -131,6 +128,9 @@ const Calculator = (props: any) => {
                 },
               },
             }}
+            displayEmpty
+            id="demo-simple-select"
+            labelId="demo-simple-select-label"
             onChange={(e) => setSelectedToken(e.target.value)}
             onClose={() => {
               setIsOpen(false);

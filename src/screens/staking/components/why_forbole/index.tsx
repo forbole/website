@@ -109,16 +109,16 @@ const WhyForbole = () => {
             <Trans
               components={[
                 <Box
-                  key="0"
                   className="h3"
+                  key="0"
                   sx={{
                     color: theme.palette.custom.forbole.indigo6,
                     width: "80%",
                   }}
                 />,
                 <Box
-                  key="1"
                   className="h3"
+                  key="1"
                   sx={{
                     background:
                       "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",

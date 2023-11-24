@@ -39,11 +39,12 @@
   },
   "exclude": ["node_modules"],
   "include": [
-    "next-env.d.ts",
+    "**/*.cjs",
+    "**/*.js",
+    "**/*.mjs",
     "**/*.ts",
     "**/*.tsx",
-    "tests/utils/mock_i18n.js",
-    "tests/utils/mock_apollo_provider.tss",
-    "environment.d.ts"
+    ".eslintrc.cjs",
+    "next-env.d.ts"
   ]
 }

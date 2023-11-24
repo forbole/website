@@ -295,13 +295,13 @@ const TalkModal = ({
                 }}
               >
                 <Input
-                  ref={inputRef}
-                  disabled={!inputs.Other}
                   disableUnderline
+                  disabled={!inputs.Other}
                   fullWidth
                   name="specify"
                   onInput={handleInputChange}
                   placeholder={t("item_5")}
+                  ref={inputRef}
                   sx={{
                     p: "12px",
                     fontSize: "16px",

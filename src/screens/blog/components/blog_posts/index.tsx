@@ -94,8 +94,8 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
         {!!main && <Post main post={main} />}
         {blogsUpper.map((post, i) => (
           <Post
-            key={post.id}
             id={i}
+            key={post.id}
             post={post}
             refProp={i === lastView ? postRef : null}
           />

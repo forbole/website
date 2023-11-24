@@ -40,9 +40,9 @@ const Author = ({ post }: any) => {
         }}
       >
         <Link
-          key={post.id}
           as={`/author/${author.slug}`}
           href="/author/[author]"
+          key={post.id}
           style={{ textDecoration: "none" }}
         >
           <Typography

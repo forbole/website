@@ -12,7 +12,7 @@ const StatsCard = ({ title, stats }: any) => {
   const { t } = useTranslation("common");
 
   return (
-    <Box ref={counterRef} css={styles.root}>
+    <Box css={styles.root} ref={counterRef}>
       <Typography variant="h6">{title}</Typography>
       {title === t("full tvl") && stats === "-" && (
         <Typography variant="h3">{`$ ${stats}`}</Typography>

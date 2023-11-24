@@ -33,7 +33,7 @@ function SignatureCard() {
       rowSpacing={{ laptop: "0", mobile: "16px" }}
     >
       {data.map((d, k) => (
-        <Grid key={k} item laptop={4} mobile={12}>
+        <Grid item key={k} laptop={4} mobile={12}>
           <Stack
             sx={{
               position: "relative",

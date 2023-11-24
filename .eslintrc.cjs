@@ -1,23 +1,20 @@
+const path = require("node:path");
+
 module.exports = {
   env: {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: ["plugin:react/recommended", "prettier"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: "latest",
-    sourceType: "module",
+    project: path.join(__dirname, "tsconfig.json"),
   },
   plugins: ["react", "@typescript-eslint", "prettier", "react-hooks"],
   rules: {
     "arrow-body-style": "error",
     "camelcase": "off",
     "global-require": "off",
-    "max-len": "error",
     "no-shadow": "off",
     "no-unused-vars": "off",
     "no-useless-return": "error",
@@ -42,29 +39,9 @@ module.exports = {
     "jsx-a11y/control-has-associated-label": "off",
     "jsx-a11y/interactive-supports-focus": "off",
 
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        js: "never",
-        jsx: "never",
-        ts: "never",
-        tsx: "never",
-      },
-    ],
-    "import/no-absolute-path": "off",
-    "import/no-dynamic-require": "error",
-    "import/no-extraneous-dependencies": "off",
-    "import/no-unresolved": "off",
-    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [0],
 
-    "react/jsx-filename-extension": [
-      2,
-      {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
-      },
-    ],
-
+    "react/display-name": "off",
     "react/function-component-definition": "off",
     "react/jsx-boolean-value": "error",
     "react/jsx-fragments": "error",
@@ -93,12 +70,4 @@ module.exports = {
       },
     },
   ],
-  settings: {
-    "import/resolver": {
-      typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
-      node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
-      },
-    },
-  },
 };

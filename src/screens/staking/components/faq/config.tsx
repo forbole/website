@@ -57,8 +57,8 @@ export const useFaq = (): FAQProps[] => {
             <Trans
               components={[
                 <Typography
-                  key="0"
                   color={theme.palette.custom.forbole.blue}
+                  key="0"
                   sx={{
                     fontSize: theme.spacing(2),
                     [theme.breakpoints.up("laptop")]: {
@@ -67,7 +67,7 @@ export const useFaq = (): FAQProps[] => {
                   }}
                   variant="body1"
                 />,
-                <Link key="1" href="/stake-now">
+                <Link href="/stake-now" key="1">
                   <Typography
                     color="primary.main"
                     fontWeight={900}
