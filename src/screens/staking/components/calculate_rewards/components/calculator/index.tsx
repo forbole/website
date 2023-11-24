@@ -142,7 +142,8 @@ const Calculator = (props: any) => {
             value={selectedToken}
           >
             {networkData.map((network, i) => (
-              <MenuItem key={i}>
+              // @ts-expect-error Passing value is necessary in the calculate rewards
+              <MenuItem key={i} value={network}>
                 <Box
                   sx={{
                     "display": "flex",
