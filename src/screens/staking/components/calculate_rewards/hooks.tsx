@@ -185,7 +185,8 @@ export const useCalculateRewardsHook = () => {
       selectedToken.key !== "terra_classic" &&
       selectedToken.key !== "gravity_bridge" &&
       selectedToken.key !== "jackal" &&
-      selectedToken.key !== "terra"
+      selectedToken.key !== "terra" &&
+      selectedToken.key !== "mars"
     ) {
       networkFunction = defaultFunctions();
       networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/${selectedToken.key}`;

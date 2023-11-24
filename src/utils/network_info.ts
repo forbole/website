@@ -820,6 +820,9 @@ const cosmosNetworkKeys = [
   "sui",
 ].sort();
 
+// These networks are not supported by the rewards calculator yet
+export const skippedRewardsNetworks = new Set(["mars", "nomic"]);
+
 const getNetworkKeysArray = () => {
   const arr = [];
   cosmosNetworkKeys.map((key) => arr.push(key));
