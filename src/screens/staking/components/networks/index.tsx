@@ -28,9 +28,9 @@ const Networks = () => {
     ...oasisNetwork,
     ...radixNetwork,
   };
-  const allNetworkData = allNetworkKeys.map((x: string | number) =>
-    getNetworkInfo(x),
-  );
+  const allNetworkData = allNetworkKeys
+    .map((x: string | number) => getNetworkInfo(x))
+    .filter(Boolean);
 
   const sortedNetworks = [...allNetworkData].sort((a, b) =>
     a.name.localeCompare(b.name),
