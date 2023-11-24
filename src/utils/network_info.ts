@@ -679,7 +679,7 @@ export const logos: IStringIndex = {
     name: "Islamic Coin",
   },
   "kyve": {
-    denom: "",
+    denom: "KYVE",
     graphql: "kyve",
     image: "/images/network/kyve.svg",
     key: "kyve",
