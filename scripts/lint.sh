@@ -8,6 +8,7 @@ npm run lint:prettier
 
 npx ts-unused-exports tsconfig.json \
   --excludePathsFromReport='.*pages.*$' \
+  --excludePathsFromReport='i18next-parser.config' \
   --excludePathsFromReport='playwright.config'
 
 npm run i18next
