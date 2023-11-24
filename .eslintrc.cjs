@@ -21,6 +21,12 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "react-hooks"],
   rules: {
+    // @TODO: These should be removed when fixed
+    "@typescript-eslint/no-explicit-any": "off",
+    "@next/next/no-img-element": "off",
+    "jsx-a11y/alt-text": "off",
+    "react/display-name": "off",
+
     "arrow-body-style": "error",
     "camelcase": "off",
     "global-require": "off",
@@ -38,16 +44,10 @@ module.exports = {
     ],
 
     "@typescript-eslint/consistent-type-imports": "error",
-    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-var-requires": "off",
 
-    "@next/next/no-img-element": "off",
-
-    "jsx-a11y/alt-text": "off",
-
-    "react/display-name": "off",
     "react/function-component-definition": "off",
     "react/jsx-boolean-value": "error",
     "react/jsx-filename-extension": "off",
