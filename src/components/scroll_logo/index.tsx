@@ -19,9 +19,9 @@ function splitArray(array: any[], length: number) {
 const ScrollLogo = () => {
   const theme = useTheme();
 
-  const allNetworkData = allNetworkKeys.map((x: string | number) =>
-    getNetworkInfo(x),
-  );
+  const allNetworkData = allNetworkKeys
+    .map((x: string | number) => getNetworkInfo(x))
+    .filter(Boolean);
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
     noSsr: true,
   });

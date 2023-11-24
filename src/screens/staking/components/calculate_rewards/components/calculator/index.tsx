@@ -17,7 +17,10 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import React from "react";
 
-import { handleNetworkClick } from "@src/utils/network_functions";
+import {
+  getCanClickNetwork,
+  handleNetworkClick,
+} from "@src/utils/network_functions";
 import {
   allNetworkKeys,
   getNetworkInfo,
@@ -44,8 +47,9 @@ const Calculator = () => {
 
   const networkData = allNetworkKeys
     .map((x: string | number) => getNetworkInfo(x))
+    .filter(Boolean)
     .filter((x) => !skippedRewardsNetworks.has(x.key))
-    .filter((x) => x.delegate);
+    .filter((x) => getCanClickNetwork(x));
 
   React.useEffect(() => {
     if (selectedToken === "") {
@@ -401,7 +405,6 @@ const Calculator = () => {
           </Box>
           <Box sx={styles.buttonDiv}>
             <Button
-              disabled={!selectedToken.delegate}
               onClick={() => {
                 handleNetworkClick(selectedToken);
               }}

@@ -60,8 +60,8 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   const isEmptyPopover =
     networksWithoutPopover.has(network.graphql) ||
     (!!networkSummary &&
-      !networkSummary.bonded &&
-      !networkSummary.APY &&
+      (!networkSummary.bonded || networkSummary.bonded < 0) &&
+      (!networkSummary.APY || networkSummary.APY < 0) &&
       !networkSummary.TVL);
 
   /* A variable that is used to render the popover. */
@@ -95,7 +95,7 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
       {!networkSummary && <LinearProgress color="secondary" />}
       {!!networkSummary && (
         <Box onClickCapture={handleMobilePopoverClick}>
-          {!!networkSummary.bonded && (
+          {!!networkSummary.bonded && networkSummary.bonded > 0 && (
             <Box>
               <Typography variant="h6">
                 {network.denom?.toUpperCase()}
@@ -103,16 +103,12 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
               <Typography>{convertToMoney(networkSummary.bonded)}</Typography>
             </Box>
           )}
-          {!!networkSummary.APY && (
+          {!!networkSummary.APY && networkSummary.APY > 0 && (
             <Box>
               <Typography variant="h6">APY</Typography>
-              {networkSummary.APY <= 0 ? (
-                <Typography>-%</Typography>
-              ) : (
-                <Typography>{`${Math.round(
-                  networkSummary.APY * 100,
-                )}%`}</Typography>
-              )}
+              <Typography>{`${Math.round(
+                networkSummary.APY * 100,
+              )}%`}</Typography>
             </Box>
           )}
           {!!networkSummary.TVL && (

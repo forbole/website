@@ -57,6 +57,7 @@ const logos: IStringIndex = {
     image: "/images/network/agoric.png",
     key: "agoric",
     name: "Agoric",
+    label: "Agoric - BLD",
   },
   "akash": {
     address: "akashvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0uzn073",
@@ -108,6 +109,7 @@ const logos: IStringIndex = {
     guide: "how-to-stake-btsg-on-bitsong",
     image: "/images/network/bitsong.png",
     key: "bitsong",
+    label: "BitSong - BTSG",
     name: "BitSong",
   },
   "crypto.org": {
@@ -150,6 +152,7 @@ const logos: IStringIndex = {
     heightSocket: "wss://ws.emoney.forbole.com",
     image: "/images/network/e_money.png",
     key: "e-money",
+    label: "e-Money - NGM",
     name: "eMoney",
   },
   "evmos": {
@@ -440,6 +443,7 @@ const logos: IStringIndex = {
     guide: "how-to-stake-sol-on-solana",
     image: "/images/network/solana.png",
     key: "solana",
+    label: "Solana - SOL",
     name: "Solana",
   },
   "cardano": {
@@ -655,7 +659,7 @@ const logos: IStringIndex = {
     guide: "how-to-stake-core-on-coreum",
     image: "/images/network/coreum.svg",
     key: "coreum",
-    label: "",
+    label: "Coreum - CORE",
     name: "Coreum",
   },
   "humansai": {
@@ -729,7 +733,7 @@ const logos: IStringIndex = {
     guide: "how-to-stake-lore-on-gitopia",
     image: "/images/network/gitopia.svg",
     key: "gitopia",
-    label: "",
+    label: "Gitopia - LORE",
     name: "Gitopia",
   },
   "rizon": {
@@ -741,12 +745,12 @@ const logos: IStringIndex = {
     name: "Rizon",
   },
   "sui": {
-    denom: "",
+    denom: "SUI",
     graphql: "sui",
     guide: "how-to-stake-sui-on-sui-network",
     image: "/images/network/sui.svg",
     key: "sui",
-    label: "",
+    label: "Sui - SUI",
     name: "Sui",
   },
   "picasso": {
@@ -759,7 +763,7 @@ const logos: IStringIndex = {
   },
 };
 
-export const getNetworkInfo = (key: string | number) => logos[key] ?? {};
+export const getNetworkInfo = (key: string | number) => logos[key] || null;
 
 const cosmosNetworkKeys = [
   "e-money",
