@@ -13,6 +13,7 @@ import {
   getRadixTVL,
   getSolanaBondedToken,
   getSolanaTVL,
+  getSuiBondedToken,
 } from "@graphql/queries";
 import { useMemo, useState } from "react";
 
@@ -64,6 +65,11 @@ export const useNetworkHook = () => {
   `);
   const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(gql`
     ${getOasisTVL()}
+  `);
+
+  const [suiNetwork, setSuiNetwork] = useState(oasisNetworkParams);
+  const { loading: suiBondedLoading, data: suiBondedData } = useQuery(gql`
+    ${getSuiBondedToken()}
   `);
 
   const [radixNetwork, setRadixNetwork] = useState(radixNetworkParams);
@@ -265,6 +271,20 @@ export const useNetworkHook = () => {
   }, [oasisBondedData, oasisBondedLoading, oasisNetwork]);
 
   useMemo(() => {
+    if (!suiBondedLoading && suiBondedData) {
+      const suiBondedToken = suiBondedData?.suiBondedToken
+        ?.bondedToken as string;
+
+      const bonded = Number(suiBondedToken);
+      if (Number.isNaN(bonded)) {
+        return;
+      }
+
+      setSuiNetwork({ sui: { bonded, APY: 0, TVL: 0 } });
+    }
+  }, [suiBondedLoading, suiBondedData]);
+
+  useMemo(() => {
     if (!radixTVLLoading && radixTVLData) {
       const { radixTVL } = radixTVLData;
       const key = radixTVL[0].metric.instance;
@@ -302,8 +322,9 @@ export const useNetworkHook = () => {
   return {
     cosmosNetworks,
     elrondNetwork,
-    solanaNetwork,
     oasisNetwork,
     radixNetwork,
+    solanaNetwork,
+    suiNetwork,
   };
 };

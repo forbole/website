@@ -57,3 +57,11 @@ export const getOasisBondedToken = () => `
         }
     }
 `;
+
+export const getSuiBondedToken = () => `
+    query SuiBondedToken {
+      suiBondedToken {
+        bondedToken
+      }
+    }
+`;

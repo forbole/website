@@ -57,6 +57,9 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
     [network],
   );
 
+  if (network.key === "sui") {
+    console.log("debug: index.tsx: networkSummary", network, networkSummary);
+  }
   const isEmptyPopover =
     networksWithoutPopover.has(network.graphql) ||
     (!!networkSummary &&
