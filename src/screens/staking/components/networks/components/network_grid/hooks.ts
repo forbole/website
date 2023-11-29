@@ -1,19 +1,10 @@
-/* eslint-disable no-unused-expressions */
 import { gql, useQuery } from "@apollo/client";
 import {
-  getEachCosmosAPY,
-  getEachCosmosBondedToken,
-  getEachCosmosTVL,
-  getElrondAPY,
-  getElrondBondedToken,
-  getElrondTVL,
   getOasisBondedToken,
   getOasisTVL,
   getRadixBondedToken,
   getRadixTVL,
-  getSolanaBondedToken,
-  getSolanaTVL,
-  getSuiBondedToken,
+  networkGridQuery,
 } from "@graphql/queries";
 import { useMemo, useState } from "react";
 
@@ -25,39 +16,14 @@ import {
   oasisNetworkParams,
   radixNetworkParams,
   solanaNetworkParams,
+  suiNetworkParams,
 } from "./config";
 
+const elrondNetworkFunctions = networkFunctions.elrond;
+
 export const useNetworkHook = () => {
-  const [cosmosNetworks, setCosmosNetworks] = useState(cosmosNetworkParams);
-  const { loading: cosmosBondedLoading, data: cosmosBondedData } = useQuery(gql`
-    ${getEachCosmosBondedToken()}
-  `);
-  const { loading: cosmosAPYLoading, data: cosmosAPYData } = useQuery(gql`
-    ${getEachCosmosAPY()}
-  `);
-  const { loading: cosmosTVLLoading, data: cosmosTVLData } = useQuery(gql`
-    ${getEachCosmosTVL()}
-  `);
-
-  const [elrondNetwork, setElrondNetwork] = useState(elrondNetworkParams);
-  const elrondNetworkFunctions = networkFunctions.elrond;
-  const { loading: elrondBondedLoading, data: elrondBondedData } = useQuery(gql`
-    ${getElrondBondedToken()}
-  `);
-  const { loading: elrondAPYLoading, data: elrondAPYData } = useQuery(gql`
-    ${getElrondAPY()}
-  `);
-  const { loading: elrondTVLLoading, data: elrondTVLData } = useQuery(gql`
-    ${getElrondTVL()}
-  `);
-
-  const [solanaNetwork, setSolanaNetwork] = useState(solanaNetworkParams);
-  const { loading: solanaBondedLoading, data: solanaBondedData } = useQuery(gql`
-    ${getSolanaBondedToken()}
-  `);
-  const { loading: solanaTVLLoading, data: solanaTVLData } = useQuery(gql`
-    ${getSolanaTVL()}
-  `);
+  const { loading: networkGridLoading, data: networkGridData } =
+    useQuery(networkGridQuery);
 
   const [oasisNetwork, setOasisNetwork] = useState(oasisNetworkParams);
   const { loading: oasisBondedLoading, data: oasisBondedData } = useQuery(gql`
@@ -65,11 +31,6 @@ export const useNetworkHook = () => {
   `);
   const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(gql`
     ${getOasisTVL()}
-  `);
-
-  const [suiNetwork, setSuiNetwork] = useState(oasisNetworkParams);
-  const { loading: suiBondedLoading, data: suiBondedData } = useQuery(gql`
-    ${getSuiBondedToken()}
   `);
 
   const [radixNetwork, setRadixNetwork] = useState(radixNetworkParams);
@@ -80,162 +41,135 @@ export const useNetworkHook = () => {
     ${getRadixTVL()}
   `);
 
-  useMemo(() => {
-    if (!cosmosBondedLoading && cosmosBondedData) {
-      const { eachCosmosBondedToken } = cosmosBondedData;
-      eachCosmosBondedToken.forEach((data: any) => {
-        const keys = Object.keys(cosmosNetworks);
+  const cosmosNetworks = useMemo(() => {
+    if (!networkGridLoading && networkGridData) {
+      const { eachCosmosBondedToken, eachCosmosAPY, eachCosmosTVL } =
+        networkGridData;
 
-        if (
-          keys.includes(data.metric.instance) &&
-          cosmosNetworks?.[data.metric.instance]?.bonded !== data?.bondedToken
-        ) {
-          setCosmosNetworks((prev) => ({
-            ...prev,
-            [data.metric.instance]: {
-              ...cosmosNetworks[data.metric.instance],
-              bonded: data.bondedToken,
-            },
-          }));
-        }
-      });
-    }
-  }, [cosmosBondedData, cosmosBondedLoading, cosmosNetworks]);
+      const keys = Object.keys(cosmosNetworkParams);
 
-  useMemo(() => {
-    if (!cosmosAPYLoading && cosmosAPYData) {
-      const { eachCosmosAPY } = cosmosAPYData;
-      eachCosmosAPY.forEach((data: any) => {
-        const keys = Object.keys(cosmosNetworks);
+      const objWithBonded = eachCosmosBondedToken.reduce(
+        (acc: any, data: any) => {
+          if (keys.includes(data.metric.instance)) {
+            return {
+              ...acc,
+              [data.metric.instance]: {
+                ...acc[data.metric.instance],
+                bonded: data.bondedToken,
+              },
+            };
+          }
 
+          return acc;
+        },
+        cosmosNetworkParams,
+      );
+
+      const objWithAYP = eachCosmosAPY.reduce((acc: any, data: any) => {
         if (keys.includes(data.metric.instance)) {
-          setCosmosNetworks((prev) => ({
-            ...prev,
+          return {
+            ...acc,
             [data.metric.instance]: {
-              ...cosmosNetworks[data.metric.instance],
+              ...acc[data.metric.instance],
               APY: data.APY,
             },
-          }));
+          };
         }
-      });
-    }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosAPYData, cosmosAPYLoading]);
+        return acc;
+      }, objWithBonded);
 
-  useMemo(() => {
-    if (!cosmosTVLLoading && cosmosTVLData) {
-      const { eachCosmosTVL } = cosmosTVLData || {};
-      eachCosmosTVL?.forEach((data: any) => {
-        const keys = Object.keys(cosmosNetworks);
-
+      return eachCosmosTVL.reduce((acc: any, data: any) => {
         if (keys.includes(data.metric.instance)) {
-          setCosmosNetworks((prev) => ({
-            ...prev,
+          return {
+            ...acc,
             [data.metric.instance]: {
-              ...cosmosNetworks[data.metric.instance],
+              ...acc[data.metric.instance],
               TVL: data.TVL,
             },
-          }));
+          };
         }
-      });
+
+        return acc;
+      }, objWithAYP);
     }
 
-    return cosmosNetworks;
+    return cosmosNetworkParams;
+  }, [networkGridData, networkGridLoading]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosTVLData, cosmosTVLLoading]);
+  const elrondNetwork = useMemo(() => {
+    if (!networkGridLoading && networkGridData) {
+      const { elrondBondedToken, elrondAPY, elrondTVL } = networkGridData;
 
-  useMemo(() => {
-    if (!elrondBondedLoading && elrondBondedData) {
-      const { elrondBondedToken } = elrondBondedData;
-      elrondBondedToken.forEach((data: any) => {
-        const key = Object.keys(elrondNetwork);
+      const key = Object.keys(elrondNetworkParams);
 
+      const objWithBonded = elrondBondedToken.reduce((acc: any, data: any) => {
         if (key.includes(data.metric.instance)) {
-          setElrondNetwork((prev) => ({
-            ...prev,
+          return {
+            ...acc,
             [data.metric.instance]: {
-              ...elrondNetwork[data.metric.instance],
+              ...acc[data.metric.instance],
               bonded: elrondNetworkFunctions.converter(data.bondedToken),
             },
-          }));
+          };
         }
-      });
-    }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [elrondBondedData, elrondBondedLoading]);
+        return acc;
+      }, elrondNetworkParams);
 
-  useMemo(() => {
-    if (!elrondAPYLoading && elrondAPYData) {
-      const { elrondAPY } = elrondAPYData;
-      elrondAPY.forEach((data: any) => {
-        const key = Object.keys(elrondNetwork);
+      const objWithAPY = elrondAPY.reduce((acc: any, data: any) => {
         if (key.includes(data.metric.instance)) {
-          setElrondNetwork((prev) => ({
-            ...prev,
+          return {
+            ...acc,
             [data.metric.instance]: {
-              ...elrondNetwork[data.metric.instance],
+              ...acc[data.metric.instance],
               APY: elrondNetworkFunctions.converter(data.APY),
             },
-          }));
+          };
         }
-      });
-    }
+      }, objWithBonded);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [elrondAPYData, elrondAPYLoading]);
-
-  useMemo(() => {
-    if (!elrondTVLLoading && elrondTVLData) {
-      const { elrondTVL } = elrondTVLData;
-      elrondTVL.forEach((data: any) => {
-        const key = Object.keys(elrondNetwork);
+      return elrondTVL.reduce((acc: any, data: any) => {
         if (key.includes(data.metric.instance)) {
-          setElrondNetwork((prev) => ({
-            ...prev,
+          return {
+            ...acc,
             [data.metric.instance]: {
-              ...elrondNetwork[data.metric.instance],
+              ...acc[data.metric.instance],
               TVL: elrondNetworkFunctions.converter(data.TVL),
             },
-          }));
+          };
         }
-      });
+
+        return acc;
+      }, objWithAPY);
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [elrondTVLData, elrondTVLLoading]);
+    return elrondNetworkParams;
+  }, [networkGridLoading, networkGridData]);
 
-  useMemo(() => {
-    if (!solanaTVLLoading && solanaTVLData) {
-      const { solanaTVL } = solanaTVLData;
-      setSolanaNetwork((prev) => ({
-        ...prev,
+  const solanaNetwork = useMemo(() => {
+    if (!networkGridLoading && networkGridData) {
+      const { solanaTVL, solanaBondedToken } = networkGridData;
+
+      const objWithTVL = {
+        ...solanaNetworkParams,
         [solanaTVL.metric.instance]: {
-          ...solanaNetwork[solanaTVL.metric.instance],
+          ...solanaNetworkParams[solanaTVL.metric.instance],
           TVL: solanaTVL.TVL,
         },
-      }));
-    }
+      };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [solanaTVLLoading, solanaTVLData]);
-
-  useMemo(() => {
-    if (!solanaBondedLoading && solanaBondedData) {
-      const { solanaBondedToken } = solanaBondedData;
-      setSolanaNetwork((prev) => ({
-        ...prev,
+      return {
+        ...objWithTVL,
         [solanaBondedToken.metric.instance]: {
-          ...solanaNetwork[solanaBondedToken.metric.instance],
+          ...(objWithTVL as any)[solanaBondedToken.metric.instance],
           bonded: solanaBondedToken.bondedToken,
         },
-      }));
+      };
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [solanaBondedData, solanaBondedLoading]);
+    return solanaNetworkParams;
+  }, [networkGridData, networkGridLoading]);
 
   useMemo(() => {
     if (!oasisTVLLoading && oasisTVLData) {
@@ -270,9 +204,9 @@ export const useNetworkHook = () => {
     }
   }, [oasisBondedData, oasisBondedLoading, oasisNetwork]);
 
-  useMemo(() => {
-    if (!suiBondedLoading && suiBondedData) {
-      const suiBondedToken = suiBondedData?.suiBondedToken
+  const suiNetwork = useMemo(() => {
+    if (!networkGridLoading && networkGridData) {
+      const suiBondedToken = networkGridData?.suiBondedToken
         ?.bondedToken as string;
 
       const bonded = Number(suiBondedToken);
@@ -280,9 +214,11 @@ export const useNetworkHook = () => {
         return;
       }
 
-      setSuiNetwork({ sui: { bonded, APY: 0, TVL: 0 } });
+      return { sui: { bonded, APY: 0, TVL: 0 } };
     }
-  }, [suiBondedLoading, suiBondedData]);
+
+    return suiNetworkParams;
+  }, [networkGridData, networkGridLoading]);
 
   useMemo(() => {
     if (!radixTVLLoading && radixTVLData) {

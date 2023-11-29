@@ -22,30 +22,6 @@ export const getRadixBondedToken = () => `
     }
 `;
 
-export const getSolanaBondedToken = () => `
-    query SolanaBondedToken {
-        solanaBondedToken {
-        metric {
-            instance
-            validator_address
-        }
-        bondedToken
-        }
-    }
-`;
-
-export const getElrondBondedToken = () => `
-    query ElrondBondedToken {
-        elrondBondedToken {
-        metric {
-            instance
-            validator_address
-        }
-        bondedToken
-        }
-    }
-`;
-
 export const getOasisBondedToken = () => `
     query OasisBondedToken {
         oasisBondedToken {
@@ -55,13 +31,5 @@ export const getOasisBondedToken = () => `
         }
         bondedToken
         }
-    }
-`;
-
-export const getSuiBondedToken = () => `
-    query SuiBondedToken {
-      suiBondedToken {
-        bondedToken
-      }
     }
 `;
