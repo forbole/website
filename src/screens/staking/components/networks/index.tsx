@@ -17,16 +17,18 @@ const Networks = () => {
   const {
     cosmosNetworks,
     elrondNetwork,
-    solanaNetwork,
     oasisNetwork,
     radixNetwork,
+    solanaNetwork,
+    suiNetwork,
   } = useNetworkHook();
   const allNetworkInfo: NetworkProps = {
     ...cosmosNetworks,
     ...elrondNetwork,
-    ...solanaNetwork,
     ...oasisNetwork,
     ...radixNetwork,
+    ...solanaNetwork,
+    ...suiNetwork,
   };
   const allNetworkData = allNetworkKeys
     .map((x: string | number) => getNetworkInfo(x))
