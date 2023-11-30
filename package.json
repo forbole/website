@@ -13,7 +13,6 @@
     "lint:prettier": "prettier --check src/**/* graphql/**/*",
     "lint:prettier:fix": "prettier --write src/**/* graphql/**/*",
     "postinstall": "husky install",
-    "prd": "pm2 start ecosystem.config.js",
     "start": "next start",
     "test": "echo no tests",
     "type-check": "tsc"
