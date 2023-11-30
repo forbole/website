@@ -5,6 +5,7 @@ import { useMemo } from "react";
 
 import { networkFunctions } from "@utils/network_functions";
 
+import type { NetworkProps } from "./config";
 import {
   cosmosNetworkParams,
   elrondNetworkParams,
@@ -101,7 +102,7 @@ export const useNetworkHook = () => {
           [solanaBondedToken.metric.instance, "bonded"],
           solanaBondedToken.bondedToken,
         ),
-      )(solanaNetworkParams);
+      )(solanaNetworkParams) as NetworkProps;
     }
 
     return solanaNetworkParams;
@@ -141,7 +142,7 @@ export const useNetworkHook = () => {
 
       const bonded = Number(suiBondedToken);
       if (Number.isNaN(bonded)) {
-        return;
+        return suiNetworkParams;
       }
 
       return { sui: { bonded, APY: 0, TVL: 0 } };
@@ -162,8 +163,10 @@ export const useNetworkHook = () => {
       return compose(
         assocPath([tvlKey, "TVL"], TVL),
         assocPath([bondedKey, "bonded"], bonded),
-      )(radixNetworkParams);
+      )(radixNetworkParams) as NetworkProps;
     }
+
+    return radixNetworkParams;
   }, [networkGridData, networkGridLoading]);
 
   return {
