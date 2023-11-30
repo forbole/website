@@ -30,6 +30,7 @@ module.exports = {
     "arrow-body-style": "error",
     "camelcase": "off",
     "global-require": "off",
+    "no-console": ["error", { allow: ["warn", "error"] }],
     "no-shadow": "off",
     "no-unused-vars": "off",
     "no-useless-return": "error",

@@ -17,6 +17,7 @@ const Networks = () => {
   const {
     cosmosNetworks,
     elrondNetwork,
+    ethereumNetwork,
     oasisNetwork,
     radixNetwork,
     solanaNetwork,
@@ -25,6 +26,7 @@ const Networks = () => {
   const allNetworkInfo: NetworkProps = {
     ...cosmosNetworks,
     ...elrondNetwork,
+    ...ethereumNetwork,
     ...oasisNetwork,
     ...radixNetwork,
     ...solanaNetwork,

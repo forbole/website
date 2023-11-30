@@ -657,6 +657,8 @@ const logos: IStringIndex = {
     name: "Gitopia",
   },
   "sui": {
+    address:
+      "0x1e1985024aafe50a8e4eafc5a89eb7ecd58ba08c39f37688bee00bd55c8b2059",
     denom: "SUI",
     graphql: "sui",
     guide: "how-to-stake-sui-on-sui-network",
@@ -781,6 +783,9 @@ export const skippedRewardsNetworks = new Set([
   "stride",
   "teritori",
 ]);
+
+// The data of these networks is not ready yet
+export const networksWithHiddenInfo = new Set(["radix", "oasis"]);
 
 const getNetworkKeysArray = () => {
   const arr = [...cosmosNetworkKeys];

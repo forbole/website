@@ -60,9 +60,9 @@ const NetworkInfo = ({ post }: any) => {
     return getNetworkInfo(tags[1].slug);
   })();
 
-  const { cosmosNetworkGuides } = useNetworkGuidesHook();
+  const { networkGuides } = useNetworkGuidesHook();
 
-  const networkStats = cosmosNetworkGuides[networkData?.graphql || ""];
+  const networkStats = networkGuides[networkData?.graphql || ""];
 
   const copyText = React.useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -187,11 +187,13 @@ const NetworkInfo = ({ post }: any) => {
                     alignItems="center"
                     display="flex"
                     flexDirection="row"
+                    ml={1}
                     mt={-1}
                   >
                     <Typography
                       className="value"
-                      color="#76819B"
+                      color="#ba6600"
+                      fontWeight={700}
                       variant="body2"
                     >
                       {!onlyLargeScreen

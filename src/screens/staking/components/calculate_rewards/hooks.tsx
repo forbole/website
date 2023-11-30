@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { rewardsQuery } from "@graphql/queries";
+import { rewardsQuery } from "@graphql/queries/rewards";
 import axios from "axios";
 import { pathOr } from "ramda";
 import { useCallback, useEffect, useMemo, useState } from "react";
