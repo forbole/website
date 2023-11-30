@@ -173,20 +173,22 @@ export const useCalculateRewardsHook = () => {
 
     if (
       networkFunction === null &&
-      selectedToken.key !== "cheqd" &&
-      selectedToken.key !== "chihuahua" &&
-      selectedToken.key !== "crescent" &&
-      selectedToken.key !== "crypto-org" &&
-      selectedToken.key !== "injective" &&
-      selectedToken.key !== "juno" &&
-      selectedToken.key !== "sentinelhub" &&
-      selectedToken.key !== "shentu" &&
-      selectedToken.key !== "stafihub" &&
-      selectedToken.key !== "terra_classic" &&
-      selectedToken.key !== "gravity_bridge" &&
-      selectedToken.key !== "jackal" &&
-      selectedToken.key !== "terra" &&
-      selectedToken.key !== "mars"
+      !new Set([
+        "cheqd",
+        "chihuahua",
+        "crescent",
+        "crypto-org",
+        "gravity_bridge",
+        "injective",
+        "jackal",
+        "juno",
+        "mars",
+        "sentinelhub",
+        "shentu",
+        "stafihub",
+        "terra",
+        "terra_classic",
+      ]).has(selectedToken.key)
     ) {
       networkFunction = defaultFunctions();
       networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/${selectedToken.key}`;
