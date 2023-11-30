@@ -5,9 +5,6 @@ ENV PORT 3000
 # Set app directory
 WORKDIR /app
 
-# Add PM2
-RUN npm install pm2 -g
-
 # Installing dependencies
 COPY package*.json ./
 RUN npm ci
@@ -45,5 +42,4 @@ ENV NEXT_PUBLIC_COINGECKO_API ${NEXT_PUBLIC_COINGECKO_API}
 RUN npm run build
 EXPOSE ${PORT}
 
-# Running the app
-CMD ["pm2-runtime", "dist/index.js"]
+CMD ["npm", "start"]

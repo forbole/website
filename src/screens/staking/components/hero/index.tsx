@@ -1,10 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React from "react";
 
 import { ScrollToBottom } from "@components";
+import horseImage from "@src/../public/images/assets/image_horse_blur.png";
+import horseShadow from "@src/../public/images/assets/image_water_shadow.png";
 import { useWindowDimensions } from "@src/hooks";
 
 import { Stats } from "./components";
@@ -70,10 +72,10 @@ const Hero = () => {
             }}
           >
             <Image
-              alt=""
+              alt="Forbole Horse Logo"
               layout="fill"
               objectFit="contain"
-              src="/images/assets/image_horse_blur.png"
+              src={horseImage}
             />
           </Box>
           <Typography
@@ -129,12 +131,7 @@ const Hero = () => {
               },
             }}
           >
-            <Image
-              alt=""
-              layout="fill"
-              objectFit="contain"
-              src="/images/assets/image_water_shadow.png"
-            />
+            <Image alt="Forbole Logo Shadow" fill src={horseShadow} />
           </Box>
         </Box>
         <ScrollToBottom bottomRef={ref} staking />
