@@ -1,8 +1,10 @@
 import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 
+import buildImageDesktop from "@src/../public/images/footer/Build@2x.png";
+import buildImageMobile from "@src/../public/images/footer/Build_m@2x.png";
 import { useWindowDimensions } from "@src/hooks";
 
 import CtaButton from "../cta-button";
@@ -61,14 +63,14 @@ const Footer = ({ red, itemColor }: FooterProps) => {
               {isMobile ? (
                 <Image
                   alt="Picture of the author"
-                  objectFit="contain"
-                  src={require("/public/images/footer/Build_m@2x.png")}
+                  src={buildImageMobile}
+                  width={300}
                 />
               ) : (
                 <Image
                   alt="Picture of the author"
-                  objectFit="contain"
-                  src={require("/public/images/footer/Build@2x.png")}
+                  fill
+                  src={buildImageDesktop}
                 />
               )}
             </Box>

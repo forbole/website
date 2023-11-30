@@ -9,9 +9,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const baseConfig = nextTranslate({
   poweredByHeader: false,
-  images: {
-    unoptimized: true,
-  },
   redirects: async () => [
     {
       destination: "/zh-HK/:path*",
