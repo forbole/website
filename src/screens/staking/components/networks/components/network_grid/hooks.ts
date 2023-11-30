@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { networkGridQuery } from "@graphql/queries";
-import { assocPath, compose } from "ramda";
+import { __, assocPath, compose, reduce } from "ramda";
 import { useMemo } from "react";
 
 import { networkFunctions } from "@utils/network_functions";
@@ -25,52 +25,26 @@ export const useNetworkHook = () => {
       const { eachCosmosBondedToken, eachCosmosAPY, eachCosmosTVL } =
         networkGridData;
 
-      const keys = Object.keys(cosmosNetworkParams);
-
-      const objWithBonded = eachCosmosBondedToken.reduce(
-        (acc: any, data: any) => {
-          if (keys.includes(data.metric.instance)) {
-            return {
-              ...acc,
-              [data.metric.instance]: {
-                ...acc[data.metric.instance],
-                bonded: data.bondedToken,
-              },
-            };
-          }
-
-          return acc;
-        },
-        cosmosNetworkParams,
-      );
-
-      const objWithAYP = eachCosmosAPY.reduce((acc: any, data: any) => {
-        if (keys.includes(data.metric.instance)) {
-          return {
-            ...acc,
-            [data.metric.instance]: {
-              ...acc[data.metric.instance],
-              APY: data.APY,
-            },
-          };
-        }
-
-        return acc;
-      }, objWithBonded);
-
-      return eachCosmosTVL.reduce((acc: any, data: any) => {
-        if (keys.includes(data.metric.instance)) {
-          return {
-            ...acc,
-            [data.metric.instance]: {
-              ...acc[data.metric.instance],
-              TVL: data.TVL,
-            },
-          };
-        }
-
-        return acc;
-      }, objWithAYP);
+      return compose(
+        reduce(
+          (acc: any, data: any) =>
+            assocPath([data.metric.instance, "bonded"], data.bondedToken, acc),
+          __,
+          eachCosmosBondedToken,
+        ),
+        reduce(
+          (acc: any, data: any) =>
+            assocPath([data.metric.instance, "APY"], data.APY, acc),
+          __,
+          eachCosmosAPY,
+        ),
+        reduce<any, any>(
+          (acc: any, data: any) =>
+            assocPath([data.metric.instance, "TVL"], data.TVL, acc),
+          __,
+          eachCosmosTVL,
+        ),
+      )(cosmosNetworkParams);
     }
 
     return cosmosNetworkParams;
@@ -80,47 +54,38 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const { elrondBondedToken, elrondAPY, elrondTVL } = networkGridData;
 
-      const key = Object.keys(elrondNetworkParams);
-
-      const objWithBonded = elrondBondedToken.reduce((acc: any, data: any) => {
-        if (key.includes(data.metric.instance)) {
-          return {
-            ...acc,
-            [data.metric.instance]: {
-              ...acc[data.metric.instance],
-              bonded: elrondNetworkFunctions.converter(data.bondedToken),
-            },
-          };
-        }
-
-        return acc;
-      }, elrondNetworkParams);
-
-      const objWithAPY = elrondAPY.reduce((acc: any, data: any) => {
-        if (key.includes(data.metric.instance)) {
-          return {
-            ...acc,
-            [data.metric.instance]: {
-              ...acc[data.metric.instance],
-              APY: elrondNetworkFunctions.converter(data.APY),
-            },
-          };
-        }
-      }, objWithBonded);
-
-      return elrondTVL.reduce((acc: any, data: any) => {
-        if (key.includes(data.metric.instance)) {
-          return {
-            ...acc,
-            [data.metric.instance]: {
-              ...acc[data.metric.instance],
-              TVL: elrondNetworkFunctions.converter(data.TVL),
-            },
-          };
-        }
-
-        return acc;
-      }, objWithAPY);
+      return compose(
+        reduce(
+          (acc: any, data: any) =>
+            assocPath(
+              [data.metric.instance, "bonded"],
+              elrondNetworkFunctions.converter(data.bondedToken),
+              acc,
+            ),
+          __,
+          elrondBondedToken,
+        ),
+        reduce(
+          (acc: any, data: any) =>
+            assocPath(
+              [data.metric.instance, "APY"],
+              elrondNetworkFunctions.converter(data.APY),
+              acc,
+            ),
+          __,
+          elrondAPY,
+        ),
+        reduce<any, any>(
+          (acc: any, data: any) =>
+            assocPath(
+              [data.metric.instance, "TVL"],
+              elrondNetworkFunctions.converter(data.TVL),
+              acc,
+            ),
+          __,
+          elrondTVL,
+        ),
+      )(elrondNetworkParams);
     }
 
     return elrondNetworkParams;

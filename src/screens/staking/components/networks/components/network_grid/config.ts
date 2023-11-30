@@ -1,3 +1,5 @@
+import { cosmosNetworkKeys } from "@src/utils/network_info";
+
 export type ParamsProps = {
   bonded: number;
   APY: number;
@@ -16,59 +18,14 @@ const defaultParams: ParamsProps = {
   TVL: 0,
 };
 
-export const cosmosNetworkParams: NetworkProps = [
-  "agoric",
-  "akash",
-  "archway",
-  "assetmantle",
-  "axelar",
-  "band",
-  "bitsong",
-  "celer",
-  "cheqd",
-  "comdex",
-  "coreum",
-  "cosmos",
-  "crescent",
-  "cro",
-  "emoney",
-  "ethereum",
-  "evmos",
-  "fetchai",
-  "gitopia",
-  "gravitybridge",
-  "humansai",
-  "injective",
-  "jackal",
-  "kava",
-  "kyve",
-  "likecoin",
-  "mars",
-  "neutron",
-  "nolus",
-  "nomic",
-  "nym",
-  "omniflix",
-  "osmosis",
-  "passage",
-  "persistence",
-  "picasso",
-  "provenance",
-  "quicksilver",
-  "regen",
-  "sentinelhub",
-  "ssv",
-  "stafihub",
-  "stargaze",
-  "stride",
-  "sui",
-  "teritori",
-  "tgrade",
-  "ununifi",
-  "vsys",
-  "wormhole",
-  "xpla",
-].reduce((acc, key) => ({ ...acc, [key]: defaultParams }), {});
+export const cosmosNetworkParams: NetworkProps = cosmosNetworkKeys.reduce(
+  (acc, key) => {
+    acc[key] = defaultParams;
+
+    return acc;
+  },
+  {} as Record<string, ParamsProps>,
+);
 
 export const elrondNetworkParams: NetworkProps = {
   elrond: defaultParams,

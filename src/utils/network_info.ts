@@ -694,7 +694,7 @@ const logos: IStringIndex = {
 
 export const getNetworkInfo = (key: string | number) => logos[key] || null;
 
-const cosmosNetworkKeys = [
+export const cosmosNetworkKeys = [
   "agoric",
   "akash",
   "archway",
@@ -751,7 +751,7 @@ const cosmosNetworkKeys = [
   // "celestia",
   // "islamic_coin",
   // 'desmos',
-].sort();
+];
 
 // These networks are not supported by the rewards calculator yet
 export const skippedRewardsNetworks = new Set(["mars", "nomic"]);
