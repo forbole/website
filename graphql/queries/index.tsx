@@ -1,9 +1,5 @@
 import { getEachCosmosAPY } from "./apy";
-import {
-  getEachCosmosBondedToken,
-  getOasisBondedToken,
-  getRadixBondedToken,
-} from "./bondedToken";
+import { getEachCosmosBondedToken } from "./bondedToken";
 import { getEachCosmosCommission } from "./commission";
 import { getEachCosmosInflation } from "./inflation";
 import { networkGridQuery } from "./networkGrid";
@@ -37,10 +33,8 @@ export {
   getEachCosmosUnbondingTime,
   getElrondTVL,
   getElrondUsersCount,
-  getOasisBondedToken,
   getOasisTVL,
   getOasisUsersCount,
-  getRadixBondedToken,
   getRadixTVL,
   getRadixUsersCount,
   getSolanaTVL,

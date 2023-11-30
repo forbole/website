@@ -1,12 +1,7 @@
-import { gql, useQuery } from "@apollo/client";
-import {
-  getOasisBondedToken,
-  getOasisTVL,
-  getRadixBondedToken,
-  getRadixTVL,
-  networkGridQuery,
-} from "@graphql/queries";
-import { useMemo, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { networkGridQuery } from "@graphql/queries";
+import { assocPath, compose } from "ramda";
+import { useMemo } from "react";
 
 import { networkFunctions } from "@utils/network_functions";
 
@@ -24,22 +19,6 @@ const elrondNetworkFunctions = networkFunctions.elrond;
 export const useNetworkHook = () => {
   const { loading: networkGridLoading, data: networkGridData } =
     useQuery(networkGridQuery);
-
-  const [oasisNetwork, setOasisNetwork] = useState(oasisNetworkParams);
-  const { loading: oasisBondedLoading, data: oasisBondedData } = useQuery(gql`
-    ${getOasisBondedToken()}
-  `);
-  const { loading: oasisTVLLoading, data: oasisTVLData } = useQuery(gql`
-    ${getOasisTVL()}
-  `);
-
-  const [radixNetwork, setRadixNetwork] = useState(radixNetworkParams);
-  const { loading: radixBondedLoading, data: radixBondedData } = useQuery(gql`
-    ${getRadixBondedToken()}
-  `);
-  const { loading: radixTVLLoading, data: radixTVLData } = useQuery(gql`
-    ${getRadixTVL()}
-  `);
 
   const cosmosNetworks = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
@@ -151,58 +130,44 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const { solanaTVL, solanaBondedToken } = networkGridData;
 
-      const objWithTVL = {
-        ...solanaNetworkParams,
-        [solanaTVL.metric.instance]: {
-          ...solanaNetworkParams[solanaTVL.metric.instance],
-          TVL: solanaTVL.TVL,
-        },
-      };
-
-      return {
-        ...objWithTVL,
-        [solanaBondedToken.metric.instance]: {
-          ...(objWithTVL as any)[solanaBondedToken.metric.instance],
-          bonded: solanaBondedToken.bondedToken,
-        },
-      };
+      return compose(
+        assocPath([solanaTVL.metric.instance, "TVL"], solanaTVL.TVL),
+        assocPath(
+          [solanaBondedToken.metric.instance, "bonded"],
+          solanaBondedToken.bondedToken,
+        ),
+      )(solanaNetworkParams);
     }
 
     return solanaNetworkParams;
   }, [networkGridData, networkGridLoading]);
 
-  useMemo(() => {
-    if (!oasisTVLLoading && oasisTVLData) {
-      const { oasisTVL } = oasisTVLData;
-      setOasisNetwork((prev) => ({
-        ...prev,
+  const oasisNetwork = useMemo(() => {
+    if (!networkGridLoading && networkGridData) {
+      const { oasisTVL, oasisBondedToken } = networkGridData;
+
+      const networkWithTVL = {
+        ...oasisNetworkParams,
         [oasisTVL[0].metric.instance]: {
-          ...oasisNetwork[oasisTVL[0].metric.instance],
+          ...oasisNetworkParams[oasisTVL[0].metric.instance],
           TVL: oasisTVL[0].TVL,
         },
-      }));
-    }
+      };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [oasisTVLLoading, oasisTVLData]);
-
-  useMemo(() => {
-    if (!oasisBondedLoading && oasisBondedData) {
-      const { oasisBondedToken } = oasisBondedData;
       const key = oasisBondedToken[0].metric.instance;
       const bonded = oasisBondedToken[0].bondedToken;
 
-      if (oasisNetwork[key]?.bonded !== bonded) {
-        setOasisNetwork((prev) => ({
-          ...prev,
-          [key]: {
-            ...oasisNetwork[key],
-            bonded,
-          },
-        }));
-      }
+      return {
+        ...networkWithTVL,
+        [key]: {
+          ...(networkWithTVL as any)[key],
+          bonded,
+        },
+      };
     }
-  }, [oasisBondedData, oasisBondedLoading, oasisNetwork]);
+
+    return oasisNetworkParams;
+  }, [networkGridData, networkGridLoading]);
 
   const suiNetwork = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
@@ -220,40 +185,21 @@ export const useNetworkHook = () => {
     return suiNetworkParams;
   }, [networkGridData, networkGridLoading]);
 
-  useMemo(() => {
-    if (!radixTVLLoading && radixTVLData) {
-      const { radixTVL } = radixTVLData;
-      const key = radixTVL[0].metric.instance;
+  const radixNetwork = useMemo(() => {
+    if (!networkGridLoading && networkGridData) {
+      const { radixTVL, allRadixStakedTokens } = networkGridData;
+      const tvlKey = radixTVL[0].metric.instance;
       const { TVL } = radixTVL[0];
 
-      if (radixNetwork[key]?.TVL !== TVL) {
-        setRadixNetwork((prev) => ({
-          ...prev,
-          [key]: {
-            ...radixNetwork[key],
-            TVL,
-          },
-        }));
-      }
-    }
-  }, [radixTVLLoading, radixTVLData, radixNetwork]);
-
-  useMemo(() => {
-    if (!radixBondedLoading && radixBondedData) {
-      const { allRadixStakedTokens } = radixBondedData;
-      const key = allRadixStakedTokens[0].metric.instance;
+      const bondedKey = allRadixStakedTokens[0].metric.instance;
       const bonded = allRadixStakedTokens[0].bondedToken;
-      if (radixNetwork[key]?.bonded !== bonded) {
-        setRadixNetwork((prev) => ({
-          ...prev,
-          [key]: {
-            ...radixNetwork[key],
-            bonded,
-          },
-        }));
-      }
+
+      return compose(
+        assocPath([tvlKey, "TVL"], TVL),
+        assocPath([bondedKey, "bonded"], bonded),
+      )(radixNetworkParams);
     }
-  }, [radixBondedData, radixBondedLoading, radixNetwork]);
+  }, [networkGridData, networkGridLoading]);
 
   return {
     cosmosNetworks,

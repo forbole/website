@@ -45,6 +45,33 @@ export const networkGridQuery = gql`
       }
       TVL
     }
+    oasisBondedToken {
+      metric {
+        instance
+        validator_address
+      }
+      bondedToken
+    }
+    oasisTVL {
+      metric {
+        instance
+      }
+      TVL
+    }
+    allRadixStakedTokens {
+      metric {
+        instance
+        validator_address
+      }
+      bondedToken
+    }
+    radixTVL {
+      metric {
+        validator_address
+        instance
+      }
+      TVL
+    }
     solanaBondedToken {
       metric {
         instance
