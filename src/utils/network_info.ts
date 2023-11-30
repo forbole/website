@@ -673,6 +673,22 @@ const logos: IStringIndex = {
     label: "Picasso - PICA",
     name: "Picasso",
   },
+  "rizon": {
+    denom: "atolo",
+    graphql: "rizon",
+    image: "/images/network/rizon.svg",
+    key: "rizon",
+    label: "Rizon - ATOLO",
+    name: "Rizon",
+  },
+  "quasar": {
+    denom: "qsr",
+    graphql: "quasar",
+    image: "/images/network/quasar.svg",
+    key: "quasar",
+    label: "Quasar - QSR",
+    name: "Quasar",
+  },
 
   "celestia": {
     denom: "tia",
@@ -732,8 +748,10 @@ export const cosmosNetworkKeys = [
   "persistence",
   "picasso",
   "provenance",
+  "quasar",
   "quicksilver",
   "regen",
+  "rizon",
   "sentinel",
   "ssv",
   "stafihub",

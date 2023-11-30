@@ -86,6 +86,9 @@ export const networkGridQuery = gql`
       }
       TVL
     }
+    suiAPY {
+      APY
+    }
     suiBondedToken {
       bondedToken
     }
