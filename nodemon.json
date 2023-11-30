@@ -1,5 +1,0 @@
-{
-  "watch": ["server", "public", ".yalc"],
-  "ignore": ["src"],
-  "exec": "tsx ./server/index.ts"
-}
