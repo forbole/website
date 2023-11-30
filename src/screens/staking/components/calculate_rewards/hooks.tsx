@@ -1,10 +1,5 @@
-import { gql, useQuery } from "@apollo/client";
-import {
-  getEachCosmosBondedToken,
-  getEachCosmosCommission,
-  getEachCosmosInflation,
-  getEachCosmosTokenSupply,
-} from "@graphql/queries";
+import { useQuery } from "@apollo/client";
+import { rewardsQuery } from "@graphql/queries";
 import axios from "axios";
 import { pathOr } from "ramda";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -39,133 +34,55 @@ export const useCalculateRewardsHook = () => {
     },
   });
 
-  const networkParams = getStakingParams(selectedToken.key);
-  const [stakingParamState, setStakingParamState] = useState(networkParams);
-  const { commissionRate, inflation, stakingRatio } = stakingParamState;
+  const networkParams = useMemo(
+    () => getStakingParams(selectedToken.key),
+    [selectedToken.key],
+  );
 
-  const { loading: cosmosCommissionLoading, data: cosmosCommissionData } =
-    useQuery(gql`
-      ${getEachCosmosCommission()}
-    `);
+  const { loading: rewardsQueryLoading, data: rewardsQueryData } =
+    useQuery(rewardsQuery);
 
-  const { loading: cosmosInflationLoading, data: cosmosInflationData } =
-    useQuery(gql`
-      ${getEachCosmosInflation()}
-    `);
+  const selectedTokenGraphql = selectedToken?.graphql;
 
-  const { loading: cosmosBondedLoading, data: cosmosBondedData } = useQuery(gql`
-    ${getEachCosmosBondedToken()}
-  `);
+  const { commissionRate, inflation, stakingRatio } = useMemo(() => {
+    if (!rewardsQueryLoading && rewardsQueryData) {
+      const {
+        eachCosmosBondedToken,
+        eachCosmosCommission,
+        eachCosmosInflationRate,
+        eachCosmosTokenSupply,
+      } = rewardsQueryData;
+      const findFn = (data: any) =>
+        selectedTokenGraphql === data.metric.instance;
 
-  const { loading: cosmosSupplyLoading, data: cosmosSupplyData } = useQuery(gql`
-    ${getEachCosmosTokenSupply()}
-  `);
+      const comissionItem = eachCosmosCommission.find(findFn);
+      const inflationItem = eachCosmosInflationRate.find(findFn);
+      const supplyItem = eachCosmosTokenSupply.find(findFn);
+      const bondedTokenItem = eachCosmosBondedToken.find(findFn);
 
-  useMemo(() => {
-    if (!cosmosCommissionLoading && cosmosCommissionData) {
-      const { eachCosmosCommission } = cosmosCommissionData;
-      eachCosmosCommission.forEach((data: any) => {
-        const key = selectedToken.graphql;
-        const commissionRateNew = parseFloat(data.commissionRate);
+      const bondedToken = bondedTokenItem
+        ? parseFloat(bondedTokenItem.bondedToken)
+        : 0;
+      const totalSupply = supplyItem ? parseFloat(supplyItem.supply) : 0;
 
-        if (
-          key === data.metric.instance &&
-          stakingParamState?.commissionRate !== commissionRateNew
-        ) {
-          setStakingParamState((prev) => ({
-            ...prev,
-            commissionRate: commissionRateNew,
-          }));
-        }
-      });
+      return {
+        commissionRate: comissionItem
+          ? parseFloat(comissionItem.commissionRate)
+          : networkParams.commissionRate,
+        inflation: inflationItem
+          ? parseFloat(inflationItem.inflationRate)
+          : networkParams.inflation,
+        stakingRatio:
+          totalSupply && bondedToken ? bondedToken / totalSupply : 0,
+      };
     }
+
+    return networkParams;
   }, [
-    cosmosCommissionLoading,
-    cosmosCommissionData,
-    selectedToken,
-    stakingParamState?.commissionRate,
-  ]);
-
-  useMemo(() => {
-    if (!cosmosInflationLoading && cosmosInflationData) {
-      const { eachCosmosInflationRate } = cosmosInflationData;
-      eachCosmosInflationRate.forEach((data: any) => {
-        const key = selectedToken.graphql;
-        if (key === data.metric.instance) {
-          setStakingParamState((prev) => ({
-            ...prev,
-            inflation: parseFloat(data.inflationRate),
-          }));
-        }
-      });
-    }
-
-    return stakingParamState;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    cosmosInflationLoading,
-    cosmosInflationData,
-    selectedToken,
-    setSelectedToken,
-  ]);
-
-  useMemo(() => {
-    if (!cosmosBondedLoading && cosmosBondedData) {
-      const { eachCosmosBondedToken } = cosmosBondedData;
-      eachCosmosBondedToken.forEach((data: any) => {
-        const key = selectedToken.graphql;
-        if (key === data.metric.instance) {
-          setStakingParamState((prev) => ({
-            ...prev,
-            bondedToken: parseFloat(data.bondedToken),
-          }));
-        }
-      });
-    }
-
-    return stakingParamState;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosBondedData, cosmosBondedLoading, selectedToken, setSelectedToken]);
-
-  useMemo(() => {
-    if (!cosmosSupplyLoading && cosmosSupplyData) {
-      const { eachCosmosTokenSupply } = cosmosSupplyData;
-      eachCosmosTokenSupply.forEach((data: any) => {
-        const key = selectedToken.graphql;
-        if (key === data.metric.instance) {
-          setStakingParamState((prev) => ({
-            ...prev,
-            totalSupply: parseFloat(data.supply),
-          }));
-        }
-      });
-    }
-
-    return stakingParamState;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosSupplyData, cosmosSupplyLoading, selectedToken, setSelectedToken]);
-
-  useMemo(() => {
-    if (
-      cosmosBondedData &&
-      cosmosSupplyData &&
-      stakingParamState.bondedToken &&
-      stakingParamState.totalSupply
-    ) {
-      const ratio =
-        stakingParamState.bondedToken / stakingParamState.totalSupply;
-      setStakingParamState((prev) => ({
-        ...prev,
-        stakingRatio: ratio,
-      }));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    cosmosBondedData,
-    cosmosBondedLoading,
-    cosmosSupplyData,
-    cosmosSupplyLoading,
-    selectedToken,
+    rewardsQueryData,
+    rewardsQueryLoading,
+    selectedTokenGraphql,
+    networkParams,
   ]);
 
   const handleDefaultCalculation = useCallback(async () => {

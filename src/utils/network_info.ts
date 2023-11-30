@@ -673,6 +673,22 @@ const logos: IStringIndex = {
     label: "Picasso - PICA",
     name: "Picasso",
   },
+  "rizon": {
+    denom: "atolo",
+    graphql: "rizon",
+    image: "/images/network/rizon.svg",
+    key: "rizon",
+    label: "Rizon - ATOLO",
+    name: "Rizon",
+  },
+  "quasar": {
+    denom: "qsr",
+    graphql: "quasar",
+    image: "/images/network/quasar.svg",
+    key: "quasar",
+    label: "Quasar - QSR",
+    name: "Quasar",
+  },
 
   "celestia": {
     denom: "tia",
@@ -710,7 +726,6 @@ export const cosmosNetworkKeys = [
   "crescent",
   "crypto.org",
   "e-money",
-  "ethereum",
   "evmos",
   "fetch-ai",
   "gitopia",
@@ -732,14 +747,15 @@ export const cosmosNetworkKeys = [
   "persistence",
   "picasso",
   "provenance",
+  "quasar",
   "quicksilver",
   "regen",
+  "rizon",
   "sentinel",
   "ssv",
   "stafihub",
   "stargaze",
   "stride",
-  "sui",
   "teritori",
   "tgrade",
   "ununifi",
@@ -754,12 +770,22 @@ export const cosmosNetworkKeys = [
 ];
 
 // These networks are not supported by the rewards calculator yet
-export const skippedRewardsNetworks = new Set(["mars", "nomic"]);
+export const skippedRewardsNetworks = new Set([
+  "archway",
+  "crescent",
+  "e-money",
+  "mars",
+  "nomic",
+  "osmosis",
+  "stargaze",
+  "stride",
+  "teritori",
+]);
 
 const getNetworkKeysArray = () => {
   const arr = [...cosmosNetworkKeys];
 
-  arr.push("elrond", "solana", "oasis", "radix");
+  arr.push("elrond", "solana", "oasis", "radix", "sui", "ethereum");
   arr.sort();
 
   return arr;

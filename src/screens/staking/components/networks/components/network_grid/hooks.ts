@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { networkGridQuery } from "@graphql/queries";
-import { __, assocPath, compose, reduce } from "ramda";
+import { __, assocPath, compose, identity, reduce } from "ramda";
 import { useMemo } from "react";
 
 import { networkFunctions } from "@utils/network_functions";
@@ -139,13 +139,17 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const suiBondedToken = networkGridData?.suiBondedToken
         ?.bondedToken as string;
-
+      const apy = networkGridData?.suiAPY?.APY as string;
       const bonded = Number(suiBondedToken);
+
       if (Number.isNaN(bonded)) {
         return suiNetworkParams;
       }
 
-      return { sui: { bonded, APY: 0, TVL: 0 } };
+      return compose(
+        assocPath(["sui", "APY"], apy),
+        Number.isNaN(bonded) ? identity : assocPath(["sui", "bonded"], bonded),
+      )(suiNetworkParams) as NetworkProps;
     }
 
     return suiNetworkParams;

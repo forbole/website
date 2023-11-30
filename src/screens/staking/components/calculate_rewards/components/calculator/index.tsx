@@ -22,7 +22,7 @@ import {
   handleNetworkClick,
 } from "@src/utils/network_functions";
 import {
-  allNetworkKeys,
+  cosmosNetworkKeys,
   getNetworkInfo,
   skippedRewardsNetworks,
 } from "@src/utils/network_info";
@@ -45,7 +45,7 @@ const Calculator = () => {
     setMonthlyPeriods,
   } = useCalculateRewardsHook();
 
-  const networkData = allNetworkKeys
+  const networkData = cosmosNetworkKeys
     .map((x: string | number) => getNetworkInfo(x))
     .filter(Boolean)
     .filter((x) => !skippedRewardsNetworks.has(x.key))
