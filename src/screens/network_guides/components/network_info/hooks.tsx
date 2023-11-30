@@ -1,133 +1,129 @@
 /* eslint-disable no-unused-expressions */
-import { gql, useQuery } from "@apollo/client";
-import {
-  getEachCosmosAPY,
-  getEachCosmosCommission,
-  getEachCosmosTVL,
-  getEachCosmosUnbondingTime,
-} from "@graphql/queries";
+import { useQuery } from "@apollo/client";
+import { networkGuideQuery } from "@graphql/queries/networkGuide";
 import useTranslation from "next-translate/useTranslation";
-import { useMemo, useState } from "react";
+import { __, assocPath, pipe, reduce } from "ramda";
+import { useMemo } from "react";
 
-import { useCosmosNetworkGuideParams } from "./config";
+import { allNetworkKeys } from "@src/utils/network_info";
+
+type InfoBlock = {
+  stats: string;
+  title: string;
+  type: string;
+};
 
 export const useNetworkGuidesHook = () => {
   const { t } = useTranslation("staking");
-  const cosmosNetworkGuideParams = useCosmosNetworkGuideParams();
-  const [cosmosNetworkGuides, setCosmosNetworkGuides] = useState(
-    cosmosNetworkGuideParams,
+
+  const networkGuideParams = useMemo(
+    () =>
+      reduce(
+        (acc: any, networkKey: any) => assocPath([networkKey], [], acc),
+        {},
+        allNetworkKeys,
+      ),
+    [],
   );
 
-  const { loading: cosmosComissionLoading, data: cosmosComissionData } =
-    useQuery(gql`
-      ${getEachCosmosCommission()}
-    `);
-  const { loading: cosmosAPYLoading, data: cosmosAPYData } = useQuery(gql`
-    ${getEachCosmosAPY()}
-  `);
-  const { loading: cosmosTVLLoading, data: cosmosTVLData } = useQuery(gql`
-    ${getEachCosmosTVL()}
-  `);
-  const { loading: cosmosUnbondingTimeLoading, data: cosmosUnbondingTimeData } =
-    useQuery(gql`
-      ${getEachCosmosUnbondingTime()}
-    `);
+  const { loading: networkGuideLoading, data: networkGuideData } =
+    useQuery(networkGuideQuery);
 
-  useMemo(() => {
-    if (!cosmosComissionLoading) {
-      const { eachCosmosCommission } = cosmosComissionData;
-      eachCosmosCommission.forEach((data: any) => {
-        const keys = Object.keys(cosmosNetworkGuides);
-        keys.includes(data.metric.instance)
-          ? setCosmosNetworkGuides((prev) => ({
-              ...prev,
-              [data.metric.instance]: [
+  const networkGuides: Record<string, InfoBlock[]> = useMemo(() => {
+    if (!networkGuideLoading && networkGuideData) {
+      const {
+        eachCosmosAPY,
+        eachCosmosCommission,
+        eachCosmosTVL,
+        eachCosmosUnbondingTime,
+        suiAPY,
+      } = networkGuideData;
+
+      const getAPYBlock = (stats: string) =>
+        stats
+          ? {
+              title: t("apy"),
+              stats,
+              type: t("percentage"),
+            }
+          : undefined;
+
+      return pipe(
+        reduce(
+          (acc: any, data: any) =>
+            assocPath(
+              [data.metric.instance],
+              [
                 {
                   title: t("commission"),
                   stats: data.commissionRate,
                   type: t("percentage"),
                 },
               ],
-            }))
-          : null;
-      });
-    }
-
-    return cosmosNetworkGuides;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosComissionData, cosmosComissionLoading]);
-
-  useMemo(() => {
-    if (!cosmosAPYLoading) {
-      const { eachCosmosAPY } = cosmosAPYData;
-      eachCosmosAPY.forEach((data: any) => {
-        const keys = Object.keys(cosmosNetworkGuides);
-        keys.includes(data.metric.instance)
-          ? setCosmosNetworkGuides((prev) => ({
-              ...prev,
-              [data.metric.instance]: [
-                ...prev[data.metric.instance],
-                {
-                  title: t("apy"),
-                  stats: data.APY,
-                  type: t("percentage"),
-                },
-              ],
-            }))
-          : null;
-      });
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosAPYData, cosmosAPYLoading]);
-
-  useMemo(() => {
-    if (!cosmosTVLLoading) {
-      const { eachCosmosTVL } = cosmosTVLData;
-      eachCosmosTVL.forEach((data: any) => {
-        const keys = Object.keys(cosmosNetworkGuides);
-        keys.includes(data.metric.instance)
-          ? setCosmosNetworkGuides((prev) => ({
-              ...prev,
-              [data.metric.instance]: [
-                ...prev[data.metric.instance],
+              acc,
+            ),
+          __,
+          eachCosmosCommission,
+        ),
+        reduce(
+          (acc: any, data: any) =>
+            assocPath(
+              [data.metric.instance],
+              [...acc[data.metric.instance], getAPYBlock(data.APY)].filter(
+                Boolean,
+              ),
+              acc,
+            ),
+          __,
+          eachCosmosAPY,
+        ),
+        (data) =>
+          assocPath(
+            ["sui"],
+            [...data.sui, getAPYBlock(suiAPY?.APY)].filter(Boolean),
+            data,
+          ),
+        reduce(
+          (acc: any, data: any) =>
+            assocPath(
+              [data.metric.instance],
+              [
+                ...acc[data.metric.instance],
                 {
                   title: t("staked by forbole"),
                   stats: data.TVL,
                   type: t("money"),
                 },
               ],
-            }))
-          : null;
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosTVLData, cosmosTVLLoading]);
-
-  useMemo(() => {
-    if (!cosmosUnbondingTimeLoading) {
-      const { eachCosmosUnbondingTime } = cosmosUnbondingTimeData;
-      eachCosmosUnbondingTime.forEach((data: any) => {
-        const keys = Object.keys(cosmosNetworkGuides);
-        keys.includes(data.metric.instance)
-          ? setCosmosNetworkGuides((prev) => ({
-              ...prev,
-              [data.metric.instance]: [
-                ...prev[data.metric.instance],
+              acc,
+            ),
+          __,
+          eachCosmosTVL,
+        ),
+        reduce(
+          (acc: any, data: any) =>
+            assocPath(
+              [data.metric.instance],
+              [
+                ...acc[data.metric.instance],
                 {
                   title: t("unbonding period"),
                   stats: data.unbondingTime,
                   type: t("string"),
                 },
               ],
-            }))
-          : null;
-      });
+              acc,
+            ),
+          __,
+          eachCosmosUnbondingTime,
+        ),
+      )(networkGuideParams);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmosUnbondingTimeData, cosmosUnbondingTimeLoading]);
+
+    return networkGuideParams;
+  }, [networkGuideLoading, networkGuideData, t, networkGuideParams]);
 
   return {
-    cosmosNetworkGuides,
+    networkGuides,
   };
 };

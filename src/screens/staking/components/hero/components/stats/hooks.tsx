@@ -1,16 +1,18 @@
 import { gql, useQuery } from "@apollo/client";
 import {
   getAllCosmosTVL,
-  getCosmosUsersCount,
   getElrondTVL,
-  getElrondUsersCount,
   getOasisTVL,
-  getOasisUsersCount,
   getRadixTVL,
-  getRadixUsersCount,
   getSolanaTVL,
+} from "@graphql/queries/tvl";
+import {
+  getCosmosUsersCount,
+  getElrondUsersCount,
+  getOasisUsersCount,
+  getRadixUsersCount,
   getSolanaUsersCount,
-} from "@graphql/queries";
+} from "@graphql/queries/usersCount";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useMemo, useState } from "react";
 

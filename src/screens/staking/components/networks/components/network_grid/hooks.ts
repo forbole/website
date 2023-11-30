@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { networkGridQuery } from "@graphql/queries";
+import { networkGridQuery } from "@graphql/queries/networkGrid";
 import { __, assocPath, compose, identity, reduce } from "ramda";
 import { useMemo } from "react";
 
@@ -50,6 +50,24 @@ export const useNetworkHook = () => {
 
     return cosmosNetworkParams;
   }, [networkGridData, networkGridLoading]);
+
+  // These are hardcoded until we have the new logic to dynamically generate them
+  const ethereumNetwork: NetworkProps = useMemo(
+    () => ({
+      ethereum: {
+        APY: 0,
+        TVL: 0,
+        bonded: 0,
+        custom: {
+          "POOL APY": "3.16%",
+          "POOL MEV APY": "4.55%",
+          "SOLO AVG APY": "4%",
+          "SOLO MEV APY": "5,69%",
+        },
+      },
+    }),
+    [],
+  );
 
   const elrondNetwork = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
@@ -176,6 +194,7 @@ export const useNetworkHook = () => {
   return {
     cosmosNetworks,
     elrondNetwork,
+    ethereumNetwork,
     oasisNetwork,
     radixNetwork,
     solanaNetwork,

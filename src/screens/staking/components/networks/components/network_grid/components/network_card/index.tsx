@@ -3,7 +3,7 @@ import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
-import type { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
+import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import React, { useCallback } from "react";
 
 import {
@@ -11,7 +11,7 @@ import {
   handleNetworkClick,
 } from "@src/utils/network_functions";
 import { convertToMoney } from "@utils/convert_to_money";
-import type { Network } from "@utils/network_info";
+import { type Network, networksWithHiddenInfo } from "@utils/network_info";
 
 import type { ParamsProps } from "../../config";
 import useStyles from "./useStyles";
@@ -23,12 +23,13 @@ interface CardProp {
   setShowMobilePopover: Dispatch<SetStateAction<string>>;
 }
 
-const networksWithoutPopover = new Set(["radix"]);
-
-const NetworkCard: FC<CardProp> = (props: CardProp) => {
+const NetworkCard = ({
+  network,
+  networkSummary,
+  setShowMobilePopover,
+  showMobilePopover,
+}: CardProp) => {
   const { t } = useTranslation("staking");
-  const { network, networkSummary, showMobilePopover, setShowMobilePopover } =
-    props;
 
   /* Using framer-motion to animate the network box. */
   const ref = React.useRef(null);
@@ -58,11 +59,12 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
   );
 
   const isEmptyPopover =
-    networksWithoutPopover.has(network.graphql) ||
+    networksWithHiddenInfo.has(network.graphql) ||
     (!!networkSummary &&
       (!networkSummary.bonded || networkSummary.bonded < 0) &&
       (!networkSummary.APY || networkSummary.APY < 0) &&
-      !networkSummary.TVL);
+      !networkSummary.TVL &&
+      !networkSummary.custom);
 
   /* A variable that is used to render the popover. */
   const popover = (
@@ -120,6 +122,15 @@ const NetworkCard: FC<CardProp> = (props: CardProp) => {
               <Typography>${convertToMoney(networkSummary.TVL)}</Typography>
             </Box>
           )}
+          {!!networkSummary.custom &&
+            Object.keys(networkSummary.custom).map((customKey) => (
+              <Box key={customKey}>
+                <Stack alignItems="center" direction="row" gap={1}>
+                  <Typography variant="h6">{customKey}</Typography>
+                </Stack>
+                <Typography>{networkSummary.custom?.[customKey]}</Typography>
+              </Box>
+            ))}
         </Box>
       )}
       <Button
