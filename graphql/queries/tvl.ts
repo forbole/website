@@ -6,20 +6,6 @@ export const getAllCosmosTVL = () => `
     }
 `;
 
-export const getEachCosmosTVL = () => `
-    query EachCosmosTVL {
-        eachCosmosTVL {
-            metric {
-                chain_id
-                denom
-                instance
-                validator_address
-            }
-            TVL
-        }
-    }
-`;
-
 export const getSolanaTVL = () => `
     query SolanaTVL {
         solanaTVL {
