@@ -726,7 +726,6 @@ export const cosmosNetworkKeys = [
   "crescent",
   "crypto.org",
   "e-money",
-  "ethereum",
   "evmos",
   "fetch-ai",
   "gitopia",
@@ -757,7 +756,6 @@ export const cosmosNetworkKeys = [
   "stafihub",
   "stargaze",
   "stride",
-  "sui",
   "teritori",
   "tgrade",
   "ununifi",
@@ -772,12 +770,22 @@ export const cosmosNetworkKeys = [
 ];
 
 // These networks are not supported by the rewards calculator yet
-export const skippedRewardsNetworks = new Set(["mars", "nomic"]);
+export const skippedRewardsNetworks = new Set([
+  "archway",
+  "crescent",
+  "e-money",
+  "mars",
+  "nomic",
+  "osmosis",
+  "stargaze",
+  "stride",
+  "teritori",
+]);
 
 const getNetworkKeysArray = () => {
   const arr = [...cosmosNetworkKeys];
 
-  arr.push("elrond", "solana", "oasis", "radix");
+  arr.push("elrond", "solana", "oasis", "radix", "sui", "ethereum");
   arr.sort();
 
   return arr;

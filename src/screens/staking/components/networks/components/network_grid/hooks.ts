@@ -149,7 +149,7 @@ export const useNetworkHook = () => {
       return compose(
         assocPath(["sui", "APY"], apy),
         Number.isNaN(bonded) ? identity : assocPath(["sui", "bonded"], bonded),
-      )(suiNetworkParams);
+      )(suiNetworkParams) as NetworkProps;
     }
 
     return suiNetworkParams;
