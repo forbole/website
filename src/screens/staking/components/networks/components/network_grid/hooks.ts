@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { networkGridQuery } from "@graphql/queries/networkGrid";
-import { __, assocPath, compose, identity, reduce } from "ramda";
+import { __, assocPath, identity, pipe, reduce } from "ramda";
 import { useMemo } from "react";
 
 import { networkFunctions } from "@utils/network_functions";
@@ -23,15 +23,23 @@ export const useNetworkHook = () => {
 
   const cosmosNetworks = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
-      const { eachCosmosBondedToken, eachCosmosAPY, eachCosmosTVL } =
-        networkGridData;
+      const {
+        archwayBondedToken,
+        eachCosmosAPY,
+        eachCosmosBondedToken,
+        eachCosmosTVL,
+      } = networkGridData;
 
-      return compose(
-        reduce(
+      return pipe(
+        reduce<any, any>(
           (acc: any, data: any) =>
             assocPath([data.metric.instance, "bonded"], data.bondedToken, acc),
           __,
           eachCosmosBondedToken,
+        ),
+        assocPath(
+          ["archway", "bonded"],
+          archwayBondedToken?.bondedToken || undefined,
         ),
         reduce(
           (acc: any, data: any) =>
@@ -39,7 +47,7 @@ export const useNetworkHook = () => {
           __,
           eachCosmosAPY,
         ),
-        reduce<any, any>(
+        reduce(
           (acc: any, data: any) =>
             assocPath([data.metric.instance, "TVL"], data.TVL, acc),
           __,
@@ -73,8 +81,8 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const { elrondBondedToken, elrondAPY, elrondTVL } = networkGridData;
 
-      return compose(
-        reduce(
+      return pipe(
+        reduce<any, any>(
           (acc: any, data: any) =>
             assocPath(
               [data.metric.instance, "bonded"],
@@ -94,7 +102,7 @@ export const useNetworkHook = () => {
           __,
           elrondAPY,
         ),
-        reduce<any, any>(
+        reduce(
           (acc: any, data: any) =>
             assocPath(
               [data.metric.instance, "TVL"],
@@ -114,7 +122,7 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const { solanaTVL, solanaBondedToken } = networkGridData;
 
-      return compose(
+      return pipe(
         assocPath([solanaTVL.metric.instance, "TVL"], solanaTVL.TVL),
         assocPath(
           [solanaBondedToken.metric.instance, "bonded"],
@@ -164,7 +172,7 @@ export const useNetworkHook = () => {
         return suiNetworkParams;
       }
 
-      return compose(
+      return pipe(
         assocPath(["sui", "APY"], apy),
         Number.isNaN(bonded) ? identity : assocPath(["sui", "bonded"], bonded),
       )(suiNetworkParams) as NetworkProps;
@@ -182,7 +190,7 @@ export const useNetworkHook = () => {
       const bondedKey = allRadixStakedTokens[0].metric.instance;
       const bonded = allRadixStakedTokens[0].bondedToken;
 
-      return compose(
+      return pipe(
         assocPath([tvlKey, "TVL"], TVL),
         assocPath([bondedKey, "bonded"], bonded),
       )(radixNetworkParams) as NetworkProps;

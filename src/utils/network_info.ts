@@ -590,6 +590,7 @@ const logos: IStringIndex = {
 
   // Appended data
   "archway": {
+    address: "archwayvaloper1esg4kluvdkfcxl0atcf2us2p9m9y9sjjsu04ex",
     denom: "ARCH",
     graphql: "archway",
     guide: "how-to-stake-arch-on-archway-network",

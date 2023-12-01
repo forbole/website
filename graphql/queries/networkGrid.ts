@@ -2,6 +2,9 @@ import { gql } from "@apollo/client";
 
 export const networkGridQuery = gql`
   query NetworkGrid {
+    archwayBondedToken {
+      bondedToken
+    }
     eachCosmosAPY {
       metric {
         chain_id
