@@ -2,6 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useRef } from "react";
 
 import { LayoutVal } from "@components";
+import AppApolloProvider from "@src/utils/apollo";
 
 import {
   CalculateRewards,
@@ -27,35 +28,37 @@ const Staking = () => {
   }, []);
 
   return (
-    <LayoutVal
-      footer
-      image="/images/assets/image_forbole_validator_website_preview.png"
-      stakeNowRef={stakeNowRef}
-      title={t("title")}
-      twitterImage="/images/assets/image_forbole_validator_website_preview.png"
-    >
-      <LaptopCSS>
-        <Hero />
-      </LaptopCSS>
-      <LaptopCSS>
-        <Networks />
-      </LaptopCSS>
-      <LaptopCSS>
-        <HowItWorks />
-      </LaptopCSS>
-      <LaptopCSS>
-        <WhyForbole />
-      </LaptopCSS>
-      <LaptopCSS ref={stakeNowRef}>
-        <CalculateRewards />
-      </LaptopCSS>
-      <LaptopCSS>
-        <ContactForbole />
-      </LaptopCSS>
-      <LaptopCSS>
-        <FAQ />
-      </LaptopCSS>
-    </LayoutVal>
+    <AppApolloProvider>
+      <LayoutVal
+        footer
+        image="/images/assets/image_forbole_validator_website_preview.png"
+        stakeNowRef={stakeNowRef}
+        title={t("title")}
+        twitterImage="/images/assets/image_forbole_validator_website_preview.png"
+      >
+        <LaptopCSS>
+          <Hero />
+        </LaptopCSS>
+        <LaptopCSS>
+          <Networks />
+        </LaptopCSS>
+        <LaptopCSS>
+          <HowItWorks />
+        </LaptopCSS>
+        <LaptopCSS>
+          <WhyForbole />
+        </LaptopCSS>
+        <LaptopCSS ref={stakeNowRef}>
+          <CalculateRewards />
+        </LaptopCSS>
+        <LaptopCSS>
+          <ContactForbole />
+        </LaptopCSS>
+        <LaptopCSS>
+          <FAQ />
+        </LaptopCSS>
+      </LayoutVal>
+    </AppApolloProvider>
   );
 };
 

@@ -1,9 +1,10 @@
-import { useWindowDimensions } from "@hooks";
 import { Box, Button, Pagination, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { pathOr } from "ramda";
 import React from "react";
+
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
 import Post from "./components/post";
 import { useBlogPostsHook } from "./hooks";

@@ -6,13 +6,12 @@ import Menu from "@mui/material/Menu";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import type { MouseEvent } from "react";
-import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useContext, useEffect, useState } from "react";
 
 import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import CtaButton from "@src/components/cta-button";
-import { useWindowDimensions } from "@src/hooks";
-import { anchorElState } from "@src/recoil/settings/anchorEl";
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
+import { anchorElContext } from "@src/utils/menu";
 
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
@@ -24,7 +23,7 @@ const MobileNavMenu = () => {
   const theme = useTheme();
   const { windowDimensions } = useWindowDimensions();
   const { width } = windowDimensions;
-  const [anchorEl, setAnchorEl] = useRecoilState(anchorElState);
+  const { anchorEl, setAnchorEl } = useContext(anchorElContext);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

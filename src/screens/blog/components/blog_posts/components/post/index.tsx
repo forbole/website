@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-import { useHKT, useWindowDimensions } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
@@ -7,6 +6,8 @@ import Link from "next/link";
 
 import { NoSSR } from "@components/no-ssr";
 import placeholderImage from "@src/../public/images/assets/blog-placeholder.png";
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
+import useHKT from "@src/hooks/useHKT";
 
 const Post = (props: any) => {
   const theme = useTheme();
@@ -69,8 +70,8 @@ const Post = (props: any) => {
               alt={title}
               height={isDesktop && main ? "324" : isMobile ? "156" : "156"}
               loader={cmsLoader}
-              objectFit="cover"
               src={!featureImage ? placeholderImage : featureImage}
+              style={{ objectFit: "cover" }}
               width={isDesktop && main ? "500" : isMobile ? "270" : "500"}
             />
           </Box>

@@ -3,10 +3,9 @@ import List from "@mui/material/List";
 import MenuItem from "@mui/material/MenuItem";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import { useMemo } from "react";
-import { useRecoilState } from "recoil";
+import { useContext, useMemo } from "react";
 
-import { anchorElState } from "@src/recoil/settings/anchorEl";
+import { anchorElContext } from "@src/utils/menu";
 
 const ProductsMenuButton = () => {
   const { t } = useTranslation("common");
@@ -14,7 +13,7 @@ const ProductsMenuButton = () => {
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
 
-  const [, setAnchorEl] = useRecoilState(anchorElState);
+  const { setAnchorEl } = useContext(anchorElContext);
   const handleClose = () => {
     setAnchorEl(null);
   };

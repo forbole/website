@@ -86,9 +86,9 @@ const NetworkCard = ({
             <Image
               alt=""
               height="48"
-              objectFit="contain"
               quality={100}
               src={network.image || ""}
+              style={{ objectFit: "contain" }}
               width="48"
             />
           )}

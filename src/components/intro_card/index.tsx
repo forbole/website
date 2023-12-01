@@ -41,14 +41,22 @@ const IntroCard = (props: Props) => {
         position: "relative",
       }}
     >
-      {imageHref && (
-        <Image
-          alt={title ? `${title} image` : ""}
-          height={200}
-          src={imageHref}
-          width={400}
-        />
-      )}
+      <Box
+        sx={{
+          height: 200,
+          position: "relative",
+          width: "100%",
+        }}
+      >
+        {imageHref && (
+          <Image
+            alt={title ? `${title} image` : ""}
+            fill
+            src={imageHref}
+            style={{ objectFit: "cover" }}
+          />
+        )}
+      </Box>
       <Box
         component="div"
         sx={{

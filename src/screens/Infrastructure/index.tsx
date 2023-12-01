@@ -22,6 +22,7 @@ import ProductPanel from "@src/components/product-panel";
 import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
+import AppApolloProvider from "@src/utils/apollo";
 import { scrollBottom } from "@src/utils/scroll";
 
 import style from "./index.module.css";
@@ -125,204 +126,209 @@ const Infrastructure = () => {
   ];
 
   return (
-    <Layout description={t("expertise_item1")} footer title={t("page_title")}>
-      <Container
-        maxWidth="desktop"
-        ref={topRef}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "184px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "40px",
-          },
-        }}
-      >
-        <HeaderCard
-          desc_1st={t("headercard_desc")}
-          head_bgs={[
-            "/validator_infastructure/head_bg_m@2x.png",
-            "/validator_infastructure/head_bg@2x.png",
-          ]}
-          title={t("headercard_title")}
-        />
-        <KeyData />
-        <ScrollLogo />
-
-        <Stack
+    <AppApolloProvider>
+      <Layout description={t("expertise_item1")} footer title={t("page_title")}>
+        <Container
+          maxWidth="desktop"
+          ref={topRef}
           sx={{
-            gap: "40px",
-            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+            gap: "184px",
             [theme.breakpoints.down("laptop")]: {
-              gap: "32px",
+              gap: "40px",
             },
           }}
         >
-          <Section
-            desc={t("section_1st_desc")}
-            title={t("section_1st_title")}
-            title_large_trans={t("section_1st_large_title")}
+          <HeaderCard
+            desc_1st={t("headercard_desc")}
+            head_bgs={[
+              "/validator_infastructure/head_bg_m@2x.png",
+              "/validator_infastructure/head_bg@2x.png",
+            ]}
+            title={t("headercard_title")}
           />
-          <CtaButton
-            className={style.mobile}
-            onClick={() => router.push("/staking")}
-          >
-            {t("see_more_networks")}
-          </CtaButton>
-          <Grid
-            columnSpacing={{
-              mobile: theme.spacing(2),
-              laptop: theme.spacing(2),
+          <KeyData />
+          <ScrollLogo />
+
+          <Stack
+            sx={{
+              gap: "40px",
+              alignItems: "center",
+              [theme.breakpoints.down("laptop")]: {
+                gap: "32px",
+              },
             }}
-            container
-            rowSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(3) }}
           >
-            <Grid item laptop={4} mobile={12} tablet={6}>
-              <IntroPanel
-                desc={t("grid_1st_desc")}
-                imageHref={require("/public/validator_infastructure/grid_1@2x.png")}
-                title={t("grid_1st_title")}
-              />
-            </Grid>
-            <Grid item laptop={4} mobile={12} tablet={6}>
-              <IntroPanel
-                desc={t("grid_2nd_desc")}
-                imageHref={require("/public/validator_infastructure/grid_2@2x.png")}
-                title={t("grid_2nd_title")}
-              />
-            </Grid>
-            <Grid item laptop={4} mobile={12} tablet={6}>
-              <IntroPanel
-                desc={t("grid_3rd_desc")}
-                imageHref={require("/public/validator_infastructure/grid_3@2x.png")}
-                title={t("grid_3rd_title")}
-              />
-            </Grid>
-          </Grid>
-
-          <CtaButton
-            className={style.desktop}
-            onClick={() => router.push("/staking")}
-          >
-            {t("see_more_networks")}
-          </CtaButton>
-        </Stack>
-
-        <Stack
-          sx={{
-            gap: "40px",
-            alignItems: "center",
-            [theme.breakpoints.down("laptop")]: {
-              gap: "32px",
-            },
-          }}
-        >
-          <Section
-            title={t("section_2nd_title")}
-            title_large_trans={t("section_2nd_large_title")}
-          />
-
-          <StyledTabs onChange={handleChange} value={v1}>
-            <StyledTab
-              icon={
-                <img
-                  className={style.icon}
-                  src="/validator_infastructure/tab1.svg"
-                />
-              }
-              label={t("toggle_btn_left")}
-              onClick={(e: any) => {
-                scrollBottom(e, PanelRef);
-              }}
+            <Section
+              desc={t("section_1st_desc")}
+              title={t("section_1st_title")}
+              title_large_trans={t("section_1st_large_title")}
             />
-            <StyledTab
-              icon={
-                <img
-                  className={style.icon}
-                  src="/validator_infastructure/tab2.svg"
-                />
-              }
-              label={t("toggle_btn_right")}
-              onClick={(e: any) => {
-                scrollBottom(e, PanelRef);
-              }}
-            />
-          </StyledTabs>
-          {[
-            { title: "infrastructure_item", img: "desk_toggle_1@2x.png" },
-            { title: "expertise_item", img: "desk_toggle_2@2x.png" },
-          ].map((opt, indexUpper) => (
-            <ProductPanel
-              imageHref={`/validator_infastructure/${opt.img}`}
-              imgFull
-              index={indexUpper}
-              key={indexUpper}
-              ref={PanelRef}
-              value={v1}
+            <CtaButton
+              className={style.mobile}
+              onClick={() => router.push("/staking")}
             >
-              <Stack
-                sx={{
-                  gap: "24px",
-                  maxWidth: "490px",
-                }}
-              >
-                {textList[indexUpper].map((item, index) => (
-                  <Typography
-                    key={index}
-                    sx={{
-                      "display": "flex",
-                      "alignItems": "baseline",
-                      "maxWidth": "489px",
-                      [theme.breakpoints.down("laptop")]: {
-                        fontSize: "16px",
-                      },
-                      [theme.breakpoints.up("laptop")]: {
-                        fontSize: "20px",
-                      },
-                      "&:before": {
-                        content: "url(/icons/outlined.svg)",
-                        marginRight: "16px",
-                      },
-                    }}
-                  >
-                    {item}
-                  </Typography>
-                ))}
-              </Stack>
-            </ProductPanel>
-          ))}
-        </Stack>
+              {t("see_more_networks")}
+            </CtaButton>
+            <Grid
+              columnSpacing={{
+                mobile: theme.spacing(2),
+                laptop: theme.spacing(2),
+              }}
+              container
+              rowSpacing={{
+                mobile: theme.spacing(2),
+                laptop: theme.spacing(3),
+              }}
+            >
+              <Grid item laptop={4} mobile={12} tablet={6}>
+                <IntroPanel
+                  desc={t("grid_1st_desc")}
+                  imageHref={require("/public/validator_infastructure/grid_1@2x.png")}
+                  title={t("grid_1st_title")}
+                />
+              </Grid>
+              <Grid item laptop={4} mobile={12} tablet={6}>
+                <IntroPanel
+                  desc={t("grid_2nd_desc")}
+                  imageHref={require("/public/validator_infastructure/grid_2@2x.png")}
+                  title={t("grid_2nd_title")}
+                />
+              </Grid>
+              <Grid item laptop={4} mobile={12} tablet={6}>
+                <IntroPanel
+                  desc={t("grid_3rd_desc")}
+                  imageHref={require("/public/validator_infastructure/grid_3@2x.png")}
+                  title={t("grid_3rd_title")}
+                />
+              </Grid>
+            </Grid>
 
-        <Stack
-          sx={{
-            gap: "40px",
-            alignItems: "center",
-            [theme.breakpoints.down("laptop")]: {
-              gap: "32px",
-            },
-          }}
-        >
-          <Section
-            desc={t("section_3rd_desc")}
-            title={t("section_3rd_title")}
-            title_large_trans={t("section_3rd_large_title")}
-          />
-          <CtaButton
-            onClick={() => {
-              router.push("/staking");
+            <CtaButton
+              className={style.desktop}
+              onClick={() => router.push("/staking")}
+            >
+              {t("see_more_networks")}
+            </CtaButton>
+          </Stack>
+
+          <Stack
+            sx={{
+              gap: "40px",
+              alignItems: "center",
+              [theme.breakpoints.down("laptop")]: {
+                gap: "32px",
+              },
             }}
           >
-            {t("stake_now")}
-          </CtaButton>
-        </Stack>
-        <Stack>
-          <NoSSR>
-            <Carousel personList={personList} />
-          </NoSSR>
-        </Stack>
-        <ScrollToTop topRef={topRef} />
-      </Container>
-    </Layout>
+            <Section
+              title={t("section_2nd_title")}
+              title_large_trans={t("section_2nd_large_title")}
+            />
+
+            <StyledTabs onChange={handleChange} value={v1}>
+              <StyledTab
+                icon={
+                  <img
+                    className={style.icon}
+                    src="/validator_infastructure/tab1.svg"
+                  />
+                }
+                label={t("toggle_btn_left")}
+                onClick={(e: any) => {
+                  scrollBottom(e, PanelRef);
+                }}
+              />
+              <StyledTab
+                icon={
+                  <img
+                    className={style.icon}
+                    src="/validator_infastructure/tab2.svg"
+                  />
+                }
+                label={t("toggle_btn_right")}
+                onClick={(e: any) => {
+                  scrollBottom(e, PanelRef);
+                }}
+              />
+            </StyledTabs>
+            {[
+              { title: "infrastructure_item", img: "desk_toggle_1@2x.png" },
+              { title: "expertise_item", img: "desk_toggle_2@2x.png" },
+            ].map((opt, indexUpper) => (
+              <ProductPanel
+                imageHref={`/validator_infastructure/${opt.img}`}
+                imgFull
+                index={indexUpper}
+                key={indexUpper}
+                ref={PanelRef}
+                value={v1}
+              >
+                <Stack
+                  sx={{
+                    gap: "24px",
+                    maxWidth: "490px",
+                  }}
+                >
+                  {textList[indexUpper].map((item, index) => (
+                    <Typography
+                      key={index}
+                      sx={{
+                        "display": "flex",
+                        "alignItems": "baseline",
+                        "maxWidth": "489px",
+                        [theme.breakpoints.down("laptop")]: {
+                          fontSize: "16px",
+                        },
+                        [theme.breakpoints.up("laptop")]: {
+                          fontSize: "20px",
+                        },
+                        "&:before": {
+                          content: "url(/icons/outlined.svg)",
+                          marginRight: "16px",
+                        },
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                  ))}
+                </Stack>
+              </ProductPanel>
+            ))}
+          </Stack>
+
+          <Stack
+            sx={{
+              gap: "40px",
+              alignItems: "center",
+              [theme.breakpoints.down("laptop")]: {
+                gap: "32px",
+              },
+            }}
+          >
+            <Section
+              desc={t("section_3rd_desc")}
+              title={t("section_3rd_title")}
+              title_large_trans={t("section_3rd_large_title")}
+            />
+            <CtaButton
+              onClick={() => {
+                router.push("/staking");
+              }}
+            >
+              {t("stake_now")}
+            </CtaButton>
+          </Stack>
+          <Stack>
+            <NoSSR>
+              <Carousel personList={personList} />
+            </NoSSR>
+          </Stack>
+          <ScrollToTop topRef={topRef} />
+        </Container>
+      </Layout>
+    </AppApolloProvider>
   );
 };
 
