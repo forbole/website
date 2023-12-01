@@ -64,11 +64,10 @@ const DeveloperTools = () => {
         <HeaderCard
           desc_1st={t("headercard_1st_desc")}
           desc_2nd={t("headercard_2nd_desc")}
-          head_bg={
-            isMobile
-              ? "/developer_tools/mobile_headercard@2x.png"
-              : "/developer_tools/desk_headercard@2x.png"
-          }
+          head_bgs={[
+            "/developer_tools/mobile_headercard@2x.png",
+            "/developer_tools/desk_headercard@2x.png",
+          ]}
           title={t("headercard_title")}
         />
 

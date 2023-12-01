@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import Image from "next/image";
 
 import CtaButton from "../cta-button";
 
@@ -27,19 +28,27 @@ const IntroCard = (props: Props) => {
     <Box
       component="div"
       sx={{
-        height: "100%",
-        overflow: "hidden",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        borderRadius: "24px",
-        maxWidth: "calc(100vw - 40px)",
         background: "#FFF",
+        borderRadius: "24px",
+        boxSizing: "border-box",
         boxShadow:
           "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        maxWidth: "calc(100vw - 40px)",
+        overflow: "hidden",
+        position: "relative",
       }}
     >
-      {imageHref && <img alt="" src={imageHref} />}
+      {imageHref && (
+        <Image
+          alt={title ? `${title} image` : ""}
+          height={200}
+          src={imageHref}
+          width={400}
+        />
+      )}
       <Box
         component="div"
         sx={{

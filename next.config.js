@@ -9,6 +9,14 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const baseConfig = nextTranslate({
   poweredByHeader: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.forbole.com",
+      },
+    ],
+  },
   redirects: async () => [
     {
       destination: "/zh-HK/:path*",
