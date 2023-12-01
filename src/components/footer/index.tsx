@@ -5,6 +5,8 @@ import Link from "next/link";
 
 import buildImageDesktop from "@src/../public/images/footer/Build@2x.png";
 import buildImageMobile from "@src/../public/images/footer/Build_m@2x.png";
+import footerDesktop from "@src/../public/images/footer/foot.png";
+import footerMobile from "@src/../public/images/footer/foot_m.png";
 import { useWindowDimensions } from "@src/hooks";
 
 import CtaButton from "../cta-button";
@@ -20,6 +22,7 @@ const Footer = ({ red, itemColor }: FooterProps) => {
     <Box
       data-test="footer"
       sx={{
+        position: "relative",
         zIndex: 1,
         userSelect: "none",
         backgroundRepeat: "no-repeat",
@@ -29,80 +32,115 @@ const Footer = ({ red, itemColor }: FooterProps) => {
           (red
             ? theme.palette.primary.main
             : theme.palette.custom.forbole.indigo),
-        backgroundImage: red ? "url(/images/footer/foot.png)" : "",
         [theme.breakpoints.down("laptop")]: {
-          backgroundImage: red ? "url(/images/footer/foot_m.png)" : "",
           minHeight: "320px",
           backdropFilter: "blur(8px)",
         },
       }}
     >
       {red && (
-        <Container
-          disableGutters
-          maxWidth={isTablet ? "tablet" : "desktop"}
-          sx={{
-            pt: "64px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Stack alignItems="center" direction="column" justifyContent="center">
-            <Box
-              sx={{
-                mt: "20px",
-                position: "relative",
-                [theme.breakpoints.up("laptop")]: {
-                  width: "983px",
-                  height: "286px",
-                  mt: "90px",
-                },
-              }}
-            >
-              {isMobile ? (
-                <Image
-                  alt="Picture of the author"
-                  src={buildImageMobile}
-                  width={300}
-                />
-              ) : (
-                <Image
-                  alt="Picture of the author"
-                  fill
-                  src={buildImageDesktop}
-                />
-              )}
-            </Box>
+        <>
+          <Box
+            sx={{
+              bottom: "0",
+              left: "0",
+              position: "absolute",
+              right: "0",
+              top: "0",
+              zIndex: "-1",
+              [theme.breakpoints.down("laptop")]: {
+                display: "none",
+              },
+            }}
+          >
+            <Image alt="Footer graphic" fill src={footerDesktop} />
+          </Box>
+          <Box
+            sx={{
+              bottom: "0",
+              left: "0",
+              position: "absolute",
+              right: "0",
+              top: "0",
+              zIndex: "-1",
 
-            <Typography
-              sx={{
-                color: "white",
-                fontSize: "40px",
-                fontWeight: "590",
-                marginTop: "-60px",
-                letterSpacing: "1.12px",
-                [theme.breakpoints.down("laptop")]: {
-                  marginTop: "-20px",
-                },
-              }}
+              [theme.breakpoints.up("laptop")]: {
+                display: "none",
+              },
+            }}
+          >
+            <Image alt="Footer graphic" fill src={footerMobile} />
+          </Box>
+          <Container
+            disableGutters
+            maxWidth={isTablet ? "tablet" : "desktop"}
+            sx={{
+              pt: "64px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Stack
+              alignItems="center"
+              direction="column"
+              justifyContent="center"
             >
-              together today
-            </Typography>
-            <Link href="/staking">
-              <CtaButton
+              <Box
                 sx={{
-                  mt: "24px",
-                  [theme.breakpoints.down("laptop")]: {
-                    mb: "76px",
+                  mt: "20px",
+                  position: "relative",
+                  [theme.breakpoints.up("laptop")]: {
+                    width: "983px",
+                    height: "286px",
+                    mt: "90px",
                   },
                 }}
               >
-                {t("StakeNow")}
-              </CtaButton>
-            </Link>
-          </Stack>
-        </Container>
+                {isMobile ? (
+                  <Image
+                    alt="Picture of the author"
+                    src={buildImageMobile}
+                    width={300}
+                  />
+                ) : (
+                  <Image
+                    alt="Picture of the author"
+                    fill
+                    src={buildImageDesktop}
+                  />
+                )}
+              </Box>
+
+              <Typography
+                sx={{
+                  color: "white",
+                  fontSize: "40px",
+                  fontWeight: "590",
+                  marginTop: "-60px",
+                  letterSpacing: "1.12px",
+                  [theme.breakpoints.down("laptop")]: {
+                    marginTop: "-20px",
+                  },
+                }}
+              >
+                together today
+              </Typography>
+              <Link href="/staking">
+                <CtaButton
+                  sx={{
+                    mt: "24px",
+                    [theme.breakpoints.down("laptop")]: {
+                      mb: "76px",
+                    },
+                  }}
+                >
+                  {t("StakeNow")}
+                </CtaButton>
+              </Link>
+            </Stack>
+          </Container>
+        </>
       )}
       <Container
         disableGutters

@@ -28,9 +28,6 @@ import style from "./index.module.css";
 
 const Infrastructure = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
-    noSsr: true,
-  });
   const [v1, setV1] = useState(0);
   const topRef = useRef(null);
   const PanelRef = useRef(null);
@@ -143,11 +140,10 @@ const Infrastructure = () => {
       >
         <HeaderCard
           desc_1st={t("headercard_desc")}
-          head_bg={
-            isMobile
-              ? "/validator_infastructure/head_bg_m@2x.png"
-              : "/validator_infastructure/head_bg@2x.png"
-          }
+          head_bgs={[
+            "/validator_infastructure/head_bg_m@2x.png",
+            "/validator_infastructure/head_bg@2x.png",
+          ]}
           title={t("headercard_title")}
         />
         <KeyData />

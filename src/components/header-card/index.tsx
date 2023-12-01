@@ -1,18 +1,22 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-import Image from "next/legacy/image";
+import Image from "next/image";
+import ImageLegacy from "next/legacy/image";
 
 type Props = {
-  title: string;
   desc_1st: string;
   desc_2nd?: string;
-  head_bg: string;
+  // @deprecated
+  head_bg?: string;
+  head_bgs?: string[];
+  title: string;
 };
 
 export default function HeaderCard({
-  head_bg,
-  title,
   desc_1st,
   desc_2nd,
+  head_bg,
+  head_bgs,
+  title,
 }: Props) {
   const theme = useTheme();
 
@@ -111,13 +115,37 @@ export default function HeaderCard({
         }}
       >
         {head_bg && (
-          <Image
-            alt=""
+          <ImageLegacy
+            alt={`{title} image`}
             layout="fill"
             objectFit="cover"
             priority
             src={head_bg}
           />
+        )}
+        {head_bgs && (
+          <>
+            <Box
+              sx={{
+                display: "none",
+                [theme.breakpoints.down("laptop")]: {
+                  display: "block",
+                },
+              }}
+            >
+              <Image alt={title} fill priority src={head_bgs[0]} />
+            </Box>
+            <Box
+              sx={{
+                display: "none",
+                [theme.breakpoints.up("laptop")]: {
+                  display: "block",
+                },
+              }}
+            >
+              <Image alt={title} fill priority src={head_bgs[1]} />
+            </Box>
+          </>
         )}
       </Box>
     </Stack>
