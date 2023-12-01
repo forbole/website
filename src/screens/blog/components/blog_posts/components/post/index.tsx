@@ -69,8 +69,8 @@ const Post = (props: any) => {
               alt={title}
               height={isDesktop && main ? "324" : isMobile ? "156" : "156"}
               loader={cmsLoader}
-              objectFit="cover"
               src={!featureImage ? placeholderImage : featureImage}
+              style={{ objectFit: "cover" }}
               width={isDesktop && main ? "500" : isMobile ? "270" : "500"}
             />
           </Box>

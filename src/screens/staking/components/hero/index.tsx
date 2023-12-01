@@ -74,9 +74,9 @@ const Hero = () => {
             <Image
               alt="Forbole Horse Logo"
               layout="fill"
-              objectFit="contain"
               priority
               src={horseImage}
+              style={{ objectFit: "contain" }}
             />
           </Box>
           <Typography

@@ -43,8 +43,8 @@ const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
         <Image
           alt="Red background"
           fill
-          objectFit="cover"
           src={require("@src/../public/images/assets/bg_mobile_red_background.webp")}
+          style={{ objectFit: "cover" }}
         />
       </Box>
       {displayHorse && (
@@ -68,8 +68,8 @@ const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
               alt="Forbole Horse Logo"
               fill
               loading="eager"
-              objectFit="contain"
               src={require("@src/../public/images/assets/bg_desktop_horse.webp")}
+              style={{ objectFit: "contain" }}
             />
           </Box>
           <Box
@@ -91,9 +91,9 @@ const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
             <Image
               alt="Forbole Horse Logo"
               fill
-              objectFit="cover"
               priority
               src={require("@src/../public/images/assets/bg_mobile_horse.webp")}
+              style={{ objectFit: "cover" }}
             />
           </Box>
         </>

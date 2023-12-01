@@ -21,6 +21,6 @@ module.exports = {
     "/tag/[tag]": ["blog"],
     "/author/[author]": ["blog"],
   },
-  loadLocaleFrom: async (lang, ns) =>
-    require(`./public/locales/${lang}/${ns}.json`),
+  loadLocaleFrom: (lang, ns) =>
+    import(`./public/locales/${lang}/${ns}.json`).then((m) => m.default),
 };

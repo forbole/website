@@ -52,8 +52,8 @@ const IntroCard = (props: Props) => {
           <Image
             alt={title ? `${title} image` : ""}
             fill
-            objectFit="cover"
             src={imageHref}
+            style={{ objectFit: "cover" }}
           />
         )}
       </Box>

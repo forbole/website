@@ -114,6 +114,7 @@ const LangMenuButton = () => {
               <Link
                 href={{ pathname, query }}
                 locale={l}
+                prefetch={false}
                 style={{
                   textDecoration: "none",
                 }}
