@@ -7,7 +7,7 @@ import buildImageDesktop from "@src/../public/images/footer/Build@2x.png";
 import buildImageMobile from "@src/../public/images/footer/Build_m@2x.png";
 import footerDesktop from "@src/../public/images/footer/foot.png";
 import footerMobile from "@src/../public/images/footer/foot_m.png";
-import { useWindowDimensions } from "@src/hooks";
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
 import CtaButton from "../cta-button";
 import { FooterItems, SocialMedia } from "./components";

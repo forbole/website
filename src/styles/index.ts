@@ -1,3 +1,3 @@
-import { darkTemplate, lightTemplate } from "./theme";
+import { lightTemplate } from "./theme";
 
-export { lightTemplate, darkTemplate };
+export { lightTemplate };

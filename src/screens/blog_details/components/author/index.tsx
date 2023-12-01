@@ -1,8 +1,8 @@
-import { useHKT } from "@hooks";
 import { Box, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 
 import { NoSSR } from "@components/no-ssr";
+import useHKT from "@src/hooks/useHKT";
 
 const Author = ({ post }: any) => {
   const { primaryAuthor: author, publishedAt } = post;

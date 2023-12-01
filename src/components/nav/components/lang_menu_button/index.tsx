@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 
-import { useWindowDimensions } from "@src/hooks";
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import useColor from "@src/styles/useColor";
 import { anchorElContext } from "@src/utils/menu";
 

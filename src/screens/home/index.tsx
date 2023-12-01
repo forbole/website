@@ -8,7 +8,7 @@ import { useRef } from "react";
 import { Layout, ScrollToBottom, ScrollToTop } from "@components";
 import IntroPanel from "@src/components/Intro_panel";
 import IntroCard from "@src/components/intro_card";
-import { useWindowDimensions } from "@src/hooks";
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
 import { FilterBG } from "./styles";
 

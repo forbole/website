@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import CtaButton from "@src/components/cta-button";
-import { useWindowDimensions } from "@src/hooks";
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import { anchorElContext } from "@src/utils/menu";
 
 import CompanyMenuButton from "../company_menu_button";

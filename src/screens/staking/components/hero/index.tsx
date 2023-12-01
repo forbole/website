@@ -7,7 +7,7 @@ import React from "react";
 import { ScrollToBottom } from "@components";
 import horseImage from "@src/../public/images/assets/image_horse_blur.png";
 import horseShadow from "@src/../public/images/assets/image_water_shadow.png";
-import { useWindowDimensions } from "@src/hooks";
+import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
 import { Stats } from "./components";
 import useStyles from "./useStyles";
