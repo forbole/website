@@ -65,7 +65,7 @@ const LangMenuButton = () => {
     <>
       <Box css={styles.desktop}>
         <Button
-          aria-label="language"
+          aria-label={lan?.toUpperCase() || "language"}
           css={styles.navBarButton}
           onClick={(e) => setAnchor(e.currentTarget)}
           startIcon={

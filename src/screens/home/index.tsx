@@ -45,8 +45,8 @@ const Home: FC<Props> = ({ pages }) => {
   return (
     <Layout
       description={t("description")}
+      displayHorse
       footer
-      redBg
       redBgFooter
       title={t("coBuildingInterchain")}
     >

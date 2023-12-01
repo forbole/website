@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { useEffect } from "react";
 import isURL from "validator/lib/isURL";
 
-import useColor from "@src/styles/useColor";
+import Background from "@components/background";
 
 import Footer from "../footer";
 import Nav from "../nav";
@@ -16,10 +16,10 @@ type Props = {
   blueBg?: boolean;
   children?: ReactNode;
   description?: string;
+  displayHorse?: boolean;
   footer?: boolean;
   image?: string;
   keywords?: string[];
-  redBg?: boolean;
   redBgFooter?: boolean;
   skipLocale?: boolean;
   title?: string;
@@ -31,10 +31,10 @@ const Layout = ({
   blueBg,
   children,
   description,
+  displayHorse,
   footer,
   image,
   keywords = [],
-  redBg,
   redBgFooter,
   skipLocale,
   title = "Forbole",
@@ -55,7 +55,6 @@ const Layout = ({
   if (!isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
-  const color = useColor();
   const { t, lang } = useTranslation("common");
 
   useEffect(() => {
@@ -85,23 +84,6 @@ const Layout = ({
         },
       };
     }
-
-    return {
-      background: redBg
-        ? "url(/images/assets/bg_desktop_horse.webp), url(/images/assets/bg_desktop_red_background.webp)"
-        : "url(/images/assets/bg_desktop_red_background.webp)",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: redBg ? "15vw -1vw, 0 0" : "0 0",
-      backgroundColor: color.primary,
-      backgroundSize: redBg ? "70% 55vw, 105vw" : "100vw 100vw",
-      [theme.breakpoints.down(550)]: {
-        backgroundImage: redBg
-          ? "url(/images/assets/bg_mobile_horse.webp), url(/images/assets/bg_mobile_red_background.webp)"
-          : "url(/images/assets/bg_mobile_red_background.webp)",
-        backgroundPosition: redBg ? "-40vw 10vw, 0 0" : "0 0",
-        backgroundSize: "180vw 150vw, 110vw",
-      },
-    };
   })();
   const itemColor = (() => {
     if (blueBg) {
@@ -191,9 +173,11 @@ const Layout = ({
             display: "flex",
             flexDirection: "column",
             minHeight: "100vh",
+            position: "relative",
             ...background,
           }}
         >
+          {!blueBg && <Background displayHorse={displayHorse} />}
           <Nav itemColor={itemColor} />
           {children}
           {!!footer && <Footer itemColor={itemColor} red={redBgFooter} />}
