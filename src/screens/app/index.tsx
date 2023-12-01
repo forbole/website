@@ -5,7 +5,6 @@ import { init } from "@socialgouv/matomo-next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useEffect } from "react";
-import { RecoilRoot } from "recoil";
 
 import createEmotionCache from "../../misc/createEmotionCache";
 import InnerApp from "./innerApp";
@@ -36,16 +35,14 @@ export default function MyApp(props: MyAppProps) {
   }, []);
 
   return (
-    <RecoilRoot>
-      <CacheProvider value={emotionCache}>
-        <Head>
-          <meta content="width=device-width,initial-scale=1" name="viewport" />
-          <meta content="no-referrer" name="referrer" />
-        </Head>
-        <ApolloProvider client={apolloClient}>
-          <InnerApp Component={Component} pageProps={pageProps} />
-        </ApolloProvider>
-      </CacheProvider>
-    </RecoilRoot>
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <meta content="width=device-width,initial-scale=1" name="viewport" />
+        <meta content="no-referrer" name="referrer" />
+      </Head>
+      <ApolloProvider client={apolloClient}>
+        <InnerApp Component={Component} pageProps={pageProps} />
+      </ApolloProvider>
+    </CacheProvider>
   );
 }

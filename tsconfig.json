@@ -23,7 +23,6 @@
       "@icons/*": ["src/components/icons/*"],
       "@models": ["src/models"],
       "@public/*": ["public/*"],
-      "@recoil/*": ["src/recoil/*"],
       "@screens/*": ["src/screens/*"],
       "@src/*": ["src/*"],
       "@styles": ["src/styles"],

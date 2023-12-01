@@ -8,15 +8,14 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { anchorElState } from "@recoil/settings/anchorEl";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
-import { useRecoilState } from "recoil";
+import React, { useContext } from "react";
 
 import { useWindowDimensions } from "@src/hooks";
 import useColor from "@src/styles/useColor";
+import { anchorElContext } from "@src/utils/menu";
 
 import useStyles from "./useStyles";
 
@@ -28,7 +27,7 @@ const LangMenuButton = () => {
   const { width } = windowDimensions;
   const [anchor, setAnchor] = React.useState<Element>();
   const theme = useTheme();
-  const [, setAnchorEl] = useRecoilState(anchorElState);
+  const { setAnchorEl } = useContext(anchorElContext);
   const handleClose = () => {
     setAnchorEl(null);
   };
