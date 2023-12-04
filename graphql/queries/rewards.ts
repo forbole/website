@@ -13,7 +13,6 @@ export const rewardsQuery = gql`
       metric {
         chain_id
         instance
-        validator_address
       }
       commissionRate
     }
