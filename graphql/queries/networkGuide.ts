@@ -13,7 +13,6 @@ export const networkGuideQuery = gql`
       metric {
         chain_id
         instance
-        validator_address
       }
       commissionRate
     }
@@ -22,7 +21,6 @@ export const networkGuideQuery = gql`
         chain_id
         denom
         instance
-        validator_address
       }
       TVL
     }

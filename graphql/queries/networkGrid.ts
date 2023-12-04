@@ -27,21 +27,18 @@ export const networkGridQuery = gql`
         chain_id
         denom
         instance
-        validator_address
       }
       TVL
     }
     elrondAPY {
       metric {
         instance
-        validator_address
       }
       APY
     }
     elrondBondedToken {
       metric {
         instance
-        validator_address
       }
       bondedToken
     }
@@ -54,7 +51,6 @@ export const networkGridQuery = gql`
     oasisBondedToken {
       metric {
         instance
-        validator_address
       }
       bondedToken
     }
@@ -67,13 +63,11 @@ export const networkGridQuery = gql`
     allRadixStakedTokens {
       metric {
         instance
-        validator_address
       }
       bondedToken
     }
     radixTVL {
       metric {
-        validator_address
         instance
       }
       TVL
@@ -81,14 +75,12 @@ export const networkGridQuery = gql`
     solanaBondedToken {
       metric {
         instance
-        validator_address
       }
       bondedToken
     }
     solanaTVL {
       metric {
         instance
-        validator_address
       }
       TVL
     }

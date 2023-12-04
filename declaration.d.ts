@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-declare module '*.svg';
+declare module "*.svg";
 
 interface Calculator {
   bonded: string;
@@ -9,25 +9,24 @@ interface Calculator {
 }
 
 interface Network {
-  image: string;
-  name: string;
-  label?: string;
-  key: string;
-  denom?: string;
-  color?: string;
-  heightSocket?: string;
   bigDipper?: string;
-  delegate: string;
   calculator?: Calculator;
+  color?: string;
+  delegate: string;
+  denom?: string;
   guide?: string;
+  heightSocket?: string;
+  image: string;
+  key: string;
+  label?: string;
+  name: string;
 }
 
 interface MetricProps {
-  chain_id: string;
-  instance: string;
-  denom?: string;
-  validator_address?: string;
   __typename: string;
+  chain_id: string;
+  denom?: string;
+  instance: string;
 }
 
 interface BondedProps {
