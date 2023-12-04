@@ -588,7 +588,6 @@ const logos: IStringIndex = {
     name: "Mars Protocol",
   },
 
-  // Appended data
   "archway": {
     address: "archwayvaloper1esg4kluvdkfcxl0atcf2us2p9m9y9sjjsu04ex",
     denom: "ARCH",
@@ -600,6 +599,7 @@ const logos: IStringIndex = {
     name: "Archway",
   },
   "coreum": {
+    address: "corevaloper1k3wy8ztt2e0uq3j5deukjxu2um4a4z5tvz35la",
     denom: "CORE",
     graphql: "coreum",
     guide: "how-to-stake-core-on-coreum",

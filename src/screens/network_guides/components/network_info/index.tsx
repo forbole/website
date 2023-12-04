@@ -34,6 +34,7 @@ const excludedImgChains = new Set([
 
 const mappings: Record<string, string> = {
   "archway-network": "archway",
+  "band-protocol": "band",
   "crypto-org": "crypto.org",
   "mars-protocol": "mars",
 };
