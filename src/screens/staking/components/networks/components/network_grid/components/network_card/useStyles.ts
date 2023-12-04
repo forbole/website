@@ -101,6 +101,18 @@ const useStyles = () => {
           display: "none",
         },
       },
+      "& .networkbox__data-box div:nth-of-type(even)": {
+        background: "rgba(255, 255, 255, 0.4)",
+      },
+      "& .networkbox__data-box div": {
+        alignItems: "center",
+        borderRadius: "4px",
+        display: "flex",
+        flexDirection: "row",
+        fontSize: "12px",
+        justifyContent: "space-between",
+        padding: "2px 8px",
+      },
       "& .networkbox__mobile-anchor": {
         "display": "flex",
         "position": "static",

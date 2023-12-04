@@ -25,6 +25,7 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const {
         archwayBondedToken,
+        archwayTVL,
         eachCosmosAPY,
         eachCosmosBondedToken,
         eachCosmosTVL,
@@ -41,6 +42,7 @@ export const useNetworkHook = () => {
           ["archway", "bonded"],
           archwayBondedToken?.bondedToken || undefined,
         ),
+        assocPath(["archway", "TVL"], archwayTVL?.TVL || undefined),
         reduce(
           (acc: any, data: any) =>
             assocPath([data.metric.instance, "APY"], data.APY, acc),
@@ -166,14 +168,12 @@ export const useNetworkHook = () => {
       const suiBondedToken = networkGridData?.suiBondedToken
         ?.bondedToken as string;
       const apy = networkGridData?.suiAPY?.APY as string;
+      const tvl = networkGridData?.suiTVL?.TVL as string;
       const bonded = Number(suiBondedToken);
-
-      if (Number.isNaN(bonded)) {
-        return suiNetworkParams;
-      }
 
       return pipe(
         assocPath(["sui", "APY"], apy),
+        assocPath(["sui", "TVL"], tvl),
         Number.isNaN(bonded) ? identity : assocPath(["sui", "bonded"], bonded),
       )(suiNetworkParams) as NetworkProps;
     }

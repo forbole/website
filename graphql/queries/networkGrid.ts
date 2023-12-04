@@ -5,6 +5,9 @@ export const networkGridQuery = gql`
     archwayBondedToken {
       bondedToken
     }
+    archwayTVL {
+      TVL
+    }
     eachCosmosAPY {
       metric {
         chain_id
@@ -94,6 +97,9 @@ export const networkGridQuery = gql`
     }
     suiBondedToken {
       bondedToken
+    }
+    suiTVL {
+      TVL
     }
   }
 `;

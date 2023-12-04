@@ -10,7 +10,6 @@ import CloseIcon from "./icon_cross.svg";
 import DropDownIcon from "./icon_dropdown.svg";
 import ExpandIcon from "./icon_expand_more.svg";
 import ForboleShadowIcon from "./icon_forbole_shadow.svg";
-import InfoIcon from "./icon_info.svg";
 import LangIcon from "./icon_language.svg";
 import SearchIcon from "./icon_search.svg";
 import TopIcon from "./icon_top.svg";
@@ -32,7 +31,6 @@ export {
   ForboleShadowIcon,
   Github,
   Horse,
-  InfoIcon,
   Instagram,
   LangIcon,
   LinkedIn,
