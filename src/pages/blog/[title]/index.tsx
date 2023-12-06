@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import { getPosts, getSinglePost } from "@api/posts";
 import { Post } from "@models";
-import BlogDetails from "@screens/blog_details";
+import BlogDetails from "@src/screens/blog_details";
 import { locales } from "@src/utils/i18next";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 

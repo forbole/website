@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import { getNetworkPosts } from "@api/networks";
 import { getSinglePost } from "@api/posts";
 import { Post } from "@models";
-import NetworkGuides from "@screens/network_guides";
+import NetworkGuides from "@src/screens/network_guides";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const StakingDetailsPage: NextPage = (props: any) => (

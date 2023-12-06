@@ -20,7 +20,6 @@
       "@icons": ["src/components/icons"],
       "@icons/*": ["src/components/icons/*"],
       "@models": ["src/models"],
-      "@screens/*": ["src/screens/*"],
       "@src/*": ["src/*"],
       "@styles": ["src/styles"],
       "@styles/*": ["src/styles/*"],
