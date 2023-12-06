@@ -14,13 +14,10 @@
     "noEmit": true,
     "paths": {
       "@api/*": ["src/api/*"],
-      "@components": ["src/components"],
-      "@components/*": ["src/components/*"],
       "@graphql/*": ["graphql/*"],
       "@icons": ["src/components/icons"],
       "@icons/*": ["src/components/icons/*"],
       "@models": ["src/models"],
-      "@screens/*": ["src/screens/*"],
       "@src/*": ["src/*"],
       "@styles": ["src/styles"],
       "@styles/*": ["src/styles/*"],

@@ -6,6 +6,9 @@ import { concat, uniq } from "ramda";
 import type { ReactNode, RefObject } from "react";
 import isURL from "validator/lib/isURL";
 
+import imageBGLaptop from "../../../public/images/assets/bg_laptop.webp";
+import imageBGMobile from "../../../public/images/assets/bg_mobile.webp";
+import imageBGGuide from "../../../public/images/assets/image_BG_FVH_guide.png";
 import Footer from "../footer";
 import GuideNav from "../guide_nav";
 import Nav from "../nav";
@@ -126,14 +129,14 @@ const LayoutVal = ({
             flexDirection: "column",
             minHeight: "100vh",
             background: stakingGuide
-              ? "url(/images/assets/image_BG_FVH_guide.png)"
-              : "url(/images/assets/bg_mobile.webp)",
+              ? `url(${imageBGGuide.src})`
+              : `url(${imageBGMobile.src})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             [theme.breakpoints.up("laptop")]: {
               background: stakingGuide
-                ? "url(/images/assets/image_BG_FVH_guide.png)"
-                : "url(/images/assets/bg_laptop.webp)",
+                ? `url(${imageBGGuide.src})`
+                : `url(${imageBGLaptop.src})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
             },

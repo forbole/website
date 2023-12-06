@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
-import { Layout, Tags } from "@components";
+import { Layout, Tags } from "@src/components";
 
 import { TitlePosts } from "../blog/components";
 import { TagPosts } from "./components";

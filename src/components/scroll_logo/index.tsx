@@ -1,7 +1,7 @@
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import { useMemo } from "react";
 
-import { NoSSR } from "@components/no-ssr";
+import { NoSSR } from "@src/components/no-ssr";
 import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
 
 import Card from "./Card";

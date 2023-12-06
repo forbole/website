@@ -14,10 +14,10 @@ import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
-import { Layout, ScrollToTop } from "@components";
-import { ImgBox, YTBSwiperCSS } from "@screens/about/SwiperCSS";
+import { Layout, ScrollToTop } from "@src/components";
 import Arraw, { Direction } from "@src/components/arrow";
 import { Horse } from "@src/components/icons";
+import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
 
 // 挂载到当前swiper实例
 SwiperCore.use([Navigation, Autoplay]);

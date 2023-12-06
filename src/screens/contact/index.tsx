@@ -16,7 +16,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 
-import { Layout } from "@components";
+import { Layout } from "@src/components";
 import CtaButton from "@src/components/cta-button";
 import FormInput from "@src/components/formInput";
 import SuccessModal from "@src/components/success-modal";

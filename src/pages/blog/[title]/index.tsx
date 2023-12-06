@@ -1,17 +1,43 @@
-import type { NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import { getSinglePost } from "@api/posts";
+import { getPosts, getSinglePost } from "@api/posts";
 import { Post } from "@models";
-import BlogDetails from "@screens/blog_details";
+import BlogDetails from "@src/screens/blog_details";
+import { locales } from "@src/utils/i18next";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const BlogDetailsPage: NextPage = (props: any) => <BlogDetails {...props} />;
 
-export async function getServerSideProps(context: { query: any }) {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPosts({
+    limit: 1000,
+  });
+
+  const paths = locales
+    .map((locale) =>
+      posts.map((post: any) => ({
+        locale,
+        params: {
+          title: post.slug,
+        },
+      })),
+    )
+    .flat();
+
+  return { paths, fallback: true };
+};
+
+export const getStaticProps: GetStaticProps<
+  { post: any },
+  { title: string }
+> = async (context) => {
   try {
-    const { query } = context;
-    const { title } = query;
+    const { params } = context;
+    if (!params) throw new Error("No params");
+    const { title } = params;
+
     const post = await getSinglePost(title);
+
     if (post) {
       post.tags = removeInternalTags(post.tags);
 
@@ -24,7 +50,11 @@ export async function getServerSideProps(context: { query: any }) {
     console.log(err, "error");
   }
 
-  return { post: null };
-}
+  return {
+    props: {
+      post: null,
+    },
+  };
+};
 
 export default BlogDetailsPage;

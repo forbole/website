@@ -1,7 +1,7 @@
 import { getPosts, getTags } from "@api/posts";
 import { getPostsByTag } from "@api/tags";
 import { Post, Tag } from "@models";
-import TagTitlePosts from "@screens/tag";
+import TagTitlePosts from "@src/screens/tag";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const TagDetailsPage = (props: any) => <TagTitlePosts {...props} />;

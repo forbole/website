@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import React from "react";
 
-import { Layout, ScrollToTop, Tags } from "@components";
+import { Layout, ScrollToTop, Tags } from "@src/components";
 
 import { BlogPosts, TitlePosts } from "./components";
 import { useBlogHook } from "./hooks";

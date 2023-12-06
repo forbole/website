@@ -4,7 +4,7 @@ import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 
-import { Layout, ScrollToTop } from "@components";
+import { Layout, ScrollToTop } from "@src/components";
 
 import { TNCCSS } from "../terms_and_conditions/styles";
 
@@ -69,7 +69,6 @@ const Policy = () => {
           <Box
             sx={{
               [theme.breakpoints.up("laptop")]: {
-                // background: 'url(/images/assets/image_waveBG.png)',
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "150%",
                 backgroundPosition: "top 0px left -150px",

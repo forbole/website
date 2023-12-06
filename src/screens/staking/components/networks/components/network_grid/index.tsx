@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { LayoutGroup } from "framer-motion";
 import { useState } from "react";
 
-import { NoSSR } from "@components/no-ssr";
+import { NoSSR } from "@src/components/no-ssr";
 import type { Network } from "@utils/network_info";
 
 import { NetworkCard } from "./components";
