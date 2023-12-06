@@ -3,6 +3,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getPosts, getSinglePost } from "@api/posts";
 import { Post } from "@models";
 import BlogDetails from "@screens/blog_details";
+import { locales } from "@src/utils/i18next";
 import { removeInternalTags } from "@utils/remove_internal_tags";
 
 const BlogDetailsPage: NextPage = (props: any) => <BlogDetails {...props} />;
@@ -12,7 +13,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     limit: 1000,
   });
 
-  const paths = ["en", "zh-HK", "zh-CN"]
+  const paths = locales
     .map((locale) =>
       posts.map((post: any) => ({
         locale,

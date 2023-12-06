@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useEffect } from "react";
 
-import createEmotionCache from "../../misc/createEmotionCache";
+import createEmotionCache from "../../utils/createEmotionCache";
 import InnerApp from "./innerApp";
 
 // Client-side cache, shared for the whole session of the user in the browser.
