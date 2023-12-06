@@ -1,12 +1,10 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import Markdown from "markdown-to-jsx";
 import Head from "next/head";
-import Image from "next/image";
 import React from "react";
 
 import { Layout, ScrollToTop, Tags } from "@src/components";
 
-import placeholderImg from "../../../public/images/assets/blog-placeholder.png";
 import { Author, SocialMedia } from "./components";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
@@ -65,27 +63,19 @@ const BlogDetails = ({ post }: any) => {
                 featureImageCaption === null ? theme.spacing(8) : 0
               }
             >
-              {post.featureImage ? (
-                <Image
-                  alt={title}
-                  fill
-                  src={post.featureImage}
-                  style={{
-                    width: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              ) : (
-                <Image
-                  alt={title}
-                  fill
-                  src={placeholderImg}
-                  style={{
-                    width: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              )}
+              <img
+                alt={title}
+                src={
+                  post.featureImage == null
+                    ? "/images/assets/blog-placeholder.png"
+                    : post.featureImage
+                }
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                }}
+              />
               {featureImageCaption === null ? null : (
                 <Typography
                   sx={{
