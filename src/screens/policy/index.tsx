@@ -69,7 +69,6 @@ const Policy = () => {
           <Box
             sx={{
               [theme.breakpoints.up("laptop")]: {
-                // background: 'url(/images/assets/image_waveBG.png)',
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "150%",
                 backgroundPosition: "top 0px left -150px",
