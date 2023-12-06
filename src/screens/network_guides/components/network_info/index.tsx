@@ -28,6 +28,7 @@ const excludedImgChains = new Set([
   "archway",
   "coreum",
   "gitopia",
+  "oasis",
   "solana",
   "sui",
 ]);

@@ -65,7 +65,7 @@ const NetworkCard = ({
     (!!networkSummary &&
       (!networkSummary.bonded || networkSummary.bonded < 0) &&
       (!networkSummary.APY || networkSummary.APY < 0) &&
-      !networkSummary.TVL &&
+      (!networkSummary.TVL || networkSummary.TVL < 0) &&
       !networkSummary.custom);
 
   /* A variable that is used to render the popover. */

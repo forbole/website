@@ -460,8 +460,10 @@ const logos: IStringIndex = {
     name: "NYM",
   },
   "oasis": {
+    address: "oasis1qrtq873ddwnnjqyv66ezdc9ql2a07l37d5vae9k0",
     denom: "ROSE",
     graphql: "oasis",
+    guide: "how-to-stake-rose-on-oasis-network",
     image: "/images/network/oasis.png",
     key: "oasis",
     name: "Oasis Network",
@@ -475,6 +477,7 @@ const logos: IStringIndex = {
     name: "Omniflix Network",
   },
   "passage": {
+    address: "pasgvaloper1kq4lp40qwce50p4z7lef9sw9c5379yljegwjna",
     denom: "PASG",
     graphql: "passage",
     image: "/images/network/passage.png",
@@ -786,7 +789,7 @@ export const skippedRewardsNetworks = new Set([
 ]);
 
 // The data of these networks is not ready yet
-export const networksWithHiddenInfo = new Set(["radix", "oasis"]);
+export const networksWithHiddenInfo = new Set(["radix"]);
 
 const getNetworkKeysArray = () => {
   const arr = [...cosmosNetworkKeys];

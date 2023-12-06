@@ -14,11 +14,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           enterprise:
             "A new customer just wanted to get in touch with us via Contact form",
         }[source as string] || "A new enquiry from Forbole's website";
+      const email =
+        {
+          devtools: "rpc@forbole.com",
+        }[source as string] || "info@forbole.com";
 
       await transporter.sendMail({
         ...restBody,
         subject,
-        to: process.env.SEND_EMAIL_TO || "rpc@forbole.com",
+        to: process.env.SEND_EMAIL_TO || email,
       });
     }
 
