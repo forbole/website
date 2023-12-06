@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import CtaButton from "@components/cta-button";
+import CtaButton from "@src/components/cta-button";
 
 import usePlans from "./config";
 import styles from "./styles.module.css";

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import type { FC } from "react";
 import { useRef } from "react";
 
-import { Layout, ScrollToBottom, ScrollToTop } from "@components";
+import { Layout, ScrollToBottom, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import IntroCard from "@src/components/intro_card";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";

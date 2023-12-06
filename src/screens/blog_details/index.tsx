@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
-import { Layout, ScrollToTop, Tags } from "@components";
+import { Layout, ScrollToTop, Tags } from "@src/components";
 
 import placeholderImg from "../../../public/images/assets/blog-placeholder.png";
 import { Author, SocialMedia } from "./components";

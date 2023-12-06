@@ -4,8 +4,8 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
 
-import { NoSSR } from "@components/no-ssr";
 import placeholderImage from "@src/../public/images/assets/blog-placeholder.png";
+import { NoSSR } from "@src/components/no-ssr";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import useHKT from "@src/hooks/useHKT";
 

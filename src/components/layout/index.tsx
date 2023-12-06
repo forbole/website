@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { useEffect } from "react";
 import isURL from "validator/lib/isURL";
 
-import Background from "@components/background";
+import Background from "@src/components/background";
 
 import gradientImage from "../../../public/images/assets/image_BG_gradient.png";
 import Footer from "../footer";

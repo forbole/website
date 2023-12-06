@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import React from "react";
 
-import { LayoutVal } from "@components";
+import { LayoutVal } from "@src/components";
 import AppApolloProvider from "@src/utils/apollo";
 
 import { Guide, NetworkInfo } from "./components";

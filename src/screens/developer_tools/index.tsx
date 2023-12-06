@@ -10,13 +10,13 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-import SignatureCard from "@components/signature-card";
 import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import CtaButton from "@src/components/cta-button";
 import FourTable from "@src/components/four-table";
 import HeaderCard from "@src/components/header-card";
 import Section from "@src/components/section";
+import SignatureCard from "@src/components/signature-card";
 import SuccessModal from "@src/components/success-modal";
 import TalkModal from "@src/components/talk-modal";
 

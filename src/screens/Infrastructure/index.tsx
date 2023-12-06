@@ -11,13 +11,13 @@ import { useRouter } from "next/router";
 import type { SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
 
-import { NoSSR } from "@components/no-ssr";
 import { Layout, ScrollToTop } from "@src/components";
 import Carousel from "@src/components/Carousel";
 import IntroPanel from "@src/components/Intro_panel";
 import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import KeyData from "@src/components/key_data";
+import { NoSSR } from "@src/components/no-ssr";
 import ProductPanel from "@src/components/product-panel";
 import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";

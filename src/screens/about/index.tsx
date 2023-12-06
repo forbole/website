@@ -14,7 +14,7 @@ import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
-import { Layout, ScrollToTop } from "@components";
+import { Layout, ScrollToTop } from "@src/components";
 import Arraw, { Direction } from "@src/components/arrow";
 import { Horse } from "@src/components/icons";
 import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";

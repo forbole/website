@@ -8,8 +8,12 @@ import { useRouter } from "next/router";
 import type { MouseEvent } from "react";
 import { useContext, useEffect, useState } from "react";
 
-import { Forbole as ForboleLogo, LangIcon, MenuIcon } from "@components/icons";
 import CtaButton from "@src/components/cta-button";
+import {
+  Forbole as ForboleLogo,
+  LangIcon,
+  MenuIcon,
+} from "@src/components/icons";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import { anchorElContext } from "@src/utils/menu";
 

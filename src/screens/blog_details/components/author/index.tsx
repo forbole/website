@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 
-import { NoSSR } from "@components/no-ssr";
+import { NoSSR } from "@src/components/no-ssr";
 import useHKT from "@src/hooks/useHKT";
 
 const Author = ({ post }: any) => {
