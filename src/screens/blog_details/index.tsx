@@ -5,6 +5,7 @@ import React from "react";
 
 import { Layout, ScrollToTop, Tags } from "@src/components";
 
+import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.png";
 import { Author, SocialMedia } from "./components";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
@@ -67,12 +68,10 @@ const BlogDetails = ({ post }: any) => {
                 alt={title}
                 src={
                   post.featureImage == null
-                    ? "/images/assets/blog-placeholder.png"
+                    ? blogPlaceholderImg.src
                     : post.featureImage
                 }
                 style={{
-                  width: "100%",
-                  height: "auto",
                   objectFit: "cover",
                 }}
               />
@@ -147,7 +146,7 @@ const BlogDetails = ({ post }: any) => {
               {featureImage === null ? (
                 <img
                   alt={title}
-                  src="/images/assets/blog-placeholder.png"
+                  src={blogPlaceholderImg.src}
                   style={{
                     width: "100%",
                     height: "auto",

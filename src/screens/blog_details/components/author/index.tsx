@@ -1,4 +1,5 @@
 import { Box, Typography, useTheme } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 
 import { NoSSR } from "@src/components/no-ssr";
@@ -17,19 +18,25 @@ const Author = ({ post }: any) => {
         marginBottom: theme.spacing(3.5),
       }}
     >
-      <img
+      <Image
         alt={author.name}
-        src={
-          author.profileImage == null
-            ? "/images/assets/blog-placeholder.png"
-            : author.profileImage
-        }
+        height={40}
+        src={(() => {
+          if (author.profileImage == null) {
+            return "/images/assets/blog-placeholder.png";
+          }
+
+          return `https:${author.profileImage
+            .replace("https:", "")
+            .replace("http", "")}`;
+        })()}
         style={{
           borderRadius: "50%",
-          width: theme.spacing(5),
-          height: theme.spacing(5),
+          height: 40,
           margin: 0,
+          width: 40,
         }}
+        width={40}
       />
       <Box
         sx={{

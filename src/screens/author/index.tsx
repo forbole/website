@@ -72,9 +72,10 @@ const AuthorTitlePosts = (props: any) => {
                     : author.profile_image
                 }
                 style={{
-                  width: "150px",
-                  height: "150px",
                   borderRadius: "8px",
+                  height: "150px",
+                  objectFit: "cover",
+                  width: "150px",
                 }}
               />
               <span>
