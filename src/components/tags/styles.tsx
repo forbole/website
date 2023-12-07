@@ -1,7 +1,7 @@
 import type { Theme } from "@mui/material";
 import type { SxProps } from "@mui/system";
 
-export const styles: { [index: string]: SxProps<Theme> } = {
+export const styles = {
   tagCSS: {
     "& ul": {
       listStyleType: "none",
@@ -25,4 +25,4 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       background: theme.palette.custom.forbole.purple,
     },
   }),
-};
+} satisfies { [index: string]: SxProps<Theme> };

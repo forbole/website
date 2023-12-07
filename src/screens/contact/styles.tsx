@@ -1,7 +1,7 @@
 import type { Theme } from "@mui/material";
 import type { SxProps } from "@mui/system";
 
-export const styles: { [index: string]: SxProps<Theme> } = {
+export const styles = {
   gridBox: (theme) => ({
     [theme.breakpoints.up("laptop")]: {
       display: "grid",
@@ -19,4 +19,4 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     background: "#2A1A6A",
     boxShadow: "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
   }),
-};
+} satisfies { [index: string]: SxProps<Theme> };

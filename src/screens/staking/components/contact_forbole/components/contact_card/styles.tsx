@@ -1,7 +1,7 @@
 import type { Theme } from "@mui/material";
 import type { SxProps } from "@mui/system";
 
-export const styles: { [index: string]: SxProps<Theme> } = {
+export const styles = {
   nameBox: (theme) => ({
     display: "flex",
     flexDirection: "column",
@@ -79,4 +79,4 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       width: "125px",
     },
   }),
-};
+} satisfies { [index: string]: SxProps<Theme> };

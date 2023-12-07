@@ -1,7 +1,29 @@
 import type { Theme } from "@mui/material";
 import type { SxProps } from "@mui/system";
 
-export const styles: { [index: string]: SxProps<Theme> } = {
+export const styles = {
+  wrapper: (theme) => ({
+    background:
+      "linear-gradient(269.66deg, rgba(2, 158, 225, 0.4) -12.39%, rgba(2, 38, 225, 0.2) 99.38%), rgba(255, 255, 255, 0.8)",
+    boxShadow:
+      "10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)",
+    borderRadius: theme.spacing(3),
+    padding: theme.spacing(4, 2.5),
+    [theme.breakpoints.up("laptop")]: {
+      padding: theme.spacing(5),
+    },
+  }),
+  textBase: (theme) => ({
+    fontSize: theme.spacing(2),
+    fontWeight: 600,
+    color: theme.palette.custom.forbole.blue,
+  }),
+  innerText: (theme) => ({
+    fontSize: theme.spacing(2),
+    fontWeight: 600,
+    color: theme.palette.custom.forbole.blue,
+    padding: theme.spacing(4, 0, 1, 0),
+  }),
   select: (theme) => ({
     ".MuiOutlinedInput-root": {
       "background": theme.palette.primary.main,
@@ -144,4 +166,24 @@ export const styles: { [index: string]: SxProps<Theme> } = {
     padding: theme.spacing(1.25, 2),
     fontSize: theme.spacing(2),
   }),
-};
+  network: (theme) => ({
+    "display": "flex",
+    "flexDirection": "row",
+    "alignContent": "center",
+    "justifyContent": "flex-start",
+    "& .image": {
+      width: `${theme.spacing(6.5)} !important`,
+      height: `${theme.spacing(6.5)} !important`,
+      borderRadius: "100%",
+      boxShadow:
+        "0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)",
+    },
+  }),
+  networkInfo: (theme) => ({
+    alignItems: "flex-start",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    paddingLeft: theme.spacing(2),
+  }),
+} satisfies { [index: string]: SxProps<Theme> };
