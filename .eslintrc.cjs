@@ -19,7 +19,7 @@ module.exports = {
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
   },
-  plugins: ["@typescript-eslint", "react-hooks"],
+  plugins: ["@typescript-eslint", "react-hooks", "@stylistic"],
   rules: {
     // @TODO: These should be removed when fixed
     "@typescript-eslint/no-explicit-any": "off",
@@ -39,7 +39,7 @@ module.exports = {
     "prefer-template": "error",
     "quote-props": ["error", "consistent-as-needed"],
 
-    "padding-line-between-statements": [
+    "@stylistic/padding-line-between-statements": [
       "error",
       { blankLine: "always", prev: "*", next: "return" },
     ],
