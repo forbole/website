@@ -1,4 +1,4 @@
-const million = require('million/compiler');
+const million = require("million/compiler");
 const bundleAnalyzer = require("@next/bundle-analyzer");
 const nextTranslate = require("next-translate-plugin");
 
@@ -12,6 +12,10 @@ const baseConfig = nextTranslate({
   poweredByHeader: false,
   images: {
     remotePatterns: [
+      {
+        hostname: "www.gravatar.com",
+        protocol: "https",
+      },
       {
         protocol: "https",
         hostname: "www.forbole.com",
@@ -43,6 +47,4 @@ const baseConfig = nextTranslate({
   },
 });
 
-module.exports = million.next(
-  withBundleAnalyzer(baseConfig), { auto: true }
-);
+module.exports = million.next(withBundleAnalyzer(baseConfig), { auto: true });

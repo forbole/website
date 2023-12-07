@@ -9,7 +9,7 @@ import isURL from "validator/lib/isURL";
 
 import Background from "@src/components/background";
 
-import gradientImage from "../../../public/images/assets/image_BG_gradient.png";
+import bgGradientImg from "../../../public/images/assets/image_BG_gradient.png";
 import Footer from "../footer";
 import Nav from "../nav";
 
@@ -73,7 +73,7 @@ const Layout = ({
 
   const background = (() => {
     if (blueBg) {
-      const backgroundColor = `url(${gradientImage.src}) top`;
+      const backgroundColor = `url(${bgGradientImg.src}) top`;
 
       return {
         background: backgroundColor,
