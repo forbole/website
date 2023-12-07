@@ -7,12 +7,12 @@ import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import React, { useCallback } from "react";
 
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
+import { convertToMoney } from "@src/utils/convert_to_money";
 import {
   getCanClickNetwork,
   handleNetworkClick,
 } from "@src/utils/network_functions";
-import { convertToMoney } from "@utils/convert_to_money";
-import { type Network, networksWithHiddenInfo } from "@utils/network_info";
+import { type Network, networksWithHiddenInfo } from "@src/utils/network_info";
 
 import type { ParamsProps } from "../../config";
 import useStyles from "./useStyles";

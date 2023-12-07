@@ -1,8 +1,8 @@
-import { getAuthorBySlug, getPostsByAuthor } from "@api/authors";
-import { getPosts, getTags } from "@api/posts";
-import { Post, Tag } from "@models";
+import { getAuthorBySlug, getPostsByAuthor } from "@src/api/authors";
+import { getPosts, getTags } from "@src/api/posts";
+import { Post, Tag } from "@src/models";
 import AuthorTitlePosts from "@src/screens/author";
-import { removeInternalTags } from "@utils/remove_internal_tags";
+import { removeInternalTags } from "@src/utils/remove_internal_tags";
 
 const AuthorDetailsPage = (props: any) => <AuthorTitlePosts {...props} />;
 

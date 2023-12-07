@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
 import { useCounter } from "@src/screens/staking/components/hooks";
-import { convertToMoney } from "@utils/convert_to_money";
+import { convertToMoney } from "@src/utils/convert_to_money";
 
 import useStyles from "./useStyles";
 

@@ -2,7 +2,7 @@ import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import { useMemo } from "react";
 
 import { NoSSR } from "@src/components/no-ssr";
-import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
+import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
 import Card from "./Card";
 import classes from "./scroll_logo.module.css";

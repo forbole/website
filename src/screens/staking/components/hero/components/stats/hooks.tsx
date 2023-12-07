@@ -3,8 +3,8 @@ import useTranslation from "next-translate/useTranslation";
 import { useMemo } from "react";
 
 import { statsQuery } from "@src/graphql/queries/stats";
-import { networkFunctions } from "@utils/network_functions";
-import { networkNumber } from "@utils/network_info";
+import { networkFunctions } from "@src/utils/network_functions";
+import { networkNumber } from "@src/utils/network_info";
 
 const elrondNetworkFunctions = networkFunctions.elrond;
 
