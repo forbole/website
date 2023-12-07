@@ -1,4 +1,3 @@
-import { DropDownIcon } from "@icons";
 import {
   Box,
   Button,
@@ -17,6 +16,7 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import React from "react";
 
+import { DropDownIcon } from "@src/components/icons";
 import {
   getCanClickNetwork,
   handleNetworkClick,

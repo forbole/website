@@ -1,4 +1,3 @@
-import { ExpandIcon } from "@icons";
 import {
   Accordion,
   AccordionDetails,
@@ -8,6 +7,8 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+
+import { ExpandIcon } from "@src/components/icons";
 
 import type { FAQProps } from "../../config";
 

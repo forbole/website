@@ -1,10 +1,13 @@
-import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
 import { Box, Button, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import type { RefObject } from "react";
 import React from "react";
 
+import {
+  Forbole as ForboleLogo,
+  ForboleShadowIcon,
+} from "@src/components/icons";
 import useColor from "@src/styles/useColor";
 import { AnchorElContextProvider } from "@src/utils/menu";
 

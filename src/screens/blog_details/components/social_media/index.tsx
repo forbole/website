@@ -1,6 +1,7 @@
-import { Facebook, LinkedIn, Telegram, Twitter } from "@icons";
 import { Box, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
+
+import { Facebook, LinkedIn, Telegram, Twitter } from "@src/components/icons";
 
 const SocialMedia = (props: any) => {
   const theme = useTheme();

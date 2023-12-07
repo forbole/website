@@ -13,8 +13,6 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "@icons": ["src/components/icons"],
-      "@icons/*": ["src/components/icons/*"],
       "@src/*": ["src/*"]
     },
     "resolveJsonModule": true,
