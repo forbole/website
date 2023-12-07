@@ -14,7 +14,6 @@ import { getStakingParams } from "./config";
 import { defaultFunctions, networkFunctions, toFixed } from "./utils";
 
 export const useCalculateRewardsHook = () => {
-  const [loading] = useState(false);
   const [tokens, setTokens] = useState<any | null>({
     value: "",
     display: "",
@@ -268,6 +267,5 @@ export const useCalculateRewardsHook = () => {
     tokens,
     monthlyPeriods,
     setMonthlyPeriods,
-    loading,
   };
 };
