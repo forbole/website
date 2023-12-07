@@ -13,9 +13,13 @@ const Author = ({ post }: any) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignContent: "center",
-        marginBottom: theme.spacing(3.5),
+        "display": "flex",
+        "alignContent": "center",
+        "marginBottom": theme.spacing(3.5),
+        "& img": {
+          height: 40,
+          width: 40,
+        },
       }}
     >
       <Image
@@ -34,6 +38,7 @@ const Author = ({ post }: any) => {
           borderRadius: "50%",
           height: 40,
           margin: 0,
+          objectFit: "cover",
           width: 40,
         }}
         width={40}

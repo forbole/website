@@ -63,6 +63,13 @@ const BlogDetails = ({ post }: any) => {
               paddingBottom={
                 featureImageCaption === null ? theme.spacing(8) : 0
               }
+              sx={{
+                [theme.breakpoints.down("tablet")]: {
+                  "& img": {
+                    height: "200px",
+                  },
+                },
+              }}
             >
               <img
                 alt={title}
