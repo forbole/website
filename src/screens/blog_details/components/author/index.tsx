@@ -28,7 +28,7 @@ const Author = ({ post }: any) => {
 
           return `https:${author.profileImage
             .replace("https:", "")
-            .replace("http", "")}`;
+            .replace("http:", "")}`;
         })()}
         style={{
           borderRadius: "50%",
