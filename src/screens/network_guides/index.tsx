@@ -17,6 +17,8 @@ const NetworkGuides = ({ post }: any) => {
     });
   }, []);
 
+  if (!post) return null;
+
   return (
     <AppApolloProvider>
       <LayoutVal

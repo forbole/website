@@ -1,4 +1,3 @@
-import { SearchIcon } from "@icons";
 import type { PaperProps, PopperProps } from "@mui/material";
 import {
   Autocomplete,
@@ -19,6 +18,7 @@ import Image from "next/legacy/image";
 import type { ComponentProps, FocusEventHandler, HTMLAttributes } from "react";
 import { useCallback, useState } from "react";
 
+import { SearchIcon } from "@src/components/icons";
 import {
   getCanClickNetwork,
   handleNetworkClick,

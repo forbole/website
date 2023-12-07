@@ -13,15 +13,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "@api/*": ["src/api/*"],
-      "@graphql/*": ["graphql/*"],
-      "@icons": ["src/components/icons"],
-      "@icons/*": ["src/components/icons/*"],
-      "@models": ["src/models"],
-      "@src/*": ["src/*"],
-      "@styles": ["src/styles"],
-      "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@src/*": ["src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

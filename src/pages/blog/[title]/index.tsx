@@ -1,10 +1,10 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import { getPosts, getSinglePost } from "@api/posts";
-import { Post } from "@models";
+import { getPosts, getSinglePost, stakingGuidePrefix } from "@src/api/posts";
+import { Post } from "@src/models";
 import BlogDetails from "@src/screens/blog_details";
 import { locales } from "@src/utils/i18next";
-import { removeInternalTags } from "@utils/remove_internal_tags";
+import { removeInternalTags } from "@src/utils/remove_internal_tags";
 
 const BlogDetailsPage: NextPage = (props: any) => <BlogDetails {...props} />;
 
@@ -22,7 +22,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       })),
     )
-    .flat();
+    .flat()
+    .filter(
+      (path) =>
+        path.params.title && !path.params.title.startsWith(stakingGuidePrefix),
+    );
 
   return { paths, fallback: true };
 };

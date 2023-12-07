@@ -3,7 +3,7 @@ import { LayoutGroup } from "framer-motion";
 import { useState } from "react";
 
 import { NoSSR } from "@src/components/no-ssr";
-import type { Network } from "@utils/network_info";
+import type { Network } from "@src/utils/network_info";
 
 import { NetworkCard } from "./components";
 import type { NetworkProps } from "./config";

@@ -2,7 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
-import { allNetworkKeys, getNetworkInfo } from "@utils/network_info";
+import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
 import { NetworkGrid, SearchBar } from "./components";
 import type { NetworkProps } from "./components/network_grid/config";

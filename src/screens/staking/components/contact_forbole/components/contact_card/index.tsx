@@ -1,4 +1,3 @@
-import { ExpandIcon } from "@icons";
 import {
   Box,
   Button,
@@ -15,6 +14,8 @@ import {
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import React, { useMemo } from "react";
+
+import { ExpandIcon } from "@src/components/icons";
 
 import useContactCard from "./hooks";
 import { styles } from "./styles";

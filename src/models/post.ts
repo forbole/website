@@ -1,6 +1,6 @@
 import moment from "moment";
 
-import { Author, Tag } from "@models";
+import { Author, Tag } from "@src/models";
 
 class Post {
   public canonicalUrl: string;

@@ -67,9 +67,6 @@ export const networkGridQuery = gql`
       bondedToken
     }
     radixTVL {
-      metric {
-        instance
-      }
       TVL
     }
     solanaBondedToken {

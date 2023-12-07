@@ -1,11 +1,14 @@
 import { useQuery } from "@apollo/client";
-import { rewardsQuery } from "@graphql/queries/rewards";
 import axios from "axios";
 import { pathOr } from "ramda";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { convertToMoney, convertWithDecimal } from "@utils/convert_to_money";
-import { getNetworkInfo } from "@utils/network_info";
+import { rewardsQuery } from "@src/graphql/queries/rewards";
+import {
+  convertToMoney,
+  convertWithDecimal,
+} from "@src/utils/convert_to_money";
+import { getNetworkInfo } from "@src/utils/network_info";
 
 import { getStakingParams } from "./config";
 import { defaultFunctions, networkFunctions, toFixed } from "./utils";

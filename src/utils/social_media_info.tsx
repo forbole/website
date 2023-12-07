@@ -1,5 +1,13 @@
-import { Github, Instagram, LinkedIn, Medium, Telegram, Twitter } from "@icons";
 import type { FunctionComponent } from "react";
+
+import {
+  Github,
+  Instagram,
+  LinkedIn,
+  Medium,
+  Telegram,
+  Twitter,
+} from "@src/components/icons";
 
 interface SocialMediaProps {
   key: string;

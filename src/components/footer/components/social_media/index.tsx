@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import isEmail from "validator/lib/isEmail";
 
 import CtaButton from "@src/components/cta-button";
-import { socialMedia } from "@utils/social_media_info";
+import { socialMedia } from "@src/utils/social_media_info";
 
 import classes from "./classes.module.css";
 

@@ -1,6 +1,8 @@
 import { ghostApi as api } from "../index";
 import type { IPost } from "./interface";
 
+export const stakingGuidePrefix = "how-to-stake";
+
 /** Gets posts from remote */
 export const getPosts = async ({
   limit = 11,

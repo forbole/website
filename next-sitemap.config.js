@@ -38,6 +38,8 @@ module.exports = {
     return posts
       .map((p) => {
         if (!p.slug) return null;
+
+        // This is also defined in `src/api/posts/index.ts`
         if (p.slug.startsWith("how-to-stake")) return `/staking/${p.slug}`;
 
         return `/blog/${p.slug}`;

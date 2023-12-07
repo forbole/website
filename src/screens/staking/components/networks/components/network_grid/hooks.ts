@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { networkGridQuery } from "@graphql/queries/networkGrid";
 import { __, assocPath, identity, pipe, reduce } from "ramda";
 import { useMemo } from "react";
 
-import { networkFunctions } from "@utils/network_functions";
+import { networkGridQuery } from "@src/graphql/queries/networkGrid";
+import { networkFunctions } from "@src/utils/network_functions";
 
 import type { NetworkProps } from "./config";
 import {
@@ -183,17 +183,12 @@ export const useNetworkHook = () => {
 
   const radixNetwork = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
-      const { radixTVL, allRadixStakedTokens } = networkGridData;
-      const tvlKey = radixTVL[0].metric.instance;
-      const { TVL } = radixTVL[0];
+      const { radixTVL } = networkGridData;
+      const { TVL } = radixTVL?.[0] || {};
 
-      const bondedKey = allRadixStakedTokens[0].metric.instance;
-      const bonded = allRadixStakedTokens[0].bondedToken;
-
-      return pipe(
-        assocPath([tvlKey, "TVL"], TVL),
-        assocPath([bondedKey, "bonded"], bonded),
-      )(radixNetworkParams) as NetworkProps;
+      return pipe(assocPath(["radix", "TVL"], TVL))(
+        radixNetworkParams,
+      ) as NetworkProps;
     }
 
     return radixNetworkParams;

@@ -1,6 +1,10 @@
-import { Forbole as ForboleLogo, ForboleShadowIcon } from "@icons";
 import { Box, Button, useTheme } from "@mui/material";
 import Link from "next/link";
+
+import {
+  Forbole as ForboleLogo,
+  ForboleShadowIcon,
+} from "@src/components/icons";
 
 import { useNavHook } from "./hooks";
 

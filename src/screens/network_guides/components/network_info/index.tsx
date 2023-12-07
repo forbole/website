@@ -1,4 +1,3 @@
-import { CopyIcon } from "@icons";
 import {
   Alert,
   Box,
@@ -17,8 +16,9 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import React from "react";
 
+import { CopyIcon } from "@src/components/icons";
+import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
 import { getNetworkInfo } from "@src/utils/network_info";
-import { getMiddleEllipsis } from "@utils/get_middle_ellipsis";
 
 import { InfoCard } from "./components";
 import { useNetworkGuidesHook } from "./hooks";
