@@ -1,6 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import { getPosts, getSinglePost } from "@src/api/posts";
+import { getPosts, getSinglePost, stakingGuidePrefix } from "@src/api/posts";
 import { Post } from "@src/models";
 import BlogDetails from "@src/screens/blog_details";
 import { locales } from "@src/utils/i18next";
@@ -22,7 +22,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       })),
     )
-    .flat();
+    .flat()
+    .filter(
+      (path) =>
+        path.params.title && !path.params.title.startsWith(stakingGuidePrefix),
+    );
 
   return { paths, fallback: true };
 };

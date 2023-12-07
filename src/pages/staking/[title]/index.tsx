@@ -1,20 +1,48 @@
-import type { NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import { getNetworkPosts } from "@src/api/networks";
-import { getSinglePost } from "@src/api/posts";
+import { getPosts, getSinglePost, stakingGuidePrefix } from "@src/api/posts";
 import { Post } from "@src/models";
 import NetworkGuides from "@src/screens/network_guides";
+import { locales } from "@src/utils/i18next";
 import { removeInternalTags } from "@src/utils/remove_internal_tags";
 
 const StakingDetailsPage: NextPage = (props: any) => (
   <NetworkGuides {...props} />
 );
 
-export async function getServerSideProps(context: { query: any; res: any }) {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPosts({
+    limit: 1000,
+  });
+
+  const paths = locales
+    .map((locale) =>
+      posts.map((post: any) => ({
+        locale,
+        params: {
+          title: post.slug,
+        },
+      })),
+    )
+    .flat()
+    .filter(
+      (path) =>
+        path.params.title && path.params.title.startsWith(stakingGuidePrefix),
+    );
+
+  return { paths, fallback: true };
+};
+
+export const getStaticProps: GetStaticProps<
+  { post: any },
+  { title: string }
+> = async (context) => {
   let formattedSidePosts = [];
   try {
-    const { query } = context;
-    const { title } = query;
+    const { params } = context;
+    if (!params) throw new Error("No params");
+    const { title } = params;
     const post = await getSinglePost(title);
     const [sidePosts] = await Promise.all([
       getNetworkPosts({
@@ -41,6 +69,6 @@ export async function getServerSideProps(context: { query: any; res: any }) {
   }
 
   return { props: { post: { tags: [] } } };
-}
+};
 
 export default StakingDetailsPage;
