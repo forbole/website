@@ -14,7 +14,6 @@
     "noEmit": true,
     "paths": {
       "@api/*": ["src/api/*"],
-      "@graphql/*": ["graphql/*"],
       "@icons": ["src/components/icons"],
       "@icons/*": ["src/components/icons/*"],
       "@models": ["src/models"],

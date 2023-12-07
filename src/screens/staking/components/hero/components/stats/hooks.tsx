@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { statsQuery } from "@graphql/queries/stats";
 import useTranslation from "next-translate/useTranslation";
 import { useMemo } from "react";
 
+import { statsQuery } from "@src/graphql/queries/stats";
 import { networkFunctions } from "@utils/network_functions";
 import { networkNumber } from "@utils/network_info";
 

@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { networkGridQuery } from "@graphql/queries/networkGrid";
 import { __, assocPath, identity, pipe, reduce } from "ramda";
 import { useMemo } from "react";
 
+import { networkGridQuery } from "@src/graphql/queries/networkGrid";
 import { networkFunctions } from "@utils/network_functions";
 
 import type { NetworkProps } from "./config";
