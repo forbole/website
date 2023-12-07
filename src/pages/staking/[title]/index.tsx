@@ -18,7 +18,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const paths = locales
     .map((locale) =>
-      posts.map((post: any) => ({
+      posts.filter(Boolean).map((post: any) => ({
         locale,
         params: {
           title: post.slug,
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps<
     console.log(err, "error");
   }
 
-  return { props: { post: { tags: [] } } };
+  return { props: { post: null } };
 };
 
 export default StakingDetailsPage;
