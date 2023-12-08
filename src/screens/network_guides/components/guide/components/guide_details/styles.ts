@@ -231,7 +231,7 @@ export const GuideContentBox = styled.div<any>`
     }
   }
 
-  /* Cards
+  /* Cards */
   /* ---------------------------------------------------------- */
 
   :not(.kg-card):not([id]) + .kg-card {
@@ -292,7 +292,7 @@ export const GuideContentBox = styled.div<any>`
     height: 100%;
   }
 
-  /* Galleries
+  /* Galleries */
   /* ---------------------------------------------------------- */
 
   .kg-gallery-card + .kg-gallery-card {
@@ -324,7 +324,7 @@ export const GuideContentBox = styled.div<any>`
     margin: 0 0 0 0.75em;
   }
 
-  /* Bookmark Cards
+  /* Bookmark Cards */
   /* ---------------------------------------------------------- */
 
   .kg-bookmark-card,
@@ -426,7 +426,7 @@ export const GuideContentBox = styled.div<any>`
     margin: 0 0.5em;
   }
 
-  /* Card captions
+  /* Card captions */
   /* ---------------------------------------------------------- */
 
   .kg-width-full.kg-card-hascaption {
@@ -445,7 +445,7 @@ export const GuideContentBox = styled.div<any>`
     grid-column: main-start / main-end;
   }
 
-  /* Tables
+  /* Tables */
   /* ---------------------------------------------------------- */
 
   table {
