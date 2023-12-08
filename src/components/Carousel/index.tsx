@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -7,134 +7,64 @@ import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
-import Arraw, { Direction } from "../arrow";
+import Arrow, { Direction } from "../arrow";
 import { BoxCSS } from "./BoxCSS";
+import * as styles from "./index.module.scss";
 
 SwiperCore.use([Navigation]);
 
 type PersonInfo = {
-  name: string;
-  position: string;
   desc: string;
   img: string;
+  name: string;
+  position: string;
 };
 
 const PersonCard = ({ desc, name, position, img }: PersonInfo) => (
-  <Card
-    sx={{
-      display: "flex",
-      gap: "20px",
-      boxSizing: "border-box",
-      height: "100%",
-      minHeight: "368px",
-      padding: "32px 24px",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      borderRadius: "24px",
-      background:
-        "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.89) 34.90%, #FFF 100%)",
-      boxShadow:
-        "0px 10px 32px -4px rgba(96, 60, 238, 0.20), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
-    }}
-  >
-    {img && (
-      <Avatar
-        alt="Phoebe Poon"
-        src={img}
-        sx={{
-          width: 100,
-          height: 100,
-          boxShadow:
-            "0px 10px 32px -4px rgba(96, 60, 238, 0.50), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
-        }}
-      />
-    )}
+  <Card className={styles.personCard}>
+    {img && <Avatar alt="Person Avatar" className={styles.avater} src={img} />}
     <Box>
-      {/* 姓名 */}
-      <Typography
-        sx={{
-          fontSize: { mobile: 24, laptop: 20 },
-          fontStyle: "normal",
-          fontWeight: 700,
-          lineHeight: "normal",
-          letterSpacing: 0.036,
-          color: "#202A43",
-        }}
-      >
-        {name}
-      </Typography>
-
-      {/* 职位 */}
-      <Typography
-        sx={{
-          fontSize: { mobile: 18, laptop: 16 },
-          fontStyle: "normal",
-          fontWeight: 400,
-          lineHeight: "normal",
-          letterSpacing: -0.36,
-          color: "#202A43",
-        }}
-      >
-        {position}
-      </Typography>
+      <Typography className={styles.name}>{name}</Typography>
+      <Typography className={styles.position}>{position}</Typography>
     </Box>
-    {/* 描述 */}
-    <Typography
-      sx={{
-        width: "100%",
-        fontSize: { mobile: 14, laptop: 16 },
-        fontStyle: "normal",
-        fontWeight: 400,
-        lineHeight: { mobile: "20px", laptop: "22px" },
-        letterSpacing: { mobile: "-0.112px", laptop: "-0.192px" },
-        color: "#2A1A6A",
-      }}
-    >
-      {desc}
-    </Typography>
+    <Typography className={styles.description}>{desc}</Typography>
   </Card>
 );
+
 type CarouselProps = {
   personList?: PersonInfo[];
 };
+
 const Carousel = ({ personList }: CarouselProps) => {
-  const theme = useTheme();
   let usedList: PersonInfo[] | undefined = personList;
   const { t } = useTranslation("common");
 
   if (!personList) {
     usedList = [
       {
+        desc: "",
+        img: "",
         name: t("coming_soon"),
         position: "",
-        desc: ``,
-        img: "",
       },
       {
+        desc: "",
+        img: "",
         name: t("coming_soon"),
         position: "",
-        desc: ``,
-        img: "",
       },
       {
+        desc: "",
+        img: "",
         name: t("coming_soon"),
         position: "",
-        desc: ``,
-        img: "",
       },
     ];
   }
 
   return (
     <BoxCSS>
-      <Box
-        position="relative"
-        sx={{
-          [theme.breakpoints.down("laptop")]: {
-            margin: "0 -16px",
-          },
-        }}
-      >
+      <Box className={styles.wrapper}>
         <Swiper
           breakpoints={{
             375: {
@@ -170,25 +100,13 @@ const Carousel = ({ personList }: CarouselProps) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <Arraw
-          className="c-next"
+        <Arrow
+          className={["c-next", styles.arrowRight].join(" ")}
           direction={Direction.Right}
-          sx={{
-            position: "absolute",
-            right: "0",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
         />
-        <Arraw
-          className="c-prev"
+        <Arrow
+          className={["c-prev", styles.arrowLeft].join(" ")}
           direction={Direction.Left}
-          sx={{
-            position: "absolute",
-            left: "0",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
         />
       </Box>
     </BoxCSS>

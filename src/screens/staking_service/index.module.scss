@@ -1,0 +1,28 @@
+@import "src/styles/sass.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 184px;
+
+  @include down-laptop {
+    gap: 40px;
+  }
+}
+
+.stakingCta {
+  display: block;
+  margin: 54px auto;
+
+  @include down-laptop {
+    margin: 32px auto;
+  }
+}
+
+.topStack {
+  gap: 40px;
+
+  @include down-laptop {
+    gap: 32px;
+  }
+}

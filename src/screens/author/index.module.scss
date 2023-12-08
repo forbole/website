@@ -1,0 +1,51 @@
+@import "src/styles/sass.scss";
+
+.authorName {
+  color: $color-primary-light;
+  padding-top: spacing(3);
+}
+
+.container {
+  @include up-laptop {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.content {
+  @include up-laptop {
+    display: flex;
+    max-width: 1200px;
+    padding: spacing(15) 0;
+  }
+}
+
+.img {
+  border-radius: 8px;
+  height: 150px;
+  object-fit: cover;
+  width: 150px;
+}
+
+.imgWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  padding: spacing(12) spacing(3) 0 spacing(3);
+
+  @include up-laptop {
+    padding: 0 spacing(5) 0 0;
+  }
+}
+
+.innerContent {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+
+  @include up-laptop {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}

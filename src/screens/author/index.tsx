@@ -1,16 +1,17 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
 import { Layout } from "@src/components";
 
 import { AuthorPosts } from "./components";
 import { useBlogHook } from "./hooks";
+import * as styles from "./index.module.scss";
 
 const AuthorTitlePosts = (props: any) => {
   const { t } = useTranslation("blog");
-  const theme = useTheme();
   const { post, tags, author, meta } = props;
   const { featureImage, excerpt, error } = post;
+
   useBlogHook(error, t);
 
   return (
@@ -24,68 +25,21 @@ const AuthorTitlePosts = (props: any) => {
       title={post.title}
       type="article"
     >
-      <Box
-        sx={{
-          [theme.breakpoints.up("laptop")]: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-        }}
-      >
-        <Box
-          sx={{
-            [theme.breakpoints.up("laptop")]: {
-              padding: theme.spacing(15, 0),
-              display: "flex",
-              maxWidth: "1200px",
-            },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyItems: "center",
-              [theme.breakpoints.up("laptop")]: {
-                flexDirection: "row",
-                alignItems: "flex-start",
-              },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyItems: "flex-start",
-                padding: theme.spacing(12, 3, 0, 3),
-                [theme.breakpoints.up("laptop")]: {
-                  padding: theme.spacing(0, 5, 0, 0),
-                },
-              }}
-            >
+      <Box className={styles.container}>
+        <Box className={styles.content}>
+          <Box className={styles.innerContent}>
+            <Box className={styles.imgWrapper}>
               <img
                 alt={author.name}
+                className={styles.img}
                 src={
                   author.profile_image == null
                     ? "/images/assets/blog-placeholder.png"
                     : author.profile_image
                 }
-                style={{
-                  borderRadius: "8px",
-                  height: "150px",
-                  objectFit: "cover",
-                  width: "150px",
-                }}
               />
               <span>
-                <Typography
-                  sx={{
-                    color: theme.palette.primary.main,
-                    paddingTop: theme.spacing(3),
-                  }}
-                  variant="body1"
-                >
+                <Typography className={styles.authorName} variant="body1">
                   {author.name}
                 </Typography>
               </span>
