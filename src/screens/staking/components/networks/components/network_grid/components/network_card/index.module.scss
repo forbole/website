@@ -12,12 +12,12 @@ $popover-background: linear-gradient(
   rgba(255, 255, 255, 0.8);
 
 $root-box-shadow:
-  0px 6px 14px -6px rgba(2, 38, 225, 0.12),
-  0px 10px 32px -4px rgba(2, 38, 225, 0.1);
+  0 6px 14px -6px rgba(2, 38, 225, 0.12),
+  0 10px 32px -4px rgba(2, 38, 225, 0.1);
 
 $image-box-shadow:
-  0px 8px 22px -6px rgba(2, 38, 225, 0.12),
-  0px 14px 64px -4px rgba(2, 38, 225, 0.12);
+  0 8px 22px -6px rgba(2, 38, 225, 0.12),
+  0 14px 64px -4px rgba(2, 38, 225, 0.12);
 
 .anchor {
   align-items: center;
@@ -41,6 +41,20 @@ $image-box-shadow:
     }
   }
 
+  @include down-laptop {
+    display: flex;
+    gap: spacing(3);
+    position: static;
+
+    @include up-tablet {
+      display: none;
+    }
+
+    &:hover {
+      background-color: $color-primary-light;
+    }
+  }
+
   &:hover {
     opacity: 1;
 
@@ -53,10 +67,21 @@ $image-box-shadow:
   }
 }
 
+.closeBtn {
+  margin-top: -spacing(1);
+  position: absolute;
+  right: spacing(2);
+
+  @include up-tablet {
+    display: none;
+  }
+}
+
 .dataBox {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  width: 100%;
 
   div {
     align-items: center;
@@ -73,10 +98,25 @@ $image-box-shadow:
   }
 }
 
+.exploreButton {
+  background-color: #f6504b;
+  background-image: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  border-radius: 200px;
+  color: #fff;
+  font-size: 1rem;
+  height: 45px;
+  padding: 0.75rem 1rem;
+  width: 111px;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
+
 .image {
   align-items: center;
-  border-radius: 100%;
   border: 2px solid rgba(2, 38, 225, 0.16);
+  border-radius: 100%;
   box-shadow: $image-box-shadow;
   display: flex;
   justify-content: center;
@@ -86,6 +126,18 @@ $image-box-shadow:
   min-height: spacing(6);
   min-width: spacing(6);
   padding: 0;
+}
+
+.label {
+  align-items: center;
+  display: block;
+  flex-flow: row nowrap;
+  font-weight: 600;
+  gap: spacing(1);
+  justify-content: center;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .networkName {
@@ -102,14 +154,14 @@ $image-box-shadow:
 }
 
 .popover {
-  align-items: flex-start;
+  align-items: center;
   border-radius: spacing(3);
   box-shadow: $popover-box-shadow;
   color: $color-text-primary;
   display: none;
-  flex-flow: row wrap;
+  flex-flow: column;
   gap: spacing(1);
-  justify-content: center;
+  justify-content: space-between;
   padding: spacing(3);
   position: absolute;
   z-index: 3;
@@ -149,19 +201,38 @@ $image-box-shadow:
   }
 }
 
-.label {
-  align-items: center;
+.popoverContainer {
+  align-self: flex-start;
   display: block;
-  flex-flow: row nowrap;
-  font-weight: 600;
-  gap: spacing(1);
-  justify-content: center;
-  text-align: left;
+
+  .popover {
+    left: spacing(3);
+    right: spacing(3);
+  }
+
+  .label {
+    color: $color-forbole-indigo6;
+    font-size: spacing(2);
+  }
+
+  &.active {
+    .popover {
+      display: flex !important;
+    }
+  }
+
+  @include up-tablet {
+    display: none;
+  }
+}
+
+.progress {
   width: 100%;
 }
 
 .root {
   align-items: center;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: spacing(3);
   box-shadow: $root-box-shadow;
   display: inline-flex;
@@ -170,4 +241,13 @@ $image-box-shadow:
   min-height: spacing(10);
   min-width: spacing(15);
   text-align: center;
+}
+
+.value {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: spacing(1);
+  justify-content: space-between;
+  text-align: right;
+  width: 100%;
 }

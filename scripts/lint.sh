@@ -6,6 +6,8 @@ npm run lint:eslint
 
 npm run lint:prettier
 
+npm run lint:scss
+
 npx ts-unused-exports tsconfig.json \
   --excludePathsFromReport='.*pages.*$' \
   --excludePathsFromReport='.*rss.xml' \

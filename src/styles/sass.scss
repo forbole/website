@@ -1,5 +1,6 @@
 $color-forbole-indigo6: #2a1a6a;
-$color-text-primary: #000000;
+$color-primary-light: #fff;
+$color-text-primary: #000;
 
 $breakpoint-mobile: 375px;
 $breakpoint-tablet: 768px;
@@ -20,6 +21,12 @@ $breakpoint-desktop: 1208px;
 
 @mixin up-tablet {
   @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin down-laptop {
+  @media (max-width: $breakpoint-laptop) {
     @content;
   }
 }
