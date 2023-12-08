@@ -1,0 +1,127 @@
+@import "src/styles/sass.scss";
+
+.container {
+  min-height: 65vh;
+  user-select: none;
+
+  @include up-laptop {
+    height: 100vh;
+    min-height: 75vh;
+  }
+}
+
+.imgWrapper {
+  height: 60vh;
+  margin: auto;
+  opacity: 1;
+  position: absolute;
+  top: 10vh;
+  width: 100%;
+
+  img {
+    object-fit: contain;
+  }
+
+  @include down-laptop {
+    top: 5vh;
+  }
+
+  @include up-tablet {
+    height: 70vh;
+    top: 10vh;
+    width: spacing(80);
+  }
+
+  @include up-laptop {
+    height: 80vh;
+    top: 10vh;
+    width: spacing(100);
+  }
+}
+
+.main {
+  align-items: flex-end;
+  display: flex;
+  height: 55vh;
+  justify-content: center;
+  width: 100%;
+
+  @include up-tablet {
+    align-items: center;
+    height: 75vh;
+  }
+
+  @include up-laptop {
+    align-items: flex-end;
+    height: 65vh;
+  }
+}
+
+.root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: spacing(5) spacing(3);
+}
+
+.stats {
+  padding-top: spacing(5);
+
+  @include up-laptop {
+    padding-top: 0;
+  }
+}
+
+.title {
+  white-space: pre-wrap;
+  z-index: 3;
+
+  @include up-mobile {
+    color: $color-primary-light;
+    font-size: spacing(4);
+    font-weight: 600;
+    letter-spacing: 0.032em;
+    line-height: spacing(5);
+    padding: 0;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.88);
+  }
+
+  @include up-tablet {
+    font-size: spacing(8);
+    letter-spacing: 0.013em;
+    line-height: spacing(9);
+    max-width: 610px;
+    padding: spacing(30) 0 0;
+  }
+}
+
+.shadow {
+  mix-blend-mode: lighten;
+  position: absolute;
+  width: 50%;
+
+  @include up-mobile {
+    background-size: contain;
+    height: 300px;
+    margin: auto;
+    top: 45vh;
+    width: 60%;
+  }
+
+  @include up-tablet {
+    background-size: contain;
+    height: 400px;
+    left: auto;
+    right: auto;
+    top: 60vh;
+    width: 550px;
+  }
+
+  @include up-laptop {
+    height: 322px;
+    top: 65vh;
+    width: 431px;
+  }
+}

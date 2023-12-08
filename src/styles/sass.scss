@@ -2,6 +2,10 @@ $color-forbole-indigo6: #2a1a6a;
 $color-primary-light: #fff;
 $color-text-primary: #000;
 
+$box-shadow-variant-1:
+  0 6px 14px -6px rgba(2, 38, 225, 0.12),
+  0 10px 32px -4px rgba(2, 38, 225, 0.1);
+
 $breakpoint-mobile: 375px;
 $breakpoint-tablet: 768px;
 $breakpoint-laptop: 1025px;
@@ -9,6 +13,12 @@ $breakpoint-desktop: 1208px;
 
 @mixin down-mobile {
   @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin up-mobile {
+  @media (min-width: $breakpoint-mobile) {
     @content;
   }
 }
@@ -27,6 +37,12 @@ $breakpoint-desktop: 1208px;
 
 @mixin down-laptop {
   @media (max-width: $breakpoint-laptop) {
+    @content;
+  }
+}
+
+@mixin up-laptop {
+  @media (min-width: $breakpoint-laptop) {
     @content;
   }
 }
