@@ -11,10 +11,6 @@ $popover-background: linear-gradient(
   ),
   rgba(255, 255, 255, 0.8);
 
-$root-box-shadow:
-  0 6px 14px -6px rgba(2, 38, 225, 0.12),
-  0 10px 32px -4px rgba(2, 38, 225, 0.1);
-
 $image-box-shadow:
   0 8px 22px -6px rgba(2, 38, 225, 0.12),
   0 14px 64px -4px rgba(2, 38, 225, 0.12);
@@ -234,7 +230,7 @@ $image-box-shadow:
   align-items: center;
   background: rgba(255, 255, 255, 0.6);
   border-radius: spacing(3);
-  box-shadow: $root-box-shadow;
+  box-shadow: $box-shadow-variant-1;
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: center;

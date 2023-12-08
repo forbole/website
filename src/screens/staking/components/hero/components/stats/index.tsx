@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import { StatsCard } from "./components";
+import StatsCard from "./components/stats_card";
 import { useStatsHook } from "./hooks";
 import useStyles from "./useStyles";
 
@@ -13,7 +13,7 @@ const Stats = () => {
 
   return (
     <Box css={styles.grid} data-test="stats-cards">
-      {statsKeys.map((key: any) => {
+      {statsKeys.sort().map((key: any) => {
         const statsItem = stats[key];
 
         return (

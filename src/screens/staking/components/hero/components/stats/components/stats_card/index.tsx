@@ -4,15 +4,14 @@ import useTranslation from "next-translate/useTranslation";
 import { useCounter } from "@src/screens/staking/components/hooks";
 import { convertToMoney } from "@src/utils/convert_to_money";
 
-import useStyles from "./useStyles";
+import * as styles from "./index.module.scss";
 
 const StatsCard = ({ title, stats }: any) => {
   const { t } = useTranslation("common");
-  const styles = useStyles();
   const { counterValue, counterRef } = useCounter(stats);
 
   return (
-    <Box css={styles.root} ref={counterRef}>
+    <Box className={styles.root} ref={counterRef}>
       <Typography variant="h6">{title}</Typography>
       {title === t("full tvl") && stats === "-" && (
         <Typography variant="h3">{`$ ${stats}`}</Typography>
