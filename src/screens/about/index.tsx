@@ -15,11 +15,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
 import { Layout, ScrollToTop } from "@src/components";
-import Arraw, { Direction } from "@src/components/arrow";
+import Arrow, { Direction } from "@src/components/arrow";
 import { Horse } from "@src/components/icons";
 import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
 
-// 挂载到当前swiper实例
 SwiperCore.use([Navigation, Autoplay]);
 const About = () => {
   const { t } = useTranslation("about");
@@ -37,7 +36,7 @@ const About = () => {
     "/about/aboutus_06.webp",
     "/about/aboutus_07.webp",
   ];
-  const vidoeList = [
+  const videoList = [
     {
       src: "https://www.youtube.com/embed/K5t6Q0OAVzI",
       title: "Ep.2 Forbole is an Infrastructure Provider",
@@ -237,7 +236,7 @@ const About = () => {
                 ))}
               </Swiper>
             </ImgBox>
-            <Arraw
+            <Arrow
               className="h-next"
               direction={Direction.Right}
               sx={{
@@ -247,7 +246,7 @@ const About = () => {
                 transform: "translateY(-50%)",
               }}
             />
-            <Arraw
+            <Arrow
               className="h-prev"
               direction={Direction.Left}
               sx={{
@@ -337,7 +336,7 @@ const About = () => {
               padding: onlyLargeScreen ? "0" : "0 32px",
             }}
           >
-            {vidoeList.map((item, indexUpper) => (
+            {videoList.map((item, indexUpper) => (
               <SwiperSlide
                 key={indexUpper}
                 style={{
@@ -364,8 +363,8 @@ const About = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <Arraw className="v-next" direction={Direction.Right} />
-          <Arraw className="v-prev" direction={Direction.Left} />
+          <Arrow className="v-next" direction={Direction.Right} />
+          <Arrow className="v-prev" direction={Direction.Left} />
         </Stack>
       </YTBSwiperCSS>
 

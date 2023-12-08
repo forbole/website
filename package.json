@@ -81,6 +81,7 @@
     "postcss": "^8.4.27",
     "prettier": "^3.0.3",
     "rss": "^1.2.2",
+    "sass": "^1.69.5",
     "ts-unused-exports": "^10.0.1",
     "tsx": "^4.6.2",
     "typescript": "^5.2.2"

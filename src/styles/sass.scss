@@ -1,0 +1,29 @@
+$color-forbole-indigo6: #2a1a6a;
+$color-text-primary: #000000;
+
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1025px;
+$breakpoint-desktop: 1208px;
+
+@mixin down-mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin down-tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin up-tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@function spacing($num) {
+  @return $num * 8px;
+}

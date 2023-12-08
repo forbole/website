@@ -6,3 +6,8 @@ declare namespace NodeJS {
     NEXT_PUBLIC_COINGECKO_API: string;
   }
 }
+
+declare module "*.module.scss" {
+  const classes: { [key: string]: string };
+  export = classes;
+}

@@ -12,9 +12,11 @@ import {
   getCanClickNetwork,
   handleNetworkClick,
 } from "@src/utils/network_functions";
-import { type Network, networksWithHiddenInfo } from "@src/utils/network_info";
+import type { Network } from "@src/utils/network_info";
+import { networksWithHiddenInfo } from "@src/utils/network_info";
 
 import type { ParamsProps } from "../../config";
+import * as styles from "./index.module.scss";
 import useStyles from "./useStyles";
 
 interface CardProp {
@@ -71,7 +73,7 @@ const NetworkCard = ({
   /* A variable that is used to render the popover. */
   const popover = isEmptyPopover ? null : (
     <Box
-      className="networkbox__popover"
+      className={["networkbox__popover", styles.popover].join(" ")}
       style={{
         cursor: canClickNetwork ? "pointer" : "default",
       }}
@@ -97,17 +99,12 @@ const NetworkCard = ({
       </Box>
       {!!networkSummary ? (
         <Box
-          className="networkbox__data-box"
+          className={styles.dataBox}
           onClickCapture={handleMobilePopoverClick}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "6px",
-          }}
         >
           {!!networkSummary.bonded && networkSummary.bonded > 0 && (
             <Box>
-              <Typography variant="h6">
+              <Typography className={styles.label} variant="h6">
                 {network.denom?.toUpperCase()}
               </Typography>
               <Typography>{convertToMoney(networkSummary.bonded)}</Typography>
@@ -115,7 +112,9 @@ const NetworkCard = ({
           )}
           {!!networkSummary.APY && networkSummary.APY > 0 && (
             <Box>
-              <Typography variant="h6">APY</Typography>
+              <Typography className={styles.label} variant="h6">
+                APY
+              </Typography>
               <Typography>{`${Math.round(
                 networkSummary.APY * 100,
               )}%`}</Typography>
@@ -123,14 +122,18 @@ const NetworkCard = ({
           )}
           {!!networkSummary.TVL && (
             <Box>
-              <Typography variant="h6">TVL</Typography>
+              <Typography className={styles.label} variant="h6">
+                TVL
+              </Typography>
               <Typography>${convertToMoney(networkSummary.TVL)}</Typography>
             </Box>
           )}
           {!!networkSummary.custom &&
             Object.keys(networkSummary.custom).map((customKey) => (
               <Box key={customKey}>
-                <Typography variant="h6">{customKey}</Typography>
+                <Typography className={styles.label} variant="h6">
+                  {customKey}
+                </Typography>
                 <Typography>{networkSummary.custom?.[customKey]}</Typography>
               </Box>
             ))}
@@ -139,7 +142,7 @@ const NetworkCard = ({
         <LinearProgress color="secondary" />
       )}
       <Button
-        className="networkbox__explore-btn"
+        className={["networkbox__explore-btn", styles.exploreButton].join(" ")}
         color="secondary"
         onClickCapture={handleExploreClick}
         variant="contained"
@@ -149,10 +152,10 @@ const NetworkCard = ({
     </Box>
   );
 
-  const styles = useStyles();
+  const jsStyles = useStyles();
 
   const networkImage = network.image && (
-    <Box className="image">
+    <Box className={styles.image}>
       <Image
         alt=""
         height="48"
@@ -163,12 +166,16 @@ const NetworkCard = ({
       />
     </Box>
   );
-
-  const networkName = <Typography variant="h4">{network.name}</Typography>;
+  const networkName = (
+    <Typography className={styles.networkName} variant="h4">
+      {network.name}
+    </Typography>
+  );
 
   return (
     <motion.div
-      css={styles.root}
+      className={styles.root}
+      css={jsStyles.root}
       initial="initial"
       ref={ref}
       transition={{ duration: 0.3 }}
@@ -181,17 +188,17 @@ const NetworkCard = ({
       {isMobile ? (
         <>
           <Box
-            className={
+            className={[
               showMobilePopover === network.name
                 ? "networkbox__active networkbox__mobile-popover-contaier"
-                : "networkbox__mobile-popover-contaier"
-            }
+                : "networkbox__mobile-popover-contaier",
+            ].join(" ")}
             data-test="network-item"
           >
             {popover}
           </Box>
           <Button
-            className="networkbox__mobile-anchor"
+            className={["networkbox__mobile-anchor", styles.anchor].join(" ")}
             onClick={
               isEmptyPopover && canClickNetwork
                 ? handleExploreClick
@@ -205,7 +212,7 @@ const NetworkCard = ({
         </>
       ) : (
         <Box
-          className="networkbox__desktop-anchor"
+          className={["networkbox__desktop-anchor", styles.anchor].join(" ")}
           onClick={handleExploreClick}
           style={{
             cursor: canClickNetwork ? "pointer" : "default",
