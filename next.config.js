@@ -22,6 +22,11 @@ const baseConfig = nextTranslate({
       },
     ],
   },
+  rewrites: async () =>
+    ["/rss", "/rss/"].map((path) => ({
+      destination: "/rss.xml",
+      source: path,
+    })),
   redirects: async () => [
     {
       destination: "/zh-HK/:path*",

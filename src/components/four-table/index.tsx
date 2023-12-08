@@ -1,18 +1,18 @@
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
 
 import usePlans from "./config";
 import styles from "./styles.module.css";
 
+const clickItem = 2;
+
 type Props = { btnHref: () => void };
 const FourTable = ({ btnHref }: Props) => {
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
-  const [clickItem] = useState<number | null>(2);
   const router = useRouter();
   const plans = usePlans();
 

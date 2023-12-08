@@ -1,7 +1,7 @@
 import type { Theme } from "@mui/material";
 import type { SxProps } from "@mui/system";
 
-export const styles: { [index: string]: SxProps<Theme> } = {
+export const styles = {
   flexBox: (theme) => ({
     [theme.breakpoints.up("laptop")]: {
       display: "flex",
@@ -16,4 +16,4 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       marginLeft: theme.spacing(4.25),
     },
   }),
-};
+} satisfies { [index: string]: SxProps<Theme> };

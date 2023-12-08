@@ -47,7 +47,6 @@ export const GuideContentCSS = styled.div<ContentProps>`
   }
 
   li {
-    // display: list-item;
     color: ${(props) => props?.theme?.palette?.custom?.forbole?.blue};
     position: relative;
     font-size: 16px;
@@ -93,8 +92,8 @@ export const GuideContentCSS = styled.div<ContentProps>`
 `;
 
 export const GuideContentBox = styled.div<any>`
-  /* Content grid
-/* ---------------------------------------------------------- */
+  /* Content grid */
+  /* ---------------------------------------------------------- */
 
   .gh-canvas {
     display: grid;
@@ -162,8 +161,8 @@ export const GuideContentBox = styled.div<any>`
     width: 100%;
   }
 
-  /* Content & Typography
-/* ---------------------------------------------------------- */
+  /* Content & Typography */
+  /* ---------------------------------------------------------- */
 
   > * + * {
     margin-top: 1.5rem;
@@ -192,12 +191,6 @@ export const GuideContentBox = styled.div<any>`
     font-size: 2rem;
     line-height: 1.6em;
   }
-
-  // > ul,
-  // > ol,
-  // > dl {
-  //   padding-left: 1.9em;
-  // }
 
   hr {
     margin-top: 6vmin;
@@ -238,8 +231,8 @@ export const GuideContentBox = styled.div<any>`
     }
   }
 
-  /* Cards
-/* ---------------------------------------------------------- */
+  /* Cards */
+  /* ---------------------------------------------------------- */
 
   :not(.kg-card):not([id]) + .kg-card {
     margin-top: 6vmin;
@@ -299,8 +292,8 @@ export const GuideContentBox = styled.div<any>`
     height: 100%;
   }
 
-  /* Galleries
-/* ---------------------------------------------------------- */
+  /* Galleries */
+  /* ---------------------------------------------------------- */
 
   .kg-gallery-card + .kg-gallery-card {
     margin-top: 0.75em;
@@ -331,8 +324,8 @@ export const GuideContentBox = styled.div<any>`
     margin: 0 0 0 0.75em;
   }
 
-  /* Bookmark Cards
-/* ---------------------------------------------------------- */
+  /* Bookmark Cards */
+  /* ---------------------------------------------------------- */
 
   .kg-bookmark-card,
   .kg-bookmark-publisher {
@@ -433,8 +426,8 @@ export const GuideContentBox = styled.div<any>`
     margin: 0 0.5em;
   }
 
-  /* Card captions
-/* ---------------------------------------------------------- */
+  /* Card captions */
+  /* ---------------------------------------------------------- */
 
   .kg-width-full.kg-card-hascaption {
     display: grid;
@@ -452,8 +445,8 @@ export const GuideContentBox = styled.div<any>`
     grid-column: main-start / main-end;
   }
 
-  /* Tables
-/* ---------------------------------------------------------- */
+  /* Tables */
+  /* ---------------------------------------------------------- */
 
   table {
     border-collapse: collapse;

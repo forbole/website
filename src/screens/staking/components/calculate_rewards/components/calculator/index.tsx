@@ -85,26 +85,10 @@ const Calculator = () => {
   };
 
   return (
-    <Box
-      sx={{
-        background:
-          "linear-gradient(269.66deg, rgba(2, 158, 225, 0.4) -12.39%, rgba(2, 38, 225, 0.2) 99.38%), rgba(255, 255, 255, 0.8)",
-        boxShadow:
-          "10px 8px 12px -6px rgba(2, 38, 225, 0.08), 18px 14px 24px -4px rgba(2, 38, 225, 0.04), inset 6px 6px 6px rgba(255, 255, 255, 0.2)",
-        borderRadius: theme.spacing(3),
-        padding: theme.spacing(4, 2.5),
-        [theme.breakpoints.up("laptop")]: {
-          padding: theme.spacing(5),
-        },
-      }}
-    >
+    <Box sx={styles.wrapper}>
       <Typography
-        sx={{
-          fontSize: theme.spacing(2),
-          fontWeight: 600,
-          color: theme.palette.custom.forbole.blue,
-          paddingBottom: theme.spacing(1),
-        }}
+        paddingBottom={theme.spacing(1)}
+        sx={styles.textBase}
         variant="body1"
       >
         {t("select token")}
@@ -150,21 +134,7 @@ const Calculator = () => {
             {networkData.map((network, i) => (
               // @ts-expect-error Passing value is necessary in the calculate rewards
               <MenuItem key={i} value={network}>
-                <Box
-                  sx={{
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "alignContent": "center",
-                    "justifyContent": "flex-start",
-                    "& .image": {
-                      width: `${theme.spacing(6.5)} !important`,
-                      height: `${theme.spacing(6.5)} !important`,
-                      borderRadius: "100%",
-                      boxShadow:
-                        "0px 8px 22px -6px rgb(2 38 225 / 12%), 0px 14px 64px -4px rgb(2 38 225 / 12%)",
-                    },
-                  }}
-                >
+                <Box sx={styles.network}>
                   <Box className="image">
                     {network.image && (
                       <Image
@@ -177,15 +147,7 @@ const Calculator = () => {
                       />
                     )}
                   </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      justifyContent: "center",
-                      paddingLeft: theme.spacing(2),
-                    }}
-                  >
+                  <Box sx={styles.networkInfo}>
                     <Typography
                       sx={{ fontWeight: 600, fontSize: theme.spacing(2.5) }}
                       variant="h4"
@@ -209,15 +171,7 @@ const Calculator = () => {
           </Select>
         </FormControl>
       </Box>
-      <Typography
-        sx={{
-          fontSize: theme.spacing(2),
-          fontWeight: 600,
-          color: theme.palette.custom.forbole.blue,
-          padding: theme.spacing(4, 0, 1, 0),
-        }}
-        variant="body1"
-      >
+      <Typography sx={styles.innerText} variant="body1">
         {t("token amount")}
       </Typography>
       <Box sx={styles.input}>
@@ -227,15 +181,7 @@ const Calculator = () => {
           value={tokens?.display}
         />
       </Box>
-      <Typography
-        sx={{
-          fontSize: theme.spacing(2),
-          fontWeight: 600,
-          color: theme.palette.custom.forbole.blue,
-          padding: theme.spacing(4, 0, 1, 0),
-        }}
-        variant="body1"
-      >
+      <Typography sx={styles.innerText} variant="body1">
         {t("length of time")}
       </Typography>
       <Box sx={styles.input}>
@@ -257,12 +203,8 @@ const Calculator = () => {
           >
             <Grid display="flex" height="100%" item laptop={1} mobile={1}>
               <Typography
-                sx={{
-                  fontSize: theme.spacing(2),
-                  fontWeight: 600,
-                  color: theme.palette.custom.forbole.blue,
-                  alignSelf: "center",
-                }}
+                alignSelf="center"
+                sx={styles.textBase}
                 variant="body1"
               >
                 0
@@ -297,14 +239,7 @@ const Calculator = () => {
               laptop={1}
               mobile={1}
             >
-              <Typography
-                sx={{
-                  fontSize: theme.spacing(2),
-                  fontWeight: 600,
-                  color: theme.palette.custom.forbole.blue,
-                }}
-                variant="body1"
-              >
+              <Typography sx={styles.textBase} variant="body1">
                 12
               </Typography>
             </Grid>
@@ -313,14 +248,7 @@ const Calculator = () => {
             <OutlinedInput
               endAdornment={
                 <InputAdornment position="end">
-                  <Typography
-                    sx={{
-                      fontSize: theme.spacing(2),
-                      fontWeight: 600,
-                      color: theme.palette.custom.forbole.blue,
-                    }}
-                    variant="body1"
-                  >
+                  <Typography sx={styles.textBase} variant="body1">
                     {t("months")}
                   </Typography>
                 </InputAdornment>
@@ -344,12 +272,8 @@ const Calculator = () => {
       totalEarnings.monthlyEarnings.amount !== "0" ? (
         <>
           <Typography
-            sx={{
-              fontSize: theme.spacing(2),
-              fontWeight: 600,
-              color: theme.palette.custom.forbole.blue,
-              padding: theme.spacing(4, 0, 2, 0),
-            }}
+            padding={theme.spacing(4, 0, 2, 0)}
+            sx={styles.textBase}
             variant="body1"
           >
             {t("estimated earning")}

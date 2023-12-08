@@ -1,7 +1,7 @@
 import type { Theme } from "@mui/material";
 import type { SxProps } from "@mui/system";
 
-export const styles: { [index: string]: SxProps<Theme> } = {
+export const styles = {
   titlePostCSS: (theme) => ({
     "padding": theme.spacing(7, 3, 0, 3),
     "color": theme.palette.primary.main,
@@ -20,4 +20,4 @@ export const styles: { [index: string]: SxProps<Theme> } = {
       marginBottom: theme.spacing(5),
     },
   }),
-};
+} satisfies { [index: string]: SxProps<Theme> };
