@@ -1,0 +1,68 @@
+@import "src/styles/sass.scss";
+
+$stake-now-background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+
+.container {
+  height: auto;
+  overflow: hidden hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  @include up-laptop {
+    height: auto;
+    left: 50vw;
+    margin: auto;
+    max-width: 1200px;
+    position: fixed;
+    top: 30px;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 2;
+  }
+}
+
+.inner {
+  align-items: center;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: spacing(4) spacing(3) 0 spacing(3);
+
+  @include up-laptop {
+    height: 100px;
+    justify-content: space-between;
+    overflow-y: hidden;
+    padding: spacing(4) 0 0 0;
+  }
+}
+
+.logo {
+  @include up-laptop {
+    margin: 0;
+    width: 40%;
+  }
+}
+
+.wrapper {
+  backdrop-filter: none;
+  background: transparent;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+
+  &.bg {
+    backdrop-filter: blur(12px);
+    background: rgba(47, 58, 86, 0.4);
+  }
+
+  @include up-laptop {
+    height: 100px;
+  }
+}

@@ -1,0 +1,19 @@
+@import "src/styles/sass.scss";
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  &.blue {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @include up-laptop {
+      background-size: 100%;
+    }
+  }
+}

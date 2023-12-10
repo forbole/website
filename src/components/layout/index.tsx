@@ -12,6 +12,7 @@ import Background from "@src/components/background";
 import bgGradientImg from "../../../public/images/assets/image_BG_gradient.png";
 import Footer from "../footer";
 import Nav from "../nav";
+import * as styles from "./index.module.scss";
 
 type Props = {
   blueBg?: boolean;
@@ -71,21 +72,6 @@ const Layout = ({
     return undefined;
   }, [blueBg, theme.palette.mode]);
 
-  const background = (() => {
-    if (blueBg) {
-      const backgroundColor = `url(${bgGradientImg.src}) top`;
-
-      return {
-        background: backgroundColor,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "0 0",
-        backgroundSize: "cover",
-        [theme.breakpoints.up("laptop")]: {
-          backgroundSize: "100%",
-        },
-      };
-    }
-  })();
   const itemColor = (() => {
     if (blueBg) {
       return "#fff";
@@ -170,15 +156,12 @@ const Layout = ({
       </Head>
       <Box>
         <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
-            overflow: "hidden",
-            position: "relative",
-
-            ...background,
-          }}
+          className={[styles.content, blueBg ? styles.blue : ""].join(" ")}
+          style={
+            blueBg
+              ? { backgroundImage: `url(${bgGradientImg.src})` }
+              : undefined
+          }
         >
           {!blueBg && <Background displayHorse={displayHorse} />}
           <Nav itemColor={itemColor} />

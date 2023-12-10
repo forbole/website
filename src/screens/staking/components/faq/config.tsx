@@ -67,7 +67,25 @@ export const useFaq = (): FAQProps[] => {
                   }}
                   variant="body1"
                 />,
-                <Link href="/stake-now" key="1">
+                <Link
+                  href="#"
+                  key="1"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const calculator =
+                      document.getElementById("calculate-rewards");
+
+                    if (!calculator) {
+                      return;
+                    }
+
+                    calculator.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                  }}
+                >
                   <Typography
                     color="primary.main"
                     fontWeight={900}

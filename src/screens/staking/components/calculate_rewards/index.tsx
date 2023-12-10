@@ -13,6 +13,7 @@ const CalculateRewards = () => {
   return (
     <Box display="flex" justifyContent="center">
       <Box
+        id="calculate-rewards"
         sx={{
           "padding": theme.spacing(5, 3),
           "> .h3": {
