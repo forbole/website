@@ -1,0 +1,68 @@
+@import "src/styles/sass.scss";
+
+.navItem {
+  color: $color-primary-light;
+  cursor: pointer;
+  font-size: spacing(2);
+  font-weight: 600;
+  padding: 10px 16px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 24px;
+    color: $color-primary-light;
+  }
+}
+
+.navItem:hover > .boxItem {
+  display: block;
+}
+
+.boxItem {
+  background-color: transparent;
+  display: none;
+  padding: 13px 0;
+  position: absolute;
+  top: 100%;
+  z-index: 99999;
+}
+
+.boxItem > .boxItemList {
+  background: rgba(255, 255, 255);
+  border-radius: 24px;
+  box-shadow: $box-shadow-variant-1;
+  overflow: hidden;
+  padding: 16px 0;
+}
+
+.boxItemStaek {
+  background-color: transparent;
+  display: none;
+  padding: 13px 0;
+  position: absolute;
+  right: 10%;
+  top: 100%;
+  white-space: nowrap;
+  z-index: 99999;
+}
+
+.navItem:hover > .boxItemStaek {
+  display: block;
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}

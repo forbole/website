@@ -1,0 +1,50 @@
+@import "src/styles/sass.scss";
+
+.list {
+  background: $color-primary-light;
+
+  @include down-laptop {
+    background: rgba(107, 97, 254, 0.24);
+  }
+}
+
+.menuItem {
+  color: $color-indigo;
+  display: flex;
+  filter: opacity(0.1);
+  font-size: spacing(2);
+  font-weight: 700;
+  height: spacing(7);
+  justify-content: flex-start;
+  padding: spacing(0) spacing(4);
+
+  &.noFilter {
+    filter: unset;
+  }
+
+  & > a {
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  &:hover {
+    background: linear-gradient(to right, #623df5, #362187);
+    color: $color-primary-light;
+  }
+
+  @include up-laptop {
+    min-width: 200px;
+  }
+}
+
+.link {
+  text-decoration: none;
+}
+
+.icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: spacing(1);
+}

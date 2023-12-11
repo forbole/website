@@ -1,25 +1,23 @@
 import useTranslation from "next-translate/useTranslation";
-import React, { useRef } from "react";
+import { useEffect, useRef } from "react";
 
-import { LayoutVal } from "@src/components";
+import LayoutVal from "@src/components/layout_val";
 import AppApolloProvider from "@src/utils/apollo";
 
-import {
-  CalculateRewards,
-  ContactForbole,
-  FAQ,
-  Hero,
-  HowItWorks,
-  Networks,
-  WhyForbole,
-} from "./components";
+import CalculateRewards from "./components/calculate_rewards";
+import ContactForbole from "./components/contact_forbole";
+import FAQ from "./components/faq";
+import Hero from "./components/hero";
+import HowItWorks from "./components/how_it_works";
+import Networks from "./components/networks";
+import WhyForbole from "./components/why_forbole";
 import { LaptopCSS } from "./styles";
 
 const Staking = () => {
   const { t } = useTranslation("staking");
   const stakeNowRef = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo({
       left: 0,
       top: 0,

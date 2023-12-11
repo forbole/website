@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useMemo } from "react";
@@ -8,7 +8,7 @@ import CtaButton from "@src/components/cta-button";
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
 import ProductsMenuButton from "../products_menu_button";
-import classes from "./index.module.css";
+import * as styles from "./index.module.scss";
 
 const DesktopNavMenu = () => {
   const { t } = useTranslation("common");
@@ -16,75 +16,34 @@ const DesktopNavMenu = () => {
     () => [
       {
         display: t("Products"),
+        inner: <ProductsMenuButton />,
         link: "/products",
-        status: true,
       },
       {
         display: t("Company"),
+        inner: <CompanyMenuButton />,
         link: "#!",
-        status: true,
       },
     ],
     [t],
   );
-  const theme = useTheme();
 
   return (
-    <Box
-      alignItems="center"
-      display="flex"
-      flexDirection="row"
-      gap="16px"
-      justifyContent="flex-end"
-      width="100%"
-    >
-      {navItems.map((item, i) => (
-        <Box
-          className={classes.navItem}
-          key={i}
-          sx={{
-            "color": theme.palette.common.white,
-            "textDecoration": "none",
-            "fontWeight": 600,
-            "fontSize": theme.spacing(2),
-            "&:hover": {
-              background: "rgba(0,0,0,0.2)",
-              borderRadius: "24px",
-              color: theme.palette.common.white,
-            },
-            "userSelect": "none",
-          }}
-        >
-          <Link
-            href={item.link}
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
+    <Box className={styles.wrapper}>
+      {navItems.map((item) => (
+        <Box className={styles.navItem} key={item.display}>
+          <Link className={styles.link} href={item.link}>
             <Box component="span">{item.display}</Box>
           </Link>
-          {i === 0 && (
-            <Box className={classes.boxItem}>
-              <Box className={classes.boxItemList}>
-                <ProductsMenuButton />
-              </Box>
-            </Box>
-          )}
-          {i === 1 && (
-            <Box className={classes.boxItem}>
-              <Box className={classes.boxItemList}>
-                <CompanyMenuButton />
-              </Box>
-            </Box>
-          )}
+          <Box className={styles.boxItem}>
+            <Box className={styles.boxItemList}>{item.inner}</Box>
+          </Box>
         </Box>
       ))}
-      <Box>
-        <Link href="/staking">
-          <CtaButton>{t("StakeNow")}</CtaButton>
-        </Link>
-      </Box>
-      <Box>
-        <LangMenuButton />
-      </Box>
+      <Link href="/staking">
+        <CtaButton>{t("StakeNow")}</CtaButton>
+      </Link>
+      <LangMenuButton />
     </Box>
   );
 };

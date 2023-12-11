@@ -1,0 +1,35 @@
+@import "src/styles/sass.scss";
+
+$wrapper-filter: drop-shadow(0 14px 64px rgba(2, 38, 225, 0.12))
+  drop-shadow(0 8px 22px rgba(2, 38, 225, 0.12));
+
+.wrapper {
+  align-self: center;
+  cursor: pointer;
+  height: 48px;
+  margin: 60px auto;
+  position: relative;
+  width: 48px;
+  z-index: 2;
+
+  @include down-laptop {
+    height: 36px;
+    margin: 24px auto;
+    width: 36px;
+  }
+
+  svg {
+    fill: $color-primary-light;
+    filter: $wrapper-filter;
+    transition: all 0.3s;
+
+    :last-child {
+      stroke: $color-forbole-blue;
+    }
+
+    &:hover {
+      fill: rgba(241, 243, 248);
+      transform: scale(1.05);
+    }
+  }
+}

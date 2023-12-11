@@ -2,7 +2,7 @@ import { Box, Button, Pagination, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { pathOr } from "ramda";
-import React from "react";
+import { useCallback, useState } from "react";
 
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
@@ -22,9 +22,9 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
   const totalPages = pathOr(0, ["pagination", "pages"], meta);
   const totalPosts = pathOr(0, ["pagination", "total"], meta);
 
-  const [limitUpper, setLimitUpper] = React.useState(15);
-  const [lastView, setLastView] = React.useState(0);
-  const postRef = React.useCallback(
+  const [limitUpper, setLimitUpper] = useState(15);
+  const [lastView, setLastView] = useState(0);
+  const postRef = useCallback(
     (node: any) => {
       if (node && isMobile && lastView !== 0) {
         node.scrollIntoView({

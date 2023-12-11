@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
-import React, { useCallback } from "react";
+import { useRef } from "react";
+import { useCallback } from "react";
 
 import { CloseIcon } from "@src/components/icons";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
@@ -35,7 +36,7 @@ const NetworkCard = ({
   const { isMobile } = useWindowDimensions();
 
   /* Using framer-motion to animate the network box. */
-  const ref = React.useRef(null);
+  const ref = useRef(null);
 
   const handleMobileAnchorClick: MouseEventHandler<HTMLButtonElement> =
     useCallback(

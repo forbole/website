@@ -13,7 +13,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React, { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { ExpandIcon } from "@src/components/icons";
 
@@ -30,7 +30,7 @@ const ContactCard = () => {
   const { handleSubmit, handleInputChange, inputs, setInputs, canSubmit } =
     useContactCard();
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const options = useMemo(
     () => [
@@ -42,7 +42,7 @@ const ContactCard = () => {
     [t],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handler = () => {
       setIsOpen(false);
     };

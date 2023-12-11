@@ -5,9 +5,11 @@ import { useRouter } from "next/router";
 import type { FC } from "react";
 import { useRef } from "react";
 
-import { Layout, ScrollToBottom, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import IntroCard from "@src/components/intro_card";
+import Layout from "@src/components/layout";
+import ScrollToBottom from "@src/components/scroll_to_bottom";
+import ScrollToTop from "@src/components/scroll_to_top";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
 import { FilterBG } from "./styles";

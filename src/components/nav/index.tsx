@@ -1,8 +1,7 @@
 import { Box, Button, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import type { RefObject } from "react";
-import React from "react";
+import type { MouseEvent, RefObject } from "react";
 
 import {
   Forbole as ForboleLogo,
@@ -27,7 +26,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
   const { displayBackground } = useNavHook();
   const { t } = useTranslation("staking");
 
-  const scrollToRef = (e: React.MouseEvent<HTMLElement>) => {
+  const scrollToRef = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (stakeNowRef !== undefined && stakeNowRef.current !== null) {
       window.scrollTo({

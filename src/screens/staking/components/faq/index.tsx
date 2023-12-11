@@ -1,14 +1,14 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import { useState } from "react";
 
-import { Card } from "./components";
+import Card from "./components/card";
 import { useFaq } from "./config";
 
 const FAQ = () => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
-  const [expanded, setExpanded] = React.useState<string>();
+  const [expanded, setExpanded] = useState<string>();
   const faq = useFaq();
   const middleIndex = Math.ceil(faq.length / 2) - 1;
 

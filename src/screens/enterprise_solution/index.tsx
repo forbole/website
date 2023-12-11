@@ -1,12 +1,14 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import type { MouseEvent } from "react";
+import { useRef } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import ContactFrom from "@src/components/contact-form";
 import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import SuccessModal from "@src/components/success-modal";
 
@@ -23,8 +25,8 @@ const EnterpriseSolution = () => {
     isLoading,
   } = useContactForm();
 
-  const topRef = React.useRef(null);
-  const ContactRef = React.useRef(null);
+  const topRef = useRef(null);
+  const ContactRef = useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
@@ -70,9 +72,7 @@ const EnterpriseSolution = () => {
             title_large_trans={t("customized")}
           />
           <CtaButton
-            onClick={(e: React.MouseEvent<HTMLElement>) =>
-              scrollToRef(e, ContactRef)
-            }
+            onClick={(e: MouseEvent<HTMLElement>) => scrollToRef(e, ContactRef)}
             sx={{
               display: "block",
               margin: "80px auto",

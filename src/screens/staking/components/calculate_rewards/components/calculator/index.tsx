@@ -14,7 +14,8 @@ import {
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
-import React from "react";
+import type { ChangeEvent } from "react";
+import { useEffect, useState } from "react";
 
 import { DropDownIcon } from "@src/components/icons";
 import {
@@ -51,15 +52,15 @@ const Calculator = () => {
     .filter((x) => !skippedRewardsNetworks.has(x.key))
     .filter((x) => getCanClickNetwork(x));
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (selectedToken === "") {
       setSelectedToken(networkData[0]);
     }
   }, [selectedToken, networkData, setSelectedToken]);
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handler = () => {
       setIsOpen(false);
     };
@@ -70,7 +71,7 @@ const Calculator = () => {
     };
   }, []);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonthlyPeriods(
       event.target.value === "" ? 0 : Number(event.target.value),
     );

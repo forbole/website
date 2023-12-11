@@ -1,5 +1,5 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-import React from "react";
+import { forwardRef } from "react";
 
 type Props = {
   title?: string;
@@ -10,7 +10,7 @@ type Props = {
   imgFull?: boolean;
 };
 
-const productPanel = React.forwardRef<HTMLDivElement, Props>(
+const productPanel = forwardRef<HTMLDivElement, Props>(
   ({ title, imageHref, children, index, value, imgFull }, ref) => {
     const theme = useTheme();
     // eslint-disable-next-line eqeqeq

@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
-import { HowToCard } from "./components";
+import HowToCard from "./components/how_to_card";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 

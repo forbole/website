@@ -1,9 +1,10 @@
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
-import { Layout, Tags } from "@src/components";
+import Layout from "@src/components/layout";
+import Tags from "@src/components/tags";
 
-import { TitlePosts } from "../blog/components";
+import TitlePosts from "../blog/components/title_posts";
 import { TagPosts } from "./components";
 import { useBlogHook } from "./hooks";
 import { styles } from "./styles";

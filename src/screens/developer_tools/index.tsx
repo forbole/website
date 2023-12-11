@@ -8,13 +8,14 @@ import {
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useRef, useState } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import CtaButton from "@src/components/cta-button";
 import FourTable from "@src/components/four-table";
 import HeaderCard from "@src/components/header-card";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import SignatureCard from "@src/components/signature-card";
 import SuccessModal from "@src/components/success-modal";
@@ -40,7 +41,7 @@ const DeveloperTools = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
   const [show, setShow] = useState(false);
 
   return (

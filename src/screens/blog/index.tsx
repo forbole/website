@@ -1,11 +1,14 @@
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
-import React from "react";
+import { useRef } from "react";
 
-import { Layout, ScrollToTop, Tags } from "@src/components";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
+import Tags from "@src/components/tags";
 
-import { BlogPosts, TitlePosts } from "./components";
+import BlogPosts from "./components/blog_posts";
+import TitlePosts from "./components/title_posts";
 import { useBlogHook } from "./hooks";
 import { styles } from "./styles";
 
@@ -13,7 +16,7 @@ const Blog = (props: any) => {
   const theme = useTheme();
   const { posts = [], meta = {}, tags = [], sidePosts = [], error } = props;
   const { t } = useTranslation("blog");
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
 
   useBlogHook(error, t);
 

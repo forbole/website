@@ -1,6 +1,7 @@
 import { getPosts, getTags } from "@src/api/posts";
 import { getPostsByTag } from "@src/api/tags";
-import { Post, Tag } from "@src/models";
+import Post from "@src/models/post";
+import Tag from "@src/models/tag";
 import TagTitlePosts from "@src/screens/tag";
 import { removeInternalTags } from "@src/utils/remove_internal_tags";
 

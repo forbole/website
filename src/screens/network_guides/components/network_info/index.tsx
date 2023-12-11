@@ -14,7 +14,9 @@ import {
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
-import React from "react";
+import type { MouseEvent } from "react";
+import { useState } from "react";
+import { useCallback } from "react";
 
 import { CopyIcon } from "@src/components/icons";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
@@ -45,8 +47,8 @@ const NetworkInfo = ({ post }: any) => {
   const { t } = useTranslation("staking");
   const { title, tags, excerpt, featureImage } = post;
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
-  const [isCopySuccess, setIsCopySuccess] = React.useState(false);
-  const [readMore, setReadMore] = React.useState(false);
+  const [isCopySuccess, setIsCopySuccess] = useState(false);
+  const [readMore, setReadMore] = useState(false);
   const { sanitize } = DOMPurify;
   const cmsLoader = ({ src, width, quality }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
@@ -66,8 +68,8 @@ const NetworkInfo = ({ post }: any) => {
 
   const networkStats = networkGuides[networkData?.graphql || ""];
 
-  const copyText = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+  const copyText = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
       e.stopPropagation();
       navigator.clipboard.writeText(
         networkData ? networkData.address || "" : "coming soon",

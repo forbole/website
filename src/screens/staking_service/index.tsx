@@ -1,15 +1,15 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React from "react";
+import { useRef } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import { Horse } from "@src/components/icons";
 import KeyData from "@src/components/key_data";
-import ScrollLogo from "@src/components/scroll_logo";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import AppApolloProvider from "@src/utils/apollo";
 
@@ -17,7 +17,7 @@ import * as styles from "./index.module.scss";
 
 const StakingService = () => {
   const { t } = useTranslation("staking_service");
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
@@ -46,7 +46,6 @@ const StakingService = () => {
               title={t("section_1st_title")}
               title_large_trans={t("section_1st_large_title")}
             />
-            <ScrollLogo />
           </Stack>
 
           <Stack>

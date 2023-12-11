@@ -1,56 +1,29 @@
-import { Box, useTheme } from "@mui/material";
-import React from "react";
+import { Box } from "@mui/material";
+import { useCallback } from "react";
 
 import { TopIcon } from "../icons";
+import * as styles from "./index.module.scss";
 
 interface TopProps {
   topRef: any;
 }
 
 const ScrollToTop = ({ topRef }: TopProps) => {
-  const theme = useTheme();
-  const scrollToRef = (e: any, ref: any) => {
-    e.preventDefault();
-    window.scrollTo({
-      left: 0,
-      top: ref.current.offsetTop - 100,
-      behavior: "smooth",
-    });
-  };
+  const scrollToRef = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      window.scrollTo({
+        left: 0,
+        top: topRef?.current.offsetTop - 100,
+        behavior: "smooth",
+      });
+    },
+    [topRef],
+  );
 
   return (
-    <Box alignSelf="center" position="relative" zIndex={2}>
-      <Box
-        sx={{
-          "my": "60px",
-          "mx": "auto",
-          "width": "48px",
-          "height": "48px",
-          [theme.breakpoints.down("laptop")]: {
-            my: "24px",
-            width: "36px",
-            height: "36px",
-          },
-          "cursor": "pointer",
-          "& svg": {
-            "filter":
-              "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
-            "fill": " #FFF",
-            "transition": "all 0.3s",
-            "& :last-child": {
-              stroke: theme.palette.custom.forbole.blue,
-            },
-            "&:hover ": {
-              fill: "rgba(241, 243, 248)",
-              transform: "scale(1.05)",
-            },
-          },
-        }}
-      >
-        <TopIcon
-          onClick={(e: React.MouseEvent<HTMLElement>) => scrollToRef(e, topRef)}
-        />
-      </Box>
+    <Box className={styles.wrapper}>
+      <TopIcon onClick={scrollToRef} />
     </Box>
   );
 };
