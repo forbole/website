@@ -5,7 +5,8 @@ import { useRef } from "react";
 
 import { Layout, ScrollToTop, Tags } from "@src/components";
 
-import { BlogPosts, TitlePosts } from "./components";
+import BlogPosts from "./components/blog_posts";
+import TitlePosts from "./components/title_posts";
 import { useBlogHook } from "./hooks";
 import { styles } from "./styles";
 

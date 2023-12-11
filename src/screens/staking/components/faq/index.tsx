@@ -2,7 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
-import { Card } from "./components";
+import Card from "./components/card";
 import { useFaq } from "./config";
 
 const FAQ = () => {

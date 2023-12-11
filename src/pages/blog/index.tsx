@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 
 import { getAllPosts, getPosts, getTags } from "@src/api/posts";
-import { Post, Tag } from "@src/models";
+import Post from "@src/models/post";
+import Tag from "@src/models/tag";
 import Blog from "@src/screens/blog";
 import { removeInternalTags } from "@src/utils/remove_internal_tags";
 

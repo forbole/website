@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import { getNetworkPosts } from "@src/api/networks";
 import { getPosts, getSinglePost, stakingGuidePrefix } from "@src/api/posts";
-import { Post } from "@src/models";
+import Post from "@src/models/post";
 import NetworkGuides from "@src/screens/network_guides";
 import { locales } from "@src/utils/i18next";
 import { removeInternalTags } from "@src/utils/remove_internal_tags";

@@ -2,7 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
-import { Calculator } from "./components";
+import Calculator from "./components/calculator";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 

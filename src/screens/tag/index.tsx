@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 
 import { Layout, Tags } from "@src/components";
 
-import { TitlePosts } from "../blog/components";
+import TitlePosts from "../blog/components/title_posts";
 import { TagPosts } from "./components";
 import { useBlogHook } from "./hooks";
 import { styles } from "./styles";

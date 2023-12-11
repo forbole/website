@@ -2,7 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
-import { ContactCard } from "./components";
+import ContactCard from "./components/contact_card";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 

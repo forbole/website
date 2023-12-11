@@ -5,7 +5,7 @@ import { useState } from "react";
 import { NoSSR } from "@src/components/no-ssr";
 import type { Network } from "@src/utils/network_info";
 
-import { NetworkCard } from "./components";
+import NetworkCard from "./components/network_card";
 import type { NetworkProps } from "./config";
 import useStyles from "./useStyles";
 

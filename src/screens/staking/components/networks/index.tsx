@@ -4,9 +4,10 @@ import dynamic from "next/dynamic";
 
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
-import { NetworkGrid, SearchBar } from "./components";
+import NetworkGrid from "./components/network_grid";
 import type { NetworkProps } from "./components/network_grid/config";
 import { useNetworkHook } from "./components/network_grid/hooks";
+import SearchBar from "./components/search_bar";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
