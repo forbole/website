@@ -1,0 +1,101 @@
+@import "src/styles/sass.scss";
+
+$card-background: linear-gradient(
+  179deg,
+  #fff 0%,
+  rgba(255, 255, 255, 0.89) 34.9%,
+  #fff 100%
+);
+
+$card-shadow:
+  0 10px 32px -4px rgba(96, 60, 238, 0.2),
+  0 6px 14px -6px rgba(96, 60, 238, 0.28);
+
+$avater-shadow:
+  0 10px 32px -4px rgba(96, 60, 238, 0.5),
+  0 6px 14px -6px rgba(96, 60, 238, 0.28);
+
+.arrowRight,
+.arrowLeft {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrowLeft {
+  left: 0;
+}
+
+.arrowRight {
+  right: 0;
+}
+
+.avatar {
+  box-shadow: $avater-shadow;
+  height: 100px;
+  width: 100px;
+}
+
+.description {
+  color: #2a1a6a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.112px;
+  line-height: 20px;
+  width: 100%;
+
+  @include up-laptop {
+    font-size: 16px;
+    letter-spacing: -0.192px;
+    line-height: 22px;
+  }
+}
+
+.name {
+  color: #202a43;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.036;
+  line-height: normal;
+
+  @include up-laptop {
+    font-size: 20px;
+  }
+}
+
+.personCard {
+  align-items: flex-start;
+  background: $card-background;
+  border-radius: 24px;
+  box-shadow: $card-shadow;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  min-height: 368px;
+  padding: 32px 24px;
+}
+
+.position {
+  color: #202a43;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.36px;
+  line-height: normal;
+
+  @include up-laptop {
+    font-size: 16px;
+  }
+}
+
+.wrapper {
+  position: relative;
+
+  @include down-laptop {
+    margin: 0 -16px;
+  }
+}

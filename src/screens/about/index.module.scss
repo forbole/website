@@ -1,0 +1,161 @@
+@import "src/styles/sass.scss";
+
+$top-stack-background: linear-gradient(
+  179deg,
+  #fff 0%,
+  rgba(255, 255, 255, 0.64) 50%
+);
+
+$top-stack-box-shadow:
+  0 14px 64px -4px rgba(2, 38, 225, 0.12),
+  0 8px 22px -6px rgba(2, 38, 225, 0.12);
+
+$card-desc-shadow:
+  0 1px 10px rgba(16, 24, 40, 0.05),
+  0 1px 8px rgba(16, 24, 40, 0.06);
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &.right {
+    right: 5px;
+  }
+
+  &.left {
+    left: 5px;
+  }
+}
+
+.cardDesc {
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  @include up-laptop {
+    font-size: 40px;
+    font-weight: 590;
+    width: 900px;
+  }
+}
+
+.cardDescTrans0 {
+  box-shadow: $card-desc-shadow;
+  font-weight: 400;
+
+  @include down-laptop {
+    font-size: 16px;
+  }
+
+  @include up-laptop {
+    font-size: 24px;
+  }
+}
+
+.cardDescTrans1 {
+  box-shadow: $card-desc-shadow;
+  font-weight: 700;
+
+  @include down-laptop {
+    font-size: 16px;
+  }
+
+  @include up-laptop {
+    font-size: 24px;
+  }
+}
+
+.cardTitle {
+  @include down-laptop {
+    font-size: 16px;
+    font-weight: 590;
+  }
+
+  @include up-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 184px;
+
+  @include down-laptop {
+    gap: 40px;
+  }
+}
+
+.sectionStack {
+  align-items: center;
+  color: #202a43;
+  gap: 24px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1000px;
+  text-align: center;
+  text-shadow: $top-stack-box-shadow;
+}
+
+.section1Title {
+  font-size: 40px;
+  font-weight: 590;
+  text-shadow: $card-desc-shadow;
+
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.sectionDesc {
+  font-size: 24px;
+  font-weight: 400;
+  text-shadow: $card-desc-shadow;
+
+  @include down-laptop {
+    font-size: 16px;
+  }
+}
+
+.swiperContainer {
+  height: 272px;
+  margin-top: 24px;
+  padding: 0 16px;
+  position: relative;
+  width: 100%;
+
+  @include down-laptop {
+    height: 220px;
+  }
+}
+
+.topStack {
+  align-items: center;
+  background: $top-stack-background;
+  border-radius: 24px;
+  color: #202a43;
+  overflow: hidden;
+  padding: 40px 0;
+
+  @include down-laptop {
+    flex-direction: column;
+    font-size: 24px;
+    margin-top: 103px;
+  }
+
+  @include up-laptop {
+    font-size: 64px;
+    margin-top: 164px;
+  }
+}
+
+.topStackInner {
+  align-items: center;
+  max-width: 1000px;
+  padding: 0 24px;
+  text-align: center;
+}

@@ -13,6 +13,8 @@ import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
 import AppApolloProvider from "@src/utils/apollo";
 
+import * as styles from "./index.module.scss";
+
 const StakingService = () => {
   const { t } = useTranslation("staking_service");
   const topRef = React.useRef(null);
@@ -25,18 +27,7 @@ const StakingService = () => {
   return (
     <AppApolloProvider>
       <Layout description={t("desc")} footer title={t("page_title")}>
-        <Container
-          maxWidth="desktop"
-          ref={topRef}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "184px",
-            [theme.breakpoints.down("laptop")]: {
-              gap: "40px",
-            },
-          }}
-        >
+        <Container className={styles.container} maxWidth="desktop" ref={topRef}>
           <HeaderCard
             desc_1st={t("desc")}
             head_bg={
@@ -49,14 +40,7 @@ const StakingService = () => {
 
           <KeyData />
 
-          <Stack
-            sx={{
-              gap: "40px",
-              [theme.breakpoints.down("laptop")]: {
-                gap: "32px",
-              },
-            }}
-          >
+          <Stack className={styles.topStack}>
             <Section
               desc={t("section_1st_desc")}
               title={t("section_1st_title")}
@@ -72,15 +56,9 @@ const StakingService = () => {
               title_large_trans={t("section_2nd_large_title")}
             />
             <CtaButton
+              className={styles.stakingCta}
               onClick={() => {
                 router.push("/staking");
-              }}
-              sx={{
-                display: "block",
-                margin: "54px auto",
-                [theme.breakpoints.down("laptop")]: {
-                  my: "32px",
-                },
               }}
             >
               {t("stake_now")}
@@ -129,15 +107,9 @@ const StakingService = () => {
               title_large_trans={t("section_3rd_large_title")}
             />
             <CtaButton
+              className={styles.stakingCta}
               onClick={() => {
                 router.push("/staking");
-              }}
-              sx={{
-                display: "block",
-                margin: "54px auto",
-                [theme.breakpoints.down("laptop")]: {
-                  my: "32px",
-                },
               }}
             >
               {t("stake_now")}

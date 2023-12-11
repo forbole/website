@@ -1,0 +1,99 @@
+@import "src/styles/sass.scss";
+
+.copy {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 590;
+  letter-spacing: 0.336px;
+  line-height: 20px;
+}
+
+.divider {
+  border-color: $color-primary-light;
+  margin-bottom: 4px;
+  margin-top: 4px;
+
+  &.staking {
+    border-color: $color-indigo;
+  }
+
+  @include down-laptop {
+    display: none;
+  }
+}
+
+.left {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  @include down-laptop {
+    border-top: 1px solid $color-grey2;
+    gap: 8px;
+    padding-top: 12px;
+  }
+
+  @include up-laptop {
+    flex-direction: row;
+
+    hr {
+      margin-left: spacing(2);
+      margin-right: spacing(2);
+    }
+  }
+}
+
+.right {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  @include down-laptop {
+    gap: 12px;
+  }
+
+  @include up-laptop {
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 0;
+    padding-top: 0;
+
+    hr {
+      margin-left: spacing(2);
+      margin-right: spacing(2);
+    }
+  }
+}
+
+.word {
+  color: inherit;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 590;
+  letter-spacing: 0.336px;
+  line-height: 20px;
+  padding: 4px 8px;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 24px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @include down-laptop {
+    flex-direction: column-reverse;
+    font-size: 20px;
+    gap: 32px;
+  }
+
+  @include up-laptop {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}

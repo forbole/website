@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
@@ -18,6 +18,8 @@ import { Layout, ScrollToTop } from "@src/components";
 import Arrow, { Direction } from "@src/components/arrow";
 import { Horse } from "@src/components/icons";
 import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
+
+import * as styles from "./index.module.scss";
 
 SwiperCore.use([Navigation, Autoplay]);
 const About = () => {
@@ -36,24 +38,27 @@ const About = () => {
     "/about/aboutus_06.webp",
     "/about/aboutus_07.webp",
   ];
-  const videoList = [
-    {
-      src: "https://www.youtube.com/embed/K5t6Q0OAVzI",
-      title: "Ep.2 Forbole is an Infrastructure Provider",
-    },
-    {
-      src: "https://www.youtube.com/embed/aU_TNscGcdM",
-      title: "Ep.3 Compliance and Ecosystem",
-    },
-    {
-      src: "https://www.youtube.com/embed/Ye4mmNTw5J8",
-      title: "Ep.4 Infrastructure",
-    },
-    {
-      src: "https://www.youtube.com/embed/J78MM7eoHnw",
-      title: "About Forbole",
-    },
-  ];
+  const videoList = useMemo(
+    () => [
+      {
+        src: "https://www.youtube.com/embed/K5t6Q0OAVzI",
+        title: t("aboutVideo2"),
+      },
+      {
+        src: "https://www.youtube.com/embed/aU_TNscGcdM",
+        title: t("aboutVideo3"),
+      },
+      {
+        src: "https://www.youtube.com/embed/Ye4mmNTw5J8",
+        title: t("aboutVideo4"),
+      },
+      {
+        src: "https://www.youtube.com/embed/J78MM7eoHnw",
+        title: t("aboutVideo5"),
+      },
+    ],
+    [t],
+  );
 
   return (
     <Layout
@@ -62,128 +67,29 @@ const About = () => {
       redBgFooter
       title={t("page_title")}
     >
-      <Container
-        maxWidth="desktop"
-        ref={topRef}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "184px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "40px",
-          },
-        }}
-      >
-        <Stack
-          spacing={3}
-          sx={{
-            bgcolor: "#ffffff",
-            alignItems: "center",
-            color: "#202A43",
-            borderRadius: "24px",
-            py: "40px",
-            background:
-              "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.64) 50%)",
-            boxShadow:
-              " 0px 14px 64px -4px rgba(2, 38, 225, 0.12), 0px 8px 22px -6px rgba(2, 38, 225, 0.12)",
-            overflow: "hidden",
-            [theme.breakpoints.down("laptop")]: {
-              mt: "103px",
-              fontSize: "24px",
-              flexDirection: "column",
-            },
-            [theme.breakpoints.up("laptop")]: {
-              mt: "164px",
-              fontSize: "64px",
-            },
-          }}
-        >
-          <Stack
-            maxWidth="1000px"
-            spacing={3}
-            sx={{
-              alignItems: "center",
-              textAlign: "center",
-              px: "24px",
-            }}
-          >
-            <Typography
-              sx={{
-                [theme.breakpoints.down("laptop")]: {
-                  fontWeight: 590,
-                  fontSize: "16px",
-                },
-                [theme.breakpoints.up("laptop")]: {
-                  fontWeight: 700,
-                  fontSize: "24px",
-                },
-              }}
-            >
+      <Container className={styles.container} maxWidth="desktop" ref={topRef}>
+        <Stack className={styles.topStack} spacing={3}>
+          <Stack className={styles.topStackInner} spacing={3}>
+            <Typography className={styles.cardTitle}>
               {t("headercard_title")}
             </Typography>
-            <Typography
-              sx={{
-                [theme.breakpoints.down("laptop")]: {
-                  fontWeight: 700,
-                  fontSize: "24px",
-                },
-                [theme.breakpoints.up("laptop")]: {
-                  fontWeight: 590,
-                  fontSize: "40px",
-                  width: "900px",
-                },
-              }}
-            >
+            <Typography className={styles.cardDesc}>
               {t("headercard_1st_desc")}
             </Typography>
             <Trans
               components={[
+                <Typography className={styles.cardDescTrans0} key="0" />,
                 <Typography
-                  key="0"
-                  sx={{
-                    textShadow:
-                      "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                    fontWeight: 400,
-                    [theme.breakpoints.down("laptop")]: {
-                      fontSize: "16px",
-                    },
-                    [theme.breakpoints.up("laptop")]: {
-                      fontSize: "24px",
-                    },
-                  }}
-                />,
-                <Typography
+                  className={styles.cardDescTrans1}
                   component="span"
                   key="1"
-                  sx={{
-                    textShadow:
-                      "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                    fontWeight: "700",
-                    [theme.breakpoints.down("laptop")]: {
-                      fontSize: "16px",
-                    },
-                    [theme.breakpoints.up("laptop")]: {
-                      fontSize: "24px",
-                    },
-                  }}
                 />,
               ]}
               i18nKey="headercard_2nd_desc"
               ns="about"
             />
           </Stack>
-          <Box
-            sx={{
-              position: "relative",
-              height: "272px",
-              width: "100%",
-              mt: "24px",
-              padding: "0px 16px",
-              [theme.breakpoints.down("laptop")]: {
-                height: "220px",
-              },
-            }}
-          >
+          <Box className={styles.swiperContainer}>
             <ImgBox>
               <Swiper
                 autoplay={{
@@ -199,7 +105,7 @@ const About = () => {
                 }}
                 centeredSlides
                 className="swiper-style"
-                loop // 循环滚动
+                loop
                 navigation={{
                   nextEl: ".h-next",
                   prevEl: ".h-prev",
@@ -237,68 +143,22 @@ const About = () => {
               </Swiper>
             </ImgBox>
             <Arrow
-              className="h-next"
+              className={[styles.arrow, styles.right, "h-next"].join(" ")}
               direction={Direction.Right}
-              sx={{
-                position: "absolute",
-                right: "5px",
-                top: "50%",
-                transform: "translateY(-50%)",
-              }}
             />
             <Arrow
-              className="h-prev"
+              className={[styles.arrow, styles.left, "h-prev"].join(" ")}
               direction={Direction.Left}
-              sx={{
-                position: "absolute",
-                left: "5px",
-                top: "50%",
-                transform: "translateY(-50%)",
-              }}
             />
           </Box>
         </Stack>
 
         <Stack>
-          <Stack
-            sx={{
-              maxWidth: "1000px",
-              margin: "0 auto",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              gap: "24px",
-              color: "#202A43",
-              textShadow:
-                "0px 14px 64px  rgba(2, 38, 225, 0.12), 0px 8px 22px  rgba(2, 38, 225, 0.12)",
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: "40px",
-                fontWeight: "590",
-                textShadow:
-                  "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                [theme.breakpoints.down("laptop")]: {
-                  fontWeight: "700",
-                  fontSize: "24px",
-                },
-              }}
-            >
+          <Stack className={styles.sectionStack}>
+            <Typography className={styles.section1Title}>
               {t("section_1st_title")}
             </Typography>
-            <Typography
-              sx={{
-                fontSize: "24px",
-                fontWeight: "400",
-                textShadow:
-                  "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                [theme.breakpoints.down("laptop")]: {
-                  fontSize: "16px",
-                  fontWeight: "400",
-                },
-              }}
-            >
+            <Typography className={styles.sectionDesc}>
               {t("section_1st_sesc")}
             </Typography>
           </Stack>
@@ -368,30 +228,9 @@ const About = () => {
         </Stack>
       </YTBSwiperCSS>
 
-      <Container
-        maxWidth="desktop"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "184px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "40px",
-          },
-        }}
-      >
+      <Container className={styles.container} maxWidth="desktop">
         <Stack>
-          <Stack
-            sx={{
-              margin: "0 auto",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              gap: "24px",
-              color: "#202A43",
-              textShadow:
-                "0px 14px 64px  rgba(2, 38, 225, 0.12), 0px 8px 22px  rgba(2, 38, 225, 0.12)",
-            }}
-          >
+          <Stack className={styles.sectionStack}>
             <Trans
               components={[
                 <Typography
@@ -429,32 +268,10 @@ const About = () => {
               ns="about"
             />
 
-            <Typography
-              sx={{
-                fontSize: "24px",
-                fontWeight: "400",
-                textShadow:
-                  "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                [theme.breakpoints.down("laptop")]: {
-                  fontSize: "16px",
-                  fontWeight: "400",
-                },
-              }}
-            >
+            <Typography className={styles.sectionDesc}>
               {t("section_2nd_desc")}
             </Typography>
-            <Typography
-              sx={{
-                fontSize: "24px",
-                fontWeight: "400",
-                textShadow:
-                  "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                [theme.breakpoints.down("laptop")]: {
-                  fontSize: "16px",
-                  fontWeight: "400",
-                },
-              }}
-            >
+            <Typography className={styles.sectionDesc}>
               {t("section_3rd_desc")}
             </Typography>
             <Horse style={{ display: "block", marginTop: "30px" }} />
