@@ -1,0 +1,42 @@
+@import "src/styles/sass.scss";
+
+.desktop {
+  display: none;
+
+  @include up-laptop {
+    display: block;
+  }
+}
+
+.lang {
+  color: $color-primary-light;
+}
+
+.mobile {
+  display: block;
+
+  @include up-laptop {
+    display: none;
+  }
+}
+
+.navBarButton {
+  background-color: transparent;
+  border-radius: 40px;
+  font-size: 16px;
+  padding: 8px 12px;
+
+  &:hover {
+    background-color: rgba(107, 97, 254, 0.24);
+  }
+}
+
+.paper {
+  background: $color-primary-light;
+  background-image: none;
+  border-radius: spacing(3);
+  box-shadow: $box-shadow-variant-1;
+  right: 75% !important;
+  top: spacing(9) !important;
+  width: spacing(27.5);
+}
