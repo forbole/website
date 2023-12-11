@@ -1,7 +1,7 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React from "react";
+import { useRef } from "react";
 
 import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
@@ -16,7 +16,7 @@ import * as styles from "./index.module.scss";
 
 const StakingService = () => {
   const { t } = useTranslation("staking_service");
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,

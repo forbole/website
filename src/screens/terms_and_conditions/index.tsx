@@ -1,6 +1,6 @@
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React, { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { Layout, ScrollToTop } from "@src/components";
 
@@ -10,11 +10,11 @@ const TermsAndConditions = () => {
   const { t } = useTranslation("terms_and_conditions");
   const theme = useTheme();
 
-  const topRef = React.useRef(null);
-  const ref1 = React.useRef(null);
-  const ref2 = React.useRef(null);
-  const ref3 = React.useRef(null);
-  const ref4 = React.useRef(null);
+  const topRef = useRef(null);
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
 
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();

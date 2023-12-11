@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import React, { useMemo, useRef } from "react";
+import { memo, useMemo, useRef } from "react";
 
 import CtaButton from "../cta-button";
 import FormInput from "../formInput";
@@ -354,4 +354,4 @@ const TalkModal = ({
     </Modal>
   );
 };
-export default React.memo(TalkModal);
+export default memo(TalkModal);

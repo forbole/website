@@ -8,7 +8,7 @@ import {
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import { Layout, ScrollToTop } from "@src/components";
 import CtaButton from "@src/components/cta-button";
@@ -120,13 +120,13 @@ const Products = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
-  const [v1, setV1] = React.useState(0);
-  const [v2, setV2] = React.useState(0);
+  const [v1, setV1] = useState(0);
+  const [v2, setV2] = useState(0);
   const topRef = useRef(null);
   const individualsRef = useRef(null);
   const businessesRef = useRef(null);
-  const PanelRef1 = React.useRef(null);
-  const PanelRef2 = React.useRef(null);
+  const PanelRef1 = useRef(null);
+  const PanelRef2 = useRef(null);
   const router = useRouter();
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();

@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import Markdown from "markdown-to-jsx";
 import Head from "next/head";
-import React from "react";
+import { useRef } from "react";
 
 import { Layout, ScrollToTop, Tags } from "@src/components";
 
@@ -12,7 +12,7 @@ import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
 const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
 
   if (!post) return null;
 

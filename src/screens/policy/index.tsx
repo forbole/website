@@ -2,7 +2,7 @@ import { Box, Container, Typography, useTheme } from "@mui/material";
 import Link from "@mui/material/Link";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { Layout, ScrollToTop } from "@src/components";
 
@@ -16,7 +16,7 @@ const Policy = () => {
   const { t } = useTranslation("policy");
   const theme = useTheme();
 
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
   useEffect(() => {
     // eslint-disable-next-line no-undef
     (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(

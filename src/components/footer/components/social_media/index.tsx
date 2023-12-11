@@ -2,7 +2,7 @@ import { Box, Input, Stack, useTheme } from "@mui/material";
 import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React from "react";
+import { useEffect, useState } from "react";
 import type { ToastContent } from "react-toastify";
 import { toast } from "react-toastify";
 import isEmail from "validator/lib/isEmail";
@@ -28,13 +28,13 @@ const SocialMedia = () => {
 
   const { t } = useTranslation("common");
   const theme = useTheme();
-  const [inputs, setInputs] = React.useState({
+  const [inputs, setInputs] = useState({
     email: "",
   });
-  const [canSubmit, setCanSubmit] = React.useState(false);
-  const [isLoading, setLoading] = React.useState<boolean>(false);
+  const [canSubmit, setCanSubmit] = useState(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isEmail(inputs.email)) {
       setCanSubmit(true);
     } else if (canSubmit) {

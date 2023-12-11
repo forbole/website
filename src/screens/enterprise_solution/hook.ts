@@ -1,24 +1,24 @@
 import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import { useEffect, useState } from "react";
 import type { ToastContent } from "react-toastify";
 import { toast } from "react-toastify";
 import isEmail from "validator/lib/isEmail";
 
 const useContactForm = () => {
-  const [inputs, setInputs] = React.useState({
+  const [inputs, setInputs] = useState({
     name: "",
     email: "",
     company: "",
     help: "",
   });
-  const [canSubmit, setCanSubmit] = React.useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("contact");
-  const [success, setSuccess] = React.useState<boolean>(false);
-  const [isLoading, setLoading] = React.useState<boolean>(false);
-  React.useEffect(() => {
+  const [success, setSuccess] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
     if (isEmail(inputs.email) && inputs.name && inputs.help) {
       setCanSubmit(true);
     } else if (canSubmit) {

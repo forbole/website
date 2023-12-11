@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
@@ -40,7 +40,7 @@ const DeveloperTools = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
   const [show, setShow] = useState(false);
 
   return (

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React from "react";
+import type { MouseEvent } from "react";
 
 import { BottomIcon } from "../icons";
 import * as styles from "./index.module.scss";
@@ -18,9 +18,7 @@ const ScrollToBottom = ({ bottomRef }: any) => {
   return (
     <Box className={styles.wrapper}>
       <BottomIcon
-        onClick={(e: React.MouseEvent<HTMLElement>) =>
-          scrollToRef(e, bottomRef)
-        }
+        onClick={(e: MouseEvent<HTMLElement>) => scrollToRef(e, bottomRef)}
         role="button"
       />
     </Box>

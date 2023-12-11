@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import React, { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import { LayoutVal } from "@src/components";
 import AppApolloProvider from "@src/utils/apollo";
@@ -19,7 +19,7 @@ const Staking = () => {
   const { t } = useTranslation("staking");
   const stakeNowRef = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo({
       left: 0,
       top: 0,

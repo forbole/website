@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import React, { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
@@ -25,7 +25,7 @@ SwiperCore.use([Navigation, Autoplay]);
 const About = () => {
   const { t } = useTranslation("about");
   const theme = useTheme();
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));

@@ -1,21 +1,21 @@
 import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import isEmail from "validator/lib/isEmail";
 
 const useContactCard = () => {
-  const [inputs, setInputs] = React.useState({
+  const [inputs, setInputs] = useState({
     name: "",
     email: "",
     option: "",
   });
-  const [canSubmit, setCanSubmit] = React.useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("staking");
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isEmail(inputs.email) && inputs.name && inputs.option) {
       setCanSubmit(true);
     } else if (canSubmit) {

@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
-import React from "react";
+import { useRef } from "react";
 
 import { Layout, ScrollToTop, Tags } from "@src/components";
 
@@ -13,7 +13,7 @@ const Blog = (props: any) => {
   const theme = useTheme();
   const { posts = [], meta = {}, tags = [], sidePosts = [], error } = props;
   const { t } = useTranslation("blog");
-  const topRef = React.useRef(null);
+  const topRef = useRef(null);
 
   useBlogHook(error, t);
 

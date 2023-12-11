@@ -1,13 +1,13 @@
 import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ToastContent } from "react-toastify";
 import { toast } from "react-toastify";
 import isEmail from "validator/lib/isEmail";
 
 const useTalkModalForm = () => {
-  const [inputs, setInputs] = React.useState({
+  const [inputs, setInputs] = useState({
     "name": "",
     "email": "",
     "company": "",
@@ -19,13 +19,13 @@ const useTalkModalForm = () => {
     "Other": false,
     "RPC Endpoints": false,
   });
-  const [canSubmit, setCanSubmit] = React.useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("contact");
-  const [success, setSuccess] = React.useState<boolean>(false);
-  const [isLoading, setLoading] = React.useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       isEmail(inputs.email) &&
       inputs.name &&
@@ -39,7 +39,7 @@ const useTalkModalForm = () => {
       setCanSubmit(false);
     }
   }, [inputs, canSubmit]);
-  const get_started = React.useMemo(() => {
+  const get_started = useMemo(() => {
     const str = [];
     if (inputs["Data API"]) {
       str.push("Data API");
