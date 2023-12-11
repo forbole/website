@@ -1,0 +1,38 @@
+@import "src/styles/sass.scss";
+
+$wrapper-shadow:
+  0px 10px 32px -4px rgba(125, 92, 255, 0.1),
+  0px 6px 14px -6px rgba(126, 94, 255, 0.28);
+
+$wrapper-filter: drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12))
+  drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12));
+
+.wrapper {
+  align-items: center;
+  border-radius: 48px;
+  box-shadow: $wrapper-shadow;
+  cursor: pointer;
+  filter: $wrapper-filter;
+  height: 48px;
+  margin: 28px 28px 24px 28px;
+  position: relative;
+  width: 48px;
+  z-index: 2;
+
+  svg {
+    transition: all 0.3s;
+    fill: $color-primary-light;
+    path {
+      stroke: #7d5cff;
+    }
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  @include down-laptop {
+    height: 36px;
+    margin: 6px 6px 24px 6px;
+    width: 36px;
+  }
+}

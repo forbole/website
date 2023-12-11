@@ -19,7 +19,6 @@ import HeaderCard from "@src/components/header-card";
 import KeyData from "@src/components/key_data";
 import { NoSSR } from "@src/components/no-ssr";
 import ProductPanel from "@src/components/product-panel";
-import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import AppApolloProvider from "@src/utils/apollo";
@@ -149,8 +148,6 @@ const Infrastructure = () => {
             title={t("headercard_title")}
           />
           <KeyData />
-          <ScrollLogo />
-
           <Stack
             sx={{
               gap: "40px",

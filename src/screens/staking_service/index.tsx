@@ -9,7 +9,6 @@ import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import { Horse } from "@src/components/icons";
 import KeyData from "@src/components/key_data";
-import ScrollLogo from "@src/components/scroll_logo";
 import Section from "@src/components/section";
 import AppApolloProvider from "@src/utils/apollo";
 
@@ -46,7 +45,6 @@ const StakingService = () => {
               title={t("section_1st_title")}
               title_large_trans={t("section_1st_large_title")}
             />
-            <ScrollLogo />
           </Stack>
 
           <Stack>
