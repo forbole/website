@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
-import { Layout } from "@src/components";
+import Layout from "@src/components/layout";
 
 import AuthorPosts from "./components/author_posts";
 import { useBlogHook } from "./hooks";

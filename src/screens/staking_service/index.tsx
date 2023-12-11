@@ -3,12 +3,13 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import { Horse } from "@src/components/icons";
 import KeyData from "@src/components/key_data";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import AppApolloProvider from "@src/utils/apollo";
 

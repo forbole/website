@@ -3,7 +3,9 @@ import Markdown from "markdown-to-jsx";
 import Head from "next/head";
 import { useRef } from "react";
 
-import { Layout, ScrollToTop, Tags } from "@src/components";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
+import Tags from "@src/components/tags";
 
 import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.png";
 import { Author, SocialMedia } from "./components";

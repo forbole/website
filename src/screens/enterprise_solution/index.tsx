@@ -3,11 +3,12 @@ import useTranslation from "next-translate/useTranslation";
 import type { MouseEvent } from "react";
 import { useRef } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
 import IntroPanel from "@src/components/Intro_panel";
 import ContactFrom from "@src/components/contact-form";
 import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import SuccessModal from "@src/components/success-modal";
 

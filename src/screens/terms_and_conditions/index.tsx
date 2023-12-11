@@ -2,7 +2,8 @@ import { Box, Container, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useRef } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
 
 import { TNCCSS } from "./styles";
 

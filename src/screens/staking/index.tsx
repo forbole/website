@@ -1,7 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useRef } from "react";
 
-import { LayoutVal } from "@src/components";
+import LayoutVal from "@src/components/layout_val";
 import AppApolloProvider from "@src/utils/apollo";
 
 import CalculateRewards from "./components/calculate_rewards";

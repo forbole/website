@@ -3,7 +3,9 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRef } from "react";
 
-import { Layout, ScrollToTop, Tags } from "@src/components";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
+import Tags from "@src/components/tags";
 
 import BlogPosts from "./components/blog_posts";
 import TitlePosts from "./components/title_posts";

@@ -4,7 +4,8 @@ import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
+import Layout from "@src/components/layout";
+import ScrollToTop from "@src/components/scroll_to_top";
 
 import { TNCCSS } from "../terms_and_conditions/styles";
 

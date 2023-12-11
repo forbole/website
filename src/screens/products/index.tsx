@@ -10,10 +10,11 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useMemo, useRef, useState } from "react";
 
-import { Layout, ScrollToTop } from "@src/components";
 import CtaButton from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
+import Layout from "@src/components/layout";
 import ProductPanel from "@src/components/product-panel";
+import ScrollToTop from "@src/components/scroll_to_top";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import { scrollBottom } from "@src/utils/scroll";
 
