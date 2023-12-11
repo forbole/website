@@ -7,6 +7,7 @@ import { Layout, ScrollToTop, Tags } from "@src/components";
 
 import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.png";
 import { Author, SocialMedia } from "./components";
+import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
 const BlogDetails = ({ post }: any) => {
@@ -17,6 +18,8 @@ const BlogDetails = ({ post }: any) => {
 
   const { title, tags, excerpt, featureImage, featureImageCaption, slug } =
     post;
+
+  const manyTagsStyle = tags.length > 50 ? styles.manyTags : "";
 
   return (
     <Layout
@@ -32,63 +35,36 @@ const BlogDetails = ({ post }: any) => {
     >
       <Head>
         {slug && (
-          <link href={`https://forbole.com/blog/${slug}`} rel="canonical" />
+          <link href={`https://www.forbole.com/blog/${slug}`} rel="canonical" />
         )}
       </Head>
       <MobileCSS>
-        <Box
-          sx={{
-            padding: theme.spacing(12, 3, 0, 3),
-          }}
-        />
-        <Box sx={{ padding: theme.spacing(3) }}>
+        <Box className={styles.topSpacing} />
+        <Box className={styles.wrapper}>
           <ContentCSS theme={theme}>
             <Author post={post} />
             <SocialMedia title={post.title} />
-            <Typography
-              sx={{
-                color: theme.palette.primary.main,
-                fontWeight: 600,
-                paddingBottom: theme.spacing(4),
-                fontSize: theme.spacing(3.5),
-              }}
-              variant="h3"
-            >
+            <Typography className={styles.title} variant="h3">
               {title}
             </Typography>
             <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              paddingBottom={
-                featureImageCaption === null ? theme.spacing(8) : 0
-              }
-              sx={{
-                [theme.breakpoints.down("tablet")]: {
-                  "& img": {
-                    height: "200px",
-                  },
-                },
-              }}
+              className={[
+                styles.featureImageWrapper,
+                featureImageCaption === null ? styles.noImg : "",
+              ].join(" ")}
             >
               <img
                 alt={title}
+                className={styles.img}
                 src={
                   post.featureImage == null
                     ? blogPlaceholderImg.src
                     : post.featureImage
                 }
-                style={{
-                  objectFit: "cover",
-                }}
               />
               {featureImageCaption === null ? null : (
                 <Typography
-                  sx={{
-                    color: theme.palette.primary.main,
-                    padding: theme.spacing(2, 0, 8, 0),
-                    fontSize: theme.spacing(1.75),
-                  }}
+                  className={styles.featureImageCaption}
                   variant="body1"
                 >
                   <Markdown>{featureImageCaption}</Markdown>
@@ -101,44 +77,14 @@ const BlogDetails = ({ post }: any) => {
         <Tags tags={tags} />
       </MobileCSS>
       <LaptopCSS>
-        <Box
-          ref={topRef}
-          sx={{
-            padding: theme.spacing(15, 0),
-            width: "100%",
-            maxWidth: "1200px",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingBottom: theme.spacing(6),
-            }}
-          >
-            <Typography
-              sx={{
-                color: theme.palette.primary.main,
-                fontWeight: 600,
-                fontSize: theme.spacing(5),
-              }}
-              variant="h3"
-            >
+        <Box className={styles.wrapper} ref={topRef}>
+          <Box className={styles.titleWrapper}>
+            <Typography className={styles.title} variant="h3">
               {title}
             </Typography>
           </Box>
           <Box height="100%">
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                paddingBottom: theme.spacing(7),
-              }}
-            >
+            <Box className={styles.author}>
               <Author post={post} />
               <SocialMedia title={post.title} />
             </Box>
@@ -153,37 +99,15 @@ const BlogDetails = ({ post }: any) => {
               {featureImage === null ? (
                 <img
                   alt={title}
+                  className={styles.img}
                   src={blogPlaceholderImg.src}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "cover",
-                    margin: "auto",
-                  }}
                 />
               ) : (
-                <img
-                  alt={title}
-                  src={featureImage}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "cover",
-                    margin: "auto",
-                  }}
-                />
+                <img alt={title} className={styles.img} src={featureImage} />
               )}
               {featureImageCaption === null ? null : (
                 <Typography
-                  sx={{
-                    color: theme.palette.primary.main,
-                    padding: theme.spacing(4, 0, 8, 0),
-                    fontSize: theme.spacing(2),
-                    width: "80%",
-                    a: {
-                      color: theme.palette.primary.main,
-                    },
-                  }}
+                  className={styles.featureImageCaption}
                   variant="body1"
                 >
                   <Markdown>{featureImageCaption}</Markdown>
@@ -194,29 +118,12 @@ const BlogDetails = ({ post }: any) => {
               <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
             </ContentCSS>
             <Box display="flex" justifyContent="center">
-              <Box
-                sx={{
-                  paddingTop: theme.spacing(8),
-                  height: tags.length > 50 ? "850px" : "550px",
-                  width: "100%",
-                }}
-              >
+              <Box className={[styles.tags, manyTagsStyle].join(" ")}>
                 <Tags details noPadding tags={tags} />
               </Box>
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: "none",
-              [theme.breakpoints.up("laptop")]: {
-                display: "flex",
-                position: "absolute",
-                left: "50%",
-                justifyContent: "center",
-                bottom: tags.length > 50 ? "200px" : "250px",
-              },
-            }}
-          >
+          <Box className={[styles.scrollToTop, manyTagsStyle].join(" ")}>
             <ScrollToTop topRef={topRef} />
           </Box>
         </Box>

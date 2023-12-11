@@ -2,7 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
-import { styles } from "./styles";
+import * as styles from "./index.module.scss";
 
 interface TagsProps {
   tags: any[];
@@ -17,31 +17,19 @@ const Tags = (props: TagsProps) => {
 
   return (
     <Box
-      sx={{
-        "padding": theme.spacing(7, 3),
-        "color": theme.palette.primary.main,
-        "& h3": {
-          fontWeight: 700,
-          fontSize: theme.spacing(3),
-          paddingBottom: theme.spacing(3.5),
-        },
-        [theme.breakpoints.up("laptop")]: {
-          padding: noPadding ? 0 : theme.spacing(3.75),
-          background: details ? "transparent" : "rgba(255, 255, 255, 0.1)",
-          backdropFilter: "blur(8px)",
-          borderRadius: theme.spacing(0.75),
-        },
-      }}
+      className={[
+        styles.wrapper,
+        details ? styles.details : "",
+        noPadding ? styles.noPadding : "",
+      ].join(" ")}
     >
       <Typography color={theme.palette.primary.main} variant="h3">
         {t("tags")}
       </Typography>
-      <Box component="ul" sx={styles.tagCSS}>
+      <Box className={styles.tagCSS} component="ul">
         {tags.map((tag: any) => (
-          <Box component="li" key={tag.slug} sx={styles.listCSS}>
-            <Link as={`/tag/${tag.slug}`} href="/tag/[tag]">
-              {tag.name}
-            </Link>
+          <Box className={styles.listCSS} component="li" key={tag.slug}>
+            <Link href={`/tag/${tag.slug}`}>{tag.name}</Link>
           </Box>
         ))}
       </Box>

@@ -1,0 +1,52 @@
+@import "src/styles/sass.scss";
+
+.listCSS {
+  background: $color-secondary-light;
+  border-radius: spacing(25);
+  display: inline-block;
+  margin: spacing(0) spacing(1) spacing(1) spacing(0);
+  padding: spacing(1) spacing(2);
+
+  a {
+    color: $color-primary-light;
+    font-size: spacing(2);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: $color-forbole-purple;
+  }
+}
+
+.tagCSS {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.wrapper {
+  color: $color-primary-light;
+  padding: spacing(7) spacing(3);
+
+  h3 {
+    font-size: spacing(3);
+    font-weight: 700;
+    padding-bottom: spacing(3.5);
+  }
+
+  @include up-laptop {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: spacing(0.75);
+    padding: spacing(3.75);
+
+    &.noPadding {
+      padding: 0;
+    }
+
+    &.details {
+      background: transparent;
+    }
+  }
+}
