@@ -7,8 +7,8 @@
   grid-template-rows: repeat(3, 1fr);
 
   @include up-laptop {
+    grid-gap: spacing(3);
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    grid-gap: spacing(3);
   }
 }
