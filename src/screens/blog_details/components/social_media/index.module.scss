@@ -1,0 +1,21 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  padding-bottom: spacing(3);
+
+  svg {
+    margin-right: spacing(2);
+    transition: transform 0.2s ease-in-out;
+
+    path {
+      fill: $color-primary-light;
+    }
+
+    &:hover {
+      background: $color-indigo;
+      border-radius: 50%;
+      cursor: pointer;
+      transform: scale(1.5);
+    }
+  }
+}

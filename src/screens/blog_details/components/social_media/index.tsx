@@ -1,10 +1,11 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 
 import { Facebook, LinkedIn, Telegram, Twitter } from "@src/components/icons";
 
+import * as styles from "./index.module.scss";
+
 const SocialMedia = (props: any) => {
-  const theme = useTheme();
   const { title = "Forbole " } = props;
   const router = useRouter();
   const path = router.asPath;
@@ -35,24 +36,7 @@ const SocialMedia = (props: any) => {
   };
 
   return (
-    <Box
-      sx={{
-        "paddingBottom": theme.spacing(3),
-        "& svg": {
-          "marginRight": theme.spacing(2),
-          "transition": "transform 0.2s ease-in-out",
-          "& path": {
-            fill: theme.palette.primary.main,
-          },
-          "&:hover": {
-            cursor: "pointer",
-            borderRadius: "50%",
-            background: theme.palette.custom.forbole.indigo,
-            transform: "scale(1.5)",
-          },
-        },
-      }}
-    >
+    <Box className={styles.wrapper}>
       <span
         onClick={() =>
           handleClick(
