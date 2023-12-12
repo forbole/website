@@ -1,0 +1,45 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  align-content: center;
+  display: flex;
+  margin-bottom: spacing(3.5);
+
+  img {
+    height: 40px;
+    margin: 0;
+    width: 40px;
+  }
+}
+
+.img {
+  border-radius: 50%;
+  height: 40px;
+  margin: 0;
+  object-fit: cover;
+  width: 40px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: spacing(2);
+}
+
+.name {
+  color: $color-primary-light;
+  font-size: spacing(1.75);
+  font-weight: 600;
+}
+
+.time {
+  color: $color-primary-light;
+  font-size: spacing(1.75);
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.contentLink {
+  text-decoration: none;
+}
