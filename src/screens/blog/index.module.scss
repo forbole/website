@@ -1,0 +1,48 @@
+@import "src/styles/sass.scss";
+
+.bottom {
+  bottom: 10%;
+  display: block;
+  position: fixed;
+  right: 5%;
+
+  @include up-laptop {
+    display: none;
+  }
+}
+
+.flexBox {
+  @include up-laptop {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.sideCSS {
+  @include up-laptop {
+    margin-left: 4.25rem;
+    min-width: 300px;
+    width: 30%;
+  }
+}
+
+.top {
+  @include up-laptop {
+    display: flex;
+    max-width: 1200px;
+    padding: spacing(15) 0;
+  }
+}
+
+.topScroll {
+  display: none;
+
+  @include up-laptop {
+    bottom: 250px;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+  }
+}

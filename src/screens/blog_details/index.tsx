@@ -81,7 +81,7 @@ const BlogDetails = ({ post }: any) => {
       <LaptopCSS>
         <Box className={styles.wrapper} ref={topRef}>
           <Box className={styles.titleWrapper}>
-            <Typography className={styles.title} variant="h3">
+            <Typography className={styles.title} variant="h1">
               {title}
             </Typography>
           </Box>

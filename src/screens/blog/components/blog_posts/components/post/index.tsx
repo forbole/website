@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,8 +9,9 @@ import { NoSSR } from "@src/components/no-ssr";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import useHKT from "@src/hooks/useHKT";
 
+import * as styles from "./index.module.scss";
+
 const Post = (props: any) => {
-  const theme = useTheme();
   const { t } = useTranslation("blog");
   const { isDesktop, isMobile } = useWindowDimensions();
   const { post, main = false, refProp } = props;
@@ -21,31 +22,13 @@ const Post = (props: any) => {
 
   return (
     <Box
+      className={[styles.wrapper, main ? styles.main : ""].join(" ")}
       data-test="post-summary-item"
-      sx={{
-        "border": "1px solid rgba(195, 204, 226, 0.3)",
-        "borderRadius": theme.spacing(1.5),
-        "color": theme.palette.primary.main,
-        "background": "transparent",
-        "height": "100%",
-        "& a": {
-          color: theme.palette.primary.main,
-          textDecoration: "none",
-        },
-        "& img": {
-          borderRadius: theme.spacing(1.5, 1.5, 0, 0),
-          minHeight: "150px",
-          width: "100%",
-          objectFit: "cover",
-        },
-        [theme.breakpoints.up("laptop")]: {
-          gridColumn: main ? "1 / span 2" : "auto",
-        },
-      }}
     >
-      <Box ref={refProp} sx={{ padding: 0 }}>
+      <Box className={styles.content} ref={refProp}>
         <Link as={`/blog/${slug}`} href="/blog/[title]">
           <Box
+            className={styles.imgWrapper}
             height={
               isDesktop && main
                 ? ("324px!important" as any)
@@ -53,11 +36,6 @@ const Post = (props: any) => {
                   ? ("156px!important" as any)
                   : ("156px!important" as any)
             }
-            sx={{
-              "> span": {
-                width: "100%!important" as any,
-              },
-            }}
             width={
               isDesktop && main
                 ? ("100%!important" as any)
@@ -68,22 +46,15 @@ const Post = (props: any) => {
           >
             <Image
               alt={title}
+              className={styles.img}
               height={isDesktop && main ? "324" : isMobile ? "156" : "156"}
               loader={cmsLoader}
               src={!featureImage ? placeholderImage : featureImage}
-              style={{ objectFit: "cover" }}
               width={isDesktop && main ? "500" : isMobile ? "270" : "500"}
             />
           </Box>
           <Box
-            sx={{
-              padding: theme.spacing(2.5, 2.5, 0, 2.5),
-              [theme.breakpoints.up("laptop")]: {
-                width: main
-                  ? ("690px!important" as any)
-                  : ("380px!important" as any),
-              },
-            }}
+            className={[styles.textWrapper, main ? styles.main : ""].join(" ")}
             width={
               isDesktop && main
                 ? ("690px!important" as any)
@@ -92,60 +63,22 @@ const Post = (props: any) => {
                   : ("100%!important" as any)
             }
           >
-            <Typography
-              sx={{
-                fontWeight: 700,
-                fontSize: theme.spacing(3),
-                paddingBottom: theme.spacing(3),
-                overflowWrap: "break-word",
-              }}
-              variant="h3"
-            >
+            <Typography className={styles.title} variant="h3">
               {title}
             </Typography>
-            <Typography
-              sx={{
-                fontWeight: 400,
-                fontSize: theme.spacing(2),
-                overflowWrap: "break-word",
-                lineHeight: 1.8,
-              }}
-              variant="body1"
-            >
+            <Typography className={styles.excerpt} variant="body1">
               {excerpt}
             </Typography>
           </Box>
         </Link>
-        <Box
-          sx={{
-            padding: theme.spacing(5, 2.5, 2.5, 2.5),
-          }}
-        >
-          <Box
-            component="span"
-            sx={{
-              display: "flex",
-              alignItems: "flex-start",
-              flexDirection: "column",
-              color: "rgba(255, 255, 255, 0.5)",
-              fontWeight: 400,
-              fontSize: "12px",
-              [theme.breakpoints.up("laptop")]: {
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              },
-            }}
-          >
+        <Box className={styles.info}>
+          <Box className={styles.authorWrapper} component="span">
             <p>
               {t("Posted by")}{" "}
               <Link
                 as={`/author/${author.slug}`}
+                className={styles.author}
                 href="/author/[author]"
-                style={{
-                  textDecoration: "underline",
-                  color: "rgba(255, 255, 255, 0.5)",
-                }}
               >
                 {author.name}
               </Link>

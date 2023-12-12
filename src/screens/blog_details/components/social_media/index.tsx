@@ -38,6 +38,7 @@ const SocialMedia = (props: any) => {
   return (
     <Box className={styles.wrapper}>
       <span
+        aria-label="Share on Telegram"
         onClick={() =>
           handleClick(
             `https://telegram.me/share/?url=${shareUrl}&text=${title}`,
@@ -48,6 +49,7 @@ const SocialMedia = (props: any) => {
         <Telegram />
       </span>
       <span
+        aria-label="Share on Facebook"
         onClick={() =>
           handleClick(
             `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${title}`,
@@ -58,6 +60,7 @@ const SocialMedia = (props: any) => {
         <Facebook />
       </span>
       <span
+        aria-label="Share on Twitter"
         onClick={() =>
           handleClick(
             `https://twitter.com/intent/tweet?url=${shareUrl}&text=${title}`,
@@ -68,6 +71,7 @@ const SocialMedia = (props: any) => {
         <Twitter />
       </span>
       <span
+        aria-label="Share on LinkedIn"
         onClick={() =>
           handleClick(
             `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}&text=${title}`,

@@ -1,0 +1,31 @@
+@import "src/styles/sass.scss";
+
+.seeMore {
+  color: $color-primary-light;
+  font-size: spacing(2);
+  font-weight: 600;
+  padding-top: spacing(10);
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.posts {
+  display: grid;
+  grid-gap: spacing(4);
+  grid-template-columns: repeat(1, 1fr);
+  padding: spacing(12) spacing(3) 0 spacing(3);
+  width: 100%;
+
+  @include up-laptop {
+    grid-auto-rows: min-content;
+    grid-gap: 30px 20px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+  }
+}

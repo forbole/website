@@ -1,0 +1,42 @@
+@import "src/styles/sass.scss";
+
+.divider {
+  border-color: rgba(116, 136, 188, 0.3);
+}
+
+.titlePost {
+  color: $color-primary-light;
+  list-style-type: none;
+  padding: spacing(7) spacing(3) 0 spacing(3);
+
+  a {
+    color: $color-primary-light;
+    font-size: spacing(2);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  @include up-laptop {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: spacing(0.75);
+    margin-bottom: spacing(5);
+    padding: spacing(3.75);
+  }
+}
+
+.listItem {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.post {
+  padding: spacing(3) 0;
+}
+
+.contents {
+  font-size: spacing(3);
+  font-weight: 700;
+  padding-bottom: spacing(1.5);
+}

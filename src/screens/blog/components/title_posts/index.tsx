@@ -1,47 +1,26 @@
-import { Box, Divider, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
-import { styles } from "./styles";
+import * as styles from "./index.module.scss";
 
-const TitlePosts = (props: any) => {
-  const { posts } = props;
-  const theme = useTheme();
+const TitlePosts = ({ posts }: any) => {
   const { t } = useTranslation("blog");
 
   return (
-    <Box component="ul" sx={styles.titlePostCSS}>
-      <Typography
-        sx={{
-          fontWeight: 700,
-          fontSize: theme.spacing(3),
-          paddingBottom: theme.spacing(1.5),
-        }}
-        variant="h3"
-      >
+    <Box className={styles.titlePost} component="ul">
+      <Typography className={styles.contents} variant="h3">
         {t("contents")}
       </Typography>
       {posts.map((post: any, i: number) => (
         <div key={post.id}>
-          <Box
-            sx={{
-              padding: theme.spacing(3, 0),
-            }}
-          >
-            <Link as={`/blog/${post.slug}`} href="/blog/[title]" key={post.id}>
-              <li
-                style={{
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {post.title}
-              </li>
+          <Box className={styles.post}>
+            <Link href={`/blog/${post.slug}`} key={post.id}>
+              <li className={styles.listItem}>{post.title}</li>
             </Link>
           </Box>
           {i === posts.length - 1 ? null : (
-            <Divider sx={{ borderColor: "rgba(116, 136, 188, 0.3)" }} />
+            <Divider className={styles.divider} />
           )}
         </div>
       ))}
