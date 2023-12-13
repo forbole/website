@@ -1,4 +1,4 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import type { MouseEvent, RefObject } from "react";
@@ -13,6 +13,7 @@ import { AnchorElContextProvider } from "@src/utils/menu";
 import { DesktopNavMenu, MobileNavMenu } from "./components";
 import LangMenuButton from "./components/lang_menu_button";
 import { useNavHook } from "./hooks";
+import * as styles from "./index.module.scss";
 
 interface NavProps {
   staking?: boolean;
@@ -21,7 +22,6 @@ interface NavProps {
 }
 
 const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
-  const theme = useTheme();
   const colors = useColor();
   const { displayBackground } = useNavHook();
   const { t } = useTranslation("staking");
@@ -37,91 +37,31 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
     }
   };
 
+  const navStyle = {
+    style: {
+      backdropFilter: displayBackground ? "blur(16px)" : "none",
+      background: (() => {
+        if (displayBackground && !staking) {
+          return "rgba(47, 58, 86, 0.60)";
+        }
+
+        return displayBackground && staking
+          ? " rgba(47, 58, 86, 0.60)"
+          : "transparent";
+      })(),
+    },
+  };
+
   return (
     <AnchorElContextProvider>
-      <Box
-        data-test="nav"
-        sx={{
-          "backdropFilter": displayBackground ? "blur(16px)" : "none",
-          "boxSizing": "content-box",
-          "display": "flex",
-          "height": "100px",
-          "justifyContent": "center",
-          "position": "fixed",
-          "top": 0,
-          "transition": "all .3s",
-          "width": "100%",
-          "zIndex": 5,
-
-          "background": (() => {
-            if (displayBackground && !staking) {
-              return "rgba(47, 58, 86, 0.60)";
-            }
-
-            return displayBackground && staking
-              ? " rgba(47, 58, 86, 0.60)"
-              : "transparent";
-          })(),
-          [theme.breakpoints.up("laptop")]: {
-            height: "100px",
-          },
-          "&:hover": {
-            background: "rgba(47, 58, 86, 0.60)",
-          },
-        }}
-      >
-        <Box
-          sx={{
-            boxSizing: "border-box",
-            height: "auto",
-            maxWidth: "desktop",
-            position: "fixed",
-            px: "16px",
-            top: 0,
-            width: "100%",
-            zIndex: 2,
-
-            [theme.breakpoints.up("laptop")]: {
-              top: 30,
-              margin: "auto",
-              left: "50vw",
-              transform: "translate(-50%, -50%)",
-              zIndex: 2,
-            },
-          }}
-        >
-          <Box
-            sx={{
-              alignItems: "center",
-              background: "transparent",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              padding: theme.spacing(5, 0, 0, 0),
-
-              [theme.breakpoints.up("laptop")]: {
-                padding: theme.spacing(5.5, 0, 0, 0),
-                justifyContent: "space-between",
-                overflow: "unset",
-              },
-            }}
-          >
-            <Box
-              sx={{
-                [theme.breakpoints.up("laptop")]: {
-                  margin: 0,
-                  width: "40%",
-                },
-              }}
-            >
+      <Box className={styles.nav} data-test="nav" {...navStyle}>
+        <Box className={styles.navWrapper}>
+          <Box className={styles.container}>
+            <Box className={styles.logoWrapper}>
               <Link
                 aria-label={t("common:forboleLogo")}
+                className={styles.logoLink}
                 href="/"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "100%",
-                }}
               >
                 {staking ? (
                   <ForboleShadowIcon />
@@ -131,69 +71,24 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
               </Link>
             </Box>
             {staking ? (
-              <Box
-                style={{
-                  alignItems: "center",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "20px",
-                  justifyContent: "center",
-                }}
-              >
+              <Box className={styles.stakingWrapper}>
                 <Button
+                  className={styles.stakeNowButton}
                   onClick={scrollToRef}
-                  sx={{
-                    background:
-                      "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                    borderRadius: theme.spacing(3),
-                    boxShadow: "none",
-                    color: "primary.main",
-                    fontWeight: 600,
-                    height: "32px",
-                    lineHeight: "17px",
-                    padding: 0,
-                    whiteSpace: "nowrap",
-                    width: "97px",
-
-                    [theme.breakpoints.up("laptop")]: {
-                      width: "111px",
-                      height: "45px",
-                    },
-                  }}
                   variant="contained"
                 >
                   {t("stake_now")}
                 </Button>
-                <Box
-                  sx={{
-                    [theme.breakpoints.down("laptop")]: {
-                      display: "none",
-                    },
-                  }}
-                >
+                <Box className={styles.stakingLang}>
                   <LangMenuButton />
                 </Box>
               </Box>
             ) : (
               <>
-                <Box
-                  sx={{
-                    [theme.breakpoints.up("laptop")]: {
-                      display: "none",
-                    },
-                  }}
-                >
+                <Box className={styles.mobileNavMenu}>
                   <MobileNavMenu />
                 </Box>
-                <Box
-                  sx={{
-                    [theme.breakpoints.down("laptop")]: { display: "none" },
-                    [theme.breakpoints.up("laptop")]: {
-                      display: "flex",
-                      width: "37%",
-                    },
-                  }}
-                >
+                <Box className={styles.desktopNavMenu}>
                   <DesktopNavMenu />
                 </Box>
               </>

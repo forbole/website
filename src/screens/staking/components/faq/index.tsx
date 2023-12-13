@@ -1,12 +1,12 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
 import Card from "./components/card";
 import { useFaq } from "./config";
+import * as styles from "./index.module.scss";
 
 const FAQ = () => {
-  const theme = useTheme();
   const { t } = useTranslation("staking");
   const [expanded, setExpanded] = useState<string>();
   const faq = useFaq();
@@ -14,46 +14,13 @@ const FAQ = () => {
 
   return (
     <Box display="flex" justifyContent="center">
-      <Box
-        sx={{
-          [theme.breakpoints.up("laptop")]: {
-            maxWidth: "1200px",
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            textShadow:
-              "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
-            fontWeight: 700,
-            fontSize: theme.spacing(3),
-            textAlign: "center",
-            paddingBottom: theme.spacing(5),
-            color: theme.palette.custom.forbole.blue,
-            [theme.breakpoints.up("laptop")]: {
-              fontSize: theme.spacing(5),
-            },
-          }}
-          variant="h3"
-        >
+      <Box className={styles.wrapper}>
+        <Typography className={styles.faqText} variant="h3">
           {t("faq")}
         </Typography>
-        <Box
-          sx={{
-            [theme.breakpoints.up("laptop")]: {
-              paddingBottom: theme.spacing(25),
-            },
-          }}
-        >
+        <Box className={styles.content}>
           <Box alignContent="flex-start" display="flex" flexWrap="wrap">
-            <Box
-              sx={{
-                flexBasis: "100%",
-                [theme.breakpoints.up("laptop")]: {
-                  flexBasis: "50%",
-                },
-              }}
-            >
+            <Box className={styles.container}>
               {faq.map((x, i) => {
                 if (i > middleIndex) return null;
                 const {
@@ -90,14 +57,7 @@ const FAQ = () => {
                 );
               })}
             </Box>
-            <Box
-              sx={{
-                flexBasis: "100%",
-                [theme.breakpoints.up("laptop")]: {
-                  flexBasis: "50%",
-                },
-              }}
-            >
+            <Box className={styles.faqItem}>
               {faq.map((x, i) => {
                 if (i <= middleIndex) return null;
                 const {

@@ -11,6 +11,7 @@ import {
 import { ExpandIcon } from "@src/components/icons";
 
 import type { FAQProps } from "../../config";
+import * as styles from "./index.module.scss";
 
 const Card = (props: FAQProps) => {
   const theme = useTheme();
@@ -29,29 +30,11 @@ const Card = (props: FAQProps) => {
   } = props;
 
   return (
-    <Box
-      sx={{
-        padding: theme.spacing(2, 5),
-        borderRadius: theme.spacing(2),
-      }}
-    >
+    <Box className={styles.wrapper}>
       <Accordion
+        className={styles.accordion}
         expanded={expanded}
         onChange={setExpanded}
-        sx={{
-          "background": theme.palette.primary.main,
-          "borderRadius": `${theme.spacing(2)} !important` as any,
-          "display": "flex",
-          "flexDirection": "column",
-          "alignItems": "flex-start",
-          "boxShadow": "4px 8px 24px rgba(116, 81, 255, 0.28)",
-          "& .MuiAccordionSummary-content": {
-            flexGrow: 12,
-          },
-          "& .MuiIconButton-root": {
-            flexGrow: 1,
-          },
-        }}
       >
         <AccordionSummary
           expandIcon={<ExpandIcon />}
@@ -75,19 +58,7 @@ const Card = (props: FAQProps) => {
             },
           }}
         >
-          <Typography
-            sx={{
-              color: theme.palette.custom.forbole.blue,
-              textShadow:
-                "0px 8px 22px rgba(2, 38, 225, 0.12), 0px 14px 64px rgba(2, 38, 225, 0.12)",
-              fontSize: theme.spacing(2),
-              lineHeight: "20px",
-              letterSpacing: "-0.034em",
-              fontWeight: 600,
-              width: "80%",
-            }}
-            variant="h3"
-          >
+          <Typography className={styles.question} variant="h3">
             {question}
           </Typography>
         </AccordionSummary>
