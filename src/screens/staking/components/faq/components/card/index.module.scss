@@ -1,0 +1,36 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  border-radius: spacing(2);
+  padding: spacing(2) spacing(5);
+}
+
+.accordion {
+  align-items: flex-start;
+  background: $color-primary-light;
+  border-radius: spacing(2) !important;
+  box-shadow: 4px 8px 24px rgba(116, 81, 255, 0.28);
+  display: flex;
+  flex-direction: column;
+
+  :global .MuiAccordionSummary-content {
+    flex-grow: 12;
+  }
+
+  :global .MuiIconButton-root {
+    flex-grow: 1;
+  }
+}
+
+$question-shadow:
+  0 8px 22px rgba(2, 38, 225, 0.12),
+  0 14px 64px rgba(2, 38, 225, 0.12);
+
+.question {
+  box-shadow: $question-shadow;
+  color: $color-forbole-blue;
+  font-size: spacing(2);
+  font-weight: 600;
+  line-height: -0.034em;
+  width: 80%;
+}

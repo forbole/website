@@ -1,0 +1,119 @@
+@import "src/styles/sass.scss";
+
+.stakingWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.stakeNowButton {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  border-radius: spacing(3);
+  box-shadow: none;
+  color: $color-primary-light;
+  font-weight: 600;
+  height: 32px;
+  line-height: 17px;
+  padding: 0;
+  white-space: nowrap;
+  width: 97px;
+
+  @include up-laptop {
+    height: 45px;
+    width: 111px;
+  }
+}
+
+.stakingLang {
+  @include up-laptop {
+    display: none;
+  }
+}
+
+.container {
+  align-items: center;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  justify-content: space-between;
+  padding: spacing(2) 0 0 0;
+
+  @include up-laptop {
+    height: unset;
+    justify-content: space-between;
+    overflow: unset;
+    padding: spacing(5.5) 0 0 0;
+  }
+}
+
+.navWrapper {
+  box-sizing: border-box;
+  height: auto;
+  max-width: $breakpoint-desktop;
+  padding: 0 spacing(2);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  @include up-laptop {
+    left: 50vw;
+    margin: auto;
+    top: 30px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+}
+
+.logoWrapper {
+  @include up-laptop {
+    margin: 0;
+    width: 40%;
+  }
+}
+
+.logoLink {
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+.desktopNavMenu {
+  @include up-laptop {
+    display: flex;
+    width: 37%;
+  }
+
+  @include down-laptop {
+    display: none;
+  }
+}
+
+.mobileNavMenu {
+  @include up-laptop {
+    display: none;
+  }
+}
+
+.nav {
+  box-sizing: content-box;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  transition: all 0.3s;
+  width: 100%;
+  z-index: 5;
+
+  @include up-laptop {
+    height: 100px;
+  }
+
+  &:hover {
+    background: rgba(47, 58, 86, 0.6);
+  }
+}

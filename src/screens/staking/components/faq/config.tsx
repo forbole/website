@@ -1,8 +1,10 @@
-import { Typography, useTheme } from "@mui/material";
+import { Typography } from "@mui/material";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useMemo } from "react";
+
+import * as styles from "./config.module.scss";
 
 export interface FAQProps {
   question: string;
@@ -20,7 +22,6 @@ export interface FAQProps {
 
 export const useFaq = (): FAQProps[] => {
   const { t } = useTranslation("staking");
-  const theme = useTheme();
 
   return useMemo(
     () =>
@@ -56,17 +57,7 @@ export const useFaq = (): FAQProps[] => {
           trans: (
             <Trans
               components={[
-                <Typography
-                  color={theme.palette.custom.forbole.blue}
-                  key="0"
-                  sx={{
-                    fontSize: theme.spacing(2),
-                    [theme.breakpoints.up("laptop")]: {
-                      fontSize: theme.spacing(2),
-                    },
-                  }}
-                  variant="body1"
-                />,
+                <Typography className={styles.tr0} key="0" variant="body1" />,
                 <Link
                   href="#"
                   key="1"
@@ -86,18 +77,7 @@ export const useFaq = (): FAQProps[] => {
                     });
                   }}
                 >
-                  <Typography
-                    color="primary.main"
-                    fontWeight={900}
-                    sx={{
-                      display: "inline",
-                      fontSize: theme.spacing(1.5),
-                      [theme.breakpoints.up("laptop")]: {
-                        fontSize: theme.spacing(2),
-                        display: "inline",
-                      },
-                    }}
-                  />
+                  <Typography className={styles.tr1} />
                 </Link>,
               ]}
               i18nKey="reward para 2"
@@ -122,6 +102,6 @@ export const useFaq = (): FAQProps[] => {
           para1: t("claim para 1"),
         },
       ] as FAQProps[],
-    [t, theme],
+    [t],
   );
 };
