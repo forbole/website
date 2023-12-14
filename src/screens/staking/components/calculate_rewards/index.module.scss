@@ -1,0 +1,34 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  padding: spacing(5) spacing(3);
+
+  & > :global(.h3) {
+    font-size: spacing(3);
+    font-weight: 700;
+    text-align: center;
+
+    @include up-laptop {
+      font-size: spacing(5);
+    }
+
+    & > :global(.h3) {
+      display: inline;
+      font-size: spacing(3);
+      font-weight: 700;
+      text-align: center;
+
+      @include up-laptop {
+        font-size: spacing(5);
+      }
+    }
+  }
+
+  @include up-laptop {
+    max-width: 1200px;
+
+    & > :global(.h3) {
+      margin: auto;
+    }
+  }
+}

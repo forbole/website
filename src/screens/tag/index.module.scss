@@ -1,0 +1,9 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  @include up-laptop {
+    display: flex;
+    max-width: 1200px;
+    padding: spacing(15) 0;
+  }
+}

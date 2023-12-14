@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
+import * as commonStyles from "@src/screens/staking/common.module.scss";
+
 import { GuideDetails } from "./components";
 import * as styles from "./index.module.scss";
 
@@ -15,13 +17,13 @@ const Guide = ({ post }: any) => {
 
   return (
     <Box className={styles.wrapper} data-test="staking-guide-info">
-      <Box className={styles.content}>
-        <Typography className={styles.guideline} variant="h4">
+      <Box className={commonStyles.stakingContent}>
+        <Typography className={commonStyles.stakingTitle} variant="h4">
           {t("guideline")}
         </Typography>
         <Trans
           components={[
-            <Box className={[styles.tr0, "h3"].join(" ")} key="0" />,
+            <Box className={["h3", styles.tr0].join(" ")} key="0" />,
             <Box className={["h3", styles.tr1].join(" ")} key="1" />,
           ]}
           i18nKey="staking title"

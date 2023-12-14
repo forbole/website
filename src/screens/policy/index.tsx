@@ -8,6 +8,7 @@ import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 
 import { TNCCSS } from "../terms_and_conditions/styles";
+import * as styles from "./index.module.scss";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
   ssr: false,
@@ -80,15 +81,7 @@ const Policy = () => {
             }}
           >
             <TNCCSS>
-              <Box
-                sx={{
-                  color: "#000",
-                  [theme.breakpoints.up("laptop")]: {
-                    maxWidth: "1200px",
-                    margin: "auto",
-                  },
-                }}
-              >
+              <Box className={styles.tnc}>
                 <Typography
                   sx={{
                     color: "#000",

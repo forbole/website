@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 
+import * as styles from "./index.module.scss";
 import { TNCCSS } from "./styles";
 
 const TermsAndConditions = () => {
@@ -83,15 +84,7 @@ const TermsAndConditions = () => {
             }}
           >
             <TNCCSS>
-              <Box
-                sx={{
-                  color: "#000",
-                  [theme.breakpoints.up("laptop")]: {
-                    maxWidth: "1200px",
-                    margin: "auto",
-                  },
-                }}
-              >
+              <Box className={styles.tcn}>
                 <Typography
                   sx={{
                     color: "#000",

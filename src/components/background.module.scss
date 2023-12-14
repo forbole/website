@@ -1,0 +1,13 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  height: 1200px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+
+  @media (max-width: 550px) {
+    display: none;
+  }
+}
