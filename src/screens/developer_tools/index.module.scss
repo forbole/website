@@ -1,0 +1,22 @@
+@import "src/styles/sass.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 184px;
+  max-width: $breakpoint-desktop;
+
+  @include down-laptop {
+    gap: 40px;
+  }
+}
+
+.ctaStack {
+  flex-direction: row;
+  gap: 16px;
+  margin: 40px auto;
+
+  @include down-laptop {
+    margin: 32px auto;
+  }
+}

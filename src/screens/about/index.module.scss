@@ -42,8 +42,8 @@ $card-desc-shadow:
 }
 
 .cardDescTrans0 {
-  box-shadow: $card-desc-shadow;
   font-weight: 400;
+  text-shadow: $card-desc-shadow;
 
   @include down-laptop {
     font-size: 16px;
