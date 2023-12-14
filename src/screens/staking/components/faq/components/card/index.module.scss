@@ -27,10 +27,10 @@ $question-shadow:
   0 14px 64px rgba(2, 38, 225, 0.12);
 
 .question {
-  box-shadow: $question-shadow;
   color: $color-forbole-blue;
   font-size: spacing(2);
   font-weight: 600;
   line-height: -0.034em;
+  text-shadow: $question-shadow;
   width: 80%;
 }
