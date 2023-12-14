@@ -24,6 +24,10 @@ const StakingService = () => {
   });
   const router = useRouter();
 
+  const horseStyle = {
+    style: { display: "block", margin: "0 auto" },
+  };
+
   return (
     <AppApolloProvider>
       <Layout description={t("desc")} footer title={t("page_title")}>
@@ -113,7 +117,7 @@ const StakingService = () => {
             >
               {t("stake_now")}
             </CtaButton>
-            <Horse style={{ display: "block", margin: "0 auto" }} />
+            <Horse {...horseStyle} />
             <ScrollToTop topRef={topRef} />
           </Stack>
         </Container>

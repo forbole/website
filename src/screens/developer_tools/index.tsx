@@ -22,6 +22,7 @@ import SuccessModal from "@src/components/success-modal";
 import TalkModal from "@src/components/talk-modal";
 
 import useTalkModalForm from "./hooks";
+import * as styles from "./index.module.scss";
 
 const DeveloperTools = () => {
   const {
@@ -50,18 +51,7 @@ const DeveloperTools = () => {
       footer
       title={t("page_title")}
     >
-      <Container
-        maxWidth="desktop"
-        ref={topRef}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "184px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "40px",
-          },
-        }}
-      >
+      <Container className={styles.container} ref={topRef}>
         <HeaderCard
           desc_1st={t("headercard_1st_desc")}
           desc_2nd={t("headercard_2nd_desc")}
@@ -78,16 +68,7 @@ const DeveloperTools = () => {
             title={t("section_1st_title")}
             title_large={t("section_1st_large_title")}
           />
-          <Stack
-            sx={{
-              flexDirection: "row",
-              margin: "40px auto",
-              gap: "16px",
-              [theme.breakpoints.down("laptop")]: {
-                my: "32px",
-              },
-            }}
-          >
+          <Stack className={styles.ctaStack}>
             <CtaButton
               data-test="devtools-cta"
               onClick={() => {

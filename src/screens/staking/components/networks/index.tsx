@@ -2,6 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
+import * as commonStyles from "@src/screens/staking/common.module.scss";
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
 import NetworkGrid from "./components/network_grid";
@@ -43,51 +44,8 @@ const Networks = () => {
 
   return (
     <Box display="flex" justifyContent="center">
-      <Box
-        sx={{
-          "padding": theme.spacing(5, 3),
-          "> .h3": {
-            "fontWeight": 700,
-            "fontSize": theme.spacing(3),
-            "textAlign": "center",
-            [theme.breakpoints.up("laptop")]: {
-              fontSize: theme.spacing(5),
-            },
-            "> .h3": {
-              fontWeight: 700,
-              fontSize: theme.spacing(3),
-              textAlign: "center",
-              display: "inline",
-              [theme.breakpoints.up("laptop")]: {
-                fontSize: theme.spacing(5),
-              },
-            },
-          },
-          [theme.breakpoints.up("laptop")]: {
-            "maxWidth": "1200px",
-            "> .h3": {
-              margin: "auto",
-              width: "65%",
-            },
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            textShadow:
-              "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
-            fontWeight: 600,
-            fontSize: theme.spacing(2),
-            textAlign: "center",
-            paddingBottom: theme.spacing(3),
-            color: theme.palette.custom.forbole.blue,
-            [theme.breakpoints.up("laptop")]: {
-              fontWeight: 700,
-              fontSize: theme.spacing(3),
-            },
-          }}
-          variant="h4"
-        >
+      <Box className={commonStyles.stakingContent}>
+        <Typography className={commonStyles.stakingTitle} variant="h4">
           {t("stake with Forbole")}
         </Typography>
         <Trans

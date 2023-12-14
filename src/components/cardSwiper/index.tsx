@@ -12,8 +12,9 @@ SwiperCore.use([Navigation]);
 type Props = {
   imagesList: string[];
   style?: CSSProperties;
+  className?: string;
 };
-const CardSwiper = ({ imagesList, style }: Props) => {
+const CardSwiper = ({ imagesList, style, className }: Props) => {
   const theme = useTheme();
 
   return (
@@ -33,7 +34,7 @@ const CardSwiper = ({ imagesList, style }: Props) => {
             },
           }}
           centeredSlides
-          className="scale"
+          className={["scale", className || ""].join(" ")}
           initialSlide={1}
           navigation={{
             nextEl: ".c-next", // 下一个箭头的类名或DOM元素

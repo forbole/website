@@ -1,0 +1,10 @@
+@import "src/styles/sass.scss";
+
+.tcn {
+  color: #000;
+
+  @include up-laptop {
+    margin: auto;
+    max-width: 1200px;
+  }
+}

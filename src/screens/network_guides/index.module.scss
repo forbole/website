@@ -1,0 +1,7 @@
+@import "src/styles/sass.scss";
+
+.offset {
+  @include up-laptop {
+    height: spacing(50);
+  }
+}

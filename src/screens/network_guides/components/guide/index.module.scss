@@ -1,0 +1,19 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tr0 {
+  color: $color-forbole-indigo6;
+}
+
+.tr1 {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  background-clip: text;
+  // stylelint-disable-next-line
+  text-fill-color: transparent;
+}

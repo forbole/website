@@ -78,19 +78,16 @@
 }
 
 .title {
+  color: $color-primary-light;
+  font-size: spacing(4);
+  font-weight: 600;
+  letter-spacing: 0.032em;
+  line-height: spacing(5);
+  padding: 0;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.88);
   white-space: pre-wrap;
   z-index: 3;
-
-  @include up-mobile {
-    color: $color-primary-light;
-    font-size: spacing(4);
-    font-weight: 600;
-    letter-spacing: 0.032em;
-    line-height: spacing(5);
-    padding: 0;
-    text-align: center;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.88);
-  }
 
   @include up-tablet {
     font-size: spacing(8);

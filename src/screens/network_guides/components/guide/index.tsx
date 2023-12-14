@@ -1,93 +1,30 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
+import * as commonStyles from "@src/screens/staking/common.module.scss";
+
 import { GuideDetails } from "./components";
+import * as styles from "./index.module.scss";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const Guide = ({ post }: any) => {
-  const theme = useTheme();
   const { t } = useTranslation("staking");
   const { title } = post;
   const titleArray = title.split(" ");
   const coloredTitle = title.split(" ")[2] + title.split(" ")[3];
 
   return (
-    <Box
-      alignItems="center"
-      data-test="staking-guide-info"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-    >
-      <Box
-        sx={{
-          "padding": theme.spacing(5, 3),
-          "> .h3": {
-            "fontWeight": 700,
-            "fontSize": theme.spacing(3),
-            "textAlign": "center",
-            [theme.breakpoints.up("laptop")]: {
-              fontSize: theme.spacing(5),
-            },
-            "> .h3": {
-              fontWeight: 700,
-              fontSize: theme.spacing(3),
-              textAlign: "center",
-              display: "inline",
-              [theme.breakpoints.up("laptop")]: {
-                fontSize: theme.spacing(5),
-              },
-            },
-          },
-          [theme.breakpoints.up("laptop")]: {
-            "maxWidth": "1200px",
-            "> .h3": {
-              margin: "auto",
-              width: "65%",
-              paddingBottom: 5,
-            },
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            textShadow:
-              "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
-            fontWeight: 600,
-            fontSize: theme.spacing(2),
-            textAlign: "center",
-            paddingBottom: theme.spacing(3),
-            color: theme.palette.custom.forbole.blue,
-            [theme.breakpoints.up("laptop")]: {
-              fontWeight: 700,
-              fontSize: theme.spacing(3),
-            },
-          }}
-          variant="h4"
-        >
+    <Box className={styles.wrapper} data-test="staking-guide-info">
+      <Box className={commonStyles.stakingContent}>
+        <Typography className={commonStyles.stakingTitle} variant="h4">
           {t("guideline")}
         </Typography>
         <Trans
           components={[
-            <Box
-              className="h3"
-              key="0"
-              sx={{
-                color: theme.palette.custom.forbole.indigo6,
-              }}
-            />,
-            <Box
-              className="h3"
-              key="1"
-              sx={{
-                background:
-                  "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                backgroundClip: "text",
-                textFillColor: "transparent",
-              }}
-            />,
+            <Box className={["h3", styles.tr0].join(" ")} key="0" />,
+            <Box className={["h3", styles.tr1].join(" ")} key="1" />,
           ]}
           i18nKey="staking title"
           ns="staking"

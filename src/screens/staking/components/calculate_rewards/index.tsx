@@ -3,6 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
 import Calculator from "./components/calculator";
+import * as styles from "./index.module.scss";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
@@ -12,35 +13,7 @@ const CalculateRewards = () => {
 
   return (
     <Box display="flex" justifyContent="center">
-      <Box
-        id="calculate-rewards"
-        sx={{
-          "padding": theme.spacing(5, 3),
-          "> .h3": {
-            "fontWeight": 700,
-            "fontSize": theme.spacing(3),
-            "textAlign": "center",
-            [theme.breakpoints.up("laptop")]: {
-              fontSize: theme.spacing(5),
-            },
-            "> .h3": {
-              fontWeight: 700,
-              fontSize: theme.spacing(3),
-              textAlign: "center",
-              display: "inline",
-              [theme.breakpoints.up("laptop")]: {
-                fontSize: theme.spacing(5),
-              },
-            },
-          },
-          [theme.breakpoints.up("laptop")]: {
-            "maxWidth": "1200px",
-            "> .h3": {
-              margin: "auto",
-            },
-          },
-        }}
-      >
+      <Box className={styles.wrapper} id="calculate-rewards">
         <Trans
           components={[
             <Box

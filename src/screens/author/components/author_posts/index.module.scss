@@ -1,0 +1,67 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.container {
+  display: grid;
+  grid-gap: spacing(4);
+  grid-template-columns: repeat(1, 1fr);
+  padding: spacing(12) spacing(3) 0 spacing(3);
+  width: 100%;
+
+  @include up-laptop {
+    grid-auto-rows: min-content;
+    grid-gap: 30px 20px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+  }
+}
+
+.pagination {
+  :global(.MuiPaginationItem-root) {
+    color: $color-primary-light;
+  }
+
+  :global(.MuiPaginationItem-root.Mui-disabled) {
+    background: rgba(239, 239, 239, 1);
+    color: rgba(175, 175, 175, 1);
+    opacity: 1;
+  }
+
+  :global(.MuiPaginationItem-page.Mui-selected) {
+    background: $color-forbole-purple;
+    color: $color-primary-light;
+  }
+
+  :global(.MuiPaginationItem-previousNext) {
+    background: rgba(239, 239, 239, 1);
+    color: rgba(52, 56, 62, 1);
+    opacity: 1;
+  }
+
+  :global(.MuiPaginationItem-firstLast) {
+    background: rgba(239, 239, 239, 1);
+    color: rgba(52, 56, 62, 1);
+    opacity: 1;
+  }
+
+  @include down-tablet {
+    display: none;
+    margin: spacing(32) 0;
+  }
+
+  @include up-tablet {
+    padding-top: spacing(7);
+  }
+
+  @include up-laptop {
+    height: 366px;
+    z-index: 3;
+  }
+}

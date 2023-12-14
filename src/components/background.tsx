@@ -1,24 +1,14 @@
 import { Box, useTheme } from "@mui/material";
 import Image from "next/image";
 
+import * as styles from "./background.module.scss";
+
 const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
   const theme = useTheme();
 
   return (
     <>
-      <Box
-        sx={{
-          height: "1200px",
-          zIndex: -1,
-          left: 0,
-          position: "absolute",
-          right: 0,
-
-          [theme.breakpoints.down(550)]: {
-            display: "none",
-          },
-        }}
-      >
+      <Box className={styles.wrapper}>
         <Image
           alt="Red background"
           fill
