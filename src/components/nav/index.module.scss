@@ -27,7 +27,7 @@
 }
 
 .stakingLang {
-  @include up-laptop {
+  @include down-laptop {
     display: none;
   }
 }

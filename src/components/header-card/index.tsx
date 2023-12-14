@@ -64,6 +64,7 @@ export default function HeaderCard({
                 fontSize: "24px",
               },
             }}
+            variant="h1"
           >
             {title}
           </Typography>
@@ -81,6 +82,7 @@ export default function HeaderCard({
                 width: "900px",
               },
             }}
+            variant="h2"
           >
             {desc_1st}
           </Typography>

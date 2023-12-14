@@ -46,7 +46,7 @@ const BlogDetails = ({ post }: any) => {
           <ContentCSS theme={theme}>
             <Author post={post} />
             <SocialMedia title={post.title} />
-            <Typography className={styles.title} variant="h3">
+            <Typography className={styles.title} variant="h1">
               {title}
             </Typography>
             <Box

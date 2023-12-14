@@ -18,8 +18,13 @@
     line-height: 29px;
     padding-top: spacing(2);
     text-align: center;
+    // stylelint-disable-next-line
     -webkit-text-fill-color: rgba(0, 0, 0, 0);
     // stylelint-disable-next-line property-no-unknown
     text-fill-color: rgba(0, 0, 0, 0);
+    // stylelint-disable-next-line
+    -webkit-background-clip: text;
+    // stylelint-disable-next-line
+    background-clip: text;
   }
 }
