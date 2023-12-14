@@ -18,13 +18,21 @@ const Guide = ({ post }: any) => {
   return (
     <Box className={styles.wrapper} data-test="staking-guide-info">
       <Box className={commonStyles.stakingContent}>
-        <Typography className={commonStyles.stakingTitle} variant="h4">
+        <Typography className={commonStyles.stakingTitle}>
           {t("guideline")}
         </Typography>
         <Trans
           components={[
-            <Box className={["h3", styles.tr0].join(" ")} key="0" />,
-            <Box className={["h3", styles.tr1].join(" ")} key="1" />,
+            <Box
+              className={["h3", styles.tr0].join(" ")}
+              component="h1"
+              key="0"
+            />,
+            <Box
+              className={["h3", styles.tr1].join(" ")}
+              component="span"
+              key="1"
+            />,
           ]}
           i18nKey="staking title"
           ns="staking"

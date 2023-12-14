@@ -75,10 +75,10 @@ const About = () => {
       <Container className={styles.container} maxWidth="desktop" ref={topRef}>
         <Stack className={styles.topStack} spacing={3}>
           <Stack className={styles.topStackInner} spacing={3}>
-            <Typography className={styles.cardTitle}>
+            <Typography className={styles.cardTitle} variant="h1">
               {t("headercard_title")}
             </Typography>
-            <Typography className={styles.cardDesc}>
+            <Typography className={styles.cardDesc} variant="h2">
               {t("headercard_1st_desc")}
             </Typography>
             <Trans
