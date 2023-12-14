@@ -26,7 +26,9 @@ const Hero = () => {
               src={horseImage}
             />
           </Box>
-          <Typography className={styles.title}>{t("FVH title")}</Typography>
+          <Typography className={styles.title} variant="h1">
+            {t("FVH title")}
+          </Typography>
           <Box className={styles.shadow}>
             <Image alt="Forbole Logo Shadow" fill src={horseShadow} />
           </Box>
