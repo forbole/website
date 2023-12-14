@@ -1,14 +1,14 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { useEffect } from "react";
 
 import LayoutVal from "@src/components/layout_val";
 import AppApolloProvider from "@src/utils/apollo";
 
 import { Guide, NetworkInfo } from "./components";
+import * as styles from "./index.module.scss";
 import { LaptopCSS } from "./styles";
 
 const NetworkGuides = ({ post }: any) => {
-  const theme = useTheme();
   useEffect(() => {
     window.scrollTo({
       left: 0,
@@ -38,11 +38,7 @@ const NetworkGuides = ({ post }: any) => {
         <LaptopCSS>
           <Guide post={post} />
         </LaptopCSS>
-        <Box
-          sx={{
-            [theme.breakpoints.up("laptop")]: { height: theme.spacing(50) },
-          }}
-        />
+        <Box className={styles.offset} />
       </LayoutVal>
     </AppApolloProvider>
   );

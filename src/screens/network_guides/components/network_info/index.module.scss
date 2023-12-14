@@ -1,0 +1,90 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: spacing(15) spacing(3);
+
+  @include up-laptop {
+    padding: spacing(0) spacing(3);
+  }
+}
+
+.container {
+  @include up-laptop {
+    max-width: 1200px;
+  }
+}
+
+.cardContent {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: spacing(-5);
+  padding-top: 0;
+
+  @include up-laptop {
+    justify-content: space-between;
+    margin-top: spacing(-7);
+  }
+}
+
+.cardContentBox {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.address {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-left: spacing(1);
+  margin-top: spacing(-1);
+}
+
+.coverImage {
+  object-fit: cover;
+  object-position: 0% 37%;
+}
+
+.networkName {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: spacing(1);
+  font-size: spacing(2);
+  font-weight: 600;
+  padding: spacing(1);
+  padding-bottom: spacing(1);
+}
+
+.stakeButton {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  border-radius: spacing(3);
+  box-shadow: none;
+  color: $color-primary-light;
+  display: none;
+  font-weight: 600;
+  height: 32px;
+  line-height: 17px;
+  padding: 0;
+  width: 97px;
+
+  @include up-laptop {
+    display: inline-flex;
+    height: 45px;
+    width: 111px;
+  }
+}
+
+.contentBox {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  @include up-laptop {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

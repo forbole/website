@@ -61,6 +61,10 @@ const About = () => {
     [t],
   );
 
+  const horseStyle = {
+    style: { display: "block", marginTop: "30px" },
+  };
+
   return (
     <Layout
       description={t("headercard_1st_desc")}
@@ -115,29 +119,14 @@ const About = () => {
                 spaceBetween={24}
               >
                 {imagList.map((item) => (
-                  <SwiperSlide
-                    key={item}
-                    style={{
-                      boxSizing: "border-box",
-                      width: "auto",
-                      padding: "28px 0",
-                    }}
-                  >
+                  <SwiperSlide className={styles.swiperSlide} key={item}>
                     <img
                       alt=""
+                      className={styles.swiperImg}
                       onError={(e: any) => {
                         e.target.style.width = "300px";
                       }}
                       src={item}
-                      style={{
-                        height: "100%",
-                        width: "auto",
-                        border: "1px solid rgba(2, 38, 225, 0.12)",
-                        borderRadius: "4px",
-                        overflow: "hidden",
-                        boxShadow:
-                          "0px 7.8450517654418945px 25.10416603088379px -3.1380207538604736px rgba(2, 38, 225, 0.10), 0px 4.70703125px 10.983072280883789px -4.70703125px rgba(2, 38, 225, 0.12)",
-                      }}
                     />
                   </SwiperSlide>
                 ))}
@@ -166,49 +155,23 @@ const About = () => {
         </Stack>
       </Container>
       <YTBSwiperCSS>
-        <Stack
-          sx={{
-            position: "relative",
-            mt: "40px",
-            mb: "184px",
-            padding: onlyLargeScreen ? "8px" : "0",
-            height: "400px",
-            width: "1200px",
-            mx: "auto",
-            [theme.breakpoints.down("laptop")]: {
-              height: "245px",
-              width: "100%",
-              mb: "40px",
-            },
-          }}
-        >
+        <Stack className={styles.ytbStack}>
           <Swiper
-            className="swiper-no-swiping"
+            className={["swiper-no-swiping", styles.ytbSwiper].join(" ")}
             navigation={{
               nextEl: ".v-next",
               prevEl: ".v-prev",
             }}
             slidesPerView={onlyLargeScreen ? 2 : "auto"}
             spaceBetween={16}
-            style={{
-              width: "100%",
-              height: "100%",
-              overflow: onlyLargeScreen ? "visible" : "hidden",
-              padding: onlyLargeScreen ? "0" : "0 32px",
-            }}
           >
             {videoList.map((item, indexUpper) => (
-              <SwiperSlide
-                key={indexUpper}
-                style={{
-                  height: "100%",
-                  maxWidth: onlyLargeScreen ? "576px" : "90%",
-                  overflow: "hidden",
-                  borderRadius: "12px",
-                }}
-              >
+              <SwiperSlide className={styles.swiperSlideVideo} key={indexUpper}>
                 <Skeleton
-                  sx={{ display: loading ? "block" : "none", height: "100%" }}
+                  className={[
+                    styles.skeleton,
+                    loading ? styles.active : "",
+                  ].join(" ")}
                   variant="rectangular"
                 />
                 <iframe
@@ -234,36 +197,8 @@ const About = () => {
           <Stack className={styles.sectionStack}>
             <Trans
               components={[
-                <Typography
-                  display="inline"
-                  key="0"
-                  sx={{
-                    fontSize: "40px",
-                    fontWeight: "590",
-                    textShadow:
-                      "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                    [theme.breakpoints.down("laptop")]: {
-                      fontWeight: "700",
-                      fontSize: "24px",
-                    },
-                  }}
-                />,
-                <Typography
-                  color="#EE3131"
-                  component="span"
-                  display="inline"
-                  key="1"
-                  sx={{
-                    fontSize: "40px",
-                    fontWeight: "590",
-                    textShadow:
-                      "0px 1px 10px  rgba(16, 24, 40, 0.05), 0px 1px 8px  rgba(16, 24, 40, 0.06)",
-                    [theme.breakpoints.down("laptop")]: {
-                      fontWeight: "700",
-                      fontSize: "24px",
-                    },
-                  }}
-                />,
+                <Typography className={styles.tr0} key="0" />,
+                <Typography className={styles.tr1} component="span" key="1" />,
               ]}
               i18nKey="section_2nd_large_title"
               ns="about"
@@ -275,7 +210,7 @@ const About = () => {
             <Typography className={styles.sectionDesc}>
               {t("section_3rd_desc")}
             </Typography>
-            <Horse style={{ display: "block", marginTop: "30px" }} />
+            <Horse {...horseStyle} />
             <ScrollToTop topRef={topRef} />
           </Stack>
         </Stack>

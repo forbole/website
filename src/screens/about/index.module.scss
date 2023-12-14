@@ -159,3 +159,95 @@ $card-desc-shadow:
   padding: 0 24px;
   text-align: center;
 }
+
+.ytbStack {
+  height: 400px;
+  margin: 40px auto 184px;
+  padding: 0;
+  position: relative;
+  width: 1200px;
+
+  @include down-laptop {
+    height: 245px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  @include up-laptop {
+    padding: 8px;
+  }
+}
+
+.skeleton {
+  display: none;
+  height: 100%;
+
+  &.active {
+    display: block;
+  }
+}
+
+.tr0 {
+  display: inline;
+  font-size: 40px;
+  font-weight: 590;
+  text-shadow: $card-desc-shadow;
+
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.tr1 {
+  color: #ee3131;
+  display: inline;
+  font-size: 40px;
+  font-weight: 590;
+  text-shadow: $card-desc-shadow;
+
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.swiperImg {
+  border: 1px solid rgba(2, 38, 225, 0.12);
+  border-radius: 4px;
+  box-shadow:
+    0 7.8px 25.1px -3.1px rgba(2, 38, 225, 0.1),
+    0 4.7px 11px -4.7px rgba(2, 38, 225, 0.12);
+  height: 100%;
+  overflow: hidden;
+  width: auto;
+}
+
+.swiperSlide {
+  box-sizing: border-box;
+  padding: 28px 0;
+  width: auto;
+}
+
+.swiperSlideVideo {
+  border-radius: 12px;
+  height: 100%;
+  max-width: 90%;
+  overflow: hidden;
+
+  @include up-laptop {
+    max-width: 576px;
+  }
+}
+
+.ytbSwiper {
+  height: 100%;
+  overflow: hidden;
+  padding: 0 32px;
+  width: 100%;
+
+  @include down-laptop {
+    overflow: visible;
+    padding: 0;
+  }
+}

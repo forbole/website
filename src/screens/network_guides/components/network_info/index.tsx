@@ -24,6 +24,7 @@ import { getNetworkInfo } from "@src/utils/network_info";
 
 import { InfoCard } from "./components";
 import { useNetworkGuidesHook } from "./hooks";
+import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS } from "./styles";
 
 const excludedImgChains = new Set([
@@ -85,25 +86,8 @@ const NetworkInfo = ({ post }: any) => {
       : featureImage;
 
   return (
-    <Box
-      alignItems="center"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      sx={{
-        padding: theme.spacing(15, 3),
-        [theme.breakpoints.up("laptop")]: {
-          padding: theme.spacing(0, 3),
-        },
-      }}
-    >
-      <Box
-        sx={{
-          [theme.breakpoints.up("laptop")]: {
-            maxWidth: "1200px",
-          },
-        }}
-      >
+    <Box className={styles.wrapper}>
+      <Box className={styles.container}>
         <Card
           sx={{
             background: theme.palette.common.white,
@@ -115,34 +99,13 @@ const NetworkInfo = ({ post }: any) => {
         >
           <CardMedia
             alt="network feature image"
+            className={styles.coverImage}
             component="img"
             height={onlyLargeScreen ? 240 : 106}
             image={coverImage || featureImage}
-            sx={{
-              objectFit: "cover",
-              objectPosition: "0% 37%",
-            }}
           />
-          <CardContent
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "row",
-              paddingTop: 0,
-              marginTop: theme.spacing(-5),
-              [theme.breakpoints.up("laptop")]: {
-                justifyContent: "space-between",
-                marginTop: theme.spacing(-7),
-              },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "row",
-              }}
-            >
+          <CardContent className={styles.cardContent}>
+            <Box className={styles.cardContentBox}>
               <Box
                 sx={{
                   "> span": {
@@ -172,28 +135,12 @@ const NetworkInfo = ({ post }: any) => {
               </Box>
               <Box pl={onlyLargeScreen && networkData?.address ? 2 : 1}>
                 {networkData?.name && (
-                  <Typography
-                    sx={{
-                      background: "rgba(255, 255, 255, 0.7)",
-                      borderRadius: theme.spacing(1),
-                      fontSize: theme.spacing(2),
-                      fontWeight: 600,
-                      padding: theme.spacing(1),
-                      paddingBottom: theme.spacing(1),
-                    }}
-                    variant="h3"
-                  >
+                  <Typography className={styles.networkName} variant="h3">
                     {networkData.name}
                   </Typography>
                 )}
                 {networkData?.address && (
-                  <Box
-                    alignItems="center"
-                    display="flex"
-                    flexDirection="row"
-                    ml={1}
-                    mt={-1}
-                  >
+                  <Box className={styles.address}>
                     <Typography
                       className="value"
                       color="#ba6600"
@@ -218,25 +165,8 @@ const NetworkInfo = ({ post }: any) => {
             {!!networkData?.delegate && (
               <Box>
                 <Button
+                  className={styles.stakeButton}
                   href={networkData?.delegate ? networkData.delegate : ""}
-                  sx={{
-                    display: "none",
-                    width: "97px",
-                    height: "32px",
-                    lineHeight: "17px",
-                    fontWeight: 600,
-                    padding: 0,
-                    background:
-                      "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                    borderRadius: theme.spacing(3),
-                    color: "primary.main",
-                    boxShadow: "none",
-                    [theme.breakpoints.up("laptop")]: {
-                      width: "111px",
-                      height: "45px",
-                      display: "inline-flex",
-                    },
-                  }}
                   variant="contained"
                 >
                   {t("stake_now")}
@@ -245,17 +175,7 @@ const NetworkInfo = ({ post }: any) => {
             )}
           </CardContent>
           <CardContent>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                [theme.breakpoints.up("laptop")]: {
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                },
-              }}
-            >
+            <Box className={styles.contentBox}>
               {!onlyLargeScreen ? (
                 <Box sx={{ padding: theme.spacing(0, 2) }} textAlign="center">
                   {readMore ? (

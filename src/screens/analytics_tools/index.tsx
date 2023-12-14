@@ -11,6 +11,8 @@ import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 
+import * as styles from "./index.module.scss";
+
 const AnalyticsTools = () => {
   const topRef = useRef(null);
   const theme = useTheme();
@@ -52,18 +54,7 @@ const AnalyticsTools = () => {
 
   return (
     <Layout description={t("empowering")} footer title={t("title")}>
-      <Container
-        maxWidth="desktop"
-        ref={topRef}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "184px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "40px",
-          },
-        }}
-      >
+      <Container className={styles.container} ref={topRef}>
         <HeaderCard
           desc_1st={t("empowering")}
           head_bg={
@@ -80,14 +71,8 @@ const AnalyticsTools = () => {
             title_large_trans={t("free")}
           />
           <CtaButton
+            className={styles.ctaButton}
             onClick={() => router.push("https://bigdipper.live/")}
-            sx={{
-              display: "block",
-              margin: "40px auto",
-              [theme.breakpoints.down("laptop")]: {
-                my: "32px",
-              },
-            }}
           >
             {t("try_now")}
           </CtaButton>
@@ -123,7 +108,7 @@ const AnalyticsTools = () => {
         />
       </Container>
       <Stack>
-        <CardSwiper imagesList={noteBook} style={{ marginTop: "40px" }} />
+        <CardSwiper className={styles.swiper} imagesList={noteBook} />
         <ScrollToTop topRef={topRef} />
       </Stack>
     </Layout>

@@ -1,0 +1,72 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content {
+  padding: spacing(5) spacing(3);
+
+  & > :global(.h3) {
+    font-size: spacing(3);
+    font-weight: 700;
+    text-align: center;
+
+    @include up-laptop {
+      font-size: spacing(5);
+    }
+
+    & > :global(.h3) {
+      display: inline;
+      font-size: spacing(3);
+      font-weight: 700;
+      text-align: center;
+
+      @include up-laptop {
+        font-size: spacing(5);
+      }
+    }
+  }
+
+  @include up-laptop {
+    max-width: 1200px;
+
+    & > :global(.h3) {
+      margin: auto;
+      padding-bottom: 5px;
+      width: 65%;
+    }
+  }
+}
+
+$guideline-shadow:
+  0 1px 8px rgba(16, 24, 40, 0.06),
+  0 1px 10px rgba(16, 24, 40, 0.05);
+
+.guideline {
+  color: $color-forbole-blue;
+  font-size: spacing(2);
+  font-weight: 600;
+  padding-bottom: spacing(3);
+  text-align: center;
+  text-shadow: $guideline-shadow;
+
+  @include up-laptop {
+    font-size: spacing(3);
+    font-weight: 700;
+  }
+}
+
+.tr0 {
+  color: $color-forbole-indigo6;
+}
+
+.tr1 {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  background-clip: text;
+  // stylelint-disable-next-line
+  text-fill-color: transparent;
+}

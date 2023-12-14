@@ -1,0 +1,50 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  border-radius: 5px;
+  box-shadow: 4px 8px 24px rgba(116, 81, 255, 0.16);
+  margin: auto;
+  max-width: 100%;
+
+  @include up-laptop {
+    background: $color-primary-light;
+    border-radius: spacing(3);
+    box-shadow: $box-shadow-variant-1;
+    max-width: 70%;
+  }
+}
+
+.content {
+  padding: spacing(5) spacing(2);
+
+  @include up-laptop {
+    padding: spacing(8) spacing(9);
+  }
+}
+
+.stakeButtonWrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: spacing(6);
+
+  @include up-laptop {
+    justify-content: center;
+  }
+}
+
+.stakeButton {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  border-radius: spacing(3);
+  box-shadow: none;
+  color: $color-primary-light;
+  font-weight: 600;
+  height: 32px;
+  line-height: 17px;
+  padding: 0;
+  width: 97px;
+
+  @include up-laptop {
+    height: 45px;
+    width: 111px;
+  }
+}

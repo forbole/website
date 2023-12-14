@@ -13,6 +13,7 @@ import Section from "@src/components/section";
 import SuccessModal from "@src/components/success-modal";
 
 import useContactForm from "./hook";
+import * as styles from "./index.module.scss";
 
 const EnterpriseSolution = () => {
   const {
@@ -43,18 +44,7 @@ const EnterpriseSolution = () => {
 
   return (
     <Layout description={t("trusted")} footer title={t("page_title")}>
-      <Container
-        maxWidth="desktop"
-        ref={topRef}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "184px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "40px",
-          },
-        }}
-      >
+      <Container className={styles.container} ref={topRef}>
         <HeaderCard
           desc_1st={t("trusted")}
           head_bg={
@@ -72,14 +62,8 @@ const EnterpriseSolution = () => {
             title_large_trans={t("customized")}
           />
           <CtaButton
+            className={styles.ctaButton}
             onClick={(e: MouseEvent<HTMLElement>) => scrollToRef(e, ContactRef)}
-            sx={{
-              display: "block",
-              margin: "80px auto",
-              [theme.breakpoints.down("laptop")]: {
-                my: "32px",
-              },
-            }}
           >
             {t("talk_to_us")}
           </CtaButton>
