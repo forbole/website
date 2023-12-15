@@ -1,4 +1,4 @@
-import { Box, Input, Stack, useTheme } from "@mui/material";
+import { Box, Input, Stack } from "@mui/material";
 import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
@@ -10,7 +10,7 @@ import isEmail from "validator/lib/isEmail";
 import CtaButton from "@src/components/cta-button";
 import { socialMedia } from "@src/utils/social_media_info";
 
-import classes from "./classes.module.css";
+import * as styles from "./index.module.scss";
 
 const SocialMedia = () => {
   const socialKeys = ["github", "twitter", "telegram", "linkedIn", "Instagram"];
@@ -27,7 +27,6 @@ const SocialMedia = () => {
   });
 
   const { t } = useTranslation("common");
-  const theme = useTheme();
   const [inputs, setInputs] = useState({
     email: "",
   });
@@ -41,6 +40,7 @@ const SocialMedia = () => {
       setCanSubmit(false);
     }
   }, [inputs, canSubmit]);
+
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setInputs((input) => ({
@@ -48,6 +48,7 @@ const SocialMedia = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = (event: any) => {
     if (!canSubmit) {
       toast.warn(t("send_email_warn") as ToastContent<unknown>);
@@ -81,40 +82,24 @@ const SocialMedia = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-end",
-        [theme.breakpoints.down("laptop")]: {
-          flexDirection: "column-reverse",
-          alignItems: "center",
-          gap: "32px",
-        },
-        [theme.breakpoints.up("laptop")]: {
-          flexDirection: "row",
-        },
-      }}
-    >
-      <Box display="flex" gap="20px">
+    <Box className={styles.wrapper}>
+      <Box className={styles.box}>
         {socialMediaInfo.map((x) => (
           <a
             aria-label={x.key}
-            className={classes.icon}
+            className={styles.icon}
             href={x.url}
             key={x.key}
             rel="noreferrer"
-            style={{ color: "currentcolor" }}
             target="_blank"
           >
             <x.component />
           </a>
         ))}
       </Box>
-      {/* 输入框 */}
-      <Stack className={classes.inpboxitem}>
+      <Stack className={styles.inpboxItem}>
         <Input
-          className={classes.input}
+          className={styles.input}
           disableUnderline
           name="email"
           onInput={handleInputChange}

@@ -17,6 +17,37 @@
   margin: 40px auto;
 
   @include down-laptop {
-    margin: 32px auto;
+    margin-bottom: 32px;
+    margin-top: 32px;
+  }
+}
+
+.ctaButton {
+  display: block;
+  margin: 40px auto;
+
+  @include down-laptop {
+    margin-bottom: 32px;
+    margin-top: 32px;
+  }
+}
+
+.signatureStack {
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 128px;
+
+  @include down-laptop {
+    margin-top: 40px;
+  }
+}
+
+.signatureBox {
+  align-self: center;
+  max-width: 1100px;
+
+  @include down-laptop {
+    max-width: 65%;
   }
 }

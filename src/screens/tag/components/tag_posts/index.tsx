@@ -4,6 +4,7 @@ import { pathOr } from "ramda";
 import Post from "@src/screens/blog/components/blog_posts/components/post";
 
 import { useBlogPostsHook } from "./hooks";
+import * as styles from "./index.module.scss";
 import type { IProps } from "./interface";
 
 const TagPosts = ({ main, blogs, meta }: IProps) => {
@@ -15,30 +16,8 @@ const TagPosts = ({ main, blogs, meta }: IProps) => {
   const { handleTagPageChange } = useBlogPostsHook();
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "start",
-        flex: 1,
-      }}
-    >
-      <Box
-        sx={{
-          display: "grid",
-          gridGap: theme.spacing(4),
-          gridTemplateColumns: "repeat(1, 1fr)",
-          width: "100%",
-          padding: theme.spacing(12, 3, 0, 3),
-          [theme.breakpoints.up("laptop")]: {
-            padding: 0,
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gridAutoRows: "min-content",
-            gridGap: "30px 20px",
-          },
-        }}
-      >
+    <Box className={styles.wrapper}>
+      <Box className={styles.posts}>
         {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
           <Post id={i} key={post.id} post={post} />

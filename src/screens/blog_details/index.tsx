@@ -1,6 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import Markdown from "markdown-to-jsx";
 import Head from "next/head";
+import Image from "next/image";
 import { useRef } from "react";
 
 import Layout from "@src/components/layout";
@@ -49,15 +50,12 @@ const BlogDetails = ({ post }: any) => {
             <Typography className={styles.title} variant="h1">
               {title}
             </Typography>
-            <Box
-              className={[
-                styles.featureImageWrapper,
-                featureImageCaption === null ? styles.noImg : "",
-              ].join(" ")}
-            >
-              <img
+            <Box className={[styles.featureImageWrapper].join(" ")}>
+              <Image
                 alt={title}
-                className={styles.img}
+                className={[styles.img, styles.mobile].join(" ")}
+                fill
+                priority
                 src={
                   post.featureImage == null
                     ? blogPlaceholderImg.src
@@ -95,17 +93,23 @@ const BlogDetails = ({ post }: any) => {
               flexDirection="column"
               justifyContent="center"
               paddingBottom={
-                featureImageCaption === null ? theme.spacing(8) : 0
+                featureImageCaption === null ? theme.spacing(4) : 0
               }
             >
               {featureImage === null ? (
-                <img
+                <Image
                   alt={title}
-                  className={styles.img}
+                  className={[styles.img, styles.desktop].join(" ")}
+                  fill
                   src={blogPlaceholderImg.src}
                 />
               ) : (
-                <img alt={title} className={styles.img} src={featureImage} />
+                <Image
+                  alt={title}
+                  className={[styles.img, styles.desktop].join(" ")}
+                  fill
+                  src={featureImage}
+                />
               )}
               {featureImageCaption === null ? null : (
                 <Typography

@@ -7,3 +7,19 @@
     padding: spacing(15) 0;
   }
 }
+
+.flex {
+  @include up-laptop {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.side {
+  @include up-laptop {
+    margin-left: spacing(4.25);
+    min-width: 300px;
+    width: 30%;
+  }
+}

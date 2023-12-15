@@ -1,0 +1,55 @@
+@import "src/styles/sass.scss";
+
+.inpboxItem {
+  align-items: center;
+  background-color: #34383e;
+  border-radius: 45px;
+  color: #fff;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 376px;
+  padding-left: 30px;
+  width: 100%;
+}
+
+.input {
+  background-color: inherit;
+  border: none;
+  color: #fff;
+  flex: 1;
+  font-size: 15px;
+  height: 100%;
+  outline: none;
+  padding-right: 15px;
+  vertical-align: middle;
+}
+
+.icon {
+  color: currentcolor;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.wrapper {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+
+  @include down-laptop {
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 32px;
+  }
+
+  @include up-laptop {
+    flex-direction: row;
+  }
+}
+
+.box {
+  display: flex;
+  gap: 20px;
+}

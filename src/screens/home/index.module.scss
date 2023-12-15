@@ -1,0 +1,112 @@
+@import "src/styles/sass.scss";
+
+.container {
+  position: relative;
+
+  @media (max-width: 550px) {
+    min-height: 100vh;
+  }
+}
+
+.stack {
+  align-items: center;
+  margin-top: 40%;
+
+  @media (max-width: 550px) {
+    left: 0;
+    margin: auto;
+    margin-top: 135%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.topTitle {
+  color: white;
+  font-weight: 590;
+  letter-spacing: 0.832px;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+
+  @include up-laptop {
+    font-size: 64px;
+    margin-bottom: 0;
+  }
+
+  @include up-tablet {
+    font-size: 48px;
+    margin-bottom: 65px;
+  }
+
+  @include down-tablet {
+    font-size: 32px;
+    margin-bottom: 25px;
+    padding: 0 10%;
+  }
+
+  @include down-mobile {
+    font-size: 32px;
+    padding: 0 10%;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 32px;
+    padding: 0 10%;
+  }
+}
+
+.containerTitle {
+  z-index: 1;
+}
+
+.title {
+  color: #202a43;
+  font-weight: bold;
+  text-align: center;
+
+  @include down-laptop {
+    font-size: 24px;
+    margin: 50px 0 32px;
+  }
+
+  @include up-laptop {
+    font-size: 40px;
+    margin: 200px 0 60px;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 24px;
+    margin: 20% 0 60px;
+  }
+
+  @include down-mobile {
+    font-size: 24px;
+    margin: 50% 0 60px;
+  }
+}
+
+.whatIsNew {
+  color: #202a43;
+  font-weight: bold;
+  text-align: center;
+
+  @include down-laptop {
+    font-size: 24px;
+    padding: 48px 0 32px;
+  }
+
+  @include up-laptop {
+    font-size: 40px;
+    padding: 122px 0 40px;
+  }
+}
+
+.introCard {
+  justify-content: center;
+}
+
+.scrollTop {
+  margin-top: 100px;
+}

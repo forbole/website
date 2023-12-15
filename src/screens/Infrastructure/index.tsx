@@ -26,6 +26,7 @@ import AppApolloProvider from "@src/utils/apollo";
 import { scrollBottom } from "@src/utils/scroll";
 
 import style from "./index.module.css";
+import * as styles from "./index.module.scss";
 
 const Infrastructure = () => {
   const theme = useTheme();
@@ -128,18 +129,7 @@ const Infrastructure = () => {
   return (
     <AppApolloProvider>
       <Layout description={t("expertise_item1")} footer title={t("page_title")}>
-        <Container
-          maxWidth="desktop"
-          ref={topRef}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "184px",
-            [theme.breakpoints.down("laptop")]: {
-              gap: "40px",
-            },
-          }}
-        >
+        <Container className={styles.wrapper} ref={topRef}>
           <HeaderCard
             desc_1st={t("headercard_desc")}
             head_bgs={[
@@ -149,15 +139,7 @@ const Infrastructure = () => {
             title={t("headercard_title")}
           />
           <KeyData />
-          <Stack
-            sx={{
-              gap: "40px",
-              alignItems: "center",
-              [theme.breakpoints.down("laptop")]: {
-                gap: "32px",
-              },
-            }}
-          >
+          <Stack className={style.section}>
             <Section
               desc={t("section_1st_desc")}
               title={t("section_1st_title")}
@@ -211,15 +193,7 @@ const Infrastructure = () => {
             </CtaButton>
           </Stack>
 
-          <Stack
-            sx={{
-              gap: "40px",
-              alignItems: "center",
-              [theme.breakpoints.down("laptop")]: {
-                gap: "32px",
-              },
-            }}
-          >
+          <Stack className={style.section}>
             <Section
               title={t("section_2nd_title")}
               title_large_trans={t("section_2nd_large_title")}
@@ -263,31 +237,9 @@ const Infrastructure = () => {
                 ref={PanelRef}
                 value={v1}
               >
-                <Stack
-                  sx={{
-                    gap: "24px",
-                    maxWidth: "490px",
-                  }}
-                >
+                <Stack className={style.productPanel}>
                   {textList[indexUpper].map((item, index) => (
-                    <Typography
-                      key={index}
-                      sx={{
-                        "display": "flex",
-                        "alignItems": "baseline",
-                        "maxWidth": "489px",
-                        [theme.breakpoints.down("laptop")]: {
-                          fontSize: "16px",
-                        },
-                        [theme.breakpoints.up("laptop")]: {
-                          fontSize: "20px",
-                        },
-                        "&:before": {
-                          content: "url(/icons/outlined.svg)",
-                          marginRight: "16px",
-                        },
-                      }}
-                    >
+                    <Typography className={style.productPanelText} key={index}>
                       {item}
                     </Typography>
                   ))}
@@ -296,15 +248,7 @@ const Infrastructure = () => {
             ))}
           </Stack>
 
-          <Stack
-            sx={{
-              gap: "40px",
-              alignItems: "center",
-              [theme.breakpoints.down("laptop")]: {
-                gap: "32px",
-              },
-            }}
-          >
+          <Stack className={style.section}>
             <Section
               desc={t("section_3rd_desc")}
               title={t("section_3rd_title")}
