@@ -68,7 +68,7 @@ $wrapper-shadow:
   gap: 24px;
   justify-content: center;
   margin: 0 auto;
-  max-width: $$breakpoint-laptop;
+  max-width: $breakpoint-laptop;
   text-align: center;
   text-shadow: $wrapper-shadow;
 }

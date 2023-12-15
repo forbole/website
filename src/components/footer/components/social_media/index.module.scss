@@ -1,26 +1,26 @@
 @import "src/styles/sass.scss";
 
 .inpboxItem {
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 376px;
-  padding-left: 30px;
+  background-color: #34383e;
   border-radius: 45px;
   color: #fff;
-  background-color: #34383e;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 376px;
+  padding-left: 30px;
+  width: 100%;
 }
 
 .input {
-  flex: 1;
-  height: 100%;
   background-color: inherit;
-  font-size: 15px;
-  padding-right: 15px;
-  color: #fff;
   border: none;
+  color: #fff;
+  flex: 1;
+  font-size: 15px;
+  height: 100%;
   outline: none;
+  padding-right: 15px;
   vertical-align: middle;
 }
 
@@ -34,14 +34,16 @@
 }
 
 .wrapper {
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+
   @include down-laptop {
-    flex-direction: column-reverse;
     align-items: center;
+    flex-direction: column-reverse;
     gap: 32px;
   }
+
   @include up-laptop {
     flex-direction: row;
   }
