@@ -1,4 +1,4 @@
-import { Box, Container, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useRef } from "react";
 
@@ -10,7 +10,6 @@ import { TNCCSS } from "./styles";
 
 const TermsAndConditions = () => {
   const { t } = useTranslation("terms_and_conditions");
-  const theme = useTheme();
 
   const topRef = useRef(null);
   const ref1 = useRef(null);
@@ -40,75 +39,19 @@ const TermsAndConditions = () => {
   return (
     <Layout footer title={t("title")}>
       <Container maxWidth="desktop">
-        <Box
-          ref={topRef}
-          sx={{
-            mt: "164px",
-            padding: "100px",
-            borderRadius: "24px",
-            background:
-              "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.64) 50%)",
-            boxShadow:
-              "0px 14px 64px -4px rgba(2, 38, 225, 0.12), 0px 8px 22px -6px rgba(2, 38, 225, 0.12)",
-            [theme.breakpoints.down("laptop")]: {
-              p: "30px 0",
-              mt: "100px",
-            },
-          }}
-        >
+        <Box className={styles.top} ref={topRef}>
           <Box>
-            <Typography
-              sx={{
-                display: "none",
-                [theme.breakpoints.up("laptop")]: {
-                  display: "block",
-                  color: "#000",
-                  fontSize: "18px",
-                  m: "revert",
-                  fontWeight: 600,
-                  textAlign: "center",
-                },
-              }}
-              variant="h2"
-            >
+            <Typography className={styles.laptopTitle} variant="h1">
               {t("title")}
             </Typography>
           </Box>
-          <Box
-            sx={{
-              [theme.breakpoints.up("laptop")]: {
-                minHeight: "75vh",
-                width: "100%",
-                zIndex: 1,
-              },
-            }}
-          >
+          <Box className={styles.tcnTop}>
             <TNCCSS>
               <Box className={styles.tcn}>
-                <Typography
-                  sx={{
-                    color: "#000",
-                    fontSize: `${theme.spacing(3)} !important` as any,
-                    fontWeight: 600,
-                    letterSpacing: "0.0015em",
-                    paddingBottom: theme.spacing(5),
-                    textAlign: "left",
-                    [theme.breakpoints.up("laptop")]: {
-                      display: "none",
-                    },
-                  }}
-                  variant="h2"
-                >
+                <Typography className={styles.mobileTitle} variant="h1">
                   {t("title")}
                 </Typography>
-                <Typography
-                  sx={{
-                    color: "#000",
-                    fontSize: theme.spacing(1.75),
-                    fontWeight: 600,
-                  }}
-                  variant="body1"
-                >
+                <Typography className={styles.tcnDate} variant="body1">
                   {t("updatedDate")}
                 </Typography>
                 <p>
@@ -123,9 +66,9 @@ const TermsAndConditions = () => {
                   </b>
                   &nbsp;Please in particular read &nbsp;
                   <a
+                    className={styles.link}
                     href=""
                     onClick={(e) => scrollToRef(e, ref2)}
-                    style={{ textDecoration: "underline" }}
                   >
                     Section 2 Additional Terms for Staking Service
                   </a>
@@ -152,7 +95,7 @@ const TermsAndConditions = () => {
                   Terms on their behalf.
                 </p>
 
-                <span ref={ref1} style={{ textDecoration: "underline" }}>
+                <span className={styles.link} ref={ref1}>
                   <p>Section 1 General Terms</p>
                 </span>
 
@@ -171,9 +114,9 @@ const TermsAndConditions = () => {
                   <span className="t2">(a)</span>our staking services (please
                   refer to&nbsp;
                   <a
+                    className={styles.link}
                     href=""
                     onClick={(e) => scrollToRef(e, ref2)}
-                    style={{ textDecoration: "underline" }}
                   >
                     Section 2 Additional Terms for Staking Service
                   </a>
@@ -184,9 +127,9 @@ const TermsAndConditions = () => {
                   <span className="t2">(b)</span>Big Dipper, our block explorer
                   and crypto analytics tool (please refer to&nbsp;
                   <a
+                    className={styles.link}
                     href=""
                     onClick={(e) => scrollToRef(e, ref3)}
-                    style={{ textDecoration: "underline" }}
                   >
                     Section 3 Additional Terms for Big Dipper
                   </a>
@@ -197,9 +140,9 @@ const TermsAndConditions = () => {
                   <span className="t2">(c)</span>Forbole Ventures, private
                   investment arm of Forbole &nbsp;(please refer to&nbsp;{" "}
                   <a
+                    className={styles.link}
                     href=""
                     onClick={(e) => scrollToRef(e, ref4)}
-                    style={{ textDecoration: "underline" }}
                   >
                     Section 4 Additional Terms for Forbole Ventures
                   </a>
@@ -732,7 +675,7 @@ const TermsAndConditions = () => {
                   arbitration proceedings will be conducted in English.
                 </p>
 
-                <span ref={ref2} style={{ textDecoration: "underline" }}>
+                <span className={styles.link} ref={ref2}>
                   <p>Section 2 Additional Terms for Staking Service</p>
                 </span>
 
@@ -1326,7 +1269,7 @@ const TermsAndConditions = () => {
                   interpretation and operation of these Terms.
                 </p>
 
-                <span ref={ref3} style={{ textDecoration: "underline" }}>
+                <span className={styles.link} ref={ref3}>
                   <p>Section 3 Additional Terms for Big Dipper</p>
                 </span>
 
@@ -1364,7 +1307,7 @@ const TermsAndConditions = () => {
                   offer to sell any assets, whether digital or otherwise.
                 </p>
 
-                <span ref={ref4} style={{ textDecoration: "underline" }}>
+                <span className={styles.link} ref={ref4}>
                   <p>Section 4 Additional Terms for Forbole Ventures</p>
                 </span>
 
@@ -1412,20 +1355,13 @@ const TermsAndConditions = () => {
                   investment, or any offer to sell any assets, whether digital
                   or otherwise.
                 </p>
-                <p style={{ textAlign: "right" }}>{t("desc")}</p>
+                <p className={styles.desc}>{t("desc")}</p>
               </Box>
             </TNCCSS>
           </Box>
         </Box>
       </Container>
-      <Box
-        sx={{
-          height: 0,
-          [theme.breakpoints.up("laptop")]: {
-            height: "200px",
-          },
-        }}
-      />
+      <Box className={styles.footer} />
       <ScrollToTop topRef={topRef} />
     </Layout>
   );

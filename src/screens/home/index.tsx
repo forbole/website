@@ -12,6 +12,7 @@ import ScrollToBottom from "@src/components/scroll_to_bottom";
 import ScrollToTop from "@src/components/scroll_to_top";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
+import * as styles from "./index.module.scss";
 import { FilterBG } from "./styles";
 
 export type Page = {
@@ -53,61 +54,9 @@ const Home: FC<Props> = ({ pages }) => {
       title={t("coBuildingInterchain")}
     >
       <Box ref={topRef}>
-        <Container
-          disableGutters
-          sx={{
-            position: "relative",
-            [theme.breakpoints.between("mobile", 550)]: {
-              minHeight: "100vh",
-            },
-          }}
-        >
-          <Stack
-            alignItems="center"
-            mt="40%"
-            sx={{
-              [theme.breakpoints.between("mobile", 550)]: {
-                position: "absolute",
-                top: 0,
-                left: "0",
-                right: "0",
-                margin: "auto",
-                marginTop: "135%",
-                zIndex: "1",
-              },
-            }}
-          >
-            <Typography
-              sx={{
-                textAlign: "center",
-                fontWeight: 590,
-                color: "white",
-                textShadow: "0px 0px 20px rgba(0, 0, 0, 0.60)",
-                letterSpacing: "0.832px",
-                [theme.breakpoints.up("laptop")]: {
-                  fontSize: "64px",
-                  mb: "0px",
-                },
-                [theme.breakpoints.up("tablet")]: {
-                  fontSize: "48px",
-                  mb: "65px",
-                },
-                [theme.breakpoints.down("tablet")]: {
-                  fontSize: "32px",
-                  mb: "25px",
-                  px: "10%",
-                },
-                [theme.breakpoints.down(550)]: {
-                  fontSize: "32px",
-                  px: "10%",
-                },
-                [theme.breakpoints.down("mobile")]: {
-                  fontSize: "32px",
-                  mt: "95%",
-                  px: "10%",
-                },
-              }}
-            >
+        <Container className={styles.container} disableGutters>
+          <Stack className={styles.stack}>
+            <Typography className={styles.topTitle}>
               {t("coBuildingInterchain")}
             </Typography>
             <ScrollToBottom bottomRef={bottomRef} />
@@ -115,35 +64,11 @@ const Home: FC<Props> = ({ pages }) => {
           </Stack>
         </Container>
         <Container
+          className={styles.containerTitle}
           maxWidth={isTablet ? "tablet" : "desktop"}
           ref={bottomRef}
-          sx={{ zIndex: "1" }}
         >
-          <Typography
-            sx={{
-              textAlign: "center",
-              fontWeight: "bold",
-              color: "#202A43",
-              [theme.breakpoints.down("laptop")]: {
-                fontSize: "24px",
-                m: "50px 0 32px 0",
-              },
-              [theme.breakpoints.up("laptop")]: {
-                fontSize: "40px",
-                m: "200px 0 60px 0",
-              },
-              [theme.breakpoints.down(550)]: {
-                fontSize: "24px",
-                m: "20% 0 60px 0",
-              },
-              [theme.breakpoints.down("mobile")]: {
-                fontSize: "24px",
-                m: "50% 0 60px 0",
-              },
-            }}
-          >
-            {t("title")}
-          </Typography>
+          <Typography className={styles.title}>{t("title")}</Typography>
           <Grid
             columnSpacing={{ mobile: "0", laptop: theme.spacing(2) }}
             container
@@ -230,29 +155,13 @@ const Home: FC<Props> = ({ pages }) => {
               />
             </Grid>
           </Grid>
-          <Typography
-            sx={{
-              textAlign: "center",
-              fontWeight: "bold",
-              color: "#202A43",
-              [theme.breakpoints.down("laptop")]: {
-                fontSize: "24px",
-                p: "48px 0 32px 0",
-              },
-              [theme.breakpoints.up("laptop")]: {
-                fontSize: "40px",
-                p: "122px 0 40px 0",
-              },
-            }}
-          >
+          <Typography className={styles.whatIsNew}>
             {t("What_is_New?")}
           </Typography>
           <Grid
+            className={styles.introCard}
             container
             spacing={theme.spacing(2)}
-            sx={{
-              justifyContent: "center",
-            }}
           >
             {filteredPages.map(
               ({ title, list, imageHref, btnName, btnClick, id }, idx) => (
@@ -269,7 +178,7 @@ const Home: FC<Props> = ({ pages }) => {
               ),
             )}
           </Grid>
-          <Box mt="100px">
+          <Box className={styles.scrollTop}>
             <ScrollToTop topRef={topRef} />
           </Box>
         </Container>

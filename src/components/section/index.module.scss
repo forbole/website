@@ -1,0 +1,74 @@
+@import "src/styles/sass.scss";
+
+.desc {
+  color: #202a43;
+  font-size: 24px;
+  font-weight: 400;
+
+  @include down-laptop {
+    font-size: 16px;
+  }
+}
+
+.tr1 {
+  color: #ee3131;
+  display: inline;
+  font-size: 40px;
+  font-weight: 590;
+  text-shadow: 0 0 20px #fff;
+
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.tr0 {
+  color: #202a43;
+  display: inline;
+  font-size: 40px;
+  font-weight: 590;
+
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.titleLarge {
+  color: #202a43;
+  font-size: 40px;
+  font-weight: 590;
+
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.title {
+  color: #202a43;
+  font-size: 24px;
+  font-weight: 700;
+  gap: 24px;
+
+  @include down-laptop {
+    font-size: 16px;
+    font-weight: 590;
+  }
+}
+
+$wrapper-shadow:
+  0 14px 64px rgba(2, 38, 225, 0.12),
+  0 8px 22px rgba(2, 38, 225, 0.12);
+
+.wrapper {
+  align-items: center;
+  color: #202a43;
+  gap: 24px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: $$breakpoint-laptop;
+  text-align: center;
+  text-shadow: $wrapper-shadow;
+}

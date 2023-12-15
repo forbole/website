@@ -111,68 +111,40 @@ const DeveloperTools = () => {
             </Grid>
           </Grid>
         </Stack>
-
         <Stack>
           <Section title={t("section_2nd_title")} />
           <CtaButton
+            className={styles.ctaButton}
             onClick={() => {
               router.push("https://devtools.forbole.com");
-            }}
-            sx={{
-              display: "block",
-              margin: "40px auto",
-              [theme.breakpoints.down("laptop")]: {
-                my: "32px",
-              },
             }}
           >
             {t("start_trial")}
           </CtaButton>
           <FourTable btnHref={() => setShow(true)} />
-          <Stack
-            sx={{
-              mt: { laptop: "128px", mobile: "40px" },
-              gap: "40px",
-              justifyContent: "center",
-              alignItem: "center",
-            }}
-          >
+          <Stack className={styles.signatureStack}>
             <Section title_large={t("signature")} />
-            <Box
-              sx={{
-                maxWidth: { laptop: "1100px", mobile: "65%" },
-                alignSelf: "center",
-              }}
-            >
+            <Box className={styles.signatureBox}>
               <SignatureCard />
             </Box>
           </Stack>
         </Stack>
-
         <Stack maxWidth="desktop">
           <Section
             desc={t("section_4th_large_title")}
             title_large_trans={t("section_4th_title")}
           />
           <CtaButton
+            className={styles.ctaButton}
             onClick={() => {
               setShow(true);
-            }}
-            sx={{
-              display: "block",
-              margin: "40px auto",
-              [theme.breakpoints.down("laptop")]: {
-                my: "32px",
-              },
             }}
           >
             {t("try_now")}
           </CtaButton>
         </Stack>
-
         <ScrollToTop topRef={topRef} />
       </Container>
-
       <TalkModal
         canSubmit={canSubmit}
         close={setShow}

@@ -1,5 +1,7 @@
-import { Stack, Typography, useTheme } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
+
+import * as styles from "./index.module.scss";
 
 const Trans = dynamic(async () => import("next-translate/Trans"), {
   ssr: false,
@@ -17,112 +19,30 @@ type Props = {
 const Translate = Trans;
 
 const Section = ({
-  maxWidth = "laptop",
+  maxWidth,
   title,
   desc,
   title_large,
   title_large_trans,
-}: Props) => {
-  const theme = useTheme();
+}: Props) => (
+  <Stack className={styles.wrapper} {...(maxWidth && { style: { maxWidth } })}>
+    {title && <Typography className={styles.title}>{title}</Typography>}
+    {title_large && (
+      <Typography className={styles.titleLarge}>{title_large}</Typography>
+    )}
 
-  return (
-    <Stack
-      sx={{
-        maxWidth,
-        margin: "0 auto",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        gap: "24px",
-        color: "#202A43",
-        textShadow:
-          "0px 14px 64px  rgba(2, 38, 225, 0.12), 0px 8px 22px  rgba(2, 38, 225, 0.12)",
-      }}
-    >
-      {title && (
-        <Typography
-          sx={{
-            fontSize: "24px",
-            fontWeight: "700",
-            gap: "24px",
-            color: "#202A43",
-            [theme.breakpoints.down("laptop")]: {
-              fontWeight: "590",
-              fontSize: "16px",
-            },
-          }}
-        >
-          {title}
-        </Typography>
-      )}
-      {title_large && (
-        <Typography
-          sx={{
-            fontSize: "40px",
-            fontWeight: "590",
-            color: "#202A43",
-            [theme.breakpoints.down("laptop")]: {
-              fontWeight: "700",
-              fontSize: "24px",
-            },
-          }}
-        >
-          {title_large}
-        </Typography>
-      )}
+    {title_large_trans && (
+      <Translate
+        components={[
+          <Typography className={styles.tr0} key="0" />,
+          <Typography className={styles.tr1} component="span" key="1" />,
+        ]}
+        i18nKey={title_large_trans}
+      />
+    )}
 
-      {title_large_trans && (
-        <Translate
-          components={[
-            <Typography
-              display="inline"
-              key="0"
-              sx={{
-                fontSize: "40px",
-                fontWeight: "590",
-                color: "#202A43",
-                [theme.breakpoints.down("laptop")]: {
-                  fontWeight: "700",
-                  fontSize: "24px",
-                },
-              }}
-            />,
-            <Typography
-              color="#EE3131"
-              component="span"
-              display="inline"
-              key="1"
-              sx={{
-                textShadow: "0px 0px 20px #ffffff",
-                fontSize: "40px",
-                fontWeight: "590",
-                [theme.breakpoints.down("laptop")]: {
-                  fontWeight: "700",
-                  fontSize: "24px",
-                },
-              }}
-            />,
-          ]}
-          i18nKey={title_large_trans}
-        />
-      )}
-
-      {desc && (
-        <Typography
-          sx={{
-            fontSize: "24px",
-            fontWeight: "400",
-            color: "#202A43",
-            [theme.breakpoints.down("laptop")]: {
-              fontSize: "16px",
-            },
-          }}
-        >
-          {desc}
-        </Typography>
-      )}
-    </Stack>
-  );
-};
+    {desc && <Typography className={styles.desc}>{desc}</Typography>}
+  </Stack>
+);
 
 export default Section;

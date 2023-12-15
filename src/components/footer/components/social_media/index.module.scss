@@ -1,4 +1,6 @@
-.inpboxitem {
+@import "src/styles/sass.scss";
+
+.inpboxItem {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -9,6 +11,7 @@
   color: #fff;
   background-color: #34383e;
 }
+
 .input {
   flex: 1;
   height: 100%;
@@ -20,9 +23,31 @@
   outline: none;
   vertical-align: middle;
 }
+
 .icon {
+  color: currentcolor;
   transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.5);
+  }
 }
-.icon:hover {
-  transform: scale(1.5);
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  @include down-laptop {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 32px;
+  }
+  @include up-laptop {
+    flex-direction: row;
+  }
+}
+
+.box {
+  display: flex;
+  gap: 20px;
 }
