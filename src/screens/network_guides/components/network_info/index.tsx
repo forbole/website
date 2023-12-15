@@ -88,15 +88,7 @@ const NetworkInfo = ({ post }: any) => {
   return (
     <Box className={styles.wrapper}>
       <Box className={styles.container}>
-        <Card
-          sx={{
-            background: theme.palette.common.white,
-            /* Shadow/Secondary (Validator)/Drop Shadow 01 */
-            boxShadow:
-              "0px 8px 22px -6px rgba(2, 38, 225, 0.12), 0px 14px 64px -4px rgba(2, 38, 225, 0.12)",
-            borderRadius: 2,
-          }}
-        >
+        <Card className={styles.card}>
           <CardMedia
             alt="network feature image"
             className={styles.coverImage}
@@ -106,14 +98,7 @@ const NetworkInfo = ({ post }: any) => {
           />
           <CardContent className={styles.cardContent}>
             <Box className={styles.cardContentBox}>
-              <Box
-                sx={{
-                  "> span": {
-                    borderRadius: "50%",
-                    border: "8px solid #FFFFFF !important" as any,
-                  },
-                }}
-              >
+              <Box className={styles.logoBox}>
                 {networkData?.image ? (
                   <Image
                     alt={title}
@@ -125,12 +110,7 @@ const NetworkInfo = ({ post }: any) => {
                     width={onlyLargeScreen ? "90" : "52"}
                   />
                 ) : (
-                  <Box
-                    style={{
-                      height: onlyLargeScreen ? 90 : 52,
-                      width: onlyLargeScreen ? 90 : 52,
-                    }}
-                  />
+                  <Box className={styles.logo} />
                 )}
               </Box>
               <Box pl={onlyLargeScreen && networkData?.address ? 2 : 1}>
@@ -177,7 +157,7 @@ const NetworkInfo = ({ post }: any) => {
           <CardContent>
             <Box className={styles.contentBox}>
               {!onlyLargeScreen ? (
-                <Box sx={{ padding: theme.spacing(0, 2) }} textAlign="center">
+                <Box className={styles.post}>
                   {readMore ? (
                     <ContentCSS theme={theme}>
                       <ContentBox
@@ -189,24 +169,21 @@ const NetworkInfo = ({ post }: any) => {
                   ) : (
                     <>
                       <Typography
-                        className="value"
-                        color={theme.palette.custom.forbole.blue}
-                        sx={{
-                          display: "contents",
-                          textAlign: "center",
-                          WebkitLineClamp: readMore ? "unset" : "inherit",
-                        }}
+                        className={[
+                          "value",
+                          styles.excerpt,
+                          readMore ? styles.readMore : "",
+                        ].join(" ")}
                         variant="body2"
                       >
                         {excerpt}
                       </Typography>
                       <Button
+                        className={[
+                          styles.readMoreButton,
+                          readMore ? styles.readMore : "",
+                        ].join(" ")}
                         onClick={() => setReadMore((prevCheck) => !prevCheck)}
-                        sx={{
-                          color: "#007FFF",
-                          display: readMore ? "none" : "inline-block",
-                          padding: 0,
-                        }}
                       >
                         {t("more")}
                       </Button>
@@ -221,22 +198,7 @@ const NetworkInfo = ({ post }: any) => {
                 </ContentCSS>
               )}
               {!!networkStats?.length && (
-                <Box
-                  sx={{
-                    display: "grid",
-                    padding: "12px 8px",
-                    gridGap: theme.spacing(2),
-                    gridTemplateColumns: "repeat(1, 1fr)",
-                    paddingTop: theme.spacing(3),
-                    width: "100%",
-                    [theme.breakpoints.up("laptop")]: {
-                      gridTemplateRows: "repeat(2, 1fr)",
-                      gridTemplateColumns: "1fr 1fr",
-                      paddingTop: 0,
-                      width: "50%",
-                    },
-                  }}
-                >
+                <Box className={styles.infoBox}>
                   {networkStats.map((info, i) => (
                     <InfoCard
                       info={networkData?.key}
@@ -254,9 +216,9 @@ const NetworkInfo = ({ post }: any) => {
       </Box>
       <Snackbar
         autoHideDuration={5000}
+        className={styles.snackbar}
         onClose={() => setIsCopySuccess(false)}
         open={isCopySuccess}
-        sx={{ justifyContent: "center" }}
       >
         <Alert onClose={() => setIsCopySuccess(false)} severity="success">
           {t("copied to clipboard")}

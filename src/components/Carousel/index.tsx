@@ -22,7 +22,7 @@ type PersonInfo = {
 
 const PersonCard = ({ desc, name, position, img }: PersonInfo) => (
   <Card className={styles.personCard}>
-    {img && <Avatar alt="Person Avatar" className={styles.avater} src={img} />}
+    {img && <Avatar alt="Person Avatar" className={styles.avatar} src={img} />}
     <Box>
       <Typography className={styles.name}>{name}</Typography>
       <Typography className={styles.position}>{position}</Typography>

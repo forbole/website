@@ -1,6 +1,6 @@
 @import "src/styles/sass.scss";
 
-.listCSS {
+.list {
   background: $color-secondary-light;
   border-radius: spacing(25);
   display: inline-block;
@@ -19,7 +19,7 @@
   }
 }
 
-.tagCSS {
+.tag {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;

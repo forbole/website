@@ -26,9 +26,9 @@ const Tags = (props: TagsProps) => {
       <Typography color={theme.palette.primary.main} variant="h3">
         {t("tags")}
       </Typography>
-      <Box className={styles.tagCSS} component="ul">
+      <Box className={styles.tag} component="ul">
         {tags.map((tag: any) => (
-          <Box className={styles.listCSS} component="li" key={tag.slug}>
+          <Box className={styles.list} component="li" key={tag.slug}>
             <Link href={`/tag/${tag.slug}`}>{tag.name}</Link>
           </Box>
         ))}
