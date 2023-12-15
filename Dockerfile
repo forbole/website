@@ -1,8 +1,9 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
+RUN YARN_CACHE_FOLDER=/root/.yarn yarn --immutable
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
@@ -12,16 +13,18 @@ COPY ./scripts ./scripts
 COPY ./tsconfig.json .eslintrc.cjs .eslintignore next.config.js \
   .env next-sitemap.config.js i18n.js ./
 
-RUN npm run build
+RUN yarn build
 
 RUN rm -rf .next/cache
 
 FROM node:20-alpine AS prod_node_modules
 ENV NODE_ENV production
 WORKDIR /app
-COPY package*.json ./
+COPY --from=builder /root/.yarn /root/.yarn
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
 RUN sed -i '/postinstall/d' package.json
-RUN npm ci
+RUN YARN_CACHE_FOLDER=/root/.yarn yarn --immutable && rm -rf /root/.yarn
 
 FROM node:20-alpine AS runner
 WORKDIR /app
@@ -34,6 +37,7 @@ RUN chown nextjs .
 
 COPY --from=prod_node_modules --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/.yarn ./.yarn
 COPY --from=builder --chown=nextjs:nodejs /app/.env ./.env
 COPY --from=builder --chown=nextjs:nodejs /app/i18n.js ./i18n.js
 COPY --from=builder --chown=nextjs:nodejs /app/next.config.js ./next.config.js

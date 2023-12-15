@@ -2,19 +2,19 @@
 
 set -e
 
-npm run lint:eslint
+yarn lint:eslint
 
-npm run lint:prettier
+yarn lint:prettier
 
-npm run lint:scss
+yarn lint:scss
 
-npx ts-unused-exports tsconfig.json \
+yarn ts-unused-exports tsconfig.json \
   --excludePathsFromReport='.*pages.*$' \
   --excludePathsFromReport='.*rss.xml' \
   --excludePathsFromReport='i18next-parser.config' \
   --excludePathsFromReport='playwright.config'
 
-npm run i18next
+yarn i18next
 
 MISSING_TRANSLATIONS="$(git status --porcelain | grep 'public/locales' | wc -l)"
 
