@@ -2,6 +2,8 @@
 
 set -e
 
+yarn scss-types
+
 yarn lint:eslint
 
 yarn lint:prettier

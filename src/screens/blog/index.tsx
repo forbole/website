@@ -27,7 +27,7 @@ const Blog = (props: any) => {
       <Box className={styles.flexBox}>
         <Box className={styles.top} ref={topRef}>
           <BlogPosts blogs={posts.slice(1)} main={posts[0]} meta={meta} />
-          <Box className={styles.sideCSS}>
+          <Box className={styles.sideCss}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />
           </Box>

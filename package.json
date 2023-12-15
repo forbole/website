@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "analyze-bundle": "BUNDLE_ANALYZER=true yarn build",
-    "build": "NODE_ENV=production next build && next-sitemap && yarn build:rss",
+    "build": "yarn scss-types && NODE_ENV=production next build && next-sitemap && yarn build:rss",
     "build:rss": "tsx scripts/rss.xml.ts",
     "dev": "next dev",
     "e2e": "playwright test",
@@ -15,6 +15,7 @@
     "lint:prettier:fix": "prettier --write src/**/*",
     "lint:scss": "stylelint './src/**/*.scss'",
     "postinstall": "husky install",
+    "scss-types": "typed-scss-modules src",
     "start": "next start",
     "test": "echo no tests",
     "type-check": "tsc"
@@ -88,6 +89,7 @@
     "stylelint-scss": "^6.0.0",
     "ts-unused-exports": "^10.0.1",
     "tsx": "^4.6.2",
+    "typed-scss-modules": "^8.0.0",
     "typescript": "^5.3.3"
   },
   "browserslist": [

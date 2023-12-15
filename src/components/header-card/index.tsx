@@ -1,6 +1,8 @@
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import ImageLegacy from "next/legacy/image";
+
+import * as styles from "./index.module.scss";
 
 type Props = {
   desc_1st: string;
@@ -18,107 +20,27 @@ export default function HeaderCard({
   head_bgs,
   title,
 }: Props) {
-  const theme = useTheme();
-
   return (
-    <Stack
-      spacing={3}
-      sx={{
-        bgcolor: "#ffffff",
-        alignItems: "center",
-        pt: "40px",
-        gap: "24px",
-        color: "#202A43",
-        borderRadius: "24px",
-        boxShadow:
-          " 0px 14px 64px -4px rgba(2, 38, 225, 0.12), 0px 8px 22px -6px rgba(2, 38, 225, 0.12)",
-        overflow: "hidden",
-        [theme.breakpoints.down("laptop")]: {
-          mt: "103px",
-          fontSize: "24px",
-          flexDirection: "column",
-          alignItems: "center",
-        },
-        [theme.breakpoints.up("laptop")]: {
-          mt: "164px",
-          fontSize: "64px",
-        },
-      }}
-    >
-      <Stack
-        spacing={3}
-        sx={{
-          textAlign: "center",
-          px: "24px",
-        }}
-      >
+    <Stack className={styles.wrapper} spacing={3}>
+      <Stack className={styles.content} spacing={3}>
         {title && (
-          <Typography
-            sx={{
-              [theme.breakpoints.down("laptop")]: {
-                fontWeight: 590,
-                fontSize: "16px",
-              },
-              [theme.breakpoints.up("laptop")]: {
-                fontWeight: 700,
-                fontSize: "24px",
-              },
-            }}
-            variant="h1"
-          >
+          <Typography className={styles.title} variant="h1">
             {title}
           </Typography>
         )}
         {desc_1st && (
-          <Typography
-            sx={{
-              [theme.breakpoints.down("laptop")]: {
-                fontWeight: 700,
-                fontSize: "24px",
-              },
-              [theme.breakpoints.up("laptop")]: {
-                fontWeight: 590,
-                fontSize: "40px",
-                width: "900px",
-              },
-            }}
-            variant="h2"
-          >
+          <Typography className={styles.desc} variant="h2">
             {desc_1st}
           </Typography>
         )}
         {desc_2nd && (
-          <Typography
-            sx={{
-              fontWeight: 400,
-              [theme.breakpoints.down("laptop")]: {
-                fontSize: "16px",
-              },
-              [theme.breakpoints.up("laptop")]: {
-                fontSize: "24px",
-              },
-            }}
-          >
-            {desc_2nd}
-          </Typography>
+          <Typography className={styles.desc2}>{desc_2nd}</Typography>
         )}
       </Stack>
-      <Box
-        sx={{
-          position: "relative",
-          height: "338px",
-          width: "100%",
-          [theme.breakpoints.down("laptop")]: {
-            height: "338px",
-          },
-          [theme.breakpoints.up("laptop")]: {
-            height: "546px",
-          },
-        }}
-      >
+      <Box className={styles.image}>
         {head_bg && (
           <ImageLegacy
-            alt={`{title} image`}
+            alt={`${title} image`}
             layout="fill"
             objectFit="cover"
             priority
@@ -127,24 +49,10 @@ export default function HeaderCard({
         )}
         {head_bgs && (
           <>
-            <Box
-              sx={{
-                display: "none",
-                [theme.breakpoints.down("laptop")]: {
-                  display: "block",
-                },
-              }}
-            >
+            <Box className={styles.image2}>
               <Image alt={title} fill priority src={head_bgs[0]} />
             </Box>
-            <Box
-              sx={{
-                display: "none",
-                [theme.breakpoints.up("laptop")]: {
-                  display: "block",
-                },
-              }}
-            >
+            <Box className={styles.image3}>
               <Image alt={title} fill priority src={head_bgs[1]} />
             </Box>
           </>

@@ -1,0 +1,100 @@
+@import "src/styles/sass.scss";
+
+$card-box-shadow:
+  0 14px 64px -4px rgba(2, 38, 225, 0.12),
+  0 8px 22px -6px rgba(2, 38, 225, 0.12);
+
+.wrapper {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow: $card-box-shadow;
+  color: #202a43;
+  gap: 24px;
+  overflow: hidden;
+  padding-top: 40px;
+
+  @include down-laptop {
+    align-items: center;
+    flex-direction: column;
+    font-size: 24px;
+    margin-top: 103px;
+  }
+
+  @include up-laptop {
+    font-size: 64px;
+    margin-top: 164px;
+  }
+}
+
+.content {
+  padding-left: 24px;
+  text-align: center;
+}
+
+.title {
+  @include down-laptop {
+    font-size: 16px;
+    font-weight: 590;
+  }
+
+  @include up-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.desc {
+  @include down-laptop {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  @include up-laptop {
+    font-size: 40px;
+    font-weight: 590;
+    width: 900px;
+  }
+}
+
+.desc2 {
+  font-weight: 400;
+
+  @include down-laptop {
+    font-size: 16px;
+  }
+
+  @include up-laptop {
+    font-size: 24px;
+  }
+}
+
+.image {
+  height: 338px;
+  position: relative;
+  width: 100%;
+
+  @include down-laptop {
+    height: 338px;
+  }
+
+  @include up-laptop {
+    height: 546px;
+  }
+}
+
+.image2 {
+  display: none;
+
+  @include down-laptop {
+    display: block;
+  }
+}
+
+.image3 {
+  display: none;
+
+  @include up-laptop {
+    display: block;
+  }
+}

@@ -30,11 +30,12 @@ export const StyledTabs = styled((props: StyledTabsProps) => (
 });
 
 interface StyledTabProps {
-  label: string;
-  icon?: string | ReactElement;
+  className?: string;
   disabled?: boolean;
-  value?: string;
+  icon?: string | ReactElement;
+  label: string;
   onClick?: (e: any) => void;
+  value?: string;
 }
 
 export const StyledTab = styled((props: StyledTabProps) => (
