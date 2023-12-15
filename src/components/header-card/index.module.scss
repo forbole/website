@@ -30,6 +30,10 @@ $card-box-shadow:
 .content {
   padding-left: 24px;
   text-align: center;
+
+  @include down-laptop {
+    padding-left: 0;
+  }
 }
 
 .title {
