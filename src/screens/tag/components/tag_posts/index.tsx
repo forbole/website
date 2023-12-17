@@ -1,4 +1,4 @@
-import { Box, Pagination, useTheme } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { pathOr } from "ramda";
 
 import Post from "@src/screens/blog/components/blog_posts/components/post";
@@ -8,8 +8,6 @@ import * as styles from "./index.module.scss";
 import type { IProps } from "./interface";
 
 const TagPosts = ({ main, blogs, meta }: IProps) => {
-  const theme = useTheme();
-
   const currentPage = pathOr(0, ["pagination", "page"], meta);
   const totalPages = pathOr(0, ["pagination", "pages"], meta);
 
@@ -24,47 +22,13 @@ const TagPosts = ({ main, blogs, meta }: IProps) => {
         ))}
       </Box>
       <Pagination
+        className={styles.pagination}
         count={totalPages}
         onChange={handleTagPageChange}
         page={currentPage}
         shape="rounded"
         showFirstButton
         showLastButton
-        sx={{
-          "& .MuiPaginationItem-root": {
-            color: theme.palette.primary.main,
-          },
-          "& .MuiPaginationItem-root.Mui-disabled": {
-            opacity: 1,
-            background: "rgba(239, 239, 239, 1)",
-            color: "rgba(175, 175, 175, 1)",
-          },
-          "& .MuiPaginationItem-root.Mui-selected": {
-            backgroundColor: theme.palette.custom.forbole.purple,
-            color: theme.palette.primary.main,
-          },
-          "& .MuiPaginationItem-previousNext": {
-            opacity: 1,
-            background: "rgba(239, 239, 239, 1)",
-            color: "rgba(52, 56, 62, 1)",
-          },
-          "& .MuiPaginationItem-firstLast": {
-            opacity: 1,
-            background: "rgba(239, 239, 239, 1)",
-            color: "rgba(52, 56, 62, 1)",
-          },
-          [theme.breakpoints.down("tablet")]: {
-            display: "none",
-            margin: theme.spacing(32, 0),
-          },
-          [theme.breakpoints.up("tablet")]: {
-            paddingTop: theme.spacing(7),
-          },
-          [theme.breakpoints.up("laptop")]: {
-            height: "366px",
-            zIndex: 3,
-          },
-        }}
       />
     </Box>
   );
