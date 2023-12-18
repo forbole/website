@@ -104,7 +104,7 @@ $top-shadow:
   padding-bottom: spacing(5);
 }
 
-.topSection {
+.c3 {
   color: #000;
   font-size: 11pt;
   height: 11pt;
@@ -134,6 +134,44 @@ $top-shadow:
   orphans: 2;
   padding-bottom: 0;
   padding-top: 0;
+  text-align: left;
+  widows: 2;
+}
+
+.c4 {
+  color: #000;
+  font-size: 11pt;
+  line-height: 1.15;
+  margin: 0;
+  orphans: 2;
+  padding-bottom: 0;
+  padding-top: 0;
+  text-align: left;
+  widows: 2;
+}
+
+.c10 {
+  height: 11pt;
+}
+
+.c1 {
+  color: #000;
+  font-size: 11pt;
+  line-height: 1.15;
+  margin: 0;
+  margin-left: 4em;
+  orphans: 2;
+  padding-bottom: 0;
+  padding-top: 0;
+  text-align: left;
+  widows: 2;
+}
+
+.c12 {
+  color: #000;
+  font-size: 11pt;
+  line-height: 1.15;
+  orphans: 2;
   text-align: left;
   widows: 2;
 }
