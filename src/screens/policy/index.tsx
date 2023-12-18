@@ -34,133 +34,45 @@ const Policy = () => {
   return (
     <Layout footer title={t("title")}>
       <Container maxWidth="desktop">
-        <Box
-          ref={topRef}
-          sx={{
-            mt: "164px",
-            padding: "100px",
-            borderRadius: "24px",
-            background:
-              "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.64) 50%)",
-            boxShadow:
-              "0px 14px 64px -4px rgba(2, 38, 225, 0.12), 0px 8px 22px -6px rgba(2, 38, 225, 0.12)",
-            [theme.breakpoints.down("laptop")]: {
-              p: "30px 0",
-              mt: "100px",
-            },
-          }}
-        >
+        <Box className={styles.top} ref={topRef}>
           <Box>
-            <Typography
-              sx={{
-                display: "none",
-                [theme.breakpoints.up("laptop")]: {
-                  display: "block",
-                  color: "#000",
-                  fontSize: "18px",
-                  m: "revert",
-                  fontWeight: 600,
-                  textAlign: "center",
-                },
-              }}
-              variant="h2"
-            >
+            <Typography className={styles.title} variant="h2">
               {t("title")}
             </Typography>
           </Box>
-          <Box
-            sx={{
-              [theme.breakpoints.up("laptop")]: {
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "150%",
-                backgroundPosition: "top 0px left -150px",
-                minHeight: "75vh",
-                width: "100%",
-                zIndex: 1,
-              },
-            }}
-          >
+          <Box className={styles.content}>
             <TNCCSS>
               <Box className={styles.tnc}>
-                <Typography
-                  sx={{
-                    color: "#000",
-                    fontSize: `${theme.spacing(3)} !important` as any,
-                    fontWeight: 600,
-                    letterSpacing: "0.0015em",
-                    paddingBottom: theme.spacing(5),
-                    textAlign: "left",
-                    [theme.breakpoints.up("laptop")]: {
-                      display: "none",
-                    },
-                  }}
-                  variant="h2"
-                >
+                <Typography className={styles.contentTitle} variant="h2">
                   {t("title")}
                 </Typography>
-                <Typography
-                  sx={{
-                    color: "#000",
-                    fontSize: theme.spacing(1.75),
-                    fontWeight: 600,
-                  }}
-                  variant="body1"
-                >
+                <Typography className={styles.updatedDate} variant="body1">
                   {t("updatedDate")}
                 </Typography>
                 <Trans
                   components={[
                     <Typography
+                      className={styles.tr0}
                       key="0"
-                      sx={{
-                        color: "#000",
-                        fontSize: theme.spacing(1.375),
-                        fontWeight: 400,
-                      }}
                       variant="body1"
                     />,
                     <Typography
-                      color="#000"
+                      className={styles.tr1}
                       component="span"
                       key="1"
-                      sx={{
-                        fontWeight: 700,
-                        color: "#000",
-                        fontSize: theme.spacing(1.375),
-                        [theme.breakpoints.up("laptop")]: {
-                          fontSize: theme.spacing(1.375),
-                        },
-                      }}
                     />,
                     <Link
-                      color="#000"
+                      className={styles.tr2}
                       href="https://forbole.com"
                       key="2"
                       rel="noreferrer"
-                      sx={{
-                        fontWeight: 500,
-                        display: "inline",
-                        fontSize: theme.spacing(1.7),
-                        [theme.breakpoints.up("laptop")]: {
-                          fontSize: theme.spacing(1.7),
-                          display: "inline",
-                        },
-                      }}
                       target="_blank"
                     />,
                   ]}
                   i18nKey="description1"
                   ns="policy"
                 />
-                <Typography
-                  sx={{
-                    color: "#000",
-                    fontSize: theme.spacing(1.75),
-                    fontWeight: 600,
-                    paddingBottom: theme.spacing(5),
-                  }}
-                  variant="body1"
-                >
+                <Typography className={styles.description2} variant="body1">
                   {t("description2")}
                 </Typography>
 
@@ -169,50 +81,10 @@ const Policy = () => {
                     content="text/html; charset=UTF-8"
                     httpEquiv="content-type"
                   />
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c13"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
+                  <p className={["c13", styles.sectionWrapper].join(" ")}>
                     <span>
                       By engaging with our Platform and using our Services, you
                       accept the privacy practices as set out in this policy, as
@@ -221,51 +93,14 @@ const Policy = () => {
                     <span className="c8" style={{ fontWeight: 700 }}>
                       .{" "}
                     </span>
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       If you are engaging with our Platform or using our
                       Services as a representative of an organisation, you are
                       accepting these practices on their behalf.{" "}
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c13"
@@ -282,69 +117,16 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       If you have any questions about this policy or any privacy
                       issues related to your use of our Services, please contact
                       us by email to privacy@forbole.com .
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c4}>
                     <span
                       className="c5"
                       style={{
@@ -360,63 +142,11 @@ const Policy = () => {
                       <span className="t1">1.</span> About us
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">1.1</span> Forbole is a leading
                       provider of blockchain solutions. We offer non-custodial
                       staking service for tokenholders with enterprise-grade
@@ -425,58 +155,11 @@ const Policy = () => {
                       visualise and interact with on-chain data.
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">1.2</span> Forbole Technology Limited
                       is a company incorporated in Hong Kong with company
                       registration number 3282304, having its registered office
@@ -484,54 +167,10 @@ const Policy = () => {
                       Kennedy Town, Hong Kong.
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c4}>
                     <span
                       className="c5"
                       style={{
@@ -548,224 +187,40 @@ const Policy = () => {
                       collect from you
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c4}>
                     <span className="t1">2.1</span> For the purpose of this
                     policy, “
                     <span className="c8" style={{ fontWeight: 700 }}>
                       personal data
                     </span>
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       ” refers to any information which is related to an
                       identified or identifiable natural person. “Personal data”
                       and “personal information” are used interchangeably.
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">2.2</span> We collect from you:
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(a)</span> personal information you
                       provide to us through the Services, including:
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -783,18 +238,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(i)</span> account data, such as your
                       blockchain wallet public address;
                     </span>
@@ -817,18 +261,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -847,18 +280,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(ii)</span> contact information, such
                       as your name, company name and email address;
                     </span>
@@ -881,18 +303,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -911,18 +322,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(iii)</span> social information, such
                       as your social media account that you disclose to us or
                       your blockchain wallet or blockchain profile you connect
@@ -947,18 +347,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -977,18 +366,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(iv)</span> transaction information,
                       such as transaction record of your blockchain wallet
                       address; and
@@ -1012,18 +390,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -1042,118 +409,24 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(v)</span> content that you create,
                       such as any posts or comments you publish on our Platform
                       or our Services;{" "}
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(b)</span> information we (or through
                       third-party services that we engage) automatically collect
                       from you through the Services, including:
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -1172,18 +445,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(i)</span> information about your
                       computer or mobile device that you use to access our
                       Platform or our Services, such as device IP addresses,
@@ -1208,18 +470,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -1238,18 +489,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(ii)</span> information about your
                       online activities and actions on the Platform, such as
                       your usage data, navigation path, frequency of visit and
@@ -1275,18 +515,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                    <span className={styles.c2} />
                   </p>
                   <p
                     className="c6"
@@ -1305,18 +534,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">(iii)</span> information about your
                       web traffic, settings or preferences collected via cookies
                       (text files that websites store on a visitor’s device to
@@ -1325,49 +543,10 @@ const Policy = () => {
                       objects, web beacons or similar technologies.
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c4}>
                     <span className="t1">2.3 </span>
                     <span
                       className="c5"
@@ -1389,60 +568,11 @@ const Policy = () => {
                       to it.
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">2.4</span> We do not collect
                       sensitive data or special category data about you. This
                       includes details about your race, ethnic origin, politics,
@@ -1450,109 +580,19 @@ const Policy = () => {
                       health, or sexual orientation.
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">2.5</span> We do not knowingly
                       collect or use personal data from minors.
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c4}>
                     <span
                       className="c5"
                       style={{
@@ -1569,870 +609,139 @@ const Policy = () => {
                       information
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">3.1</span> We use your personal
                       information as necessary to deliver our Services to you,
                       including:
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(a)</span> to operate the Services
                       and our business;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(b)</span> to maintain and improve
                       our Services or certain functionalities or features of our
                       Services;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(c)</span> to process your
                       transactions or your interactions with various blockchain
                       networks and protocols;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(d)</span> to communicate with you
                       regarding the Services, such as announcements, updates,
                       security alerts, and system administrative information;
                       and
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(e)</span> to provide support when
                       you use our Services, such as responding to your requests
                       and enquiries.
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">3.2</span> In addition, we use your
                       personal information for legitimate business purposes,
                       including:
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(a)</span> to update you about our
                       Services or notifying you about our new products and
                       features;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(b)</span> to analyse, research and
                       review user behaviour anonymously or on an aggregated
                       basis, and to develop and evaluate new products or
                       features;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(c)</span> to investigate issues such
                       as security breaches, cyberattacks or scams;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(d)</span> to comply with applicable
                       laws and regulations, or to defend legal actions against
                       you, us or other users of the Platform; and
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(e)</span> to enforce the Terms of
                       Use that govern the use of the Platform and the Services.{" "}
                     </span>
                   </p>
-                  <p
-                    className="c3"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      height: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={styles.c3}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">3.3</span> We may also use personal
                       information for any purposes for which you grant us your
                       specific consent.
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c4}>
                     <span className="t1">4. </span>
                     <span
                       className="c5"
@@ -2449,446 +758,69 @@ const Policy = () => {
                       How we share your personal information
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">4.1</span> We do not sell your
                       personal information.
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c4}>
+                    <span className={styles.c2}>
                       <span className="t1">4.2</span> We share your personal
                       information with the following parties:
                     </span>
                   </p>
-                  <p
-                    className="c4 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c10, styles.c4].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(a)</span> other companies within our
                       group, in order to operate our Platform and offer our
                       products and services;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(b)</span> service providers
                       (including companies and individuals) that help us operate
                       the Services, such as web traffic tracking, analytics,
                       storage, communication or payment solutions;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(c)</span> professional advisors,
                       including lawyers, attorneys, auditors, bankers and
                       insurers where necessary;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(d)</span> law enforcement, judicial,
                       regulatory or governmental authorities where applicable;
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(e)</span> parties that acquire
                       control over all or any substantial portion of the
                       business or assets of Forbole, such as in a business
@@ -2896,66 +828,11 @@ const Policy = () => {
                       similar nature; and{" "}
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c1"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                  <p className={styles.c1}>
+                    <span className={styles.c2}>
                       <span className="t1">(f)</span> third party platforms
                       where you have enabled features or functionality that
                       connect the Services with any third party’s services, in
@@ -2963,83 +840,13 @@ const Policy = () => {
                       privacy policy of such third party.
                     </span>
                   </p>
-                  <p
-                    className="c1 c10"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      marginLeft: "4em",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-
-                      widows: 2,
-                      height: "11pt",
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    />
+                  <p className={[styles.c1, styles.c10].join(" ")}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c4"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-
-                      lineHeight: "1.15",
-                      orphans: 2,
-                      paddingBottom: 0,
-                      paddingTop: 0,
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
-                      <span className="t1">4.3</span> We require our third-party
-                      service providers to maintain confidentiality and security
-                      of all personal information that they process for us or on
-                      our behalf. We also require that they implement and
-                      maintain reasonable security measures to protect the
-                      confidentiality of your personal information.
-                    </span>
+                  <p className={styles.c4}>
+                    <span className={styles.c2} />
                   </p>
-                  <p
-                    className="c12"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      orphans: 2,
-
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c12}>
                     <span className="t1">5.</span> Your choices
                   </p>
                   <p
@@ -3066,20 +873,7 @@ const Policy = () => {
                       the InterPlanetary File System or similar decentralised
                       storage systems
                     </span>
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
-                      .
-                    </span>
+                    <span className={styles.c2}>.</span>
                   </p>
                   <p
                     className="c7"
@@ -3094,17 +888,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">5.2</span> You may opt out of our
                       updates, newsletters or notifications by unsubscribing the
                       relevant mailing lists or contacting us at
@@ -3128,17 +912,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">5.3</span> You may opt out from
                       online tracking, such as blocking cookies in your browser
                       by following instructions in your browser settings, or
@@ -3158,17 +932,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">5.4</span> If you have given us
                       consent to use your personal information for a specific
                       purpose, you may withdraw your consent anytime by
@@ -3188,35 +952,14 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">5.5</span> If you have any questions
                       or feedback regarding how we address your requests
                       concerning your personal data, please contact us at
                       privacy@forbole.com .
                     </span>
                   </p>
-                  <p
-                    className="c12"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      lineHeight: "1.15",
-                      orphans: 2,
-
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c12}>
                     <span
                       className="c5"
                       style={{
@@ -3255,19 +998,7 @@ const Policy = () => {
                       actions or omissions in privacy practices.
                     </span>
                   </p>
-                  <p
-                    className="c12"
-                    style={{
-                      color: "#000",
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      orphans: 2,
-
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c12}>
                     <span
                       className="c5"
                       style={{
@@ -3297,17 +1028,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">7.1</span> We only keep your personal
                       information for as long as necessary to fulfil the
                       purposes for which your personal information is collected,
@@ -3328,17 +1049,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">7.2</span> However, due to the
                       immutable, permanent and transparent nature of blockchain
                       protocols and applications, we are unable to erase, remove
@@ -3348,20 +1059,7 @@ const Policy = () => {
                       retention period has expired.
                     </span>
                   </p>
-                  <p
-                    className="c12"
-                    style={{
-                      color: "#000",
-
-                      fontSize: "11pt",
-                      margin: 0,
-                      lineHeight: "1.15",
-                      orphans: 2,
-
-                      textAlign: "left",
-                      widows: 2,
-                    }}
-                  >
+                  <p className={styles.c12}>
                     <span className="c8" style={{ fontWeight: 700 }}>
                       <span className="t1">8.</span> Security and transfer of
                       your personal data
@@ -3380,17 +1078,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">8.1</span> We employ a number of
                       technical and organisational measures to safeguard the
                       security of the personal information we collect. However,
@@ -3411,17 +1099,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">8.2</span> Within Forbole, access to
                       your personal information is restricted to personnel or
                       service providers on a strictly need-to-know basis.{" "}
@@ -3440,17 +1118,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">8.3</span> We collect personal
                       information globally. We may transfer, process and store
                       your personal information outside your country of
@@ -3472,17 +1140,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span
-                      className="c2"
-                      style={{
-                        color: "#000",
-                        fontSize: "11pt",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        textDecoration: "none",
-                        verticalAlign: "baseline",
-                      }}
-                    >
+                    <span className={styles.c2}>
                       <span className="t1">8.4</span> Some of the countries in
                       which the parties with whom we share your personal
                       information operate may not have the privacy and data
@@ -3595,7 +1253,7 @@ const Policy = () => {
                       widows: 2,
                     }}
                   >
-                    <span className="c2">
+                    <span>
                       {" "}
                       7/F, Cheung Hing Industrial Building, <br />
                       12P Smithfield, Kennedy Town, <br />

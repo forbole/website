@@ -84,7 +84,7 @@ $content-bg: linear-gradient(
   @include up-laptop {
     font-size: spacing(2);
     line-height: spacing(3);
-    text-align: start;
+    text-align: left;
   }
 }
 

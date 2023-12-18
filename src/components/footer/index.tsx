@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,92 +11,45 @@ import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
 import CtaButton from "../cta-button";
 import { FooterItems, SocialMedia } from "./components";
+import * as styles from "./index.module.scss";
 import type { FooterProps } from "./types";
 
 const Footer = ({ red, itemColor }: FooterProps) => {
-  const theme = useTheme();
   const { isTablet, isMobile } = useWindowDimensions();
   const { t } = useTranslation("common");
 
+  const wrapperStyle = {
+    style: {
+      color: itemColor,
+    },
+  };
+
   return (
     <Box
+      className={[styles.wrapper, red ? styles.red : ""].join(" ")}
+      component="footer"
       data-test="footer"
-      sx={{
-        position: "relative",
-        zIndex: 1,
-        userSelect: "none",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        color:
-          itemColor ||
-          (red
-            ? theme.palette.primary.main
-            : theme.palette.custom.forbole.indigo),
-        [theme.breakpoints.down("laptop")]: {
-          minHeight: "320px",
-          backdropFilter: "blur(8px)",
-        },
-      }}
+      {...wrapperStyle}
     >
       {red && (
         <>
-          <Box
-            sx={{
-              bottom: "0",
-              left: "0",
-              position: "absolute",
-              right: "0",
-              top: "0",
-              zIndex: "-1",
-              [theme.breakpoints.down("laptop")]: {
-                display: "none",
-              },
-            }}
-          >
+          <Box className={styles.redImg}>
             <Image alt="Footer graphic" fill src={footerDesktop} />
           </Box>
-          <Box
-            sx={{
-              bottom: "0",
-              left: "0",
-              position: "absolute",
-              right: "0",
-              top: "0",
-              zIndex: "-1",
-
-              [theme.breakpoints.up("laptop")]: {
-                display: "none",
-              },
-            }}
-          >
+          <Box className={styles.redImgMobile}>
             <Image alt="Footer graphic" fill src={footerMobile} />
           </Box>
           <Container
+            className={styles.ctaContainer}
             disableGutters
             maxWidth={isTablet ? "tablet" : "desktop"}
-            sx={{
-              pt: "64px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-            }}
           >
             <Stack
               alignItems="center"
               direction="column"
               justifyContent="center"
             >
-              <Box
-                sx={{
-                  mt: "20px",
-                  position: "relative",
-                  [theme.breakpoints.up("laptop")]: {
-                    width: "983px",
-                    height: "286px",
-                    mt: "90px",
-                  },
-                }}
-              >
+              <Box className={styles.ctaImage}>
                 {isMobile ? (
                   <Image
                     alt="Picture of the author"
@@ -112,29 +65,9 @@ const Footer = ({ red, itemColor }: FooterProps) => {
                 )}
               </Box>
 
-              <Typography
-                sx={{
-                  color: "white",
-                  fontSize: "40px",
-                  fontWeight: "590",
-                  marginTop: "-60px",
-                  letterSpacing: "1.12px",
-                  [theme.breakpoints.down("laptop")]: {
-                    marginTop: "-20px",
-                  },
-                }}
-              >
-                together today
-              </Typography>
+              <Typography className={styles.ctaText}>together today</Typography>
               <Link href="/staking">
-                <CtaButton
-                  sx={{
-                    mt: "24px",
-                    [theme.breakpoints.down("laptop")]: {
-                      mb: "76px",
-                    },
-                  }}
-                >
+                <CtaButton className={styles.ctaButton}>
                   {t("StakeNow")}
                 </CtaButton>
               </Link>
@@ -142,28 +75,10 @@ const Footer = ({ red, itemColor }: FooterProps) => {
           </Container>
         </>
       )}
-      <Container
-        disableGutters
-        sx={{
-          background:
-            "linear-gradient(180deg, rgba(114, 28, 78, 0.00) 0%, rgba(114, 28, 78, 0.10) 31.25%)",
-          backdropFilter: "blur(8px)",
-        }}
-      >
+      <Container className={styles.container} disableGutters>
         <Stack
-          margin="0 auto"
+          className={styles.mediaStack}
           maxWidth={isTablet ? "tablet" : "desktop"}
-          sx={{
-            pt: "64px",
-            px: "16px",
-            pb: "40px",
-            gap: "32px",
-
-            [theme.breakpoints.up("laptop")]: {
-              gap: "24px",
-              pb: "32px",
-            },
-          }}
         >
           <SocialMedia />
           <FooterItems staking={!red || undefined} />

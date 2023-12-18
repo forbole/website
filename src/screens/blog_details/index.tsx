@@ -2,25 +2,38 @@ import { Box, Typography, useTheme } from "@mui/material";
 import Markdown from "markdown-to-jsx";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Tags from "@src/components/tags";
+import { getLanguageFromLocale } from "@src/utils/i18next";
 
 import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.png";
 import { Author, SocialMedia } from "./components";
 import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
+// https://schema.org/TechArticle
+
 const BlogDetails = ({ post }: any) => {
   const theme = useTheme();
   const topRef = useRef(null);
+  const { locale } = useRouter();
 
   if (!post) return null;
 
-  const { title, tags, excerpt, featureImage, featureImageCaption, slug } =
-    post;
+  const {
+    title,
+    tags,
+    excerpt,
+    featureImage,
+    featureImageCaption,
+    slug,
+    primaryAuthor: author,
+    publishedAt,
+  } = post;
 
   const manyTagsStyle = tags.length > 50 ? styles.manyTags : "";
 
@@ -40,6 +53,31 @@ const BlogDetails = ({ post }: any) => {
         {slug && (
           <link href={`https://www.forbole.com/blog/${slug}`} rel="canonical" />
         )}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "TechArticle",
+              "abstract": excerpt,
+              "headline": title,
+              "image": [featureImage],
+              "inLanguage": getLanguageFromLocale(locale),
+              "datePublished": publishedAt,
+              "keywords": tags
+                .map((x: { name: any }) => x.name ?? "")
+                .filter(Boolean)
+                .join(", "),
+              "author": [
+                {
+                  "@type": "Person",
+                  "name": author.name,
+                  "url": `https://www.forbole.com/author/${author.slug}`,
+                },
+              ],
+            }),
+          }}
+          type="application/ld+json"
+        />
       </Head>
       <MobileCSS>
         <Box className={styles.topSpacing} />

@@ -1,0 +1,97 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $color-indigo;
+  position: relative;
+  user-select: none;
+  z-index: 1;
+
+  &.red {
+    color: $color-primary-light;
+  }
+
+  @include down-laptop {
+    backdrop-filter: blur(8px);
+    min-height: 320px;
+  }
+}
+
+.redImg {
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+
+  @include down-laptop {
+    display: none;
+  }
+}
+
+.redImgMobile {
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+
+  @include up-laptop {
+    display: none;
+  }
+}
+
+.container {
+  backdrop-filter: blur(8px);
+  background: linear-gradient(
+    180deg,
+    rgba(114, 28, 78, 0) 0%,
+    rgba(114, 28, 78, 0.1) 31.25%
+  );
+}
+
+.mediaStack {
+  gap: 32px;
+  margin: 0 auto;
+  padding: 64px 16px 40px;
+
+  @include up-laptop {
+    gap: 24px;
+    padding-bottom: 32px;
+  }
+}
+
+.ctaButton {
+  margin-top: 24px;
+
+  @include down-laptop {
+    margin-bottom: 76px;
+  }
+}
+
+.ctaText {
+  color: white;
+  font-size: 40px;
+  font-weight: 590;
+  letter-spacing: 1.12px;
+  margin-top: -60px;
+
+  @include down-laptop {
+    margin-top: -20px;
+  }
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 64px;
+}
+
+.ctaImage {
+  margin-top: 20px;
+  position: relative;
+
+  @include up-laptop {
+    height: 286px;
+    margin-top: 90px;
+    width: 983px;
+  }
+}
