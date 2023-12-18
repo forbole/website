@@ -34,3 +34,52 @@ $question-shadow:
   text-shadow: $question-shadow;
   width: 80%;
 }
+
+.bulletItem {
+  display: list-item;
+}
+
+.accordionSummary {
+  padding: spacing(3) spacing(5) spacing(3) spacing(3);
+  width: 100%;
+
+  &.expanded {
+    padding: spacing(3) spacing(5) spacing(2) spacing(3);
+  }
+
+  & > :global(.MuiAccordionSummary-expandIconWrapper) {
+    svg {
+      fill: #878787;
+    }
+  }
+
+  & > :global(.Mui-expanded) {
+    h3 {
+      background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+      // stylelint-disable-next-line
+      background-clip: text;
+      // stylelint-disable-next-line
+      -webkit-background-clip: text;
+      // stylelint-disable-next-line
+      -webkit-text-fill-color: transparent;
+      // stylelint-disable-next-line
+      tex-fill-color: transparent;
+    }
+  }
+}
+
+.accordionDetails {
+  p {
+    color: $color-forbole-blue;
+    letter-spacing: -0.012em;
+    padding: spacing(0) spacing(3) spacing(2) spacing(3);
+
+    &:last-child {
+      padding-bottom: spacing(1);
+    }
+
+    > li {
+      padding: spacing(0) spacing(0) spacing(1) spacing(0);
+    }
+  }
+}
