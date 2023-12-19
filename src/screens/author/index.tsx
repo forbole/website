@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 
 import Layout from "@src/components/layout";
 
@@ -25,6 +26,35 @@ const AuthorTitlePosts = (props: any) => {
       title={post.title}
       type="article"
     >
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              "mainEntity": {
+                "@type": "Person",
+                "name": author.name,
+                "alternateName": author.slug,
+                "identifier": author.id,
+                "url": `https://www.forbole.com/blog/author/${author.slug}/`,
+                "image": author.profile_image,
+                "brand": {
+                  "@type": "Organization",
+                  "name": "Forbole",
+                  "url": "https://www.forbole.com/",
+                },
+                "agentInteractionStatistic": {
+                  "@type": "InteractionCounter",
+                  "interactionType": "https://schema.org/WriteAction",
+                  "userInteractionCount": meta.pagination?.total,
+                },
+              },
+            }),
+          }}
+          type="application/ld+json"
+        />
+      </Head>
       <Box className={styles.container}>
         <Box className={styles.content}>
           <Box className={styles.innerContent}>
