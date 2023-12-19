@@ -22,7 +22,7 @@ import Layout from "@src/components/layout";
 import SuccessModal from "@src/components/success-modal";
 
 import useContactForm from "./hooks";
-import { styles } from "./styles";
+import * as styles from "./index.module.scss";
 
 const Contact = () => {
   const { t } = useTranslation("contact");
@@ -65,90 +65,32 @@ const Contact = () => {
   return (
     <Layout description={t("form_desc")} footer title={t("page_title")}>
       <Container>
-        <Stack
-          sx={{
-            width: "1000px",
-            padding: "64px",
-            gap: "40px",
-            borderRadius: "24px",
-            margin: "164px auto",
-            background:
-              "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.64) 64.58%, #FFF 100%)",
-            boxShadow:
-              "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
-            color: "#202A43",
-            [theme.breakpoints.down("laptop")]: {
-              padding: "24px",
-              width: "343px",
-              gap: "24px",
-              mt: "104px",
-            },
-          }}
-        >
+        <Stack className={styles.form}>
           <Stack>
-            <Typography
-              sx={{
-                fontSize: "32px",
-                fontWeight: 590,
-                mb: "8px",
-                [theme.breakpoints.down("laptop")]: {
-                  fontSize: "18px",
-                  mb: "15px",
-                },
-              }}
-            >
-              {t("form_title")}
-            </Typography>
+            <Typography className={styles.title}>{t("form_title")}</Typography>
+            <Typography className={styles.desc}>{t("form_desc")}</Typography>
 
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: 300,
-              }}
-            >
-              {t("form_desc")}
-            </Typography>
-
-            <Stack
-              sx={{
-                mt: "24px",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: "8px",
-                [theme.breakpoints.down("laptop")]: {
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                },
-              }}
-            >
+            <Stack className={styles.contact}>
               <Stack direction="row">
                 <Box
+                  className={styles.icon}
                   mr="8px"
                   onClick={() => {
                     router.push("mailto:info@forbole.com");
                   }}
-                  sx={styles.iconBox}
                 >
                   <img alt="" src="/icons/email.svg" />
                 </Box>
                 <Box
+                  className={styles.icon}
                   onClick={() => {
                     router.push("https://t.me/forbole");
                   }}
-                  sx={styles.iconBox}
                 >
                   <img alt="" src="/icons/Telegram.svg" />
                 </Box>
               </Stack>
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  color: "#202A43",
-                  opacity: "0.6",
-                }}
-              >
-                {t("method")}
-              </Typography>
+              <Typography className={styles.method}>{t("method")}</Typography>
             </Stack>
           </Stack>
           <Grid
@@ -156,14 +98,9 @@ const Contact = () => {
             spacing={{ mobile: theme.spacing(3), desktop: theme.spacing(4) }}
           >
             <Grid item laptop={6} mobile={12}>
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "590",
-                }}
-              >
+              <Typography className={styles.label}>
                 {t("label_name")}
-                <span style={{ color: "#FF426B" }}>*</span>
+                <span className={styles.required}>*</span>
               </Typography>
               <FormInput
                 name="name"
@@ -173,12 +110,7 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "590",
-                }}
-              >
+              <Typography className={styles.label}>
                 {t("label_company")}
               </Typography>
               <FormInput
@@ -189,14 +121,9 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "590",
-                }}
-              >
+              <Typography className={styles.label}>
                 {t("label_email")}
-                <span style={{ color: "#FF426B" }}>*</span>
+                <span className={styles.required}>*</span>
               </Typography>
               <FormInput
                 name="email"
@@ -207,12 +134,7 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "590",
-                }}
-              >
+              <Typography className={styles.label}>
                 {t("label_telegram")}
               </Typography>
               <FormInput
@@ -223,75 +145,33 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "590",
-                  mb: "16px",
-                }}
-              >
+              <Typography className={styles.labelStart}>
                 {t("get_start")}
-                <span style={{ color: "#FF426B" }}>*</span>
+                <span className={styles.required}>*</span>
               </Typography>
-              <List
-                dense
-                sx={{
-                  width: "100%",
-                  borderRadius: "8px",
-                  boxShadow:
-                    "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
-                  overflow: "hidden",
-                  py: 0,
-                }}
-              >
+              <List className={styles.list} dense>
                 {selectList.map((value) => (
-                  <ListItem
-                    key={value.label}
-                    sx={{
-                      bgcolor: "#ffffff",
-                      borderBottom: "2px solid rgba(96, 60, 238, 0.28)",
-                    }}
-                  >
+                  <ListItem className={styles.listItem} key={value.label}>
                     <FormControlLabel
+                      className={styles.checkboxWrapper}
                       control={
                         <Checkbox
                           checked={inputs[value.name]}
+                          className={styles.checkbox}
                           name={value.name}
                           onChange={handleToggle}
-                          sx={{
-                            "py": "0",
-                            "color": "#AFAFAF",
-                            "&.Mui-checked": {
-                              color: "#EE3131",
-                            },
-                          }}
                           value={value.name}
                         />
                       }
                       id={value.label}
                       label={value.label}
                       labelPlacement="start"
-                      sx={{
-                        width: "100%",
-                        justifyContent: "space-between",
-                        m: 0,
-                        p: "12px 0",
-                        fontSize: "16px",
-                        lineHeight: "30px",
-                      }}
                     />
                   </ListItem>
                 ))}
-                <ListItem
-                  disablePadding
-                  sx={{
-                    "width": "auto",
-                    "&:last-child": { borderBottom: "0" },
-                    "bgcolor": "#ffffff",
-                    "borderBottom": "2px solid rgba(96, 60, 238, 0.28)",
-                  }}
-                >
+                <ListItem className={styles.listItemInput} disablePadding>
                   <Input
+                    className={styles.input}
                     disableUnderline
                     disabled={!inputs.other}
                     fullWidth
@@ -299,12 +179,6 @@ const Contact = () => {
                     onInput={handleInputChange}
                     placeholder={t("item_5")}
                     ref={inputRef}
-                    sx={{
-                      p: "12px",
-                      fontSize: "16px",
-                      lineHeight: "30px",
-                      color: "#878787",
-                    }}
                     value={inputs.specify}
                   />
                 </ListItem>
@@ -313,27 +187,16 @@ const Contact = () => {
             <Grid item mobile={12}>
               <FormGroup>
                 <FormControlLabel
+                  className={styles.agreeWrapper}
                   control={
                     <Checkbox
                       checked={inputs.agree}
+                      className={styles.checkboxAgree}
                       name="agree"
                       onChange={handleCheckedChange}
-                      sx={{
-                        "py": "0",
-                        "color": "#AFAFAF",
-                        "&.Mui-checked": {
-                          color: "#EE3131",
-                        },
-                      }}
                     />
                   }
                   label={t("check_word")}
-                  sx={{
-                    mr: 0,
-                    verticalAlign: "top",
-                    lineHeight: "30px",
-                    alignItems: "flex-start",
-                  }}
                 />
               </FormGroup>
             </Grid>

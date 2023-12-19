@@ -18,7 +18,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ExpandIcon } from "@src/components/icons";
 
 import useContactCard from "./hooks";
-import { styles } from "./styles";
+import * as styles from "./index.module.scss";
 
 const ExpandIconWrapper = (props: Record<string, unknown>) => (
   <ExpandIcon {...props} />
@@ -54,33 +54,10 @@ const ContactCard = () => {
   }, []);
 
   return (
-    <Card
-      sx={{
-        background: theme.palette.primary.main,
-        boxShadow:
-          "0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)",
-        borderRadius: theme.spacing(3),
-        maxWidth: "100%",
-        margin: "auto",
-        [theme.breakpoints.up("laptop")]: {
-          maxWidth: "70%",
-        },
-      }}
-    >
+    <Card className={styles.wrapper}>
       <form noValidate onSubmit={handleSubmit}>
-        <CardContent
-          sx={{
-            padding: theme.spacing(3),
-            [theme.breakpoints.up("laptop")]: {
-              padding: theme.spacing(5),
-              gridGap: theme.spacing(5),
-              display: "grid",
-              gridTemplateRows: "repeat(2, 1fr)",
-              gridTemplateColumns: "repeat(6, 1fr)",
-            },
-          }}
-        >
-          <Box sx={styles.nameBox}>
+        <CardContent className={styles.cardContent}>
+          <Box className={styles.name}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -93,16 +70,16 @@ const ContactCard = () => {
               {t("your name")}
             </Typography>
             <TextField
+              className={styles.input}
               helperText=" "
               id="demo-helper-text-aligned-no-helper"
               name="name"
               onChange={handleInputChange}
               placeholder={t("name")}
-              sx={styles.inputField}
               value={inputs.name}
             />
           </Box>
-          <Box sx={styles.mailBox}>
+          <Box className={styles.mail}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -115,16 +92,16 @@ const ContactCard = () => {
               {t("your email")}
             </Typography>
             <TextField
+              className={styles.input}
               helperText=" "
               id="demo-helper-text-aligned-no-helper"
               name="email"
               onChange={handleInputChange}
               placeholder={t("email")}
-              sx={styles.inputField}
               value={inputs.email}
             />
           </Box>
-          <Box sx={styles.select}>
+          <Box className={styles.select}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -189,8 +166,12 @@ const ContactCard = () => {
               </Select>
             </FormControl>
           </Box>
-          <CardActions sx={styles.buttonDiv}>
-            <Button disabled={!canSubmit} sx={styles.button} type="submit">
+          <CardActions className={styles.buttonDiv}>
+            <Button
+              className={styles.button}
+              disabled={!canSubmit}
+              type="submit"
+            >
               {t("get in touch!")}
             </Button>
           </CardActions>

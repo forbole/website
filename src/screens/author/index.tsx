@@ -1,13 +1,22 @@
 import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 
 import Layout from "@src/components/layout";
 
 import AuthorPosts from "./components/author_posts";
 import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
+import type { AuthorMeta } from "./types";
 
-const AuthorTitlePosts = (props: any) => {
+type Props = {
+  author: any;
+  meta: AuthorMeta;
+  post: any;
+  tags: any;
+};
+
+const AuthorTitlePosts = (props: Props) => {
   const { t } = useTranslation("blog");
   const { post, tags, author, meta } = props;
   const { featureImage, excerpt, error } = post;
@@ -25,6 +34,35 @@ const AuthorTitlePosts = (props: any) => {
       title={post.title}
       type="article"
     >
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              "mainEntity": {
+                "@type": "Person",
+                "name": author.name,
+                "alternateName": author.slug,
+                "identifier": author.id,
+                "url": `https://www.forbole.com/author/${author.slug}/`,
+                "image": author.profile_image,
+                "brand": {
+                  "@type": "Organization",
+                  "name": "Forbole",
+                  "url": "https://www.forbole.com/",
+                },
+                "agentInteractionStatistic": {
+                  "@type": "InteractionCounter",
+                  "interactionType": "https://schema.org/WriteAction",
+                  "userInteractionCount": meta.pagination?.total,
+                },
+              },
+            }),
+          }}
+          type="application/ld+json"
+        />
+      </Head>
       <Box className={styles.container}>
         <Box className={styles.content}>
           <Box className={styles.innerContent}>

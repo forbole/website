@@ -1,0 +1,158 @@
+@import "src/styles/sass.scss";
+
+$form-background: linear-gradient(
+  180deg,
+  #fff 0%,
+  rgba(255, 255, 255, 0.64) 64.58%,
+  #fff 100%
+);
+
+$form-shadow:
+  0 10px 32px -4px rgba(2, 38, 225, 0.1),
+  0 6px 14px -6px rgba(2, 38, 225, 0.12);
+
+.form {
+  background: $form-background;
+  border-radius: 24px;
+  box-shadow: $form-shadow;
+  gap: 40px;
+  margin: 164px auto;
+  padding: 64px;
+  width: 1000px;
+
+  @include down-laptop {
+    gap: 24px;
+    margin-top: 104px;
+    padding: 24px;
+    width: 343px;
+  }
+}
+
+.icon {
+  align-items: center;
+  background: #2a1a6a;
+  border-radius: 50%;
+  box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.28);
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 590;
+  margin-bottom: 8px;
+
+  @include down-laptop {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+}
+
+.desc {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.contact {
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 24px;
+
+  @include down-laptop {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+.method {
+  color: #202a43;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 590;
+}
+
+.checkboxWrapper {
+  font-size: 16px;
+  justify-content: space-between;
+  line-height: 30px;
+  margin: 0;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.checkbox {
+  color: #afafaf;
+  padding-bottom: 0;
+  padding-top: 0;
+
+  &:global(.Mui-checked) {
+    color: #ee3131;
+  }
+}
+
+.listItem {
+  background: #fff;
+  border-bottom: 2px solid rgba(96, 60, 238, 0.28);
+}
+
+.listItemInput {
+  background: #fff;
+  border-bottom: 2px solid rgba(96, 60, 238, 0.28);
+  width: auto;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.input {
+  color: #878787;
+  font-size: 16px;
+  line-height: 30px;
+  padding: 12px;
+}
+
+.checkboxAgree {
+  color: #afafaf;
+  padding-bottom: 0;
+  padding-top: 0;
+
+  &:global(.Mui-checked) {
+    color: #ee3131;
+  }
+}
+
+.agreeWrapper {
+  align-items: flex-start;
+  line-height: 30px;
+  margin-right: 0;
+  vertical-align: top;
+}
+
+.labelStart {
+  font-size: 16px;
+  font-weight: 590;
+  margin-bottom: 16px;
+}
+
+.list {
+  border-radius: 8px;
+  box-shadow:
+    0 10px 32px -4px rgba(96, 60, 238, 0.1),
+    0 6px 14px -6px rgba(96, 60, 238, 0.28);
+  overflow: hidden;
+  padding-bottom: 0;
+  padding-top: 0;
+  width: 100%;
+}
+
+.required {
+  color: #ff426b;
+}
