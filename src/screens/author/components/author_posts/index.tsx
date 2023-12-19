@@ -6,7 +6,7 @@ import type { AuthorMeta } from "../../types";
 import { useBlogPostsHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
-export interface IProps {
+interface IProps {
   blogs: any[];
   main: any;
   meta: AuthorMeta;
