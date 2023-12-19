@@ -70,6 +70,8 @@ const BlogDetails = ({ post }: any) => {
               "author": [
                 {
                   "@type": "Person",
+                  "alternateName": author.slug,
+                  "image": author.profileImage,
                   "name": author.name,
                   "url": `https://www.forbole.com/author/${author.slug}`,
                 },

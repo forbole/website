@@ -7,8 +7,16 @@ import Layout from "@src/components/layout";
 import AuthorPosts from "./components/author_posts";
 import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
+import type { AuthorMeta } from "./types";
 
-const AuthorTitlePosts = (props: any) => {
+type Props = {
+  author: any;
+  meta: AuthorMeta;
+  post: any;
+  tags: any;
+};
+
+const AuthorTitlePosts = (props: Props) => {
   const { t } = useTranslation("blog");
   const { post, tags, author, meta } = props;
   const { featureImage, excerpt, error } = post;
@@ -37,7 +45,7 @@ const AuthorTitlePosts = (props: any) => {
                 "name": author.name,
                 "alternateName": author.slug,
                 "identifier": author.id,
-                "url": `https://www.forbole.com/blog/author/${author.slug}/`,
+                "url": `https://www.forbole.com/author/${author.slug}/`,
                 "image": author.profile_image,
                 "brand": {
                   "@type": "Organization",
