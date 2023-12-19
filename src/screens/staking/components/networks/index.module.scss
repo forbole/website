@@ -1,0 +1,38 @@
+@import "src/styles/sass.scss";
+
+.tr0 {
+  color: $color-forbole-indigo6;
+}
+
+.tr1 {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  // stylelint-disable-next-line
+  background-clip: text;
+  // stylelint-disable-next-line
+  -webkit-background-clip: text;
+  // stylelint-disable-next-line
+  -webkit-text-fill-color: transparent;
+  // stylelint-disable-next-line
+  text-fill-color: transparent;
+}
+
+.stakingDesc {
+  color: $color-forbole-blue;
+  font-size: spacing(2);
+  font-weight: 400;
+  padding: spacing(3) 0 spacing(3) 0;
+  text-align: center;
+  text-shadow:
+    0 1px 8px rgba(16, 24, 40, 0.06),
+    0 1px 10px rgba(16, 24, 40, 0.05);
+
+  @include up-laptop {
+    font-size: spacing(3);
+    font-weight: 400;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+}

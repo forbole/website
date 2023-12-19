@@ -19,7 +19,6 @@ import { ExpandIcon } from "@src/components/icons";
 
 import useContactCard from "./hooks";
 import * as styles from "./index.module.scss";
-import { styles as jsStyles } from "./styles";
 
 const ExpandIconWrapper = (props: Record<string, unknown>) => (
   <ExpandIcon {...props} />
@@ -58,7 +57,7 @@ const ContactCard = () => {
     <Card className={styles.wrapper}>
       <form noValidate onSubmit={handleSubmit}>
         <CardContent className={styles.cardContent}>
-          <Box sx={jsStyles.nameBox}>
+          <Box className={styles.name}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -71,16 +70,16 @@ const ContactCard = () => {
               {t("your name")}
             </Typography>
             <TextField
+              className={styles.input}
               helperText=" "
               id="demo-helper-text-aligned-no-helper"
               name="name"
               onChange={handleInputChange}
               placeholder={t("name")}
-              sx={jsStyles.inputField}
               value={inputs.name}
             />
           </Box>
-          <Box sx={jsStyles.mailBox}>
+          <Box className={styles.mail}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -93,16 +92,16 @@ const ContactCard = () => {
               {t("your email")}
             </Typography>
             <TextField
+              className={styles.input}
               helperText=" "
               id="demo-helper-text-aligned-no-helper"
               name="email"
               onChange={handleInputChange}
               placeholder={t("email")}
-              sx={jsStyles.inputField}
               value={inputs.email}
             />
           </Box>
-          <Box sx={jsStyles.select}>
+          <Box className={styles.select}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -167,8 +166,12 @@ const ContactCard = () => {
               </Select>
             </FormControl>
           </Box>
-          <CardActions sx={jsStyles.buttonDiv}>
-            <Button disabled={!canSubmit} sx={jsStyles.button} type="submit">
+          <CardActions className={styles.buttonDiv}>
+            <Button
+              className={styles.button}
+              disabled={!canSubmit}
+              type="submit"
+            >
               {t("get in touch!")}
             </Button>
           </CardActions>

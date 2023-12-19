@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
@@ -9,12 +9,12 @@ import NetworkGrid from "./components/network_grid";
 import type { NetworkProps } from "./components/network_grid/config";
 import { useNetworkHook } from "./components/network_grid/hooks";
 import SearchBar from "./components/search_bar";
+import * as styles from "./index.module.scss";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const Networks = () => {
   const { t } = useTranslation("staking");
-  const theme = useTheme();
 
   const {
     cosmosNetworks,
@@ -50,46 +50,16 @@ const Networks = () => {
         </Typography>
         <Trans
           components={[
-            <Box
-              className="h3"
-              key="0"
-              sx={{
-                color: theme.palette.custom.forbole.indigo6,
-              }}
-            />,
-            <Box
-              className="h3"
-              key="1"
-              sx={{
-                background:
-                  "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                backgroundClip: "text",
-                textFillColor: "transparent",
-              }}
-            />,
+            <Box className={["h3", styles.tr0].join(" ")} key="0" />,
+            <Box className={["h3", styles.tr1].join(" ")} key="1" />,
           ]}
           i18nKey="stake with Forbole title"
           ns="staking"
         />
-        <Typography
-          sx={{
-            textShadow:
-              "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
-            fontWeight: 400,
-            fontSize: theme.spacing(2),
-            textAlign: "center",
-            padding: theme.spacing(3, 0, 3, 0),
-            color: theme.palette.custom.forbole.blue,
-            [theme.breakpoints.up("laptop")]: {
-              fontWeight: 400,
-              fontSize: theme.spacing(3),
-            },
-          }}
-          variant="body1"
-        >
+        <Typography className={styles.stakingDesc} variant="body1">
           {t("stake with Forbole desc")}
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box className={styles.grid}>
           <SearchBar sortedNetworks={sortedNetworks} />
           <NetworkGrid
             allNetworkInfo={allNetworkInfo}

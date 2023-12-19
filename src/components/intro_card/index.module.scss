@@ -1,0 +1,77 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow:
+    0 10px 32px -4px rgba(96, 60, 238, 0.1),
+    0 6px 14px -6px rgba(96, 60, 238, 0.28);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: calc(100vw - 40px);
+  overflow: hidden;
+  position: relative;
+}
+
+.imageWrapper {
+  height: 200px;
+  position: relative;
+  width: 100%;
+}
+
+.contentWrapper {
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 24px;
+  row-gap: 24px;
+}
+
+.title {
+  color: #202a43;
+  font-size: 20px;
+  font-weight: 590;
+  margin-bottom: 12px;
+}
+
+.listItem {
+  color: #202a43;
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  &::before {
+    background-color: #202a43;
+    border-radius: 4px;
+    content: " ";
+    display: inline-block;
+    flex: 0 0 auto;
+    height: 4px;
+    margin-right: 10px;
+    margin-top: 10px;
+    vertical-align: middle;
+    width: 4px;
+  }
+}
+
+.desc {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.ctaButton {
+  align-self: flex-start;
+  font-family: "590";
+}

@@ -23,3 +23,93 @@
     padding: spacing(5);
   }
 }
+
+.name {
+  align-items: stretch;
+  color: $color-forbole-indigo6;
+  display: flex;
+  flex-direction: column;
+
+  @include up-laptop {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 1;
+  }
+}
+
+$input-shadow:
+  0 8px 22px -6px rgba(2, 38, 225, 0.12),
+  0 14px 64px -4px rgba(2, 38, 225, 0.12);
+
+.input {
+  > :global(.MuiOutlinedInput-root) {
+    border-radius: spacing(1);
+    box-shadow: $input-shadow;
+  }
+
+  :global(.MuiOutlinedInput-notchedOutline) {
+    border: none;
+    border-color: transparent;
+  }
+
+  -webkit-autofill {
+    -webkit-text-fill-color: #000;
+    transition-delay: 9999s;
+  }
+}
+
+.mail {
+  align-items: stretch;
+  color: $color-forbole-indigo6;
+  display: flex;
+  flex-direction: column;
+
+  @include up-laptop {
+    grid-column: 4 / span 3;
+    grid-row: 1 / span 1;
+  }
+}
+
+.select {
+  :global(.MuiFormControl-root) {
+    border-radius: spacing(1);
+    box-shadow: $input-shadow;
+    width: 100%;
+  }
+
+  :global(.MuiFormLabel-root) {
+    color: #878787;
+  }
+
+  :global(.MuiOutlinedInput-notchedOutline) {
+    border: none;
+    border-color: transparent;
+  }
+
+  @include up-laptop {
+    grid-column: 1 / span 5;
+    grid-row: 2 / span 1;
+  }
+}
+
+.buttonDiv {
+  padding: spacing(3) 0 0 0;
+
+  @include up-laptop {
+    grid-column: 6 / span 1;
+    grid-row: 2 / span 1;
+    justify-content: flex-end;
+  }
+}
+
+.button {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  border-radius: spacing(3);
+  box-shadow: $input-shadow;
+  font-size: spacing(1.875);
+  line-height: 1.5;
+  padding: spacing(1.25) spacing(2);
+
+  @include up-laptop {
+    width: 125px;
+  }
+}
