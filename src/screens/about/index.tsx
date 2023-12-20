@@ -32,7 +32,6 @@ const About = () => {
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   const imagList = [
     "/about/aboutus_01.webp",
-    "/about/aboutus_02.webp",
     "/about/aboutus_03.webp",
     "/about/aboutus_04.webp",
     "/about/aboutus_05.webp",
