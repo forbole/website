@@ -18,7 +18,6 @@ const baseState = {
   totalSupply: 0,
 };
 
-// sample data
 const stakingParams: NetworkProps = {
   agoric: baseState,
   akash: baseState,

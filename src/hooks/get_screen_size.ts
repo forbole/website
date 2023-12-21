@@ -37,14 +37,12 @@ export const useWindowDimensions = () => {
   useEffect(() => {
     const width = windowDimensions?.width ?? 0;
 
-    // is mobile
     if (width < theme?.breakpoints?.values?.tablet) {
       setIsMobile(true);
     } else {
       setIsMobile(false);
     }
 
-    // is tablet
     if (
       width >= theme?.breakpoints?.values?.tablet &&
       width < theme?.breakpoints?.values?.laptop
@@ -54,7 +52,6 @@ export const useWindowDimensions = () => {
       setIsTablet(false);
     }
 
-    // is desktop
     if (width >= theme?.breakpoints?.values?.laptop) {
       setIsDesktop(true);
     } else {

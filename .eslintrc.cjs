@@ -42,9 +42,14 @@ module.exports = {
     "@stylistic/padding-line-between-statements": [
       "error",
       { blankLine: "always", prev: "*", next: "return" },
-      { blankLine: "always", prev: "multiline-block-like", next: "*" },
-      { blankLine: "always", prev: "*", next: "multiline-block-like" },
-    ],
+    ].concat(
+      ["multiline-block-like", "multiline-expression"]
+        .map((item) => [
+          { blankLine: "always", prev: item, next: "*" },
+          { blankLine: "always", prev: "*", next: item },
+        ])
+        .flat(),
+    ),
 
     "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/no-shadow": "error",
