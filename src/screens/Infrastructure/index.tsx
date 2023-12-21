@@ -33,14 +33,17 @@ const Infrastructure = () => {
   const topRef = useRef(null);
   const PanelRef = useRef(null);
   const { t } = useTranslation("validator_infrastructure");
+
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setV1(newValue);
   };
+
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
     noSsr: true,
   });
 
   const router = useRouter();
+
   const personList = useMemo(() => {
     if (onlyLargeScreen) {
       return [

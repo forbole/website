@@ -18,9 +18,11 @@ export const useCalculateRewardsHook = () => {
     value: "",
     display: "",
   });
+
   const initialState = getNetworkInfo("cosmos");
   const [selectedToken, setSelectedToken] = useState<any>(initialState);
   const [monthlyPeriods, setMonthlyPeriods] = useState<number>(0);
+
   const [totalEarnings, setTotalEarnings] = useState({
     dailyEarnings: {
       tokens: "0",
@@ -54,6 +56,7 @@ export const useCalculateRewardsHook = () => {
         eachCosmosInflationRate,
         eachCosmosTokenSupply,
       } = rewardsQueryData;
+
       const findFn = (data: any) =>
         selectedTokenGraphql === data.metric.instance;
 
@@ -65,6 +68,7 @@ export const useCalculateRewardsHook = () => {
       const bondedToken = bondedTokenItem
         ? parseFloat(bondedTokenItem.bondedToken)
         : 0;
+
       const totalSupply = supplyItem ? parseFloat(supplyItem.supply) : 0;
 
       return {
@@ -167,6 +171,7 @@ export const useCalculateRewardsHook = () => {
     const { data: marketPriceJson } = marketPriceApi;
 
     const marketPrice = networkFunction.marketPrice(marketPriceJson);
+
     // ===============================
     // raw calcs
     // ===============================
@@ -174,6 +179,7 @@ export const useCalculateRewardsHook = () => {
       // eslint-disable-next-line no-unsafe-optional-chaining
       tokens?.value * (inflation / stakingRatio) * (1 - commissionRate),
     );
+
     const monthlyRewards = (annualRewards / 12) * monthlyPeriods;
     const dailyRewards = monthlyRewards / 30;
 
@@ -219,6 +225,7 @@ export const useCalculateRewardsHook = () => {
 
   const handleChange = (e: any) => {
     const value: any = pathOr(0, ["target", "value"], e);
+
     if (!value) {
       setTokens({
         value: "",
@@ -227,10 +234,12 @@ export const useCalculateRewardsHook = () => {
 
       return;
     }
+
     // edge cases setup
     const exceptions = [".", "0"];
     let occurance = 0;
     value.toString();
+
     value.split("").forEach((x: any) => {
       if (x === ".") {
         occurance += 1;
@@ -241,6 +250,7 @@ export const useCalculateRewardsHook = () => {
     if (occurance > 1 && value[value.length - 1] === ".") {
       return;
     }
+
     // handles edge cases
     if (exceptions.includes(value[value.length - 1])) {
       setTokens({
@@ -251,7 +261,9 @@ export const useCalculateRewardsHook = () => {
       const rawNumber = value.replace(/[^\d.]/g, "")
         ? Number(value.replace(/[^\d.]/g, ""))
         : "";
+
       const convertedNumber = convertWithDecimal(rawNumber);
+
       setTokens({
         value: rawNumber,
         display: convertedNumber,

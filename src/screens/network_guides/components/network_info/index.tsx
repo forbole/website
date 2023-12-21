@@ -51,6 +51,7 @@ const NetworkInfo = ({ post }: any) => {
   const [isCopySuccess, setIsCopySuccess] = useState(false);
   const [readMore, setReadMore] = useState(false);
   const { sanitize } = DOMPurify;
+
   const cmsLoader = ({ src, width, quality }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
 
@@ -58,6 +59,7 @@ const NetworkInfo = ({ post }: any) => {
     if (tags.length <= 1) return null;
 
     const mapping = mappings[tags[1].slug as string];
+
     if (mapping) {
       return getNetworkInfo(mapping);
     }
@@ -72,9 +74,11 @@ const NetworkInfo = ({ post }: any) => {
   const copyText = useCallback(
     (e: MouseEvent<HTMLElement>) => {
       e.stopPropagation();
+
       navigator.clipboard.writeText(
         networkData ? networkData.address || "" : "coming soon",
       );
+
       setIsCopySuccess(true);
     },
     [networkData],
@@ -227,4 +231,5 @@ const NetworkInfo = ({ post }: any) => {
     </Box>
   );
 };
+
 export default NetworkInfo;

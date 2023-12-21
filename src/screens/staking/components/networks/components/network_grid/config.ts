@@ -11,8 +11,6 @@ export type NetworkProps = {
   [graphqlKey: string]: ParamsProps;
 };
 
-// state data
-
 const defaultParams: ParamsProps = {
   bonded: 0,
   APY: 0,

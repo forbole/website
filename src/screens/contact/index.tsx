@@ -26,6 +26,7 @@ import * as styles from "./index.module.scss";
 
 const Contact = () => {
   const { t } = useTranslation("contact");
+
   const {
     inputs,
     handleInputChange,
@@ -37,6 +38,7 @@ const Contact = () => {
     setSuccess,
     isLoading,
   } = useContactForm();
+
   const theme = useTheme();
   const router = useRouter();
 
@@ -48,8 +50,10 @@ const Contact = () => {
   ] as const;
 
   const inputRef = useRef<HTMLInputElement>(null);
+
   const handleToggle = (e: any) => {
     const { name, checked } = e.target;
+
     if (name === "other") {
       if (checked) {
         setTimeout(() => {
@@ -59,6 +63,7 @@ const Contact = () => {
         handleClear("specify");
       }
     }
+
     handleCheckedChange(e);
   };
 

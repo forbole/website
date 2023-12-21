@@ -27,6 +27,7 @@ const ExpandIconWrapper = (props: Record<string, unknown>) => (
 const ContactCard = () => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
+
   const { handleSubmit, handleInputChange, inputs, setInputs, canSubmit } =
     useContactCard();
 
@@ -46,6 +47,7 @@ const ContactCard = () => {
     const handler = () => {
       setIsOpen(false);
     };
+
     window.addEventListener("scroll", handler);
 
     return () => {
@@ -143,6 +145,7 @@ const ContactCard = () => {
                 }}
                 onChange={(e) => {
                   const { value } = e.target;
+
                   setInputs((input) => ({
                     ...input,
                     option: value,

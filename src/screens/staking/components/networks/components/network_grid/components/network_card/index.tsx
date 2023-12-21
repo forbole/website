@@ -51,6 +51,7 @@ const NetworkCard = ({
     },
     [setShowMobilePopover],
   );
+
   const canClickNetwork = getCanClickNetwork(network);
 
   const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(

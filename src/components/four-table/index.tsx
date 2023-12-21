@@ -10,6 +10,7 @@ import styles from "./styles.module.css";
 const clickItem = 2;
 
 type Props = { btnHref: () => void };
+
 const FourTable = ({ btnHref }: Props) => {
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();

@@ -65,6 +65,7 @@ test.describe.parallel("Staking", () => {
     expect(
       await page.locator('[data-test="network-item"]').count(),
     ).toBeGreaterThan(1);
+
     expect(await page.locator('[data-test="stats-cards"]').count()).toEqual(1);
   });
 });

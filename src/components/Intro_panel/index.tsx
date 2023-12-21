@@ -6,24 +6,26 @@ import Image from "next/legacy/image";
 import CtaButton from "../cta-button";
 
 type Props = {
-  title?: string;
-  desc?: string;
-  imageHref: StaticImageData | string;
-  btn_Click?: () => void;
   btnName?: string;
+  btn_Click?: () => void;
+  desc?: string;
   disabled?: boolean;
+  imageAlt?: string;
+  imageHref: StaticImageData | string;
   img_not_response?: boolean;
+  title?: string;
 };
-const IntroPanel = (props: Props) => {
-  const {
-    title,
-    desc,
-    imageHref,
-    btn_Click,
-    btnName,
-    img_not_response,
-    disabled,
-  } = props;
+
+const IntroPanel = ({
+  btnName,
+  btn_Click,
+  desc,
+  disabled,
+  imageAlt,
+  imageHref,
+  img_not_response,
+  title,
+}: Props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down(500));
 
@@ -101,7 +103,7 @@ const IntroPanel = (props: Props) => {
       >
         {imageHref && (
           <Image
-            alt=""
+            alt={imageAlt || ""}
             layout="fill"
             objectFit={matches ? "fill" : "contain"}
             objectPosition="bottom right"

@@ -36,12 +36,15 @@ const DeveloperTools = () => {
     setSuccess,
     isLoading,
   } = useTalkModalForm();
+
   const router = useRouter();
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
+
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
+
   const topRef = useRef(null);
   const [show, setShow] = useState(false);
 
@@ -79,8 +82,9 @@ const DeveloperTools = () => {
             </CtaButton>
           </Stack>
           <Grid container spacing={theme.spacing(2)}>
-            <Grid item laptop={4} mobile={12}>
+            <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
+                imageAlt="RPC service"
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_3@2x.png")
@@ -89,8 +93,10 @@ const DeveloperTools = () => {
                 title={t("pinfo_item1")}
               />
             </Grid>
-            <Grid item laptop={4} mobile={12}>
+            <Grid className={styles.card} item laptop={4} mobile={12}>
+              <span className={styles.label}>{t("common:coming_soon")}</span>
               <IntroPanel
+                imageAlt="GraphQL service"
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_1@2x.png")
@@ -99,8 +105,9 @@ const DeveloperTools = () => {
                 title={t("pinfo_item2")}
               />
             </Grid>
-            <Grid item laptop={4} mobile={12}>
+            <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
+                imageAlt="Data API service"
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_2@2x.png")
@@ -170,4 +177,5 @@ const DeveloperTools = () => {
     </Layout>
   );
 };
+
 export default DeveloperTools;

@@ -14,10 +14,12 @@ export async function getServerSideProps(context: { query: any }) {
   let formattedTags: Tag[] = [];
   let meta = {};
   let error = false;
+
   try {
     const { query } = context;
     const fetchQuery: any = {};
     let posts: any = [];
+
     if (query.page) {
       fetchQuery.page = query.page;
       posts = await getPosts(fetchQuery);
@@ -34,6 +36,7 @@ export async function getServerSideProps(context: { query: any }) {
         limit: 10,
       }),
     ]);
+
     formattedPosts = posts.map((post: any) => Post.fromJson(post, {}));
     formattedSidePosts = sidePosts.map((post: any) => Post.fromJson(post, {}));
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));

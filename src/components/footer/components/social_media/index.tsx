@@ -15,8 +15,10 @@ import * as styles from "./index.module.scss";
 const SocialMedia = () => {
   const socialKeys = ["github", "twitter", "telegram", "linkedIn", "Instagram"];
   const { locale } = useRouter();
+
   const socialMediaInfo = socialKeys.map((keyParam: string) => {
     let key = keyParam;
+
     if (key === "Instagram") {
       if (locale !== "en") {
         key += "_zh";
@@ -27,9 +29,11 @@ const SocialMedia = () => {
   });
 
   const { t } = useTranslation("common");
+
   const [inputs, setInputs] = useState({
     email: "",
   });
+
   const [canSubmit, setCanSubmit] = useState(false);
   const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -43,6 +47,7 @@ const SocialMedia = () => {
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: value,
@@ -59,6 +64,7 @@ const SocialMedia = () => {
     if (event) {
       event.preventDefault();
       setLoading(true);
+
       axios
         .post("/api/subscribe", {
           inputs,
@@ -69,6 +75,7 @@ const SocialMedia = () => {
               email: "",
             });
           }
+
           toast.success(t("thank") as ToastContent<unknown>);
           setLoading(false);
         })

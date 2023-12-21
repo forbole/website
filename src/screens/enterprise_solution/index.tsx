@@ -29,12 +29,16 @@ const EnterpriseSolution = () => {
   const topRef = useRef(null);
   const ContactRef = useRef(null);
   const theme = useTheme();
+
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
+
   const { t } = useTranslation("enterprise_solution");
+
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();
+
     window.scrollTo({
       left: 0,
       top: ref.current.offsetTop - 100,
@@ -129,4 +133,5 @@ const EnterpriseSolution = () => {
     </Layout>
   );
 };
+
 export default EnterpriseSolution;

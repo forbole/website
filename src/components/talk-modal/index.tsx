@@ -41,6 +41,7 @@ interface Props {
   canSubmit: boolean;
   isLoading: boolean;
 }
+
 const TalkModal = ({
   close,
   staking,
@@ -56,8 +57,10 @@ const TalkModal = ({
   const theme = useTheme();
   const { t } = useTranslation("developer_tools");
   const inputRef = useRef<HTMLInputElement>(null);
+
   const handleToggle = (e: any) => {
     const { name, checked } = e.target;
+
     if (name === "Other") {
       if (checked) {
         setTimeout(() => {
@@ -67,8 +70,10 @@ const TalkModal = ({
         handleClear("specify");
       }
     }
+
     handleCheckedChange(e);
   };
+
   const selectList = useMemo(
     () =>
       [
@@ -354,4 +359,5 @@ const TalkModal = ({
     </Modal>
   );
 };
+
 export default memo(TalkModal);

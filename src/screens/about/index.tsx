@@ -23,6 +23,7 @@ import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
 import * as styles from "./index.module.scss";
 
 SwiperCore.use([Navigation, Autoplay]);
+
 const About = () => {
   const { t } = useTranslation("about");
   const theme = useTheme();
@@ -30,6 +31,7 @@ const About = () => {
   const [loading, setLoading] = useState(true);
 
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
+
   const imagList = [
     "/about/aboutus_01.webp",
     "/about/aboutus_03.webp",
@@ -38,6 +40,7 @@ const About = () => {
     "/about/aboutus_06.webp",
     "/about/aboutus_07.webp",
   ];
+
   const videoList = useMemo(
     () => [
       {

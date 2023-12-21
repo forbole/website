@@ -13,15 +13,19 @@ export async function getServerSideProps(context: { query: any }) {
   let formattedTags: Tag[] = [];
   let meta = {};
   let error = false;
+
   try {
     const { query } = context;
     const fetchQuery: any = {};
+
     if (query.page) {
       fetchQuery.page = query.page;
     }
+
     if (query.tag) {
       fetchQuery.tag = query.tag;
     }
+
     const [tags, posts, sidePosts] = await Promise.all([
       getTags(),
       getPostsByTag(fetchQuery),
@@ -29,11 +33,13 @@ export async function getServerSideProps(context: { query: any }) {
         limit: 10,
       }),
     ]);
+
     formattedSidePosts = sidePosts.map((post: any) => Post.fromJson(post, {}));
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));
     meta = posts?.meta;
 
     formattedPost = posts.map((y: any) => Post.fromJson(y, {}));
+
     formattedPost.tags = posts.map((x: { tags: any[] }) =>
       removeInternalTags(x.tags),
     );

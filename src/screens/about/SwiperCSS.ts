@@ -24,9 +24,4 @@ export const ImgBox = styled.div`
     height: 100%;
     padding: 0;
   }
-  @media screen and (max-width: 1025px) {
-    .swiper-style {
-      //padding:0 20px;
-    }
-  }
 `;

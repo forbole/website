@@ -6,6 +6,7 @@ import { transporter } from "@src/utils/api";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { inputs } = req.body;
+
     if (process.env.NODE_ENV === "production") {
       await transporter.sendMail({
         from: inputs.email,
@@ -21,6 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 `,
       });
     }
+
     res.status(200).json({
       success: true,
     });

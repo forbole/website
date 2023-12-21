@@ -11,6 +11,7 @@ export const useCounter = (targetValue: unknown) => {
     if (intervalId.current) {
       window.clearInterval(intervalId.current);
     }
+
     intervalId.current = null;
   };
 
@@ -26,11 +27,14 @@ export const useCounter = (targetValue: unknown) => {
         clearInterval();
 
         let pending = false;
+
         intervalId.current = window.setInterval(() => {
           if (pending) return;
           pending = true;
+
           window.requestAnimationFrame(() => {
             pending = false;
+
             setCounterValue((prev: unknown) => {
               if (
                 typeof prev !== "number" ||
@@ -39,6 +43,7 @@ export const useCounter = (targetValue: unknown) => {
                 return prev;
 
               const newValue = prev + divisor.current;
+
               if (newValue >= targetValue) {
                 clearInterval();
 

@@ -6,6 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (process.env.NODE_ENV === "production") {
       const { source, ...restBody } = req.body;
+
       const subject =
         {
           devtools:
@@ -14,6 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           enterprise:
             "A new customer just wanted to get in touch with us via Contact form",
         }[source as string] || "A new enquiry from Forbole's website";
+
       const email =
         {
           devtools: "rpc@forbole.com",

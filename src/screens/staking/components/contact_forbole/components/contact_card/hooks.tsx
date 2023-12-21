@@ -11,6 +11,7 @@ const useContactCard = () => {
     email: "",
     option: "",
   });
+
   const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("staking");
@@ -26,6 +27,7 @@ const useContactCard = () => {
   const handleSubmit = (event: any) => {
     if (event) {
       event.preventDefault();
+
       axios
         .post("/api/contact", {
           from: inputs.email,
@@ -36,6 +38,7 @@ const useContactCard = () => {
         .then((res) => {
           if (res.status === 200) {
             toast.success(t("success") as string);
+
             setInputs({
               name: "",
               option: "",
@@ -53,6 +56,7 @@ const useContactCard = () => {
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: value,

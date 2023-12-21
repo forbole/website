@@ -13,6 +13,7 @@ type Props = {
 const productPanel = forwardRef<HTMLDivElement, Props>(
   ({ title, imageHref, children, index, value, imgFull }, ref) => {
     const theme = useTheme();
+
     // eslint-disable-next-line eqeqeq
     if (index != value) {
       // eslint-disable-next-line react/jsx-no-useless-fragment

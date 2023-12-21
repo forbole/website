@@ -59,6 +59,7 @@ const Products = () => {
     ],
     [t],
   );
+
   const businesses = useMemo(
     () => [
       {
@@ -118,9 +119,11 @@ const Products = () => {
   );
 
   const theme = useTheme();
+
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
+
   const [v1, setV1] = useState(0);
   const [v2, setV2] = useState(0);
   const topRef = useRef(null);
@@ -129,8 +132,10 @@ const Products = () => {
   const PanelRef1 = useRef(null);
   const PanelRef2 = useRef(null);
   const router = useRouter();
+
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();
+
     window.scrollTo({
       left: 0,
       top: ref.current.offsetTop - 100,
@@ -141,6 +146,7 @@ const Products = () => {
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setV1(newValue);
   };
+
   const handleChange2 = (_event: React.SyntheticEvent, newValue: number) => {
     setV2(newValue);
   };

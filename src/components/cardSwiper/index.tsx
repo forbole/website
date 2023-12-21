@@ -14,6 +14,7 @@ type Props = {
   style?: CSSProperties;
   className?: string;
 };
+
 const CardSwiper = ({ imagesList, style, className }: Props) => {
   const theme = useTheme();
 

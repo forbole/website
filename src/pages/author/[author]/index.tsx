@@ -18,12 +18,15 @@ export async function getServerSideProps(context: { query: any }) {
   try {
     const { query } = context;
     const fetchQuery: any = {};
+
     if (query.page) {
       fetchQuery.page = query.page;
     }
+
     if (query.author) {
       fetchQuery.author = query.author;
     }
+
     const [tags, posts, authorDetails, sidePosts] = await Promise.all([
       getTags(),
       getPostsByAuthor(fetchQuery),
@@ -32,11 +35,13 @@ export async function getServerSideProps(context: { query: any }) {
         limit: 10,
       }),
     ]);
+
     authorInfo = authorDetails;
     formattedSidePosts = sidePosts.map((post: any) => Post.fromJson(post, {}));
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));
     meta = posts?.meta;
     authorPosts = posts.map((y: any) => Post.fromJson(y, {}));
+
     authorPosts.tags = posts.map((x: { tags: any[] }) =>
       removeInternalTags(x.tags),
     );

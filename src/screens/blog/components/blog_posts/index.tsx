@@ -25,6 +25,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
 
   const [limitUpper, setLimitUpper] = useState(15);
   const [lastView, setLastView] = useState(0);
+
   const postRef = useCallback(
     (node: any) => {
       if (node && isMobile && lastView !== 0) {
@@ -42,6 +43,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
 
   const seeMorePages = (_e: any, { limit, blogs }: any) => {
     const lastPost = blogs.length;
+
     if (limit + 15 >= totalPosts) {
       setLimitUpper(totalPosts);
     } else {
@@ -49,11 +51,13 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
     }
 
     setLastView(lastPost);
+
     router.push({
       pathname: router.pathname,
       query: { limit },
     });
   };
+
   const responsive: any = {
     desktop: {
       breakpoint: { max: 3000, min: 1100 },
@@ -65,6 +69,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
       breakpoint: { max: 464, min: 0 },
     },
   };
+
   const paginationStyle = {
     sx: {
       "& .MuiPaginationItem-root": {
