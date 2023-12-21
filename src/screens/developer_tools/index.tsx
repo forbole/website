@@ -79,7 +79,7 @@ const DeveloperTools = () => {
             </CtaButton>
           </Stack>
           <Grid container spacing={theme.spacing(2)}>
-            <Grid item laptop={4} mobile={12}>
+            <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
                 imageHref={
                   !isMobile
@@ -89,7 +89,8 @@ const DeveloperTools = () => {
                 title={t("pinfo_item1")}
               />
             </Grid>
-            <Grid item laptop={4} mobile={12}>
+            <Grid className={styles.card} item laptop={4} mobile={12}>
+              <span className={styles.label}>{t("common:coming_soon")}</span>
               <IntroPanel
                 imageHref={
                   !isMobile
@@ -99,7 +100,7 @@ const DeveloperTools = () => {
                 title={t("pinfo_item2")}
               />
             </Grid>
-            <Grid item laptop={4} mobile={12}>
+            <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
                 imageHref={
                   !isMobile

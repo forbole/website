@@ -51,3 +51,32 @@
     max-width: 65%;
   }
 }
+
+.label {
+  align-items: center;
+  background-color: #ebeef5;
+  border-radius: 200px;
+  box-sizing: border-box;
+  color: #c3cce2;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  gap: 10px;
+  height: 45px;
+  justify-content: center;
+  letter-spacing: 0.08px;
+  line-height: normal;
+  padding: 0 16px;
+  position: absolute;
+  right: 24px;
+  top: 30px;
+}
+
+.card {
+  position: relative;
+
+  @include down-tablet {
+    width: 100%;
+  }
+}
