@@ -19,6 +19,7 @@ const useContactForm = () => {
     careers: false,
     other: false,
   });
+
   const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("contact");

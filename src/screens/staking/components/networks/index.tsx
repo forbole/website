@@ -25,6 +25,7 @@ const Networks = () => {
     solanaNetwork,
     suiNetwork,
   } = useNetworkHook();
+
   const allNetworkInfo: NetworkProps = {
     ...cosmosNetworks,
     ...elrondNetwork,
@@ -34,6 +35,7 @@ const Networks = () => {
     ...solanaNetwork,
     ...suiNetwork,
   };
+
   const allNetworkData = allNetworkKeys
     .map((x: string | number) => getNetworkInfo(x))
     .filter(Boolean);

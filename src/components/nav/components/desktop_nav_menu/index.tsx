@@ -12,6 +12,7 @@ import * as styles from "./index.module.scss";
 
 const DesktopNavMenu = () => {
   const { t } = useTranslation("common");
+
   const navItems = useMemo(
     () => [
       {

@@ -44,6 +44,7 @@ function scrollLock() {
  */
 function useSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
   const theme = useTheme();
+
   const startAdornment = (
     <InputAdornment position="start">
       <SearchIcon
@@ -133,6 +134,7 @@ const SearchBar = ({ sortedNetworks }: Props) => {
     .filter((item) => getCanClickNetwork(item.network));
 
   const optionsNames = optionsFull.map((item) => item.label);
+
   const options = optionsFull.filter(
     (item, idx) => optionsNames.indexOf(item.label) === idx,
   );
@@ -151,7 +153,9 @@ const SearchBar = ({ sortedNetworks }: Props) => {
     ),
     [styles.textField, t],
   );
+
   const [focused, setFocused] = useState(false);
+
   const handleFocus: FocusEventHandler = useCallback((event) => {
     setFocused(true);
 

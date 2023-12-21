@@ -9,6 +9,7 @@ const FooterItems = ({ staking }: FooterProps) => {
   const { t } = useTranslation("common");
   const today = new Date();
   const year = today.getFullYear();
+
   const dividerClass = [styles.divider, staking ? styles.staking : ""].join(
     " ",
   );

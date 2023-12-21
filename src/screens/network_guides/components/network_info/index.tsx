@@ -51,6 +51,7 @@ const NetworkInfo = ({ post }: any) => {
   const [isCopySuccess, setIsCopySuccess] = useState(false);
   const [readMore, setReadMore] = useState(false);
   const { sanitize } = DOMPurify;
+
   const cmsLoader = ({ src, width, quality }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
 

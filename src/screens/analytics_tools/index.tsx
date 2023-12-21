@@ -18,9 +18,11 @@ const AnalyticsTools = () => {
   const theme = useTheme();
   const router = useRouter();
   const { t } = useTranslation("analytics_tools");
+
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
+
   const imagesList = useMemo(() => {
     if (isMobile) {
       return [
@@ -36,6 +38,7 @@ const AnalyticsTools = () => {
       require("/public/data_visualization/product details@2x.png"),
     ];
   }, [isMobile]);
+
   const noteBook = useMemo(() => {
     if (isMobile) {
       return [

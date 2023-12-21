@@ -167,6 +167,7 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const suiBondedToken = networkGridData?.suiBondedToken
         ?.bondedToken as string;
+
       const apy = networkGridData?.suiAPY?.APY as string;
       const tvl = networkGridData?.suiTVL?.TVL as string;
       const bonded = Number(suiBondedToken);

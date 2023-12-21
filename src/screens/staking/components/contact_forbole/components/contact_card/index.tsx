@@ -27,6 +27,7 @@ const ExpandIconWrapper = (props: Record<string, unknown>) => (
 const ContactCard = () => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
+
   const { handleSubmit, handleInputChange, inputs, setInputs, canSubmit } =
     useContactCard();
 

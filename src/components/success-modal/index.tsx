@@ -19,6 +19,7 @@ type Props = {
   bottom_word?: string;
   open: boolean;
 };
+
 const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
   ({ fixed, close, up_word, middle_word, bottom_word }, ref) => {
     const theme = useTheme();

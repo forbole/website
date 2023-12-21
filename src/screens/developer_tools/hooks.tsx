@@ -19,6 +19,7 @@ const useTalkModalForm = () => {
     "Other": false,
     "RPC Endpoints": false,
   });
+
   const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("contact");

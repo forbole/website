@@ -19,9 +19,11 @@ const StakingService = () => {
   const { t } = useTranslation("staking_service");
   const topRef = useRef(null);
   const theme = useTheme();
+
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
+
   const router = useRouter();
 
   const horseStyle = {

@@ -14,4 +14,5 @@ const Menu = ({ color }: any) => (
     />
   </svg>
 );
+
 export default Menu;

@@ -13,6 +13,7 @@ const useContactForm = () => {
     company: "",
     help: "",
   });
+
   const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("contact");

@@ -36,12 +36,15 @@ const DeveloperTools = () => {
     setSuccess,
     isLoading,
   } = useTalkModalForm();
+
   const router = useRouter();
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
+
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
+
   const topRef = useRef(null);
   const [show, setShow] = useState(false);
 

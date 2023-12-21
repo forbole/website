@@ -43,4 +43,5 @@ const FormInput = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
 export default FormInput;

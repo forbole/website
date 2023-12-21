@@ -15,6 +15,7 @@ import * as styles from "./index.module.scss";
 const SocialMedia = () => {
   const socialKeys = ["github", "twitter", "telegram", "linkedIn", "Instagram"];
   const { locale } = useRouter();
+
   const socialMediaInfo = socialKeys.map((keyParam: string) => {
     let key = keyParam;
 
@@ -28,9 +29,11 @@ const SocialMedia = () => {
   });
 
   const { t } = useTranslation("common");
+
   const [inputs, setInputs] = useState({
     email: "",
   });
+
   const [canSubmit, setCanSubmit] = useState(false);
   const [isLoading, setLoading] = useState<boolean>(false);
 

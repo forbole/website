@@ -25,6 +25,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
 
   const [limitUpper, setLimitUpper] = useState(15);
   const [lastView, setLastView] = useState(0);
+
   const postRef = useCallback(
     (node: any) => {
       if (node && isMobile && lastView !== 0) {
@@ -68,6 +69,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
       breakpoint: { max: 464, min: 0 },
     },
   };
+
   const paginationStyle = {
     sx: {
       "& .MuiPaginationItem-root": {

@@ -59,6 +59,7 @@ const Products = () => {
     ],
     [t],
   );
+
   const businesses = useMemo(
     () => [
       {
@@ -118,9 +119,11 @@ const Products = () => {
   );
 
   const theme = useTheme();
+
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
+
   const [v1, setV1] = useState(0);
   const [v2, setV2] = useState(0);
   const topRef = useRef(null);

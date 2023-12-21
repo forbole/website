@@ -43,6 +43,7 @@ const MobileNavMenu = () => {
     "zh-HK": t("zh-HK"),
     "zh-CN": t("zh-CN"),
   };
+
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openShowCompany, setOpenShowCompany] = useState(false);
   const [openShowProducts, setOpenShowProducts] = useState(false);

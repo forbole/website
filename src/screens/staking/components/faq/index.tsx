@@ -23,6 +23,7 @@ const FAQ = () => {
             <Box className={styles.container}>
               {faq.map((x, i) => {
                 if (i > middleIndex) return null;
+
                 const {
                   question,
                   para1,
@@ -60,6 +61,7 @@ const FAQ = () => {
             <Box className={styles.faqItem}>
               {faq.map((x, i) => {
                 if (i <= middleIndex) return null;
+
                 const {
                   question,
                   para1,

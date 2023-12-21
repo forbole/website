@@ -33,6 +33,7 @@ export async function getServerSideProps(context: { query: any }) {
         limit: 10,
       }),
     ]);
+
     formattedSidePosts = sidePosts.map((post: any) => Post.fromJson(post, {}));
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));
     meta = posts?.meta;

@@ -45,11 +45,13 @@ export const getStaticProps: GetStaticProps<
     if (!params) throw new Error("No params");
     const { title } = params;
     const post = await getSinglePost(title);
+
     const [sidePosts] = await Promise.all([
       getNetworkPosts({
         limit: 2,
       }),
     ]);
+
     const formattedPost = Post.fromJson(post);
 
     formattedSidePosts = sidePosts.map((sidePost: any) =>

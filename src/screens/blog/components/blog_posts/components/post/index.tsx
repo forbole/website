@@ -16,8 +16,10 @@ const Post = (props: any) => {
   const { isDesktop, isMobile } = useWindowDimensions();
   const { post, main = false, refProp } = props;
   const { featureImage, title, excerpt, publishedAt, slug, author } = post;
+
   const cmsLoader = ({ src, width, quality }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
+
   const time = useHKT(publishedAt);
 
   return (

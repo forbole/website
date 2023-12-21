@@ -26,6 +26,7 @@ type Props = {
   canSubmit: boolean;
   isLoading: boolean;
 };
+
 const MenuProps = {
   PaperProps: {
     style: {},
@@ -45,6 +46,7 @@ const MenuProps = {
     },
   },
 };
+
 const ContactFrom = forwardRef<HTMLDivElement, Props>(
   ({ inputs, handleInputChange, handleSubmit, canSubmit, isLoading }, ref) => {
     const theme = useTheme();
@@ -208,4 +210,5 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
     );
   },
 );
+
 export default ContactFrom;

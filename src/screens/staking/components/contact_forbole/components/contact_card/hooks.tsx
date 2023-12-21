@@ -11,6 +11,7 @@ const useContactCard = () => {
     email: "",
     option: "",
   });
+
   const [canSubmit, setCanSubmit] = useState(false);
   const { sanitize } = DOMPurify;
   const { t } = useTranslation("staking");

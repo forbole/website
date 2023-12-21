@@ -11,6 +11,7 @@ const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const HowItWorks = () => {
   const { t } = useTranslation("staking");
+
   const howTos = useMemo(
     () => [
       {

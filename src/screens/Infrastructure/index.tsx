@@ -43,6 +43,7 @@ const Infrastructure = () => {
   });
 
   const router = useRouter();
+
   const personList = useMemo(() => {
     if (onlyLargeScreen) {
       return [

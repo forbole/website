@@ -18,9 +18,11 @@ export const useCalculateRewardsHook = () => {
     value: "",
     display: "",
   });
+
   const initialState = getNetworkInfo("cosmos");
   const [selectedToken, setSelectedToken] = useState<any>(initialState);
   const [monthlyPeriods, setMonthlyPeriods] = useState<number>(0);
+
   const [totalEarnings, setTotalEarnings] = useState({
     dailyEarnings: {
       tokens: "0",
@@ -54,6 +56,7 @@ export const useCalculateRewardsHook = () => {
         eachCosmosInflationRate,
         eachCosmosTokenSupply,
       } = rewardsQueryData;
+
       const findFn = (data: any) =>
         selectedTokenGraphql === data.metric.instance;
 
@@ -65,6 +68,7 @@ export const useCalculateRewardsHook = () => {
       const bondedToken = bondedTokenItem
         ? parseFloat(bondedTokenItem.bondedToken)
         : 0;
+
       const totalSupply = supplyItem ? parseFloat(supplyItem.supply) : 0;
 
       return {
@@ -167,6 +171,7 @@ export const useCalculateRewardsHook = () => {
     const { data: marketPriceJson } = marketPriceApi;
 
     const marketPrice = networkFunction.marketPrice(marketPriceJson);
+
     // ===============================
     // raw calcs
     // ===============================
@@ -174,6 +179,7 @@ export const useCalculateRewardsHook = () => {
       // eslint-disable-next-line no-unsafe-optional-chaining
       tokens?.value * (inflation / stakingRatio) * (1 - commissionRate),
     );
+
     const monthlyRewards = (annualRewards / 12) * monthlyPeriods;
     const dailyRewards = monthlyRewards / 30;
 
@@ -255,6 +261,7 @@ export const useCalculateRewardsHook = () => {
       const rawNumber = value.replace(/[^\d.]/g, "")
         ? Number(value.replace(/[^\d.]/g, ""))
         : "";
+
       const convertedNumber = convertWithDecimal(rawNumber);
 
       setTokens({

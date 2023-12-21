@@ -26,6 +26,7 @@ import * as styles from "./index.module.scss";
 
 const Contact = () => {
   const { t } = useTranslation("contact");
+
   const {
     inputs,
     handleInputChange,
@@ -37,6 +38,7 @@ const Contact = () => {
     setSuccess,
     isLoading,
   } = useContactForm();
+
   const theme = useTheme();
   const router = useRouter();
 

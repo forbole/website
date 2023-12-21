@@ -33,6 +33,7 @@ const Home: FC<Props> = ({ pages }) => {
   const bottomRef = useRef(null);
   const router = useRouter();
   const { isMobile, isTablet } = useWindowDimensions();
+
   const filteredPages = pages.reduce((pageList: Page[], current) => {
     // filter out forbole academy page
     if (
