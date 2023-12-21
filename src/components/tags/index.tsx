@@ -4,8 +4,13 @@ import Link from "next/link";
 
 import * as styles from "./index.module.scss";
 
+type BaseTag = {
+  name: string;
+  slug: string;
+};
+
 interface TagsProps {
-  tags: any[];
+  tags: BaseTag[];
   details?: boolean;
   noPadding?: boolean;
 }
@@ -14,6 +19,8 @@ const Tags = (props: TagsProps) => {
   const { t } = useTranslation("blog");
   const theme = useTheme();
   const { tags, details, noPadding } = props;
+
+  if (!tags?.length) return null;
 
   return (
     <Box
@@ -27,7 +34,7 @@ const Tags = (props: TagsProps) => {
         {t("tags")}
       </Typography>
       <Box className={styles.tag} component="ul">
-        {tags.map((tag: any) => (
+        {tags.map((tag) => (
           <Box className={styles.list} component="li" key={tag.slug}>
             <Link href={`/tag/${tag.slug}`}>{tag.name}</Link>
           </Box>

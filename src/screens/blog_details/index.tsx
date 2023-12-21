@@ -14,10 +14,15 @@ import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.p
 import { Author, SocialMedia } from "./components";
 import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
+import type { PostDetail } from "./types";
 
 // https://schema.org/TechArticle
 
-const BlogDetails = ({ post }: any) => {
+type Props = {
+  post: PostDetail;
+};
+
+const BlogDetails = ({ post }: Props) => {
   const theme = useTheme();
   const topRef = useRef(null);
   const { locale } = useRouter();
@@ -25,14 +30,14 @@ const BlogDetails = ({ post }: any) => {
   if (!post) return null;
 
   const {
-    title,
-    tags,
     excerpt,
     featureImage,
     featureImageCaption,
-    slug,
     primaryAuthor: author,
     publishedAt,
+    slug,
+    tags,
+    title,
   } = post;
 
   const manyTagsStyle = tags.length > 50 ? styles.manyTags : "";
@@ -43,7 +48,7 @@ const BlogDetails = ({ post }: any) => {
       description={excerpt}
       footer
       image={featureImage}
-      keywords={tags.map((x: { name: any }) => x.name ?? "")}
+      keywords={tags?.map((x: { name: any }) => x.name ?? "") || []}
       skipLocale
       title={post.title}
       twitterImage={featureImage}
@@ -63,10 +68,12 @@ const BlogDetails = ({ post }: any) => {
               "image": [featureImage],
               "inLanguage": getLanguageFromLocale(locale),
               "datePublished": publishedAt,
-              "keywords": tags
-                .map((x: { name: any }) => x.name ?? "")
-                .filter(Boolean)
-                .join(", "),
+              ...(!!tags?.length && {
+                keywords: tags
+                  .map((x: { name: any }) => x.name ?? "")
+                  .filter(Boolean)
+                  .join(", "),
+              }),
               "author": [
                 {
                   "@type": "Person",
@@ -114,7 +121,7 @@ const BlogDetails = ({ post }: any) => {
             <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
           </ContentCSS>
         </Box>
-        <Tags tags={tags} />
+        {!!tags?.length && <Tags tags={tags} />}
       </MobileCSS>
       <LaptopCSS>
         <Box className={styles.wrapper} ref={topRef}>
@@ -163,11 +170,13 @@ const BlogDetails = ({ post }: any) => {
             <ContentCSS theme={theme}>
               <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
             </ContentCSS>
-            <Box display="flex" justifyContent="center">
-              <Box className={[styles.tags, manyTagsStyle].join(" ")}>
-                <Tags details noPadding tags={tags} />
+            {!!tags?.length && (
+              <Box display="flex" justifyContent="center">
+                <Box className={[styles.tags, manyTagsStyle].join(" ")}>
+                  <Tags details noPadding tags={tags} />
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
           <Box className={[styles.scrollToTop, manyTagsStyle].join(" ")}>
             <ScrollToTop topRef={topRef} />
