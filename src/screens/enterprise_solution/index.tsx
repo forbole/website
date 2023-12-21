@@ -33,6 +33,7 @@ const EnterpriseSolution = () => {
     noSsr: true,
   });
   const { t } = useTranslation("enterprise_solution");
+
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();
     window.scrollTo({
@@ -129,4 +130,5 @@ const EnterpriseSolution = () => {
     </Layout>
   );
 };
+
 export default EnterpriseSolution;

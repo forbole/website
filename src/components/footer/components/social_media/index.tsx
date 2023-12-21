@@ -17,6 +17,7 @@ const SocialMedia = () => {
   const { locale } = useRouter();
   const socialMediaInfo = socialKeys.map((keyParam: string) => {
     let key = keyParam;
+
     if (key === "Instagram") {
       if (locale !== "en") {
         key += "_zh";
@@ -69,6 +70,7 @@ const SocialMedia = () => {
               email: "",
             });
           }
+
           toast.success(t("thank") as ToastContent<unknown>);
           setLoading(false);
         })

@@ -36,12 +36,14 @@ export const useWindowDimensions = () => {
 
   useEffect(() => {
     const width = windowDimensions?.width ?? 0;
+
     // is mobile
     if (width < theme?.breakpoints?.values?.tablet) {
       setIsMobile(true);
     } else {
       setIsMobile(false);
     }
+
     // is tablet
     if (
       width >= theme?.breakpoints?.values?.tablet &&

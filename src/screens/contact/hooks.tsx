@@ -41,15 +41,19 @@ const useContactForm = () => {
   }, [inputs, canSubmit]);
   const get_started = useMemo(() => {
     const str = [];
+
     if (inputs.collaboration) {
       str.push("Collaboration");
     }
+
     if (inputs.enterprise_solution) {
       str.push("Enterprise Solution");
     }
+
     if (inputs.careers) {
       str.push("Careers");
     }
+
     if (inputs.other) {
       str.push("Other");
     }
@@ -61,6 +65,7 @@ const useContactForm = () => {
     inputs.careers,
     inputs.other,
   ]);
+
   const handleSubmit = (event: any) => {
     if (event) {
       event.preventDefault();
@@ -101,6 +106,7 @@ const useContactForm = () => {
               specify: "",
             });
           }
+
           setSuccess(true);
           setLoading(false);
         })
@@ -120,6 +126,7 @@ const useContactForm = () => {
       [name]: value,
     }));
   };
+
   const handleCheckedChange = (event: any) => {
     const { name, checked } = event.target;
     setInputs((input) => ({

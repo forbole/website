@@ -39,6 +39,7 @@ export const getStaticProps: GetStaticProps<
   { title: string }
 > = async (context) => {
   let formattedSidePosts = [];
+
   try {
     const { params } = context;
     if (!params) throw new Error("No params");
@@ -53,6 +54,7 @@ export const getStaticProps: GetStaticProps<
     formattedSidePosts = sidePosts.map((sidePost: any) =>
       Post.fromJson(sidePost, {}),
     );
+
     if (post) {
       post.tags = removeInternalTags(post.tags);
 

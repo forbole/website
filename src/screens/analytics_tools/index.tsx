@@ -114,4 +114,5 @@ const AnalyticsTools = () => {
     </Layout>
   );
 };
+
 export default AnalyticsTools;

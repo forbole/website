@@ -129,6 +129,7 @@ const Products = () => {
   const PanelRef1 = useRef(null);
   const PanelRef2 = useRef(null);
   const router = useRouter();
+
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();
     window.scrollTo({
@@ -141,6 +142,7 @@ const Products = () => {
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setV1(newValue);
   };
+
   const handleChange2 = (_event: React.SyntheticEvent, newValue: number) => {
     setV2(newValue);
   };

@@ -29,12 +29,15 @@ const MobileNavMenu = () => {
   const { width } = windowDimensions;
   const { anchorEl, setAnchorEl } = useContext(anchorElContext);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const langToDisplay = {
     "en": t("en"),
     "zh-HK": t("zh-HK"),
@@ -43,6 +46,7 @@ const MobileNavMenu = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openShowCompany, setOpenShowCompany] = useState(false);
   const [openShowProducts, setOpenShowProducts] = useState(false);
+
   const handleDropdownClick = () => {
     setOpenDrawer((prevState) => !prevState);
     setOpenShowCompany(() => false);
@@ -54,6 +58,7 @@ const MobileNavMenu = () => {
     setOpenShowCompany((prevState) => !prevState);
     setOpenShowProducts(() => false);
   };
+
   const handlerCLickShowProducts = () => {
     setOpenDrawer(() => false);
     setOpenShowCompany(() => false);

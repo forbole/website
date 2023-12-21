@@ -14,10 +14,12 @@ export async function getServerSideProps(context: { query: any }) {
   let formattedTags: Tag[] = [];
   let meta = {};
   let error = false;
+
   try {
     const { query } = context;
     const fetchQuery: any = {};
     let posts: any = [];
+
     if (query.page) {
       fetchQuery.page = query.page;
       posts = await getPosts(fetchQuery);

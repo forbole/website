@@ -55,6 +55,7 @@ const useContactForm = () => {
               help: "",
             });
           }
+
           setSuccess(true);
           setLoading(false);
         })
@@ -74,6 +75,7 @@ const useContactForm = () => {
       [name]: value,
     }));
   };
+
   const handleCheckedChange = (event: any) => {
     const { name, value } = event.target;
     setInputs((input) => ({

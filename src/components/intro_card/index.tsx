@@ -14,6 +14,7 @@ type Props = {
   btnClick?: () => void;
   disabled?: boolean;
 };
+
 const IntroCard = (props: Props) => {
   const {
     title,

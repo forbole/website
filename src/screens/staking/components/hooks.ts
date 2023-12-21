@@ -11,6 +11,7 @@ export const useCounter = (targetValue: unknown) => {
     if (intervalId.current) {
       window.clearInterval(intervalId.current);
     }
+
     intervalId.current = null;
   };
 
@@ -39,6 +40,7 @@ export const useCounter = (targetValue: unknown) => {
                 return prev;
 
               const newValue = prev + divisor.current;
+
               if (newValue >= targetValue) {
                 clearInterval();
 

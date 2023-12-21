@@ -219,6 +219,7 @@ export const useCalculateRewardsHook = () => {
 
   const handleChange = (e: any) => {
     const value: any = pathOr(0, ["target", "value"], e);
+
     if (!value) {
       setTokens({
         value: "",
@@ -227,6 +228,7 @@ export const useCalculateRewardsHook = () => {
 
       return;
     }
+
     // edge cases setup
     const exceptions = [".", "0"];
     let occurance = 0;
@@ -241,6 +243,7 @@ export const useCalculateRewardsHook = () => {
     if (occurance > 1 && value[value.length - 1] === ".") {
       return;
     }
+
     // handles edge cases
     if (exceptions.includes(value[value.length - 1])) {
       setTokens({

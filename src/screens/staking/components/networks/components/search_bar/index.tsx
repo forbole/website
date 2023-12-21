@@ -154,11 +154,13 @@ const SearchBar = ({ sortedNetworks }: Props) => {
   const [focused, setFocused] = useState(false);
   const handleFocus: FocusEventHandler = useCallback((event) => {
     setFocused(true);
+
     if (window.innerWidth < 768) {
       window.addEventListener("scroll", scrollLock);
 
       return;
     }
+
     const headerOffset = 100;
     const elementPosition = event.target.getBoundingClientRect().top;
     const top = elementPosition + window.pageYOffset - headerOffset;

@@ -46,9 +46,11 @@ const LayoutVal = ({
   let metaTwitterImage = twitterImage ?? ogImage;
   const baseKeywords = ["Forbole", "blockchain", "social network"];
   const formattedKeyworks = uniq(concat(keywords, baseKeywords));
+
   if (!isURL(ogImage)) {
     ogImage = `${url}${ogImage}`;
   }
+
   if (!isURL(metaTwitterImage)) {
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }

@@ -125,4 +125,5 @@ const StakingService = () => {
     </AppApolloProvider>
   );
 };
+
 export default StakingService;

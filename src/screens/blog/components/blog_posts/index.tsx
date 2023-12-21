@@ -42,6 +42,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
 
   const seeMorePages = (_e: any, { limit, blogs }: any) => {
     const lastPost = blogs.length;
+
     if (limit + 15 >= totalPosts) {
       setLimitUpper(totalPosts);
     } else {
@@ -54,6 +55,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
       query: { limit },
     });
   };
+
   const responsive: any = {
     desktop: {
       breakpoint: { max: 3000, min: 1100 },

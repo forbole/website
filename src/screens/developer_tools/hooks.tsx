@@ -41,15 +41,19 @@ const useTalkModalForm = () => {
   }, [inputs, canSubmit]);
   const get_started = useMemo(() => {
     const str = [];
+
     if (inputs["Data API"]) {
       str.push("Data API");
     }
+
     if (inputs.GraphQL) {
       str.push("GraphQL");
     }
+
     if (inputs.Other) {
       str.push("Other");
     }
+
     if (inputs["RPC Endpoints"]) {
       str.push("RPC Endpoints");
     }
@@ -96,6 +100,7 @@ const useTalkModalForm = () => {
               "RPC Endpoints": false,
             });
           }
+
           setSuccess(true);
           setLoading(false);
         })
@@ -115,6 +120,7 @@ const useTalkModalForm = () => {
       [name]: value,
     }));
   };
+
   const handleCheckedChange = (event: any) => {
     const { name, checked } = event.target;
     setInputs((input) => ({

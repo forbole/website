@@ -13,15 +13,19 @@ export async function getServerSideProps(context: { query: any }) {
   let formattedTags: Tag[] = [];
   let meta = {};
   let error = false;
+
   try {
     const { query } = context;
     const fetchQuery: any = {};
+
     if (query.page) {
       fetchQuery.page = query.page;
     }
+
     if (query.tag) {
       fetchQuery.tag = query.tag;
     }
+
     const [tags, posts, sidePosts] = await Promise.all([
       getTags(),
       getPostsByTag(fetchQuery),

@@ -21,6 +21,7 @@ const TermsAndConditions = () => {
     e.preventDefault();
     window.scrollTo(0, ref.current.offsetTop - 100);
   };
+
   useEffect(() => {
     document.querySelectorAll(".t1").forEach((d) => {
       if (!d.parentElement) return;

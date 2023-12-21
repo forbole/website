@@ -3,6 +3,7 @@ import { ghostApi as api } from "../index";
 const jsdom = require("jsdom");
 
 const { JSDOM } = jsdom;
+
 const parseMd = (html = "") => {
   const dom = new JSDOM(html);
   const { window } = dom;
@@ -10,6 +11,7 @@ const parseMd = (html = "") => {
   // return window
   return window;
 };
+
 /** Get pages by tag */
 export const getPageByTag = async (tag: string) => {
   try {

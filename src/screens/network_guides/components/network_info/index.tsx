@@ -58,6 +58,7 @@ const NetworkInfo = ({ post }: any) => {
     if (tags.length <= 1) return null;
 
     const mapping = mappings[tags[1].slug as string];
+
     if (mapping) {
       return getNetworkInfo(mapping);
     }
@@ -227,4 +228,5 @@ const NetworkInfo = ({ post }: any) => {
     </Box>
   );
 };
+
 export default NetworkInfo;

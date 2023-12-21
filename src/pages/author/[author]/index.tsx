@@ -18,12 +18,15 @@ export async function getServerSideProps(context: { query: any }) {
   try {
     const { query } = context;
     const fetchQuery: any = {};
+
     if (query.page) {
       fetchQuery.page = query.page;
     }
+
     if (query.author) {
       fetchQuery.author = query.author;
     }
+
     const [tags, posts, authorDetails, sidePosts] = await Promise.all([
       getTags(),
       getPostsByAuthor(fetchQuery),

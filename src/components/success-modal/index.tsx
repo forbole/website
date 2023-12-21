@@ -138,6 +138,7 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
     );
   },
 );
+
 export default function SuccessModal({
   fixed,
   close,

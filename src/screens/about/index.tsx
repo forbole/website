@@ -23,6 +23,7 @@ import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
 import * as styles from "./index.module.scss";
 
 SwiperCore.use([Navigation, Autoplay]);
+
 const About = () => {
   const { t } = useTranslation("about");
   const theme = useTheme();

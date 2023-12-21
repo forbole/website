@@ -28,6 +28,7 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
 
   const scrollToRef = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
+
     if (stakeNowRef !== undefined && stakeNowRef.current !== null) {
       window.scrollTo({
         left: 0,

@@ -8,6 +8,7 @@ export const useNavHook = () => {
     if (window.pageYOffset === 0 && displayBackground) {
       setDisplayBackground(false);
     }
+
     if (window.pageYOffset > 0 && !displayBackground) {
       setDisplayBackground(true);
     }
@@ -17,6 +18,7 @@ export const useNavHook = () => {
     if (currPos.y === 0 && displayBackground) {
       setDisplayBackground(false);
     }
+
     if (currPos.y < 0 && !displayBackground) {
       setDisplayBackground(true);
     }

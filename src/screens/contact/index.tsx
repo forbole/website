@@ -48,8 +48,10 @@ const Contact = () => {
   ] as const;
 
   const inputRef = useRef<HTMLInputElement>(null);
+
   const handleToggle = (e: any) => {
     const { name, checked } = e.target;
+
     if (name === "other") {
       if (checked) {
         setTimeout(() => {
@@ -59,6 +61,7 @@ const Contact = () => {
         handleClear("specify");
       }
     }
+
     handleCheckedChange(e);
   };
 
