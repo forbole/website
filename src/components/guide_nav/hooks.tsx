@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 export const useNavHook = () => {
   const [displayBackground, setDisplayBackground] = useState(false);
+
   useEffect(() => {
     if (window.pageYOffset === 0 && displayBackground) {
       setDisplayBackground(false);

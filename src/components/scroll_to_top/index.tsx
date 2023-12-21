@@ -12,6 +12,7 @@ const ScrollToTop = ({ topRef }: TopProps) => {
   const scrollToRef = useCallback(
     (e: any) => {
       e.preventDefault();
+
       window.scrollTo({
         left: 0,
         top: topRef?.current.offsetTop - 100,

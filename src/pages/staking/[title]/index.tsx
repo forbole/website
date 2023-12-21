@@ -51,6 +51,7 @@ export const getStaticProps: GetStaticProps<
       }),
     ]);
     const formattedPost = Post.fromJson(post);
+
     formattedSidePosts = sidePosts.map((sidePost: any) =>
       Post.fromJson(sidePost, {}),
     );

@@ -39,6 +39,7 @@ const useTalkModalForm = () => {
       setCanSubmit(false);
     }
   }, [inputs, canSubmit]);
+
   const get_started = useMemo(() => {
     const str = [];
 
@@ -65,6 +66,7 @@ const useTalkModalForm = () => {
     if (event) {
       event.preventDefault();
       setLoading(true);
+
       axios
         .post("/api/contact", {
           from: inputs.email,
@@ -115,6 +117,7 @@ const useTalkModalForm = () => {
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: value,
@@ -123,6 +126,7 @@ const useTalkModalForm = () => {
 
   const handleCheckedChange = (event: any) => {
     const { name, checked } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: checked,

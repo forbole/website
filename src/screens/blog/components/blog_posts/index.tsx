@@ -50,6 +50,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
     }
 
     setLastView(lastPost);
+
     router.push({
       pathname: router.pathname,
       query: { limit },

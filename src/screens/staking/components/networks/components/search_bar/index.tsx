@@ -164,6 +164,7 @@ const SearchBar = ({ sortedNetworks }: Props) => {
     const headerOffset = 100;
     const elementPosition = event.target.getBoundingClientRect().top;
     const top = elementPosition + window.pageYOffset - headerOffset;
+
     window.scrollTo({
       top,
       behavior: "smooth",

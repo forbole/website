@@ -73,9 +73,11 @@ const NetworkInfo = ({ post }: any) => {
   const copyText = useCallback(
     (e: MouseEvent<HTMLElement>) => {
       e.stopPropagation();
+
       navigator.clipboard.writeText(
         networkData ? networkData.address || "" : "coming soon",
       );
+
       setIsCopySuccess(true);
     },
     [networkData],

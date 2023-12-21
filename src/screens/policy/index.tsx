@@ -19,6 +19,7 @@ const Policy = () => {
   const theme = useTheme();
 
   const topRef = useRef(null);
+
   useEffect(() => {
     // eslint-disable-next-line no-undef
     (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(

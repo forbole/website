@@ -233,6 +233,7 @@ export const useCalculateRewardsHook = () => {
     const exceptions = [".", "0"];
     let occurance = 0;
     value.toString();
+
     value.split("").forEach((x: any) => {
       if (x === ".") {
         occurance += 1;
@@ -255,6 +256,7 @@ export const useCalculateRewardsHook = () => {
         ? Number(value.replace(/[^\d.]/g, ""))
         : "";
       const convertedNumber = convertWithDecimal(rawNumber);
+
       setTokens({
         value: rawNumber,
         display: convertedNumber,

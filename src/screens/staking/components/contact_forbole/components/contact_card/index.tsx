@@ -144,6 +144,7 @@ const ContactCard = () => {
                 }}
                 onChange={(e) => {
                   const { value } = e.target;
+
                   setInputs((input) => ({
                     ...input,
                     option: value,

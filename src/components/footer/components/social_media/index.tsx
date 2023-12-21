@@ -44,6 +44,7 @@ const SocialMedia = () => {
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: value,
@@ -60,6 +61,7 @@ const SocialMedia = () => {
     if (event) {
       event.preventDefault();
       setLoading(true);
+
       axios
         .post("/api/subscribe", {
           inputs,

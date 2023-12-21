@@ -39,6 +39,7 @@ const useContactForm = () => {
       setCanSubmit(false);
     }
   }, [inputs, canSubmit]);
+
   const get_started = useMemo(() => {
     const str = [];
 
@@ -70,6 +71,7 @@ const useContactForm = () => {
     if (event) {
       event.preventDefault();
       setLoading(true);
+
       axios
         .post("/api/contact", {
           from: inputs.email,
@@ -121,6 +123,7 @@ const useContactForm = () => {
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: value,
@@ -129,6 +132,7 @@ const useContactForm = () => {
 
   const handleCheckedChange = (event: any) => {
     const { name, checked } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: checked,

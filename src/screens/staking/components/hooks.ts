@@ -27,11 +27,14 @@ export const useCounter = (targetValue: unknown) => {
         clearInterval();
 
         let pending = false;
+
         intervalId.current = window.setInterval(() => {
           if (pending) return;
           pending = true;
+
           window.requestAnimationFrame(() => {
             pending = false;
+
             setCounterValue((prev: unknown) => {
               if (
                 typeof prev !== "number" ||

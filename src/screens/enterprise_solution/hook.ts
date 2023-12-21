@@ -18,6 +18,7 @@ const useContactForm = () => {
   const { t } = useTranslation("contact");
   const [success, setSuccess] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     if (isEmail(inputs.email) && inputs.name && inputs.help) {
       setCanSubmit(true);
@@ -30,6 +31,7 @@ const useContactForm = () => {
     if (event) {
       event.preventDefault();
       setLoading(true);
+
       axios
         .post("/api/contact", {
           from: inputs.email,
@@ -70,6 +72,7 @@ const useContactForm = () => {
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: value,
@@ -78,6 +81,7 @@ const useContactForm = () => {
 
   const handleCheckedChange = (event: any) => {
     const { name, value } = event.target;
+
     setInputs((input) => ({
       ...input,
       [name]: value,
