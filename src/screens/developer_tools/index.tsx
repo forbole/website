@@ -81,6 +81,7 @@ const DeveloperTools = () => {
           <Grid container spacing={theme.spacing(2)}>
             <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
+                imageAlt="RPC service"
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_3@2x.png")
@@ -92,6 +93,7 @@ const DeveloperTools = () => {
             <Grid className={styles.card} item laptop={4} mobile={12}>
               <span className={styles.label}>{t("common:coming_soon")}</span>
               <IntroPanel
+                imageAlt="GraphQL service"
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_1@2x.png")
@@ -102,6 +104,7 @@ const DeveloperTools = () => {
             </Grid>
             <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
+                imageAlt="Data API service"
                 imageHref={
                   !isMobile
                     ? require("/public/developer_tools/desk_productcard_item_2@2x.png")

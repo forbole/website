@@ -23,7 +23,7 @@ const ScrollToTop = ({ topRef }: TopProps) => {
 
   return (
     <Box className={styles.wrapper}>
-      <TopIcon onClick={scrollToRef} />
+      <TopIcon onClick={scrollToRef} role="button" />
     </Box>
   );
 };
