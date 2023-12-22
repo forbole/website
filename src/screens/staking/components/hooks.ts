@@ -30,6 +30,7 @@ export const useCounter = (targetValue: unknown) => {
 
         intervalId.current = window.setInterval(() => {
           if (pending) return;
+
           pending = true;
 
           window.requestAnimationFrame(() => {

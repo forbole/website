@@ -11,8 +11,8 @@ import * as styles from "./index.module.scss";
 
 const TagTitlePosts = (props: any) => {
   const { post, sidePosts = [], tags, meta, error } = props;
-
   const { t } = useTranslation("blog");
+
   useBlogHook(error, t);
 
   return (

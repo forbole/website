@@ -18,6 +18,7 @@ export async function getServerSideProps(context: { query: any }) {
   try {
     const { query } = context;
     const fetchQuery: any = {};
+
     let posts: any = [];
 
     if (query.page) {

@@ -33,30 +33,39 @@ const defaultFunctions = (converter: any) => ({
 });
 
 const cosmos = clone(defaultFunctions(uAtomToAtom));
+
 cosmos.gecko = "https://api.coingecko.com/api/v3/coins/cosmos";
 
 const terra = clone(defaultFunctions(uLunaToLuna));
+
 terra.gecko = "https://api.coingecko.com/api/v3/coins/terra-luna";
 
 const kava = clone(defaultFunctions(uKavaToKava));
+
 kava.gecko = "https://api.coingecko.com/api/v3/coins/kava";
 
 const akash = clone(defaultFunctions(uAktToAkash));
+
 akash.gecko = "https://api.coingecko.com/api/v3/coins/akash-network";
 
 const band = clone(defaultFunctions(uBandToBand));
+
 band.gecko = "https://api.coingecko.com/api/v3/coins/band-protocol";
 
 const iov = clone(defaultFunctions(uIovToIov));
+
 iov.gecko = "https://api.coingecko.com/api/v3/coins/starname";
 
 const likecoin = clone(defaultFunctions(nanoLikeToLike));
+
 likecoin.gecko = "https://api.coingecko.com/api/v3/coins/likecoin";
 
 const vsys = clone(defaultFunctions(uBandToBand));
+
 vsys.gecko = "https://api.coingecko.com/api/v3/coins/v-systems";
 
 const emoney = clone(defaultFunctions(uBandToBand));
+
 emoney.gecko = "https://api.coingecko.com/api/v3/coins/e-money";
 
 const elrond = clone(defaultFunctions(uEGLDToEGLD));

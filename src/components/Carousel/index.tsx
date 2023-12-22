@@ -37,6 +37,7 @@ type CarouselProps = {
 
 const Carousel = ({ personList }: CarouselProps) => {
   let usedList: PersonInfo[] | undefined = personList;
+
   const { t } = useTranslation("common");
 
   if (!personList) {

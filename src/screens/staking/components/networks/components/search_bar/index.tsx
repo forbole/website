@@ -101,6 +101,7 @@ function renderOption(props: HTMLAttributes<HTMLLIElement>, option: unknown) {
 function handleChange(_event: unknown, value: unknown) {
   if (value) {
     const { network } = value as { network: Network };
+
     handleNetworkClick(network);
   }
 }
