@@ -11,10 +11,10 @@ import useHKT from "@src/hooks/useHKT";
 
 import * as styles from "./index.module.scss";
 
-const Post = (props: any) => {
+const Post = ({ post, main = false, refProp }: any) => {
   const { t } = useTranslation("blog");
   const { isDesktop, isMobile } = useWindowDimensions();
-  const { post, main = false, refProp } = props;
+
   const { featureImage, title, excerpt, publishedAt, slug, author } = post;
 
   const cmsLoader = ({ src, width, quality }: any) =>

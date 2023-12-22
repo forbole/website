@@ -25,7 +25,9 @@ const Policy = () => {
     (document.querySelectorAll(".t1") as NodeListOf<HTMLElement>).forEach(
       (d) => {
         if (!d.parentElement) return;
+
         const h = d.parentElement.offsetHeight - 1;
+
         // eslint-disable-next-line no-param-reassign
         d.style.height = `${h}px`;
       },

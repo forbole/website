@@ -8,15 +8,14 @@ import { useRef } from "react";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Tags from "@src/components/tags";
-import { getLanguageFromLocale } from "@src/utils/i18next";
+import type { PostDetail } from "@src/utils/ghost";
+import { getBlogPostSchema } from "@src/utils/ghost";
 
 import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.png";
-import { Author, SocialMedia } from "./components";
+import Author from "./components/author";
+import SocialMedia from "./components/social_media";
 import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
-import type { PostDetail } from "./types";
-
-// https://schema.org/TechArticle
 
 type Props = {
   post: PostDetail;
@@ -29,16 +28,8 @@ const BlogDetails = ({ post }: Props) => {
 
   if (!post) return null;
 
-  const {
-    excerpt,
-    featureImage,
-    featureImageCaption,
-    primaryAuthor: author,
-    publishedAt,
-    slug,
-    tags,
-    title,
-  } = post;
+  const { excerpt, featureImage, featureImageCaption, slug, tags, title } =
+    post;
 
   const manyTagsStyle = tags.length > 50 ? styles.manyTags : "";
 
@@ -60,30 +51,7 @@ const BlogDetails = ({ post }: Props) => {
         )}
         <script
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "TechArticle",
-              "abstract": excerpt,
-              "headline": title,
-              "image": [featureImage],
-              "inLanguage": getLanguageFromLocale(locale),
-              "datePublished": publishedAt,
-              ...(!!tags?.length && {
-                keywords: tags
-                  .map((x: { name: any }) => x.name ?? "")
-                  .filter(Boolean)
-                  .join(", "),
-              }),
-              "author": [
-                {
-                  "@type": "Person",
-                  "alternateName": author.slug,
-                  "image": author.profileImage,
-                  "name": author.name,
-                  "url": `https://www.forbole.com/author/${author.slug}`,
-                },
-              ],
-            }),
+            __html: getBlogPostSchema(false, post, locale),
           }}
           type="application/ld+json"
         />

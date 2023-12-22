@@ -15,10 +15,9 @@ interface TagsProps {
   noPadding?: boolean;
 }
 
-const Tags = (props: TagsProps) => {
+const Tags = ({ tags, details, noPadding }: TagsProps) => {
   const { t } = useTranslation("blog");
   const theme = useTheme();
-  const { tags, details, noPadding } = props;
 
   if (!tags?.length) return null;
 

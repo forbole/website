@@ -237,6 +237,7 @@ export const useCalculateRewardsHook = () => {
 
     // edge cases setup
     const exceptions = [".", "0"];
+
     let occurance = 0;
     value.toString();
 

@@ -5,14 +5,13 @@ import Layout from "@src/components/layout";
 import Tags from "@src/components/tags";
 
 import TitlePosts from "../blog/components/title_posts";
-import { TagPosts } from "./components";
+import TagPosts from "./components/tag_posts";
 import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
-const TagTitlePosts = (props: any) => {
-  const { post, sidePosts = [], tags, meta, error } = props;
-
+const TagTitlePosts = ({ post, sidePosts = [], tags, meta, error }: any) => {
   const { t } = useTranslation("blog");
+
   useBlogHook(error, t);
 
   return (

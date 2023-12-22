@@ -42,8 +42,10 @@ const LayoutVal = ({
   const { t } = useTranslation("staking");
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
+
   let ogImage = image ?? `${url}/static/icons/favicon-96x96.png`;
   let metaTwitterImage = twitterImage ?? ogImage;
+
   const baseKeywords = ["Forbole", "blockchain", "social network"];
   const formattedKeyworks = uniq(concat(keywords, baseKeywords));
 

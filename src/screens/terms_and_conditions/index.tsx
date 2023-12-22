@@ -25,14 +25,18 @@ const TermsAndConditions = () => {
   useEffect(() => {
     document.querySelectorAll(".t1").forEach((d) => {
       if (!d.parentElement) return;
+
       const h = d.parentElement.offsetHeight - 1;
+
       // eslint-disable-next-line no-param-reassign
       (d as HTMLElement).style.height = `${h}px`;
     });
 
     document.querySelectorAll(".t2").forEach((d) => {
       if (!d.parentElement) return;
+
       const h = d.parentElement.offsetHeight - 1;
+
       // eslint-disable-next-line no-param-reassign
       (d as HTMLElement).style.height = `${h}px`;
     });

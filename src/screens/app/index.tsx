@@ -19,9 +19,11 @@ interface MyAppProps extends AppProps {
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
-export default function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
+export default function MyApp({
+  Component,
+  emotionCache = clientSideEmotionCache,
+  pageProps,
+}: MyAppProps) {
   useEffect(() => {
     init({
       url: MATOMO_URL,
