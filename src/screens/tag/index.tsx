@@ -9,8 +9,7 @@ import { TagPosts } from "./components";
 import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
-const TagTitlePosts = (props: any) => {
-  const { post, sidePosts = [], tags, meta, error } = props;
+const TagTitlePosts = ({ post, sidePosts = [], tags, meta, error }: any) => {
   const { t } = useTranslation("blog");
 
   useBlogHook(error, t);

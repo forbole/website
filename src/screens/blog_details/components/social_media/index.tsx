@@ -5,8 +5,7 @@ import { Facebook, LinkedIn, Telegram, Twitter } from "@src/components/icons";
 
 import * as styles from "./index.module.scss";
 
-const SocialMedia = (props: any) => {
-  const { title = "Forbole " } = props;
+const SocialMedia = ({ title = "Forbole " }: any) => {
   const router = useRouter();
   const path = router.asPath;
   const shareUrl = `${process.env.NEXT_PUBLIC_URL}${path}`;

@@ -2,10 +2,9 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/legacy/image";
 
-const HowToCard = (props: any) => {
+const HowToCard = ({ id, image, title, desc }: any) => {
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
-  const { id, image, title, desc } = props;
 
   return (
     <Box

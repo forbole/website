@@ -16,9 +16,9 @@ type Props = {
   tags: any;
 };
 
-const AuthorTitlePosts = (props: Props) => {
+const AuthorTitlePosts = ({ post, tags, author, meta }: Props) => {
   const { t } = useTranslation("blog");
-  const { post, tags, author, meta } = props;
+
   const { featureImage, excerpt, error } = post;
 
   useBlogHook(error, t);

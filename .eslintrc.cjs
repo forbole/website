@@ -75,6 +75,11 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/no-var-requires": "off",
 
+    "react/destructuring-assignment": [
+      "error",
+      "always",
+      { destructureInSignature: "always" },
+    ],
     "react/function-component-definition": "off",
     "react/jsx-boolean-value": "error",
     "react/jsx-filename-extension": "off",

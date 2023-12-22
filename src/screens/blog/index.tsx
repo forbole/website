@@ -12,8 +12,13 @@ import TitlePosts from "./components/title_posts";
 import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
-const Blog = (props: any) => {
-  const { posts = [], meta = {}, tags = [], sidePosts = [], error } = props;
+const Blog = ({
+  posts = [],
+  meta = {},
+  tags = [],
+  sidePosts = [],
+  error,
+}: any) => {
   const { t } = useTranslation("blog");
   const topRef = useRef(null);
 
