@@ -24,6 +24,7 @@ export type PostDetail = {
 };
 
 // https://schema.org/TechArticle
+// https://schema.org/HowTo
 
 export const getBlogPostSchema = (
   isGuide: boolean,
@@ -33,37 +34,67 @@ export const getBlogPostSchema = (
   const {
     excerpt,
     featureImage,
-    primaryAuthor: author,
+    primaryAuthor,
     publishedAt,
+    slug,
     tags,
     title,
   } = post;
 
-  return JSON.stringify({
+  const author = {
+    "@type": "Person",
+    "alternateName": primaryAuthor.slug,
+    "image": primaryAuthor.profileImage,
+    "name": primaryAuthor.name,
+    "url": `https://www.forbole.com/author/${primaryAuthor.slug}`,
+  };
+
+  const keyworkdsObj = !!tags?.length && {
+    keywords: tags
+      .map((x: { name: any }) => x.name ?? "")
+      .filter(Boolean)
+      .join(", "),
+  };
+
+  const common = {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
-    ...(excerpt && { abstract: excerpt }),
-    "headline": title,
-    "image": [featureImage],
-    "inLanguage": getLanguageFromLocale(locale),
-    "datePublished": publishedAt,
+    "name": title,
+    "image": featureImage,
     "url": `https://www.forbole.com/${isGuide ? "staking" : "blog"}/${
       post.slug
     }`,
-    ...(!!tags?.length && {
-      keywords: tags
-        .map((x: { name: any }) => x.name ?? "")
-        .filter(Boolean)
-        .join(", "),
-    }),
-    "author": [
-      {
-        "@type": "Person",
-        "alternateName": author.slug,
-        "image": author.profileImage,
-        "name": author.name,
-        "url": `https://www.forbole.com/author/${author.slug}`,
-      },
-    ],
+  };
+
+  if (slug?.includes("-opening")) {
+    return JSON.stringify({
+      ...common,
+      "@type": "JobPosting",
+      "datePosted": publishedAt,
+      "industry": "Cryptocurrencies Validators and Blockchain Development",
+    });
+  }
+
+  if (slug?.includes("how-to")) {
+    return JSON.stringify({
+      ...common,
+      ...keyworkdsObj,
+      "@type": "HowTo",
+      "headline": title,
+      ...(excerpt && { abstract: excerpt }),
+      "inLanguage": getLanguageFromLocale(locale),
+      "datePublished": publishedAt,
+      author,
+    });
+  }
+
+  return JSON.stringify({
+    ...common,
+    ...keyworkdsObj,
+    "@type": "TechArticle",
+    "headline": title,
+    ...(excerpt && { abstract: excerpt }),
+    "inLanguage": getLanguageFromLocale(locale),
+    "datePublished": publishedAt,
+    author,
   });
 };
