@@ -5,7 +5,7 @@ import Layout from "@src/components/layout";
 import Tags from "@src/components/tags";
 
 import TitlePosts from "../blog/components/title_posts";
-import { TagPosts } from "./components";
+import TagPosts from "./components/tag_posts";
 import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
 

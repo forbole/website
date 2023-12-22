@@ -103,7 +103,6 @@ const AnalyticsTools = () => {
             </Grid>
           </Grid>
         </Stack>
-
         <Section
           desc={t("big_dipper")}
           title={t("customizable")}

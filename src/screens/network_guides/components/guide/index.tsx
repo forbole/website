@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import * as commonStyles from "@src/screens/staking/common.module.scss";
 import { type PostDetail, getBlogPostSchema } from "@src/utils/ghost";
 
-import { GuideDetails } from "./components";
+import GuideDetails from "./components/guide_details";
 import * as styles from "./index.module.scss";
 
 const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });

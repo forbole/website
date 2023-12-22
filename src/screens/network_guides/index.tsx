@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import LayoutVal from "@src/components/layout_val";
 import AppApolloProvider from "@src/utils/apollo";
 
-import { Guide, NetworkInfo } from "./components";
+import Guide from "./components/guide";
+import NetworkInfo from "./components/network_info";
 import * as styles from "./index.module.scss";
 import { LaptopCSS } from "./styles";
 

@@ -12,7 +12,8 @@ import type { PostDetail } from "@src/utils/ghost";
 import { getBlogPostSchema } from "@src/utils/ghost";
 
 import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.png";
-import { Author, SocialMedia } from "./components";
+import Author from "./components/author";
+import SocialMedia from "./components/social_media";
 import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 

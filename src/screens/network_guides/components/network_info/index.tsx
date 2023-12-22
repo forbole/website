@@ -22,7 +22,7 @@ import { CopyIcon } from "@src/components/icons";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
 import { getNetworkInfo } from "@src/utils/network_info";
 
-import { InfoCard } from "./components";
+import InfoCard from "./components/info_card";
 import { useNetworkGuidesHook } from "./hooks";
 import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS } from "./styles";
