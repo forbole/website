@@ -9,6 +9,7 @@ import Arraw, { Direction } from "../arrow";
 import { BoxCSS } from "./BoxCSS";
 
 SwiperCore.use([Navigation]);
+
 type Props = {
   imagesList: string[];
   style?: CSSProperties;
