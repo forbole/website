@@ -43,7 +43,13 @@ module.exports = {
       "error",
       { blankLine: "always", prev: "*", next: "return" },
     ].concat(
-      ["multiline-block-like", "multiline-expression", "multiline-const"]
+      [
+        "multiline-block-like",
+        "multiline-expression",
+        "multiline-const",
+        "type",
+        "interface",
+      ]
         .map((item) => [
           { blankLine: "always", prev: item, next: "*" },
           { blankLine: "always", prev: "*", next: item },
