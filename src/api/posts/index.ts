@@ -64,12 +64,12 @@ export const getSinglePost = async (slug: string) => {
 };
 
 /** Get all post tags */
-export const getTags = async () => {
+export const getTags = async (limit = "15") => {
   try {
     return await api.tags.browse({
-      order: "count.posts DESC",
-      limit: "15",
       include: "count.posts",
+      limit,
+      order: "count.posts DESC",
     });
   } catch (err) {
     // eslint-disable-next-line no-console
