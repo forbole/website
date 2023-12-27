@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import type { SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
 
@@ -41,8 +41,6 @@ const Infrastructure = () => {
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
     noSsr: true,
   });
-
-  const router = useRouter();
 
   const personList = useMemo(() => {
     if (onlyLargeScreen) {
@@ -166,12 +164,11 @@ const Infrastructure = () => {
               title={t("section_1st_title")}
               title_large_trans={t("section_1st_large_title")}
             />
-            <CtaButton
-              className={style.mobile}
-              onClick={() => router.push("/staking")}
-            >
-              {t("see_more_networks")}
-            </CtaButton>
+            <Link href="/staking">
+              <CtaButton className={style.mobile}>
+                {t("see_more_networks")}
+              </CtaButton>
+            </Link>
             <Grid
               columnSpacing={{
                 mobile: theme.spacing(2),
@@ -187,6 +184,7 @@ const Infrastructure = () => {
                 <IntroPanel
                   desc={t("grid_1st_desc")}
                   imageHref={require("/public/validator_infastructure/grid_1@2x.png")}
+                  level={2}
                   title={t("grid_1st_title")}
                 />
               </Grid>
@@ -194,6 +192,7 @@ const Infrastructure = () => {
                 <IntroPanel
                   desc={t("grid_2nd_desc")}
                   imageHref={require("/public/validator_infastructure/grid_2@2x.png")}
+                  level={2}
                   title={t("grid_2nd_title")}
                 />
               </Grid>
@@ -201,17 +200,16 @@ const Infrastructure = () => {
                 <IntroPanel
                   desc={t("grid_3rd_desc")}
                   imageHref={require("/public/validator_infastructure/grid_3@2x.png")}
+                  level={2}
                   title={t("grid_3rd_title")}
                 />
               </Grid>
             </Grid>
-
-            <CtaButton
-              className={style.desktop}
-              onClick={() => router.push("/staking")}
-            >
-              {t("see_more_networks")}
-            </CtaButton>
+            <Link href="/staking">
+              <CtaButton className={style.desktop}>
+                {t("see_more_networks")}
+              </CtaButton>
+            </Link>
           </Stack>
 
           <Stack
@@ -313,13 +311,9 @@ const Infrastructure = () => {
               title={t("section_3rd_title")}
               title_large_trans={t("section_3rd_large_title")}
             />
-            <CtaButton
-              onClick={() => {
-                router.push("/staking");
-              }}
-            >
-              {t("stake_now")}
-            </CtaButton>
+            <Link href="/staking">
+              <CtaButton>{t("stake_now")}</CtaButton>
+            </Link>
           </Stack>
           <Stack>
             <NoSSR>

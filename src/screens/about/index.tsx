@@ -85,7 +85,11 @@ const About = () => {
             </Typography>
             <Trans
               components={[
-                <Typography className={styles.cardDescTrans0} key="0" />,
+                <Typography
+                  className={styles.cardDescTrans0}
+                  key="0"
+                  variant="h3"
+                />,
                 <Typography
                   className={styles.cardDescTrans1}
                   component="span"
@@ -137,17 +141,19 @@ const About = () => {
             <Arrow
               className={[styles.arrow, styles.right, "h-next"].join(" ")}
               direction={Direction.Right}
+              role="button"
             />
             <Arrow
               className={[styles.arrow, styles.left, "h-prev"].join(" ")}
               direction={Direction.Left}
+              role="button"
             />
           </Box>
         </Stack>
 
         <Stack>
           <Stack className={styles.sectionStack}>
-            <Typography className={styles.section1Title}>
+            <Typography className={styles.section1Title} variant="h2">
               {t("section_1st_title")}
             </Typography>
             <Typography className={styles.sectionDesc}>
@@ -189,8 +195,8 @@ const About = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <Arrow className="v-next" direction={Direction.Right} />
-          <Arrow className="v-prev" direction={Direction.Left} />
+          <Arrow className="v-next" direction={Direction.Right} role="button" />
+          <Arrow className="v-prev" direction={Direction.Left} role="button" />
         </Stack>
       </YTBSwiperCSS>
 
@@ -199,7 +205,7 @@ const About = () => {
           <Stack className={styles.sectionStack}>
             <Trans
               components={[
-                <Typography className={styles.tr0} key="0" />,
+                <Typography className={styles.tr0} key="0" variant="h3" />,
                 <Typography className={styles.tr1} component="span" key="1" />,
               ]}
               i18nKey="section_2nd_large_title"

@@ -104,10 +104,12 @@ const Carousel = ({ personList }: CarouselProps) => {
         <Arrow
           className={["c-next", styles.arrowRight].join(" ")}
           direction={Direction.Right}
+          role="button"
         />
         <Arrow
           className={["c-prev", styles.arrowLeft].join(" ")}
           direction={Direction.Left}
+          role="button"
         />
       </Box>
     </BoxCSS>

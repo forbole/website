@@ -13,6 +13,7 @@ type Props = {
   imageAlt?: string;
   imageHref: StaticImageData | string;
   img_not_response?: boolean;
+  level?: number;
   title?: string;
 };
 
@@ -24,6 +25,7 @@ const IntroPanel = ({
   imageAlt,
   imageHref,
   img_not_response,
+  level,
   title,
 }: Props) => {
   const theme = useTheme();
@@ -66,6 +68,7 @@ const IntroPanel = ({
                 fontSize: "18px",
               },
             }}
+            variant={level ? (`h${level}` as "h1") : undefined}
           >
             {title}
           </Typography>
@@ -87,6 +90,7 @@ const IntroPanel = ({
               fontWeight: "400",
               color: "#2A1A6A",
             }}
+            variant={level ? (`h${level + 1}` as "h1") : undefined}
           >
             {desc}
           </Typography>

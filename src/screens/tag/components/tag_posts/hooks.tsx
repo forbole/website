@@ -5,8 +5,7 @@ export const useBlogPostsHook = () => {
 
   const handleTagPageChange = (e: any, value: any) => {
     router.push({
-      pathname: `/tag/${router.query.tag}`,
-      query: { page: value },
+      pathname: `/tag/${router.query.tag}/${value === 1 ? "" : value}`,
     });
   };
 

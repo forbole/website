@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 import IntroPanel from "@src/components/Intro_panel";
@@ -37,7 +37,6 @@ const DeveloperTools = () => {
     isLoading,
   } = useTalkModalForm();
 
-  const router = useRouter();
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
 
@@ -72,14 +71,9 @@ const DeveloperTools = () => {
             title_large={t("section_1st_large_title")}
           />
           <Stack className={styles.ctaStack}>
-            <CtaButton
-              data-test="devtools-cta"
-              onClick={() => {
-                router.push("https://devtools.forbole.com");
-              }}
-            >
-              {t("sign_up_now")}
-            </CtaButton>
+            <Link href="https://devtools.forbole.com">
+              <CtaButton data-test="devtools-cta">{t("sign_up_now")}</CtaButton>
+            </Link>
           </Stack>
           <Grid container spacing={theme.spacing(2)}>
             <Grid className={styles.card} item laptop={4} mobile={12}>
@@ -120,14 +114,11 @@ const DeveloperTools = () => {
         </Stack>
         <Stack>
           <Section title={t("section_2nd_title")} />
-          <CtaButton
-            className={styles.ctaButton}
-            onClick={() => {
-              router.push("https://devtools.forbole.com");
-            }}
-          >
-            {t("start_trial")}
-          </CtaButton>
+          <Link href="https://devtools.forbole.com">
+            <CtaButton className={styles.ctaButton}>
+              {t("start_trial")}
+            </CtaButton>
+          </Link>
           <FourTable btnHref={() => setShow(true)} />
           <Stack className={styles.signatureStack}>
             <Section title_large={t("signature")} />
