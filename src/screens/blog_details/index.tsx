@@ -3,7 +3,7 @@ import Markdown from "markdown-to-jsx";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
@@ -17,6 +17,8 @@ import SocialMedia from "./components/social_media";
 import * as styles from "./index.module.scss";
 import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
+const contentClass = "article-content";
+
 type Props = {
   post: PostDetail;
 };
@@ -25,6 +27,18 @@ const BlogDetails = ({ post }: Props) => {
   const theme = useTheme();
   const topRef = useRef(null);
   const { locale } = useRouter();
+
+  useEffect(() => {
+    if (post) {
+      document.querySelectorAll(`.${contentClass}`).forEach((el) => {
+        el.querySelectorAll("img").forEach((imgEl) => {
+          imgEl.addEventListener("error", () => {
+            imgEl.parentNode?.removeChild(imgEl);
+          });
+        });
+      });
+    }
+  }, [post]);
 
   if (!post) return null;
 
@@ -86,7 +100,10 @@ const BlogDetails = ({ post }: Props) => {
                 </Typography>
               )}
             </Box>
-            <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
+            <ContentBox
+              className={contentClass}
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
           </ContentCSS>
         </Box>
         {!!tags?.length && <Tags tags={tags} />}
@@ -136,7 +153,10 @@ const BlogDetails = ({ post }: Props) => {
               )}
             </Box>
             <ContentCSS theme={theme}>
-              <ContentBox dangerouslySetInnerHTML={{ __html: post.html }} />
+              <ContentBox
+                className={contentClass}
+                dangerouslySetInnerHTML={{ __html: post.html }}
+              />
             </ContentCSS>
             {!!tags?.length && (
               <Box display="flex" justifyContent="center">

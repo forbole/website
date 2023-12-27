@@ -280,10 +280,11 @@ export const ContentBox = styled.div<any>`
 
   .kg-image-card img {
     margin: auto;
-    object-fit: cover;
+    object-fit: contain;
     overflow: hidden;
     width: 100%;
     height: 100%;
+    max-height: 500px;
   }
 
   .kg-card-hascaption {

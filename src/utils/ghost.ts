@@ -24,7 +24,6 @@ export type PostDetail = {
 };
 
 // https://schema.org/TechArticle
-// https://schema.org/HowTo
 
 export const getBlogPostSchema = (
   isGuide: boolean,
@@ -71,19 +70,6 @@ export const getBlogPostSchema = (
       "@type": "JobPosting",
       "datePosted": publishedAt,
       "industry": "Cryptocurrencies Validators and Blockchain Development",
-    });
-  }
-
-  if (slug?.includes("how-to")) {
-    return JSON.stringify({
-      ...common,
-      ...keyworkdsObj,
-      "@type": "HowTo",
-      "headline": title,
-      ...(excerpt && { abstract: excerpt }),
-      "inLanguage": getLanguageFromLocale(locale),
-      "datePublished": publishedAt,
-      author,
     });
   }
 
