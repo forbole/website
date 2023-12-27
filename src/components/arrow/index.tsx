@@ -15,9 +15,10 @@ type Props = {
   className: string;
   sx?: SxProps<Theme>;
   direction?: Direction;
+  role?: string;
 };
 
-export default function Arraw({ className, sx, direction }: Props) {
+export default function Arraw({ className, sx, direction, role }: Props) {
   const theme = useTheme();
   const [rotate, setRotate] = useState(0);
 
@@ -42,6 +43,7 @@ export default function Arraw({ className, sx, direction }: Props) {
   return (
     <Box
       className={className}
+      role={role}
       sx={{
         "userSelect": "none",
         "display": "flex",

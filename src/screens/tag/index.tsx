@@ -14,8 +14,17 @@ const TagTitlePosts = ({ post, sidePosts = [], tags, meta, error }: any) => {
 
   useBlogHook(error, t);
 
+  if (!post) return null;
+
+  const currentPage = meta?.pagination?.page;
+
   return (
-    <Layout blueBg footer title={t("title")}>
+    <Layout
+      blueBg
+      footer
+      noIndex={Number(currentPage) !== 1}
+      title={t("title")}
+    >
       <Box className={styles.flex}>
         <Box className={styles.wrapper}>
           <TagPosts blogs={post.slice(1)} main={post[0]} meta={meta} />

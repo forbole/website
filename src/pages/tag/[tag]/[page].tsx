@@ -1,35 +1,13 @@
-import type { GetStaticPaths, GetStaticProps } from "next";
-
 import { getPosts, getTags } from "@src/api/posts";
 import { getPostsByTag } from "@src/api/tags";
 import Post from "@src/models/post";
 import Tag from "@src/models/tag";
 import TagTitlePosts from "@src/screens/tag";
-import { locales } from "@src/utils/i18next";
 import { removeInternalTags } from "@src/utils/remove_internal_tags";
 
 const TagDetailsPage = (props: any) => <TagTitlePosts {...props} />;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await getTags("1000");
-
-  const paths = locales
-    .map((locale) =>
-      tags.map((tag: any) => ({
-        locale,
-        params: {
-          tag: tag.slug,
-        },
-      })),
-    )
-    .flat();
-
-  return { paths, fallback: "blocking" };
-};
-
-export const getStaticProps: GetStaticProps<any, { tag: string }> = async (
-  context,
-) => {
+export async function getServerSideProps(context: { query: any }) {
   let formattedPost: any = [];
   let formattedSidePosts = [];
   let formattedTags: Tag[] = [];
@@ -37,11 +15,24 @@ export const getStaticProps: GetStaticProps<any, { tag: string }> = async (
   let error = false;
 
   try {
-    const { params } = context;
+    const { query } = context;
     const fetchQuery: any = {};
 
-    if (params?.tag) {
-      fetchQuery.tag = params.tag;
+    if (query.page === "1") {
+      return {
+        redirect: {
+          destination: `/tag/${query.tag}`,
+          permanent: true,
+        },
+      };
+    }
+
+    if (query.page) {
+      fetchQuery.page = query.page;
+    }
+
+    if (query.tag) {
+      fetchQuery.tag = query.tag;
     }
 
     const [tags, posts, sidePosts] = await Promise.all([
@@ -76,6 +67,6 @@ export const getStaticProps: GetStaticProps<any, { tag: string }> = async (
       error,
     },
   };
-};
+}
 
 export default TagDetailsPage;

@@ -22,6 +22,7 @@ type Props = {
   footer?: boolean;
   image?: string;
   keywords?: string[];
+  noIndex?: boolean;
   redBgFooter?: boolean;
   skipLocale?: boolean;
   title?: string;
@@ -37,6 +38,7 @@ const Layout = ({
   footer,
   image,
   keywords = [],
+  noIndex,
   redBgFooter,
   skipLocale,
   title = "Forbole",
@@ -99,6 +101,7 @@ const Layout = ({
         {!!(url === "https://staging.forbole.com") && (
           <meta content="noindex" name="googlebot" />
         )}
+        {!!noIndex && <meta content="noindex" name="robots" />}
         <meta content={description || t("description")} name="description" />
         <meta content={formattedKeyworks.join(", ")} name="keywords" />
         <meta

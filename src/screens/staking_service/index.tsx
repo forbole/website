@@ -1,5 +1,6 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 
@@ -77,6 +78,7 @@ const StakingService = () => {
                       ? require("/public/staking_service/mobile_section_3@2x.png")
                       : require("/public/staking_service/desk_section_3@2x.png")
                   }
+                  level={2}
                   title={t("grid_1st_title")}
                 />
               </Grid>
@@ -88,6 +90,7 @@ const StakingService = () => {
                       ? require("/public/staking_service/mobile_section_1@2x.png")
                       : require("/public/staking_service/desk_section_1@2x.png")
                   }
+                  level={2}
                   title={t("grid_2nd_title")}
                 />
               </Grid>
@@ -99,6 +102,7 @@ const StakingService = () => {
                       ? require("/public/staking_service/mobile_section_2@2x.png")
                       : require("/public/staking_service/desk_section_2@2x.png")
                   }
+                  level={2}
                   title={t("grid_3rd_title")}
                 />
               </Grid>
@@ -111,14 +115,11 @@ const StakingService = () => {
               title={t("section_3rd_title")}
               title_large_trans={t("section_3rd_large_title")}
             />
-            <CtaButton
-              className={styles.stakingCta}
-              onClick={() => {
-                router.push("/staking");
-              }}
-            >
-              {t("stake_now")}
-            </CtaButton>
+            <Link href="/staking">
+              <CtaButton className={styles.stakingCta}>
+                {t("stake_now")}
+              </CtaButton>
+            </Link>
             <Horse {...horseStyle} />
             <ScrollToTop topRef={topRef} />
           </Stack>
