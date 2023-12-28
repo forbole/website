@@ -12,6 +12,13 @@ const StakingDetailsPage: NextPage = (props: any) => (
 );
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.QUICK_BUILD === "true") {
+    return {
+      fallback: "blocking",
+      paths: [],
+    };
+  }
+
   const posts = await getPosts({
     limit: 1000,
   });
@@ -31,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         path.params.title && path.params.title.startsWith(stakingGuidePrefix),
     );
 
-  return { fallback: true, paths };
+  return { fallback: "blocking", paths };
 };
 
 export const getStaticProps: GetStaticProps<

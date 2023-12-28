@@ -9,6 +9,13 @@ import { removeInternalTags } from "@src/utils/remove_internal_tags";
 const BlogDetailsPage: NextPage = (props: any) => <BlogDetails {...props} />;
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.QUICK_BUILD === "true") {
+    return {
+      fallback: "blocking",
+      paths: [],
+    };
+  }
+
   const posts = await getPosts({
     limit: 1000,
   });
