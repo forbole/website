@@ -7,17 +7,17 @@ import { useMemo } from "react";
 import * as styles from "./config.module.scss";
 
 export interface FAQProps {
-  question: string;
-  para1?: string;
-  para2?: string;
-  trans?: string;
-  para3?: string;
-  desc?: string;
   bullet1?: string;
   bullet2?: string;
   bullet3?: string;
+  desc?: string;
   expanded?: boolean;
+  para1?: string;
+  para2?: string;
+  para3?: string;
+  question: string;
   setExpanded?: () => void;
+  trans?: string;
 }
 
 export const useFaq = (): FAQProps[] => {

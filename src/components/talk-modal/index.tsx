@@ -19,9 +19,12 @@ import FormInput from "../formInput";
 import { Close } from "../icons";
 
 interface Props {
+  canSubmit: boolean;
   close?: (b: boolean) => void;
-  staking?: any;
-  open?: boolean;
+  handleCheckedChange: (event: any) => void;
+  handleClear: (field: any) => void;
+  handleInputChange: (event: any) => void;
+  handleSubmit: (event: any) => void;
   inputs: {
     "agree": boolean;
     "company": string;
@@ -34,12 +37,9 @@ interface Props {
     "specify": string;
     "telegram": string;
   };
-  handleInputChange: (event: any) => void;
-  handleCheckedChange: (event: any) => void;
-  handleSubmit: (event: any) => void;
-  handleClear: (field: any) => void;
-  canSubmit: boolean;
   isLoading: boolean;
+  open?: boolean;
+  staking?: any;
 }
 
 const TalkModal = ({

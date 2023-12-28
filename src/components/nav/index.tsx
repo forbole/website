@@ -16,9 +16,9 @@ import { useNavHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
 interface NavProps {
-  staking?: boolean;
-  stakeNowRef?: RefObject<HTMLElement>;
   itemColor?: string;
+  stakeNowRef?: RefObject<HTMLElement>;
+  staking?: boolean;
 }
 
 const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {

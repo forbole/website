@@ -10,9 +10,9 @@ import {
 } from "@src/components/icons";
 
 interface SocialMediaProps {
+  component: FunctionComponent<{ fill?: string }>;
   key: string;
   url: string;
-  component: FunctionComponent<{ fill?: string }>;
 }
 
 interface SocialMediasProps {

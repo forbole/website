@@ -58,8 +58,8 @@ function useSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
 }
 
 interface OptionsProps {
-  props: HTMLAttributes<HTMLLIElement>;
   network: Network;
+  props: HTMLAttributes<HTMLLIElement>;
 }
 
 const Options = ({ props, network }: OptionsProps) => {

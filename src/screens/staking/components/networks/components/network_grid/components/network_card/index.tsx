@@ -22,8 +22,8 @@ import * as styles from "./index.module.scss";
 interface CardProp {
   network: Network;
   networkSummary: ParamsProps;
-  showMobilePopover: string;
   setShowMobilePopover: Dispatch<SetStateAction<string>>;
+  showMobilePopover: string;
 }
 
 const NetworkCard = ({
