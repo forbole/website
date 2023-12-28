@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /ghost/
+Disallow: /analyze/
 Disallow: /p/
 Allow: /content/images/

@@ -13,7 +13,7 @@ COPY ./scripts ./scripts
 COPY ./tsconfig.json .eslintrc.cjs .eslintignore next.config.js \
   .env next-sitemap.config.js i18n.js ./
 
-RUN yarn build
+RUN yarn analyze-bundle && mv .next/analyze public/
 
 RUN rm -rf .next/cache
 
