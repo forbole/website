@@ -35,6 +35,12 @@ const BlogDetails = ({ post }: Props) => {
           imgEl.addEventListener("error", () => {
             imgEl.parentNode?.removeChild(imgEl);
           });
+
+          if (window.innerWidth < 600) return;
+
+          imgEl.addEventListener("click", () => {
+            window.open(imgEl.src, "_blank");
+          });
         });
       });
     }

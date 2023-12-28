@@ -278,9 +278,11 @@ export const ContentBox = styled.div<any>`
     }
   }
 
+  img,
   .kg-image-card img {
     margin: auto;
     object-fit: contain;
+    cursor: pointer;
     overflow: hidden;
     width: 100%;
     height: 100%;
