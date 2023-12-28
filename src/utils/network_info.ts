@@ -714,7 +714,7 @@ const logos: IStringIndex = {
   },
 };
 
-export const getNetworkInfo = (key: string | number) => logos[key] || null;
+export const getNetworkInfo = (key: number | string) => logos[key] || null;
 
 export const cosmosNetworkKeys = [
   "agoric",

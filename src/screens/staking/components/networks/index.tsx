@@ -37,7 +37,7 @@ const Networks = () => {
   };
 
   const allNetworkData = allNetworkKeys
-    .map((x: string | number) => getNetworkInfo(x))
+    .map((x: number | string) => getNetworkInfo(x))
     .filter(Boolean);
 
   const sortedNetworks = [...allNetworkData].sort((a, b) =>

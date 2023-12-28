@@ -47,7 +47,7 @@ const Calculator = () => {
   } = useCalculateRewardsHook();
 
   const networkData = cosmosNetworkKeys
-    .map((x: string | number) => getNetworkInfo(x))
+    .map((x: number | string) => getNetworkInfo(x))
     .filter(Boolean)
     .filter((x) => !skippedRewardsNetworks.has(x.key))
     .filter((x) => getCanClickNetwork(x));

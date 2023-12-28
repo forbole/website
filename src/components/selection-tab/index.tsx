@@ -33,7 +33,7 @@ export const StyledTabs = styled((props: StyledTabsProps) => (
 interface StyledTabProps {
   className?: string;
   disabled?: boolean;
-  icon?: string | ReactElement;
+  icon?: ReactElement | string;
   label: string;
   onClick?: (e: any) => void;
   value?: string;

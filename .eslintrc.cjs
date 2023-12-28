@@ -104,8 +104,10 @@ module.exports = {
     "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
 
+    "perfectionist/sort-enums": "error",
     "perfectionist/sort-exports": "error",
     "perfectionist/sort-interfaces": "error",
     "perfectionist/sort-object-types": "error",
+    "perfectionist/sort-union-types": "error",
   },
 };

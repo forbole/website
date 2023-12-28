@@ -9,7 +9,7 @@ import { networkNumber } from "@src/utils/network_info";
 const elrondNetworkFunctions = networkFunctions.elrond;
 
 type StatsItem = {
-  stats: string | number;
+  stats: number | string;
   title: string;
 };
 

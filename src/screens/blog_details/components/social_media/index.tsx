@@ -11,7 +11,7 @@ const SocialMedia = ({ title = "Forbole " }: any) => {
   const shareUrl = `${process.env.NEXT_PUBLIC_URL}${path}`;
 
   const handleClick = (url: string) => {
-    const config: { [key: string]: string | number } = {
+    const config: { [key: string]: number | string } = {
       height: 400,
       width: 550,
       location: "no",
