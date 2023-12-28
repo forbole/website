@@ -52,7 +52,6 @@ module.exports = {
     // @TODO: These should be removed when fixed
     "@typescript-eslint/no-explicit-any": "off",
     "@next/next/no-img-element": "off",
-    "jsx-a11y/alt-text": "off",
     "react/display-name": "off",
 
     "arrow-body-style": "error",
@@ -80,8 +79,10 @@ module.exports = {
       "always",
       { destructureInSignature: "always" },
     ],
+
     "react/function-component-definition": "off",
     "react/jsx-boolean-value": "error",
+    "react/jsx-curly-brace-presence": "error",
     "react/jsx-filename-extension": "off",
     "react/jsx-fragments": "error",
     "react/jsx-key": ["error", { warnOnDuplicates: true }],

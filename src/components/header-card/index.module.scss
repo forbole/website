@@ -87,18 +87,20 @@ $card-box-shadow:
   }
 }
 
-.image2 {
+.image2 img {
   display: none;
 
-  @include down-laptop {
+  @include down-tablet {
     display: block;
+    object-fit: cover;
   }
 }
 
-.image3 {
+.image3 img {
   display: none;
 
-  @include up-laptop {
+  @include up-tablet {
     display: block;
+    object-fit: cover;
   }
 }

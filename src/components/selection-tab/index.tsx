@@ -5,8 +5,9 @@ import type { ReactElement, ReactNode, SyntheticEvent } from "react";
 
 interface StyledTabsProps {
   children?: ReactNode;
-  value: number;
+  className?: string;
   onChange: (event: SyntheticEvent, newValue: number) => void;
+  value: number;
 }
 
 export const StyledTabs = styled((props: StyledTabsProps) => (

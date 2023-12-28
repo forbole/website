@@ -1,9 +1,13 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { forwardRef } from "react";
 
+import * as styles from "./index.module.scss";
+
 type Props = {
   title?: string;
-  imageHref: string;
+  // @deprecated
+  imageHref?: string;
+  imageHrefs?: string[];
   children?: React.ReactNode;
   index: number;
   value: number;
@@ -11,7 +15,7 @@ type Props = {
 };
 
 const productPanel = forwardRef<HTMLDivElement, Props>(
-  ({ title, imageHref, children, index, value, imgFull }, ref) => {
+  ({ title, imageHref, children, index, value, imgFull, imageHrefs }, ref) => {
     const theme = useTheme();
 
     // eslint-disable-next-line eqeqeq
@@ -85,7 +89,24 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
               },
             }}
           >
-            <img alt="" loading="lazy" src={imageHref} />
+            {imageHrefs ? (
+              <>
+                <img
+                  alt=""
+                  className={styles.imgMobile}
+                  loading="lazy"
+                  src={imageHrefs[0]}
+                />
+                <img
+                  alt=""
+                  className={styles.imgDesktop}
+                  loading="lazy"
+                  src={imageHrefs[1]}
+                />
+              </>
+            ) : (
+              <img alt="" loading="lazy" src={imageHref} />
+            )}
           </Box>
           <Stack
             sx={{

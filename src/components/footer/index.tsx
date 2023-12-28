@@ -19,9 +19,11 @@ const Footer = ({ red, itemColor }: FooterProps) => {
   const { t } = useTranslation("common");
 
   const wrapperStyle = {
-    style: {
-      color: itemColor,
-    },
+    style: itemColor
+      ? {
+          color: itemColor,
+        }
+      : {},
   };
 
   return (
