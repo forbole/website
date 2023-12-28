@@ -1,11 +1,11 @@
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 import CtaButton from "@src/components/cta-button";
 
 import usePlans from "./config";
-import styles from "./styles.module.css";
+import * as styles from "./index.module.scss";
 
 const clickItem = 2;
 
@@ -14,7 +14,6 @@ type Props = { btnHref: () => void };
 const FourTable = ({ btnHref }: Props) => {
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
-  const router = useRouter();
   const plans = usePlans();
 
   return (
@@ -22,13 +21,13 @@ const FourTable = ({ btnHref }: Props) => {
       direction="row"
       sx={{
         alignItems: "flex-end",
-        minHeight: "536px",
         gap: "16px",
+        minHeight: "536px",
         [theme.breakpoints.down("laptop")]: {
-          flexDirection: "column",
-          justifyContent: "center",
           alignItems: "center",
+          flexDirection: "column",
           gap: "24px",
+          justifyContent: "center",
         },
       }}
     >
@@ -37,20 +36,20 @@ const FourTable = ({ btnHref }: Props) => {
           className={indexTop === clickItem ? styles.active : ""}
           key={indexTop}
           sx={{
-            position: "relative",
-            height: "496px",
-            flexGrow: 1,
-            flexShrink: 1,
-            flexBasis: "270px",
-            padding: "24px",
-            borderRadius: "24px",
             backgroundColor: "#fff",
+            borderRadius: "24px",
             boxShadow:
               "0px 10px 32px -4px rgba(245, 20, 47, 0.16), 0px 6px 14px -6px rgba(249, 106, 122, 0.20)",
+            flexBasis: "270px",
+            flexGrow: 1,
+            flexShrink: 1,
+            height: "496px",
+            padding: "24px",
+            position: "relative",
             [theme.breakpoints.down("laptop")]: {
+              flexBasis: "max-content",
               flexGrow: 0,
               flexShrink: 0,
-              flexBasis: "max-content",
               width: "75%",
             },
           }}
@@ -73,9 +72,9 @@ const FourTable = ({ btnHref }: Props) => {
           </Typography>
           <Box
             sx={{
-              display: "flex",
               alignItems: "baseline",
               color: "#202A43",
+              display: "flex",
               fontSize: "12px",
               fontWeight: "590",
               mt: "20px",
@@ -88,9 +87,9 @@ const FourTable = ({ btnHref }: Props) => {
                 color: "#202A43",
                 fontSize: "32px",
                 fontWeight: "590",
+                letterSpacing: "-0.508px",
                 marginTop: "-23px",
                 pr: "7px",
-                letterSpacing: "-0.508px",
               }}
             >
               <Typography
@@ -127,14 +126,14 @@ const FourTable = ({ btnHref }: Props) => {
                 <Box
                   key={index}
                   sx={{
-                    marginTop: "20px",
                     display: "flex",
+                    marginTop: "20px",
                   }}
                 >
                   <img
                     alt=""
                     src={Plan.image}
-                    style={{ width: "25px", height: "25px" }}
+                    style={{ height: "25px", width: "25px" }}
                   />
                   <Typography
                     sx={{
@@ -151,8 +150,8 @@ const FourTable = ({ btnHref }: Props) => {
               <Box
                 key={indexTop}
                 sx={{
-                  marginTop: "20px",
                   display: "flex",
+                  marginTop: "20px",
                   [theme.breakpoints.down("laptop")]: {
                     marginTop: "16px",
                   },
@@ -161,7 +160,7 @@ const FourTable = ({ btnHref }: Props) => {
                 <img
                   alt=""
                   src={Plan.image}
-                  style={{ width: "25px", height: "25px" }}
+                  style={{ height: "25px", width: "25px" }}
                 />
                 <Typography
                   sx={{
@@ -175,18 +174,15 @@ const FourTable = ({ btnHref }: Props) => {
               </Box>
             )}
           </Box>
-          <CtaButton
-            onClick={Plan.btnHref ? () => router.push(Plan.btnHref) : btnHref}
-            sx={{
-              position: "absolute",
-              left: "24px",
-              right: "24px",
-              bottom: "24px",
-              [theme.breakpoints.down("laptop")]: { display: "none" },
-            }}
-          >
-            {Plan.btnName}
-          </CtaButton>
+          {Plan.btnHref ? (
+            <Link className={styles.cta} href={Plan.btnHref}>
+              <CtaButton>{Plan.btnName}</CtaButton>
+            </Link>
+          ) : (
+            <CtaButton className={styles.cta} onClick={btnHref}>
+              {Plan.btnName}
+            </CtaButton>
+          )}
         </Box>
       ))}
     </Stack>

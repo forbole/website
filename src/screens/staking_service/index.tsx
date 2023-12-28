@@ -1,7 +1,6 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useRef } from "react";
 
 import IntroPanel from "@src/components/Intro_panel";
@@ -24,8 +23,6 @@ const StakingService = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
-
-  const router = useRouter();
 
   const horseStyle = {
     style: { display: "block", margin: "0 auto" },
@@ -61,14 +58,11 @@ const StakingService = () => {
               title={t("section_2nd_title")}
               title_large_trans={t("section_2nd_large_title")}
             />
-            <CtaButton
-              className={styles.stakingCta}
-              onClick={() => {
-                router.push("/staking");
-              }}
-            >
-              {t("stake_now")}
-            </CtaButton>
+            <Link href="/staking">
+              <CtaButton className={styles.stakingCta}>
+                {t("stake_now")}
+              </CtaButton>
+            </Link>
             <Grid container spacing={theme.spacing(2)}>
               <Grid item laptop={4} mobile={12}>
                 <IntroPanel

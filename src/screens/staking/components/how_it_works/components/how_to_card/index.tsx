@@ -2,21 +2,13 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/legacy/image";
 
-const HowToCard = ({ id, image, title, desc }: any) => {
+const HowToCard = ({ desc, id, image, title }: any) => {
   const theme = useTheme();
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
 
   return (
     <Box
       sx={{
-        "display": "flex",
-        "flexDirection": "column",
-        "alignItems": "flex-start",
-        "padding": theme.spacing(4, 3),
-        "background": theme.palette.common.white,
-        "borderRadius": theme.spacing(3),
-        "boxShadow":
-          "0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)",
         "& span": {
           marginLeft:
             id <= 2
@@ -26,6 +18,14 @@ const HowToCard = ({ id, image, title, desc }: any) => {
                 : ("-5px !important" as any),
           maxWidth: "150% !important" as any,
         },
+        "alignItems": "flex-start",
+        "background": theme.palette.common.white,
+        "borderRadius": theme.spacing(3),
+        "boxShadow":
+          "0px 6px 14px -6px rgba(2, 38, 225, 0.12), 0px 10px 32px -4px rgba(2, 38, 225, 0.1)",
+        "display": "flex",
+        "flexDirection": "column",
+        "padding": theme.spacing(4, 3),
       }}
     >
       <Box
@@ -53,8 +53,8 @@ const HowToCard = ({ id, image, title, desc }: any) => {
           color={theme.palette.custom.forbole.blue}
           fontWeight={600}
           sx={{
-            padding: theme.spacing(5.75, 0, 3, 0),
             fontSize: theme.spacing(2.25),
+            padding: theme.spacing(5.75, 0, 3, 0),
             [theme.breakpoints.up("laptop")]: {
               fontSize: theme.spacing(2.5),
               padding: theme.spacing(2.5, 0),
@@ -68,8 +68,8 @@ const HowToCard = ({ id, image, title, desc }: any) => {
           color={theme.palette.custom.forbole.blue}
           fontSize={onlyLargeScreen ? theme.spacing(2) : theme.spacing(1.75)}
           sx={{
-            textAlign: "start",
             lineHeight: theme.spacing(2.5),
+            textAlign: "start",
             [theme.breakpoints.up("laptop")]: {
               lineHeight: theme.spacing(3),
             },

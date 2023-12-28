@@ -1,13 +1,7 @@
-import {
-  Container,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
@@ -30,31 +24,31 @@ const Products = () => {
   const individuals = useMemo(
     () => [
       {
-        title: t("staking"),
         benefits: [t("earn"), t("secure"), t("ownership")],
-        usecases: [t("stake"), t("income")],
+        btnHref: "/staking-service",
+        btnName: t("seemore"),
         imageHref: "/products/tab2@2x.png",
         imageHref_m: "/products/tab2_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/staking-service",
+        title: t("staking"),
+        usecases: [t("stake"), t("income")],
       },
       {
-        title: t("analytics"),
         benefits: [t("real-time"), t("bird-eye-view"), t("free")],
-        usecases: [t("transactions"), t("viewandvote")],
+        btnHref: "/analytics-tools",
+        btnName: t("seemore"),
         imageHref: "/products/tab3@2x.png",
         imageHref_m: "/products/tab3_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/analytics-tools",
+        title: t("analytics"),
+        usecases: [t("transactions"), t("viewandvote")],
       },
       {
-        title: t("developer"),
         benefits: [t("nodes"), t("free-trial"), t("pricing")],
-        usecases: [t("RPC"), t("GraphQL"), t("data-api")],
+        btnHref: "/developer-tools",
+        btnName: t("seemore"),
         imageHref: "/products/tab4@2x.png",
         imageHref_m: "/products/tab4_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/developer-tools",
+        title: t("developer"),
+        usecases: [t("RPC"), t("GraphQL"), t("data-api")],
       },
     ],
     [t],
@@ -63,66 +57,60 @@ const Products = () => {
   const businesses = useMemo(
     () => [
       {
-        title: t("validator-infrastructure"),
         benefits: [t("security"), t("expertise"), t("record")],
-        usecases: [t("new-network"), t("strengthen-network")],
+        btnHref: "/infrastructure",
+        btnName: t("seemore"),
         imageHref: "/products/tab1@2x.png",
         imageHref_m: "/products/tab1_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/infrastructure",
+        title: t("validator-infrastructure"),
+        usecases: [t("new-network"), t("strengthen-network")],
       },
       {
-        title: t("staking"),
         benefits: [t("100% control"), t("asset-variety"), t("balance")],
-        usecases: [t("stake-token"), t("stake-of-clients")],
+        btnHref: "/staking-service",
+        btnName: t("seemore"),
         imageHref: "/products/tab2@2x.png",
         imageHref_m: "/products/tab2_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/staking-service",
+        title: t("staking"),
+        usecases: [t("stake-token"), t("stake-of-clients")],
       },
       {
-        title: t("analytics"),
         benefits: [
           t("custom-visualization"),
           t("modularized-development"),
           t("fast"),
         ],
-        usecases: [t("own-explorer"), t("query-data")],
+        btnHref: "/analytics-tools",
+        btnName: t("seemore"),
         imageHref: "/products/tab3@2x.png",
         imageHref_m: "/products/tab3_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/analytics-tools",
+        title: t("analytics"),
+        usecases: [t("own-explorer"), t("query-data")],
       },
       {
-        title: t("developer"),
         benefits: [t("high"), t("custom-offering"), t("team-support")],
+        btnHref: "/developer-tools",
+        btnName: t("seemore"),
+        imageHref: "/products/tab4@2x.png",
+        imageHref_m: "/products/tab4_m@2x.png",
+        title: t("developer"),
         usecases: [
           t("run-decentralized-apps"),
           t("analyze-decentralized-apps"),
         ],
-        imageHref: "/products/tab4@2x.png",
-        imageHref_m: "/products/tab4_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/developer-tools",
       },
       {
-        title: t("enterprise-solution"),
         benefits: [t("free-consultation"), t("iteration"), t("end-to-end")],
-        usecases: [t("staking-API"), t("Implementation")],
+        btnHref: "/enterprise-solution",
+        btnName: t("seemore"),
         imageHref: "/products/tab5@2x.png",
         imageHref_m: "/products/tab5_m@2x.png",
-        btnName: t("seemore"),
-        btnHref: "/enterprise-solution",
+        title: t("enterprise-solution"),
+        usecases: [t("staking-API"), t("Implementation")],
       },
     ],
     [t],
   );
-
-  const theme = useTheme();
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
-    noSsr: true,
-  });
 
   const [v1, setV1] = useState(0);
   const [v2, setV2] = useState(0);
@@ -131,15 +119,14 @@ const Products = () => {
   const businessesRef = useRef(null);
   const PanelRef1 = useRef(null);
   const PanelRef2 = useRef(null);
-  const router = useRouter();
 
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();
 
     window.scrollTo({
+      behavior: "smooth",
       left: 0,
       top: ref.current.offsetTop - 100,
-      behavior: "smooth",
     });
   };
 
@@ -157,18 +144,14 @@ const Products = () => {
         <HeaderCard
           desc_1st={t("desc")}
           desc_2nd={t("customized")}
-          head_bg={
-            !isMobile
-              ? "/products/head_bg@2x.png"
-              : "/products/head_bg_m@2x.png"
-          }
+          head_bgs={["/products/head_bg_m@2x.png", "/products/head_bg@2x.png"]}
           title={t("product")}
         />
         <Stack className={styles.why}>
           <Typography className={styles.whyText}>{t("why")}</Typography>
           <Trans
             components={[
-              <Typography className={styles.tr0} key="0" />,
+              <Typography className={styles.tr0} key="0" variant="h2" />,
               <Typography className={styles.tr1} component="span" key="1" />,
             ]}
             i18nKey="bridging"
@@ -177,19 +160,23 @@ const Products = () => {
           <Stack
             direction="row"
             justifyContent="center"
-            spacing={{ mobile: 1, desktop: 2 }}
+            spacing={{ desktop: 2, mobile: 1 }}
           >
             <CtaButton
               className={styles.response}
               onClick={(e) => scrollToRef(e, individualsRef)}
-              startIcon={<img className={styles.icon} src="/products/p1.svg" />}
+              startIcon={
+                <img alt="" className={styles.icon} src="/products/p1.svg" />
+              }
             >
               {t("for-individuals")}
             </CtaButton>
             <CtaButton
               className={styles.response}
               onClick={(e) => scrollToRef(e, businessesRef)}
-              startIcon={<img className={styles.icon} src="/products/p2.svg" />}
+              startIcon={
+                <img alt="" className={styles.icon} src="/products/p2.svg" />
+              }
             >
               {t("for-businesses")}
             </CtaButton>
@@ -201,7 +188,7 @@ const Products = () => {
           </Typography>
           <Trans
             components={[
-              <Typography className={styles.tr2} key="0" />,
+              <Typography className={styles.tr2} key="0" variant="h2" />,
               <Typography className={styles.tr3} component="span" key="1" />,
             ]}
             i18nKey="safe-path"
@@ -210,72 +197,75 @@ const Products = () => {
           <Stack
             className={styles.individualsStack}
             direction="column"
-            spacing={{ mobile: 1, desktop: 2 }}
+            spacing={{ desktop: 2, mobile: 1 }}
           >
-            {!isMobile && (
-              <StyledTabs
-                aria-label="basic tabs example"
-                onChange={handleChange}
-                value={v1}
+            <StyledTabs
+              aria-label="basic tabs example"
+              className={styles.notMobile}
+              onChange={handleChange}
+              value={v1}
+            >
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
+                }
+                label={t("staking")}
+              />
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
+                }
+                label={t("analytics")}
+              />
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p5.svg" />
+                }
+                label={t("developer")}
+              />
+            </StyledTabs>
+            <Box className={styles.mobileOnly}>
+              <CtaButton
+                className={styles.response36}
+                onClick={(e) => {
+                  handleChange(e, 0);
+                  scrollBottom(e, PanelRef1);
+                }}
+                startIcon={
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
+                }
               >
-                <StyledTab
-                  icon={<img className={styles.icon} src="/products/p3.svg" />}
-                  label={t("staking")}
-                />
-                <StyledTab
-                  icon={<img className={styles.icon} src="/products/p4.svg" />}
-                  label={t("analytics")}
-                />
-                <StyledTab
-                  icon={<img className={styles.icon} src="/products/p5.svg" />}
-                  label={t("developer")}
-                />
-              </StyledTabs>
-            )}
-            {isMobile && (
-              <>
-                <CtaButton
-                  className={styles.response36}
-                  onClick={(e) => {
-                    handleChange(e, 0);
-                    scrollBottom(e, PanelRef1);
-                  }}
-                  startIcon={
-                    <img className={styles.icon} src="/products/p3.svg" />
-                  }
-                >
-                  {t("staking")}
-                </CtaButton>
-                <CtaButton
-                  className={styles.response36}
-                  onClick={(e) => {
-                    handleChange(e, 1);
-                    scrollBottom(e, PanelRef1);
-                  }}
-                  startIcon={
-                    <img className={styles.icon} src="/products/p4.svg" />
-                  }
-                >
-                  {t("analytics")}
-                </CtaButton>
-                <CtaButton
-                  className={styles.response36}
-                  onClick={(e) => {
-                    handleChange(e, 2);
-                    scrollBottom(e, PanelRef1);
-                  }}
-                  startIcon={
-                    <img className={styles.icon} src="/products/p5.svg" />
-                  }
-                >
-                  {t("developer")}
-                </CtaButton>
-              </>
-            )}
+                {t("staking")}
+              </CtaButton>
+              <CtaButton
+                className={styles.response36}
+                onClick={(e) => {
+                  handleChange(e, 1);
+                  scrollBottom(e, PanelRef1);
+                }}
+                startIcon={
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
+                }
+              >
+                {t("analytics")}
+              </CtaButton>
+              <CtaButton
+                className={styles.response36}
+                onClick={(e) => {
+                  handleChange(e, 2);
+                  scrollBottom(e, PanelRef1);
+                }}
+                startIcon={
+                  <img alt="" className={styles.icon} src="/products/p5.svg" />
+                }
+              >
+                {t("developer")}
+              </CtaButton>
+            </Box>
           </Stack>
           {individuals.map((item, index) => (
             <ProductPanel
-              imageHref={isMobile ? item.imageHref_m : item.imageHref}
+              imageHrefs={[item.imageHref_m, item.imageHref]}
               index={index}
               key={index}
               ref={PanelRef1}
@@ -302,9 +292,9 @@ const Products = () => {
                   </Typography>
                 ))}
               </Stack>
-              <CtaButton onClick={() => router.push(item.btnHref)}>
-                {item.btnName}
-              </CtaButton>
+              <Link href={item.btnHref}>
+                <CtaButton>{item.btnName}</CtaButton>
+              </Link>
             </ProductPanel>
           ))}
         </Stack>
@@ -314,7 +304,7 @@ const Products = () => {
           </Typography>
           <Trans
             components={[
-              <Typography className={styles.tr4} key="0" />,
+              <Typography className={styles.tr4} key="0" variant="h2" />,
               <Typography className={styles.tr5} component="span" key="1" />,
             ]}
             i18nKey="trusted"
@@ -324,121 +314,131 @@ const Products = () => {
           <Stack
             className={styles.businessesStack}
             direction="column"
-            spacing={{ mobile: 1, desktop: 2 }}
+            spacing={{ desktop: 2, mobile: 1 }}
           >
-            {!isMobile && (
-              <>
-                <StyledTabs onChange={handleChange2} value={v2}>
-                  <StyledTab
-                    icon={
-                      <img className={styles.icon} src="/products/p3.svg" />
-                    }
-                    label={t("validator-infrastructure")}
-                  />
-                  <StyledTab
-                    icon={
-                      <img className={styles.icon} src="/products/p6.svg" />
-                    }
-                    label={t("staking")}
-                  />
-                  <StyledTab
-                    icon={
-                      <img className={styles.icon} src="/products/p4.svg" />
-                    }
-                    label={t("analytics")}
-                  />
-                  <StyledTab className={styles.tab} label="" />
-                  <StyledTab className={styles.tab} label="" />
-                </StyledTabs>
-                <StyledTabs onChange={handleChange2} value={v2}>
-                  <StyledTab className={styles.tab} label="" />
-                  <StyledTab className={styles.tab} label="" />
-                  <StyledTab className={styles.tab} label="" />
-                  <StyledTab
-                    icon={
-                      <img className={styles.icon} src="/products/p5.svg" />
-                    }
-                    label={t("developer")}
-                  />
-                  <StyledTab
-                    icon={
-                      <img className={styles.icon} src="/products/p7.svg" />
-                    }
-                    label={t("enterprise-solution")}
-                  />
-                </StyledTabs>
-              </>
-            )}
-            {isMobile && (
-              <>
+            <StyledTabs
+              className={styles.notMobile}
+              onChange={handleChange2}
+              value={v2}
+            >
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
+                }
+                label={t("validator-infrastructure")}
+              />
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p6.svg" />
+                }
+                label={t("staking")}
+              />
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
+                }
+                label={t("analytics")}
+              />
+              <StyledTab className={styles.tab} label="" />
+              <StyledTab className={styles.tab} label="" />
+            </StyledTabs>
+            <StyledTabs
+              className={styles.notMobile}
+              onChange={handleChange2}
+              value={v2}
+            >
+              <StyledTab className={styles.tab} label="" />
+              <StyledTab className={styles.tab} label="" />
+              <StyledTab className={styles.tab} label="" />
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p5.svg" />
+                }
+                label={t("developer")}
+              />
+              <StyledTab
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p7.svg" />
+                }
+                label={t("enterprise-solution")}
+              />
+            </StyledTabs>
+            <Box className={styles.mobileOnly}>
+              <CtaButton
+                className={styles.response}
+                onClick={(e) => {
+                  handleChange2(e, 0);
+                  scrollBottom(e, PanelRef2);
+                }}
+                startIcon={
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
+                }
+              >
+                {t("validator-infrastructure")}
+              </CtaButton>
+              <CtaButton
+                className={styles.response}
+                onClick={(e) => {
+                  handleChange2(e, 1);
+                  scrollBottom(e, PanelRef2);
+                }}
+                startIcon={
+                  <img alt="" className={styles.icon} src="/products/p6.svg" />
+                }
+              >
+                {t("staking")}
+              </CtaButton>
+              <CtaButton
+                className={styles.response}
+                onClick={(e) => {
+                  handleChange2(e, 2);
+                  scrollBottom(e, PanelRef2);
+                }}
+                startIcon={
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
+                }
+              >
+                {t("analytics")}
+              </CtaButton>
+              <Stack direction="row" spacing={1}>
                 <CtaButton
                   className={styles.response}
                   onClick={(e) => {
-                    handleChange2(e, 0);
+                    handleChange2(e, 3);
                     scrollBottom(e, PanelRef2);
                   }}
                   startIcon={
-                    <img className={styles.icon} src="/products/p3.svg" />
+                    <img
+                      alt=""
+                      className={styles.icon}
+                      src="/products/p5.svg"
+                    />
                   }
                 >
-                  {t("validator-infrastructure")}
+                  {t("developer")}
                 </CtaButton>
                 <CtaButton
                   className={styles.response}
                   onClick={(e) => {
-                    handleChange2(e, 1);
+                    handleChange2(e, 4);
                     scrollBottom(e, PanelRef2);
                   }}
                   startIcon={
-                    <img className={styles.icon} src="/products/p6.svg" />
+                    <img
+                      alt=""
+                      className={styles.icon}
+                      src="/products/p7.svg"
+                    />
                   }
                 >
-                  {t("staking")}
+                  {t("enterprise-solution")}
                 </CtaButton>
-                <CtaButton
-                  className={styles.response}
-                  onClick={(e) => {
-                    handleChange2(e, 2);
-                    scrollBottom(e, PanelRef2);
-                  }}
-                  startIcon={
-                    <img className={styles.icon} src="/products/p4.svg" />
-                  }
-                >
-                  {t("analytics")}
-                </CtaButton>
-                <Stack direction="row" spacing={1}>
-                  <CtaButton
-                    className={styles.response}
-                    onClick={(e) => {
-                      handleChange2(e, 3);
-                      scrollBottom(e, PanelRef2);
-                    }}
-                    startIcon={
-                      <img className={styles.icon} src="/products/p5.svg" />
-                    }
-                  >
-                    {t("developer")}
-                  </CtaButton>
-                  <CtaButton
-                    className={styles.response}
-                    onClick={(e) => {
-                      handleChange2(e, 4);
-                      scrollBottom(e, PanelRef2);
-                    }}
-                    startIcon={
-                      <img className={styles.icon} src="/products/p7.svg" />
-                    }
-                  >
-                    {t("enterprise-solution")}
-                  </CtaButton>
-                </Stack>
-              </>
-            )}
+              </Stack>
+            </Box>
           </Stack>
           {businesses.map((item, index) => (
             <ProductPanel
-              imageHref={isMobile ? item.imageHref_m : item.imageHref}
+              imageHrefs={[item.imageHref_m, item.imageHref]}
               index={index}
               key={index}
               ref={PanelRef2}
@@ -465,9 +465,9 @@ const Products = () => {
                   </Typography>
                 ))}
               </Stack>
-              <CtaButton onClick={() => router.push(item.btnHref)}>
-                {item.btnName}
-              </CtaButton>
+              <Link href={item.btnHref}>
+                <CtaButton>{item.btnName}</CtaButton>
+              </Link>
             </ProductPanel>
           ))}
         </Stack>

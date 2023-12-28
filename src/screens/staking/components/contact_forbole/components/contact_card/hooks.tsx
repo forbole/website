@@ -7,8 +7,8 @@ import isEmail from "validator/lib/isEmail";
 
 const useContactCard = () => {
   const [inputs, setInputs] = useState({
-    name: "",
     email: "",
+    name: "",
     option: "",
   });
 
@@ -31,18 +31,18 @@ const useContactCard = () => {
       axios
         .post("/api/contact", {
           from: inputs.email,
+          html: `<p>${sanitize(inputs.option)}</p>`,
           source: "staking",
           text: sanitize(inputs.option),
-          html: `<p>${sanitize(inputs.option)}</p>`,
         })
         .then((res) => {
           if (res.status === 200) {
             toast.success(t("success") as string);
 
             setInputs({
+              email: "",
               name: "",
               option: "",
-              email: "",
             });
           }
         })
@@ -64,11 +64,11 @@ const useContactCard = () => {
   };
 
   return {
-    handleSubmit,
+    canSubmit,
     handleInputChange,
+    handleSubmit,
     inputs,
     setInputs,
-    canSubmit,
   };
 };
 

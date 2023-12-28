@@ -1,7 +1,6 @@
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
 import type { FC } from "react";
 import { useRef } from "react";
 
@@ -16,12 +15,12 @@ import * as styles from "./index.module.scss";
 import { FilterBG } from "./styles";
 
 export type Page = {
-  title: string;
-  list: string[];
-  imageHref: string;
-  btnName: string;
   btnClick: string;
+  btnName: string;
   id: string;
+  imageHref: string;
+  list: string[];
+  title: string;
 };
 
 type Props = { pages: Page[] };
@@ -31,7 +30,6 @@ const Home: FC<Props> = ({ pages }) => {
   const theme = useTheme();
   const topRef = useRef(null);
   const bottomRef = useRef(null);
-  const router = useRouter();
   const { isMobile, isTablet } = useWindowDimensions();
 
   const filteredPages = pages.reduce((pageList: Page[], current) => {
@@ -71,16 +69,14 @@ const Home: FC<Props> = ({ pages }) => {
         >
           <Typography className={styles.title}>{t("title")}</Typography>
           <Grid
-            columnSpacing={{ mobile: "0", laptop: theme.spacing(2) }}
+            columnSpacing={{ laptop: theme.spacing(2), mobile: "0" }}
             container
-            rowSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(3) }}
+            rowSpacing={{ laptop: theme.spacing(3), mobile: theme.spacing(2) }}
           >
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnLink="/infrastructure"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("infrastructure");
-                }}
                 desc={t("Validator_Infrastructure_desc")}
                 imageHref={
                   isMobile
@@ -93,10 +89,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
+                btnLink="/staking-service"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("staking-service");
-                }}
                 desc={t("Native_Staking_Service_desc")}
                 imageHref={
                   isMobile
@@ -109,10 +103,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
+                btnLink="/analytics-tools"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("analytics-tools");
-                }}
                 desc={t("Blockchain_Data_Analytics_Tools_desc")}
                 imageHref={
                   isMobile
@@ -125,10 +117,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnLink="/developer-tools"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("developer-tools");
-                }}
                 desc={t("Developer_Tools_desc")}
                 imageHref={
                   isMobile
@@ -141,10 +131,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnLink="/enterprise-solution"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("enterprise-solution");
-                }}
                 desc={t("Enterprise_Solution_desc")}
                 imageHref={
                   isMobile
@@ -165,10 +153,10 @@ const Home: FC<Props> = ({ pages }) => {
             spacing={theme.spacing(2)}
           >
             {filteredPages.map(
-              ({ title, list, imageHref, btnName, btnClick, id }, idx) => (
+              ({ btnClick, btnName, id, imageHref, list, title }, idx) => (
                 <Grid item key={`${id}_${idx}`} laptop={4} mobile={12}>
                   <IntroCard
-                    btnClick={() => router.push(btnClick)}
+                    btnLink={btnClick}
                     btnName={btnName}
                     disabled={!btnClick || false}
                     imageHref={imageHref}

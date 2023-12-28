@@ -8,10 +8,10 @@ import isEmail from "validator/lib/isEmail";
 
 const useContactForm = () => {
   const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
     company: "",
+    email: "",
     help: "",
+    name: "",
   });
 
   const [canSubmit, setCanSubmit] = useState(false);
@@ -36,7 +36,6 @@ const useContactForm = () => {
       axios
         .post("/api/contact", {
           from: inputs.email,
-          source: "enterprise",
           html: `
           <p>Dear Administrator,</p>
           <p>A new customer: ${sanitize(inputs.email)} contacted us today.</p>
@@ -48,14 +47,15 @@ const useContactForm = () => {
           <p>Regards,</p>
           <p>Forbole web system</p>
           `,
+          source: "enterprise",
         })
         .then((res) => {
           if (res.status === 200) {
             setInputs({
-              name: "",
-              email: "",
               company: "",
+              email: "",
               help: "",
+              name: "",
             });
           }
 
@@ -97,16 +97,16 @@ const useContactForm = () => {
   };
 
   return {
-    handleSubmit,
-    handleInputChange,
-    handleClear,
-    inputs,
-    setInputs,
     canSubmit,
     handleCheckedChange,
-    success,
-    setSuccess,
+    handleClear,
+    handleInputChange,
+    handleSubmit,
+    inputs,
     isLoading,
+    setInputs,
+    setSuccess,
+    success,
   };
 };
 

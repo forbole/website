@@ -17,17 +17,17 @@ const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
       </Box>
       <Box
         sx={{
-          "height": "260vw",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "zIndex": -1,
-
           "& img": {
             [theme.breakpoints.up(550)]: {
               display: "none",
             },
           },
+          "height": displayHorse ? "260vw" : "190vw",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+
+          "zIndex": -1,
         }}
       >
         <Image
@@ -39,49 +39,22 @@ const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
       </Box>
       {displayHorse && (
         <>
-          <Box
-            sx={{
-              "top": 0,
-              "right": 0,
-              "left": 0,
-              "height": "50vw",
-              "position": "absolute",
-
-              "& img": {
-                [theme.breakpoints.down(550)]: {
-                  display: "none",
-                },
-              },
-            }}
-          >
+          <Box className={styles.horseWrapperDesktop}>
             <Image
               alt="Forbole Horse Logo"
               fill
               loading="eager"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 70vw"
               src={require("@src/../public/images/assets/bg_desktop_horse.webp")}
               style={{ objectFit: "contain" }}
             />
           </Box>
-          <Box
-            sx={{
-              "marginTop": "100px",
-              "height": "120vw",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-
-              "& img": {
-                [theme.breakpoints.up(550)]: {
-                  display: "none",
-                },
-              },
-            }}
-          >
+          <Box className={styles.horseWrapperMobile}>
             <Image
               alt="Forbole Horse Logo"
               fill
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 70vw"
               src={require("@src/../public/images/assets/bg_mobile_horse.webp")}
               style={{ objectFit: "cover" }}
             />

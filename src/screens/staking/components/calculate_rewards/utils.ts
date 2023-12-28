@@ -2,11 +2,11 @@ import { clone, pathOr } from "ramda";
 
 type NetworkDataProps = {
   bonded?: (data: any) => number;
-  inflation?: (data: any) => number;
-  supply?: (data: any) => number;
   commissionRate?: (data: any) => number;
-  marketPrice: (data: any) => number;
   gecko?: any;
+  inflation?: (data: any) => number;
+  marketPrice: (data: any) => number;
+  supply?: (data: any) => number;
 };
 
 type NetworkProps = {
@@ -56,15 +56,15 @@ const uSolanaToSolana = defaultConverter(1);
 export const defaultFunctions = (converter?: any) => ({
   bonded: (data: any) =>
     converter(Number(pathOr(0, ["result", "bonded_tokens"], data))),
-  inflation: (data: any) => toFixed(Number(pathOr(0, ["result"], data))) ?? 0,
-  supply: (data: any) => converter(Number(pathOr(0, ["result"], data))),
   commissionRate: (data: any) =>
     Number(
       pathOr(0, ["result", "commission", "commission_rates", "rate"], data),
     ),
+  converter,
+  inflation: (data: any) => toFixed(Number(pathOr(0, ["result"], data))) ?? 0,
   marketPrice: (data: any) =>
     toFixed(Number(pathOr(0, ["market_data", "current_price", "usd"], data))),
-  converter,
+  supply: (data: any) => converter(Number(pathOr(0, ["result"], data))),
 });
 
 const cosmos: any = clone(defaultFunctions(uAtomToAtom));
@@ -145,24 +145,24 @@ solana.gecko = "https://api.coingecko.com/api/v3/coins/solana";
 
 // available networks for calculations
 export const networkFunctions: NetworkProps = {
-  cosmos,
-  kava,
   akash,
-  terra,
-  iov,
-  likecoin,
-  iris,
   band,
-  emoney,
-  vsys,
-  solana,
   "band-protocol": band,
-  cryptoOrg,
-  sentinel,
-  "fetchai": fetchAI,
-  "regen-network": regen,
   bitsong,
-  "oasis-protocol": oasis,
-  kusama,
+  cosmos,
+  cryptoOrg,
+  emoney,
+  "fetchai": fetchAI,
   flow,
+  iov,
+  iris,
+  kava,
+  kusama,
+  likecoin,
+  "oasis-protocol": oasis,
+  "regen-network": regen,
+  sentinel,
+  solana,
+  terra,
+  vsys,
 };

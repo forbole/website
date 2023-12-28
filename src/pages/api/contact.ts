@@ -11,9 +11,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         {
           devtools:
             "A new customer just wanted to get in touch with us via Developer Tools form",
-          staking: "Inquiry From Forbole Validator Website",
           enterprise:
             "A new customer just wanted to get in touch with us via Contact form",
+          staking: "Inquiry From Forbole Validator Website",
         }[source as string] || "A new enquiry from Forbole's website";
 
       const email =

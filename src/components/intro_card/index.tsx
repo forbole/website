@@ -1,28 +1,29 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Image from "next/image";
+import Link from "next/link";
 
 import CtaButton from "../cta-button";
 import * as styles from "./index.module.scss";
 
 type Props = {
-  title?: string;
-  desc?: string;
-  list?: string[];
-  imageHref?: string;
+  btnLink?: string;
   btnName?: string;
-  btnClick?: () => void;
+  desc?: string;
   disabled?: boolean;
+  imageHref?: string;
+  list?: string[];
+  title?: string;
 };
 
 const IntroCard = ({
-  title,
-  desc,
-  list,
-  imageHref = "",
+  btnLink,
   btnName,
+  desc,
   disabled,
-  btnClick,
+  imageHref = "",
+  list,
+  title,
 }: Props) => (
   <Box className={styles.wrapper} component="div">
     <Box className={styles.imageWrapper}>
@@ -48,13 +49,11 @@ const IntroCard = ({
           ))}
         </ul>
       </Box>
-      <CtaButton
-        className={styles.ctaButton}
-        disabled={disabled}
-        onClick={btnClick}
-      >
-        {btnName}
-      </CtaButton>
+      <Link href={btnLink || ""}>
+        <CtaButton className={styles.ctaButton} disabled={disabled}>
+          {btnName}
+        </CtaButton>
+      </Link>
     </Box>
   </Box>
 );

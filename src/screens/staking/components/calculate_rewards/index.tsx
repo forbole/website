@@ -39,16 +39,16 @@ const CalculateRewards = () => {
         />
         <Typography
           sx={{
+            color: theme.palette.custom.forbole.blue,
+            fontSize: theme.spacing(2),
+            fontWeight: 400,
+            padding: theme.spacing(3, 0, 3, 0),
+            textAlign: "center",
             textShadow:
               "0px 1px 8px rgba(16, 24, 40, 0.06), 0px 1px 10px rgba(16, 24, 40, 0.05)",
-            fontWeight: 400,
-            fontSize: theme.spacing(2),
-            textAlign: "center",
-            padding: theme.spacing(3, 0, 3, 0),
-            color: theme.palette.custom.forbole.blue,
             [theme.breakpoints.up("laptop")]: {
-              fontWeight: 400,
               fontSize: theme.spacing(3),
+              fontWeight: 400,
               paddingBottom: theme.spacing(7),
             },
           }}

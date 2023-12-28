@@ -17,7 +17,7 @@ $breakpoint-laptop: 1025px;
 $breakpoint-desktop: 1208px;
 
 @mixin down-mobile {
-  @media (max-width: $breakpoint-mobile) {
+  @media (max-width: $breakpoint-mobile - 1) {
     @content;
   }
 }
@@ -29,7 +29,7 @@ $breakpoint-desktop: 1208px;
 }
 
 @mixin down-tablet {
-  @media (max-width: $breakpoint-tablet) {
+  @media (max-width: $breakpoint-tablet - 1) {
     @content;
   }
 }
@@ -41,7 +41,7 @@ $breakpoint-desktop: 1208px;
 }
 
 @mixin down-laptop {
-  @media (max-width: $breakpoint-laptop) {
+  @media (max-width: $breakpoint-laptop - 1) {
     @content;
   }
 }

@@ -126,14 +126,14 @@ const LayoutVal = ({
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
             background: stakingGuide
               ? "url(/images/assets/image_BG_FVH_guide.png)"
               : "url(/images/assets/bg_mobile.webp)",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
             [theme.breakpoints.up("laptop")]: {
               background: stakingGuide
                 ? "url(/images/assets/image_BG_FVH_guide.png)"

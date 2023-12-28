@@ -11,12 +11,12 @@ import { BoxCSS } from "./BoxCSS";
 SwiperCore.use([Navigation]);
 
 type Props = {
+  className?: string;
   imagesList: string[];
   style?: CSSProperties;
-  className?: string;
 };
 
-const CardSwiper = ({ imagesList, style, className }: Props) => {
+const CardSwiper = ({ className, imagesList, style }: Props) => {
   const theme = useTheme();
 
   return (
@@ -24,15 +24,15 @@ const CardSwiper = ({ imagesList, style, className }: Props) => {
       <Box position="relative">
         <Swiper
           breakpoints={{
-            375: {
-              spaceBetween: -30,
-              slidesPerView: 1,
-              initialSlide: 0,
-            },
             1025: {
-              spaceBetween: -80,
-              slidesPerView: 3,
               initialSlide: 1,
+              slidesPerView: 3,
+              spaceBetween: -80,
+            },
+            375: {
+              initialSlide: 0,
+              slidesPerView: 1,
+              spaceBetween: -30,
             },
           }}
           centeredSlides
@@ -76,8 +76,8 @@ const CardSwiper = ({ imagesList, style, className }: Props) => {
           className="c-prev"
           direction={Direction.Left}
           sx={{
-            position: "absolute",
             left: "5px",
+            position: "absolute",
             top: "50%",
             transform: "translateY(-50%)",
           }}

@@ -1,17 +1,21 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { forwardRef } from "react";
 
+import * as styles from "./index.module.scss";
+
 type Props = {
-  title?: string;
-  imageHref: string;
   children?: React.ReactNode;
-  index: number;
-  value: number;
+  // @deprecated
+  imageHref?: string;
+  imageHrefs?: string[];
   imgFull?: boolean;
+  index: number;
+  title?: string;
+  value: number;
 };
 
 const productPanel = forwardRef<HTMLDivElement, Props>(
-  ({ title, imageHref, children, index, value, imgFull }, ref) => {
+  ({ children, imageHref, imageHrefs, imgFull, index, title, value }, ref) => {
     const theme = useTheme();
 
     // eslint-disable-next-line eqeqeq
@@ -25,13 +29,13 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
         component="div"
         ref={ref}
         sx={{
+          background:
+            "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.50) 34.90%, #FFF 100%)",
+          borderRadius: "40px",
+          boxShadow: "4px 8px 24px 0px rgba(116, 81, 255, 0.16)",
           display: "flex",
           flexDirection: "column",
           gap: "40px",
-          borderRadius: "40px",
-          background:
-            "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.50) 34.90%, #FFF 100%)",
-          boxShadow: "4px 8px 24px 0px rgba(116, 81, 255, 0.16)",
           [theme.breakpoints.down("laptop")]: {
             padding: "32px 24px",
           },
@@ -43,9 +47,9 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
         {title && (
           <Typography
             sx={{
+              color: "#202A43",
               fontSize: "24px",
               fontWeight: 700,
-              color: "#202A43",
             }}
           >
             {title}
@@ -65,33 +69,50 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
         >
           <Box
             sx={{
-              "position": "relative",
-              "width": "420px",
-              "height": "max-content",
-              "m": "16px",
-              "borderRadius": "8px",
-              "overflow": "hidden",
-              "boxShadow":
-                "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
               "& img": {
                 display: "block",
                 width: "100%",
               },
+              "borderRadius": "8px",
+              "boxShadow":
+                "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
+              "height": "max-content",
+              "m": "16px",
+              "overflow": "hidden",
+              "position": "relative",
               [theme.breakpoints.down("tablet")]: {
-                m: "8px",
-                width: "auto",
-                mx: imgFull ? "-24px" : "",
                 boxShadow: imgFull ? "0" : "",
+                m: "8px",
+                mx: imgFull ? "-24px" : "",
+                width: "auto",
               },
+              "width": "420px",
             }}
           >
-            <img alt="" loading="lazy" src={imageHref} />
+            {imageHrefs ? (
+              <>
+                <img
+                  alt=""
+                  className={styles.imgMobile}
+                  loading="lazy"
+                  src={imageHrefs[0]}
+                />
+                <img
+                  alt=""
+                  className={styles.imgDesktop}
+                  loading="lazy"
+                  src={imageHrefs[1]}
+                />
+              </>
+            ) : (
+              <img alt="" loading="lazy" src={imageHref} />
+            )}
           </Box>
           <Stack
             sx={{
+              alignItems: "flex-start",
               gap: theme.spacing(4),
               textAlign: "left",
-              alignItems: "flex-start",
             }}
           >
             {children}

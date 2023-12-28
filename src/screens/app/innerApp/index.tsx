@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { lightTemplate } from "@src/styles";
 
-const InnerApp = ({ pageProps, Component }: any) => {
+const InnerApp = ({ Component, pageProps }: any) => {
   const muiTheme = createTheme(lightTemplate);
 
   return (

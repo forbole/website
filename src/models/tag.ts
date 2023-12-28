@@ -18,10 +18,10 @@ class Tag {
 
   static fromJson(data: any) {
     return new Tag({
+      count: { posts: pathOr("", ["count", "posts"], data) },
       name: data.name,
       slug: data.slug ?? data.name,
       url: data.url ?? data.name,
-      count: { posts: pathOr("", ["count", "posts"], data) },
     });
   }
 }

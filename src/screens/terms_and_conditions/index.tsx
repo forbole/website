@@ -75,6 +75,7 @@ const TermsAndConditions = () => {
                     className={styles.link}
                     href=""
                     onClick={(e) => scrollToRef(e, ref2)}
+                    role="button"
                   >
                     Section 2 Additional Terms for Staking Service
                   </a>

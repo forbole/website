@@ -8,16 +8,16 @@ import { anchorElContext } from "@src/utils/menu";
 import * as styles from "./index.module.scss";
 
 type Props = {
+  className?: string;
   menuList: {
     icon?: React.ReactNode;
     link: string;
     locale?: string;
     name: string;
   }[];
-  className?: string;
 };
 
-const MenuList = ({ menuList, className }: Props) => {
+const MenuList = ({ className, menuList }: Props) => {
   const { setAnchorEl } = useContext(anchorElContext);
 
   const handleClose = useCallback(() => {

@@ -19,9 +19,9 @@ type Props = {
 const Translate = Trans;
 
 const Section = ({
+  desc,
   maxWidth,
   title,
-  desc,
   title_large,
   title_large_trans,
 }: Props) => (

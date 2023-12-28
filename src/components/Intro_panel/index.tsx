@@ -2,12 +2,13 @@ import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import type { StaticImageData } from "next/image";
 import Image from "next/legacy/image";
+import Link from "next/link";
 
 import CtaButton from "../cta-button";
 
 type Props = {
+  btnLink?: string;
   btnName?: string;
-  btn_Click?: () => void;
   desc?: string;
   disabled?: boolean;
   imageAlt?: string;
@@ -18,8 +19,8 @@ type Props = {
 };
 
 const IntroPanel = ({
+  btnLink,
   btnName,
-  btn_Click,
   desc,
   disabled,
   imageAlt,
@@ -57,38 +58,36 @@ const IntroPanel = ({
         >
           <Typography
             sx={{
+              color: "#202A43",
               fontWeight: "590",
               pr: "10px",
-              color: "#202A43",
+              [theme.breakpoints.down("tablet")]: {
+                fontSize: "18px",
+                width: "max-content",
+              },
               [theme.breakpoints.up("tablet")]: {
                 fontSize: "20px",
-              },
-              [theme.breakpoints.down("tablet")]: {
-                width: "max-content",
-                fontSize: "18px",
               },
             }}
             variant={level ? (`h${level}` as "h1") : undefined}
           >
             {title}
           </Typography>
-          {btnName && (
-            <CtaButton
-              disabled={disabled}
-              onClick={btn_Click}
-              variant="contained"
-            >
-              {btnName}
-            </CtaButton>
+          {btnName && btnLink && (
+            <Link href={btnLink}>
+              <CtaButton disabled={disabled} variant="contained">
+                {btnName}
+              </CtaButton>
+            </Link>
           )}
         </Stack>
         <Box>
           <Typography
             sx={{
-              fontSize: "16px",
-              lineHeight: "22px",
-              fontWeight: "400",
               color: "#2A1A6A",
+              fontSize: "16px",
+              fontWeight: "400",
+              lineHeight: "22px",
             }}
             variant={level ? (`h${level + 1}` as "h1") : undefined}
           >

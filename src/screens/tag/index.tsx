@@ -9,7 +9,7 @@ import TagPosts from "./components/tag_posts";
 import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
-const TagTitlePosts = ({ post, sidePosts = [], tags, meta, error }: any) => {
+const TagTitlePosts = ({ error, meta, post, sidePosts = [], tags }: any) => {
   const { t } = useTranslation("blog");
 
   useBlogHook(error, t);

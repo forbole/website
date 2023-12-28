@@ -1,5 +1,5 @@
 export interface IProps {
-  main: any;
   blogs: any[];
+  main: any;
   meta: any;
 }

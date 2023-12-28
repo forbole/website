@@ -2,18 +2,18 @@ import { useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const getWindowDimensions = () => {
-  const { innerWidth: width, innerHeight: height } = window;
+  const { innerHeight: height, innerWidth: width } = window;
 
   return {
-    width,
     height,
+    width,
   };
 };
 
 export const useWindowDimensions = () => {
   const [windowDimensions, setWindowDimensions] = useState({
-    width: 0,
     height: 0,
+    width: 0,
   }); // <-- don't invoke the function here
 
   const theme = useTheme();
@@ -63,5 +63,5 @@ export const useWindowDimensions = () => {
     theme?.breakpoints?.values?.laptop,
   ]);
 
-  return { windowDimensions, isDesktop, isTablet, isMobile };
+  return { isDesktop, isMobile, isTablet, windowDimensions };
 };

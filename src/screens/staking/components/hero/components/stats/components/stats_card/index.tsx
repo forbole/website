@@ -6,9 +6,9 @@ import { convertToMoney } from "@src/utils/convert_to_money";
 
 import * as styles from "./index.module.scss";
 
-const StatsCard = ({ title, stats }: any) => {
+const StatsCard = ({ stats, title }: any) => {
   const { t } = useTranslation("common");
-  const { counterValue, counterRef } = useCounter(stats);
+  const { counterRef, counterValue } = useCounter(stats);
 
   return (
     <Box className={styles.root} ref={counterRef}>

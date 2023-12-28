@@ -110,8 +110,8 @@ const About = () => {
                 }}
                 breakpoints={{
                   1023: {
-                    spaceBetween: 16,
                     centeredSlides: false,
+                    spaceBetween: 16,
                   },
                 }}
                 centeredSlides

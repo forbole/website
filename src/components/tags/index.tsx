@@ -10,12 +10,12 @@ type BaseTag = {
 };
 
 interface TagsProps {
-  tags: BaseTag[];
   details?: boolean;
   noPadding?: boolean;
+  tags: BaseTag[];
 }
 
-const Tags = ({ tags, details, noPadding }: TagsProps) => {
+const Tags = ({ details, noPadding, tags }: TagsProps) => {
   const { t } = useTranslation("blog");
   const theme = useTheme();
 

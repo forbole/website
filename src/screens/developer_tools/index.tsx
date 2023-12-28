@@ -26,15 +26,15 @@ import * as styles from "./index.module.scss";
 
 const DeveloperTools = () => {
   const {
-    inputs,
-    handleInputChange,
-    handleSubmit,
-    handleClear,
     canSubmit,
     handleCheckedChange,
-    success,
-    setSuccess,
+    handleClear,
+    handleInputChange,
+    handleSubmit,
+    inputs,
     isLoading,
+    setSuccess,
+    success,
   } = useTalkModalForm();
 
   const { t } = useTranslation("developer_tools");

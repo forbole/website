@@ -15,28 +15,28 @@ const HowItWorks = () => {
   const howTos = useMemo(
     () => [
       {
+        desc: t("trusted provider desc"),
         id: 1,
         image: "/images/assets/image_provider.png",
         title: t("trusted provider"),
-        desc: t("trusted provider desc"),
       },
       {
+        desc: t("stake desc"),
         id: 2,
         image: "/images/assets/image_stake.png",
         title: t("stake"),
-        desc: t("stake desc"),
       },
       {
+        desc: t("rewards desc"),
         id: 3,
         image: "/images/assets/image_rewards.png",
         title: t("rewards"),
-        desc: t("rewards desc"),
       },
       {
+        desc: t("non-custodial desc"),
         id: 4,
         image: "/images/assets/image_non-custodial.png",
         title: t("non-custodial"),
-        desc: t("non-custodial desc"),
       },
     ],
     [t],
@@ -75,14 +75,14 @@ const HowItWorks = () => {
         />
         <Box
           sx={{
-            padding: theme.spacing(5, 0, 0, 0),
             display: "grid",
-            gridTemplateColumns: "repeat(1, 1fr)",
             gridGap: theme.spacing(2),
+            gridTemplateColumns: "repeat(1, 1fr)",
+            padding: theme.spacing(5, 0, 0, 0),
             [theme.breakpoints.up("laptop")]: {
+              gridGap: theme.spacing(2.75),
               gridTemplateColumns: "repeat(4, 1fr)",
               padding: theme.spacing(7, 0, 0, 0),
-              gridGap: theme.spacing(2.75),
             },
           }}
         >

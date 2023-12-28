@@ -16,10 +16,10 @@ type Props = {
   tags: any;
 };
 
-const AuthorTitlePosts = ({ post, tags, author, meta }: Props) => {
+const AuthorTitlePosts = ({ author, meta, post, tags }: Props) => {
   const { t } = useTranslation("blog");
 
-  const { featureImage, excerpt, error } = post;
+  const { error, excerpt, featureImage } = post;
 
   useBlogHook(error, t);
 
@@ -42,21 +42,21 @@ const AuthorTitlePosts = ({ post, tags, author, meta }: Props) => {
               "@type": "ProfilePage",
               "mainEntity": {
                 "@type": "Person",
-                "name": author.name,
-                "alternateName": author.slug,
-                "identifier": author.id,
-                "url": `https://www.forbole.com/author/${author.slug}/`,
-                "image": author.profile_image,
-                "brand": {
-                  "@type": "Organization",
-                  "name": "Forbole",
-                  "url": "https://www.forbole.com/",
-                },
                 "agentInteractionStatistic": {
                   "@type": "InteractionCounter",
                   "interactionType": "https://schema.org/WriteAction",
                   "userInteractionCount": meta.pagination?.total,
                 },
+                "alternateName": author.slug,
+                "brand": {
+                  "@type": "Organization",
+                  "name": "Forbole",
+                  "url": "https://www.forbole.com/",
+                },
+                "identifier": author.id,
+                "image": author.profile_image,
+                "name": author.name,
+                "url": `https://www.forbole.com/author/${author.slug}/`,
               },
             }),
           }}

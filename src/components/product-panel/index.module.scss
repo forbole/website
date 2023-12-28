@@ -1,0 +1,17 @@
+@import "src/styles/sass.scss";
+
+body .imgMobile {
+  display: none;
+
+  @include down-tablet {
+    display: block;
+  }
+}
+
+body .imgDesktop {
+  display: none;
+
+  @include up-tablet {
+    display: block;
+  }
+}

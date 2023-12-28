@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 export const useCounter = (targetValue: unknown) => {
   const [counterValue, setCounterValue] = useState<unknown>(0);
   const counterRef = useRef(null);
-  const divisor = useRef<number | null>(null);
-  const intervalId = useRef<number | null>(null);
+  const divisor = useRef<null | number>(null);
+  const intervalId = useRef<null | number>(null);
   const hasViewed = useRef<unknown>(false);
 
   const clearInterval = () => {

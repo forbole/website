@@ -26,10 +26,10 @@ const nanoLikeToLike = defaultConverter(1000000000);
 const uEGLDToEGLD = defaultConverter(1000000000000000000);
 
 const defaultFunctions = (converter: any) => ({
+  converter,
   gecko: "",
   marketPrice: (data: any) =>
     toFixed(Number(data?.market_data?.current_price?.usd || 0)),
-  converter,
 });
 
 const cosmos = clone(defaultFunctions(uAtomToAtom));

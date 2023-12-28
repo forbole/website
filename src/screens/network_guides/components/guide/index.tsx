@@ -51,8 +51,8 @@ const Guide = ({ post }: { post: PostDetail }) => {
           i18nKey="staking title"
           ns="staking"
           values={{
-            title1: titleArray.slice(0, 1).join(" "),
             coloredTitle,
+            title1: titleArray.slice(0, 1).join(" "),
             title2: titleArray.slice(4).join(" "),
           }}
         />

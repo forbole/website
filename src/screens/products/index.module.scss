@@ -274,3 +274,15 @@
   min-width: 0;
   padding: 0;
 }
+
+.mobileOnly {
+  @include up-tablet {
+    display: none;
+  }
+}
+
+.notMobile {
+  @include down-tablet {
+    display: none;
+  }
+}

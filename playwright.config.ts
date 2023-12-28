@@ -8,27 +8,27 @@ if (process.env.E2E_MANUAL !== "true") {
 
 // https://playwright.dev/docs/test-configuration
 export default defineConfig({
-  timeout: 30000,
   globalTimeout: 600000,
+  grepInvert,
   projects: [
     {
       name: "Desktop",
       use: {
-        viewport: { width: 1024, height: 768 },
+        viewport: { height: 768, width: 1024 },
       },
     },
     {
       name: "Mobile",
-      use: {
-        viewport: { width: 375, height: 812 },
-      },
       testIgnore: [/backend.spec.ts/],
+      use: {
+        viewport: { height: 812, width: 375 },
+      },
     },
   ],
+  testDir: "./e2e",
+  timeout: 30000,
   use: {
     baseURL: "http://localhost:3000",
     trace: "retain-on-failure",
   },
-  testDir: "./e2e",
-  grepInvert,
 });

@@ -106,6 +106,7 @@ const SocialMedia = () => {
       </Box>
       <Stack className={styles.inpboxItem}>
         <Input
+          autoComplete="email"
           className={styles.input}
           disableUnderline
           name="email"

@@ -1,8 +1,8 @@
 type ParamsProps = {
+  bondedToken?: number;
+  commissionRate: number;
   inflation: number;
   stakingRatio: number;
-  commissionRate: number;
-  bondedToken?: number;
   totalSupply?: number;
 };
 
@@ -11,10 +11,10 @@ type NetworkProps = {
 };
 
 const baseState = {
+  bondedToken: 0,
+  commissionRate: 0,
   inflation: 0,
   stakingRatio: 0,
-  commissionRate: 0,
-  bondedToken: 0,
   totalSupply: 0,
 };
 
@@ -30,10 +30,10 @@ const stakingParams: NetworkProps = {
   chihuahua: baseState,
   comdex: baseState,
   cosmos: {
+    bondedToken: 197693300,
+    commissionRate: 0.095,
     inflation: 0.1273,
     stakingRatio: 0.6693,
-    commissionRate: 0.095,
-    bondedToken: 197693300,
     totalSupply: 292586164,
   },
   crescent: baseState,

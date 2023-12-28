@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     )
     .flat();
 
-  return { paths, fallback: "blocking" };
+  return { fallback: "blocking", paths };
 };
 
 export const getStaticProps: GetStaticProps<any, { tag: string }> = async (
@@ -69,11 +69,11 @@ export const getStaticProps: GetStaticProps<any, { tag: string }> = async (
 
   return {
     props: {
-      post: JSON.parse(JSON.stringify(formattedPost)),
-      tags: JSON.parse(JSON.stringify(formattedTags)),
-      sidePosts: JSON.parse(JSON.stringify(formattedSidePosts)),
-      meta: JSON.parse(JSON.stringify(meta)),
       error,
+      meta: JSON.parse(JSON.stringify(meta)),
+      post: JSON.parse(JSON.stringify(formattedPost)),
+      sidePosts: JSON.parse(JSON.stringify(formattedSidePosts)),
+      tags: JSON.parse(JSON.stringify(formattedTags)),
     },
   };
 };

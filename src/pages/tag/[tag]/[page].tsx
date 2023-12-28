@@ -60,11 +60,11 @@ export async function getServerSideProps(context: { query: any }) {
 
   return {
     props: {
-      post: JSON.parse(JSON.stringify(formattedPost)),
-      tags: JSON.parse(JSON.stringify(formattedTags)),
-      sidePosts: JSON.parse(JSON.stringify(formattedSidePosts)),
-      meta: JSON.parse(JSON.stringify(meta)),
       error,
+      meta: JSON.parse(JSON.stringify(meta)),
+      post: JSON.parse(JSON.stringify(formattedPost)),
+      sidePosts: JSON.parse(JSON.stringify(formattedSidePosts)),
+      tags: JSON.parse(JSON.stringify(formattedTags)),
     },
   };
 }

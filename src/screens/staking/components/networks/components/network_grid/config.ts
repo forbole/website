@@ -2,9 +2,9 @@ import { cosmosNetworkKeys } from "@src/utils/network_info";
 
 export type ParamsProps = {
   APY: number;
-  TVL: number;
   bonded: number;
   custom?: Record<string, string>;
+  TVL: number;
 };
 
 export type NetworkProps = {
@@ -12,8 +12,8 @@ export type NetworkProps = {
 };
 
 const defaultParams: ParamsProps = {
-  bonded: 0,
   APY: 0,
+  bonded: 0,
   TVL: 0,
 };
 

@@ -11,12 +11,12 @@ import { useBlogPostsHook } from "./hooks";
 import * as styles from "./index.module.scss";
 import type { IProps } from "./interface";
 
-const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
+const BlogPosts = ({ blogs: blogsUpper, main, meta }: IProps) => {
   const { t } = useTranslation("blog");
   const router = useRouter();
   const theme = useTheme();
 
-  const { windowDimensions, isMobile } = useWindowDimensions();
+  const { isMobile, windowDimensions } = useWindowDimensions();
   const { width } = windowDimensions;
 
   const currentPage = pathOr(0, ["pagination", "page"], meta);
@@ -41,7 +41,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
     [lastView, isMobile],
   );
 
-  const seeMorePages = (_e: any, { limit, blogs }: any) => {
+  const seeMorePages = (_e: any, { blogs, limit }: any) => {
     const lastPost = blogs.length;
 
     if (limit + 15 >= totalPosts) {
@@ -62,48 +62,48 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
     desktop: {
       breakpoint: { max: 3000, min: 1100 },
     },
-    tablet: {
-      breakpoint: { max: 1100, min: 464 },
-    },
     mobile: {
       breakpoint: { max: 464, min: 0 },
+    },
+    tablet: {
+      breakpoint: { max: 1100, min: 464 },
     },
   };
 
   const paginationStyle = {
     sx: {
+      "& .MuiPaginationItem-firstLast": {
+        background: "rgba(239, 239, 239, 1)",
+        color: "rgba(52, 56, 62, 1)",
+        opacity: 1,
+      },
+      "& .MuiPaginationItem-previousNext": {
+        background: "rgba(239, 239, 239, 1)",
+        color: "rgba(52, 56, 62, 1)",
+        opacity: 1,
+      },
       "& .MuiPaginationItem-root": {
         color: theme.palette.primary.main,
       },
       "& .MuiPaginationItem-root.Mui-disabled": {
-        opacity: 1,
         background: "rgba(239, 239, 239, 1)",
         color: "rgba(175, 175, 175, 1)",
+        opacity: 1,
       },
       "& .MuiPaginationItem-root.Mui-selected": {
         backgroundColor: theme.palette.custom.forbole.purple,
         color: theme.palette.primary.main,
       },
-      "& .MuiPaginationItem-previousNext": {
-        opacity: 1,
-        background: "rgba(239, 239, 239, 1)",
-        color: "rgba(52, 56, 62, 1)",
-      },
-      "& .MuiPaginationItem-firstLast": {
-        opacity: 1,
-        background: "rgba(239, 239, 239, 1)",
-        color: "rgba(52, 56, 62, 1)",
-      },
       [theme.breakpoints.down("tablet")]: {
         display: "none",
         margin: theme.spacing(32, 0),
       },
-      [theme.breakpoints.up("tablet")]: {
-        paddingTop: theme.spacing(7),
-      },
       [theme.breakpoints.up("laptop")]: {
         height: "366px",
         zIndex: 3,
+      },
+      [theme.breakpoints.up("tablet")]: {
+        paddingTop: theme.spacing(7),
       },
     },
   };
@@ -137,7 +137,7 @@ const BlogPosts = ({ main, blogs: blogsUpper, meta }: IProps) => {
         <Button
           className={styles.seeMore}
           onClick={(e) =>
-            seeMorePages(e, { limit: limitUpper, blogs: blogsUpper })
+            seeMorePages(e, { blogs: blogsUpper, limit: limitUpper })
           }
           variant="text"
         >

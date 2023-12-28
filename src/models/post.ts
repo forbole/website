@@ -70,22 +70,22 @@ class Post {
     const { excerptLimit = 250 } = options ?? {};
 
     return new Post({
-      id: data.uuid,
-      canonicalUrl: data.canonical_url,
       author: data,
+      canonicalUrl: data.canonical_url,
       createdAt: moment(data.created_at).format("Do MMM YYYY, h:mm a"),
       customExcerpt: data.custom_excerpt,
       excerpt: this.formatExcerpt(data.excerpt, excerptLimit),
+      featured: data.featured,
       featureImage: data.feature_image,
       featureImageCaption: data.feature_image_caption,
-      featured: data.featured,
       html: data.html,
+      id: data.uuid,
+      primaryAuthor: Author.fromJson(data.primary_author),
       publishedAt: moment(data.published_at).format("Do MMM YYYY, h:mm a"),
       slug: data.slug,
+      tags: this.formatTags(data.tags),
       title: data.title,
       visibility: data.visibility,
-      primaryAuthor: Author.fromJson(data.primary_author),
-      tags: this.formatTags(data.tags),
     });
   }
 }

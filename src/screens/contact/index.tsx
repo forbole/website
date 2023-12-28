@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useRef } from "react";
 
 import CtaButton from "@src/components/cta-button";
@@ -28,19 +28,18 @@ const Contact = () => {
   const { t } = useTranslation("contact");
 
   const {
-    inputs,
-    handleInputChange,
-    handleSubmit,
-    handleClear,
     canSubmit,
     handleCheckedChange,
-    success,
-    setSuccess,
+    handleClear,
+    handleInputChange,
+    handleSubmit,
+    inputs,
     isLoading,
+    setSuccess,
+    success,
   } = useContactForm();
 
   const theme = useTheme();
-  const router = useRouter();
 
   const selectList = [
     { label: t("item_1"), name: "collaboration" },
@@ -52,7 +51,7 @@ const Contact = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleToggle = (e: any) => {
-    const { name, checked } = e.target;
+    const { checked, name } = e.target;
 
     if (name === "other") {
       if (checked) {
@@ -77,30 +76,23 @@ const Contact = () => {
 
             <Stack className={styles.contact}>
               <Stack direction="row">
-                <Box
-                  className={styles.icon}
-                  mr="8px"
-                  onClick={() => {
-                    router.push("mailto:info@forbole.com");
-                  }}
-                >
-                  <img alt="" src="/icons/email.svg" />
-                </Box>
-                <Box
-                  className={styles.icon}
-                  onClick={() => {
-                    router.push("https://t.me/forbole");
-                  }}
-                >
-                  <img alt="" src="/icons/Telegram.svg" />
-                </Box>
+                <Link href="mailto:info@forbole.com">
+                  <Box className={styles.icon} mr="8px">
+                    <img alt="" src="/icons/email.svg" />
+                  </Box>
+                </Link>
+                <Link href="https://t.me/forbole">
+                  <Box className={styles.icon}>
+                    <img alt="" src="/icons/Telegram.svg" />
+                  </Box>
+                </Link>
               </Stack>
               <Typography className={styles.method}>{t("method")}</Typography>
             </Stack>
           </Stack>
           <Grid
             container
-            spacing={{ mobile: theme.spacing(3), desktop: theme.spacing(4) }}
+            spacing={{ desktop: theme.spacing(4), mobile: theme.spacing(3) }}
           >
             <Grid item laptop={6} mobile={12}>
               <Typography className={styles.label}>

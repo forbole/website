@@ -111,8 +111,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       orphans: 2,
                       paddingBottom: 0,
                       paddingTop: 0,
@@ -231,8 +231,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -252,9 +252,9 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       height: "11pt",
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -272,8 +272,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -294,9 +294,9 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       height: "11pt",
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -314,8 +314,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -338,9 +338,9 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       height: "11pt",
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -358,8 +358,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -381,9 +381,9 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       height: "11pt",
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -401,8 +401,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -437,8 +437,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -461,9 +461,9 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       height: "11pt",
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -481,8 +481,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -506,9 +506,9 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       height: "11pt",
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -526,8 +526,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       marginLeft: "8em",
                       orphans: 2,
                       paddingBottom: 0,
@@ -1160,8 +1160,8 @@ const Policy = () => {
                       color: "#000",
 
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
 
                       orphans: 2,
 
@@ -1205,8 +1205,8 @@ const Policy = () => {
                     style={{
                       color: "#000",
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       orphans: 2,
 
                       textAlign: "left",
@@ -1232,8 +1232,8 @@ const Policy = () => {
                     style={{
                       color: "#000",
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       orphans: 2,
 
                       textAlign: "left",
@@ -1248,8 +1248,8 @@ const Policy = () => {
                     style={{
                       color: "#000",
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
                       orphans: 2,
 
                       textAlign: "left",
@@ -1267,12 +1267,12 @@ const Policy = () => {
                     style={{
                       color: "#000",
                       fontSize: "11pt",
-                      margin: 0,
                       lineHeight: "1.15",
+                      margin: 0,
+                      marginLeft: "4em",
                       orphans: 2,
                       textAlign: "right",
                       widows: 2,
-                      marginLeft: "4em",
                     }}
                   >
                     {t("desc3")?.trim()}

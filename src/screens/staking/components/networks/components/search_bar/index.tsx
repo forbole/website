@@ -58,11 +58,11 @@ function useSearch(InputProps: ComponentProps<typeof TextField>["InputProps"]) {
 }
 
 interface OptionsProps {
-  props: HTMLAttributes<HTMLLIElement>;
   network: Network;
+  props: HTMLAttributes<HTMLLIElement>;
 }
 
-const Options = ({ props, network }: OptionsProps) => {
+const Options = ({ network, props }: OptionsProps) => {
   const styles = useStyles();
 
   return (
@@ -171,8 +171,8 @@ const SearchBar = ({ sortedNetworks }: Props) => {
     const top = elementPosition + window.pageYOffset - headerOffset;
 
     window.scrollTo({
-      top,
       behavior: "smooth",
+      top,
     });
   }, []);
 

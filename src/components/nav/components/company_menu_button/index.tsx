@@ -9,16 +9,16 @@ const CompanyMenuButton = () => {
   const menuCompanyList = useMemo(
     () => [
       {
-        name: t("about"),
         link: "/about",
+        name: t("about"),
       },
       {
-        name: t("blog"),
         link: "/blog",
+        name: t("blog"),
       },
       {
-        name: t("contact"),
         link: "/contact",
+        name: t("contact"),
       },
     ],
     [t],

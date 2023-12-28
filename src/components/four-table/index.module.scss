@@ -1,51 +1,72 @@
+@import "src/styles/sass.scss";
+
+.cta {
+  bottom: 24px;
+  left: 24px;
+  position: absolute;
+  right: 24px;
+
+  @include down-laptop {
+    display: none;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
 .active {
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: 346px;
-  height: 536px;
-  border: 3px solid rgb(253, 63, 97);
   background-image: linear-gradient(
     315deg,
     rgba(212, 49, 238, 0.24) 0%,
     rgba(255, 66, 107, 0.24) 100%
   );
+  border: 3px solid rgb(253, 63, 97);
+  flex: 0 1 346px;
+  height: 536px;
 }
 
 .money {
   font-size: 64px;
 }
+
 .popular {
-  position: absolute;
-  top: -18px;
-  right: 0;
-  gap: 8px;
-  box-sizing: border-box;
-  padding: 0 11px;
-  width: 126px;
-  height: 32px;
   align-items: center;
-  border-radius: 32px;
   background: linear-gradient(315deg, #ee3131 0%, #ff426b 100%);
+  border-radius: 32px;
+  box-sizing: border-box;
   color: #fff;
+  gap: 8px;
+  height: 32px;
+  padding: 0 11px;
+  position: absolute;
+  right: 0;
   text-align: center;
+  top: -18px;
+  width: 126px;
 }
+
 .popular > span {
-  font-weight: 590;
   font-size: 18px;
   font-style: normal;
+  font-weight: 590;
   line-height: normal;
 }
+
 .none {
   display: none;
 }
+
 @media (max-width: 1024.95px) {
   .active {
     flex-basis: max-content;
     width: 100%;
   }
+
   .money {
     font-size: 48px;
   }
+
   .active .money span {
     font-size: 48px;
   }

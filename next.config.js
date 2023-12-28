@@ -9,7 +9,9 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const baseConfig = nextTranslate({
-  poweredByHeader: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -17,16 +19,12 @@ const baseConfig = nextTranslate({
         protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "www.forbole.com",
+        protocol: "https",
       },
     ],
   },
-  rewrites: async () =>
-    ["/rss", "/rss/"].map((path) => ({
-      destination: "/rss.xml",
-      source: path,
-    })),
+  poweredByHeader: false,
   redirects: async () => [
     {
       destination: "/zh-HK/:path*",
@@ -39,6 +37,11 @@ const baseConfig = nextTranslate({
       source: `${prefix}/native-staking`,
     })),
   ],
+  rewrites: async () =>
+    ["/rss", "/rss/"].map((path) => ({
+      destination: "/rss.xml",
+      source: path,
+    })),
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -46,9 +49,6 @@ const baseConfig = nextTranslate({
     });
 
     return config;
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 });
 

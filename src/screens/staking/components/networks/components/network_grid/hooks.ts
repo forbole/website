@@ -18,7 +18,7 @@ import {
 const elrondNetworkFunctions = networkFunctions.elrond;
 
 export const useNetworkHook = () => {
-  const { loading: networkGridLoading, data: networkGridData } =
+  const { data: networkGridData, loading: networkGridLoading } =
     useQuery(networkGridQuery);
 
   const cosmosNetworks = useMemo(() => {
@@ -66,7 +66,6 @@ export const useNetworkHook = () => {
     () => ({
       ethereum: {
         APY: 0,
-        TVL: 0,
         bonded: 0,
         custom: {
           "POOL APY": "3.16%",
@@ -74,6 +73,7 @@ export const useNetworkHook = () => {
           "SOLO AVG APY": "4%",
           "SOLO MEV APY": "5,69%",
         },
+        TVL: 0,
       },
     }),
     [],
@@ -81,7 +81,7 @@ export const useNetworkHook = () => {
 
   const elrondNetwork = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
-      const { elrondBondedToken, elrondAPY, elrondTVL } = networkGridData;
+      const { elrondAPY, elrondBondedToken, elrondTVL } = networkGridData;
 
       return pipe(
         reduce<any, any>(
@@ -122,7 +122,7 @@ export const useNetworkHook = () => {
 
   const solanaNetwork = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
-      const { solanaTVL, solanaBondedToken } = networkGridData;
+      const { solanaBondedToken, solanaTVL } = networkGridData;
 
       return pipe(
         assocPath([solanaTVL.metric.instance, "TVL"], solanaTVL.TVL),
@@ -138,7 +138,7 @@ export const useNetworkHook = () => {
 
   const oasisNetwork = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
-      const { oasisTVL, oasisBondedToken } = networkGridData;
+      const { oasisBondedToken, oasisTVL } = networkGridData;
 
       const networkWithTVL = {
         ...oasisNetworkParams,

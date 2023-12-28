@@ -2,7 +2,7 @@ const path = require("node:path");
 
 const paddingLineBetweenStatements = [
   "error",
-  { blankLine: "always", prev: "*", next: "return" },
+  { blankLine: "always", next: "return", prev: "*" },
 ]
   .concat(
     [
@@ -15,16 +15,16 @@ const paddingLineBetweenStatements = [
       "if",
     ]
       .map((item) => [
-        { blankLine: "always", prev: item, next: "*" },
-        { blankLine: "always", prev: "*", next: item },
+        { blankLine: "always", next: "*", prev: item },
+        { blankLine: "always", next: item, prev: "*" },
       ])
       .flat(),
   )
   .concat([
     {
       blankLine: "any",
-      prev: ["singleline-const"],
       next: ["singleline-const"],
+      prev: ["singleline-const"],
     },
   ]);
 
@@ -33,55 +33,61 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
   extends: [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
   },
-  plugins: ["@typescript-eslint", "react-hooks", "@stylistic"],
+  plugins: ["@typescript-eslint", "react-hooks", "@stylistic", "perfectionist"],
   rules: {
-    // @TODO: These should be removed when fixed
-    "@typescript-eslint/no-explicit-any": "off",
     "@next/next/no-img-element": "off",
-    "jsx-a11y/alt-text": "off",
-    "react/display-name": "off",
+    "@stylistic/padding-line-between-statements": paddingLineBetweenStatements,
+
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-use-before-define": "error",
+    "@typescript-eslint/no-var-requires": "off",
 
     "arrow-body-style": "error",
     "camelcase": "off",
     "global-require": "off",
+    "jsx-a11y/anchor-is-valid": "off",
     "no-console": ["error", { allow: ["warn", "error"] }],
     "no-shadow": "off",
     "no-unused-vars": "off",
     "no-useless-return": "error",
     "object-shorthand": "error",
+
+    "perfectionist/sort-enums": "error",
+    "perfectionist/sort-exports": "error",
+    "perfectionist/sort-interfaces": "error",
+    "perfectionist/sort-object-types": "error",
+    "perfectionist/sort-objects": "error",
+    "perfectionist/sort-union-types": "error",
+
     "prefer-const": "error",
     "prefer-template": "error",
     "quote-props": ["error", "consistent-as-needed"],
 
-    "@stylistic/padding-line-between-statements": paddingLineBetweenStatements,
-
-    "@typescript-eslint/consistent-type-imports": "error",
-    "@typescript-eslint/no-shadow": "error",
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-use-before-define": "error",
-    "@typescript-eslint/no-var-requires": "off",
+    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "error",
 
     "react/destructuring-assignment": [
       "error",
       "always",
       { destructureInSignature: "always" },
     ],
+    "react/display-name": "off",
     "react/function-component-definition": "off",
     "react/jsx-boolean-value": "error",
+    "react/jsx-curly-brace-presence": "error",
     "react/jsx-filename-extension": "off",
     "react/jsx-fragments": "error",
     "react/jsx-key": ["error", { warnOnDuplicates: true }],
@@ -97,8 +103,10 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "react/self-closing-comp": "error",
-
-    "react-hooks/exhaustive-deps": "error",
-    "react-hooks/rules-of-hooks": "error",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
 };

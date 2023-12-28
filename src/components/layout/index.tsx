@@ -64,7 +64,7 @@ const Layout = ({
     metaTwitterImage = `${url}${metaTwitterImage}`;
   }
 
-  const { t, lang } = useTranslation("common");
+  const { lang, t } = useTranslation("common");
 
   useEffect(() => {
     if (blueBg) {
