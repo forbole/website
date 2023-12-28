@@ -41,6 +41,9 @@ const baseConfig = nextTranslate({
       destination: "/rss.xml",
       source: path,
     })),
+  typescript: {
+    ignoreBuildErrors: process.env.QUICK_BUILD === "true",
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
