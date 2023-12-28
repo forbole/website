@@ -1,7 +1,6 @@
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
 import type { FC } from "react";
 import { useRef } from "react";
 
@@ -31,7 +30,6 @@ const Home: FC<Props> = ({ pages }) => {
   const theme = useTheme();
   const topRef = useRef(null);
   const bottomRef = useRef(null);
-  const router = useRouter();
   const { isMobile, isTablet } = useWindowDimensions();
 
   const filteredPages = pages.reduce((pageList: Page[], current) => {
@@ -77,10 +75,8 @@ const Home: FC<Props> = ({ pages }) => {
           >
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnLink="/infrastructure"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("infrastructure");
-                }}
                 desc={t("Validator_Infrastructure_desc")}
                 imageHref={
                   isMobile
@@ -93,10 +89,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
+                btnLink="/staking-service"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("staking-service");
-                }}
                 desc={t("Native_Staking_Service_desc")}
                 imageHref={
                   isMobile
@@ -109,10 +103,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
+                btnLink="/analytics-tools"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("analytics-tools");
-                }}
                 desc={t("Blockchain_Data_Analytics_Tools_desc")}
                 imageHref={
                   isMobile
@@ -125,10 +117,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnLink="/developer-tools"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("developer-tools");
-                }}
                 desc={t("Developer_Tools_desc")}
                 imageHref={
                   isMobile
@@ -141,10 +131,8 @@ const Home: FC<Props> = ({ pages }) => {
             </Grid>
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
+                btnLink="/enterprise-solution"
                 btnName={t("see_more")}
-                btn_Click={() => {
-                  router.push("enterprise-solution");
-                }}
                 desc={t("Enterprise_Solution_desc")}
                 imageHref={
                   isMobile
@@ -168,7 +156,7 @@ const Home: FC<Props> = ({ pages }) => {
               ({ title, list, imageHref, btnName, btnClick, id }, idx) => (
                 <Grid item key={`${id}_${idx}`} laptop={4} mobile={12}>
                   <IntroCard
-                    btnClick={() => router.push(btnClick)}
+                    btnLink={btnClick}
                     btnName={btnName}
                     disabled={!btnClick || false}
                     imageHref={imageHref}

@@ -17,7 +17,7 @@ const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
       </Box>
       <Box
         sx={{
-          "height": "260vw",
+          "height": displayHorse ? "260vw" : "190vw",
           "left": 0,
           "position": "absolute",
           "right": 0,

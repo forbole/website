@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useRef } from "react";
 
 import CtaButton from "@src/components/cta-button";
@@ -40,7 +40,6 @@ const Contact = () => {
   } = useContactForm();
 
   const theme = useTheme();
-  const router = useRouter();
 
   const selectList = [
     { label: t("item_1"), name: "collaboration" },
@@ -77,23 +76,16 @@ const Contact = () => {
 
             <Stack className={styles.contact}>
               <Stack direction="row">
-                <Box
-                  className={styles.icon}
-                  mr="8px"
-                  onClick={() => {
-                    router.push("mailto:info@forbole.com");
-                  }}
-                >
-                  <img alt="" src="/icons/email.svg" />
-                </Box>
-                <Box
-                  className={styles.icon}
-                  onClick={() => {
-                    router.push("https://t.me/forbole");
-                  }}
-                >
-                  <img alt="" src="/icons/Telegram.svg" />
-                </Box>
+                <Link href="mailto:info@forbole.com">
+                  <Box className={styles.icon} mr="8px">
+                    <img alt="" src="/icons/email.svg" />
+                  </Box>
+                </Link>
+                <Link href="https://t.me/forbole">
+                  <Box className={styles.icon}>
+                    <img alt="" src="/icons/Telegram.svg" />
+                  </Box>
+                </Link>
               </Stack>
               <Typography className={styles.method}>{t("method")}</Typography>
             </Stack>

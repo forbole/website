@@ -2,12 +2,13 @@ import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import type { StaticImageData } from "next/image";
 import Image from "next/legacy/image";
+import Link from "next/link";
 
 import CtaButton from "../cta-button";
 
 type Props = {
+  btnLink?: string;
   btnName?: string;
-  btn_Click?: () => void;
   desc?: string;
   disabled?: boolean;
   imageAlt?: string;
@@ -18,8 +19,8 @@ type Props = {
 };
 
 const IntroPanel = ({
+  btnLink,
   btnName,
-  btn_Click,
   desc,
   disabled,
   imageAlt,
@@ -72,14 +73,12 @@ const IntroPanel = ({
           >
             {title}
           </Typography>
-          {btnName && (
-            <CtaButton
-              disabled={disabled}
-              onClick={btn_Click}
-              variant="contained"
-            >
-              {btnName}
-            </CtaButton>
+          {btnName && btnLink && (
+            <Link href={btnLink}>
+              <CtaButton disabled={disabled} variant="contained">
+                {btnName}
+              </CtaButton>
+            </Link>
           )}
         </Stack>
         <Box>

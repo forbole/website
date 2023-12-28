@@ -4,7 +4,7 @@ import { Collapse, ListItem, Stack, useTheme } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useContext, useEffect, useState } from "react";
 
@@ -23,7 +23,6 @@ import ProductsMenuButton from "../products_menu_button";
 import * as styles from "./index.module.scss";
 
 const MobileNavMenu = () => {
-  const router = useRouter();
   const { t, lang } = useTranslation("common");
   const theme = useTheme();
   const { windowDimensions } = useWindowDimensions();
@@ -129,13 +128,9 @@ const MobileNavMenu = () => {
           py="16px"
         >
           <ForboleLogo color="#BD081C" height="20px" width="106px" />
-          <CtaButton
-            onClick={() => {
-              router.push("/staking");
-            }}
-          >
-            {t("StakeNow")}
-          </CtaButton>
+          <Link href="/staking">
+            <CtaButton>{t("StakeNow")}</CtaButton>
+          </Link>
         </Stack>
         <ListItem
           sx={{
@@ -158,14 +153,9 @@ const MobileNavMenu = () => {
               : theme.palette.custom.forbole.indigo,
           }}
         >
-          <button
-            className={styles.button}
-            onClick={() => {
-              router.push("/products").finally(handleClose);
-            }}
-          >
-            {t("Products")}
-          </button>
+          <Link href="/products" style={{ color: "inherit" }}>
+            <button className={styles.button}>{t("Products")}</button>
+          </Link>
           <button
             className={styles.button}
             onClick={() => {

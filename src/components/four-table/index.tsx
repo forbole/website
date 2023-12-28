@@ -1,11 +1,11 @@
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 import CtaButton from "@src/components/cta-button";
 
 import usePlans from "./config";
-import styles from "./styles.module.css";
+import * as styles from "./index.module.scss";
 
 const clickItem = 2;
 
@@ -14,7 +14,6 @@ type Props = { btnHref: () => void };
 const FourTable = ({ btnHref }: Props) => {
   const { t } = useTranslation("developer_tools");
   const theme = useTheme();
-  const router = useRouter();
   const plans = usePlans();
 
   return (
@@ -175,18 +174,15 @@ const FourTable = ({ btnHref }: Props) => {
               </Box>
             )}
           </Box>
-          <CtaButton
-            onClick={Plan.btnHref ? () => router.push(Plan.btnHref) : btnHref}
-            sx={{
-              position: "absolute",
-              left: "24px",
-              right: "24px",
-              bottom: "24px",
-              [theme.breakpoints.down("laptop")]: { display: "none" },
-            }}
-          >
-            {Plan.btnName}
-          </CtaButton>
+          {Plan.btnHref ? (
+            <Link className={styles.cta} href={Plan.btnHref}>
+              <CtaButton>{Plan.btnName}</CtaButton>
+            </Link>
+          ) : (
+            <CtaButton className={styles.cta} onClick={btnHref}>
+              {Plan.btnName}
+            </CtaButton>
+          )}
         </Box>
       ))}
     </Stack>

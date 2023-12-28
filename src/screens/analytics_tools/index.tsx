@@ -1,6 +1,6 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useMemo, useRef } from "react";
 
 import IntroPanel from "@src/components/Intro_panel";
@@ -16,7 +16,6 @@ import * as styles from "./index.module.scss";
 const AnalyticsTools = () => {
   const topRef = useRef(null);
   const theme = useTheme();
-  const router = useRouter();
   const { t } = useTranslation("analytics_tools");
 
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
@@ -73,12 +72,9 @@ const AnalyticsTools = () => {
             title={t("data_visualization")}
             title_large_trans={t("free")}
           />
-          <CtaButton
-            className={styles.ctaButton}
-            onClick={() => router.push("https://bigdipper.live/")}
-          >
-            {t("try_now")}
-          </CtaButton>
+          <Link href="https://bigdipper.live/">
+            <CtaButton className={styles.ctaButton}>{t("try_now")}</CtaButton>
+          </Link>
           <Grid container spacing={theme.spacing(2)}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel

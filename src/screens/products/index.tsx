@@ -1,7 +1,7 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
@@ -119,7 +119,6 @@ const Products = () => {
   const businessesRef = useRef(null);
   const PanelRef1 = useRef(null);
   const PanelRef2 = useRef(null);
-  const router = useRouter();
 
   const scrollToRef = (e: any, ref: any) => {
     e.preventDefault();
@@ -293,9 +292,9 @@ const Products = () => {
                   </Typography>
                 ))}
               </Stack>
-              <CtaButton onClick={() => router.push(item.btnHref)}>
-                {item.btnName}
-              </CtaButton>
+              <Link href={item.btnHref}>
+                <CtaButton>{item.btnName}</CtaButton>
+              </Link>
             </ProductPanel>
           ))}
         </Stack>
@@ -466,9 +465,9 @@ const Products = () => {
                   </Typography>
                 ))}
               </Stack>
-              <CtaButton onClick={() => router.push(item.btnHref)}>
-                {item.btnName}
-              </CtaButton>
+              <Link href={item.btnHref}>
+                <CtaButton>{item.btnName}</CtaButton>
+              </Link>
             </ProductPanel>
           ))}
         </Stack>
