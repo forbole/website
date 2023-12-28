@@ -17,7 +17,7 @@ type Props = {
   }[];
 };
 
-const MenuList = ({ menuList, className }: Props) => {
+const MenuList = ({ className, menuList }: Props) => {
   const { setAnchorEl } = useContext(anchorElContext);
 
   const handleClose = useCallback(() => {

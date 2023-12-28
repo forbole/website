@@ -26,8 +26,8 @@ export default function MyApp({
 }: MyAppProps) {
   useEffect(() => {
     init({
-      url: MATOMO_URL,
       siteId: MATOMO_SITE_ID,
+      url: MATOMO_URL,
     });
   }, []);
 

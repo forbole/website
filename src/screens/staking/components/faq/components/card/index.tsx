@@ -13,17 +13,17 @@ import type { FAQProps } from "../../config";
 import * as styles from "./index.module.scss";
 
 const Card = ({
-  question,
-  para1,
-  para2,
-  trans,
-  para3,
-  desc,
   bullet1,
   bullet2,
   bullet3,
+  desc,
   expanded,
+  para1,
+  para2,
+  para3,
+  question,
   setExpanded,
+  trans,
 }: FAQProps) => (
   <Box className={styles.wrapper}>
     <Accordion

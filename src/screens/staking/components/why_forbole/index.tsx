@@ -14,19 +14,19 @@ const WhyForbole = () => {
   const reasons = useMemo(
     () => [
       {
-        title: t("reputable validator"),
         desc: t("reputable validator desc"),
         image: "/images/assets/image_journey.png",
+        title: t("reputable validator"),
       },
       {
-        title: t("security focus"),
         desc: t("security focus desc"),
         image: "/images/assets/image_security.png",
+        title: t("security focus"),
       },
       {
-        title: t("our future"),
         desc: t("our future desc"),
         image: "/images/assets/image_future.png",
+        title: t("our future"),
       },
     ],
     [t],

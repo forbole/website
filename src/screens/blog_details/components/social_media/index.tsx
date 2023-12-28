@@ -12,17 +12,17 @@ const SocialMedia = ({ title = "Forbole " }: any) => {
 
   const handleClick = (url: string) => {
     const config: { [key: string]: number | string } = {
-      height: 400,
-      width: 550,
-      location: "no",
-      toolbar: "no",
-      status: "no",
-      directories: "no",
-      menubar: "no",
-      scrollbars: "yes",
-      resizable: "no",
       centerscreen: "yes",
       chrome: "yes",
+      directories: "no",
+      height: 400,
+      location: "no",
+      menubar: "no",
+      resizable: "no",
+      scrollbars: "yes",
+      status: "no",
+      toolbar: "no",
+      width: 550,
     };
 
     window.open(

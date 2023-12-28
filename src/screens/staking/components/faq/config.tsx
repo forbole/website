@@ -27,33 +27,34 @@ export const useFaq = (): FAQProps[] => {
     () =>
       [
         {
-          question: t("staking q"),
           para1: t("staking para 1"),
           para2: t("staking para 2"),
+          question: t("staking q"),
         },
         {
-          question: t("difference q"),
           para1: t("difference para 1"),
+          question: t("difference q"),
         },
         {
-          question: t("unstaking q"),
           para1: t("unstaking para 1"),
           para2: t("unstaking para 2"),
           para3: t("unstaking para 3"),
+          question: t("unstaking q"),
         },
         {
-          question: t("risks q"),
           para1: t("risks para 1"),
+          question: t("risks q"),
         },
         {
-          question: t("benefits q"),
-          desc: t("benefits desc"),
           bullet1: t("benefits bullet 1"),
           bullet2: t("benefits bullet 2"),
+          desc: t("benefits desc"),
+          question: t("benefits q"),
         },
         {
-          question: t("reward q"),
           para1: t("reward para 1"),
+          para3: t("reward para 3"),
+          question: t("reward q"),
           trans: (
             <Trans
               components={[
@@ -84,22 +85,21 @@ export const useFaq = (): FAQProps[] => {
               ns="staking"
             />
           ),
-          para3: t("reward para 3"),
         },
         {
-          question: t("receiving q"),
           bullet1: t("receiving bullet 1"),
           bullet2: t("receiving bullet 2"),
+          question: t("receiving q"),
         },
         {
-          question: t("drop q"),
-          desc: t("drop desc"),
           bullet1: t("drop bullet 1"),
           bullet2: t("drop bullet 2"),
+          desc: t("drop desc"),
+          question: t("drop q"),
         },
         {
-          question: t("claim q"),
           para1: t("claim para 1"),
+          question: t("claim q"),
         },
       ] as FAQProps[],
     [t],

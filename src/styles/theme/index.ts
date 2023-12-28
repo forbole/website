@@ -8,22 +8,10 @@ const common: ThemeOptions = {
   breakpoints: {
     keys: ["mobile", "tablet", "laptop", "desktop"],
     values: {
+      desktop: 1208,
+      laptop: 1025,
       mobile: 375,
       tablet: 768,
-      laptop: 1025,
-      desktop: 1208,
-    },
-  },
-  typography: {
-    fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
-    h1: {
-      "fontSize": "32px",
-      "@media (min-width: 769px)": {
-        fontSize: "64px",
-      },
-    },
-    button: {
-      textTransform: "none",
     },
   },
   components: {
@@ -31,6 +19,18 @@ const common: ThemeOptions = {
       defaultProps: {
         lineHeight: "normal",
       },
+    },
+  },
+  typography: {
+    button: {
+      textTransform: "none",
+    },
+    fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
+    h1: {
+      "@media (min-width: 769px)": {
+        fontSize: "64px",
+      },
+      "fontSize": "32px",
     },
   },
 };

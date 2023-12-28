@@ -28,15 +28,15 @@ const Contact = () => {
   const { t } = useTranslation("contact");
 
   const {
-    inputs,
-    handleInputChange,
-    handleSubmit,
-    handleClear,
     canSubmit,
     handleCheckedChange,
-    success,
-    setSuccess,
+    handleClear,
+    handleInputChange,
+    handleSubmit,
+    inputs,
     isLoading,
+    setSuccess,
+    success,
   } = useContactForm();
 
   const theme = useTheme();
@@ -51,7 +51,7 @@ const Contact = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleToggle = (e: any) => {
-    const { name, checked } = e.target;
+    const { checked, name } = e.target;
 
     if (name === "other") {
       if (checked) {
@@ -92,7 +92,7 @@ const Contact = () => {
           </Stack>
           <Grid
             container
-            spacing={{ mobile: theme.spacing(3), desktop: theme.spacing(4) }}
+            spacing={{ desktop: theme.spacing(4), mobile: theme.spacing(3) }}
           >
             <Grid item laptop={6} mobile={12}>
               <Typography className={styles.label}>

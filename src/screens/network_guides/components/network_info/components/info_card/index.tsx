@@ -6,7 +6,7 @@ import { convertToMoney } from "@src/utils/convert_to_money";
 
 import useStyles from "./useStyles";
 
-const InfoCard = ({ title, stats, type }: any) => {
+const InfoCard = ({ stats, title, type }: any) => {
   const { t } = useTranslation("staking");
   const styles = useStyles();
 

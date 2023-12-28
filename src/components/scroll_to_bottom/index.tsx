@@ -9,9 +9,9 @@ const ScrollToBottom = ({ bottomRef }: any) => {
     e.preventDefault();
 
     window.scrollTo({
+      behavior: "smooth",
       left: 0,
       top: ref.current.offsetTop - 100,
-      behavior: "smooth",
     });
   };
 

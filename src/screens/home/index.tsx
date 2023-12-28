@@ -69,9 +69,9 @@ const Home: FC<Props> = ({ pages }) => {
         >
           <Typography className={styles.title}>{t("title")}</Typography>
           <Grid
-            columnSpacing={{ mobile: "0", laptop: theme.spacing(2) }}
+            columnSpacing={{ laptop: theme.spacing(2), mobile: "0" }}
             container
-            rowSpacing={{ mobile: theme.spacing(2), laptop: theme.spacing(3) }}
+            rowSpacing={{ laptop: theme.spacing(3), mobile: theme.spacing(2) }}
           >
             <Grid item laptop={8} mobile={12}>
               <IntroPanel
@@ -153,7 +153,7 @@ const Home: FC<Props> = ({ pages }) => {
             spacing={theme.spacing(2)}
           >
             {filteredPages.map(
-              ({ title, list, imageHref, btnName, btnClick, id }, idx) => (
+              ({ btnClick, btnName, id, imageHref, list, title }, idx) => (
                 <Grid item key={`${id}_${idx}`} laptop={4} mobile={12}>
                   <IntroCard
                     btnLink={btnClick}

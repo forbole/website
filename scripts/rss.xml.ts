@@ -29,10 +29,10 @@ export const main = async () => {
     .filter((p: any) => !p.title.includes(stakingGuidePrefix))
     .forEach((post: any) => {
       feed.item({
-        title: post.title,
-        description: post.excerpt,
-        url: `${site_url}/blog/${post.slug}`,
         date: post.created_at,
+        description: post.excerpt,
+        title: post.title,
+        url: `${site_url}/blog/${post.slug}`,
       });
     });
 

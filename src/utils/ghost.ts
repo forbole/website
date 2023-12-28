@@ -57,8 +57,8 @@ export const getBlogPostSchema = (
 
   const common = {
     "@context": "https://schema.org",
-    "name": title,
     "image": featureImage,
+    "name": title,
     "url": `https://www.forbole.com/${isGuide ? "staking" : "blog"}/${
       post.slug
     }`,
@@ -79,8 +79,8 @@ export const getBlogPostSchema = (
     "@type": "TechArticle",
     "headline": title,
     ...(excerpt && { abstract: excerpt }),
-    "inLanguage": getLanguageFromLocale(locale),
-    "datePublished": publishedAt,
     author,
+    "datePublished": publishedAt,
+    "inLanguage": getLanguageFromLocale(locale),
   });
 };

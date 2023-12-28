@@ -9,8 +9,8 @@ import MenuList from "../menu_list";
 import * as styles from "./index.module.scss";
 
 const LangMenuButton = () => {
-  const { t, lang } = useTranslation("common");
-  const { locales, asPath } = useRouter();
+  const { lang, t } = useTranslation("common");
+  const { asPath, locales } = useRouter();
   const [anchor, setAnchor] = useState<Element>();
   const theme = useTheme();
   const onClose = useCallback(() => setAnchor(undefined), [setAnchor]);
@@ -21,8 +21,8 @@ const LangMenuButton = () => {
 
   const localeToDisplay = {
     "en": t("en"),
-    "zh-HK": t("zh-HK"),
     "zh-CN": t("zh-CN"),
+    "zh-HK": t("zh-HK"),
   };
 
   const langText = (() => {
@@ -71,16 +71,16 @@ const LangMenuButton = () => {
           }}
           anchorEl={anchor}
           anchorOrigin={{
-            vertical: "bottom",
             horizontal: "right",
+            vertical: "bottom",
           }}
           id="basic-menu"
           keepMounted
           onClose={onClose}
           open={!!anchor}
           transformOrigin={{
-            vertical: "top",
             horizontal: "right",
+            vertical: "top",
           }}
         >
           <MenuList menuList={localesList} />

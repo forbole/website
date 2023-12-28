@@ -46,64 +46,64 @@ const Infrastructure = () => {
     if (onlyLargeScreen) {
       return [
         {
-          name: "Michael McCaffrey",
-          position: "Lead Business Developer, Coreum",
           desc: `Forbole is an exceptional SaaS provider that offers valuable solutions, especially within the Cosmos
           ecosystem. Their expertise and commitment to delivering high-quality services have greatly benefited the
           Coreum blockchain. Their team has been responsive, knowledgeable, and efficient in addressing our
           needs and ensuring a seamless experience. I highly recommend Forbole to anyone seeking reliable and
           innovative SaaS solutions.`,
           img: "/icons/Michael McCaffrey-Coreum.png",
+          name: "Michael McCaffrey",
+          position: "Lead Business Developer, Coreum",
         },
         {
-          name: "Boz Menzalji",
-          position: "COO of Overclock Labs, creator of Akash Network",
           desc: `Forbole's team has been a reliable partner from the earliest days for Akash Network, allowing us to tap
           into deep know-how for testnets, mainnet upgrades, and more. The tools they have contributed to the
           ecosystem, such as Big Dipper's Explorer, has been a great value-add to our growing ecosystem. We are
           fortunate to have a great partner with Forbole.`,
           img: "/icons/person_avatar.png",
+          name: "Boz Menzalji",
+          position: "COO of Overclock Labs, creator of Akash Network",
         },
         {
-          name: "Calin Pasat",
-          position: "Node Foundation Director, Humans.ai",
           desc: `Working with Forbole has been an enlightening experience. As validators, they are reliably efficient, but
           it's their commitment to contributing to the broader ecosystem that truly sets them apart with open-source
           tools like Big Dipper Explorer. Their forward-thinking nature is evident in their proactive involvement in
           various projects, reflecting a deep understanding and a promising vision for the blockchain industry.`,
           img: "/icons/Calin Pasat-humansai.png",
+          name: "Calin Pasat",
+          position: "Node Foundation Director, Humans.ai",
         },
       ];
     }
 
     return [
       {
-        name: "Boz Menzalji",
-        position: "COO of Overclock Labs, creator of Akash Network",
         desc: `Forbole's team has been a reliable partner from the earliest days for Akash Network, allowing us to tap
             into deep know-how for testnets, mainnet upgrades, and more. The tools they have contributed to the
             ecosystem, such as Big Dipper's Explorer, has been a great value-add to our growing ecosystem. We are
             fortunate to have a great partner with Forbole.`,
         img: "/icons/person_avatar.png",
+        name: "Boz Menzalji",
+        position: "COO of Overclock Labs, creator of Akash Network",
       },
       {
-        name: "Michael McCaffrey",
-        position: "Lead Business Developer, Coreum",
         desc: `Forbole is an exceptional SaaS provider that offers valuable solutions, especially within the Cosmos
             ecosystem. Their expertise and commitment to delivering high-quality services have greatly benefited the
             Coreum blockchain. Their team has been responsive, knowledgeable, and efficient in addressing our
             needs and ensuring a seamless experience. I highly recommend Forbole to anyone seeking reliable and
             innovative SaaS solutions.`,
         img: "/icons/Michael McCaffrey-Coreum.png",
+        name: "Michael McCaffrey",
+        position: "Lead Business Developer, Coreum",
       },
       {
-        name: "Calin Pasat",
-        position: "Node Foundation Director, Humans.ai",
         desc: `Working with Forbole has been an enlightening experience. As validators, they are reliably efficient, but
             it's their commitment to contributing to the broader ecosystem that truly sets them apart with open-source
             tools like Big Dipper Explorer. Their forward-thinking nature is evident in their proactive involvement in
             various projects, reflecting a deep understanding and a promising vision for the blockchain industry.`,
         img: "/icons/Calin Pasat-humansai.png",
+        name: "Calin Pasat",
+        position: "Node Foundation Director, Humans.ai",
       },
     ];
   }, [onlyLargeScreen]);
@@ -152,8 +152,8 @@ const Infrastructure = () => {
           <KeyData />
           <Stack
             sx={{
-              gap: "40px",
               alignItems: "center",
+              gap: "40px",
               [theme.breakpoints.down("laptop")]: {
                 gap: "32px",
               },
@@ -171,13 +171,13 @@ const Infrastructure = () => {
             </Link>
             <Grid
               columnSpacing={{
-                mobile: theme.spacing(2),
                 laptop: theme.spacing(2),
+                mobile: theme.spacing(2),
               }}
               container
               rowSpacing={{
-                mobile: theme.spacing(2),
                 laptop: theme.spacing(3),
+                mobile: theme.spacing(2),
               }}
             >
               <Grid item laptop={4} mobile={12} tablet={6}>
@@ -214,8 +214,8 @@ const Infrastructure = () => {
 
           <Stack
             sx={{
-              gap: "40px",
               alignItems: "center",
+              gap: "40px",
               [theme.breakpoints.down("laptop")]: {
                 gap: "32px",
               },
@@ -255,8 +255,8 @@ const Infrastructure = () => {
               />
             </StyledTabs>
             {[
-              { title: "infrastructure_item", img: "desk_toggle_1@2x.png" },
-              { title: "expertise_item", img: "desk_toggle_2@2x.png" },
+              { img: "desk_toggle_1@2x.png", title: "infrastructure_item" },
+              { img: "desk_toggle_2@2x.png", title: "expertise_item" },
             ].map((opt, indexUpper) => (
               <ProductPanel
                 imageHref={`/validator_infastructure/${opt.img}`}
@@ -276,18 +276,18 @@ const Infrastructure = () => {
                     <Typography
                       key={index}
                       sx={{
-                        "display": "flex",
+                        "&:before": {
+                          content: "url(/icons/outlined.svg)",
+                          marginRight: "16px",
+                        },
                         "alignItems": "baseline",
+                        "display": "flex",
                         "maxWidth": "489px",
                         [theme.breakpoints.down("laptop")]: {
                           fontSize: "16px",
                         },
                         [theme.breakpoints.up("laptop")]: {
                           fontSize: "20px",
-                        },
-                        "&:before": {
-                          content: "url(/icons/outlined.svg)",
-                          marginRight: "16px",
                         },
                       }}
                     >
@@ -301,8 +301,8 @@ const Infrastructure = () => {
 
           <Stack
             sx={{
-              gap: "40px",
               alignItems: "center",
+              gap: "40px",
               [theme.breakpoints.down("laptop")]: {
                 gap: "32px",
               },

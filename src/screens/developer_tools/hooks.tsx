@@ -8,16 +8,16 @@ import isEmail from "validator/lib/isEmail";
 
 const useTalkModalForm = () => {
   const [inputs, setInputs] = useState({
-    "name": "",
-    "email": "",
-    "company": "",
-    "telegram": "",
-    "specify": "",
     "agree": false,
+    "company": "",
     "Data API": false,
+    "email": "",
     "GraphQL": false,
+    "name": "",
     "Other": false,
     "RPC Endpoints": false,
+    "specify": "",
+    "telegram": "",
   });
 
   const [canSubmit, setCanSubmit] = useState(false);
@@ -71,7 +71,6 @@ const useTalkModalForm = () => {
       axios
         .post("/api/contact", {
           from: inputs.email,
-          source: "devtools",
           html: `
           <p>Dear Administrator,</p>
           <p>A new customer: ${sanitize(
@@ -87,20 +86,21 @@ const useTalkModalForm = () => {
           <p>Regards,</p>
           <p>Forbole web system</p>
           `,
+          source: "devtools",
         })
         .then((res) => {
           if (res.status === 200) {
             setInputs({
-              "name": "",
-              "email": "",
-              "company": "",
-              "telegram": "",
               "agree": false,
-              "specify": "",
+              "company": "",
               "Data API": false,
+              "email": "",
               "GraphQL": false,
+              "name": "",
               "Other": false,
               "RPC Endpoints": false,
+              "specify": "",
+              "telegram": "",
             });
           }
 
@@ -126,7 +126,7 @@ const useTalkModalForm = () => {
   };
 
   const handleCheckedChange = (event: any) => {
-    const { name, checked } = event.target;
+    const { checked, name } = event.target;
 
     setInputs((input) => ({
       ...input,
@@ -142,16 +142,16 @@ const useTalkModalForm = () => {
   };
 
   return {
-    handleSubmit,
-    handleInputChange,
-    handleClear,
-    inputs,
-    setInputs,
     canSubmit,
     handleCheckedChange,
-    success,
-    setSuccess,
+    handleClear,
+    handleInputChange,
+    handleSubmit,
+    inputs,
     isLoading,
+    setInputs,
+    setSuccess,
+    success,
   };
 };
 

@@ -8,19 +8,19 @@ function SignatureCard() {
   const data = useMemo(
     () => [
       {
-        title: t("websocket_service"),
-        desc: t("rpc"),
         active: true,
-      },
-      {
-        title: t("archive_node"),
         desc: t("rpc"),
-        active: false,
+        title: t("websocket_service"),
       },
       {
-        title: t("extra_chain"),
-        desc: t("rpc_api_graphql"),
         active: false,
+        desc: t("rpc"),
+        title: t("archive_node"),
+      },
+      {
+        active: false,
+        desc: t("rpc_api_graphql"),
+        title: t("extra_chain"),
       },
     ],
     [t],
@@ -36,37 +36,37 @@ function SignatureCard() {
         <Grid item key={k} laptop={4} mobile={12}>
           <Stack
             sx={{
-              position: "relative",
-              p: "12px 16px",
-              borderRadius: "16px",
-              background: "#FFF",
-              boxShadow: "4px 8px 24px 0px rgba(90, 117, 255, 0.24)",
               alignItems: "center",
+              background: "#FFF",
+              borderRadius: "16px",
+              boxShadow: "4px 8px 24px 0px rgba(90, 117, 255, 0.24)",
+              p: "12px 16px",
+              position: "relative",
             }}
           >
             <Box style={{ width: "100%" }}>
               <Typography
                 sx={{
+                  color: "#202A43",
                   fontSize: "18px",
                   fontStyle: "normal",
                   fontWeight: "590",
-                  lineHeight: "normal",
                   letterSpacing: "-0.8px",
-                  color: "#202A43",
-                  textShadow: "0px 4px 24px rgba(2, 38, 225, 0.24)",
+                  lineHeight: "normal",
                   mb: "8px",
+                  textShadow: "0px 4px 24px rgba(2, 38, 225, 0.24)",
                   whiteSpace: "nowrap",
                 }}
               >
                 {d.title}
               </Typography>
               <Stack
-                sx={{ flexDirection: "row", gap: "5px", alignItems: "center" }}
+                sx={{ alignItems: "center", flexDirection: "row", gap: "5px" }}
               >
                 <img
                   alt=""
                   src="/images/assets/25.svg"
-                  style={{ width: "20px", height: "40px" }}
+                  style={{ height: "40px", width: "20px" }}
                 />
                 <Box>
                   <Typography
@@ -75,10 +75,10 @@ function SignatureCard() {
                       fontSize: "12px",
                       fontStyle: "normal",
                       fontWeight: "400",
-                      lineHeight: "16px",
-                      whiteSpace: "nowrap",
                       letterSpacing: "-0.216px",
+                      lineHeight: "16px",
                       textWrap: "wrap",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     {d.desc}
@@ -89,18 +89,18 @@ function SignatureCard() {
             {d.active && (
               <Stack
                 sx={{
-                  position: "absolute",
-                  top: "-14px",
-                  right: "0",
-                  flexDirection: "row",
-                  padding: "2px 6px",
-                  justifyContent: "center",
                   alignItems: "center",
-                  borderRadius: "28.241px",
+                  background: "#FFF",
                   border:
                     "1px solid var(--gradient-fb-red-gradient-01, #EE3131)",
-                  background: "#FFF",
+                  borderRadius: "28.241px",
+                  flexDirection: "row",
                   gap: "4px",
+                  justifyContent: "center",
+                  padding: "2px 6px",
+                  position: "absolute",
+                  right: "0",
+                  top: "-14px",
                 }}
               >
                 <img alt="√" src="/images/assets/26.svg" />
@@ -110,9 +110,9 @@ function SignatureCard() {
                     fontSize: "12px",
                     fontStyle: "normal",
                     fontWeight: "590",
+                    letterSpacing: "-0.408px",
                     lineHeight: "16px",
                     whiteSpace: "nowrap",
-                    letterSpacing: "-0.408px",
                   }}
                 >
                   {t("unlimited_usage")}

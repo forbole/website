@@ -43,23 +43,23 @@ interface Props {
 }
 
 const TalkModal = ({
+  canSubmit,
   close,
-  staking,
-  open = false,
-  inputs,
+  handleCheckedChange,
+  handleClear,
   handleInputChange,
   handleSubmit,
-  handleClear,
-  canSubmit,
-  handleCheckedChange,
+  inputs,
   isLoading,
+  open = false,
+  staking,
 }: Props) => {
   const theme = useTheme();
   const { t } = useTranslation("developer_tools");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleToggle = (e: any) => {
-    const { name, checked } = e.target;
+    const { checked, name } = e.target;
 
     if (name === "Other") {
       if (checked) {
@@ -93,8 +93,8 @@ const TalkModal = ({
         backdrop: {
           sx() {
             return {
-              background: "rgba(123, 123, 123, 0.20)",
               backdropFilter: "blur(8px)",
+              background: "rgba(123, 123, 123, 0.20)",
             };
           },
         },
@@ -105,22 +105,22 @@ const TalkModal = ({
     >
       <Stack
         sx={{
-          width: "1000px",
-          padding: "64px",
-          gap: staking ? "24px" : "40px",
-          borderRadius: "24px",
-          margin: "164px auto",
           background:
             "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.64) 64.58%, #FFF 100%)",
+          borderRadius: "24px",
           boxShadow:
             "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
           color: "#202A43",
+          gap: staking ? "24px" : "40px",
+          margin: "164px auto",
+          padding: "64px",
           [theme.breakpoints.down("laptop")]: {
-            padding: "24px",
-            width: "343px",
             gap: "24px",
             mt: "104px",
+            padding: "24px",
+            width: "343px",
           },
+          width: "1000px",
         }}
       >
         <Stack direction="row" justifyContent="space-between">
@@ -152,16 +152,16 @@ const TalkModal = ({
             <Close
               onClick={() => close?.(false)}
               style={{
-                flexShrink: "0",
                 border: "8px solid transparent",
                 boxSizing: "content-box",
+                flexShrink: "0",
               }}
             />
           )}
         </Stack>
         <Grid
           container
-          spacing={{ mobile: theme.spacing(3), desktop: theme.spacing(4) }}
+          spacing={{ desktop: theme.spacing(4), mobile: theme.spacing(3) }}
         >
           <Grid item laptop={6} mobile={12}>
             <Typography
@@ -244,12 +244,12 @@ const TalkModal = ({
             <List
               dense
               sx={{
-                width: "100%",
                 borderRadius: "8px",
                 boxShadow:
                   "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
                 overflow: "hidden",
                 py: 0,
+                width: "100%",
               }}
             >
               {selectList.map((value) => (
@@ -267,11 +267,11 @@ const TalkModal = ({
                         name={value.name}
                         onChange={handleToggle}
                         sx={{
-                          "py": "0",
-                          "color": "#AFAFAF",
                           "&.Mui-checked": {
                             color: "#EE3131",
                           },
+                          "color": "#AFAFAF",
+                          "py": "0",
                         }}
                         value={value.name}
                       />
@@ -280,12 +280,12 @@ const TalkModal = ({
                     label={value.label}
                     labelPlacement="start"
                     sx={{
-                      width: "100%",
+                      fontSize: "16px",
                       justifyContent: "space-between",
+                      lineHeight: "30px",
                       m: 0,
                       p: "12px 0",
-                      fontSize: "16px",
-                      lineHeight: "30px",
+                      width: "100%",
                     }}
                   />
                 </ListItem>
@@ -293,10 +293,10 @@ const TalkModal = ({
               <ListItem
                 disablePadding
                 sx={{
-                  "width": "auto",
                   "&:last-child": { borderBottom: "0" },
                   "bgcolor": "#ffffff",
                   "borderBottom": "2px solid rgba(96, 60, 238, 0.28)",
+                  "width": "auto",
                 }}
               >
                 <Input
@@ -308,10 +308,10 @@ const TalkModal = ({
                   placeholder={t("item_5")}
                   ref={inputRef}
                   sx={{
-                    p: "12px",
+                    color: "#878787",
                     fontSize: "16px",
                     lineHeight: "30px",
-                    color: "#878787",
+                    p: "12px",
                   }}
                   value={inputs.specify}
                 />
@@ -325,11 +325,11 @@ const TalkModal = ({
                 control={
                   <Checkbox
                     sx={{
-                      "py": "0",
-                      "color": "#AFAFAF",
                       "&.Mui-checked": {
                         color: "#EE3131",
                       },
+                      "color": "#AFAFAF",
+                      "py": "0",
                     }}
                   />
                 }
@@ -337,10 +337,10 @@ const TalkModal = ({
                 name="agree"
                 onChange={handleCheckedChange}
                 sx={{
+                  alignItems: "flex-start",
+                  lineHeight: "30px",
                   mr: 0,
                   verticalAlign: "top",
-                  lineHeight: "30px",
-                  alignItems: "flex-start",
                 }}
               />
             </FormGroup>

@@ -4,10 +4,10 @@ export const getPostsByTag = async (query: { page?: number; tag: string }) => {
   try {
     const posts = await api.posts.browse({
       filter: `tags:${query.tag}`,
+      formats: "html",
       include: "tags,authors",
       limit: 10,
       page: query?.page || 1,
-      formats: "html",
     });
 
     return posts ?? null;

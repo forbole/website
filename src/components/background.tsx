@@ -17,17 +17,17 @@ const Background = ({ displayHorse }: { displayHorse?: boolean }) => {
       </Box>
       <Box
         sx={{
-          "height": displayHorse ? "260vw" : "190vw",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "zIndex": -1,
-
           "& img": {
             [theme.breakpoints.up(550)]: {
               display: "none",
             },
           },
+          "height": displayHorse ? "260vw" : "190vw",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+
+          "zIndex": -1,
         }}
       >
         <Image

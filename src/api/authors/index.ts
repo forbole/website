@@ -22,10 +22,10 @@ export const getPostsByAuthor = async (query: {
   try {
     const posts = await api.posts.browse({
       filter: `author:${query.author}`,
+      formats: "html",
       include: "tags,authors",
       limit: 5,
       page: query?.page || 1,
-      formats: "html",
     });
 
     return posts ?? null;

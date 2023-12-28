@@ -1,11 +1,4 @@
 module.exports = {
-  // These are not tracked for now
-  changefreq: null,
-  autoLastmod: false,
-  priority: null,
-
-  generateRobotsTxt: false,
-  siteUrl: "https://www.forbole.com",
   additionalPaths: async () => {
     if (!process.env.GHOST_PRIVATE_KEY || !process.env.NEXT_PUBLIC_GHOST_API)
       return [];
@@ -29,8 +22,8 @@ module.exports = {
 
     const getTags = () =>
       ghostAdminApi.tags.browse({
-        limit: 1000,
         fields: "slug",
+        limit: 1000,
       });
 
     const [tags, posts] = await Promise.all([getTags(), getPosts()]);
@@ -50,4 +43,9 @@ module.exports = {
         loc,
       }));
   },
+  autoLastmod: false,
+  changefreq: null,
+  generateRobotsTxt: false,
+  priority: null,
+  siteUrl: "https://www.forbole.com",
 };

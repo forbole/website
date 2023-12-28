@@ -14,9 +14,9 @@ const ScrollToTop = ({ topRef }: TopProps) => {
       e.preventDefault();
 
       window.scrollTo({
+        behavior: "smooth",
         left: 0,
         top: topRef?.current.offsetTop - 100,
-        behavior: "smooth",
       });
     },
     [topRef],

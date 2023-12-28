@@ -12,8 +12,8 @@ export type NetworkProps = {
 };
 
 const defaultParams: ParamsProps = {
-  bonded: 0,
   APY: 0,
+  bonded: 0,
   TVL: 0,
 };
 

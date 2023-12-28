@@ -27,8 +27,8 @@ const GuideNav = ({ staking }: GuideNavProps) => {
             <Link
               href="/"
               style={{
-                display: "flex",
                 alignItems: "center",
+                display: "flex",
                 height: "100%",
               }}
             >

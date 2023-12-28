@@ -12,7 +12,7 @@ interface IProps {
   meta: AuthorMeta;
 }
 
-const AuthorPosts = ({ main, blogs, meta }: IProps) => {
+const AuthorPosts = ({ blogs, main, meta }: IProps) => {
   const currentPage = meta.pagination?.page || 0;
   const totalPages = meta.pagination?.pages || 0;
 

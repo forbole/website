@@ -173,8 +173,8 @@ const NetworkCard = ({
       ref={ref}
       transition={{ duration: 0.3 }}
       variants={{
-        initial: { opacity: 0, scale: 0.8 },
         appear: { opacity: 1, scale: 1 },
+        initial: { opacity: 0, scale: 0.8 },
       }}
       whileInView="appear"
     >

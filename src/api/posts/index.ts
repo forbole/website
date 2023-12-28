@@ -5,17 +5,17 @@ export const stakingGuidePrefix = "how-to-stake";
 
 /** Gets posts from remote */
 export const getPosts = async ({
+  filter = "tags:-[careers]",
   limit = 11,
   page = 1,
-  filter = "tags:-[careers]",
 }: IPost) => {
   try {
     return await api.posts.browse({
+      filter,
+      formats: "html",
       include: "tags,authors",
       limit,
       page,
-      filter,
-      formats: "html",
     });
   } catch (err) {
     // eslint-disable-next-line no-console
@@ -27,15 +27,15 @@ export const getPosts = async ({
 
 /** Gets posts from remote based on See More on mobile device */
 export const getAllPosts = async ({
-  limit,
   filter = "tags:-[careers]",
+  limit,
 }: IPost) => {
   try {
     return await api.posts.browse({
-      include: "tags,authors",
-      limit,
       filter,
       formats: "html",
+      include: "tags,authors",
+      limit,
     });
   } catch (err) {
     // eslint-disable-next-line no-console
@@ -51,8 +51,8 @@ export const getSinglePost = async (slug: string) => {
     return await api.posts.read(
       { slug },
       {
-        include: "tags,authors",
         formats: "html",
+        include: "tags,authors",
       },
     );
   } catch (err) {

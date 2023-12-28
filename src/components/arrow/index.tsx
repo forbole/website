@@ -18,7 +18,7 @@ type Props = {
   sx?: SxProps<Theme>;
 };
 
-export default function Arraw({ className, sx, direction, role }: Props) {
+export default function Arraw({ className, direction, role, sx }: Props) {
   const theme = useTheme();
   const [rotate, setRotate] = useState(0);
 
@@ -45,24 +45,24 @@ export default function Arraw({ className, sx, direction, role }: Props) {
       className={className}
       role={role}
       sx={{
-        "userSelect": "none",
-        "display": "flex",
-        "width": "48px",
-        "height": "48px",
-        [theme.breakpoints.down("laptop")]: {
-          width: "36px",
-          height: "36px",
-        },
-        "cursor": "pointer",
         "& svg": {
-          "transition": "fill 0.3s",
-          "filter":
-            "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
-          "fill": " #FFF",
           "& path": {
             stroke: theme.palette.custom.forbole.blue,
           },
+          "fill": " #FFF",
+          "filter":
+            "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
+          "transition": "fill 0.3s",
         },
+        "cursor": "pointer",
+        "display": "flex",
+        "height": "48px",
+        [theme.breakpoints.down("laptop")]: {
+          height: "36px",
+          width: "36px",
+        },
+        "userSelect": "none",
+        "width": "48px",
         ...sx,
       }}
       zIndex={2}

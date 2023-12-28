@@ -8,11 +8,11 @@ const KeyData = () => {
   return (
     <Stack
       sx={{
-        flex: "1",
-        margin: "0 auto",
-        justifyContent: "center",
         alignItems: "center",
+        flex: "1",
         flexWrap: "wrap",
+        justifyContent: "center",
+        margin: "0 auto",
         [theme.breakpoints.down("laptop")]: {
           flexDirection: "column",
           gap: "24px",

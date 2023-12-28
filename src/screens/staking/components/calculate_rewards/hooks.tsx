@@ -15,8 +15,8 @@ import { defaultFunctions, networkFunctions, toFixed } from "./utils";
 
 export const useCalculateRewardsHook = () => {
   const [tokens, setTokens] = useState<any | null>({
-    value: "",
     display: "",
+    value: "",
   });
 
   const initialState = getNetworkInfo("cosmos");
@@ -25,16 +25,16 @@ export const useCalculateRewardsHook = () => {
 
   const [totalEarnings, setTotalEarnings] = useState({
     dailyEarnings: {
-      tokens: "0",
       amount: "0",
+      tokens: "0",
     },
     monthlyEarnings: {
-      tokens: "0",
       amount: "0",
+      tokens: "0",
     },
     yearlyEarnings: {
-      tokens: "0",
       amount: "0",
+      tokens: "0",
     },
   });
 
@@ -43,7 +43,7 @@ export const useCalculateRewardsHook = () => {
     [selectedToken.key],
   );
 
-  const { loading: rewardsQueryLoading, data: rewardsQueryData } =
+  const { data: rewardsQueryData, loading: rewardsQueryLoading } =
     useQuery(rewardsQuery);
 
   const selectedTokenGraphql = selectedToken?.graphql;
@@ -195,16 +195,16 @@ export const useCalculateRewardsHook = () => {
 
     setTotalEarnings({
       dailyEarnings: {
-        tokens: formatDailyRewards,
         amount: formatDailyPrice,
+        tokens: formatDailyRewards,
       },
       monthlyEarnings: {
-        tokens: formatMonthlyRewards,
         amount: formatMonthlyPrice,
+        tokens: formatMonthlyRewards,
       },
       yearlyEarnings: {
-        tokens: formatAnnualRewards,
         amount: formatAnnualPrice,
+        tokens: formatAnnualRewards,
       },
     });
   }, [
@@ -228,8 +228,8 @@ export const useCalculateRewardsHook = () => {
 
     if (!value) {
       setTokens({
-        value: "",
         display: "",
+        value: "",
       });
 
       return;
@@ -255,8 +255,8 @@ export const useCalculateRewardsHook = () => {
     // handles edge cases
     if (exceptions.includes(value[value.length - 1])) {
       setTokens({
-        value,
         display: value,
+        value,
       });
     } else {
       const rawNumber = value.replace(/[^\d.]/g, "")
@@ -266,19 +266,19 @@ export const useCalculateRewardsHook = () => {
       const convertedNumber = convertWithDecimal(rawNumber);
 
       setTokens({
-        value: rawNumber,
         display: convertedNumber,
+        value: rawNumber,
       });
     }
   };
 
   return {
-    selectedToken,
-    setSelectedToken,
-    totalEarnings,
     handleChange,
-    tokens,
     monthlyPeriods,
+    selectedToken,
     setMonthlyPeriods,
+    setSelectedToken,
+    tokens,
+    totalEarnings,
   };
 };

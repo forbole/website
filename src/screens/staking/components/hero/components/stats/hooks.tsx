@@ -19,22 +19,22 @@ export const useStatsHook = () => {
   const stats: StatsItem[] = useMemo(
     () => [
       {
+        stats: "-",
         title: t("full tvl"),
-        stats: "-",
       },
       {
+        stats: "-",
         title: t("users staking"),
-        stats: "-",
       },
       {
-        title: t("supporting networks"),
         stats: networkNumber,
+        title: t("supporting networks"),
       },
     ],
     [t],
   );
 
-  const { loading: statsQueryLoading, data: statsQueryData } =
+  const { data: statsQueryData, loading: statsQueryLoading } =
     useQuery(statsQuery);
 
   const parsedStats = useMemo(() => {

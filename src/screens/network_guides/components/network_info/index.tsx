@@ -46,13 +46,13 @@ const mappings: Record<string, string> = {
 const NetworkInfo = ({ post }: any) => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
-  const { title, tags, excerpt, featureImage } = post;
+  const { excerpt, featureImage, tags, title } = post;
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
   const [isCopySuccess, setIsCopySuccess] = useState(false);
   const [readMore, setReadMore] = useState(false);
   const { sanitize } = DOMPurify;
 
-  const cmsLoader = ({ src, width, quality }: any) =>
+  const cmsLoader = ({ quality, src, width }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
 
   const networkData = (() => {

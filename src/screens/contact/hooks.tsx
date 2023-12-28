@@ -8,16 +8,16 @@ import isEmail from "validator/lib/isEmail";
 
 const useContactForm = () => {
   const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    company: "",
-    telegram: "",
     agree: false,
-    specify: "",
-    collaboration: false,
-    enterprise_solution: false,
     careers: false,
+    collaboration: false,
+    company: "",
+    email: "",
+    enterprise_solution: false,
+    name: "",
     other: false,
+    specify: "",
+    telegram: "",
   });
 
   const [canSubmit, setCanSubmit] = useState(false);
@@ -76,8 +76,6 @@ const useContactForm = () => {
       axios
         .post("/api/contact", {
           from: inputs.email,
-          subject:
-            "A new customer just wanted to get in touch with us via Enterprise form",
           html: `
           <p>Dear Administrator,</p>
           <p>A new customer: ${sanitize(
@@ -93,20 +91,22 @@ const useContactForm = () => {
           <p>Regards,</p>
           <p>Forbole web system</p>
           `,
+          subject:
+            "A new customer just wanted to get in touch with us via Enterprise form",
         })
         .then((res) => {
           if (res.status === 200) {
             setInputs({
-              name: "",
-              email: "",
-              company: "",
-              telegram: "",
               agree: false,
-              collaboration: false,
-              enterprise_solution: false,
               careers: false,
+              collaboration: false,
+              company: "",
+              email: "",
+              enterprise_solution: false,
+              name: "",
               other: false,
               specify: "",
+              telegram: "",
             });
           }
 
@@ -132,7 +132,7 @@ const useContactForm = () => {
   };
 
   const handleCheckedChange = (event: any) => {
-    const { name, checked } = event.target;
+    const { checked, name } = event.target;
 
     setInputs((input) => ({
       ...input,
@@ -148,16 +148,16 @@ const useContactForm = () => {
   };
 
   return {
-    handleSubmit,
-    handleInputChange,
-    handleClear,
-    inputs,
-    setInputs,
     canSubmit,
     handleCheckedChange,
-    success,
-    setSuccess,
+    handleClear,
+    handleInputChange,
+    handleSubmit,
+    inputs,
     isLoading,
+    setInputs,
+    setSuccess,
+    success,
   };
 };
 

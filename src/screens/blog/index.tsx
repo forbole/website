@@ -13,11 +13,11 @@ import { useBlogHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
 const Blog = ({
-  posts = [],
-  meta = {},
-  tags = [],
-  sidePosts = [],
   error,
+  meta = {},
+  posts = [],
+  sidePosts = [],
+  tags = [],
 }: any) => {
   const { t } = useTranslation("blog");
   const topRef = useRef(null);

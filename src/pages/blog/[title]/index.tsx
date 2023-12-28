@@ -28,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         path.params.title && !path.params.title.startsWith(stakingGuidePrefix),
     );
 
-  return { paths, fallback: true };
+  return { fallback: true, paths };
 };
 
 export const getStaticProps: GetStaticProps<

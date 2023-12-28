@@ -7,7 +7,7 @@ import Post from "@src/screens/blog/components/blog_posts/components/post";
 import * as styles from "./index.module.scss";
 import type { IProps } from "./interface";
 
-const TagPosts = ({ main, blogs, meta }: IProps) => {
+const TagPosts = ({ blogs, main, meta }: IProps) => {
   const currentPage = pathOr(0, ["pagination", "page"], meta);
   const totalPages = pathOr(0, ["pagination", "pages"], meta);
 

@@ -9,24 +9,24 @@ const ProductsMenuButton = () => {
   const menuProductsList = useMemo(
     () => [
       {
-        name: t("validator-infrastructure"),
         link: "/infrastructure",
+        name: t("validator-infrastructure"),
       },
       {
-        name: t("native-staking-service"),
         link: "/staking-service",
+        name: t("native-staking-service"),
       },
       {
-        name: t("blockchain-data-analytics-tools"),
         link: "/analytics-tools",
+        name: t("blockchain-data-analytics-tools"),
       },
       {
-        name: t("developer-tools"),
         link: "/developer-tools",
+        name: t("developer-tools"),
       },
       {
-        name: t("enterprise-solution"),
         link: "/enterprise-solution",
+        name: t("enterprise-solution"),
       },
     ],
     [t],

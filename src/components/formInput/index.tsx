@@ -2,29 +2,15 @@ import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 
 const FormInput = styled(InputBase)(({ theme }) => ({
-  "display": "block",
-  "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
-  "borderRadius": "8px",
-
-  "& .MuiInputBase-input:placeholder": {
-    color: "#878787",
-  },
   "& .MuiInputBase-input": {
-    "display": "block",
-    "width": "calc( 100% - 36px)",
-    "marginTop": theme.spacing(2),
-    "position": "relative",
+    "&:focus": {
+      borderColor: theme.palette.custom.forbole.indigo,
+    },
     "backgroundColor": theme.palette.mode === "light" ? "#FFF" : "#1A2027",
     "border": "2px solid",
     "borderColor": theme.palette.mode === "light" ? "#fff" : "#2D3843",
     "borderRadius": "8px",
-    "fontSize": "16px",
-    "padding": "12px 16px",
-    "transition": theme.transitions.create([
-      "border-color",
-      "background-color",
-      "box-shadow",
-    ]),
+    "display": "block",
     // Use the system font instead of the default Roboto font.
     "fontFamily": [
       "-apple-system",
@@ -38,10 +24,24 @@ const FormInput = styled(InputBase)(({ theme }) => ({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
-    "&:focus": {
-      borderColor: theme.palette.custom.forbole.indigo,
-    },
+    "fontSize": "16px",
+    "marginTop": theme.spacing(2),
+    "padding": "12px 16px",
+    "position": "relative",
+    "transition": theme.transitions.create([
+      "border-color",
+      "background-color",
+      "box-shadow",
+    ]),
+    "width": "calc( 100% - 36px)",
   },
+  "& .MuiInputBase-input:placeholder": {
+    color: "#878787",
+  },
+  "borderRadius": "8px",
+
+  "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
+  "display": "block",
 }));
 
 export default FormInput;

@@ -20,7 +20,7 @@ type PersonInfo = {
   position: string;
 };
 
-const PersonCard = ({ desc, name, position, img }: PersonInfo) => (
+const PersonCard = ({ desc, img, name, position }: PersonInfo) => (
   <Card className={styles.personCard}>
     {img && <Avatar alt="Person Avatar" className={styles.avatar} src={img} />}
     <Box>
@@ -68,15 +68,15 @@ const Carousel = ({ personList }: CarouselProps) => {
       <Box className={styles.wrapper}>
         <Swiper
           breakpoints={{
-            375: {
-              slidesPerView: 1,
-              initialSlide: 0,
+            1025: {
+              initialSlide: 1,
+              slidesPerView: 3,
               spaceBetween: -16,
             },
-            1025: {
+            375: {
+              initialSlide: 0,
+              slidesPerView: 1,
               spaceBetween: -16,
-              slidesPerView: 3,
-              initialSlide: 1,
             },
           }}
           centeredSlides

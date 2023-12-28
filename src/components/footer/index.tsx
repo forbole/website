@@ -14,8 +14,8 @@ import { FooterItems, SocialMedia } from "./components";
 import * as styles from "./index.module.scss";
 import type { FooterProps } from "./types";
 
-const Footer = ({ red, itemColor }: FooterProps) => {
-  const { isTablet, isMobile } = useWindowDimensions();
+const Footer = ({ itemColor, red }: FooterProps) => {
+  const { isMobile, isTablet } = useWindowDimensions();
   const { t } = useTranslation("common");
 
   const wrapperStyle = {

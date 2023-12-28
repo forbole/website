@@ -6,9 +6,9 @@ import { convertToMoney } from "@src/utils/convert_to_money";
 
 import useStyles from "./useStyles";
 
-const StatsCard = ({ title, stats }: any) => {
+const StatsCard = ({ stats, title }: any) => {
   const styles = useStyles();
-  const { counterValue, counterRef } = useCounter(stats);
+  const { counterRef, counterValue } = useCounter(stats);
   const { t } = useTranslation("common");
 
   return (

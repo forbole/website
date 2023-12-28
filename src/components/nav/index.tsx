@@ -21,7 +21,7 @@ interface NavProps {
   staking?: boolean;
 }
 
-const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
+const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
   const colors = useColor();
   const { displayBackground } = useNavHook();
   const { t } = useTranslation("staking");
@@ -31,9 +31,9 @@ const Nav = ({ staking, stakeNowRef, itemColor }: NavProps) => {
 
     if (stakeNowRef !== undefined && stakeNowRef.current !== null) {
       window.scrollTo({
+        behavior: "smooth",
         left: 0,
         top: stakeNowRef.current?.offsetTop,
-        behavior: "smooth",
       });
     }
   };

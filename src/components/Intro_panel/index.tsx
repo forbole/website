@@ -58,15 +58,15 @@ const IntroPanel = ({
         >
           <Typography
             sx={{
+              color: "#202A43",
               fontWeight: "590",
               pr: "10px",
-              color: "#202A43",
+              [theme.breakpoints.down("tablet")]: {
+                fontSize: "18px",
+                width: "max-content",
+              },
               [theme.breakpoints.up("tablet")]: {
                 fontSize: "20px",
-              },
-              [theme.breakpoints.down("tablet")]: {
-                width: "max-content",
-                fontSize: "18px",
               },
             }}
             variant={level ? (`h${level}` as "h1") : undefined}
@@ -84,10 +84,10 @@ const IntroPanel = ({
         <Box>
           <Typography
             sx={{
-              fontSize: "16px",
-              lineHeight: "22px",
-              fontWeight: "400",
               color: "#2A1A6A",
+              fontSize: "16px",
+              fontWeight: "400",
+              lineHeight: "22px",
             }}
             variant={level ? (`h${level + 1}` as "h1") : undefined}
           >

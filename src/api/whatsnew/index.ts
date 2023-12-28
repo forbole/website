@@ -29,11 +29,11 @@ export const getPageByTag = async (tag: string) => {
       );
 
       return {
-        title: res.title,
-        list,
-        imageHref: window.document.querySelector("img")?.src,
-        btnName: window.document.querySelector("a")?.innerHTML,
         btnClick: window.document.querySelector("a")?.href,
+        btnName: window.document.querySelector("a")?.innerHTML,
+        imageHref: window.document.querySelector("img")?.src,
+        list,
+        title: res.title,
       };
     }) as {
       btnClick: string;

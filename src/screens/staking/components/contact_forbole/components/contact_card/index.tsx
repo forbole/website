@@ -28,7 +28,7 @@ const ContactCard = () => {
   const theme = useTheme();
   const { t } = useTranslation("staking");
 
-  const { handleSubmit, handleInputChange, inputs, setInputs, canSubmit } =
+  const { canSubmit, handleInputChange, handleSubmit, inputs, setInputs } =
     useContactCard();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -124,24 +124,24 @@ const ContactCard = () => {
               <Select
                 IconComponent={ExpandIconWrapper}
                 MenuProps={{
-                  variant: "menu",
                   disableScrollLock: true,
                   PaperProps: {
                     sx: {
-                      "bgcolor": theme.palette.primary.main,
-                      "marginTop": 1,
-                      "boxShadow":
-                        "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
-                      "borderRadius": 1,
                       "& .MuiMenuItem-root": {
-                        "padding": 2,
                         "&:hover": {
                           background:
                             " linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)",
                         },
+                        "padding": 2,
                       },
+                      "bgcolor": theme.palette.primary.main,
+                      "borderRadius": 1,
+                      "boxShadow":
+                        "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
+                      "marginTop": 1,
                     },
                   },
+                  variant: "menu",
                 }}
                 onChange={(e) => {
                   const { value } = e.target;

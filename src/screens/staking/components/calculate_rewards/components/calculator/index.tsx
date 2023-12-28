@@ -37,13 +37,13 @@ const Calculator = () => {
   const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
 
   const {
-    selectedToken,
-    setSelectedToken,
-    totalEarnings,
     handleChange,
-    tokens,
     monthlyPeriods,
+    selectedToken,
     setMonthlyPeriods,
+    setSelectedToken,
+    tokens,
+    totalEarnings,
   } = useCalculateRewardsHook();
 
   const networkData = cosmosNetworkKeys
@@ -100,25 +100,25 @@ const Calculator = () => {
           <Select
             IconComponent={DropDownIcon}
             MenuProps={{
-              variant: "menu",
               disableScrollLock: true,
               PaperProps: {
                 sx: {
-                  "height": "50vh",
-                  "bgcolor": theme.palette.primary.main,
-                  "marginTop": 1,
-                  "boxShadow":
-                    "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
-                  "borderRadius": 1,
                   "& .MuiMenuItem-root": {
-                    "padding": 2,
                     "&:hover": {
                       background:
                         " linear-gradient(286.17deg, rgba(212, 49, 238, 0.24) 0%, rgba(255, 66, 107, 0.24) 100%)",
                     },
+                    "padding": 2,
                   },
+                  "bgcolor": theme.palette.primary.main,
+                  "borderRadius": 1,
+                  "boxShadow":
+                    "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
+                  "height": "50vh",
+                  "marginTop": 1,
                 },
               },
+              variant: "menu",
             }}
             displayEmpty
             id="demo-simple-select"
@@ -151,16 +151,16 @@ const Calculator = () => {
                   </Box>
                   <Box sx={styles.networkInfo}>
                     <Typography
-                      sx={{ fontWeight: 600, fontSize: theme.spacing(2.5) }}
+                      sx={{ fontSize: theme.spacing(2.5), fontWeight: 600 }}
                       variant="h4"
                     >
                       {network?.denom?.toUpperCase() || ""}
                     </Typography>
                     <Typography
                       sx={{
-                        fontWeight: 400,
-                        fontSize: theme.spacing(1.5),
                         color: "#878787",
+                        fontSize: theme.spacing(1.5),
+                        fontWeight: 400,
                       }}
                       variant="body1"
                     >
@@ -256,11 +256,11 @@ const Calculator = () => {
                 </InputAdornment>
               }
               inputProps={{
-                "step": 1,
-                "min": 0,
-                "max": 12,
-                "type": "number",
                 "aria-labelledby": "input-slider",
+                "max": 12,
+                "min": 0,
+                "step": 1,
+                "type": "number",
               }}
               onBlur={handleBlur}
               onChange={handleInputChange}

@@ -17,13 +17,13 @@ type Props = {
 };
 
 const IntroCard = ({
-  title,
-  desc,
-  list,
-  imageHref = "",
-  btnName,
-  disabled,
   btnLink,
+  btnName,
+  desc,
+  disabled,
+  imageHref = "",
+  list,
+  title,
 }: Props) => (
   <Box className={styles.wrapper} component="div">
     <Box className={styles.imageWrapper}>

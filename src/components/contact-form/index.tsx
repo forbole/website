@@ -31,9 +31,6 @@ const MenuProps = {
   PaperProps: {
     style: {},
     sx: {
-      "backgroundColor": "white",
-      "borderRadius": "8px",
-      "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
       "& li:hover": {
         backgroundColor: "rgba(107, 97, 254, 0.24)",
       },
@@ -43,12 +40,15 @@ const MenuProps = {
       "& li.Mui-selected:hover": {
         backgroundColor: "rgba(107, 97, 254, 0.8)",
       },
+      "backgroundColor": "white",
+      "borderRadius": "8px",
+      "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
     },
   },
 };
 
 const ContactFrom = forwardRef<HTMLDivElement, Props>(
-  ({ inputs, handleInputChange, handleSubmit, canSubmit, isLoading }, ref) => {
+  ({ canSubmit, handleInputChange, handleSubmit, inputs, isLoading }, ref) => {
     const theme = useTheme();
     const { t } = useTranslation("enterprise_solution");
 
@@ -69,26 +69,26 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
         component="div"
         ref={ref}
         sx={{
-          maxWidth: "776px",
-          padding: "40px",
-          gap: "32px",
-          borderRadius: "24px",
-          margin: "40px auto",
           background:
             "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.64) 64.58%, #FFF 100%)",
+          borderRadius: "24px",
           boxShadow:
             "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
           color: "#202A43",
+          gap: "32px",
+          margin: "40px auto",
+          maxWidth: "776px",
+          padding: "40px",
           [theme.breakpoints.down("laptop")]: {
-            padding: "24px",
             gap: "24px",
+            padding: "24px",
           },
         }}
       >
         <Grid
           columnSpacing={theme.spacing(4)}
           container
-          rowSpacing={{ mobile: theme.spacing(3), desktop: theme.spacing(4) }}
+          rowSpacing={{ desktop: theme.spacing(4), mobile: theme.spacing(3) }}
         >
           <Grid item laptop={6} mobile={12}>
             <Typography
@@ -168,23 +168,23 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
                   return selected;
                 }}
                 sx={{
-                  "borderRadius": "8px",
-                  "&>.MuiOutlinedInput-notchedOutline": {
-                    borderWidth: "2px",
-                    borderColor:
-                      theme.palette.mode === "light" ? "#fff" : "#2D3843",
-                  },
                   "&:hover>.MuiOutlinedInput-notchedOutline": {
                     borderColor: theme.palette.custom.forbole.indigo,
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                     borderColor: theme.palette.custom.forbole.indigo,
                   },
-                  "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
-                  "fontSize": "16px",
+                  "&>.MuiOutlinedInput-notchedOutline": {
+                    borderColor:
+                      theme.palette.mode === "light" ? "#fff" : "#2D3843",
+                    borderWidth: "2px",
+                  },
                   "&>div": {
                     padding: "14px 18px",
                   },
+                  "borderRadius": "8px",
+                  "boxShadow": "4px 8px 24px 0px rgba(116, 81, 255, 0.28)",
+                  "fontSize": "16px",
                 }}
                 value={inputs.help}
               >

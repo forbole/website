@@ -20,39 +20,39 @@ interface SocialMediasProps {
 }
 
 export const socialMedia: SocialMediasProps = {
-  telegram: {
-    key: "telegram",
-    url: "https://t.me/forbole",
-    component: Telegram,
-  },
-  medium: {
-    key: "medium",
-    url: "https://medium.com/forbole",
-    component: Medium,
-  },
-  twitter: {
-    key: "twitter",
-    url: "https://twitter.com/forbole",
-    component: Twitter,
-  },
   github: {
+    component: Github,
     key: "github",
     url: "https://github.com/forbole",
-    component: Github,
-  },
-  linkedIn: {
-    key: "linkedin",
-    url: "https://www.linkedin.com/company/forbole/",
-    component: LinkedIn,
   },
   Instagram: {
+    component: Instagram,
     key: "Instagram",
     url: "https://www.instagram.com/forbole",
-    component: Instagram,
   },
   Instagram_zh: {
+    component: Instagram,
     key: "Instagram",
     url: "https://www.instagram.com/forbole.hk",
-    component: Instagram,
+  },
+  linkedIn: {
+    component: LinkedIn,
+    key: "linkedin",
+    url: "https://www.linkedin.com/company/forbole/",
+  },
+  medium: {
+    component: Medium,
+    key: "medium",
+    url: "https://medium.com/forbole",
+  },
+  telegram: {
+    component: Telegram,
+    key: "telegram",
+    url: "https://t.me/forbole",
+  },
+  twitter: {
+    component: Twitter,
+    key: "twitter",
+    url: "https://twitter.com/forbole",
   },
 };

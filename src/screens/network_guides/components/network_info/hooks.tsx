@@ -26,7 +26,7 @@ export const useNetworkGuidesHook = () => {
     [],
   );
 
-  const { loading: networkGuideLoading, data: networkGuideData } =
+  const { data: networkGuideData, loading: networkGuideLoading } =
     useQuery(networkGuideQuery);
 
   const networkGuides: Record<string, InfoBlock[]> = useMemo(() => {
@@ -42,8 +42,8 @@ export const useNetworkGuidesHook = () => {
       const getAPYBlock = (stats: string) =>
         stats
           ? {
-              title: t("apy"),
               stats,
+              title: t("apy"),
               type: t("percentage"),
             }
           : undefined;
@@ -55,8 +55,8 @@ export const useNetworkGuidesHook = () => {
               [data.metric.instance],
               [
                 {
-                  title: t("commission"),
                   stats: data.commissionRate,
+                  title: t("commission"),
                   type: t("percentage"),
                 },
               ],
@@ -90,8 +90,8 @@ export const useNetworkGuidesHook = () => {
               [
                 ...acc[data.metric.instance],
                 {
-                  title: t("staked by forbole"),
                   stats: data.TVL,
+                  title: t("staked by forbole"),
                   type: t("money"),
                 },
               ],
@@ -107,8 +107,8 @@ export const useNetworkGuidesHook = () => {
               [
                 ...acc[data.metric.instance],
                 {
-                  title: t("unbonding period"),
                   stats: data.unbondingTime,
+                  title: t("unbonding period"),
                   type: t("string"),
                 },
               ],

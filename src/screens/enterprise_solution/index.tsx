@@ -17,13 +17,13 @@ import * as styles from "./index.module.scss";
 
 const EnterpriseSolution = () => {
   const {
-    inputs,
+    canSubmit,
     handleInputChange,
     handleSubmit,
-    canSubmit,
-    success,
-    setSuccess,
+    inputs,
     isLoading,
+    setSuccess,
+    success,
   } = useContactForm();
 
   const topRef = useRef(null);
@@ -40,9 +40,9 @@ const EnterpriseSolution = () => {
     e.preventDefault();
 
     window.scrollTo({
+      behavior: "smooth",
       left: 0,
       top: ref.current.offsetTop - 100,
-      behavior: "smooth",
     });
   };
 
