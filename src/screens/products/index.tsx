@@ -166,14 +166,18 @@ const Products = () => {
             <CtaButton
               className={styles.response}
               onClick={(e) => scrollToRef(e, individualsRef)}
-              startIcon={<img className={styles.icon} src="/products/p1.svg" />}
+              startIcon={
+                <img alt="" className={styles.icon} src="/products/p1.svg" />
+              }
             >
               {t("for-individuals")}
             </CtaButton>
             <CtaButton
               className={styles.response}
               onClick={(e) => scrollToRef(e, businessesRef)}
-              startIcon={<img className={styles.icon} src="/products/p2.svg" />}
+              startIcon={
+                <img alt="" className={styles.icon} src="/products/p2.svg" />
+              }
             >
               {t("for-businesses")}
             </CtaButton>
@@ -203,15 +207,21 @@ const Products = () => {
               value={v1}
             >
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p3.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
+                }
                 label={t("staking")}
               />
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p4.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
+                }
                 label={t("analytics")}
               />
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p5.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p5.svg" />
+                }
                 label={t("developer")}
               />
             </StyledTabs>
@@ -223,7 +233,7 @@ const Products = () => {
                   scrollBottom(e, PanelRef1);
                 }}
                 startIcon={
-                  <img className={styles.icon} src="/products/p3.svg" />
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
                 }
               >
                 {t("staking")}
@@ -235,7 +245,7 @@ const Products = () => {
                   scrollBottom(e, PanelRef1);
                 }}
                 startIcon={
-                  <img className={styles.icon} src="/products/p4.svg" />
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
                 }
               >
                 {t("analytics")}
@@ -247,7 +257,7 @@ const Products = () => {
                   scrollBottom(e, PanelRef1);
                 }}
                 startIcon={
-                  <img className={styles.icon} src="/products/p5.svg" />
+                  <img alt="" className={styles.icon} src="/products/p5.svg" />
                 }
               >
                 {t("developer")}
@@ -313,15 +323,21 @@ const Products = () => {
               value={v2}
             >
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p3.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
+                }
                 label={t("validator-infrastructure")}
               />
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p6.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p6.svg" />
+                }
                 label={t("staking")}
               />
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p4.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
+                }
                 label={t("analytics")}
               />
               <StyledTab className={styles.tab} label="" />
@@ -336,11 +352,15 @@ const Products = () => {
               <StyledTab className={styles.tab} label="" />
               <StyledTab className={styles.tab} label="" />
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p5.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p5.svg" />
+                }
                 label={t("developer")}
               />
               <StyledTab
-                icon={<img className={styles.icon} src="/products/p7.svg" />}
+                icon={
+                  <img alt="" className={styles.icon} src="/products/p7.svg" />
+                }
                 label={t("enterprise-solution")}
               />
             </StyledTabs>
@@ -352,7 +372,7 @@ const Products = () => {
                   scrollBottom(e, PanelRef2);
                 }}
                 startIcon={
-                  <img className={styles.icon} src="/products/p3.svg" />
+                  <img alt="" className={styles.icon} src="/products/p3.svg" />
                 }
               >
                 {t("validator-infrastructure")}
@@ -364,7 +384,7 @@ const Products = () => {
                   scrollBottom(e, PanelRef2);
                 }}
                 startIcon={
-                  <img className={styles.icon} src="/products/p6.svg" />
+                  <img alt="" className={styles.icon} src="/products/p6.svg" />
                 }
               >
                 {t("staking")}
@@ -376,7 +396,7 @@ const Products = () => {
                   scrollBottom(e, PanelRef2);
                 }}
                 startIcon={
-                  <img className={styles.icon} src="/products/p4.svg" />
+                  <img alt="" className={styles.icon} src="/products/p4.svg" />
                 }
               >
                 {t("analytics")}
@@ -389,7 +409,11 @@ const Products = () => {
                     scrollBottom(e, PanelRef2);
                   }}
                   startIcon={
-                    <img className={styles.icon} src="/products/p5.svg" />
+                    <img
+                      alt=""
+                      className={styles.icon}
+                      src="/products/p5.svg"
+                    />
                   }
                 >
                   {t("developer")}
@@ -401,7 +425,11 @@ const Products = () => {
                     scrollBottom(e, PanelRef2);
                   }}
                   startIcon={
-                    <img className={styles.icon} src="/products/p7.svg" />
+                    <img
+                      alt=""
+                      className={styles.icon}
+                      src="/products/p7.svg"
+                    />
                   }
                 >
                   {t("enterprise-solution")}

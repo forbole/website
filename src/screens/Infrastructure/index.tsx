@@ -230,6 +230,7 @@ const Infrastructure = () => {
               <StyledTab
                 icon={
                   <img
+                    alt=""
                     className={style.icon}
                     src="/validator_infastructure/tab1.svg"
                   />
@@ -242,6 +243,7 @@ const Infrastructure = () => {
               <StyledTab
                 icon={
                   <img
+                    alt=""
                     className={style.icon}
                     src="/validator_infastructure/tab2.svg"
                   />
