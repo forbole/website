@@ -11,6 +11,13 @@ import { removeInternalTags } from "@src/utils/remove_internal_tags";
 const TagDetailsPage = (props: any) => <TagTitlePosts {...props} />;
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.QUICK_BUILD === "true") {
+    return {
+      fallback: "blocking",
+      paths: [],
+    };
+  }
+
   const tags = await getTags("1000");
 
   const paths = locales

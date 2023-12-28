@@ -1,4 +1,3 @@
-const million = require("million/compiler");
 const bundleAnalyzer = require("@next/bundle-analyzer");
 const nextTranslate = require("next-translate-plugin");
 
@@ -42,6 +41,9 @@ const baseConfig = nextTranslate({
       destination: "/rss.xml",
       source: path,
     })),
+  typescript: {
+    ignoreBuildErrors: process.env.QUICK_BUILD === "true",
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -52,4 +54,4 @@ const baseConfig = nextTranslate({
   },
 });
 
-module.exports = million.next(withBundleAnalyzer(baseConfig), { auto: true });
+module.exports = withBundleAnalyzer(baseConfig);

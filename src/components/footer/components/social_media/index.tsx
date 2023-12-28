@@ -1,5 +1,4 @@
 import { Box, Input, Stack } from "@mui/material";
-import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -65,10 +64,15 @@ const SocialMedia = () => {
       event.preventDefault();
       setLoading(true);
 
-      axios
-        .post("/api/subscribe", {
+      fetch("/api/subscribe", {
+        body: JSON.stringify({
           inputs,
-        })
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      })
         .then((res) => {
           if (res.status === 200) {
             setInputs({

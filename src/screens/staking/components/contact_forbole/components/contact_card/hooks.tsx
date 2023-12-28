@@ -1,4 +1,3 @@
-import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
@@ -28,13 +27,18 @@ const useContactCard = () => {
     if (event) {
       event.preventDefault();
 
-      axios
-        .post("/api/contact", {
+      fetch("/api/contact", {
+        body: JSON.stringify({
           from: inputs.email,
           html: `<p>${sanitize(inputs.option)}</p>`,
           source: "staking",
           text: sanitize(inputs.option),
-        })
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      })
         .then((res) => {
           if (res.status === 200) {
             toast.success(t("success") as string);

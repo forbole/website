@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-import axios from "axios";
 import { pathOr } from "ramda";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -166,7 +165,12 @@ export const useCalculateRewardsHook = () => {
       networkFunction.gecko = `${process.env.NEXT_PUBLIC_COINGECKO_API}/coins/terra-luna-2`;
     }
 
-    const marketPriceApi = await axios.get(networkFunction?.gecko);
+    const marketPriceApi = await fetch(networkFunction?.gecko, {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    }).then((r) => r.json());
 
     const { data: marketPriceJson } = marketPriceApi;
 

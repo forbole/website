@@ -1,4 +1,3 @@
-import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
@@ -33,22 +32,26 @@ const useContactForm = () => {
       event.preventDefault();
       setLoading(true);
 
-      axios
-        .post("/api/contact", {
+      fetch("/api/contact", {
+        body: JSON.stringify({
           from: inputs.email,
           html: `
-          <p>Dear Administrator,</p>
-          <p>A new customer: ${sanitize(inputs.email)} contacted us today.</p>
-          <p>Here is the details:</p>
-          <p>Customer's Name: ${sanitize(inputs.name)}</p>
-          <p>Customer's Company: ${sanitize(inputs.company)}</p>
-          <p>Customer's Email Address: ${sanitize(inputs.email)}</p>
-          <p>Customer's Question: ${sanitize(inputs.help)}</p>
-          <p>Regards,</p>
-          <p>Forbole web system</p>
-          `,
+<p>Dear Administrator,</p>
+<p>A new customer: ${sanitize(inputs.email)} contacted us today.</p>
+<p>Here is the details:</p>
+<p>Customer's Name: ${sanitize(inputs.name)}</p>
+<p>Customer's Company: ${sanitize(inputs.company)}</p>
+<p>Customer's Email Address: ${sanitize(inputs.email)}</p>
+<p>Customer's Question: ${sanitize(inputs.help)}</p>
+<p>Regards,</p>
+<p>Forbole web system</p>`,
           source: "enterprise",
-        })
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      })
         .then((res) => {
           if (res.status === 200) {
             setInputs({
