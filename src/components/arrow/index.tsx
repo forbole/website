@@ -13,9 +13,9 @@ export enum Direction {
 
 type Props = {
   className: string;
-  sx?: SxProps<Theme>;
   direction?: Direction;
   role?: string;
+  sx?: SxProps<Theme>;
 };
 
 export default function Arraw({ className, sx, direction, role }: Props) {

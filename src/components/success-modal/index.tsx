@@ -12,12 +12,12 @@ import { forwardRef } from "react";
 import { Close } from "../icons";
 
 type Props = {
-  fixed?: any;
-  close?: (b: boolean) => void;
-  up_word?: string;
-  middle_word?: string;
   bottom_word?: string;
+  close?: (b: boolean) => void;
+  fixed?: any;
+  middle_word?: string;
   open: boolean;
+  up_word?: string;
 };
 
 const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(

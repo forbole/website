@@ -48,7 +48,7 @@ module.exports = {
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
   },
-  plugins: ["@typescript-eslint", "react-hooks", "@stylistic"],
+  plugins: ["@typescript-eslint", "react-hooks", "@stylistic", "perfectionist"],
   rules: {
     // @TODO: These should be removed when fixed
     "@typescript-eslint/no-explicit-any": "off",
@@ -103,5 +103,7 @@ module.exports = {
 
     "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
+
+    "perfectionist/sort-object-types": "error",
   },
 };

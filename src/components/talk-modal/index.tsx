@@ -23,16 +23,16 @@ interface Props {
   staking?: any;
   open?: boolean;
   inputs: {
-    "name": string;
-    "email": string;
-    "company": string;
-    "telegram": string;
     "agree": boolean;
-    "specify": string;
+    "company": string;
     "Data API": boolean;
+    "email": string;
     "GraphQL": boolean;
+    "name": string;
     "Other": boolean;
     "RPC Endpoints": boolean;
+    "specify": string;
+    "telegram": string;
   };
   handleInputChange: (event: any) => void;
   handleCheckedChange: (event: any) => void;

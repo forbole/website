@@ -4,14 +4,14 @@ import { forwardRef } from "react";
 import * as styles from "./index.module.scss";
 
 type Props = {
-  title?: string;
+  children?: React.ReactNode;
   // @deprecated
   imageHref?: string;
   imageHrefs?: string[];
-  children?: React.ReactNode;
-  index: number;
-  value: number;
   imgFull?: boolean;
+  index: number;
+  title?: string;
+  value: number;
 };
 
 const productPanel = forwardRef<HTMLDivElement, Props>(

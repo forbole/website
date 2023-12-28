@@ -11,9 +11,9 @@ import { BoxCSS } from "./BoxCSS";
 SwiperCore.use([Navigation]);
 
 type Props = {
+  className?: string;
   imagesList: string[];
   style?: CSSProperties;
-  className?: string;
 };
 
 const CardSwiper = ({ imagesList, style, className }: Props) => {

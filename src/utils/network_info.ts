@@ -1,23 +1,23 @@
 export type Network = {
   address?: string;
   bigDipper?: string;
+  calculator?: {
+    bonded: string;
+    inflation: string;
+    stakingParams: string;
+    supply: string;
+  };
   color?: string;
   delegate?: string;
   denom?: string;
   graphql: string;
+  guide?: string;
   heightSocket?: string;
   image: string;
   key: string;
   label?: string;
   name: string;
   value?: string;
-  guide?: string;
-  calculator?: {
-    bonded: string;
-    inflation: string;
-    supply: string;
-    stakingParams: string;
-  };
 };
 
 interface IStringIndex extends Record<string, Network> {}

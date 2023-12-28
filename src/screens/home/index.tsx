@@ -15,12 +15,12 @@ import * as styles from "./index.module.scss";
 import { FilterBG } from "./styles";
 
 export type Page = {
-  title: string;
-  list: string[];
-  imageHref: string;
-  btnName: string;
   btnClick: string;
+  btnName: string;
   id: string;
+  imageHref: string;
+  list: string[];
+  title: string;
 };
 
 type Props = { pages: Page[] };

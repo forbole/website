@@ -15,15 +15,15 @@ import CtaButton from "../cta-button";
 import FormInput from "../formInput";
 
 type Props = {
-  inputs: {
-    name: string;
-    email: string;
-    company: string;
-    help: string;
-  };
+  canSubmit: boolean;
   handleInputChange: (event: any) => void;
   handleSubmit: (event: any) => void;
-  canSubmit: boolean;
+  inputs: {
+    company: string;
+    email: string;
+    help: string;
+    name: string;
+  };
   isLoading: boolean;
 };
 

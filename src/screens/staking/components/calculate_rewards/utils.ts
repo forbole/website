@@ -2,11 +2,11 @@ import { clone, pathOr } from "ramda";
 
 type NetworkDataProps = {
   bonded?: (data: any) => number;
-  inflation?: (data: any) => number;
-  supply?: (data: any) => number;
   commissionRate?: (data: any) => number;
-  marketPrice: (data: any) => number;
   gecko?: any;
+  inflation?: (data: any) => number;
+  marketPrice: (data: any) => number;
+  supply?: (data: any) => number;
 };
 
 type NetworkProps = {

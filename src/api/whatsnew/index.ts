@@ -18,7 +18,7 @@ export const getPageByTag = async (tag: string) => {
     const pages = (await api.pages.browse({
       filter: `tag:${tag}`,
       published_at: "desc",
-    })) as { title: string; html: string; id: string }[];
+    })) as { html: string; id: string; title: string }[];
 
     const data = pages.map((res) => {
       const window = parseMd(res.html);
@@ -36,12 +36,12 @@ export const getPageByTag = async (tag: string) => {
         btnClick: window.document.querySelector("a")?.href,
       };
     }) as {
-      title: string;
-      list: string[];
-      imageHref: string;
-      btnName: string;
       btnClick: string;
+      btnName: string;
       id: string;
+      imageHref: string;
+      list: string[];
+      title: string;
     }[];
 
     return data ?? null;

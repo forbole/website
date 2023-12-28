@@ -10,8 +10,8 @@ import type { NetworkProps } from "./config";
 import useStyles from "./useStyles";
 
 type Props = {
-  sortedNetworks: Network[];
   allNetworkInfo: NetworkProps;
+  sortedNetworks: Network[];
 };
 
 const NetworkGrid = ({ sortedNetworks, allNetworkInfo }: Props) => {

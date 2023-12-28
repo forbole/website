@@ -1,8 +1,8 @@
 type ParamsProps = {
+  bondedToken?: number;
+  commissionRate: number;
   inflation: number;
   stakingRatio: number;
-  commissionRate: number;
-  bondedToken?: number;
   totalSupply?: number;
 };
 

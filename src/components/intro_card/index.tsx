@@ -7,13 +7,13 @@ import CtaButton from "../cta-button";
 import * as styles from "./index.module.scss";
 
 type Props = {
-  title?: string;
-  desc?: string;
-  list?: string[];
-  imageHref?: string;
-  btnName?: string;
   btnLink?: string;
+  btnName?: string;
+  desc?: string;
   disabled?: boolean;
+  imageHref?: string;
+  list?: string[];
+  title?: string;
 };
 
 const IntroCard = ({
