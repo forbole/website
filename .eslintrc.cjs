@@ -42,6 +42,7 @@ module.exports = {
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -53,6 +54,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "@next/next/no-img-element": "off",
     "react/display-name": "off",
+    "jsx-a11y/anchor-is-valid": "off",
 
     "arrow-body-style": "error",
     "camelcase": "off",

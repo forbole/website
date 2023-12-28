@@ -20,6 +20,7 @@ import { anchorElContext } from "@src/utils/menu";
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
 import ProductsMenuButton from "../products_menu_button";
+import * as styles from "./index.module.scss";
 
 const MobileNavMenu = () => {
   const router = useRouter();
@@ -157,26 +158,26 @@ const MobileNavMenu = () => {
               : theme.palette.custom.forbole.indigo,
           }}
         >
-          <div
+          <button
+            className={styles.button}
             onClick={() => {
               router.push("/products").finally(handleClose);
             }}
-            role="button"
           >
             {t("Products")}
-          </div>
-          <div
+          </button>
+          <button
+            className={styles.button}
             onClick={() => {
               handlerCLickShowProducts();
             }}
-            role="button"
           >
             {openShowProducts ? (
               <KeyboardArrowUpIcon />
             ) : (
               <KeyboardArrowDownIcon />
             )}
-          </div>
+          </button>
         </ListItem>
         <Collapse in={openShowProducts} timeout="auto" unmountOnExit>
           <ProductsMenuButton />

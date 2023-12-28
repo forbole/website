@@ -3,6 +3,12 @@
 .wrapper {
   padding-bottom: spacing(3);
 
+  button {
+    background: transparent;
+    border: none;
+    display: inline-block;
+  }
+
   svg {
     margin-right: spacing(2);
     transition: transform 0.2s ease-in-out;
