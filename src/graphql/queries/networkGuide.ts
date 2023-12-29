@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "urql";
 
 export const networkGuideQuery = gql`
   query NetworkGuide {

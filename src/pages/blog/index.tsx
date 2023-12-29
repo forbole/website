@@ -8,7 +8,10 @@ import { removeInternalTags } from "@src/utils/remove_internal_tags";
 
 const BlogPage: NextPage = (props: any) => <Blog {...props} />;
 
-export async function getServerSideProps(context: { query: any }) {
+export async function getServerSideProps(context: {
+  locale: string;
+  query: any;
+}) {
   let formattedPosts = [];
   let formattedSidePosts = [];
   let formattedTags: Tag[] = [];
@@ -16,7 +19,7 @@ export async function getServerSideProps(context: { query: any }) {
   let error = false;
 
   try {
-    const { query } = context;
+    const { locale, query } = context;
     const fetchQuery: any = {};
 
     let posts: any = [];
@@ -38,8 +41,12 @@ export async function getServerSideProps(context: { query: any }) {
       }),
     ]);
 
-    formattedPosts = posts.map((post: any) => Post.fromJson(post, {}));
-    formattedSidePosts = sidePosts.map((post: any) => Post.fromJson(post, {}));
+    formattedPosts = posts.map((post: any) => Post.fromJson(post, { locale }));
+
+    formattedSidePosts = sidePosts.map((post: any) =>
+      Post.fromJson(post, { locale }),
+    );
+
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));
     meta = posts.meta;
   } catch (err) {

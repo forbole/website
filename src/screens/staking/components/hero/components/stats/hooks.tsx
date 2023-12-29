@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
 import useTranslation from "next-translate/useTranslation";
 import { useMemo } from "react";
+import { useQuery } from "urql";
 
 import { statsQuery } from "@src/graphql/queries/stats";
 import { networkFunctions } from "@src/utils/network_functions";
@@ -34,8 +34,9 @@ export const useStatsHook = () => {
     [t],
   );
 
-  const { data: statsQueryData, loading: statsQueryLoading } =
-    useQuery(statsQuery);
+  const [{ data: statsQueryData, fetching: statsQueryLoading }] = useQuery({
+    query: statsQuery,
+  });
 
   const parsedStats = useMemo(() => {
     if (!statsQueryLoading && statsQueryData) {

@@ -11,7 +11,7 @@ import KeyData from "@src/components/key_data";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
-import AppApolloProvider from "@src/utils/apollo";
+import GQLProvider from "@src/utils/gql";
 
 import * as styles from "./index.module.scss";
 
@@ -29,7 +29,7 @@ const StakingService = () => {
   };
 
   return (
-    <AppApolloProvider>
+    <GQLProvider>
       <Layout description={t("desc")} footer title={t("page_title")}>
         <Container className={styles.container} maxWidth="desktop" ref={topRef}>
           <HeaderCard
@@ -119,7 +119,7 @@ const StakingService = () => {
           </Stack>
         </Container>
       </Layout>
-    </AppApolloProvider>
+    </GQLProvider>
   );
 };
 

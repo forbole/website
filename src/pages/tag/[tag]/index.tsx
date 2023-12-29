@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<any, { tag: string }> = async (
   let error = false;
 
   try {
-    const { params } = context;
+    const { locale, params } = context;
     const fetchQuery: any = {};
 
     if (params?.tag) {
@@ -59,11 +59,14 @@ export const getStaticProps: GetStaticProps<any, { tag: string }> = async (
       }),
     ]);
 
-    formattedSidePosts = sidePosts.map((post: any) => Post.fromJson(post, {}));
+    formattedSidePosts = sidePosts.map((post: any) =>
+      Post.fromJson(post, { locale }),
+    );
+
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));
     meta = posts?.meta;
 
-    formattedPost = posts.map((y: any) => Post.fromJson(y, {}));
+    formattedPost = posts.map((y: any) => Post.fromJson(y, { locale }));
 
     formattedPost.tags = posts.map((x: { tags: any[] }) =>
       removeInternalTags(x.tags),

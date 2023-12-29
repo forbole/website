@@ -2,7 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useEffect, useRef } from "react";
 
 import LayoutVal from "@src/components/layout_val";
-import AppApolloProvider from "@src/utils/apollo";
+import GQLProvider from "@src/utils/gql";
 
 import CalculateRewards from "./components/calculate_rewards";
 import ContactForbole from "./components/contact_forbole";
@@ -26,7 +26,7 @@ const Staking = () => {
   }, []);
 
   return (
-    <AppApolloProvider>
+    <GQLProvider>
       <LayoutVal
         footer
         image="/images/assets/image_forbole_validator_website_preview.png"
@@ -56,7 +56,7 @@ const Staking = () => {
           <FAQ />
         </LaptopCSS>
       </LayoutVal>
-    </AppApolloProvider>
+    </GQLProvider>
   );
 };
 
