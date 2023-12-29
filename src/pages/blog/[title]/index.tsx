@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<
   { title: string }
 > = async (context) => {
   try {
-    const { params } = context;
+    const { locale, params } = context;
 
     if (!params) throw new Error("No params");
 
@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps<
     if (post) {
       post.tags = removeInternalTags(post.tags);
 
-      const formattedPost = Post.fromJson(post);
+      const formattedPost = Post.fromJson(post, { locale });
 
       return { props: { post: JSON.parse(JSON.stringify(formattedPost)) } };
     }

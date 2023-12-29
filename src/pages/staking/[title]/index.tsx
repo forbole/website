@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<
   let formattedSidePosts = [];
 
   try {
-    const { params } = context;
+    const { locale, params } = context;
 
     if (!params) throw new Error("No params");
 
@@ -61,10 +61,10 @@ export const getStaticProps: GetStaticProps<
       }),
     ]);
 
-    const formattedPost = Post.fromJson(post);
+    const formattedPost = Post.fromJson(post, { locale });
 
     formattedSidePosts = sidePosts.map((sidePost: any) =>
-      Post.fromJson(sidePost, {}),
+      Post.fromJson(sidePost, { locale }),
     );
 
     if (post) {

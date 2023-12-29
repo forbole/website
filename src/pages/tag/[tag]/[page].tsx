@@ -7,7 +7,10 @@ import { removeInternalTags } from "@src/utils/remove_internal_tags";
 
 const TagDetailsPage = (props: any) => <TagTitlePosts {...props} />;
 
-export async function getServerSideProps(context: { query: any }) {
+export async function getServerSideProps(context: {
+  locale: string;
+  query: any;
+}) {
   let formattedPost: any = [];
   let formattedSidePosts = [];
   let formattedTags: Tag[] = [];
@@ -15,7 +18,7 @@ export async function getServerSideProps(context: { query: any }) {
   let error = false;
 
   try {
-    const { query } = context;
+    const { locale, query } = context;
     const fetchQuery: any = {};
 
     if (query.page === "1") {
@@ -43,11 +46,14 @@ export async function getServerSideProps(context: { query: any }) {
       }),
     ]);
 
-    formattedSidePosts = sidePosts.map((post: any) => Post.fromJson(post, {}));
+    formattedSidePosts = sidePosts.map((post: any) =>
+      Post.fromJson(post, { locale }),
+    );
+
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));
     meta = posts?.meta;
 
-    formattedPost = posts.map((y: any) => Post.fromJson(y, {}));
+    formattedPost = posts.map((y: any) => Post.fromJson(y, { locale }));
 
     formattedPost.tags = posts.map((x: { tags: any[] }) =>
       removeInternalTags(x.tags),

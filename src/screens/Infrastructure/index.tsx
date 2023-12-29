@@ -22,7 +22,7 @@ import ProductPanel from "@src/components/product-panel";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
-import AppApolloProvider from "@src/utils/apollo";
+import GQLProvider from "@src/utils/gql";
 import { scrollBottom } from "@src/utils/scroll";
 
 import style from "./index.module.css";
@@ -127,7 +127,7 @@ const Infrastructure = () => {
   ];
 
   return (
-    <AppApolloProvider>
+    <GQLProvider>
       <Layout description={t("expertise_item1")} footer title={t("page_title")}>
         <Container
           maxWidth="desktop"
@@ -325,7 +325,7 @@ const Infrastructure = () => {
           <ScrollToTop topRef={topRef} />
         </Container>
       </Layout>
-    </AppApolloProvider>
+    </GQLProvider>
   );
 };
 

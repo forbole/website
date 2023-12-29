@@ -7,7 +7,6 @@ import Link from "next/link";
 import placeholderImage from "@src/../public/images/assets/blog-placeholder.png";
 import { NoSSR } from "@src/components/no-ssr";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
-import useHKT from "@src/hooks/useHKT";
 
 import * as styles from "./index.module.scss";
 
@@ -19,8 +18,6 @@ const Post = ({ main = false, post, refProp }: any) => {
 
   const cmsLoader = ({ quality, src, width }: any) =>
     `${src}?w=${width}&q=${quality || 75}`;
-
-  const time = useHKT(publishedAt);
 
   return (
     <Box
@@ -86,7 +83,7 @@ const Post = ({ main = false, post, refProp }: any) => {
               </Link>
             </p>
             <NoSSR>
-              <p className="date">{time}</p>
+              <p className="date">{publishedAt}</p>
             </NoSSR>
           </Box>
         </Box>

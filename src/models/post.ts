@@ -1,5 +1,3 @@
-import moment from "moment";
-
 import Author from "./author";
 import Tag from "./tag";
 
@@ -67,12 +65,32 @@ class Post {
   }
 
   static fromJson(data: any, options?: any) {
-    const { excerptLimit = 250 } = options ?? {};
+    const { excerptLimit = 250, locale = "en-US" } = options ?? {};
+
+    const dateOpts = {
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      month: "short",
+      year: "numeric",
+    } as const;
+
+    const parsedLocale = !locale || locale === "en" ? "en-US" : locale;
+
+    const createdAt = new Date(data.created_at).toLocaleDateString(
+      parsedLocale,
+      dateOpts,
+    );
+
+    const publishedAt = new Date(data.published_at).toLocaleDateString(
+      parsedLocale,
+      dateOpts,
+    );
 
     return new Post({
       author: data,
       canonicalUrl: data.canonical_url,
-      createdAt: moment(data.created_at).format("Do MMM YYYY, h:mm a"),
+      createdAt,
       customExcerpt: data.custom_excerpt,
       excerpt: this.formatExcerpt(data.excerpt, excerptLimit),
       featured: data.featured,
@@ -81,7 +99,7 @@ class Post {
       html: data.html,
       id: data.uuid,
       primaryAuthor: Author.fromJson(data.primary_author),
-      publishedAt: moment(data.published_at).format("Do MMM YYYY, h:mm a"),
+      publishedAt,
       slug: data.slug,
       tags: this.formatTags(data.tags),
       title: data.title,

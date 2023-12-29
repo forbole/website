@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
 import { __, assocPath, identity, pipe, reduce } from "ramda";
 import { useMemo } from "react";
+import { useQuery } from "urql";
 
 import { networkGridQuery } from "@src/graphql/queries/networkGrid";
 import { networkFunctions } from "@src/utils/network_functions";
@@ -18,8 +18,9 @@ import {
 const elrondNetworkFunctions = networkFunctions.elrond;
 
 export const useNetworkHook = () => {
-  const { data: networkGridData, loading: networkGridLoading } =
-    useQuery(networkGridQuery);
+  const [{ data: networkGridData, fetching: networkGridLoading }] = useQuery({
+    query: networkGridQuery,
+  });
 
   const cosmosNetworks = useMemo(() => {
     if (!networkGridLoading && networkGridData) {

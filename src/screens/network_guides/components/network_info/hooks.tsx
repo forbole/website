@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-expressions */
-import { useQuery } from "@apollo/client";
 import useTranslation from "next-translate/useTranslation";
 import { __, assocPath, pipe, reduce } from "ramda";
 import { useMemo } from "react";
+import { useQuery } from "urql";
 
 import { networkGuideQuery } from "@src/graphql/queries/networkGuide";
 import { allNetworkKeys } from "@src/utils/network_info";
@@ -26,8 +26,9 @@ export const useNetworkGuidesHook = () => {
     [],
   );
 
-  const { data: networkGuideData, loading: networkGuideLoading } =
-    useQuery(networkGuideQuery);
+  const [{ data: networkGuideData, fetching: networkGuideLoading }] = useQuery({
+    query: networkGuideQuery,
+  });
 
   const networkGuides: Record<string, InfoBlock[]> = useMemo(() => {
     if (!networkGuideLoading && networkGuideData) {

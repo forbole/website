@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
 import { pathOr } from "ramda";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useQuery } from "urql";
 
 import { rewardsQuery } from "@src/graphql/queries/rewards";
 import {
@@ -42,8 +42,9 @@ export const useCalculateRewardsHook = () => {
     [selectedToken.key],
   );
 
-  const { data: rewardsQueryData, loading: rewardsQueryLoading } =
-    useQuery(rewardsQuery);
+  const [{ data: rewardsQueryData, fetching: rewardsQueryLoading }] = useQuery({
+    query: rewardsQuery,
+  });
 
   const selectedTokenGraphql = selectedToken?.graphql;
 

@@ -3,13 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { NoSSR } from "@src/components/no-ssr";
-import useHKT from "@src/hooks/useHKT";
 
 import * as styles from "./index.module.scss";
 
 const Author = ({ post }: any) => {
   const { primaryAuthor: author, publishedAt } = post;
-  const time = useHKT(publishedAt);
 
   return (
     <Box className={styles.wrapper}>
@@ -18,7 +16,7 @@ const Author = ({ post }: any) => {
         className={styles.img}
         height={40}
         src={(() => {
-          if (author.profileImage == null) {
+          if (!author.profileImage) {
             return "/images/assets/blog-placeholder.png";
           }
 
@@ -39,7 +37,7 @@ const Author = ({ post }: any) => {
           </Typography>
           <NoSSR>
             <Typography className={styles.time} variant="body1">
-              {time}
+              {publishedAt}
             </Typography>
           </NoSSR>
         </Link>

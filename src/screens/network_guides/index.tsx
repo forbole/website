@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { useEffect } from "react";
 
 import LayoutVal from "@src/components/layout_val";
-import AppApolloProvider from "@src/utils/apollo";
+import GQLProvider from "@src/utils/gql";
 
 import Guide from "./components/guide";
 import NetworkInfo from "./components/network_info";
@@ -21,7 +21,7 @@ const NetworkGuides = ({ post }: any) => {
   if (!post) return null;
 
   return (
-    <AppApolloProvider>
+    <GQLProvider>
       <LayoutVal
         canonical={`https://www.forbole.com/staking/${post.slug}`}
         description={post.excerpt}
@@ -41,7 +41,7 @@ const NetworkGuides = ({ post }: any) => {
         </LaptopCSS>
         <Box className={styles.offset} />
       </LayoutVal>
-    </AppApolloProvider>
+    </GQLProvider>
   );
 };
 
