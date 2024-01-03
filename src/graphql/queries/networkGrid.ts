@@ -66,6 +66,9 @@ export const networkGridQuery = gql`
       }
       bondedToken
     }
+    radixAPY {
+      APY
+    }
     radixTVL {
       TVL
     }
