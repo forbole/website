@@ -78,7 +78,6 @@ function SignatureCard() {
                       letterSpacing: "-0.216px",
                       lineHeight: "16px",
                       textWrap: "wrap",
-                      whiteSpace: "nowrap",
                     }}
                   >
                     {d.desc}
