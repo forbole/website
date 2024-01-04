@@ -8,7 +8,7 @@ import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useContext, useEffect, useState } from "react";
 
-import CtaButton from "@src/components/cta-button";
+import { CtaLink } from "@src/components/cta-button";
 import {
   Forbole as ForboleLogo,
   LangIcon,
@@ -128,9 +128,7 @@ const MobileNavMenu = () => {
           py="16px"
         >
           <ForboleLogo color="#BD081C" height="20px" width="106px" />
-          <Link href="/staking">
-            <CtaButton>{t("StakeNow")}</CtaButton>
-          </Link>
+          <CtaLink href="/staking">{t("StakeNow")}</CtaLink>
         </Stack>
         <ListItem
           sx={{

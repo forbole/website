@@ -1,10 +1,9 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
-import CtaButton from "@src/components/cta-button";
+import CtaButton, { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import Layout from "@src/components/layout";
 import ProductPanel from "@src/components/product-panel";
@@ -282,9 +281,7 @@ const Products = () => {
                   </Typography>
                 ))}
               </Stack>
-              <Link href={item.btnHref}>
-                <CtaButton>{item.btnName}</CtaButton>
-              </Link>
+              <CtaLink href={item.btnHref}>{item.btnName}</CtaLink>
             </ProductPanel>
           ))}
         </Stack>
@@ -437,9 +434,7 @@ const Products = () => {
                   </Typography>
                 ))}
               </Stack>
-              <Link href={item.btnHref}>
-                <CtaButton>{item.btnName}</CtaButton>
-              </Link>
+              <CtaLink href={item.btnHref}>{item.btnName}</CtaLink>
             </ProductPanel>
           ))}
         </Stack>

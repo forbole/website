@@ -7,13 +7,12 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
 import type { SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
 
 import Carousel from "@src/components/Carousel";
 import IntroPanel from "@src/components/Intro_panel";
-import CtaButton from "@src/components/cta-button";
+import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import KeyData from "@src/components/key_data";
 import Layout from "@src/components/layout";
@@ -164,11 +163,9 @@ const Infrastructure = () => {
               title={t("section_1st_title")}
               title_large_trans={t("section_1st_large_title")}
             />
-            <Link href="/staking">
-              <CtaButton className={style.mobile}>
-                {t("see_more_networks")}
-              </CtaButton>
-            </Link>
+            <CtaLink className={style.mobile} href="/staking">
+              {t("see_more_networks")}
+            </CtaLink>
             <Grid
               columnSpacing={{
                 laptop: theme.spacing(2),
@@ -205,11 +202,9 @@ const Infrastructure = () => {
                 />
               </Grid>
             </Grid>
-            <Link href="/staking">
-              <CtaButton className={style.desktop}>
-                {t("see_more_networks")}
-              </CtaButton>
-            </Link>
+            <CtaLink className={style.desktop} href="/staking">
+              {t("see_more_networks")}
+            </CtaLink>
           </Stack>
 
           <Stack
@@ -313,9 +308,7 @@ const Infrastructure = () => {
               title={t("section_3rd_title")}
               title_large_trans={t("section_3rd_large_title")}
             />
-            <Link href="/staking">
-              <CtaButton>{t("stake_now")}</CtaButton>
-            </Link>
+            <CtaLink href="/staking">{t("stake_now")}</CtaLink>
           </Stack>
           <Stack>
             <NoSSR>

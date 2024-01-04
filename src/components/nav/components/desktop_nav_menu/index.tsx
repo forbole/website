@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useMemo } from "react";
 
-import CtaButton from "@src/components/cta-button";
+import { CtaLink } from "@src/components/cta-button";
 
 import CompanyMenuButton from "../company_menu_button";
 import LangMenuButton from "../lang_menu_button";
@@ -41,9 +41,7 @@ const DesktopNavMenu = () => {
           </Box>
         </Box>
       ))}
-      <Link href="/staking">
-        <CtaButton>{t("StakeNow")}</CtaButton>
-      </Link>
+      <CtaLink href="/staking">{t("StakeNow")}</CtaLink>
       <LangMenuButton />
     </Box>
   );

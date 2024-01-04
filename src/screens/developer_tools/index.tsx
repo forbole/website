@@ -7,11 +7,10 @@ import {
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
 import { useRef, useState } from "react";
 
 import IntroPanel from "@src/components/Intro_panel";
-import CtaButton from "@src/components/cta-button";
+import CtaButton, { CtaLink } from "@src/components/cta-button";
 import FourTable from "@src/components/four-table";
 import HeaderCard from "@src/components/header-card";
 import Layout from "@src/components/layout";
@@ -71,9 +70,12 @@ const DeveloperTools = () => {
             title_large={t("section_1st_large_title")}
           />
           <Stack className={styles.ctaStack}>
-            <Link href="https://devtools.forbole.com">
-              <CtaButton data-test="devtools-cta">{t("sign_up_now")}</CtaButton>
-            </Link>
+            <CtaLink
+              data-test="devtools-cta"
+              href="https://devtools.forbole.com"
+            >
+              {t("sign_up_now")}
+            </CtaLink>
           </Stack>
           <Grid container spacing={theme.spacing(2)}>
             <Grid className={styles.card} item laptop={4} mobile={12}>
@@ -114,11 +116,12 @@ const DeveloperTools = () => {
         </Stack>
         <Stack>
           <Section title={t("section_2nd_title")} />
-          <Link href="https://devtools.forbole.com">
-            <CtaButton className={styles.ctaButton}>
-              {t("start_trial")}
-            </CtaButton>
-          </Link>
+          <CtaLink
+            className={styles.ctaButton}
+            href="https://devtools.forbole.com"
+          >
+            {t("start_trial")}
+          </CtaLink>
           <FourTable btnHref={() => setShow(true)} />
           <Stack className={styles.signatureStack}>
             <Section title_large={t("signature")} />

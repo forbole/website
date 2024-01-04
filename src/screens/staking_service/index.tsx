@@ -1,10 +1,9 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
 import { useRef } from "react";
 
 import IntroPanel from "@src/components/Intro_panel";
-import CtaButton from "@src/components/cta-button";
+import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import { Horse } from "@src/components/icons";
 import KeyData from "@src/components/key_data";
@@ -58,11 +57,9 @@ const StakingService = () => {
               title={t("section_2nd_title")}
               title_large_trans={t("section_2nd_large_title")}
             />
-            <Link href="/staking">
-              <CtaButton className={styles.stakingCta}>
-                {t("stake_now")}
-              </CtaButton>
-            </Link>
+            <CtaLink className={styles.stakingCta} href="/staking">
+              {t("stake_now")}
+            </CtaLink>
             <Grid container spacing={theme.spacing(2)}>
               <Grid item laptop={4} mobile={12}>
                 <IntroPanel
@@ -109,11 +106,9 @@ const StakingService = () => {
               title={t("section_3rd_title")}
               title_large_trans={t("section_3rd_large_title")}
             />
-            <Link href="/staking">
-              <CtaButton className={styles.stakingCta}>
-                {t("stake_now")}
-              </CtaButton>
-            </Link>
+            <CtaLink className={styles.stakingCta} href="/staking">
+              {t("stake_now")}
+            </CtaLink>
             <Horse {...horseStyle} />
             <ScrollToTop topRef={topRef} />
           </Stack>
