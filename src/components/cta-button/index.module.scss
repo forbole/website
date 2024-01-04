@@ -1,6 +1,7 @@
 @import "src/styles/sass.scss";
 
 .button {
+  align-items: center;
   background: linear-gradient(
     175.41deg,
     rgba(98, 61, 245, 1) 11.57%,
@@ -11,10 +12,13 @@
   box-shadow: none;
   color: rgba(235, 238, 245, 1);
   cursor: pointer;
+  display: flex;
   flex-shrink: 0;
   font-size: 16px;
   font-weight: 590;
+  gap: 8px;
   height: 45px;
+  justify-content: center;
   outline: none;
   padding: 0 16px;
   transition: transform 0.2s ease-in-out;
