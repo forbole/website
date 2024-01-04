@@ -20,6 +20,8 @@
   top: 0;
 
   @media (max-width: 550px) {
+    display: none;
+
     img {
       display: none;
     }
@@ -35,6 +37,8 @@
   top: 0;
 
   @media (min-width: 550px) {
+    display: none;
+
     img {
       display: none;
     }

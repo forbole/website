@@ -1,0 +1,43 @@
+@import "src/styles/sass.scss";
+
+.button {
+  background: linear-gradient(
+    175.41deg,
+    rgba(98, 61, 245, 1) 11.57%,
+    rgba(54, 33, 135, 1) 173.5%
+  );
+  border: none;
+  border-radius: 45px;
+  box-shadow: none;
+  color: rgba(235, 238, 245, 1);
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 590;
+  height: 45px;
+  outline: none;
+  padding: 0 16px;
+  transition: transform 0.2s ease-in-out;
+  white-space: nowrap;
+
+  &:disabled {
+    background: #ebeef5;
+    box-shadow:
+      0 10px 32px -4px rgba(125, 92, 255, 0.1),
+      0 6px 14px -6px rgba(126, 94, 255, 0.28);
+    color: rgba(195, 204, 226, 1);
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background: linear-gradient(
+      175.41deg,
+      rgba(98, 61, 245, 1) 11.57%,
+      rgba(54, 33, 135, 1) 173.5%
+    );
+    box-shadow:
+      0 10px 32px -4px rgba(125, 92, 255, 0.1),
+      0 6px 14px -6px rgba(126, 94, 255, 0.28);
+    transform: scale(1.02);
+  }
+}
