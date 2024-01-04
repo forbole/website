@@ -1,8 +1,5 @@
-import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-
-import { NoSSR } from "@src/components/no-ssr";
 
 import * as styles from "./index.module.scss";
 
@@ -10,7 +7,7 @@ const Author = ({ post }: any) => {
   const { primaryAuthor: author, publishedAt } = post;
 
   return (
-    <Box className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <Image
         alt={author.name}
         className={styles.img}
@@ -26,23 +23,11 @@ const Author = ({ post }: any) => {
         })()}
         width={40}
       />
-      <Box className={styles.content}>
-        <Link
-          className={styles.contentLink}
-          href={`/author/${author.slug}`}
-          key={post.id}
-        >
-          <Typography className={styles.name} variant="body1">
-            {author.name}
-          </Typography>
-          <NoSSR>
-            <Typography className={styles.time} variant="body1">
-              {publishedAt}
-            </Typography>
-          </NoSSR>
-        </Link>
-      </Box>
-    </Box>
+      <Link className={styles.contentLink} href={`/author/${author.slug}`}>
+        <span className={styles.name}>{author.name}</span>
+        <span className={styles.time}>{publishedAt}</span>
+      </Link>
+    </div>
   );
 };
 

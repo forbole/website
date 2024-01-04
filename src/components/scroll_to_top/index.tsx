@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useCallback } from "react";
 
 import { TopIcon } from "../icons";
@@ -23,9 +22,9 @@ const ScrollToTop = ({ topRef }: TopProps) => {
   );
 
   return (
-    <Box className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <TopIcon onClick={scrollToRef} role="button" />
-    </Box>
+    </div>
   );
 };
 

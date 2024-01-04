@@ -1,9 +1,8 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Image from "next/image";
-import Link from "next/link";
 
-import CtaButton from "../cta-button";
+import { CtaLink } from "../cta-button";
 import * as styles from "./index.module.scss";
 
 type Props = {
@@ -49,11 +48,13 @@ const IntroCard = ({
           ))}
         </ul>
       </Box>
-      <Link href={btnLink || ""}>
-        <CtaButton className={styles.ctaButton} disabled={disabled}>
-          {btnName}
-        </CtaButton>
-      </Link>
+      <CtaLink
+        className={styles.ctaButton}
+        disabled={disabled}
+        href={btnLink || ""}
+      >
+        {btnName}
+      </CtaLink>
     </Box>
   </Box>
 );

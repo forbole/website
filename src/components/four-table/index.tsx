@@ -1,8 +1,7 @@
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
 
-import CtaButton from "@src/components/cta-button";
+import CtaButton, { CtaLink } from "@src/components/cta-button";
 
 import usePlans from "./config";
 import * as styles from "./index.module.scss";
@@ -175,9 +174,9 @@ const FourTable = ({ btnHref }: Props) => {
             )}
           </Box>
           {Plan.btnHref ? (
-            <Link className={styles.cta} href={Plan.btnHref}>
-              <CtaButton>{Plan.btnName}</CtaButton>
-            </Link>
+            <CtaLink href={Plan.btnHref} linkClassName={styles.cta}>
+              {Plan.btnName}
+            </CtaLink>
           ) : (
             <CtaButton className={styles.cta} onClick={btnHref}>
               {Plan.btnName}

@@ -1,7 +1,6 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import Link from "next/link";
 
 import buildImageDesktop from "@src/../public/images/footer/Build@2x.png";
 import buildImageMobile from "@src/../public/images/footer/Build_m@2x.png";
@@ -9,7 +8,7 @@ import footerDesktop from "@src/../public/images/footer/foot.png";
 import footerMobile from "@src/../public/images/footer/foot_m.png";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
-import CtaButton from "../cta-button";
+import { CtaLink } from "../cta-button";
 import { FooterItems, SocialMedia } from "./components";
 import * as styles from "./index.module.scss";
 import type { FooterProps } from "./types";
@@ -68,11 +67,9 @@ const Footer = ({ itemColor, red }: FooterProps) => {
               </Box>
 
               <Typography className={styles.ctaText}>together today</Typography>
-              <Link href="/staking">
-                <CtaButton className={styles.ctaButton}>
-                  {t("StakeNow")}
-                </CtaButton>
-              </Link>
+              <CtaLink className={styles.ctaButton} href="/staking">
+                {t("StakeNow")}
+              </CtaLink>
             </Stack>
           </Container>
         </>

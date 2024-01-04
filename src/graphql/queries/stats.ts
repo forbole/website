@@ -5,6 +5,9 @@ export const statsQuery = gql`
     allCosmosTVL {
       cosmosTVL
     }
+    archwayTVL {
+      TVL
+    }
     cosmosUsersCount {
       usersCount
     }
@@ -31,6 +34,9 @@ export const statsQuery = gql`
     }
     solanaUsers {
       usersCount
+    }
+    suiTVL {
+      TVL
     }
   }
 `;

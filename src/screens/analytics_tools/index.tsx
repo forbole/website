@@ -1,11 +1,10 @@
 import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
 import { useMemo, useRef } from "react";
 
 import IntroPanel from "@src/components/Intro_panel";
 import CardSwiper from "@src/components/cardSwiper";
-import CtaButton from "@src/components/cta-button";
+import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
@@ -72,9 +71,9 @@ const AnalyticsTools = () => {
             title={t("data_visualization")}
             title_large_trans={t("free")}
           />
-          <Link href="https://bigdipper.live/">
-            <CtaButton className={styles.ctaButton}>{t("try_now")}</CtaButton>
-          </Link>
+          <CtaLink className={styles.ctaButton} href="https://bigdipper.live/">
+            {t("try_now")}
+          </CtaLink>
           <Grid container spacing={theme.spacing(2)}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel

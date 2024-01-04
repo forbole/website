@@ -1,8 +1,10 @@
 @import "src/styles/sass.scss";
 
 .wrapper {
-  align-content: center;
+  align-items: center;
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   margin-bottom: spacing(3.5);
 
   img {
@@ -20,13 +22,6 @@
   width: 40px;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: spacing(2);
-}
-
 .name {
   color: $color-primary-light;
   font-size: spacing(1.75);
@@ -41,5 +36,14 @@
 }
 
 .contentLink {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: center;
+  margin-left: spacing(2);
   text-decoration: none;
+
+  span {
+    line-height: 18px;
+  }
 }

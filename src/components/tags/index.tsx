@@ -1,4 +1,3 @@
-import { Box, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
@@ -17,29 +16,26 @@ interface TagsProps {
 
 const Tags = ({ details, noPadding, tags }: TagsProps) => {
   const { t } = useTranslation("blog");
-  const theme = useTheme();
 
   if (!tags?.length) return null;
 
   return (
-    <Box
+    <div
       className={[
         styles.wrapper,
         details ? styles.details : "",
         noPadding ? styles.noPadding : "",
       ].join(" ")}
     >
-      <Typography color={theme.palette.primary.main} variant="h3">
-        {t("tags")}
-      </Typography>
-      <Box className={styles.tag} component="ul">
+      <h3>{t("tags")}</h3>
+      <ul className={styles.tag}>
         {tags.map((tag) => (
-          <Box className={styles.list} component="li" key={tag.slug}>
+          <li className={styles.list} key={tag.slug}>
             <Link href={`/tag/${tag.slug}`}>{tag.name}</Link>
-          </Box>
+          </li>
         ))}
-      </Box>
-    </Box>
+      </ul>
+    </div>
   );
 };
 

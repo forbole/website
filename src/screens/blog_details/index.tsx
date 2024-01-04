@@ -77,14 +77,12 @@ const BlogDetails = ({ post }: Props) => {
         />
       </Head>
       <MobileCSS>
-        <Box className={styles.topSpacing} />
+        <div className={styles.topSpacing} />
         <Box className={styles.wrapper}>
           <ContentCSS theme={theme}>
             <Author post={post} />
             <SocialMedia title={post.title} />
-            <Typography className={styles.title} variant="h1">
-              {title}
-            </Typography>
+            <h1 className={styles.title}>{title}</h1>
             <Box className={[styles.featureImageWrapper].join(" ")}>
               <Image
                 alt={title}
@@ -116,16 +114,14 @@ const BlogDetails = ({ post }: Props) => {
       </MobileCSS>
       <LaptopCSS>
         <Box className={styles.wrapper} ref={topRef}>
-          <Box className={styles.titleWrapper}>
-            <Typography className={styles.title} variant="h1">
-              {title}
-            </Typography>
-          </Box>
+          <div className={styles.titleWrapper}>
+            <h1 className={styles.title}>{title}</h1>
+          </div>
           <Box height="100%">
-            <Box className={styles.author}>
+            <div className={styles.author}>
               <Author post={post} />
               <SocialMedia title={post.title} />
-            </Box>
+            </div>
             <Box
               display="flex"
               flexDirection="column"
@@ -165,16 +161,14 @@ const BlogDetails = ({ post }: Props) => {
               />
             </ContentCSS>
             {!!tags?.length && (
-              <Box display="flex" justifyContent="center">
-                <Box className={[styles.tags, manyTagsStyle].join(" ")}>
-                  <Tags details noPadding tags={tags} />
-                </Box>
-              </Box>
+              <div className={[styles.tags, manyTagsStyle].join(" ")}>
+                <Tags details noPadding tags={tags} />
+              </div>
             )}
           </Box>
-          <Box className={[styles.scrollToTop, manyTagsStyle].join(" ")}>
+          <div className={[styles.scrollToTop, manyTagsStyle].join(" ")}>
             <ScrollToTop topRef={topRef} />
-          </Box>
+          </div>
         </Box>
       </LaptopCSS>
     </Layout>

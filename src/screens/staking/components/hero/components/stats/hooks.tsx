@@ -42,6 +42,7 @@ export const useStatsHook = () => {
     if (!statsQueryLoading && statsQueryData) {
       const {
         allCosmosTVL,
+        archwayTVL,
         cosmosUsersCount,
         elrondTVL,
         elrondUsers,
@@ -51,6 +52,7 @@ export const useStatsHook = () => {
         radixUsers,
         solanaTVL,
         solanaUsers,
+        suiTVL,
       } = statsQueryData;
 
       return stats.map((stat) => {
@@ -70,10 +72,12 @@ export const useStatsHook = () => {
           return {
             ...stat,
             stats:
+              Number(archwayTVL?.[0]?.TVL || 0) +
               Number(allCosmosTVL?.[0]?.cosmosTVL || 0) +
               Number(solanaTVL?.TVL || 0) +
               Number(oasisTVL?.[0]?.TVL || 0) +
               Number(radixTVL?.[0]?.TVL || 0) +
+              Number(suiTVL?.[0]?.TVL || 0) +
               elrondNetworkFunctions.converter(elrondTVL?.[0]?.TVL || 0),
           };
 
