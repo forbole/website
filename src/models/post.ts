@@ -2,9 +2,9 @@ import Author from "./author";
 import Tag from "./tag";
 
 class Post {
-  public canonicalUrl: string;
-
   public author: string;
+
+  public canonicalUrl: string;
 
   public createdAt: string;
 
@@ -12,27 +12,27 @@ class Post {
 
   public excerpt: string;
 
+  public featured: boolean;
+
   public featureImage: string;
 
   public featureImageCaption: string;
 
-  public featured: boolean;
-
   public html: string;
+
+  public id: string;
+
+  public primaryAuthor: Author;
 
   public publishedAt: string;
 
   public slug: string;
 
+  public tags: Tag[];
+
   public title: string;
 
   public visibility: boolean;
-
-  public primaryAuthor: Author;
-
-  public tags: Tag[];
-
-  public id: string;
 
   constructor(payload: any) {
     this.id = payload.id;
