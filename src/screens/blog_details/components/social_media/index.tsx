@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 
 import { Facebook, LinkedIn, Telegram, Twitter } from "@src/components/icons";
@@ -35,7 +34,7 @@ const SocialMedia = ({ title = "Forbole " }: any) => {
   };
 
   return (
-    <Box className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <button
         aria-label="Share on Telegram"
         onClick={() =>
@@ -76,7 +75,7 @@ const SocialMedia = ({ title = "Forbole " }: any) => {
       >
         <LinkedIn />
       </button>
-    </Box>
+    </div>
   );
 };
 

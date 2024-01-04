@@ -79,6 +79,8 @@
 .title {
   color: $color-primary-light;
   font-weight: 600;
+  line-height: 32px;
+  margin: 0;
 
   @include up-tablet {
     font-size: spacing(5);
