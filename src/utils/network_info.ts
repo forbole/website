@@ -789,7 +789,7 @@ export const skippedRewardsNetworks = new Set([
 ]);
 
 // The data of these networks is not ready yet
-export const networksWithHiddenInfo = new Set(["radix"]);
+export const networksWithHiddenInfo = new Set();
 
 const getNetworkKeysArray = () => {
   const arr = [...cosmosNetworkKeys];

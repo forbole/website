@@ -185,12 +185,16 @@ export const useNetworkHook = () => {
 
   const radixNetwork = useMemo(() => {
     if (!networkGridLoading && networkGridData) {
-      const { radixTVL } = networkGridData;
+      const { radixAPY, radixBondedToken, radixTVL } = networkGridData;
       const { TVL } = radixTVL?.[0] || {};
+      const { APY } = radixAPY?.[0] || {};
+      const { bondedToken } = radixBondedToken?.[0] || {};
 
-      return pipe(assocPath(["radix", "TVL"], TVL))(
-        radixNetworkParams,
-      ) as NetworkProps;
+      return pipe(
+        assocPath(["radix", "TVL"], TVL),
+        assocPath(["radix", "APY"], APY),
+        assocPath(["radix", "bonded"], bondedToken),
+      )(radixNetworkParams) as NetworkProps;
     }
 
     return radixNetworkParams;

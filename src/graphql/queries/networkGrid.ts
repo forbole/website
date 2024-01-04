@@ -60,11 +60,11 @@ export const networkGridQuery = gql`
       }
       TVL
     }
-    allRadixStakedTokens {
-      metric {
-        instance
-      }
+    radixBondedToken {
       bondedToken
+    }
+    radixAPY {
+      APY
     }
     radixTVL {
       TVL

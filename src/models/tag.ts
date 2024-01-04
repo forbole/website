@@ -1,13 +1,13 @@
 import { pathOr } from "ramda";
 
 class Tag {
+  public count: object;
+
   public name: string;
 
   public slug: string;
 
   public url: string;
-
-  public count: object;
 
   constructor(payload: any) {
     this.name = payload.name;

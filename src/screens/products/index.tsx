@@ -165,19 +165,15 @@ const Products = () => {
             <CtaButton
               className={styles.response}
               onClick={(e) => scrollToRef(e, individualsRef)}
-              startIcon={
-                <img alt="" className={styles.icon} src="/products/p1.svg" />
-              }
             >
+              <img alt="" className={styles.icon} src="/products/p1.svg" />{" "}
               {t("for-individuals")}
             </CtaButton>
             <CtaButton
               className={styles.response}
               onClick={(e) => scrollToRef(e, businessesRef)}
-              startIcon={
-                <img alt="" className={styles.icon} src="/products/p2.svg" />
-              }
             >
+              <img alt="" className={styles.icon} src="/products/p2.svg" />
               {t("for-businesses")}
             </CtaButton>
           </Stack>
@@ -231,10 +227,8 @@ const Products = () => {
                   handleChange(e, 0);
                   scrollBottom(e, PanelRef1);
                 }}
-                startIcon={
-                  <img alt="" className={styles.icon} src="/products/p3.svg" />
-                }
               >
+                <img alt="" className={styles.icon} src="/products/p3.svg" />
                 {t("staking")}
               </CtaButton>
               <CtaButton
@@ -243,10 +237,8 @@ const Products = () => {
                   handleChange(e, 1);
                   scrollBottom(e, PanelRef1);
                 }}
-                startIcon={
-                  <img alt="" className={styles.icon} src="/products/p4.svg" />
-                }
               >
+                <img alt="" className={styles.icon} src="/products/p4.svg" />
                 {t("analytics")}
               </CtaButton>
               <CtaButton
@@ -255,10 +247,8 @@ const Products = () => {
                   handleChange(e, 2);
                   scrollBottom(e, PanelRef1);
                 }}
-                startIcon={
-                  <img alt="" className={styles.icon} src="/products/p5.svg" />
-                }
               >
+                <img alt="" className={styles.icon} src="/products/p5.svg" />
                 {t("developer")}
               </CtaButton>
             </Box>
@@ -370,10 +360,8 @@ const Products = () => {
                   handleChange2(e, 0);
                   scrollBottom(e, PanelRef2);
                 }}
-                startIcon={
-                  <img alt="" className={styles.icon} src="/products/p3.svg" />
-                }
               >
+                <img alt="" className={styles.icon} src="/products/p3.svg" />
                 {t("validator-infrastructure")}
               </CtaButton>
               <CtaButton
@@ -382,10 +370,8 @@ const Products = () => {
                   handleChange2(e, 1);
                   scrollBottom(e, PanelRef2);
                 }}
-                startIcon={
-                  <img alt="" className={styles.icon} src="/products/p6.svg" />
-                }
               >
+                <img alt="" className={styles.icon} src="/products/p6.svg" />
                 {t("staking")}
               </CtaButton>
               <CtaButton
@@ -394,10 +380,8 @@ const Products = () => {
                   handleChange2(e, 2);
                   scrollBottom(e, PanelRef2);
                 }}
-                startIcon={
-                  <img alt="" className={styles.icon} src="/products/p4.svg" />
-                }
               >
+                <img alt="" className={styles.icon} src="/products/p4.svg" />
                 {t("analytics")}
               </CtaButton>
               <Stack direction="row" spacing={1}>
@@ -407,14 +391,8 @@ const Products = () => {
                     handleChange2(e, 3);
                     scrollBottom(e, PanelRef2);
                   }}
-                  startIcon={
-                    <img
-                      alt=""
-                      className={styles.icon}
-                      src="/products/p5.svg"
-                    />
-                  }
                 >
+                  <img alt="" className={styles.icon} src="/products/p5.svg" />
                   {t("developer")}
                 </CtaButton>
                 <CtaButton
@@ -423,14 +401,8 @@ const Products = () => {
                     handleChange2(e, 4);
                     scrollBottom(e, PanelRef2);
                   }}
-                  startIcon={
-                    <img
-                      alt=""
-                      className={styles.icon}
-                      src="/products/p7.svg"
-                    />
-                  }
                 >
+                  <img alt="" className={styles.icon} src="/products/p7.svg" />
                   {t("enterprise-solution")}
                 </CtaButton>
               </Stack>

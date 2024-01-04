@@ -75,9 +75,7 @@ const IntroPanel = ({
           </Typography>
           {btnName && btnLink && (
             <Link href={btnLink}>
-              <CtaButton disabled={disabled} variant="contained">
-                {btnName}
-              </CtaButton>
+              <CtaButton disabled={disabled}>{btnName}</CtaButton>
             </Link>
           )}
         </Stack>
