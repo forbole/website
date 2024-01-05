@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -10,8 +9,6 @@ import { type PostDetail, getBlogPostSchema } from "@src/utils/ghost";
 import GuideDetails from "./components/guide_details";
 import * as styles from "./index.module.scss";
 
-const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
-
 const Guide = ({ post }: { post: PostDetail }) => {
   const { locale } = useRouter();
   const { t } = useTranslation("staking");
@@ -19,7 +16,7 @@ const Guide = ({ post }: { post: PostDetail }) => {
   const { title } = post;
 
   const titleArray = title.split(" ");
-  const coloredTitle = title.split(" ")[2] + title.split(" ")[3];
+  const coloredTitle = [titleArray[2], titleArray[3]].join(" ");
 
   return (
     <Box className={styles.wrapper} data-test="staking-guide-info">
@@ -35,27 +32,11 @@ const Guide = ({ post }: { post: PostDetail }) => {
         <Typography className={commonStyles.stakingTitle}>
           {t("guideline")}
         </Typography>
-        <Trans
-          components={[
-            <Box
-              className={["h3", styles.tr0].join(" ")}
-              component="h1"
-              key="0"
-            />,
-            <Box
-              className={["h3", styles.tr1].join(" ")}
-              component="span"
-              key="1"
-            />,
-          ]}
-          i18nKey="staking title"
-          ns="staking"
-          values={{
-            coloredTitle,
-            title1: titleArray.slice(0, 1).join(" "),
-            title2: titleArray.slice(4).join(" "),
-          }}
-        />
+        <h1 className={["h3", styles.tr0].join(" ")}>
+          {titleArray.slice(0, 2).join(" ")}{" "}
+          <span className={["h3", styles.tr1].join(" ")}>{coloredTitle}</span>{" "}
+          {titleArray.slice(4).join(" ")}
+        </h1>
         <GuideDetails post={post} />
       </Box>
     </Box>

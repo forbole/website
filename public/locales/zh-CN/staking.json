@@ -73,7 +73,6 @@
   "staking para 1": "代币持有者将其代币质押给验证者以保护网络的行为称为质押。",
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
   "staking q": "什么是质押？",
-  "staking title": "<0>{{title1}} <1>{{coloredTitle}}</1> {{title2}}</0>",
   "string": " ",
   "success": "邮件已发送！",
   "technical_support": "技术支持",
