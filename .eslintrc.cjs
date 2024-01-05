@@ -43,7 +43,13 @@ module.exports = {
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
   },
-  plugins: ["@typescript-eslint", "react-hooks", "@stylistic", "perfectionist"],
+  plugins: [
+    "@typescript-eslint",
+    "react-hooks",
+    "@stylistic",
+    "perfectionist",
+    "import",
+  ],
   rules: {
     "@next/next/no-img-element": "off",
     "@stylistic/padding-line-between-statements": paddingLineBetweenStatements,
@@ -58,6 +64,9 @@ module.exports = {
     "arrow-body-style": "error",
     "camelcase": "off",
     "global-require": "off",
+
+    "import/no-duplicates": "error",
+
     "jsx-a11y/anchor-is-valid": "off",
     "no-console": ["error", { allow: ["warn", "error"] }],
     "no-shadow": "off",

@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useMemo } from "react";
@@ -30,20 +29,20 @@ const DesktopNavMenu = () => {
   );
 
   return (
-    <Box className={styles.wrapper}>
+    <div className={styles.wrapper}>
       {navItems.map((item) => (
-        <Box className={styles.navItem} key={item.display}>
+        <div className={styles.navItem} key={item.display}>
           <Link className={styles.link} href={item.link}>
-            <Box component="span">{item.display}</Box>
+            <span>{item.display}</span>
           </Link>
-          <Box className={styles.boxItem}>
-            <Box className={styles.boxItemList}>{item.inner}</Box>
-          </Box>
-        </Box>
+          <div className={styles.boxItem}>
+            <div className={styles.boxItemList}>{item.inner}</div>
+          </div>
+        </div>
       ))}
       <CtaLink href="/staking">{t("StakeNow")}</CtaLink>
       <LangMenuButton />
-    </Box>
+    </div>
   );
 };
 

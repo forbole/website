@@ -2,6 +2,8 @@
 
 .list {
   background: $color-primary-light;
+  min-width: 100%;
+  width: max-content;
 
   @include down-laptop {
     background: rgba(107, 97, 254, 0.24);
@@ -9,7 +11,11 @@
 }
 
 .menuItem {
+  align-items: center;
+  background: $color-primary-light;
+  border: none;
   color: $color-indigo;
+  cursor: pointer;
   display: flex;
   filter: opacity(0.1);
   font-size: spacing(2);
@@ -17,15 +23,10 @@
   height: spacing(7);
   justify-content: flex-start;
   padding: spacing(0) spacing(4);
+  width: 100%;
 
   &.noFilter {
     filter: unset;
-  }
-
-  & > a {
-    text-align: left;
-    text-decoration: none;
-    width: 100%;
   }
 
   &:hover {
@@ -39,7 +40,9 @@
 }
 
 .link {
+  min-width: 100%;
   text-decoration: none;
+  width: 100%;
 }
 
 .icon {

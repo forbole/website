@@ -15,8 +15,7 @@ import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import type { MouseEvent } from "react";
-import { useState } from "react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 import { CopyIcon } from "@src/components/icons";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
