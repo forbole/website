@@ -1,4 +1,3 @@
-import { Box, Input, Stack } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -93,8 +92,8 @@ const SocialMedia = () => {
   };
 
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.box}>
+    <div className={styles.wrapper}>
+      <div className={styles.box}>
         {socialMediaInfo.map((x) => (
           <a
             aria-label={x.key}
@@ -107,12 +106,11 @@ const SocialMedia = () => {
             <x.component />
           </a>
         ))}
-      </Box>
-      <Stack className={styles.inpboxItem}>
-        <Input
+      </div>
+      <div className={styles.inpboxItem}>
+        <input
           autoComplete="email"
           className={styles.input}
-          disableUnderline
           name="email"
           onInput={handleInputChange}
           placeholder={t("placeholder")}
@@ -121,8 +119,8 @@ const SocialMedia = () => {
         <CtaButton loading={isLoading} onClick={handleSubmit}>
           {t("subscribe-us")}
         </CtaButton>
-      </Stack>
-    </Box>
+      </div>
+    </div>
   );
 };
 

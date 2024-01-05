@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Divider } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
@@ -15,11 +15,9 @@ const FooterItems = ({ staking }: FooterProps) => {
   );
 
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.left}>
-        <Typography className={styles.copy}>
-          {t("copyright", { year })}
-        </Typography>
+    <div className={styles.wrapper}>
+      <div className={styles.left}>
+        <span className={styles.copy}>{t("copyright", { year })}</span>
         <Divider
           className={dividerClass}
           flexItem
@@ -27,7 +25,7 @@ const FooterItems = ({ staking }: FooterProps) => {
           variant="middle"
         />
         <Link className={styles.word} href="/terms-and-conditions">
-          <Typography component="span">{t("tnc")}</Typography>
+          <span>{t("tnc")}</span>
         </Link>
         <Divider
           className={dividerClass}
@@ -36,30 +34,28 @@ const FooterItems = ({ staking }: FooterProps) => {
           variant="middle"
         />
         <Link className={styles.word} href="/privacy-policy">
-          <Typography component="span">{t("policy")}</Typography>
+          <span>{t("policy")}</span>
         </Link>
-      </Box>
+      </div>
 
-      <Box>
-        <Box className={styles.right}>
-          <Link
-            className={styles.word}
-            href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2"
-          >
-            <Typography component="span">{t("brand guide")}</Typography>
-          </Link>
-          <Divider
-            className={dividerClass}
-            flexItem
-            orientation="vertical"
-            variant="middle"
-          />
-          <Link className={styles.word} href="/blog">
-            <Typography component="span">{t("blog")}</Typography>
-          </Link>
-        </Box>
-      </Box>
-    </Box>
+      <div className={styles.right}>
+        <Link
+          className={styles.word}
+          href="https://drive.google.com/drive/folders/1w93woI10nRmH3ei6rfFQm4eZxyvk_4-2"
+        >
+          <span>{t("brand guide")}</span>
+        </Link>
+        <Divider
+          className={dividerClass}
+          flexItem
+          orientation="vertical"
+          variant="middle"
+        />
+        <Link className={styles.word} href="/blog">
+          <span>{t("blog")}</span>
+        </Link>
+      </div>
+    </div>
   );
 };
 

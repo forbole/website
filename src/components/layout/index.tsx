@@ -1,4 +1,3 @@
-import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -45,7 +44,6 @@ const Layout = ({
   twitterImage,
   type = "website",
 }: Props) => {
-  const theme = useTheme();
   const router = useRouter();
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
   const url = process.env.NEXT_PUBLIC_URL;
@@ -78,7 +76,7 @@ const Layout = ({
     }
 
     return undefined;
-  }, [blueBg, theme.palette.mode]);
+  }, [blueBg]);
 
   const itemColor = (() => {
     if (blueBg) {
@@ -95,7 +93,7 @@ const Layout = ({
   })();
 
   return (
-    <Box position="relative">
+    <div className={styles.wrapper}>
       <Head>
         <title>{title}</title>
         {!!(url === "https://staging.forbole.com") && (
@@ -163,8 +161,8 @@ const Layout = ({
         />
         <link href={`${url}/icons/manifest.json`} rel="manifest" />
       </Head>
-      <Box>
-        <Box
+      <div>
+        <div
           className={[styles.content, blueBg ? styles.blue : ""].join(" ")}
           style={
             blueBg
@@ -176,9 +174,9 @@ const Layout = ({
           <Nav itemColor={itemColor} />
           {children}
           {!!footer && <Footer itemColor={itemColor} red={redBgFooter} />}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 
