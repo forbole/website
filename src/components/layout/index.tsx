@@ -11,6 +11,7 @@ import Background from "@src/components/background";
 import bgGradientImg from "../../../public/images/assets/image_BG_gradient.png";
 import Footer from "../footer";
 import Nav from "../nav";
+import BlueBg from "./blue-bg";
 import * as styles from "./index.module.scss";
 
 type Props = {
@@ -94,6 +95,7 @@ const Layout = ({
 
   return (
     <div className={styles.wrapper}>
+      <BlueBg />
       <Head>
         <title>{title}</title>
         {!!(url === "https://staging.forbole.com") && (
