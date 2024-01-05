@@ -1,3 +1,4 @@
+const million = require("million/compiler");
 const bundleAnalyzer = require("@next/bundle-analyzer");
 const nextTranslate = require("next-translate-plugin");
 
@@ -54,4 +55,4 @@ const baseConfig = nextTranslate({
   },
 });
 
-module.exports = withBundleAnalyzer(baseConfig);
+module.exports = million.next(withBundleAnalyzer(baseConfig), { auto: true });

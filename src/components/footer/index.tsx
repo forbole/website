@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 
@@ -26,20 +26,19 @@ const Footer = ({ itemColor, red }: FooterProps) => {
   };
 
   return (
-    <Box
+    <footer
       className={[styles.wrapper, red ? styles.red : ""].join(" ")}
-      component="footer"
       data-test="footer"
       {...wrapperStyle}
     >
       {red && (
         <>
-          <Box className={styles.redImg}>
+          <div className={styles.redImg}>
             <Image alt="Footer graphic" fill src={footerDesktop} />
-          </Box>
-          <Box className={styles.redImgMobile}>
+          </div>
+          <div className={styles.redImgMobile}>
             <Image alt="Footer graphic" fill src={footerMobile} />
-          </Box>
+          </div>
           <Container
             className={styles.ctaContainer}
             disableGutters
@@ -50,7 +49,7 @@ const Footer = ({ itemColor, red }: FooterProps) => {
               direction="column"
               justifyContent="center"
             >
-              <Box className={styles.ctaImage}>
+              <div className={styles.ctaImage}>
                 {isMobile ? (
                   <Image
                     alt="Picture of the author"
@@ -64,9 +63,9 @@ const Footer = ({ itemColor, red }: FooterProps) => {
                     src={buildImageDesktop}
                   />
                 )}
-              </Box>
+              </div>
 
-              <Typography className={styles.ctaText}>together today</Typography>
+              <span className={styles.ctaText}>together today</span>
               <CtaLink className={styles.ctaButton} href="/staking">
                 {t("StakeNow")}
               </CtaLink>
@@ -83,7 +82,7 @@ const Footer = ({ itemColor, red }: FooterProps) => {
           <FooterItems staking={!red || undefined} />
         </Stack>
       </Container>
-    </Box>
+    </footer>
   );
 };
 

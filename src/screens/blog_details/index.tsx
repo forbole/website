@@ -1,4 +1,3 @@
-import { Box, Typography, useTheme } from "@mui/material";
 import Markdown from "markdown-to-jsx";
 import Head from "next/head";
 import Image from "next/image";
@@ -15,7 +14,6 @@ import blogPlaceholderImg from "../../../public/images/assets/blog-placeholder.p
 import Author from "./components/author";
 import SocialMedia from "./components/social_media";
 import * as styles from "./index.module.scss";
-import { ContentBox, ContentCSS, LaptopCSS, MobileCSS } from "./styles";
 
 const contentClass = "article-content";
 
@@ -24,7 +22,6 @@ type Props = {
 };
 
 const BlogDetails = ({ post }: Props) => {
-  const theme = useTheme();
   const topRef = useRef(null);
   const { locale } = useRouter();
 
@@ -76,14 +73,14 @@ const BlogDetails = ({ post }: Props) => {
           type="application/ld+json"
         />
       </Head>
-      <MobileCSS>
+      <div className={styles.mobileWrap}>
         <div className={styles.topSpacing} />
-        <Box className={styles.wrapper}>
-          <ContentCSS theme={theme}>
+        <div className={styles.wrapper}>
+          <div className={styles.content}>
             <Author post={post} />
             <SocialMedia title={post.title} />
             <h1 className={styles.title}>{title}</h1>
-            <Box className={[styles.featureImageWrapper].join(" ")}>
+            <div className={[styles.featureImageWrapper].join(" ")}>
               <Image
                 alt={title}
                 className={[styles.img, styles.mobile].join(" ")}
@@ -96,39 +93,34 @@ const BlogDetails = ({ post }: Props) => {
                 }
               />
               {featureImageCaption === null ? null : (
-                <Typography
-                  className={styles.featureImageCaption}
-                  variant="body1"
-                >
+                <span className={styles.featureImageCaption}>
                   <Markdown>{featureImageCaption}</Markdown>
-                </Typography>
+                </span>
               )}
-            </Box>
-            <ContentBox
-              className={contentClass}
+            </div>
+            <div
+              className={[styles.contentBox, contentClass].join(" ")}
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
-          </ContentCSS>
-        </Box>
+          </div>
+        </div>
         {!!tags?.length && <Tags tags={tags} />}
-      </MobileCSS>
-      <LaptopCSS>
-        <Box className={styles.wrapper} ref={topRef}>
+      </div>
+      <div className={styles.laptopWrap}>
+        <div className={styles.wrapper} ref={topRef}>
           <div className={styles.titleWrapper}>
             <h1 className={styles.title}>{title}</h1>
           </div>
-          <Box height="100%">
+          <div className={styles.contentInner}>
             <div className={styles.author}>
               <Author post={post} />
               <SocialMedia title={post.title} />
             </div>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              paddingBottom={
-                featureImageCaption === null ? theme.spacing(4) : 0
-              }
+            <div
+              className={[
+                styles.desktopImgWrapper,
+                featureImageCaption === null ? styles.noCaption : "",
+              ].join(" ")}
             >
               {featureImage === null ? (
                 <Image
@@ -146,31 +138,28 @@ const BlogDetails = ({ post }: Props) => {
                 />
               )}
               {featureImageCaption === null ? null : (
-                <Typography
-                  className={styles.featureImageCaption}
-                  variant="body1"
-                >
+                <span className={styles.featureImageCaption}>
                   <Markdown>{featureImageCaption}</Markdown>
-                </Typography>
+                </span>
               )}
-            </Box>
-            <ContentCSS theme={theme}>
-              <ContentBox
-                className={contentClass}
+            </div>
+            <div className={styles.content}>
+              <div
+                className={[styles.contentBox, contentClass].join(" ")}
                 dangerouslySetInnerHTML={{ __html: post.html }}
               />
-            </ContentCSS>
+            </div>
             {!!tags?.length && (
               <div className={[styles.tags, manyTagsStyle].join(" ")}>
                 <Tags details noPadding tags={tags} />
               </div>
             )}
-          </Box>
+          </div>
           <div className={[styles.scrollToTop, manyTagsStyle].join(" ")}>
             <ScrollToTop topRef={topRef} />
           </div>
-        </Box>
-      </LaptopCSS>
+        </div>
+      </div>
     </Layout>
   );
 };
