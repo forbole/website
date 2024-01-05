@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { concat, uniq } from "ramda";
 import type { ReactNode } from "react";
-import { useEffect } from "react";
 import isURL from "validator/lib/isURL";
 
 import Background from "@src/components/background";
@@ -65,20 +64,6 @@ const Layout = ({
 
   const { lang, t } = useTranslation("common");
 
-  useEffect(() => {
-    if (blueBg) {
-      const currentColor = document.body.style.background;
-
-      document.body.style.background = "rgb(23, 26, 75)";
-
-      return () => {
-        document.body.style.background = currentColor;
-      };
-    }
-
-    return undefined;
-  }, [blueBg]);
-
   const itemColor = (() => {
     if (blueBg) {
       return "#fff";
@@ -95,7 +80,7 @@ const Layout = ({
 
   return (
     <div className={styles.wrapper}>
-      <BlueBg />
+      {blueBg && <BlueBg />}
       <Head>
         <title>{title}</title>
         {!!(url === "https://staging.forbole.com") && (
