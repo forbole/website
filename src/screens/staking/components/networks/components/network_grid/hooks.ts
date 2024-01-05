@@ -141,6 +141,13 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const { oasisBondedToken, oasisTVL } = networkGridData;
 
+      if (
+        !oasisBondedToken?.[0]?.metric?.instance ||
+        !oasisTVL?.[0]?.metric?.instance
+      ) {
+        return;
+      }
+
       const networkWithTVL = {
         ...oasisNetworkParams,
         [oasisTVL[0].metric.instance]: {
