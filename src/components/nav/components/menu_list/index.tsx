@@ -1,5 +1,3 @@
-import List from "@mui/material/List";
-import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
 import { useCallback, useContext } from "react";
 
@@ -25,27 +23,22 @@ const MenuList = ({ className, menuList }: Props) => {
   }, [setAnchorEl]);
 
   return (
-    <List
-      className={[styles.list, className || ""].join(" ")}
-      component="div"
-      disablePadding
-    >
+    <div className={[styles.list, className || ""].join(" ")}>
       {menuList?.map((l, i) => (
         <Link className={styles.link} href={l.link} key={i} locale={l.locale}>
-          <MenuItem
+          <button
             className={[
               styles.menuItem,
               l.link !== "#!" ? styles.noFilter : "",
             ].join(" ")}
-            component="span"
             onClick={handleClose}
           >
             {l.icon ? <span className={styles.icon}>{l.icon}</span> : null}
             {l.name}
-          </MenuItem>
+          </button>
         </Link>
       ))}
-    </List>
+    </div>
   );
 };
 

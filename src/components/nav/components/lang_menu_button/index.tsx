@@ -1,4 +1,4 @@
-import { Box, Button, Menu, Typography, useTheme } from "@mui/material";
+import { Menu } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
@@ -12,7 +12,6 @@ const LangMenuButton = () => {
   const { lang, t } = useTranslation("common");
   const { asPath, locales } = useRouter();
   const [anchor, setAnchor] = useState<Element>();
-  const theme = useTheme();
   const onClose = useCallback(() => setAnchor(undefined), [setAnchor]);
 
   useEffect(() => {
@@ -45,23 +44,15 @@ const LangMenuButton = () => {
 
   return (
     <>
-      <Box className={styles.desktop}>
-        <Button
+      <div className={styles.desktop}>
+        <button
           aria-label={langText.toUpperCase() || "language"}
           className={styles.navBarButton}
           onClick={(e) => setAnchor(e.currentTarget)}
-          startIcon={
-            <LangIcon
-              fill={theme.palette.common.white}
-              height={20}
-              width={20}
-            />
-          }
         >
-          <Typography className={styles.lang} component="span">
-            {langText}
-          </Typography>
-        </Button>
+          <LangIcon fill="#fff" height={20} width={20} />
+          <span className={styles.lang}>{langText}</span>
+        </button>
         <Menu
           MenuListProps={{
             "aria-labelledby": "basic-button",
@@ -85,7 +76,7 @@ const LangMenuButton = () => {
         >
           <MenuList menuList={localesList} />
         </Menu>
-      </Box>
+      </div>
       <MenuList className={styles.mobile} menuList={localesList} />
     </>
   );

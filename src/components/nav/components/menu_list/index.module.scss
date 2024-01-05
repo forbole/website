@@ -2,6 +2,7 @@
 
 .list {
   background: $color-primary-light;
+  width: max-content;
 
   @include down-laptop {
     background: rgba(107, 97, 254, 0.24);
@@ -9,23 +10,22 @@
 }
 
 .menuItem {
+  align-items: center;
+  background: $color-primary-light;
+  border: none;
   color: $color-indigo;
+  cursor: pointer;
   display: flex;
   filter: opacity(0.1);
   font-size: spacing(2);
   font-weight: 700;
   height: spacing(7);
   justify-content: flex-start;
+  width: 100%;
   padding: spacing(0) spacing(4);
 
   &.noFilter {
     filter: unset;
-  }
-
-  & > a {
-    text-align: left;
-    text-decoration: none;
-    width: 100%;
   }
 
   &:hover {
@@ -40,6 +40,7 @@
 
 .link {
   text-decoration: none;
+  width: 100%;
 }
 
 .icon {

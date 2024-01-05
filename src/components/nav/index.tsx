@@ -1,4 +1,3 @@
-import { Box, Button } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import type { MouseEvent, RefObject } from "react";
@@ -55,10 +54,10 @@ const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
 
   return (
     <AnchorElContextProvider>
-      <Box className={styles.nav} data-test="nav" {...navStyle}>
-        <Box className={styles.navWrapper}>
-          <Box className={styles.container}>
-            <Box className={styles.logoWrapper}>
+      <nav className={styles.nav} data-test="nav" {...navStyle}>
+        <div className={styles.navWrapper}>
+          <div className={styles.container}>
+            <div className={styles.logoWrapper}>
               <Link
                 aria-label={t("common:forboleLogo")}
                 className={styles.logoLink}
@@ -70,33 +69,29 @@ const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
                   <ForboleLogo color={itemColor || colors.primary} />
                 )}
               </Link>
-            </Box>
+            </div>
             {staking ? (
-              <Box className={styles.stakingWrapper}>
-                <Button
-                  className={styles.stakeNowButton}
-                  onClick={scrollToRef}
-                  variant="contained"
-                >
+              <div className={styles.stakingWrapper}>
+                <button className={styles.stakeNowButton} onClick={scrollToRef}>
                   {t("stake_now")}
-                </Button>
-                <Box className={styles.stakingLang}>
+                </button>
+                <div className={styles.stakingLang}>
                   <LangMenuButton />
-                </Box>
-              </Box>
+                </div>
+              </div>
             ) : (
               <>
-                <Box className={styles.mobileNavMenu}>
+                <div className={styles.mobileNavMenu}>
                   <MobileNavMenu />
-                </Box>
-                <Box className={styles.desktopNavMenu}>
+                </div>
+                <div className={styles.desktopNavMenu}>
                   <DesktopNavMenu />
-                </Box>
+                </div>
               </>
             )}
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </nav>
     </AnchorElContextProvider>
   );
 };
