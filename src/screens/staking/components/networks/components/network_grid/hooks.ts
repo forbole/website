@@ -125,6 +125,10 @@ export const useNetworkHook = () => {
     if (!networkGridLoading && networkGridData) {
       const { solanaBondedToken, solanaTVL } = networkGridData;
 
+      if (!solanaTVL || !solanaBondedToken) {
+        return solanaNetworkParams;
+      }
+
       return pipe(
         assocPath([solanaTVL.metric.instance, "TVL"], solanaTVL.TVL),
         assocPath(
@@ -145,7 +149,7 @@ export const useNetworkHook = () => {
         !oasisBondedToken?.[0]?.metric?.instance ||
         !oasisTVL?.[0]?.metric?.instance
       ) {
-        return;
+        return oasisNetworkParams;
       }
 
       const networkWithTVL = {

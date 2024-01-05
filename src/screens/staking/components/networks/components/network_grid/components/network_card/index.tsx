@@ -71,7 +71,7 @@ const NetworkCard = ({
       !networkSummary.custom);
 
   const networkImage = network.image && (
-    <Box className={styles.image}>
+    <div className={styles.image}>
       <Image
         alt=""
         height="48"
@@ -80,11 +80,11 @@ const NetworkCard = ({
         src={network.image}
         width="48"
       />
-    </Box>
+    </div>
   );
 
   const popover = isEmptyPopover ? null : (
-    <Box
+    <div
       className={[styles.popover].join(" ")}
       style={{
         cursor: canClickNetwork ? "pointer" : "default",
@@ -156,14 +156,10 @@ const NetworkCard = ({
       >
         {t("stake now")}
       </Button>
-    </Box>
+    </div>
   );
 
-  const networkName = (
-    <Typography className={styles.networkName} variant="h4">
-      {network.name}
-    </Typography>
-  );
+  const networkName = <h4 className={styles.networkName}>{network.name}</h4>;
 
   return (
     <motion.div
@@ -202,17 +198,20 @@ const NetworkCard = ({
           </Button>
         </>
       ) : (
-        <Box
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+        <div
           className={styles.anchor}
           onClick={handleExploreClick}
+          role="button"
           style={{
             cursor: canClickNetwork ? "pointer" : "default",
           }}
+          tabIndex={canClickNetwork ? 0 : -1}
         >
           {popover}
           {networkImage}
           {networkName}
-        </Box>
+        </div>
       )}
     </motion.div>
   );
