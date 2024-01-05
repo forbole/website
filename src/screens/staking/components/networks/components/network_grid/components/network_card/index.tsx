@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
-import { useRef } from "react";
-import { useCallback } from "react";
+import { useRef , useCallback } from "react";
 
 import { CloseIcon } from "@src/components/icons";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
