@@ -69,7 +69,27 @@ export const getBlogPostSchema = (
       ...common,
       "@type": "JobPosting",
       "datePosted": publishedAt,
+      "description": excerpt,
+      "hiringOrganization": {
+        "@type": "Organization",
+        "logo": "https://www.forbole.com/icons/favicon-96x96.png",
+        "name": "Forbole",
+        "sameAs": "https://www.forbole.com/",
+      },
       "industry": "Cryptocurrencies Validators and Blockchain Development",
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "Hong Kong",
+          "addressLocality": "Kennedy Town",
+          "addressRegion": "Hong Kong Island",
+          "postalCode": "-",
+          "streetAddress":
+            "7/F, Cheung Hing Industrial Building, 12P Smithfield",
+        },
+      },
+      title,
     });
   }
 
