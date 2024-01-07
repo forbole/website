@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
 import Image from "next/image";
 
 import { CtaLink } from "../cta-button";
@@ -24,8 +23,8 @@ const IntroCard = ({
   list,
   title,
 }: Props) => (
-  <Box className={styles.wrapper} component="div">
-    <Box className={styles.imageWrapper}>
+  <div className={styles.wrapper}>
+    <div className={styles.imageWrapper}>
       {imageHref && (
         <Image
           alt={title ? `${title} image` : ""}
@@ -34,9 +33,9 @@ const IntroCard = ({
           src={imageHref}
         />
       )}
-    </Box>
-    <Box className={styles.contentWrapper} component="div">
-      <Box>
+    </div>
+    <div className={styles.contentWrapper}>
+      <div>
         <Typography className={styles.title}>{title}</Typography>
 
         {typeof desc && <Typography className={styles.desc}>{desc}</Typography>}
@@ -47,7 +46,7 @@ const IntroCard = ({
             </Typography>
           ))}
         </ul>
-      </Box>
+      </div>
       <CtaLink
         className={styles.ctaButton}
         disabled={disabled}
@@ -55,8 +54,8 @@ const IntroCard = ({
       >
         {btnName}
       </CtaLink>
-    </Box>
-  </Box>
+    </div>
+  </div>
 );
 
 export default IntroCard;

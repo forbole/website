@@ -58,7 +58,16 @@
 }
 
 .containerTitle {
+  margin: 0 auto;
   z-index: 1;
+
+  @include up-tablet {
+    max-width: $breakpoint-tablet;
+  }
+
+  @include up-laptop {
+    max-width: $breakpoint-desktop;
+  }
 }
 
 .title {
@@ -109,4 +118,10 @@
 
 .scrollTop {
   margin-top: 100px;
+}
+
+.grid {
+  & > div > div {
+    margin: 0 auto;
+  }
 }

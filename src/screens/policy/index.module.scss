@@ -175,3 +175,11 @@ $top-shadow:
   text-align: left;
   widows: 2;
 }
+
+.bottom {
+  height: 0;
+
+  @include up-laptop {
+    height: 150px;
+  }
+}

@@ -2,11 +2,11 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import type { MouseEvent, RefObject } from "react";
 
+import HighlightButton from "@src/components/highlight-button";
 import {
   Forbole as ForboleLogo,
   ForboleShadowIcon,
 } from "@src/components/icons";
-import useColor from "@src/styles/useColor";
 import { AnchorElContextProvider } from "@src/utils/menu";
 
 import { DesktopNavMenu, MobileNavMenu } from "./components";
@@ -21,7 +21,6 @@ interface NavProps {
 }
 
 const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
-  const colors = useColor();
   const { displayBackground } = useNavHook();
   const { t } = useTranslation("staking");
 
@@ -66,15 +65,15 @@ const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
                 {staking ? (
                   <ForboleShadowIcon />
                 ) : (
-                  <ForboleLogo color={itemColor || colors.primary} />
+                  <ForboleLogo color={itemColor || "#fff"} />
                 )}
               </Link>
             </div>
             {staking ? (
               <div className={styles.stakingWrapper}>
-                <button className={styles.stakeNowButton} onClick={scrollToRef}>
+                <HighlightButton onClick={scrollToRef}>
                   {t("stake_now")}
-                </button>
+                </HighlightButton>
                 <div className={styles.stakingLang}>
                   <LangMenuButton />
                 </div>

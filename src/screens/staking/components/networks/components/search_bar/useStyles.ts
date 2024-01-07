@@ -81,57 +81,6 @@ const useStyles = () => {
       },
       "zIndex": "2001 !important",
     },
-    root: {
-      "& .MuiAutocomplete-inputRoot": {
-        backgroundColor: alpha(theme.palette.common.white, 0.2),
-      },
-      "& .MuiAutocomplete-root": {
-        "& .MuiInputBase-root": {
-          backdropFilter: "blur(4px)",
-          background: theme.palette.common.white,
-          border: "1px solid rgba(219, 219, 219, 0.2) !important" as any,
-          borderRadius: theme.spacing(3),
-          boxShadow:
-            "0px 6px 14px -6px rgb(2 38 225 / 12%), 0px 10px 32px -4px rgb(2 38 225 / 10%)",
-          mixBlendMode: "normal",
-          padding: `${theme.spacing(0.5, 2.25, 0.5, 2.25)} !important`,
-        },
-        [theme.breakpoints.up("tablet")]: {
-          float: "right",
-          height: theme.spacing(4.75),
-          minWidth: theme.spacing(36.375),
-          width: theme.spacing(36.375),
-        },
-        "width": "100%",
-      },
-      "&& .searchbox__cancel-btn": {
-        color: theme.palette.custom.forbole.indigo6,
-        display: "none",
-      },
-      "&&.searchbox__focused": {
-        [theme.breakpoints.down("tablet")]: {
-          "& .searchbox__cancel-btn": {
-            display: "inline-flex",
-          },
-          "alignItems": "center",
-          "backdropFilter": "blur(16px)",
-          "background":
-            "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
-          "display": "flex",
-          "gap": theme.spacing(2),
-          "height": theme.spacing(8),
-          "left": 0,
-          "padding": theme.spacing(0, 2, 0, 4),
-          "position": "fixed !important",
-          "right": 0,
-          "top": 0,
-          "zIndex": 10,
-        },
-      },
-      [theme.breakpoints.down("tablet")]: {
-        width: "100%",
-      },
-    },
     textField: {
       "& .MuiOutlinedInput-notchedOutline": {
         border: "none",

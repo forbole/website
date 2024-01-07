@@ -1,0 +1,53 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  span {
+    margin-left: -10px !important;
+    max-width: 150% !important;
+  }
+
+  align-items: flex-start;
+  background: #fff;
+  border-radius: spacing(3);
+  box-shadow:
+    0 6px 14px -6px rgb(2 38 225 / 12%),
+    0 10px 32px -4px rgb(2 38 225 / 10%);
+  display: flex;
+  flex-direction: column;
+  padding: spacing(4) spacing(3);
+}
+
+.imageWrapper {
+  margin-left: spacing(2);
+}
+
+.title {
+  color: $color-forbole-blue;
+  font-size: spacing(2.25);
+  font-weight: 600;
+  padding: spacing(5.75) spacing(0) spacing(3) spacing(0);
+
+  @include up-laptop {
+    font-size: spacing(2.5);
+    padding: spacing(2.5) spacing(0);
+  }
+}
+
+.desc {
+  color: $color-forbole-blue;
+  font-size: spacing(1.75);
+  line-height: spacing(2.5);
+  text-align: start;
+
+  @include up-laptop {
+    font-size: spacing(2);
+    line-height: spacing(3);
+  }
+}
+
+.content {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

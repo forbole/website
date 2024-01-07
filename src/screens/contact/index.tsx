@@ -1,7 +1,5 @@
 import {
-  Box,
   Checkbox,
-  Container,
   FormControlLabel,
   FormGroup,
   Grid,
@@ -9,7 +7,6 @@ import {
   List,
   ListItem,
   Stack,
-  Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
@@ -68,26 +65,26 @@ const Contact = () => {
 
   return (
     <Layout description={t("form_desc")} footer title={t("page_title")}>
-      <Container>
+      <div>
         <Stack className={styles.form}>
           <Stack>
-            <Typography className={styles.title}>{t("form_title")}</Typography>
-            <Typography className={styles.desc}>{t("form_desc")}</Typography>
+            <span className={styles.title}>{t("form_title")}</span>
+            <span className={styles.desc}>{t("form_desc")}</span>
 
             <Stack className={styles.contact}>
               <Stack direction="row">
                 <Link href="mailto:info@forbole.com">
-                  <Box className={styles.icon} mr="8px">
+                  <div className={styles.icon}>
                     <img alt="" src="/icons/email.svg" />
-                  </Box>
+                  </div>
                 </Link>
                 <Link href="https://t.me/forbole">
-                  <Box className={styles.icon}>
+                  <div className={styles.icon}>
                     <img alt="" src="/icons/Telegram.svg" />
-                  </Box>
+                  </div>
                 </Link>
               </Stack>
-              <Typography className={styles.method}>{t("method")}</Typography>
+              <span className={styles.method}>{t("method")}</span>
             </Stack>
           </Stack>
           <Grid
@@ -95,10 +92,10 @@ const Contact = () => {
             spacing={{ desktop: theme.spacing(4), mobile: theme.spacing(3) }}
           >
             <Grid item laptop={6} mobile={12}>
-              <Typography className={styles.label}>
+              <span className={styles.label}>
                 {t("label_name")}
                 <span className={styles.required}>*</span>
-              </Typography>
+              </span>
               <FormInput
                 name="name"
                 onInput={handleInputChange}
@@ -107,9 +104,7 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography className={styles.label}>
-                {t("label_company")}
-              </Typography>
+              <span className={styles.label}>{t("label_company")}</span>
               <FormInput
                 name="company"
                 onInput={handleInputChange}
@@ -118,10 +113,10 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography className={styles.label}>
+              <span className={styles.label}>
                 {t("label_email")}
                 <span className={styles.required}>*</span>
-              </Typography>
+              </span>
               <FormInput
                 name="email"
                 onInput={handleInputChange}
@@ -131,9 +126,7 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography className={styles.label}>
-                {t("label_telegram")}
-              </Typography>
+              <span className={styles.label}>{t("label_telegram")}</span>
               <FormInput
                 name="telegram"
                 onInput={handleInputChange}
@@ -142,10 +135,10 @@ const Contact = () => {
               />
             </Grid>
             <Grid item laptop={6} mobile={12}>
-              <Typography className={styles.labelStart}>
+              <span className={styles.labelStart}>
                 {t("get_start")}
                 <span className={styles.required}>*</span>
-              </Typography>
+              </span>
               <List className={styles.list} dense>
                 {selectList.map((value) => (
                   <ListItem className={styles.listItem} key={value.label}>
@@ -209,7 +202,7 @@ const Contact = () => {
             </Grid>
           </Grid>
         </Stack>
-      </Container>
+      </div>
       <SuccessModal
         close={setSuccess}
         fixed

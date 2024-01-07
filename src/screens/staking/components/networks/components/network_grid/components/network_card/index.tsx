@@ -1,4 +1,4 @@
-import { Box, Button, LinearProgress, Typography } from "@mui/material";
+import { Button, LinearProgress } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
@@ -45,6 +45,7 @@ const NetworkCard = ({
 
   const handleMobilePopoverClick: MouseEventHandler<Element> = useCallback(
     (event) => {
+      event.preventDefault();
       event.stopPropagation();
       setShowMobilePopover("");
     },
@@ -95,56 +96,47 @@ const NetworkCard = ({
         fontSize="small"
         onClickCapture={handleMobilePopoverClick}
       />
-      <Box onClickCapture={handleMobilePopoverClick}>{networkImage}</Box>
+      {/* eslint-disable-next-line */}
+      <div onClick={handleMobilePopoverClick}>{networkImage}</div>
       {!!networkSummary ? (
-        <Box
-          className={styles.dataBox}
-          onClickCapture={handleMobilePopoverClick}
-        >
+        /* eslint-disable-next-line */
+        <div className={styles.dataBox} onClick={handleMobilePopoverClick}>
           {!!networkSummary.bonded && networkSummary.bonded > 0 && (
-            <Box>
-              <Typography className={styles.label} variant="h6">
-                {network.denom?.toUpperCase()}
-              </Typography>
-              <Typography className={styles.value}>
+            <div>
+              <h6 className={styles.label}>{network.denom?.toUpperCase()}</h6>
+              <span className={styles.value}>
                 {convertToMoney(networkSummary.bonded)}
-              </Typography>
-            </Box>
+              </span>
+            </div>
           )}
           {!!networkSummary.APY && networkSummary.APY > 0 && (
-            <Box>
-              <Typography className={styles.label} variant="h6">
-                APY
-              </Typography>
-              <Typography className={styles.value}>{`${Math.round(
+            <div>
+              <h6 className={styles.label}>APY</h6>
+              <span className={styles.value}>{`${Math.round(
                 networkSummary.APY * 100,
-              )}%`}</Typography>
-            </Box>
+              )}%`}</span>
+            </div>
           )}
           {!!networkSummary.TVL && (
-            <Box>
-              <Typography className={styles.label} variant="h6">
-                TVL
-              </Typography>
-              <Typography className={styles.value}>
+            <div>
+              <h6 className={styles.label}>TVL</h6>
+              <span className={styles.value}>
                 ${convertToMoney(networkSummary.TVL)}
-              </Typography>
-            </Box>
+              </span>
+            </div>
           )}
           {!!networkSummary.custom &&
             Object.keys(networkSummary.custom)
               .sort()
               .map((customKey) => (
-                <Box key={customKey}>
-                  <Typography className={styles.label} variant="h6">
-                    {customKey}
-                  </Typography>
-                  <Typography className={styles.value}>
+                <div key={customKey}>
+                  <h6 className={styles.label}>{customKey}</h6>
+                  <span className={styles.value}>
                     {networkSummary.custom?.[customKey]}
-                  </Typography>
-                </Box>
+                  </span>
+                </div>
               ))}
-        </Box>
+        </div>
       ) : (
         <LinearProgress className={styles.progress} color="secondary" />
       )}
@@ -175,7 +167,7 @@ const NetworkCard = ({
     >
       {isMobile ? (
         <>
-          <Box
+          <div
             className={[
               styles.popoverContainer,
               showMobilePopover === network.name ? styles.active : "",
@@ -183,7 +175,7 @@ const NetworkCard = ({
             data-test="network-item"
           >
             {popover}
-          </Box>
+          </div>
           <Button
             className={styles.anchor}
             onClick={

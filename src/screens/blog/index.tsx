@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRef } from "react";
@@ -29,21 +28,21 @@ const Blog = ({
       <Head>
         <link href="https://www.forbole.com/blog" rel="canonical" />
       </Head>
-      <Box className={styles.flexBox}>
-        <Box className={styles.top} ref={topRef}>
+      <div className={styles.flexBox}>
+        <div className={styles.top} ref={topRef}>
           <BlogPosts blogs={posts.slice(1)} main={posts[0]} meta={meta} />
-          <Box className={styles.sideCss}>
+          <div className={styles.sideCss}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />
-          </Box>
-          <Box className={styles.topScroll}>
+          </div>
+          <div className={styles.topScroll}>
             <ScrollToTop topRef={topRef} />
-          </Box>
-        </Box>
-        <Box className={styles.bottom}>
+          </div>
+        </div>
+        <div className={styles.bottom}>
           <ScrollToTop topRef={topRef} />
-        </Box>
-      </Box>
+        </div>
+      </div>
     </Layout>
   );
 };

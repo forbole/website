@@ -14,7 +14,19 @@ export default defineConfig({
     {
       name: "Desktop",
       use: {
-        viewport: { height: 768, width: 1024 },
+        viewport: { height: 768, width: 1250 },
+      },
+    },
+    {
+      name: "Laptop",
+      use: {
+        viewport: { height: 768, width: 1026 },
+      },
+    },
+    {
+      name: "Tablet",
+      use: {
+        viewport: { height: 768, width: 780 },
       },
     },
     {

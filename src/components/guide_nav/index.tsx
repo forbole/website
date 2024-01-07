@@ -1,4 +1,3 @@
-import { Box, useTheme } from "@mui/material";
 import Link from "next/link";
 
 import {
@@ -14,16 +13,15 @@ interface GuideNavProps {
 }
 
 const GuideNav = ({ staking }: GuideNavProps) => {
-  const theme = useTheme();
   const { displayBackground } = useNavHook();
 
   return (
-    <Box
+    <div
       className={[styles.wrapper, displayBackground ? styles.bg : ""].join(" ")}
     >
-      <Box className={styles.container}>
-        <Box className={styles.inner}>
-          <Box className={styles.logo}>
+      <div className={styles.container}>
+        <div className={styles.inner}>
+          <div className={styles.logo}>
             <Link
               href="/"
               style={{
@@ -32,22 +30,12 @@ const GuideNav = ({ staking }: GuideNavProps) => {
                 height: "100%",
               }}
             >
-              {staking ? (
-                <ForboleShadowIcon />
-              ) : (
-                <ForboleLogo
-                  color={
-                    theme.palette.mode === "dark"
-                      ? theme.palette.primary.main
-                      : theme.palette.custom.forbole.red
-                  }
-                />
-              )}
+              {staking ? <ForboleShadowIcon /> : <ForboleLogo color="#fff" />}
             </Link>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

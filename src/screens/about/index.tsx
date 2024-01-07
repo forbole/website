@@ -1,15 +1,6 @@
-import {
-  Box,
-  Container,
-  Skeleton,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
@@ -19,18 +10,23 @@ import { Horse } from "@src/components/icons";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
+import { IS_E2E } from "@src/utils/e2e";
 
 import * as styles from "./index.module.scss";
 
-SwiperCore.use([Navigation, Autoplay]);
+SwiperCore.use([Navigation].concat(!IS_E2E ? [Autoplay] : []));
 
 const About = () => {
   const { t } = useTranslation("about");
-  const theme = useTheme();
+  const [onlyLargeScreen, setOnlyLargeScreen] = useState(false);
   const topRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
+  useEffect(() => {
+    if (window.innerWidth > 1200) {
+      setOnlyLargeScreen(true);
+    }
+  }, []);
 
   const imagList = [
     "/about/aboutus_01.webp",
@@ -74,33 +70,22 @@ const About = () => {
       redBgFooter
       title={t("page_title")}
     >
-      <Container className={styles.container} maxWidth="desktop" ref={topRef}>
-        <Stack className={styles.topStack} spacing={3}>
-          <Stack className={styles.topStackInner} spacing={3}>
-            <Typography className={styles.cardTitle} variant="h1">
-              {t("headercard_title")}
-            </Typography>
-            <Typography className={styles.cardDesc} variant="h2">
-              {t("headercard_1st_desc")}
-            </Typography>
+      <div className={styles.container} ref={topRef}>
+        <div className={styles.topStack}>
+          <div className={styles.topStackInner}>
+            <h1 className={styles.cardTitle}>{t("headercard_title")}</h1>
+            <h2 className={styles.cardDesc}>{t("headercard_1st_desc")}</h2>
             <Trans
               components={[
-                <Typography
-                  className={styles.cardDescTrans0}
-                  key="0"
-                  variant="h3"
-                />,
-                <Typography
-                  className={styles.cardDescTrans1}
-                  component="span"
-                  key="1"
-                />,
+                // eslint-disable-next-line jsx-a11y/heading-has-content
+                <h3 className={styles.cardDescTrans0} key="0" />,
+                <span className={styles.cardDescTrans1} key="1" />,
               ]}
               i18nKey="headercard_2nd_desc"
               ns="about"
             />
-          </Stack>
-          <Box className={styles.swiperContainer}>
+          </div>
+          <div className={styles.swiperContainer}>
             <ImgBox>
               <Swiper
                 autoplay={{
@@ -148,22 +133,16 @@ const About = () => {
               direction={Direction.Left}
               role="button"
             />
-          </Box>
-        </Stack>
+          </div>
+        </div>
 
-        <Stack>
-          <Stack className={styles.sectionStack}>
-            <Typography className={styles.section1Title} variant="h2">
-              {t("section_1st_title")}
-            </Typography>
-            <Typography className={styles.sectionDesc}>
-              {t("section_1st_sesc")}
-            </Typography>
-          </Stack>
-        </Stack>
-      </Container>
+        <div className={styles.sectionStack}>
+          <h2 className={styles.section1Title}>{t("section_1st_title")}</h2>
+          <span className={styles.sectionDesc}>{t("section_1st_sesc")}</span>
+        </div>
+      </div>
       <YTBSwiperCSS>
-        <Stack className={styles.ytbStack}>
+        <div className={styles.ytbStack}>
           <Swiper
             className={["swiper-no-swiping", styles.ytbSwiper].join(" ")}
             navigation={{
@@ -175,17 +154,15 @@ const About = () => {
           >
             {videoList.map((item, indexUpper) => (
               <SwiperSlide className={styles.swiperSlideVideo} key={indexUpper}>
-                <Skeleton
+                <div
                   className={[
                     styles.skeleton,
                     loading ? styles.active : "",
                   ].join(" ")}
-                  variant="rectangular"
                 />
                 <iframe
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  frameBorder="0"
                   height="100%"
                   onLoad={() => setLoading(false)}
                   src={item.src}
@@ -197,32 +174,29 @@ const About = () => {
           </Swiper>
           <Arrow className="v-next" direction={Direction.Right} role="button" />
           <Arrow className="v-prev" direction={Direction.Left} role="button" />
-        </Stack>
+        </div>
       </YTBSwiperCSS>
 
-      <Container className={styles.container} maxWidth="desktop">
-        <Stack>
-          <Stack className={styles.sectionStack}>
+      <div className={styles.container}>
+        <div>
+          <div className={styles.sectionStack}>
             <Trans
               components={[
-                <Typography className={styles.tr0} key="0" variant="h3" />,
-                <Typography className={styles.tr1} component="span" key="1" />,
+                // eslint-disable-next-line jsx-a11y/heading-has-content
+                <h3 className={styles.tr0} key="0" />,
+                <span className={styles.tr1} key="1" />,
               ]}
               i18nKey="section_2nd_large_title"
               ns="about"
             />
 
-            <Typography className={styles.sectionDesc}>
-              {t("section_2nd_desc")}
-            </Typography>
-            <Typography className={styles.sectionDesc}>
-              {t("section_3rd_desc")}
-            </Typography>
+            <span className={styles.sectionDesc}>{t("section_2nd_desc")}</span>
+            <span className={styles.sectionDesc}>{t("section_3rd_desc")}</span>
             <Horse {...horseStyle} />
             <ScrollToTop topRef={topRef} />
-          </Stack>
-        </Stack>
-      </Container>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

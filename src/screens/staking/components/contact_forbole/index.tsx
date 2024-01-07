@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
@@ -13,25 +12,21 @@ const ContactForbole = () => {
   const { t } = useTranslation("staking");
 
   return (
-    <Box display="flex" justifyContent="center">
-      <Box className={commonStyles.stakingContent}>
-        <Typography className={commonStyles.stakingTitle} variant="h4">
-          {t("contact Forbole")}
-        </Typography>
+    <div className={styles.wrapper}>
+      <div className={commonStyles.stakingContent}>
+        <h4 className={commonStyles.stakingTitle}>{t("contact Forbole")}</h4>
         <Trans
           components={[
-            <Box className={["h3", styles.tr0].join(" ")} key="0" />,
-            <Box className={["h3", styles.tr1].join(" ")} key="1" />,
+            <div className={["h3", styles.tr0].join(" ")} key="0" />,
+            <div className={["h3", styles.tr1].join(" ")} key="1" />,
           ]}
           i18nKey="contact forbole title"
           ns="staking"
         />
-        <Typography className={styles.contact} variant="body1">
-          {t("contact Forbole desc")}
-        </Typography>
+        <h4 className={styles.contact}>{t("contact Forbole desc")}</h4>
         <ContactCard />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

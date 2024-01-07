@@ -1,4 +1,4 @@
-import { Box, Pagination } from "@mui/material";
+import { Pagination } from "@mui/material";
 import { useRouter } from "next/router";
 import { pathOr } from "ramda";
 
@@ -20,13 +20,13 @@ const TagPosts = ({ blogs, main, meta }: IProps) => {
   };
 
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.posts}>
+    <div className={styles.wrapper}>
+      <div className={styles.posts}>
         {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
           <Post id={i} key={post.id} post={post} />
         ))}
-      </Box>
+      </div>
       <Pagination
         className={styles.pagination}
         count={totalPages}
@@ -36,7 +36,7 @@ const TagPosts = ({ blogs, main, meta }: IProps) => {
         showFirstButton
         showLastButton
       />
-    </Box>
+    </div>
   );
 };
 

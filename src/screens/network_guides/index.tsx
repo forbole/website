@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useEffect } from "react";
 
 import LayoutVal from "@src/components/layout_val";
@@ -7,7 +6,6 @@ import GQLProvider from "@src/utils/gql";
 import Guide from "./components/guide";
 import NetworkInfo from "./components/network_info";
 import * as styles from "./index.module.scss";
-import { LaptopCSS } from "./styles";
 
 const NetworkGuides = ({ post }: any) => {
   useEffect(() => {
@@ -33,13 +31,13 @@ const NetworkGuides = ({ post }: any) => {
         twitterImage={post.featureImage}
         type="article"
       >
-        <LaptopCSS>
+        <div className={styles.wrapper}>
           <NetworkInfo post={post} />
-        </LaptopCSS>
-        <LaptopCSS>
+        </div>
+        <div className={styles.wrapper}>
           <Guide post={post} />
-        </LaptopCSS>
-        <Box className={styles.offset} />
+        </div>
+        <div className={styles.offset} />
       </LayoutVal>
     </GQLProvider>
   );

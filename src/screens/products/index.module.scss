@@ -1,6 +1,8 @@
 @import "src/styles/sass.scss";
 
 .why {
+  display: flex;
+  flex-direction: column;
   text-align: center;
 
   @include down-laptop {
@@ -96,6 +98,8 @@
 }
 
 .individuals {
+  display: flex;
+  flex-direction: column;
   text-align: center;
 
   @include down-laptop {
@@ -160,8 +164,15 @@
 
 .individualsStack {
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: spacing(1);
   justify-content: center;
   margin-bottom: 40px;
+
+  @include up-laptop {
+    gap: spacing(2);
+  }
 
   @include down-laptop {
     margin-bottom: 32px;
@@ -199,6 +210,8 @@
 
 .businesses {
   align-items: center;
+  display: flex;
+  flex-direction: column;
 
   @include down-laptop {
     margin-bottom: 40px;
@@ -261,10 +274,14 @@
 
 .businessesStack {
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: spacing(2);
   justify-content: center;
   margin-bottom: 48px;
 
   @include down-laptop {
+    gap: spacing(1);
     margin-bottom: 32px;
   }
 }
@@ -285,4 +302,35 @@
   @include down-tablet {
     display: none;
   }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+  @include up-desktop {
+    max-width: 1220px;
+  }
+
+  @include down-tablet {
+    padding: 0 16px;
+  }
+}
+
+.responseWrap {
+  display: flex;
+  flex-direction: row;
+  gap: spacing(1);
+  justify-content: center;
+
+  @include up-laptop {
+    gap: spacing(2);
+  }
+}
+
+.enterpriseStack {
+  display: flex;
+  flex-direction: row;
+  gap: spacing(1);
 }

@@ -1,0 +1,26 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  cursor: pointer;
+  display: flex;
+  height: 48px;
+  user-select: none;
+  width: 48px;
+  z-index: 2;
+
+  @include down-laptop {
+    height: 36px;
+    width: 36px;
+  }
+
+  svg {
+    path {
+      stroke: $color-forbole-blue;
+    }
+
+    fill: #fff;
+    filter: drop-shadow(0 14px 64px rgba(2, 38, 225, 0.12))
+      drop-shadow(0 8px 22px rgba(2, 38, 225, 0.12));
+    transition: fill 0.3s;
+  }
+}

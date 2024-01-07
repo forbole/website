@@ -44,3 +44,21 @@
     }
   }
 }
+
+.wrapperMobile {
+  height: 190vw;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+
+  &.displayHorse {
+    height: 260vw;
+  }
+
+  img {
+    @media (min-width: 550px) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import "src/styles/sass.scss";
+
+.item {
+  &::before {
+    content: url("/icons/outlined.svg");
+    margin-right: 16px;
+  }
+
+  align-items: baseline;
+  display: flex;
+  max-width: 489px;
+
+  @include down-laptop {
+    font-size: 16px;
+  }
+
+  @include up-laptop {
+    font-size: 20px;
+  }
+}

@@ -71,3 +71,44 @@
     font-size: 48px;
   }
 }
+
+.plan {
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow:
+    0 10px 32px -4px rgba(245, 20, 47, 0.16),
+    0 6px 14px -6px rgba(249, 106, 122, 0.2);
+  flex: 1 1 270px;
+  height: 496px;
+  padding: 24px;
+  position: relative;
+
+  @include down-laptop {
+    flex: 0 0 max-content;
+    width: 75%;
+  }
+}
+
+.text {
+  align-items: baseline;
+  color: #202a43;
+  display: flex;
+  font-size: 12px;
+  font-weight: 590;
+  margin-top: 20px;
+  white-space: nowrap;
+}
+
+.feature {
+  display: flex;
+  margin-top: 20px;
+}
+
+.planImg {
+  display: flex;
+  margin-top: 20px;
+
+  @include down-laptop {
+    margin-top: 16px;
+  }
+}

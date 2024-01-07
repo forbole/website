@@ -41,9 +41,10 @@ body .wrapper {
   gap: 3px;
   justify-content: center;
   margin-left: spacing(2);
-  text-decoration: none;
+  text-decoration: none !important;
 
   span {
     line-height: 18px;
+    text-decoration: none;
   }
 }

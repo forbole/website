@@ -1,5 +1,4 @@
 import {
-  Box,
   Modal,
   Stack,
   Typography,
@@ -10,6 +9,7 @@ import Image from "next/legacy/image";
 import { forwardRef } from "react";
 
 import { Close } from "../icons";
+import * as styles from "./index.module.scss";
 
 type Props = {
   bottom_word?: string;
@@ -99,18 +99,7 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
             />
           )}
         </Stack>
-        <Box
-          sx={{
-            borderRadius: "24px",
-            boxShadow:
-              "0px 10px 32px -4px rgba(96, 60, 238, 0.10), 0px 6px 14px -6px rgba(96, 60, 238, 0.28)",
-            display: "flex",
-            overflow: "hidden",
-            [theme.breakpoints.down("laptop")]: {
-              borderRadius: "16px",
-            },
-          }}
-        >
+        <div className={styles.image}>
           {matches ? (
             <Image
               alt=""
@@ -124,7 +113,7 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
               src={require("/public/home/Success@2x.png")}
             />
           )}
-        </Box>
+        </div>
         {bottom_word && (
           <Typography
             sx={{

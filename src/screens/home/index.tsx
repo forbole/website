@@ -1,11 +1,11 @@
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import { Container, Grid, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useTranslation from "next-translate/useTranslation";
 import type { FC } from "react";
 import { useRef } from "react";
 
-import IntroPanel from "@src/components/Intro_panel";
 import IntroCard from "@src/components/intro_card";
+import IntroPanel from "@src/components/intro_panel";
 import Layout from "@src/components/layout";
 import ScrollToBottom from "@src/components/scroll_to_bottom";
 import ScrollToTop from "@src/components/scroll_to_top";
@@ -30,7 +30,7 @@ const Home: FC<Props> = ({ pages }) => {
   const theme = useTheme();
   const topRef = useRef(null);
   const bottomRef = useRef(null);
-  const { isMobile, isTablet } = useWindowDimensions();
+  const { isMobile } = useWindowDimensions();
 
   const filteredPages = pages.reduce((pageList: Page[], current) => {
     // filter out forbole academy page
@@ -52,23 +52,18 @@ const Home: FC<Props> = ({ pages }) => {
       redBgFooter
       title={t("coBuildingInterchain")}
     >
-      <Box ref={topRef}>
+      <div ref={topRef}>
         <Container className={styles.container} disableGutters>
           <Stack className={styles.stack}>
-            <Typography className={styles.topTitle}>
-              {t("coBuildingInterchain")}
-            </Typography>
+            <h1 className={styles.topTitle}>{t("coBuildingInterchain")}</h1>
             <ScrollToBottom bottomRef={bottomRef} />
             <FilterBG />
           </Stack>
         </Container>
-        <Container
-          className={styles.containerTitle}
-          maxWidth={isTablet ? "tablet" : "desktop"}
-          ref={bottomRef}
-        >
-          <Typography className={styles.title}>{t("title")}</Typography>
+        <div className={styles.containerTitle} ref={bottomRef}>
+          <h2 className={styles.title}>{t("title")}</h2>
           <Grid
+            className={styles.grid}
             columnSpacing={{ laptop: theme.spacing(2), mobile: "0" }}
             container
             rowSpacing={{ laptop: theme.spacing(3), mobile: theme.spacing(2) }}
@@ -144,11 +139,9 @@ const Home: FC<Props> = ({ pages }) => {
               />
             </Grid>
           </Grid>
-          <Typography className={styles.whatIsNew}>
-            {t("What_is_New?")}
-          </Typography>
+          <h2 className={styles.whatIsNew}>{t("What_is_New?")}</h2>
           <Grid
-            className={styles.introCard}
+            className={[styles.introCard, styles.grid].join(" ")}
             container
             spacing={theme.spacing(2)}
           >
@@ -167,11 +160,11 @@ const Home: FC<Props> = ({ pages }) => {
               ),
             )}
           </Grid>
-          <Box className={styles.scrollTop}>
+          <div className={styles.scrollTop}>
             <ScrollToTop topRef={topRef} />
-          </Box>
-        </Container>
-      </Box>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

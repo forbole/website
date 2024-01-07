@@ -1,6 +1,5 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import dynamic from "next/dynamic";
 import { useMemo, useRef, useState } from "react";
 
 import CtaButton, { CtaLink } from "@src/components/cta-button";
@@ -12,10 +11,6 @@ import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import { scrollBottom } from "@src/utils/scroll";
 
 import * as styles from "./index.module.scss";
-
-const Trans = dynamic(async () => import("next-translate/Trans"), {
-  ssr: false,
-});
 
 const Products = () => {
   const { t } = useTranslation("products");
@@ -139,28 +134,25 @@ const Products = () => {
 
   return (
     <Layout description={t("desc")} footer title={t("product")}>
-      <Container maxWidth="desktop" ref={topRef}>
+      <div className={styles.container} ref={topRef}>
         <HeaderCard
           desc_1st={t("desc")}
           desc_2nd={t("customized")}
           head_bgs={["/products/head_bg_m@2x.png", "/products/head_bg@2x.png"]}
           title={t("product")}
         />
-        <Stack className={styles.why}>
-          <Typography className={styles.whyText}>{t("why")}</Typography>
+        <div className={styles.why}>
+          <span className={styles.whyText}>{t("why")}</span>
           <Trans
             components={[
-              <Typography className={styles.tr0} key="0" variant="h2" />,
-              <Typography className={styles.tr1} component="span" key="1" />,
+              // eslint-disable-next-line
+              <h2 className={styles.tr0} key="0" />,
+              <span className={styles.tr1} key="1" />,
             ]}
             i18nKey="bridging"
             ns="products"
           />
-          <Stack
-            direction="row"
-            justifyContent="center"
-            spacing={{ desktop: 2, mobile: 1 }}
-          >
+          <div className={styles.responseWrap}>
             <CtaButton
               className={styles.response}
               onClick={(e) => scrollToRef(e, individualsRef)}
@@ -175,25 +167,22 @@ const Products = () => {
               <img alt="" className={styles.icon} src="/products/p2.svg" />
               {t("for-businesses")}
             </CtaButton>
-          </Stack>
-        </Stack>
-        <Stack className={styles.individuals}>
-          <Typography className={styles.individualsTitle} ref={individualsRef}>
+          </div>
+        </div>
+        <div className={styles.individuals}>
+          <span className={styles.individualsTitle} ref={individualsRef}>
             {t("for-individuals")}
-          </Typography>
+          </span>
           <Trans
             components={[
-              <Typography className={styles.tr2} key="0" variant="h2" />,
-              <Typography className={styles.tr3} component="span" key="1" />,
+              // eslint-disable-next-line
+              <h2 className={styles.tr2} key="0" />,
+              <span className={styles.tr3} key="1" />,
             ]}
             i18nKey="safe-path"
             ns="products"
           />
-          <Stack
-            className={styles.individualsStack}
-            direction="column"
-            spacing={{ desktop: 2, mobile: 1 }}
-          >
+          <div className={styles.individualsStack}>
             <StyledTabs
               aria-label="basic tabs example"
               className={styles.notMobile}
@@ -219,7 +208,7 @@ const Products = () => {
                 label={t("developer")}
               />
             </StyledTabs>
-            <Box className={styles.mobileOnly}>
+            <div className={styles.mobileOnly}>
               <CtaButton
                 className={styles.response36}
                 onClick={(e) => {
@@ -250,8 +239,8 @@ const Products = () => {
                 <img alt="" className={styles.icon} src="/products/p5.svg" />
                 {t("developer")}
               </CtaButton>
-            </Box>
-          </Stack>
+            </div>
+          </div>
           {individuals.map((item, index) => (
             <ProductPanel
               imageHrefs={[item.imageHref_m, item.imageHref]}
@@ -261,48 +250,41 @@ const Products = () => {
               title={item.title}
               value={v1}
             >
-              <Stack className={styles.dl} component="dl">
-                <Typography className={styles.dt} component="dt">
-                  {t("benefits")}
-                </Typography>
+              <dl className={styles.dl}>
+                <dt className={styles.dt}>{t("benefits")}</dt>
                 {item.benefits.map((i, k) => (
-                  <Typography className={styles.dd} component="dd" key={k}>
+                  <dd className={styles.dd} key={k}>
                     {i}
-                  </Typography>
+                  </dd>
                 ))}
-              </Stack>
-              <Stack className={styles.dl} component="dl">
-                <Typography className={styles.dt} component="dt">
-                  {t("usecases")}
-                </Typography>
+              </dl>
+              <dl className={styles.dl}>
+                <dt className={styles.dt}>{t("usecases")}</dt>
                 {item.usecases.map((i, k) => (
-                  <Typography className={styles.dd} component="dl" key={k}>
+                  <dl className={styles.dd} key={k}>
                     {i}
-                  </Typography>
+                  </dl>
                 ))}
-              </Stack>
+              </dl>
               <CtaLink href={item.btnHref}>{item.btnName}</CtaLink>
             </ProductPanel>
           ))}
-        </Stack>
-        <Stack className={styles.businesses}>
-          <Typography className={styles.businessesTitle} ref={businessesRef}>
+        </div>
+        <div className={styles.businesses}>
+          <span className={styles.businessesTitle} ref={businessesRef}>
             {t("for-businesses")}
-          </Typography>
+          </span>
           <Trans
             components={[
-              <Typography className={styles.tr4} key="0" variant="h2" />,
-              <Typography className={styles.tr5} component="span" key="1" />,
+              // eslint-disable-next-line
+              <h2 className={styles.tr4} key="0" />,
+              <span className={styles.tr5} key="1" />,
             ]}
             i18nKey="trusted"
             ns="products"
           />
 
-          <Stack
-            className={styles.businessesStack}
-            direction="column"
-            spacing={{ desktop: 2, mobile: 1 }}
-          >
+          <div className={styles.businessesStack}>
             <StyledTabs
               className={styles.notMobile}
               onChange={handleChange2}
@@ -350,7 +332,7 @@ const Products = () => {
                 label={t("enterprise-solution")}
               />
             </StyledTabs>
-            <Box className={styles.mobileOnly}>
+            <div className={styles.mobileOnly}>
               <CtaButton
                 className={styles.response}
                 onClick={(e) => {
@@ -381,7 +363,7 @@ const Products = () => {
                 <img alt="" className={styles.icon} src="/products/p4.svg" />
                 {t("analytics")}
               </CtaButton>
-              <Stack direction="row" spacing={1}>
+              <div className={styles.enterpriseStack}>
                 <CtaButton
                   className={styles.response}
                   onClick={(e) => {
@@ -402,9 +384,9 @@ const Products = () => {
                   <img alt="" className={styles.icon} src="/products/p7.svg" />
                   {t("enterprise-solution")}
                 </CtaButton>
-              </Stack>
-            </Box>
-          </Stack>
+              </div>
+            </div>
+          </div>
           {businesses.map((item, index) => (
             <ProductPanel
               imageHrefs={[item.imageHref_m, item.imageHref]}
@@ -414,32 +396,28 @@ const Products = () => {
               title={item.title}
               value={v2}
             >
-              <Stack className={styles.dl} component="dl">
-                <Typography className={styles.dt} component="dt">
-                  {t("benefits")}
-                </Typography>
+              <dl className={styles.dl}>
+                <dt className={styles.dt}>{t("benefits")}</dt>
                 {item.benefits.map((i, k) => (
-                  <Typography className={styles.dd} component="dd" key={k}>
+                  <dd className={styles.dd} key={k}>
                     {i}
-                  </Typography>
+                  </dd>
                 ))}
-              </Stack>
-              <Stack className={styles.dl} component="dl">
-                <Typography className={styles.dt} component="dt">
-                  {t("usecases")}
-                </Typography>
+              </dl>
+              <dl className={styles.dl}>
+                <dt className={styles.dt}>{t("usecases")}</dt>
                 {item.usecases.map((i, k) => (
-                  <Typography className={styles.dd} component="dd" key={k}>
+                  <dd className={styles.dd} key={k}>
                     {i}
-                  </Typography>
+                  </dd>
                 ))}
-              </Stack>
+              </dl>
               <CtaLink href={item.btnHref}>{item.btnName}</CtaLink>
             </ProductPanel>
           ))}
-        </Stack>
+        </div>
         <ScrollToTop topRef={topRef} />
-      </Container>
+      </div>
     </Layout>
   );
 };

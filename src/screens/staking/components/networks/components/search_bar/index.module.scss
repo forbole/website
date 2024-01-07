@@ -1,0 +1,66 @@
+@import "src/styles/sass.scss";
+
+body .root {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+
+  :global(.MuiAutocomplete-inputRoot) {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: spacing(3);
+    box-shadow:
+      0 6px 14px -6px rgb(2 38 225 / 12%),
+      0 10px 32px -4px rgb(2 38 225 / 10%);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    :global(.MuiInputBase-root) {
+      backdrop-filter: blur(4px);
+      // stylelint-disable-next-line
+      -webkit-backdrop-filter: blur(4px);
+      background: #fff;
+      border: 1px solid rgba(219, 219, 219, 0.2) !important;
+      mix-blend-mode: normal;
+      padding: spacing(0.5) spacing(2.25) spacing(0.5) spacing(2.25) !important;
+    }
+
+    @include up-tablet {
+      float: right;
+      min-width: spacing(36.375);
+      width: spacing(36.375);
+    }
+  }
+
+  :global(.searchbox__cancel-btn) {
+    color: $color-forbole-indigo6;
+    display: none;
+  }
+
+  :global(.searchbox__focused) {
+    @include down-tablet {
+      :global(.searchbox__cancel-btn) {
+        display: inline-flex;
+      }
+
+      align-items: center;
+      background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+
+      // stylelint-disable-next-line
+      background-filter: blur(16px);
+      display: flex;
+      gap: spacing(2);
+      height: spacing(8);
+      left: 0;
+      padding: spacing(0) spacing(2) spacing(0) spacing(4);
+      position: fixed !important;
+      right: 0;
+      top: 0;
+      z-index: 10;
+    }
+
+    @include down-tablet {
+      width: 100%;
+    }
+  }
+}

@@ -2,6 +2,8 @@
 
 .tr0 {
   color: $color-forbole-indigo6;
+  display: block;
+  text-align: center;
 }
 
 .tr1 {
@@ -17,9 +19,12 @@
 }
 
 .stakingDesc {
+  align-items: center;
   color: $color-forbole-blue;
+  display: flex;
   font-size: spacing(2);
   font-weight: 400;
+  justify-content: center;
   padding: spacing(3) 0 spacing(3) 0;
   text-align: center;
   text-shadow:
@@ -35,4 +40,9 @@
 .grid {
   display: flex;
   flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
 }

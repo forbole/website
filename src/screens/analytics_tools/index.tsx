@@ -2,10 +2,10 @@ import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useMemo, useRef } from "react";
 
-import IntroPanel from "@src/components/Intro_panel";
 import CardSwiper from "@src/components/cardSwiper";
 import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
+import IntroPanel from "@src/components/intro_panel";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";

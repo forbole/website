@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { LayoutGroup } from "framer-motion";
 import { useState } from "react";
 
@@ -7,7 +6,7 @@ import type { Network } from "@src/utils/network_info";
 
 import NetworkCard from "./components/network_card";
 import type { NetworkProps } from "./config";
-import useStyles from "./useStyles";
+import * as styles from "./index.module.scss";
 
 type Props = {
   allNetworkInfo: NetworkProps;
@@ -15,27 +14,24 @@ type Props = {
 };
 
 const NetworkGrid = ({ allNetworkInfo, sortedNetworks }: Props) => {
-  const styles = useStyles();
   const [showMobilePopover, setShowMobilePopover] = useState("");
 
   return (
-    <Box css={styles.root}>
-      <Box className="home__networks">
-        <NoSSR>
-          <LayoutGroup>
-            {sortedNetworks.map((network, index) => (
-              <NetworkCard
-                key={network.name ?? index}
-                network={network}
-                networkSummary={allNetworkInfo[network.graphql]}
-                setShowMobilePopover={setShowMobilePopover}
-                showMobilePopover={showMobilePopover}
-              />
-            ))}
-          </LayoutGroup>
-        </NoSSR>
-      </Box>
-    </Box>
+    <div className={styles.root}>
+      <NoSSR>
+        <LayoutGroup>
+          {sortedNetworks.map((network, index) => (
+            <NetworkCard
+              key={network.name ?? index}
+              network={network}
+              networkSummary={allNetworkInfo[network.graphql]}
+              setShowMobilePopover={setShowMobilePopover}
+              showMobilePopover={showMobilePopover}
+            />
+          ))}
+        </LayoutGroup>
+      </NoSSR>
+    </div>
   );
 };
 

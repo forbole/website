@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
 import { forwardRef } from "react";
 
 import * as styles from "./index.module.scss";
@@ -25,25 +25,7 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
     }
 
     return (
-      <Box
-        component="div"
-        ref={ref}
-        sx={{
-          background:
-            "linear-gradient(179deg, #FFF 0%, rgba(255, 255, 255, 0.50) 34.90%, #FFF 100%)",
-          borderRadius: "40px",
-          boxShadow: "4px 8px 24px 0px rgba(116, 81, 255, 0.16)",
-          display: "flex",
-          flexDirection: "column",
-          gap: "40px",
-          [theme.breakpoints.down("laptop")]: {
-            padding: "32px 24px",
-          },
-          [theme.breakpoints.up("laptop")]: {
-            padding: "64px",
-          },
-        }}
-      >
+      <div className={styles.wrapper} ref={ref}>
         {title && (
           <Typography
             sx={{
@@ -67,28 +49,7 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
             },
           }}
         >
-          <Box
-            sx={{
-              "& img": {
-                display: "block",
-                width: "100%",
-              },
-              "borderRadius": "8px",
-              "boxShadow":
-                "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
-              "height": "max-content",
-              "m": "16px",
-              "overflow": "hidden",
-              "position": "relative",
-              [theme.breakpoints.down("tablet")]: {
-                boxShadow: imgFull ? "0" : "",
-                m: "8px",
-                mx: imgFull ? "-24px" : "",
-                width: "auto",
-              },
-              "width": "420px",
-            }}
-          >
+          <div className={styles.imgWrapper}>
             {imageHrefs ? (
               <>
                 <img
@@ -107,7 +68,7 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
             ) : (
               <img alt="" loading="lazy" src={imageHref} />
             )}
-          </Box>
+          </div>
           <Stack
             sx={{
               alignItems: "flex-start",
@@ -118,7 +79,7 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
             {children}
           </Stack>
         </Stack>
-      </Box>
+      </div>
     );
   },
 );

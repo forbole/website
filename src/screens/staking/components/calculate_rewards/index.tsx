@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
@@ -12,27 +12,12 @@ const CalculateRewards = () => {
   const theme = useTheme();
 
   return (
-    <Box display="flex" justifyContent="center">
-      <Box className={styles.wrapper} id="calculate-rewards">
+    <div className={styles.wrapperTop}>
+      <div className={styles.wrapper} id="calculate-rewards">
         <Trans
           components={[
-            <Box
-              className="h3"
-              key="0"
-              sx={{
-                color: theme.palette.custom.forbole.indigo6,
-              }}
-            />,
-            <Box
-              className="h3"
-              key="1"
-              sx={{
-                background:
-                  "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                backgroundClip: "text",
-                textFillColor: "transparent",
-              }}
-            />,
+            <div className={["h3", styles.tr0].join(" ")} key="0" />,
+            <div className={["h3", styles.tr1].join(" ")} key="1" />,
           ]}
           i18nKey="calculate rewards title"
           ns="staking"
@@ -57,8 +42,8 @@ const CalculateRewards = () => {
           {t("calculate rewards desc")}
         </Typography>
         <Calculator />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

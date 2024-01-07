@@ -1,4 +1,3 @@
-import { Box, Container, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useRef } from "react";
 
@@ -6,7 +5,7 @@ import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 
 import * as styles from "./index.module.scss";
-import { TNCCSS } from "./styles";
+import * as tcStyles from "./styles.module.scss";
 
 const TermsAndConditions = () => {
   const { t } = useTranslation("terms_and_conditions");
@@ -44,22 +43,16 @@ const TermsAndConditions = () => {
 
   return (
     <Layout footer title={t("title")}>
-      <Container maxWidth="desktop">
-        <Box className={styles.top} ref={topRef}>
-          <Box>
-            <Typography className={styles.laptopTitle} variant="h1">
-              {t("title")}
-            </Typography>
-          </Box>
-          <Box className={styles.tcnTop}>
-            <TNCCSS>
-              <Box className={styles.tcn}>
-                <Typography className={styles.mobileTitle} variant="h1">
-                  {t("title")}
-                </Typography>
-                <Typography className={styles.tcnDate} variant="body1">
-                  {t("updatedDate")}
-                </Typography>
+      <div className={styles.wrapper}>
+        <div className={styles.top} ref={topRef}>
+          <div>
+            <h1 className={styles.laptopTitle}>{t("title")}</h1>
+          </div>
+          <div className={styles.tcnTop}>
+            <div className={tcStyles.wrapper}>
+              <div className={styles.tcn}>
+                <h1 className={styles.mobileTitle}>{t("title")}</h1>
+                <span className={styles.tcnDate}>{t("updatedDate")}</span>
                 <p>
                   The following terms and conditions govern your access to and
                   use of Forbole website(s), application(s), content and
@@ -1363,12 +1356,12 @@ const TermsAndConditions = () => {
                   or otherwise.
                 </p>
                 <p className={styles.desc}>{t("desc")}</p>
-              </Box>
-            </TNCCSS>
-          </Box>
-        </Box>
-      </Container>
-      <Box className={styles.footer} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.footer} />
       <ScrollToTop topRef={topRef} />
     </Layout>
   );

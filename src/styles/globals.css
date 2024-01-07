@@ -1,12 +1,12 @@
 html {
-  font-size: 16px;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow-x: hidden;
   line-height: normal;
+  overflow-x: hidden;
 }
 
 * {
@@ -15,8 +15,8 @@ body {
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -24,13 +24,15 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-transition:
+  transition:
     color 11111s ease-out,
     background-color 111111s ease-out !important;
 }
+
 [class*="-prev"] > svg {
   transform: rotate(90deg);
 }
+
 [class*="-next"] > svg {
   transform: rotate(-90deg);
 }

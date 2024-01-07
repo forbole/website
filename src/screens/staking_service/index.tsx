@@ -2,14 +2,14 @@ import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRef } from "react";
 
-import IntroPanel from "@src/components/Intro_panel";
 import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import { Horse } from "@src/components/icons";
-import KeyData from "@src/components/key_data";
+import IntroPanel from "@src/components/intro_panel";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
+import Stats from "@src/components/stats";
 import GQLProvider from "@src/utils/gql";
 
 import * as styles from "./index.module.scss";
@@ -41,7 +41,7 @@ const StakingService = () => {
             title={t("title")}
           />
 
-          <KeyData />
+          <Stats red />
 
           <Stack className={styles.topStack}>
             <Section

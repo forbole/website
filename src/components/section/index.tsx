@@ -26,16 +26,8 @@ const Section = ({
   title_large_trans,
 }: Props) => (
   <Stack className={styles.wrapper} {...(maxWidth && { style: { maxWidth } })}>
-    {title && (
-      <Typography className={styles.title} variant="h2">
-        {title}
-      </Typography>
-    )}
-    {title_large && (
-      <Typography className={styles.titleLarge} variant="h2">
-        {title_large}
-      </Typography>
-    )}
+    {title && <h2 className={styles.title}>{title}</h2>}
+    {title_large && <h2 className={styles.titleLarge}>{title_large}</h2>}
 
     {title_large_trans && (
       <Translate
@@ -47,11 +39,7 @@ const Section = ({
       />
     )}
 
-    {desc && (
-      <Typography className={styles.desc} variant="h3">
-        {desc}
-      </Typography>
-    )}
+    {desc && <h3 className={styles.desc}>{desc}</h3>}
   </Stack>
 );
 

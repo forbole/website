@@ -83,15 +83,21 @@ $card-desc-shadow:
   display: flex;
   flex-direction: column;
   gap: 184px;
+  margin: 0 auto;
+  max-width: $breakpoint-desktop;
 
   @include down-laptop {
     gap: 40px;
+    max-width: 100%;
+    padding: 0 12px;
   }
 }
 
 .sectionStack {
   align-items: center;
   color: #202a43;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
   justify-content: center;
   margin: 0 auto;
@@ -138,6 +144,7 @@ $card-desc-shadow:
   background: $top-stack-background;
   border-radius: 24px;
   color: #202a43;
+  gap: spacing(3);
   overflow: hidden;
   padding: 40px 0;
 
@@ -155,6 +162,11 @@ $card-desc-shadow:
 
 .topStackInner {
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: spacing(3);
+  justify-content: center;
+  margin: 0 auto;
   max-width: 1000px;
   padding: 0 24px;
   text-align: center;

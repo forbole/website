@@ -81,3 +81,12 @@ $top-box-shadow:
 .desc {
   text-align: right;
 }
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+
+  @include down-tablet {
+    padding: 0 16px;
+  }
+}
