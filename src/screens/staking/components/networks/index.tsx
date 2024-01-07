@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 
@@ -45,31 +44,29 @@ const Networks = () => {
   );
 
   return (
-    <Box display="flex" justifyContent="center">
-      <Box className={commonStyles.stakingContent}>
-        <Typography className={commonStyles.stakingTitle} variant="h4">
-          {t("stake with Forbole")}
-        </Typography>
+    <div className={styles.wrapper}>
+      <div className={commonStyles.stakingContent}>
+        <h4 className={commonStyles.stakingTitle}>{t("stake with Forbole")}</h4>
         <Trans
           components={[
-            <Box className={["h3", styles.tr0].join(" ")} key="0" />,
-            <Box className={["h3", styles.tr1].join(" ")} key="1" />,
+            <span className={["h3", styles.tr0].join(" ")} key="0" />,
+            <span className={["h3", styles.tr1].join(" ")} key="1" />,
           ]}
           i18nKey="stake with Forbole title"
           ns="staking"
         />
-        <Typography className={styles.stakingDesc} variant="body1">
+        <span className={styles.stakingDesc}>
           {t("stake with Forbole desc")}
-        </Typography>
-        <Box className={styles.grid}>
+        </span>
+        <div className={styles.grid}>
           <SearchBar sortedNetworks={sortedNetworks} />
           <NetworkGrid
             allNetworkInfo={allNetworkInfo}
             sortedNetworks={sortedNetworks}
           />
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

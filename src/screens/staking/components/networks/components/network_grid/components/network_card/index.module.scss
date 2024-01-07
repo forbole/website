@@ -19,7 +19,7 @@ $image-box-shadow:
   align-items: center;
   border-radius: spacing(1.5);
   color: $color-forbole-indigo6;
-  display: none;
+  display: flex;
   flex-flow: row wrap;
   font-size: spacing(2);
   gap: spacing(0.5);
@@ -38,13 +38,8 @@ $image-box-shadow:
   }
 
   @include down-laptop {
-    display: flex;
     gap: spacing(3);
     position: static;
-
-    @include up-tablet {
-      display: none;
-    }
 
     &:hover {
       background-color: $color-primary-light;
@@ -128,6 +123,7 @@ $image-box-shadow:
   align-items: center;
   display: block;
   flex-flow: row nowrap;
+  font-size: 20px;
   font-weight: 600;
   gap: spacing(1);
   justify-content: center;
@@ -242,6 +238,7 @@ $image-box-shadow:
 .value {
   display: flex;
   flex-flow: column nowrap;
+  font-size: 16px;
   gap: spacing(1);
   justify-content: space-between;
   text-align: right;

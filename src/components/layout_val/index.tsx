@@ -1,4 +1,3 @@
-import { Box, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -9,6 +8,7 @@ import isURL from "validator/lib/isURL";
 import Footer from "../footer";
 import GuideNav from "../guide_nav";
 import Nav from "../nav";
+import * as styles from "./index.module.scss";
 
 type Props = {
   canonical?: string;
@@ -37,7 +37,6 @@ const LayoutVal = ({
   twitterImage,
   type = "website",
 }: Props) => {
-  const theme = useTheme();
   const router = useRouter();
   const { t } = useTranslation("staking");
   const currentPath = router.asPath === "/" ? "/" : `${router.asPath}`;
@@ -58,7 +57,7 @@ const LayoutVal = ({
   }
 
   return (
-    <Box position="relative">
+    <div className={styles.wrapper}>
       <Head>
         <title>{title}</title>
         {!!(url === "https://staging.forbole.com") && (
@@ -119,29 +118,16 @@ const LayoutVal = ({
         <link href={`${url}/icons/manifest.json`} rel="manifest" />
         {canonical && <link href={canonical} rel="canonical" />}
       </Head>
-      <Box
-        sx={{
+      <div
+        style={{
           background: "transparent",
         }}
       >
-        <Box
-          sx={{
-            background: stakingGuide
-              ? "url(/images/assets/image_BG_FVH_guide.png)"
-              : "url(/images/assets/bg_mobile.webp)",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
-            [theme.breakpoints.up("laptop")]: {
-              background: stakingGuide
-                ? "url(/images/assets/image_BG_FVH_guide.png)"
-                : "url(/images/assets/bg_laptop.webp)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-            },
-          }}
+        <div
+          className={[
+            styles.content,
+            stakingGuide ? styles.stakingGuide : "",
+          ].join(" ")}
         >
           {stakingGuide ? (
             <GuideNav staking />
@@ -151,9 +137,9 @@ const LayoutVal = ({
 
           {children}
           {!!footer && <Footer staking />}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

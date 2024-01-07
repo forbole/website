@@ -1,0 +1,62 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  padding: 0 24px;
+
+  :global(.email) {
+    list-style: none;
+  }
+
+  :global(.li) {
+    padding-left: 60px;
+  }
+
+  h1 {
+    font-size: 20px;
+    padding-bottom: 24px;
+    padding-top: 8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    padding-bottom: 16px;
+  }
+
+  h3 {
+    font-size: 16px;
+    padding: 16px 0;
+  }
+
+  p {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  li {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  a {
+    color: #000;
+  }
+
+  :global(.t1) {
+    display: inline-block;
+    float: left;
+    width: 60px;
+  }
+
+  :global(.t2) {
+    display: inline-block;
+    float: left;
+    width: 60px;
+  }
+
+  @include up-laptop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+}

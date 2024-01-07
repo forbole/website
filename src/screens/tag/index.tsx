@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
 import Layout from "@src/components/layout";
@@ -25,15 +24,15 @@ const TagTitlePosts = ({ error, meta, post, sidePosts = [], tags }: any) => {
       noIndex={Number(currentPage) !== 1}
       title={t("title")}
     >
-      <Box className={styles.flex}>
-        <Box className={styles.wrapper}>
+      <div className={styles.flex}>
+        <div className={styles.wrapper}>
           <TagPosts blogs={post.slice(1)} main={post[0]} meta={meta} />
-          <Box className={styles.side}>
+          <div className={styles.side}>
             <TitlePosts posts={sidePosts} />
             <Tags tags={tags} />
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

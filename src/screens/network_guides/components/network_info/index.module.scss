@@ -1,5 +1,9 @@
 @import "src/styles/sass.scss";
 
+$card-shadow:
+  0 8px 22px -6px rgba(2, 38, 225, 0.12),
+  0 14px 64px -4px rgba(2, 38, 225, 0.12);
+
 .wrapper {
   align-items: center;
   display: flex;
@@ -59,25 +63,6 @@
   padding-bottom: spacing(1);
 }
 
-.stakeButton {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  border-radius: spacing(3);
-  box-shadow: none;
-  color: $color-primary-light;
-  display: none;
-  font-weight: 600;
-  height: 32px;
-  line-height: 17px;
-  padding: 0;
-  width: 97px;
-
-  @include up-laptop {
-    display: inline-flex;
-    height: 45px;
-    width: 111px;
-  }
-}
-
 .contentBox {
   align-items: center;
   display: flex;
@@ -88,10 +73,6 @@
     justify-content: space-between;
   }
 }
-
-$card-shadow:
-  0 8px 22px -6px rgba(2, 38, 225, 0.12),
-  0 14px 64px -4px rgba(2, 38, 225, 0.12);
 
 .card {
   background: $color-primary-light;
@@ -160,4 +141,18 @@ $card-shadow:
     height: 90px;
     width: 90px;
   }
+}
+
+.containerName {
+  padding-left: spacing(2);
+
+  @include down-laptop {
+    padding-left: spacing(1);
+  }
+}
+
+.addressWrapper {
+  color: #ba6600;
+  font-size: 14px;
+  font-weight: 700;
 }

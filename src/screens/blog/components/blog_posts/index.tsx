@@ -1,4 +1,4 @@
-import { Box, Button, Pagination, useTheme } from "@mui/material";
+import { Pagination, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { pathOr } from "ramda";
@@ -111,8 +111,8 @@ const BlogPosts = ({ blogs: blogsUpper, main, meta }: IProps) => {
   const { handlePageChange } = useBlogPostsHook();
 
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.posts}>
+    <div className={styles.wrapper}>
+      <div className={styles.posts}>
         {!!main && <Post main post={main} />}
         {blogsUpper.map((post, i) => (
           <Post
@@ -122,7 +122,7 @@ const BlogPosts = ({ blogs: blogsUpper, main, meta }: IProps) => {
             refProp={i === lastView ? postRef : null}
           />
         ))}
-      </Box>
+      </div>
       {width >= responsive.mobile.breakpoint.max ? (
         <Pagination
           count={totalPages}
@@ -134,17 +134,16 @@ const BlogPosts = ({ blogs: blogsUpper, main, meta }: IProps) => {
           {...paginationStyle}
         />
       ) : (
-        <Button
+        <button
           className={styles.seeMore}
           onClick={(e) =>
             seeMorePages(e, { blogs: blogsUpper, limit: limitUpper })
           }
-          variant="text"
         >
           {t("see more")}
-        </Button>
+        </button>
       )}
-    </Box>
+    </div>
   );
 };
 

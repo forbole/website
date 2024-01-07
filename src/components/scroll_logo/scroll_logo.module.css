@@ -2,30 +2,37 @@
   0% {
     transform: translateX(-10vw);
   }
+
   100% {
     transform: translateX(calc(-100% + 100vw));
   }
 }
+
 @keyframes horizontalMove1 {
   0% {
     transform: translateX(calc(-100% + 200vw));
   }
+
   100% {
     transform: translateX(0);
   }
 }
+
 @keyframes horizontalMove2 {
   0% {
     transform: translateX(-10vw);
   }
+
   100% {
     transform: translateX(calc(-100% + 100vw));
   }
 }
+
 @keyframes horizontalMove3 {
   0% {
     transform: translateX(calc(-100% + 200vw));
   }
+
   100% {
     transform: translateX(0);
   }
@@ -44,12 +51,15 @@
 .left0 {
   animation-name: horizontalMove0;
 }
+
 .left1 {
   animation-name: horizontalMove1;
 }
+
 .left2 {
   animation-name: horizontalMove2;
 }
+
 .left3 {
   animation-name: horizontalMove3;
 }

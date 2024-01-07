@@ -1,12 +1,13 @@
-import { Box, Stack, useTheme } from "@mui/material";
+import { Stack, useTheme } from "@mui/material";
 import Image from "next/legacy/image";
 import type { CSSProperties } from "react";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
-import Arraw, { Direction } from "../arrow";
+import Arrow, { Direction } from "../arrow";
 import { BoxCSS } from "./BoxCSS";
+import * as styles from "./index.module.scss";
 
 SwiperCore.use([Navigation]);
 
@@ -21,7 +22,7 @@ const CardSwiper = ({ className, imagesList, style }: Props) => {
 
   return (
     <BoxCSS>
-      <Box position="relative">
+      <div className={styles.wrapper}>
         <Swiper
           breakpoints={{
             1025: {
@@ -62,27 +63,15 @@ const CardSwiper = ({ className, imagesList, style }: Props) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <Arraw
-          className="c-next"
+        <Arrow
+          className={["c-next", styles.next].join(" ")}
           direction={Direction.Right}
-          sx={{
-            position: "absolute",
-            right: "5px",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
         />
-        <Arraw
-          className="c-prev"
+        <Arrow
+          className={["c-prev", styles.prev].join(" ")}
           direction={Direction.Left}
-          sx={{
-            left: "5px",
-            position: "absolute",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
         />
-      </Box>
+      </div>
     </BoxCSS>
   );
 };

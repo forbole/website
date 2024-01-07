@@ -1,0 +1,26 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  position: relative;
+}
+
+.content {
+  background-image: url("/images/assets/bg_mobile.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &.stakingGuide {
+    background-image: url("/images/assets/image_BG_FVH_guide.png");
+  }
+
+  @include up-laptop {
+    background-image: url("/images/assets/bg_laptop.webp");
+
+    &.stakingGuide {
+      background-image: url("/images/assets/image_BG_FVH_guide.png");
+    }
+  }
+}

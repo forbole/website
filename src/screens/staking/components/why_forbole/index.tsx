@@ -1,4 +1,3 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import Image from "next/legacy/image";
@@ -32,50 +31,41 @@ const WhyForbole = () => {
     [t],
   );
 
-  const theme = useTheme();
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"));
-
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.container}>
-        <Box className={styles.inner}>
-          <Box className={styles.content}>
-            <Typography className={styles.whyForbole} variant="body1">
-              {t("why forbole?")}
-            </Typography>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <div className={styles.inner}>
+          <div className={styles.content}>
+            <span className={styles.whyForbole}>{t("why forbole?")}</span>
             <Trans
               components={[
-                <Box className={styles.tr0} key="0" />,
-                <Box className={styles.tr1} key="1" />,
+                <span className={styles.tr0} key="0" />,
+                <span className={styles.tr1} key="1" />,
               ]}
               i18nKey="why forbole title"
               ns="staking"
             />
             {reasons.map((reason, i) => (
-              <Box className={styles.reasonWrapper} key={i}>
+              <div className={styles.reasonWrapper} key={i}>
                 {reason?.image && (
                   <Image
                     alt=""
-                    height={onlyLargeScreen ? "370" : "260"}
+                    height="370"
                     objectFit="contain"
                     src={reason.image}
-                    width={onlyLargeScreen ? "314" : "220"}
+                    width="314"
                   />
                 )}
-                <Box className={styles.reasonContent}>
-                  <Typography className={styles.reasonTitle} variant="h4">
-                    {reason.title}
-                  </Typography>
-                  <Typography className={styles.reasonDesc} variant="body1">
-                    {reason.desc}
-                  </Typography>
-                </Box>
-              </Box>
+                <div className={styles.reasonContent}>
+                  <h4 className={styles.reasonTitle}>{reason.title}</h4>
+                  <span className={styles.reasonDesc}>{reason.desc}</span>
+                </div>
+              </div>
             ))}
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

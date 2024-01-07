@@ -1,0 +1,14 @@
+@import "src/styles/sass.scss";
+
+.imageWrap {
+  flex: 0 0 250px;
+  position: relative;
+
+  @include down-tablet {
+    flex: 0 0 220px;
+
+    &.noResponse {
+      flex: 0 0 250px;
+    }
+  }
+}

@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -19,7 +18,7 @@ const Guide = ({ post }: { post: PostDetail }) => {
   const coloredTitle = [titleArray[2], titleArray[3]].join(" ");
 
   return (
-    <Box className={styles.wrapper} data-test="staking-guide-info">
+    <div className={styles.wrapper} data-test="staking-guide-info">
       <Head>
         <script
           dangerouslySetInnerHTML={{
@@ -28,18 +27,20 @@ const Guide = ({ post }: { post: PostDetail }) => {
           type="application/ld+json"
         />
       </Head>
-      <Box className={commonStyles.stakingContent}>
-        <Typography className={commonStyles.stakingTitle}>
+      <div className={commonStyles.stakingContent}>
+        <span
+          className={[commonStyles.stakingTitle, styles.stakingTitle].join(" ")}
+        >
           {t("guideline")}
-        </Typography>
+        </span>
         <h1 className={["h3", styles.tr0].join(" ")}>
           {titleArray.slice(0, 2).join(" ")}{" "}
           <span className={["h3", styles.tr1].join(" ")}>{coloredTitle}</span>{" "}
           {titleArray.slice(4).join(" ")}
         </h1>
         <GuideDetails post={post} />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

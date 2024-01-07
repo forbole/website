@@ -1,13 +1,11 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
 
 import HowToCard from "./components/how_to_card";
-
-const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
+import * as styles from "./index.module.scss";
 
 const HowItWorks = () => {
   const { t } = useTranslation("staking");
@@ -42,50 +40,19 @@ const HowItWorks = () => {
     [t],
   );
 
-  const theme = useTheme();
-
   return (
-    <Box display="flex" justifyContent="center">
-      <Box className={commonStyles.stakingContent}>
-        <Typography className={commonStyles.stakingTitle} variant="h4">
-          {t("how it works")}
-        </Typography>
+    <div className={styles.wrapper}>
+      <div className={commonStyles.stakingContent}>
+        <h4 className={commonStyles.stakingTitle}>{t("how it works")}</h4>
         <Trans
           components={[
-            <Box
-              className="h3"
-              key="0"
-              sx={{
-                color: theme.palette.custom.forbole.indigo6,
-              }}
-            />,
-            <Box
-              className="h3"
-              key="1"
-              sx={{
-                background:
-                  "linear-gradient(286.17deg, #D431EE 0%, #FF426B 100%)",
-                backgroundClip: "text",
-                textFillColor: "transparent",
-              }}
-            />,
+            <div className={["h3", styles.h30].join(" ")} key="0" />,
+            <div className={["h3", styles.h31].join(" ")} key="1" />,
           ]}
           i18nKey="how it works title"
           ns="staking"
         />
-        <Box
-          sx={{
-            display: "grid",
-            gridGap: theme.spacing(2),
-            gridTemplateColumns: "repeat(1, 1fr)",
-            padding: theme.spacing(5, 0, 0, 0),
-            [theme.breakpoints.up("laptop")]: {
-              gridGap: theme.spacing(2.75),
-              gridTemplateColumns: "repeat(4, 1fr)",
-              padding: theme.spacing(7, 0, 0, 0),
-            },
-          }}
-        >
+        <div className={styles.grid}>
           {howTos.map((howTo) => (
             <HowToCard
               desc={howTo.desc}
@@ -95,9 +62,9 @@ const HowItWorks = () => {
               title={howTo.title}
             />
           ))}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

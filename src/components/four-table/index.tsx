@@ -1,4 +1,4 @@
-import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
+import { Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
 import CtaButton, { CtaLink } from "@src/components/cta-button";
@@ -31,27 +31,12 @@ const FourTable = ({ btnHref }: Props) => {
       }}
     >
       {plans.map((Plan, indexTop) => (
-        <Box
-          className={indexTop === clickItem ? styles.active : ""}
+        <div
+          className={[
+            indexTop === clickItem ? styles.active : "",
+            styles.plan,
+          ].join(" ")}
           key={indexTop}
-          sx={{
-            backgroundColor: "#fff",
-            borderRadius: "24px",
-            boxShadow:
-              "0px 10px 32px -4px rgba(245, 20, 47, 0.16), 0px 6px 14px -6px rgba(249, 106, 122, 0.20)",
-            flexBasis: "270px",
-            flexGrow: 1,
-            flexShrink: 1,
-            height: "496px",
-            padding: "24px",
-            position: "relative",
-            [theme.breakpoints.down("laptop")]: {
-              flexBasis: "max-content",
-              flexGrow: 0,
-              flexShrink: 0,
-              width: "75%",
-            },
-          }}
         >
           <Stack
             className={indexTop === clickItem ? styles.popular : styles.none}
@@ -69,17 +54,7 @@ const FourTable = ({ btnHref }: Props) => {
           >
             {Plan.title}
           </Typography>
-          <Box
-            sx={{
-              alignItems: "baseline",
-              color: "#202A43",
-              display: "flex",
-              fontSize: "12px",
-              fontWeight: "590",
-              mt: "20px",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <div className={styles.text}>
             <Typography
               className={indexTop === clickItem ? styles.money : ""}
               sx={{
@@ -104,7 +79,7 @@ const FourTable = ({ btnHref }: Props) => {
               {Plan.price}
             </Typography>
             {Plan.currency}
-          </Box>
+          </div>
           <Typography
             sx={{
               color: "#202A43",
@@ -114,7 +89,7 @@ const FourTable = ({ btnHref }: Props) => {
           >
             {Plan.description}
           </Typography>
-          <Box>
+          <div>
             <Divider
               style={{
                 marginTop: "24px",
@@ -122,13 +97,7 @@ const FourTable = ({ btnHref }: Props) => {
             />
             {Array.isArray(Plan.features) ? (
               Plan.features.map((item, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    display: "flex",
-                    marginTop: "20px",
-                  }}
-                >
+                <div className={styles.feature} key={index}>
                   <img
                     alt=""
                     src={Plan.image}
@@ -143,19 +112,10 @@ const FourTable = ({ btnHref }: Props) => {
                   >
                     {item}
                   </Typography>
-                </Box>
+                </div>
               ))
             ) : (
-              <Box
-                key={indexTop}
-                sx={{
-                  display: "flex",
-                  marginTop: "20px",
-                  [theme.breakpoints.down("laptop")]: {
-                    marginTop: "16px",
-                  },
-                }}
-              >
+              <div className={styles.planImg} key={indexTop}>
                 <img
                   alt=""
                   src={Plan.image}
@@ -170,9 +130,9 @@ const FourTable = ({ btnHref }: Props) => {
                 >
                   {Plan.features}
                 </Typography>
-              </Box>
+              </div>
             )}
-          </Box>
+          </div>
           {Plan.btnHref ? (
             <CtaLink href={Plan.btnHref} linkClassName={styles.cta}>
               {Plan.btnName}
@@ -182,7 +142,7 @@ const FourTable = ({ btnHref }: Props) => {
               {Plan.btnName}
             </CtaButton>
           )}
-        </Box>
+        </div>
       ))}
     </Stack>
   );

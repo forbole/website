@@ -2,9 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Box,
   ListItem,
-  Typography,
 } from "@mui/material";
 
 import { ExpandIcon } from "@src/components/icons";
@@ -25,7 +23,7 @@ const Card = ({
   setExpanded,
   trans,
 }: FAQProps) => (
-  <Box className={styles.wrapper}>
+  <div className={styles.wrapper}>
     <Accordion
       className={styles.accordion}
       expanded={expanded}
@@ -38,16 +36,14 @@ const Card = ({
         ].join(" ")}
         expandIcon={<ExpandIcon />}
       >
-        <Typography className={styles.question} variant="h3">
-          {question}
-        </Typography>
+        <h3 className={styles.question}>{question}</h3>
       </AccordionSummary>
       <AccordionDetails className={styles.accordionDetails}>
-        {para1 && <Typography variant="body1">{para1}</Typography>}
-        {para2 && <Typography variant="body1">{para2}</Typography>}
+        {para1 && <span>{para1}</span>}
+        {para2 && <span>{para2}</span>}
         {trans || null}
-        {para3 && <Typography variant="body1">{para3}</Typography>}
-        {desc && <Typography variant="body1">{desc}</Typography>}
+        {para3 && <span>{para3}</span>}
+        {desc && <span>{desc}</span>}
         {bullet1 && (
           <ListItem className={styles.bulletItem}>{bullet1}</ListItem>
         )}
@@ -59,7 +55,7 @@ const Card = ({
         )}
       </AccordionDetails>
     </Accordion>
-  </Box>
+  </div>
 );
 
 export default Card;

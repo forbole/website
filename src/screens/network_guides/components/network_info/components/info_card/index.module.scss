@@ -1,0 +1,33 @@
+@import "src/styles/sass.scss";
+
+.root {
+  align-items: center;
+  background: #fff;
+  border-radius: spacing(3);
+  box-shadow:
+    0 6px 14px -6px rgba(2, 38, 225, 0.12),
+    0 10px 32px -4px rgba(2, 38, 225, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: spacing(4) spacing(3);
+
+  h3 {
+    background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+    background-clip: text;
+    font-size: spacing(3);
+    font-weight: 700;
+    letter-spacing: 0.0015em;
+    line-height: 29px;
+    padding-top: spacing(2);
+    text-align: center;
+    // stylelint-disable-next-line
+    text-fill-color: transparent;
+    // stylelint-disable-next-line
+    -webkit-text-fill-color: transparent;
+  }
+
+  h6 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}

@@ -44,3 +44,14 @@ $text-shadow:
     max-width: 1200px;
   }
 }
+
+.wrapperTop {
+  display: flex;
+  justify-content: center;
+}
+
+.contentInner {
+  align-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+}

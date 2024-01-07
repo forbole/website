@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import ImageLegacy from "next/legacy/image";
 
@@ -37,7 +37,7 @@ export default function HeaderCard({
           <Typography className={styles.desc2}>{desc_2nd}</Typography>
         )}
       </Stack>
-      <Box className={styles.image}>
+      <div className={styles.image}>
         {head_bg && (
           <ImageLegacy
             alt={`${title} image`}
@@ -49,15 +49,15 @@ export default function HeaderCard({
         )}
         {head_bgs && (
           <>
-            <Box className={styles.image2}>
+            <div className={styles.image2}>
               <Image alt={title} fill priority src={head_bgs[0]} />
-            </Box>
-            <Box className={styles.image3}>
+            </div>
+            <div className={styles.image3}>
               <Image alt={title} fill priority src={head_bgs[1]} />
-            </Box>
+            </div>
           </>
         )}
-      </Box>
+      </div>
     </Stack>
   );
 }

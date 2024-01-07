@@ -1,0 +1,15 @@
+@import "src/styles/sass.scss";
+
+.root {
+  display: grid;
+  grid-gap: spacing(2);
+  grid-template-columns: repeat(auto-fit, minmax(spacing(15), 1fr));
+  justify-content: space-between;
+  padding: spacing(3) 0 spacing(12) 0;
+
+  @include up-laptop {
+    grid-gap: spacing(3);
+    grid-template-columns: repeat(5, minmax(spacing(15), 1fr));
+    padding: spacing(5) 0 spacing(12) 0;
+  }
+}

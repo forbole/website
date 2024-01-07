@@ -1,7 +1,6 @@
 import type { PaperProps, PopperProps } from "@mui/material";
 import {
   Autocomplete,
-  Box,
   Button,
   InputAdornment,
   ListItemIcon,
@@ -25,6 +24,7 @@ import {
 } from "@src/utils/network_functions";
 import type { Network } from "@src/utils/network_info";
 
+import * as scssStyles from "./index.module.scss";
 import useStyles from "./useStyles";
 
 const filterOptions = createFilterOptions({
@@ -68,7 +68,7 @@ const Options = ({ network, props }: OptionsProps) => {
   return (
     <ListItem {...props} sx={styles.listItem} title={network.delegate}>
       <ListItemIcon>
-        <Box className="image">
+        <div className="image">
           {network.image && (
             <Image
               alt=""
@@ -79,7 +79,7 @@ const Options = ({ network, props }: OptionsProps) => {
               width="32"
             />
           )}
-        </Box>
+        </div>
       </ListItemIcon>
       <ListItemText>{network.name}</ListItemText>
     </ListItem>
@@ -182,13 +182,13 @@ const SearchBar = ({ sortedNetworks }: Props) => {
   }, []);
 
   return (
-    <Box
-      className={
+    <div
+      className={[
         focused
           ? "searchbox__focused searchbox__container"
-          : "searchbox__container"
-      }
-      sx={styles.root}
+          : "searchbox__container",
+        scssStyles.root,
+      ].join(" ")}
     >
       <Autocomplete
         PaperComponent={PaperComponent}
@@ -212,7 +212,7 @@ const SearchBar = ({ sortedNetworks }: Props) => {
       >
         {t("cancel")}
       </Button>
-    </Box>
+    </div>
   );
 };
 

@@ -1,22 +1,21 @@
 import {
   Alert,
-  Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
   IconButton,
   Snackbar,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
+import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useCallback, useState } from "react";
 
+import HighlightButton from "@src/components/highlight-button";
 import { CopyIcon } from "@src/components/icons";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
 import { getNetworkInfo } from "@src/utils/network_info";
@@ -89,8 +88,8 @@ const NetworkInfo = ({ post }: any) => {
       : featureImage;
 
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.container}>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
         <Card className={styles.card}>
           <CardMedia
             alt="network feature image"
@@ -100,8 +99,8 @@ const NetworkInfo = ({ post }: any) => {
             image={coverImage || featureImage}
           />
           <CardContent className={styles.cardContent}>
-            <Box className={styles.cardContentBox}>
-              <Box className={styles.logoBox}>
+            <div className={styles.cardContentBox}>
+              <div className={styles.logoBox}>
                 {networkData?.image ? (
                   <Image
                     alt={title}
@@ -113,22 +112,17 @@ const NetworkInfo = ({ post }: any) => {
                     width={onlyLargeScreen ? "90" : "52"}
                   />
                 ) : (
-                  <Box className={styles.logo} />
+                  <div className={styles.logo} />
                 )}
-              </Box>
-              <Box pl={onlyLargeScreen && networkData?.address ? 2 : 1}>
+              </div>
+              <div className={styles.containerName}>
                 {networkData?.name && (
-                  <Typography className={styles.networkName} variant="h3">
-                    {networkData.name}
-                  </Typography>
+                  <h3 className={styles.networkName}>{networkData.name}</h3>
                 )}
                 {networkData?.address && (
-                  <Box className={styles.address}>
-                    <Typography
-                      className="value"
-                      color="#ba6600"
-                      fontWeight={700}
-                      variant="body2"
+                  <div className={styles.address}>
+                    <span
+                      className={["value", styles.addressWrapper].join(" ")}
                     >
                       {!onlyLargeScreen
                         ? getMiddleEllipsis(networkData.address, {
@@ -136,31 +130,27 @@ const NetworkInfo = ({ post }: any) => {
                             ending: 5,
                           })
                         : networkData.address}
-                    </Typography>
+                    </span>
 
                     <IconButton onClick={copyText}>
                       <CopyIcon />
                     </IconButton>
-                  </Box>
+                  </div>
                 )}
-              </Box>
-            </Box>
+              </div>
+            </div>
             {!!networkData?.delegate && (
-              <Box>
-                <Button
-                  className={styles.stakeButton}
-                  href={networkData?.delegate ? networkData.delegate : ""}
-                  variant="contained"
-                >
-                  {t("stake_now")}
-                </Button>
-              </Box>
+              <div>
+                <Link href={networkData?.delegate ? networkData.delegate : ""}>
+                  <HighlightButton>{t("stake_now")}</HighlightButton>
+                </Link>
+              </div>
             )}
           </CardContent>
           <CardContent>
-            <Box className={styles.contentBox}>
+            <div className={styles.contentBox}>
               {!onlyLargeScreen ? (
-                <Box className={styles.post}>
+                <div className={styles.post}>
                   {readMore ? (
                     <ContentCSS theme={theme}>
                       <ContentBox
@@ -171,17 +161,16 @@ const NetworkInfo = ({ post }: any) => {
                     </ContentCSS>
                   ) : (
                     <>
-                      <Typography
+                      <span
                         className={[
                           "value",
                           styles.excerpt,
                           readMore ? styles.readMore : "",
                         ].join(" ")}
-                        variant="body2"
                       >
                         {excerpt}
-                      </Typography>
-                      <Button
+                      </span>
+                      <button
                         className={[
                           styles.readMoreButton,
                           readMore ? styles.readMore : "",
@@ -189,10 +178,10 @@ const NetworkInfo = ({ post }: any) => {
                         onClick={() => setReadMore((prevCheck) => !prevCheck)}
                       >
                         {t("more")}
-                      </Button>
+                      </button>
                     </>
                   )}
-                </Box>
+                </div>
               ) : (
                 <ContentCSS theme={theme}>
                   <ContentBox
@@ -201,7 +190,7 @@ const NetworkInfo = ({ post }: any) => {
                 </ContentCSS>
               )}
               {!!networkStats?.length && (
-                <Box className={styles.infoBox}>
+                <div className={styles.infoBox}>
                   {networkStats.map((info, i) => (
                     <InfoCard
                       info={networkData?.key}
@@ -211,12 +200,12 @@ const NetworkInfo = ({ post }: any) => {
                       type={info.type}
                     />
                   ))}
-                </Box>
+                </div>
               )}
-            </Box>
+            </div>
           </CardContent>
         </Card>
-      </Box>
+      </div>
       <Snackbar
         autoHideDuration={5000}
         className={styles.snackbar}
@@ -227,7 +216,7 @@ const NetworkInfo = ({ post }: any) => {
           {t("copied to clipboard")}
         </Alert>
       </Snackbar>
-    </Box>
+    </div>
   );
 };
 

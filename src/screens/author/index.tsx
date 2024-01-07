@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 
@@ -63,10 +62,10 @@ const AuthorTitlePosts = ({ author, meta, post, tags }: Props) => {
           type="application/ld+json"
         />
       </Head>
-      <Box className={styles.container}>
-        <Box className={styles.content}>
-          <Box className={styles.innerContent}>
-            <Box className={styles.imgWrapper}>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.innerContent}>
+            <div className={styles.imgWrapper}>
               <img
                 alt={author.name}
                 className={styles.img}
@@ -77,15 +76,13 @@ const AuthorTitlePosts = ({ author, meta, post, tags }: Props) => {
                 }
               />
               <span>
-                <Typography className={styles.authorName} variant="body1">
-                  {author.name}
-                </Typography>
+                <span className={styles.authorName}>{author.name}</span>
               </span>
-            </Box>
+            </div>
             <AuthorPosts blogs={post.slice(1)} main={post[0]} meta={meta} />
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

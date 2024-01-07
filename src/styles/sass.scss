@@ -52,6 +52,12 @@ $breakpoint-desktop: 1208px;
   }
 }
 
+@mixin up-desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
 @function spacing($num) {
   @return $num * 8px;
 }

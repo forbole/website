@@ -1,7 +1,9 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 
+import HighlightButton from "@src/components/highlight-button";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import * as styles from "./index.module.scss";
@@ -23,26 +25,25 @@ const GuideDetails = ({ post }: any) => {
   const { sanitize } = DOMPurify;
 
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.content}>
+    <div className={styles.wrapper}>
+      <div className={styles.content}>
         <GuideContentCSS theme={theme}>
           <GuideContentBox
             dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
           />
         </GuideContentCSS>
         {!!networkData?.delegate && (
-          <Box className={styles.stakeButtonWrapper}>
-            <Button
-              className={styles.stakeButton}
+          <div className={styles.stakeButtonWrapper}>
+            <Link
               href={networkData?.delegate ? networkData.delegate : ""}
-              variant="contained"
+              target="_blank"
             >
-              {t("stake_now")}
-            </Button>
-          </Box>
+              <HighlightButton>{t("stake_now")}</HighlightButton>
+            </Link>
+          </div>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

@@ -1,8 +1,7 @@
-import type { SxProps, Theme } from "@mui/material";
-import { Box, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import { BottomIcon } from "../icons";
+import * as styles from "./index.module.scss";
 
 export enum Direction {
   Up,
@@ -15,11 +14,9 @@ type Props = {
   className: string;
   direction?: Direction;
   role?: string;
-  sx?: SxProps<Theme>;
 };
 
-export default function Arraw({ className, direction, role, sx }: Props) {
-  const theme = useTheme();
+export default function Arrow({ className, direction, role }: Props) {
   const [rotate, setRotate] = useState(0);
 
   useEffect(() => {
@@ -41,33 +38,8 @@ export default function Arraw({ className, direction, role, sx }: Props) {
   }, [direction]);
 
   return (
-    <Box
-      className={className}
-      role={role}
-      sx={{
-        "& svg": {
-          "& path": {
-            stroke: theme.palette.custom.forbole.blue,
-          },
-          "fill": " #FFF",
-          "filter":
-            "drop-shadow(0px 14px 64px rgba(2, 38, 225, 0.12)) drop-shadow(0px 8px 22px rgba(2, 38, 225, 0.12))",
-          "transition": "fill 0.3s",
-        },
-        "cursor": "pointer",
-        "display": "flex",
-        "height": "48px",
-        [theme.breakpoints.down("laptop")]: {
-          height: "36px",
-          width: "36px",
-        },
-        "userSelect": "none",
-        "width": "48px",
-        ...sx,
-      }}
-      zIndex={2}
-    >
+    <div className={[styles.wrapper, className].join(" ")} role={role}>
       <BottomIcon style={{ transform: `rotate(${rotate}deg)` }} />
-    </Box>
+    </div>
   );
 }

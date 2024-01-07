@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
@@ -13,14 +12,12 @@ const FAQ = () => {
   const middleIndex = Math.ceil(faq.length / 2) - 1;
 
   return (
-    <Box display="flex" justifyContent="center">
-      <Box className={styles.wrapper}>
-        <Typography className={styles.faqText} variant="h3">
-          {t("faq")}
-        </Typography>
-        <Box className={styles.content}>
-          <Box alignContent="flex-start" display="flex" flexWrap="wrap">
-            <Box className={styles.container}>
+    <div className={styles.wrapperTop}>
+      <div className={styles.wrapper}>
+        <h3 className={styles.faqText}>{t("faq")}</h3>
+        <div className={styles.content}>
+          <div className={styles.contentInner}>
+            <div className={styles.container}>
               {faq.map((x, i) => {
                 if (i > middleIndex) return null;
 
@@ -57,8 +54,8 @@ const FAQ = () => {
                   />
                 );
               })}
-            </Box>
-            <Box className={styles.faqItem}>
+            </div>
+            <div className={styles.faqItem}>
               {faq.map((x, i) => {
                 if (i <= middleIndex) return null;
 
@@ -95,11 +92,11 @@ const FAQ = () => {
                   />
                 );
               })}
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

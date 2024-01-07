@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import { IS_E2E } from "@src/utils/e2e";
+
 export const useCounter = (targetValue: unknown) => {
   const [counterValue, setCounterValue] = useState<unknown>(0);
   const counterRef = useRef(null);
@@ -19,7 +21,7 @@ export const useCounter = (targetValue: unknown) => {
     const init = () => {
       if (hasViewed.current === targetValue) return;
 
-      if (typeof targetValue === "number") {
+      if (typeof targetValue === "number" && !IS_E2E) {
         setCounterValue(0);
 
         divisor.current = targetValue * (targetValue > 100 ? 0.01 : 0.006);

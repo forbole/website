@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useMemo } from "react";
 
@@ -44,7 +44,7 @@ function SignatureCard() {
               position: "relative",
             }}
           >
-            <Box style={{ width: "100%" }}>
+            <div style={{ width: "100%" }}>
               <Typography
                 sx={{
                   color: "#202A43",
@@ -68,7 +68,7 @@ function SignatureCard() {
                   src="/images/assets/25.svg"
                   style={{ height: "40px", width: "20px" }}
                 />
-                <Box>
+                <div>
                   <Typography
                     sx={{
                       color: "#202A43",
@@ -82,9 +82,9 @@ function SignatureCard() {
                   >
                     {d.desc}
                   </Typography>
-                </Box>
+                </div>
               </Stack>
-            </Box>
+            </div>
             {d.active && (
               <Stack
                 sx={{

@@ -5,6 +5,7 @@
   display: block;
   position: fixed;
   right: 5%;
+  z-index: 1000;
 
   @include up-laptop {
     display: none;

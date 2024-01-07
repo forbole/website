@@ -1,0 +1,32 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(1, 1fr);
+  padding: spacing(5) 0 0 0;
+
+  @include up-laptop {
+    grid-gap: spacing(2.75);
+    grid-template-columns: repeat(4, 1fr);
+    padding: spacing(7) 0 0 0;
+  }
+}
+
+.h30 {
+  color: $color-forbole-indigo6;
+}
+
+.h31 {
+  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  background-clip: text;
+  // stylelint-disable-next-line
+  text-fill-color: transparent;
+  // stylelint-disable-next-line
+  -webkit-text-fill-color: transparent;
+}

@@ -1,4 +1,4 @@
-import { Box, Pagination } from "@mui/material";
+import { Pagination } from "@mui/material";
 
 import Post from "@src/screens/blog/components/blog_posts/components/post";
 
@@ -19,13 +19,13 @@ const AuthorPosts = ({ blogs, main, meta }: IProps) => {
   const { handleAuthorPageChange } = useBlogPostsHook();
 
   return (
-    <Box className={styles.wrapper}>
-      <Box className={styles.container}>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
         {!!main && <Post main post={main} />}
         {blogs.map((post, i) => (
           <Post id={i} key={post.id} post={post} />
         ))}
-      </Box>
+      </div>
       <Pagination
         className={styles.pagination}
         count={totalPages}
@@ -35,7 +35,7 @@ const AuthorPosts = ({ blogs, main, meta }: IProps) => {
         showFirstButton
         showLastButton
       />
-    </Box>
+    </div>
   );
 };
 

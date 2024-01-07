@@ -31,6 +31,7 @@
 .imgWrapper {
   display: flex;
   flex-direction: column;
+  gap: 24px;
   justify-items: flex-start;
   padding: spacing(12) spacing(3) 0 spacing(3);
 

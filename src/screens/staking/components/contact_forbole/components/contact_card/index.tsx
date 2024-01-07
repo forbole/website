@@ -1,6 +1,4 @@
 import {
-  Box,
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -15,6 +13,7 @@ import {
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useMemo, useState } from "react";
 
+import CtaButton from "@src/components/cta-button";
 import { ExpandIcon } from "@src/components/icons";
 
 import useContactCard from "./hooks";
@@ -59,7 +58,7 @@ const ContactCard = () => {
     <Card className={styles.wrapper}>
       <form noValidate onSubmit={handleSubmit}>
         <CardContent className={styles.cardContent}>
-          <Box className={styles.name}>
+          <div className={styles.name}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -80,8 +79,8 @@ const ContactCard = () => {
               placeholder={t("name")}
               value={inputs.name}
             />
-          </Box>
-          <Box className={styles.mail}>
+          </div>
+          <div className={styles.mail}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -102,8 +101,8 @@ const ContactCard = () => {
               placeholder={t("email")}
               value={inputs.email}
             />
-          </Box>
-          <Box className={styles.select}>
+          </div>
+          <div className={styles.select}>
             <Typography
               component="div"
               fontSize={theme.spacing(2)}
@@ -168,15 +167,11 @@ const ContactCard = () => {
                 ))}
               </Select>
             </FormControl>
-          </Box>
+          </div>
           <CardActions className={styles.buttonDiv}>
-            <Button
-              className={styles.button}
-              disabled={!canSubmit}
-              type="submit"
-            >
+            <CtaButton disabled={!canSubmit} type="submit">
               {t("get in touch!")}
-            </Button>
+            </CtaButton>
           </CardActions>
         </CardContent>
       </form>
