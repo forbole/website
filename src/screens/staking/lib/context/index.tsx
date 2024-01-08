@@ -117,6 +117,20 @@ export const getUserAccountsForNetwork = (
   userNetwork: ChainId,
 ) => state?.wallets?.[walletName]?.[userNetwork]?.accounts;
 
+export const getSelectedAccount = (state: State) => {
+  const { selectedAccount } = state;
+
+  if (!selectedAccount) {
+    return undefined;
+  }
+
+  const { address, chainId, wallet } = selectedAccount;
+
+  return state?.wallets?.[wallet]?.[chainId]?.accounts?.find(
+    (a) => a.address === address,
+  );
+};
+
 // Utils
 
 export const getConnectedWallets = (): WalletId[] => {

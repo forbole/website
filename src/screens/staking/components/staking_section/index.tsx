@@ -35,6 +35,7 @@ import {
 
 import * as styles from "./index.module.scss";
 import StakingModal from "./staking_modal";
+import UnstakingModal from "./unstaking_modal";
 import { stakingClient } from "./utils/staking_client";
 
 const defaultChainId = ChainId.CosmosHubTestnet;
@@ -399,6 +400,7 @@ const StakingSection = () => {
   return (
     <Box className={styles.wrapper}>
       <StakingModal />
+      <UnstakingModal />
       <Box className={styles.container}>
         <Box>Staking section</Box>
         <Box>

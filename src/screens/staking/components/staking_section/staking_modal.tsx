@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 
 import {
   StakingContext,
+  getSelectedAccount,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
 
@@ -22,24 +23,16 @@ const StakingModal = () => {
 
   const { selectedAccount, selectedAction } = stakingState;
 
-  const [availableTokens, setAvailableTokens] = useState<
-    [string, string] | null
-  >(null);
-
   const [networkInfo, setNetworkInfo] = useState<ModalNetworkInfo | null>(null);
+  const [memo, setMemo] = useState("");
 
   const isOpen = !!selectedAccount && selectedAction === "stake";
 
   useEffect(() => {
     if (isOpen) {
-      setAvailableTokens(null);
       setNetworkInfo(null);
 
-      const { address, chainId } = selectedAccount;
-
-      stakingClient.getAddressInfo(chainId, address).then((info) => {
-        setAvailableTokens([info.balances.amount, info.balances.denom]);
-      });
+      const { chainId } = selectedAccount;
 
       stakingClient.getStakingInfo(chainId).then((info) => {
         if (!info.rpc) {
@@ -51,7 +44,16 @@ const StakingModal = () => {
     }
   }, [isOpen, selectedAccount]);
 
-  if (!open) return null;
+  if (!open || !selectedAccount) return null;
+
+  const account = getSelectedAccount(stakingState);
+
+  if (!account?.info?.balances) return null;
+
+  const availableTokens = [
+    account.info.balances.amount,
+    account.info.balances.denom,
+  ];
 
   return (
     <Modal
@@ -91,6 +93,16 @@ const StakingModal = () => {
           <input /> {availableTokens && availableTokens[1].toUpperCase()}
         </div>
         <div>
+          <div>Memo</div>
+          <input
+            onChange={(e) => {
+              setMemo(e.target.value);
+            }}
+            value={memo}
+          />{" "}
+          {availableTokens && availableTokens[1].toUpperCase()}
+        </div>
+        <div>
           <button
             onClick={() => {
               if (!selectedAccount || !networkInfo) return;
@@ -118,8 +130,6 @@ const StakingModal = () => {
                   gas: info.tx.authInfo.fee.gas_limit,
                 };
 
-                const memo = info.tx.body.memo || "";
-
                 const offlineSigner =
                   window.keplr?.getOfflineSignerOnlyAmino(chainId);
 
@@ -133,7 +143,7 @@ const StakingModal = () => {
                 );
 
                 client
-                  .sign(address, [msgAny], fee, memo)
+                  .signAndBroadcast(address, [msgAny], fee, memo)
                   .then((signed) => {
                     console.log("debug: index.tsx: signed", signed);
                   })
