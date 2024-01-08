@@ -16,7 +16,7 @@ import type { MouseEvent } from "react";
 import { useCallback, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
-import { CopyIcon } from "@src/components/icons";
+import CopyIcon from "@src/components/icons/icon_copy.svg";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
 import { getNetworkInfo } from "@src/utils/network_info";
 

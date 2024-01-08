@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 
-import { BottomIcon } from "../icons";
+import BottomIcon from "../icons/icon_bottom.svg";
 import * as styles from "./index.module.scss";
 
 const ScrollToBottom = ({ bottomRef }: any) => {

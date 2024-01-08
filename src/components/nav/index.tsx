@@ -3,10 +3,8 @@ import Link from "next/link";
 import type { MouseEvent, RefObject } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
-import {
-  Forbole as ForboleLogo,
-  ForboleShadowIcon,
-} from "@src/components/icons";
+import ForboleLogo from "@src/components/icons/forbole";
+import ForboleShadowIcon from "@src/components/icons/icon_forbole_shadow.svg";
 import { AnchorElContextProvider } from "@src/utils/menu";
 
 import { DesktopNavMenu, MobileNavMenu } from "./components";

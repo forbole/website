@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { TopIcon } from "../icons";
+import TopIcon from "../icons/icon_top.svg";
 import * as styles from "./index.module.scss";
 
 interface TopProps {

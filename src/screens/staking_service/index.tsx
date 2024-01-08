@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
-import { Horse } from "@src/components/icons";
+import Horse from "@src/components/icons/horse.svg";
 import IntroPanel from "@src/components/intro_panel";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";

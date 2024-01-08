@@ -17,7 +17,7 @@ import Image from "next/legacy/image";
 import type { ChangeEvent } from "react";
 import { useEffect, useState } from "react";
 
-import { DropDownIcon } from "@src/components/icons";
+import DropDownIcon from "@src/components/icons/icon_dropdown.svg";
 import {
   getCanClickNetwork,
   handleNetworkClick,
