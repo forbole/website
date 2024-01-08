@@ -1,4 +1,4 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Container, Grid, Stack, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRef, useState } from "react";
 
@@ -12,11 +12,39 @@ import Section from "@src/components/section";
 import SignatureCard from "@src/components/signature-card";
 import SuccessModal from "@src/components/success-modal";
 import TalkModal from "@src/components/talk-modal";
+import { useDelayedIsMobile } from "@src/hooks/delayed_is_mobile";
 
 import useTalkModalForm from "./hooks";
 import * as styles from "./index.module.scss";
 
+type Props = {
+  setShow: (b: boolean) => void;
+  setSuccess: (b: boolean) => void;
+  success: boolean;
+};
+
+const ResultModal = ({ setShow, setSuccess, success }: Props) => {
+  const isMobile = useDelayedIsMobile();
+  const { t } = useTranslation("developer_tools");
+
+  return (
+    <SuccessModal
+      bottom_word={isMobile ? t("thanks") : ""}
+      close={(b) => {
+        setSuccess(b);
+        setShow(b);
+      }}
+      fixed
+      middle_word={!isMobile ? t("thanks") : ""}
+      open={success}
+      up_word={t("contact")}
+    />
+  );
+};
+
 const DeveloperTools = () => {
+  const { t } = useTranslation("developer_tools");
+
   const {
     canSubmit,
     handleCheckedChange,
@@ -29,12 +57,7 @@ const DeveloperTools = () => {
     success,
   } = useTalkModalForm();
 
-  const { t } = useTranslation("developer_tools");
   const theme = useTheme();
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
-    noSsr: true,
-  });
 
   const topRef = useRef(null);
   const [show, setShow] = useState(false);
@@ -147,16 +170,10 @@ const DeveloperTools = () => {
         isLoading={isLoading}
         open={show}
       />
-      <SuccessModal
-        bottom_word={isMobile ? t("thanks") : ""}
-        close={(b) => {
-          setSuccess(b);
-          setShow(b);
-        }}
-        fixed
-        middle_word={!isMobile ? t("thanks") : ""}
-        open={success}
-        up_word={t("contact")}
+      <ResultModal
+        setShow={setShow}
+        setSuccess={setSuccess}
+        success={success}
       />
     </Layout>
   );

@@ -1,14 +1,11 @@
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import ImageLegacy from "next/legacy/image";
 
 import * as styles from "./index.module.scss";
 
 type Props = {
   desc_1st: string;
   desc_2nd?: string;
-  // @deprecated
-  head_bg?: string;
   head_bgs?: string[];
   title: string;
 };
@@ -16,7 +13,6 @@ type Props = {
 export default function HeaderCard({
   desc_1st,
   desc_2nd,
-  head_bg,
   head_bgs,
   title,
 }: Props) {
@@ -38,15 +34,6 @@ export default function HeaderCard({
         )}
       </Stack>
       <div className={styles.image}>
-        {head_bg && (
-          <ImageLegacy
-            alt={`${title} image`}
-            layout="fill"
-            objectFit="cover"
-            priority
-            src={head_bg}
-          />
-        )}
         {head_bgs && (
           <>
             <div className={styles.image2}>

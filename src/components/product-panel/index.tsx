@@ -1,4 +1,3 @@
-import { Stack, Typography, useTheme } from "@mui/material";
 import { forwardRef } from "react";
 
 import * as styles from "./index.module.scss";
@@ -16,8 +15,6 @@ type Props = {
 
 const productPanel = forwardRef<HTMLDivElement, Props>(
   ({ children, imageHref, imageHrefs, imgFull, index, title, value }, ref) => {
-    const theme = useTheme();
-
     // eslint-disable-next-line eqeqeq
     if (index != value) {
       // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -26,28 +23,11 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
 
     return (
       <div className={styles.wrapper} ref={ref}>
-        {title && (
-          <Typography
-            sx={{
-              color: "#202A43",
-              fontSize: "24px",
-              fontWeight: 700,
-            }}
-          >
-            {title}
-          </Typography>
-        )}
-        <Stack
-          direction="row"
-          sx={{
-            gap: imgFull ? theme.spacing(4) : theme.spacing(7),
-            [theme.breakpoints.down("tablet")]: {
-              flexDirection: "column",
-            },
-            [theme.breakpoints.up("tablet")]: {
-              flexDirection: "row",
-            },
-          }}
+        {title && <h3 className={styles.title}>{title}</h3>}
+        <div
+          className={[styles.container, imgFull ? styles.imgFull : ""].join(
+            " ",
+          )}
         >
           <div className={styles.imgWrapper}>
             {imageHrefs ? (
@@ -66,19 +46,16 @@ const productPanel = forwardRef<HTMLDivElement, Props>(
                 />
               </>
             ) : (
-              <img alt="" loading="lazy" src={imageHref} />
+              <img
+                alt=""
+                loading="lazy"
+                src={imageHref}
+                style={{ display: "block" }}
+              />
             )}
           </div>
-          <Stack
-            sx={{
-              alignItems: "flex-start",
-              gap: theme.spacing(4),
-              textAlign: "left",
-            }}
-          >
-            {children}
-          </Stack>
-        </Stack>
+          <div className={styles.content}>{children}</div>
+        </div>
       </div>
     );
   },
