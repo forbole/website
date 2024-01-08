@@ -18,7 +18,7 @@ $image-box-shadow:
 .anchor {
   align-items: center;
   border-radius: spacing(1.5);
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
   display: flex;
   flex-flow: row wrap;
   font-size: spacing(2);
@@ -133,7 +133,7 @@ $image-box-shadow:
 }
 
 .networkName {
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
   font-size: spacing(2);
   font-weight: 600;
   overflow: hidden;
@@ -203,7 +203,7 @@ $image-box-shadow:
   }
 
   .label {
-    color: $color-forbole-indigo6;
+    color: $color-indigo-1;
     font-size: spacing(2);
   }
 
