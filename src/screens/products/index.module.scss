@@ -17,7 +17,7 @@
 }
 
 .whyText {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-weight: 700;
   margin-bottom: 24px;
 
@@ -61,7 +61,7 @@
 }
 
 .tr0 {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   display: inline;
   margin-left: auto;
   margin-right: auto;
@@ -114,7 +114,7 @@
 }
 
 .individualsTitle {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-weight: 700;
   margin-bottom: 24px;
 
@@ -128,7 +128,7 @@
 }
 
 .tr2 {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   display: inline;
 
   @include down-laptop {
@@ -184,14 +184,14 @@
 }
 
 .dt {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-size: 24px;
   font-weight: 700;
 }
 
 .dd {
   align-items: baseline;
-  color: #202a43;
+  color: $color-forbole-blue-1;
   display: flex;
 
   @include down-laptop {
@@ -225,7 +225,7 @@
 }
 
 .businessesTitle {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-weight: 700;
   margin-bottom: 24px;
 
@@ -239,7 +239,7 @@
 }
 
 .tr4 {
-  color: #202a43;
+  color: $color-forbole-blue-1;
 
   @include down-laptop {
     font-size: 24px;

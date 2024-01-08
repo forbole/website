@@ -14,7 +14,7 @@
   align-items: center;
   background: $color-primary-light;
   border: none;
-  color: $color-indigo;
+  color: $color-indigo-2;
   cursor: pointer;
   display: flex;
   filter: opacity(0.1);
@@ -30,7 +30,7 @@
   }
 
   &:hover {
-    background: linear-gradient(to right, #623df5, #362187);
+    background: linear-gradient(to right, #623df5, $color-indigo-2);
     color: $color-primary-light;
   }
 

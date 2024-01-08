@@ -1,7 +1,7 @@
 @import "src/styles/sass.scss";
 
 .desc {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-size: 24px;
   font-weight: 400;
 
@@ -24,7 +24,7 @@
 }
 
 .tr0 {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   display: inline;
   font-size: 40px;
   font-weight: 590;
@@ -36,7 +36,7 @@
 }
 
 .titleLarge {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-size: 40px;
   font-weight: 590;
 
@@ -47,7 +47,7 @@
 }
 
 .title {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-size: 24px;
   font-weight: 700;
   gap: 24px;
@@ -64,7 +64,7 @@ $wrapper-shadow:
 
 .wrapper {
   align-items: center;
-  color: #202a43;
+  color: $color-forbole-blue-1;
   gap: 24px;
   justify-content: center;
   margin: 0 auto;
