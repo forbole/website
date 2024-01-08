@@ -28,9 +28,7 @@
     &,
     &:hover {
       background: #ebeef5;
-      box-shadow:
-        0 10px 32px -4px rgba(125, 92, 255, 0.1),
-        0 6px 14px -6px rgba(126, 94, 255, 0.28);
+      box-shadow: none;
       color: rgba(195, 204, 226, 1);
       cursor: not-allowed;
     }

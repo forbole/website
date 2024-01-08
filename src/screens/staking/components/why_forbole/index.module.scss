@@ -115,18 +115,14 @@ $content-bg: linear-gradient(
 
 .tr0 {
   color: $color-indigo-1;
-  width: 80%;
 }
 
 .tr1 {
-  background: $gradient-unnamed-1;
-  background-clip: text;
-  // stylelint-disable-next-line
-  -webkit-background-clip: text;
-  // stylelint-disable-next-line
-  text-fill-color: transparent;
-  // stylelint-disable-next-line
-  -webkit-text-fill-color: transparent;
+  @include gradient-text($gradient-unnamed-1);
+}
+
+.tr0,
+.tr1 {
   width: 80%;
 }
 

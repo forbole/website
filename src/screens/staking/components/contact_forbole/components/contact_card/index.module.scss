@@ -100,16 +100,3 @@ $input-shadow:
     justify-content: flex-end;
   }
 }
-
-.button {
-  background: $gradient-unnamed-1;
-  border-radius: spacing(3);
-  box-shadow: $input-shadow;
-  font-size: spacing(1.875);
-  line-height: 1.5;
-  padding: spacing(1.25) spacing(2);
-
-  @include up-laptop {
-    width: 125px;
-  }
-}

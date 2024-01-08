@@ -17,6 +17,17 @@
 
   &:hover {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+  }
+
+  &:disabled {
+    &,
+    &:hover {
+      background: #ebeef5;
+      box-shadow: none;
+      color: rgba(195, 204, 226, 1);
+      cursor: not-allowed;
+    }
   }
 
   @include up-laptop {

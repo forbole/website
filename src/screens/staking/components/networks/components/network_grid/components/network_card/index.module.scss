@@ -89,21 +89,6 @@ $image-box-shadow:
   }
 }
 
-.exploreButton {
-  background-color: #f6504b;
-  background-image: $gradient-unnamed-1;
-  border-radius: 200px;
-  color: #fff;
-  font-size: 1rem;
-  height: 45px;
-  padding: 0.75rem 1rem;
-  width: 111px;
-
-  &:hover {
-    filter: brightness(1.2);
-  }
-}
-
 .image {
   align-items: center;
   border: 2px solid rgba(2, 38, 225, 0.16);

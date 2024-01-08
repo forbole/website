@@ -11,22 +11,14 @@
   width: 240px;
 
   h3 {
-    background-clip: text;
-    background-image: $gradient-unnamed-1;
+    @include gradient-text($gradient-unnamed-1);
+
     font-size: spacing(3);
     font-weight: 700;
     letter-spacing: 0.0015em;
     line-height: 29px;
     padding-top: spacing(2);
     text-align: center;
-    // stylelint-disable-next-line
-    -webkit-text-fill-color: rgba(0, 0, 0, 0);
-    // stylelint-disable-next-line property-no-unknown
-    text-fill-color: rgba(0, 0, 0, 0);
-    // stylelint-disable-next-line
-    -webkit-background-clip: text;
-    // stylelint-disable-next-line
-    background-clip: text;
   }
 
   &.red {

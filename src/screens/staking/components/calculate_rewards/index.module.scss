@@ -43,13 +43,5 @@
 }
 
 .tr1 {
-  background: $gradient-unnamed-1;
-  // stylelint-disable-next-line
-  background-clip: text;
-  // stylelint-disable-next-line
-  -webkit-background-clip: text;
-  // stylelint-disable-next-line
-  -webkit-text-fill-color: transparent;
-  // stylelint-disable-next-line
-  text-fill-color: transparent;
+  @include gradient-text($gradient-unnamed-1);
 }

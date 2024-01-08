@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { useCallback, useRef } from "react";
 
+import HighlightButton from "@src/components/highlight-button";
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import { convertToMoney } from "@src/utils/convert_to_money";
@@ -140,14 +141,13 @@ const NetworkCard = ({
       ) : (
         <LinearProgress className={styles.progress} color="secondary" />
       )}
-      <Button
+      <HighlightButton
         className={styles.exploreButton}
         color="secondary"
         onClickCapture={handleExploreClick}
-        variant="contained"
       >
         {t("stake now")}
-      </Button>
+      </HighlightButton>
     </div>
   );
 
