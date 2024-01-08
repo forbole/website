@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 import Facebook from "@src/components/icons/facebook";
-import LinkedIn from "@src/components/icons/linkedIn";
+import LinkedIn from "@src/components/icons/linkedin";
 import Telegram from "@src/components/icons/telegram";
 import Twitter from "@src/components/icons/twitter";
 

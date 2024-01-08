@@ -1,8 +1,8 @@
 import type { FunctionComponent } from "react";
 
-import Instagram from "@src/components/icons/Instagram";
 import Github from "@src/components/icons/github";
-import LinkedIn from "@src/components/icons/linkedIn";
+import Instagram from "@src/components/icons/instagram";
+import LinkedIn from "@src/components/icons/linkedin";
 import Medium from "@src/components/icons/medium";
 import Telegram from "@src/components/icons/telegram";
 import Twitter from "@src/components/icons/twitter";
@@ -23,17 +23,17 @@ export const socialMedia: SocialMediasProps = {
     key: "github",
     url: "https://github.com/forbole",
   },
-  Instagram: {
+  instagram: {
     component: Instagram,
-    key: "Instagram",
+    key: "instagram",
     url: "https://www.instagram.com/forbole",
   },
-  Instagram_zh: {
+  instagram_zh: {
     component: Instagram,
-    key: "Instagram",
+    key: "instagram_zh",
     url: "https://www.instagram.com/forbole.hk",
   },
-  linkedIn: {
+  linkedin: {
     component: LinkedIn,
     key: "linkedin",
     url: "https://www.linkedin.com/company/forbole/",
