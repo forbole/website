@@ -26,10 +26,13 @@ import {
   ENABLE_TESTNETS,
   StakingContext,
   WalletId,
+  addToConnectedWallets,
+  getConnectedWallets,
   setUserWallet,
 } from "../../lib/context";
 import { tooltipId } from "../tooltip";
 import * as styles from "./index.module.scss";
+import StakingModal from "./staking_modal";
 import { stakingClient } from "./utils/staking_client";
 
 const defaultChainId = ChainId.CosmosHubTestnet;
@@ -118,9 +121,7 @@ const StakingSection = () => {
         chains.filter((c) => c.chain_id.includes("mocha")),
       );
 
-      const newChainInfo = chains.find(
-        (chain) => chain.chain_id === defaultChainId,
-      );
+      const newChainInfo = chains.find((chain) => chain.chain_id === "mocha-4");
 
       if (newChainInfo) {
         console.log("debug: index.tsx: newChainInfo", newChainInfo);
@@ -135,6 +136,81 @@ const StakingSection = () => {
     balanceStaked: "",
     sequence: "",
   });
+
+  const tryToConnectWallets = async (walletsIds: WalletId[]) => {
+    if (walletsIds.includes(WalletId.Keplr)) {
+      if (window.keplr) {
+        try {
+          const handleError = (err: unknown) => {
+            console.log("debug: index.tsx: err", err);
+
+            return [] as AccountData[];
+          };
+
+          const [
+            cosmosAccounts,
+            cosmosTestnetAccounts,
+            celestiaTestnetAccounts,
+            celestiaAccounts,
+          ] = await Promise.all([
+            window.keplr
+              .getOfflineSigner(ChainId.CosmosHub)
+              .getAccounts()
+              .catch(handleError),
+            window.keplr
+              .getOfflineSigner(ChainId.CosmosHubTestnet)
+              .getAccounts()
+              .catch(handleError),
+            window.keplr
+              .getOfflineSigner(ChainId.CelestiaTestnet)
+              .getAccounts()
+              .catch(handleError),
+            window.keplr
+              .getOfflineSigner(ChainId.Celestia)
+              .getAccounts()
+              .catch(handleError),
+          ]);
+
+          addToConnectedWallets(WalletId.Keplr);
+
+          const parseAccount = (account: AccountData) => ({
+            address: account.address,
+          });
+
+          setUserWallet(stakingState, setStakingState, WalletId.Keplr, {
+            [ChainId.Celestia]: {
+              accounts: celestiaAccounts.map(parseAccount),
+            },
+            [ChainId.CelestiaTestnet]: {
+              accounts: celestiaTestnetAccounts.map(parseAccount),
+            },
+            [ChainId.CosmosHub]: {
+              accounts: cosmosAccounts.map(parseAccount),
+            },
+            [ChainId.CosmosHubTestnet]: {
+              accounts: cosmosTestnetAccounts.map(parseAccount),
+            },
+          });
+
+          // This should be removed after the poc: vv
+          setState((oldState) => ({
+            ...oldState,
+            address: cosmosTestnetAccounts[0].address,
+          }));
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    const connectedWallets = getConnectedWallets();
+
+    tryToConnectWallets(connectedWallets);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!chainInfo) return null;
 
@@ -200,68 +276,6 @@ const StakingSection = () => {
     assertIsDeliverTxSuccess(result);
 
     console.log("debug: index.tsx: claim rewards result", result);
-  };
-
-  const getAddress = async () => {
-    if (window.keplr) {
-      try {
-        const handleError = (err: unknown) => {
-          console.log("debug: index.tsx: err", err);
-
-          return [] as AccountData[];
-        };
-
-        const [
-          cosmosAccounts,
-          cosmosTestnetAccounts,
-          celestiaTestnetAccounts,
-          celestiaAccounts,
-        ] = await Promise.all([
-          window.keplr
-            .getOfflineSigner(ChainId.CosmosHub)
-            .getAccounts()
-            .catch(handleError),
-          window.keplr
-            .getOfflineSigner(ChainId.CosmosHubTestnet)
-            .getAccounts()
-            .catch(handleError),
-          window.keplr
-            .getOfflineSigner(ChainId.CelestiaTestnet)
-            .getAccounts()
-            .catch(handleError),
-          window.keplr
-            .getOfflineSigner(ChainId.Celestia)
-            .getAccounts()
-            .catch(handleError),
-        ]);
-
-        setState((oldState) => ({
-          ...oldState,
-          address: cosmosTestnetAccounts[0].address,
-        }));
-
-        const parseAccount = (account: AccountData) => ({
-          address: account.address,
-        });
-
-        setUserWallet(stakingState, setStakingState, WalletId.Keplr, {
-          [ChainId.Celestia]: {
-            accounts: celestiaAccounts.map(parseAccount),
-          },
-          [ChainId.CelestiaTestnet]: {
-            accounts: celestiaTestnetAccounts.map(parseAccount),
-          },
-          [ChainId.CosmosHub]: {
-            accounts: cosmosAccounts.map(parseAccount),
-          },
-          [ChainId.CosmosHubTestnet]: {
-            accounts: cosmosTestnetAccounts.map(parseAccount),
-          },
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
   };
 
   const delegateTokens = async () => {
@@ -366,13 +380,14 @@ const StakingSection = () => {
 
   return (
     <Box className={styles.wrapper}>
+      <StakingModal />
       <Box className={styles.container}>
         <Box>Staking section</Box>
         <Box>
           <Button
             data-tooltip-content="Test tooltip"
             data-tooltip-id={tooltipId}
-            onClick={getAddress}
+            onClick={() => tryToConnectWallets([WalletId.Keplr])}
           >
             Get address
           </Button>
@@ -408,7 +423,7 @@ const StakingSection = () => {
               <Button
                 onClick={() => {
                   stakingClient
-                    .getAdressInfo(defaultChainId, address)
+                    .getAddressInfo(defaultChainId, address)
                     .then((info) => {
                       console.log("debug: index.tsx: info", info);
                     });

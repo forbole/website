@@ -1,33 +1,67 @@
 import { memo, useContext } from "react";
 
-import type { Account } from "../../lib/context";
 import {
   ChainId,
   StakingContext,
   WalletId,
   getUserAccountsForNetwork,
-} from "../../lib/context";
+  setSelectedAccount,
+} from "@src/screens/staking/lib/context";
+import type { Account } from "@src/screens/staking/lib/context";
+
+type WalletAccountProps = {
+  address: string;
+  chainId: ChainId;
+  wallet: WalletId;
+};
+
+const WalletAccount = ({ address, chainId, wallet }: WalletAccountProps) => {
+  const { setState } = useContext(StakingContext);
+
+  return (
+    <div>
+      [{wallet}]: {chainId}: {address}{" "}
+      <button
+        onClick={() => {
+          setSelectedAccount(setState, { address, chainId, wallet });
+        }}
+      >
+        Check
+      </button>
+    </div>
+  );
+};
 
 type Props = {
   celestiaAccounts: Account[] | undefined;
   cosmosAccounts: Account[] | undefined;
 };
 
-const StakingComponentBase = ({ celestiaAccounts, cosmosAccounts }: Props) => (
+const StakingWidgetBase = ({ celestiaAccounts, cosmosAccounts }: Props) => (
   <div>
     StakingWidget:{" "}
     {!!cosmosAccounts &&
       cosmosAccounts.map((account) => (
-        <div key={account.address}>Account: {account.address}</div>
+        <WalletAccount
+          address={account.address}
+          chainId={ChainId.CosmosHubTestnet}
+          key={account.address}
+          wallet={WalletId.Keplr}
+        />
       ))}
     {!!celestiaAccounts &&
       celestiaAccounts.map((account) => (
-        <div key={account.address}>Account: {account.address}</div>
+        <WalletAccount
+          address={account.address}
+          chainId={ChainId.CelestiaTestnet}
+          key={account.address}
+          wallet={WalletId.Keplr}
+        />
       ))}
   </div>
 );
 
-const StakingComponent = memo(StakingComponentBase);
+const StakingComponent = memo(StakingWidgetBase);
 
 const StakingWidgetContainer = () => {
   const stakingContext = useContext(StakingContext);

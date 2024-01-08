@@ -52,7 +52,6 @@ $image-box-shadow:
     @include up-tablet {
       .popover {
         display: flex !important;
-        pointer-events: none;
       }
     }
   }

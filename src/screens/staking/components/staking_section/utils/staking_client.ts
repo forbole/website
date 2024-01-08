@@ -1,3 +1,5 @@
+import type { ChainId } from "@src/screens/staking/lib/context";
+
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API as string;
 
 if (!baseUrl) {
@@ -21,8 +23,6 @@ const fetchJson = <A = any>(uri: string, opts?: Options): Promise<A> =>
     },
   }).then((res) => res.json());
 
-type NetworkName = "cosmoshub" | "theta-testnet-001";
-
 type StakeResponse = {
   tx: {
     authInfo: {
@@ -43,13 +43,21 @@ type StakeResponse = {
   };
 };
 
+type GetAddressInfoResponse = {
+  balances: { amount: string; denom: string };
+};
+
+type GetStakingInfoResponse = {
+  rpc: string;
+};
+
 export const stakingClient = {
-  broadcast: async (network: NetworkName, body: unknown) =>
+  broadcast: async (network: ChainId, body: unknown) =>
     fetchJson(`/api/broadcast/${network}`, {
       body: JSON.stringify(body),
       method: "POST",
     }),
-  claimRewards: async (network: NetworkName, address: string) =>
+  claimRewards: async (network: ChainId, address: string) =>
     fetchJson(`/api/claim_rewards`, {
       body: JSON.stringify({
         address,
@@ -57,14 +65,14 @@ export const stakingClient = {
       }),
       method: "POST",
     }),
-  getAdressInfo: async (network: NetworkName, address: string) =>
-    fetchJson(`/api/address/${network}/${address}`),
+  getAddressInfo: async (network: ChainId, address: string) =>
+    fetchJson<GetAddressInfoResponse>(`/api/address/${network}/${address}`),
 
-  getRewardsInfo: async (network: NetworkName, address: string) =>
+  getRewardsInfo: async (network: ChainId, address: string) =>
     fetchJson(`/api/rewards/${network}/${address}`),
-  getStakingInfo: async (network: NetworkName) =>
-    fetchJson(`/api/staking_info/${network}`),
-  stake: async (network: NetworkName, address: string, amount: string) =>
+  getStakingInfo: async (network: ChainId) =>
+    fetchJson<GetStakingInfoResponse>(`/api/staking_info/${network}`),
+  stake: async (network: ChainId, address: string, amount: string) =>
     fetchJson<StakeResponse>(`/api/stake`, {
       body: JSON.stringify({
         address,
@@ -73,7 +81,7 @@ export const stakingClient = {
       }),
       method: "POST",
     }),
-  unstake: async (network: NetworkName, address: string, amount: string) =>
+  unstake: async (network: ChainId, address: string, amount: string) =>
     fetchJson(`/api/unstake`, {
       body: JSON.stringify({
         address,

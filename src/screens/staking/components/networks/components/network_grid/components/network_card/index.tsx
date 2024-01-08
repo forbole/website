@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
 import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
-import { useCallback, useRef } from "react";
+import { memo, useCallback, useRef } from "react";
 
 import { CloseIcon } from "@src/components/icons";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
@@ -21,15 +21,15 @@ import * as styles from "./index.module.scss";
 interface CardProp {
   network: Network;
   networkSummary: ParamsProps;
-  setShowMobilePopover: Dispatch<SetStateAction<string>>;
-  showMobilePopover: string;
+  setShowPopover: Dispatch<SetStateAction<string>>;
+  showPopover: string;
 }
 
 const NetworkCard = ({
   network,
   networkSummary,
-  setShowMobilePopover,
-  showMobilePopover,
+  setShowPopover,
+  showPopover,
 }: CardProp) => {
   const { t } = useTranslation("staking");
   const { isMobile } = useWindowDimensions();
@@ -39,17 +39,17 @@ const NetworkCard = ({
 
   const handleMobileAnchorClick: MouseEventHandler<HTMLButtonElement> =
     useCallback(
-      () => setShowMobilePopover(network.name),
-      [network.name, setShowMobilePopover],
+      () => setShowPopover(network.name),
+      [network.name, setShowPopover],
     );
 
   const handleMobilePopoverClick: MouseEventHandler<Element> = useCallback(
     (event) => {
       event.preventDefault();
       event.stopPropagation();
-      setShowMobilePopover("");
+      setShowPopover("");
     },
-    [setShowMobilePopover],
+    [setShowPopover],
   );
 
   const canClickNetwork = getCanClickNetwork(network);
@@ -64,6 +64,7 @@ const NetworkCard = ({
   );
 
   const isEmptyPopover =
+    !showPopover ||
     networksWithHiddenInfo.has(network.graphql) ||
     (!!networkSummary &&
       (!networkSummary.bonded || networkSummary.bonded < 0) &&
@@ -170,7 +171,7 @@ const NetworkCard = ({
           <div
             className={[
               styles.popoverContainer,
-              showMobilePopover === network.name ? styles.active : "",
+              showPopover === network.name ? styles.active : "",
             ].join(" ")}
             data-test="network-item"
           >
@@ -194,6 +195,8 @@ const NetworkCard = ({
         <div
           className={styles.anchor}
           onClick={handleExploreClick}
+          onMouseEnter={() => setShowPopover(network.name)}
+          onMouseLeave={() => setShowPopover("")}
           role="button"
           style={{
             cursor: canClickNetwork ? "pointer" : "default",
@@ -209,4 +212,4 @@ const NetworkCard = ({
   );
 };
 
-export default NetworkCard;
+export default memo(NetworkCard);

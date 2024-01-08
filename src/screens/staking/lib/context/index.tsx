@@ -19,9 +19,13 @@ export type Account = {
   address: string;
 };
 
+type StakeAction = "stake" | "unstake";
+
 type Wallet = { [key in ChainId]?: { accounts: Account[] } };
 
 type State = {
+  selectedAccount?: { address: string; chainId: ChainId; wallet: WalletId };
+  selectedAction: StakeAction;
   wallets?: Record<WalletId, Wallet>;
 };
 
@@ -60,6 +64,8 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
+// Actions
+
 export const setUserWallet = (
   state: State,
   setState: SetState,
@@ -74,8 +80,46 @@ export const setUserWallet = (
   });
 };
 
+export const setSelectedAccount = (
+  setState: SetState,
+  selectedAccount: State["selectedAccount"] | undefined,
+) => {
+  setState({
+    selectedAccount,
+  });
+};
+
+// Selectors
+
 export const getUserAccountsForNetwork = (
   context: Context,
   walletName: WalletId,
   userNetwork: ChainId,
 ) => context.state?.wallets?.[walletName]?.[userNetwork]?.accounts;
+
+// Utils
+
+export const getConnectedWallets = (): WalletId[] => {
+  const connectedWallets = window.localStorage.getItem("connectedWallets");
+
+  if (!connectedWallets) {
+    return [];
+  }
+
+  try {
+    const parsedWallets = JSON.parse(connectedWallets);
+
+    return parsedWallets;
+  } catch (e) {
+    return [];
+  }
+};
+
+export const addToConnectedWallets = (wallet: WalletId) => {
+  const connectedWallets = getConnectedWallets();
+
+  const newWalletsSet = new Set([...connectedWallets, wallet]);
+  const newWallets = Array.from(newWalletsSet);
+
+  window.localStorage.setItem("connectedWallets", JSON.stringify(newWallets));
+};
