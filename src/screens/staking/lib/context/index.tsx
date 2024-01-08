@@ -25,7 +25,7 @@ type Wallet = { [key in ChainId]?: { accounts: Account[] } };
 
 type State = {
   selectedAccount?: { address: string; chainId: ChainId; wallet: WalletId };
-  selectedAction: StakeAction;
+  selectedAction?: StakeAction;
   wallets?: Record<WalletId, Wallet>;
 };
 

@@ -24,6 +24,7 @@ const WalletAccount = ({ address, chainId, wallet }: WalletAccountProps) => {
       <button
         onClick={() => {
           setSelectedAccount(setState, { address, chainId, wallet });
+          setState({ selectedAction: "stake" });
         }}
       >
         Check

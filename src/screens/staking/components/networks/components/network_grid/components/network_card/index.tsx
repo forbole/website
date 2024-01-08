@@ -2,7 +2,12 @@ import { Button, LinearProgress } from "@mui/material";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
-import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
+import type {
+  Dispatch,
+  MouseEventHandler,
+  ReactNode,
+  SetStateAction,
+} from "react";
 import { memo, useCallback, useRef } from "react";
 
 import { CloseIcon } from "@src/components/icons";
@@ -18,76 +23,31 @@ import { networksWithHiddenInfo } from "@src/utils/network_info";
 import type { ParamsProps } from "../../config";
 import * as styles from "./index.module.scss";
 
-interface CardProp {
+type PopOverProps = {
+  canClickNetwork: boolean;
+  handleExploreClick: MouseEventHandler<HTMLElement>;
   network: Network;
-  networkSummary: ParamsProps;
+  networkImage: ReactNode;
+  networkSummary?: ParamsProps;
   setShowPopover: Dispatch<SetStateAction<string>>;
-  showPopover: string;
-}
+};
 
-const NetworkCard = ({
+const PopOver = ({
+  canClickNetwork,
+  handleExploreClick,
   network,
+  networkImage,
   networkSummary,
   setShowPopover,
-  showPopover,
-}: CardProp) => {
+}: PopOverProps) => {
   const { t } = useTranslation("staking");
-  const { isMobile } = useWindowDimensions();
 
-  /* Using framer-motion to animate the network box. */
-  const ref = useRef(null);
-
-  const handleMobileAnchorClick: MouseEventHandler<HTMLButtonElement> =
-    useCallback(
-      () => setShowPopover(network.name),
-      [network.name, setShowPopover],
-    );
-
-  const handleMobilePopoverClick: MouseEventHandler<Element> = useCallback(
-    (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      setShowPopover("");
-    },
-    [setShowPopover],
-  );
-
-  const canClickNetwork = getCanClickNetwork(network);
-
-  const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(
-    (event) => {
-      event.stopPropagation();
-
-      handleNetworkClick(network);
-    },
-    [network],
-  );
-
-  const isEmptyPopover =
-    !showPopover ||
-    networksWithHiddenInfo.has(network.graphql) ||
-    (!!networkSummary &&
-      (!networkSummary.bonded || networkSummary.bonded < 0) &&
-      (!networkSummary.APY || networkSummary.APY < 0) &&
-      (!networkSummary.TVL || networkSummary.TVL < 0) &&
-      !networkSummary.custom);
-
-  const networkImage = network.image && (
-    <div className={styles.image}>
-      <Image
-        alt=""
-        height="48"
-        objectFit="contain"
-        quality={100}
-        src={network.image}
-        width="48"
-      />
-    </div>
-  );
-
-  const popover = isEmptyPopover ? null : (
+  return (
     <div
       className={[styles.popover].join(" ")}
+      onMouseLeave={() => {
+        setShowPopover("");
+      }}
       style={{
         cursor: canClickNetwork ? "pointer" : "default",
       }}
@@ -95,13 +55,11 @@ const NetworkCard = ({
       <CloseIcon
         className={styles.closeBtn}
         fontSize="small"
-        onClickCapture={handleMobilePopoverClick}
+        onClickCapture={() => setShowPopover("")}
       />
-      {/* eslint-disable-next-line */}
-      <div onClick={handleMobilePopoverClick}>{networkImage}</div>
+      <div>{networkImage}</div>
       {!!networkSummary ? (
-        /* eslint-disable-next-line */
-        <div className={styles.dataBox} onClick={handleMobilePopoverClick}>
+        <div className={styles.dataBox}>
           {!!networkSummary.bonded && networkSummary.bonded > 0 && (
             <div>
               <h6 className={styles.label}>{network.denom?.toUpperCase()}</h6>
@@ -151,6 +109,69 @@ const NetworkCard = ({
       </Button>
     </div>
   );
+};
+
+interface CardProp {
+  network: Network;
+  networkSummary: ParamsProps;
+  setShowPopover: Dispatch<SetStateAction<string>>;
+  showPopover: string;
+}
+
+const NetworkCard = ({
+  network,
+  networkSummary,
+  setShowPopover,
+  showPopover,
+}: CardProp) => {
+  const { isMobile } = useWindowDimensions();
+
+  /* Using framer-motion to animate the network box. */
+  const ref = useRef(null);
+
+  const canClickNetwork = getCanClickNetwork(network);
+
+  const handleExploreClick: MouseEventHandler<HTMLElement> = useCallback(
+    (event) => {
+      event.stopPropagation();
+
+      handleNetworkClick(network);
+    },
+    [network],
+  );
+
+  const isEmptyPopover =
+    showPopover !== network.name ||
+    networksWithHiddenInfo.has(network.graphql) ||
+    (!!networkSummary &&
+      (!networkSummary.bonded || networkSummary.bonded < 0) &&
+      (!networkSummary.APY || networkSummary.APY < 0) &&
+      (!networkSummary.TVL || networkSummary.TVL < 0) &&
+      !networkSummary.custom);
+
+  const networkImage = network.image && (
+    <div className={styles.image}>
+      <Image
+        alt=""
+        height="48"
+        objectFit="contain"
+        quality={100}
+        src={network.image}
+        width="48"
+      />
+    </div>
+  );
+
+  const popover = isEmptyPopover ? null : (
+    <PopOver
+      canClickNetwork={canClickNetwork}
+      handleExploreClick={handleExploreClick}
+      network={network}
+      networkImage={networkImage}
+      networkSummary={networkSummary}
+      setShowPopover={setShowPopover}
+    />
+  );
 
   const networkName = <h4 className={styles.networkName}>{network.name}</h4>;
 
@@ -180,9 +201,7 @@ const NetworkCard = ({
           <Button
             className={styles.anchor}
             onClick={
-              isEmptyPopover && canClickNetwork
-                ? handleExploreClick
-                : handleMobileAnchorClick
+              isEmptyPopover && canClickNetwork ? handleExploreClick : undefined
             }
             variant="text"
           >
@@ -196,7 +215,6 @@ const NetworkCard = ({
           className={styles.anchor}
           onClick={handleExploreClick}
           onMouseEnter={() => setShowPopover(network.name)}
-          onMouseLeave={() => setShowPopover("")}
           role="button"
           style={{
             cursor: canClickNetwork ? "pointer" : "default",
