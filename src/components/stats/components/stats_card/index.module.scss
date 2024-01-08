@@ -12,11 +12,7 @@
 
   h3 {
     background-clip: text;
-    background-image: linear-gradient(
-      286.17deg,
-      #d431ee 0%,
-      $color-pink-1 100%
-    );
+    background-image: $gradient-unnamed-1;
     font-size: spacing(3);
     font-weight: 700;
     letter-spacing: 0.0015em;
@@ -35,7 +31,7 @@
 
   &.red {
     h3 {
-      background-image: linear-gradient(315deg, #ee3131 0%, $color-pink-1 100%);
+      background-image: $gradient-unnamed-2;
     }
   }
 }
