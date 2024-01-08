@@ -28,7 +28,7 @@
   flex-direction: column;
 
   @include down-laptop {
-    border-top: 1px solid $color-grey2;
+    border-top: 1px solid $color-light-grey-2;
     gap: 8px;
     padding-top: 12px;
   }

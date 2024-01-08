@@ -119,7 +119,7 @@ $content-bg: linear-gradient(
 }
 
 .tr1 {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  background: linear-gradient(286.17deg, #d431ee 0%, $color-pink-1 100%);
   background-clip: text;
   // stylelint-disable-next-line
   -webkit-background-clip: text;

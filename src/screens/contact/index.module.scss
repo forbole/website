@@ -89,7 +89,7 @@ $form-shadow:
 }
 
 .checkbox {
-  color: #afafaf;
+  color: $color-icon-grey;
   padding-bottom: 0;
   padding-top: 0;
 
@@ -121,7 +121,7 @@ $form-shadow:
 }
 
 .checkboxAgree {
-  color: #afafaf;
+  color: $color-icon-grey;
   padding-bottom: 0;
   padding-top: 0;
 
@@ -155,5 +155,5 @@ $form-shadow:
 }
 
 .required {
-  color: #ff426b;
+  color: $color-pink-1;
 }
