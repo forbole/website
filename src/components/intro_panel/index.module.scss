@@ -39,7 +39,7 @@
 .title {
   color: $color-forbole-blue-1;
   font-weight: 590;
-  padding: 0 0 10px 0;
+  padding: 0 0 10px;
 
   @include down-tablet {
     font-size: 18px;

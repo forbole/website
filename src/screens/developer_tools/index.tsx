@@ -135,7 +135,7 @@ const DeveloperTools = () => {
           >
             {t("start_trial")}
           </CtaLink>
-          <FourTable btnHref={() => setShow(true)} />
+          <FourTable onBtnClick={() => setShow(true)} />
           <Stack className={styles.signatureStack}>
             <Section title_large={t("signature")} />
             <div className={styles.signatureBox}>

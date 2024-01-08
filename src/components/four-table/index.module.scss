@@ -26,10 +26,6 @@
   height: 536px;
 }
 
-.money {
-  font-size: 64px;
-}
-
 .popular {
   align-items: center;
   background: $gradient-unnamed-2;
@@ -51,10 +47,6 @@
   font-style: normal;
   font-weight: 590;
   line-height: normal;
-}
-
-.none {
-  display: none;
 }
 
 @media (max-width: 1024.95px) {
@@ -101,6 +93,8 @@
 
 .feature {
   display: flex;
+  font-weight: 600;
+  gap: 5px;
   margin-top: 20px;
 }
 
@@ -111,4 +105,73 @@
   @include down-laptop {
     margin-top: 16px;
   }
+}
+
+.wrapper {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  min-height: 536px;
+
+  @include down-laptop {
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+
+  &.none {
+    display: none;
+  }
+}
+
+.title {
+  color: $color-forbole-blue-1;
+  font-size: 20px;
+  font-weight: 590;
+}
+
+.description {
+  color: $color-forbole-blue-1;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.features,
+.item {
+  font-size: 16px;
+  font-weight: 590;
+  padding-left: 5px;
+}
+
+.dollar {
+  font-size: 16px;
+  font-weight: 590;
+  padding-right: 3px;
+}
+
+.price {
+  color: $color-forbole-blue-1;
+  font-size: 32px;
+  font-weight: 590;
+  letter-spacing: -0.508px;
+  margin-top: -23px;
+  padding-right: 7px;
+
+  &.money {
+    font-size: 64px;
+  }
+}
+
+.divider {
+  background-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: thin;
+  height: 1px;
+  margin-top: 24px;
 }

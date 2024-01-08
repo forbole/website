@@ -1,4 +1,3 @@
-import { Divider, Stack, Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 
 import CtaButton, { CtaLink } from "@src/components/cta-button";
@@ -8,28 +7,14 @@ import * as styles from "./index.module.scss";
 
 const clickItem = 2;
 
-type Props = { btnHref: () => void };
+type Props = { onBtnClick: () => void };
 
-const FourTable = ({ btnHref }: Props) => {
+const FourTable = ({ onBtnClick }: Props) => {
   const { t } = useTranslation("developer_tools");
-  const theme = useTheme();
   const plans = usePlans();
 
   return (
-    <Stack
-      direction="row"
-      sx={{
-        alignItems: "flex-end",
-        gap: "16px",
-        minHeight: "536px",
-        [theme.breakpoints.down("laptop")]: {
-          alignItems: "center",
-          flexDirection: "column",
-          gap: "24px",
-          justifyContent: "center",
-        },
-      }}
-    >
+    <div className={styles.wrapper}>
       {plans.map((Plan, indexTop) => (
         <div
           className={[
@@ -38,63 +23,31 @@ const FourTable = ({ btnHref }: Props) => {
           ].join(" ")}
           key={indexTop}
         >
-          <Stack
-            className={indexTop === clickItem ? styles.popular : styles.none}
-            direction="row"
+          <div
+            className={[
+              styles.group,
+              indexTop === clickItem ? styles.popular : styles.none,
+            ].join(" ")}
           >
             <img alt="" src="/icons/Group.png" />
-            <Typography component="span">{t("popular")}</Typography>
-          </Stack>
-          <Typography
-            sx={{
-              color: "#202A43",
-              fontSize: "20px",
-              fontWeight: "590",
-            }}
-          >
-            {Plan.title}
-          </Typography>
+            <span>{t("popular")}</span>
+          </div>
+          <h3 className={styles.title}>{Plan.title}</h3>
           <div className={styles.text}>
-            <Typography
-              className={indexTop === clickItem ? styles.money : ""}
-              sx={{
-                color: "#202A43",
-                fontSize: "32px",
-                fontWeight: "590",
-                letterSpacing: "-0.508px",
-                marginTop: "-23px",
-                pr: "7px",
-              }}
+            <p
+              className={[
+                indexTop === clickItem ? styles.money : "",
+                styles.price,
+              ].join(" ")}
             >
-              <Typography
-                component="span"
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "590",
-                  pr: "3px",
-                }}
-              >
-                $
-              </Typography>
+              <span className={styles.dollar}>$</span>
               {Plan.price}
-            </Typography>
+            </p>
             {Plan.currency}
           </div>
-          <Typography
-            sx={{
-              color: "#202A43",
-              fontSize: "16px",
-              fontWeight: "400",
-            }}
-          >
-            {Plan.description}
-          </Typography>
+          <p className={styles.description}>{Plan.description}</p>
           <div>
-            <Divider
-              style={{
-                marginTop: "24px",
-              }}
-            />
+            <div className={styles.divider} />
             {Array.isArray(Plan.features) ? (
               Plan.features.map((item, index) => (
                 <div className={styles.feature} key={index}>
@@ -103,15 +56,7 @@ const FourTable = ({ btnHref }: Props) => {
                     src={Plan.image}
                     style={{ height: "25px", width: "25px" }}
                   />
-                  <Typography
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: "590",
-                      paddingLeft: "5px",
-                    }}
-                  >
-                    {item}
-                  </Typography>
+                  <span className={styles.item}>{item}</span>
                 </div>
               ))
             ) : (
@@ -121,15 +66,7 @@ const FourTable = ({ btnHref }: Props) => {
                   src={Plan.image}
                   style={{ height: "25px", width: "25px" }}
                 />
-                <Typography
-                  sx={{
-                    fontSize: "16px",
-                    fontWeight: "590",
-                    paddingLeft: "5px",
-                  }}
-                >
-                  {Plan.features}
-                </Typography>
+                <p className={styles.features}>{Plan.features}</p>
               </div>
             )}
           </div>
@@ -138,13 +75,13 @@ const FourTable = ({ btnHref }: Props) => {
               {Plan.btnName}
             </CtaLink>
           ) : (
-            <CtaButton className={styles.cta} onClick={btnHref}>
+            <CtaButton className={styles.cta} onClick={onBtnClick}>
               {Plan.btnName}
             </CtaButton>
           )}
         </div>
       ))}
-    </Stack>
+    </div>
   );
 };
 

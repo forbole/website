@@ -23,7 +23,7 @@
   &:disabled {
     &,
     &:hover {
-      background: #ebeef5;
+      background: $color-forbole-blue-5;
       box-shadow: none;
       color: rgba(195, 204, 226, 1);
       cursor: not-allowed;
