@@ -37,6 +37,7 @@ RUN chown nextjs .
 
 COPY --from=prod_node_modules --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 COPY --from=builder --chown=nextjs:nodejs /app/.yarn ./.yarn
 COPY --from=builder --chown=nextjs:nodejs /app/.env ./.env
 COPY --from=builder --chown=nextjs:nodejs /app/i18n.js ./i18n.js
