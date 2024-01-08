@@ -11,7 +11,8 @@ type Props = {
   desc?: string;
   disabled?: boolean;
   imageAlt?: string;
-  imageHref: StaticImageData | string;
+  imageHref?: StaticImageData | string;
+  imageHrefs?: [StaticImageData, StaticImageData]; // Mobile, Desktop + Tablet
   img_not_response?: boolean;
   level?: number;
   title?: string;
@@ -24,6 +25,7 @@ const IntroPanel = ({
   disabled,
   imageAlt,
   imageHref,
+  imageHrefs,
   img_not_response,
   level,
   title,
@@ -106,6 +108,28 @@ const IntroPanel = ({
             objectPosition="bottom right"
             src={imageHref}
           />
+        )}
+        {imageHrefs && (
+          <>
+            <Image
+              alt={imageAlt || ""}
+              className={styles.imgMobile}
+              layout="fill"
+              objectFit={matches ? "fill" : "contain"}
+              objectPosition="bottom right"
+              priority={false}
+              src={imageHrefs[0]}
+            />
+            <Image
+              alt={imageAlt || ""}
+              className={styles.imgDesktop}
+              layout="fill"
+              objectFit={matches ? "fill" : "contain"}
+              objectPosition="bottom right"
+              priority={false}
+              src={imageHrefs[1]}
+            />
+          </>
         )}
       </div>
     </Stack>

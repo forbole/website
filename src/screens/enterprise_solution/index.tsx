@@ -1,4 +1,4 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Container, Grid, Stack } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import type { MouseEvent } from "react";
 import { useRef } from "react";
@@ -11,9 +11,31 @@ import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import SuccessModal from "@src/components/success-modal";
+import { useDelayedIsMobile } from "@src/hooks/delayed_is_mobile";
 
 import useContactForm from "./hook";
 import * as styles from "./index.module.scss";
+
+type ModalProps = {
+  setSuccess: (success: boolean) => void;
+  success: boolean;
+};
+
+const ModalResult = ({ setSuccess, success }: ModalProps) => {
+  const isMobile = useDelayedIsMobile();
+  const { t } = useTranslation("enterprise_solution");
+
+  return (
+    <SuccessModal
+      bottom_word={isMobile ? t("thanks") : ""}
+      close={setSuccess}
+      fixed
+      middle_word={!isMobile ? t("success") : ""}
+      open={success}
+      up_word={t("contact_soon")}
+    />
+  );
+};
 
 const EnterpriseSolution = () => {
   const {
@@ -28,11 +50,6 @@ const EnterpriseSolution = () => {
 
   const topRef = useRef(null);
   const ContactRef = useRef(null);
-  const theme = useTheme();
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
-    noSsr: true,
-  });
 
   const { t } = useTranslation("enterprise_solution");
 
@@ -51,11 +68,10 @@ const EnterpriseSolution = () => {
       <Container className={styles.container} ref={topRef}>
         <HeaderCard
           desc_1st={t("trusted")}
-          head_bg={
-            isMobile
-              ? "/enterprise_solution/head_bg_m@2x.png"
-              : "/enterprise_solution/head_bg@2x.png"
-          }
+          head_bgs={[
+            "/enterprise_solution/head_bg_m@2x.png",
+            "/enterprise_solution/head_bg@2x.png",
+          ]}
           title={t("enterprise_solution")}
         />
         <Stack>
@@ -71,34 +87,31 @@ const EnterpriseSolution = () => {
           >
             {t("talk_to_us")}
           </CtaButton>
-          <Grid container spacing={theme.spacing(2)}>
+          <Grid container spacing={2}>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                imageHref={
-                  isMobile
-                    ? require("/public/enterprise_solution/c1_m@2x.png")
-                    : require("/public/enterprise_solution/c1@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/enterprise_solution/c1_m@2x.png"),
+                  require("/public/enterprise_solution/c1@2x.png"),
+                ]}
                 title={t("API")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                imageHref={
-                  isMobile
-                    ? require("/public/enterprise_solution/c2_m@2x.png")
-                    : require("/public/enterprise_solution/c2@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/enterprise_solution/c2_m@2x.png"),
+                  require("/public/enterprise_solution/c2@2x.png"),
+                ]}
                 title={t("collection")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
-                imageHref={
-                  isMobile
-                    ? require("/public/enterprise_solution/c3_m@2x.png")
-                    : require("/public/enterprise_solution/c3@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/enterprise_solution/c3_m@2x.png"),
+                  require("/public/enterprise_solution/c3@2x.png"),
+                ]}
                 title={t("decentralized")}
               />
             </Grid>
@@ -121,14 +134,7 @@ const EnterpriseSolution = () => {
           />
           <ScrollToTop topRef={topRef} />
         </Stack>
-        <SuccessModal
-          bottom_word={isMobile ? t("thanks") : ""}
-          close={setSuccess}
-          fixed
-          middle_word={!isMobile ? t("success") : ""}
-          open={success}
-          up_word={t("contact_soon")}
-        />
+        <ModalResult setSuccess={setSuccess} success={success} />
       </Container>
     </Layout>
   );

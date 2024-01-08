@@ -1,4 +1,4 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Container, Grid, Stack } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRef } from "react";
 
@@ -17,11 +17,6 @@ import * as styles from "./index.module.scss";
 const StakingService = () => {
   const { t } = useTranslation("staking_service");
   const topRef = useRef(null);
-  const theme = useTheme();
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
-    noSsr: true,
-  });
 
   const horseStyle = {
     style: { display: "block", margin: "0 auto" },
@@ -33,11 +28,10 @@ const StakingService = () => {
         <Container className={styles.container} maxWidth="desktop" ref={topRef}>
           <HeaderCard
             desc_1st={t("desc")}
-            head_bg={
-              isMobile
-                ? "/staking_service/head_bg_m@2x.png"
-                : "/staking_service/head_bg@2x.png"
-            }
+            head_bgs={[
+              "/staking_service/head_bg_m@2x.png",
+              "/staking_service/head_bg@2x.png",
+            ]}
             title={t("title")}
           />
 
@@ -60,15 +54,14 @@ const StakingService = () => {
             <CtaLink className={styles.stakingCta} href="/staking">
               {t("stake_now")}
             </CtaLink>
-            <Grid container spacing={theme.spacing(2)}>
+            <Grid container spacing={2}>
               <Grid item laptop={4} mobile={12}>
                 <IntroPanel
                   desc={t("grid_1st_desc")}
-                  imageHref={
-                    isMobile
-                      ? require("/public/staking_service/mobile_section_3@2x.png")
-                      : require("/public/staking_service/desk_section_3@2x.png")
-                  }
+                  imageHrefs={[
+                    require("/public/staking_service/mobile_section_3@2x.png"),
+                    require("/public/staking_service/desk_section_3@2x.png"),
+                  ]}
                   level={2}
                   title={t("grid_1st_title")}
                 />
@@ -76,11 +69,10 @@ const StakingService = () => {
               <Grid item laptop={4} mobile={12}>
                 <IntroPanel
                   desc={t("grid_2nd_desc")}
-                  imageHref={
-                    isMobile
-                      ? require("/public/staking_service/mobile_section_1@2x.png")
-                      : require("/public/staking_service/desk_section_1@2x.png")
-                  }
+                  imageHrefs={[
+                    require("/public/staking_service/mobile_section_1@2x.png"),
+                    require("/public/staking_service/desk_section_1@2x.png"),
+                  ]}
                   level={2}
                   title={t("grid_2nd_title")}
                 />
@@ -88,11 +80,10 @@ const StakingService = () => {
               <Grid item laptop={4} mobile={12}>
                 <IntroPanel
                   desc={t("grid_3rd_desc")}
-                  imageHref={
-                    isMobile
-                      ? require("/public/staking_service/mobile_section_2@2x.png")
-                      : require("/public/staking_service/desk_section_2@2x.png")
-                  }
+                  imageHrefs={[
+                    require("/public/staking_service/mobile_section_2@2x.png"),
+                    require("/public/staking_service/desk_section_2@2x.png"),
+                  ]}
                   level={2}
                   title={t("grid_3rd_title")}
                 />
