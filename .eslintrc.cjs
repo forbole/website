@@ -59,8 +59,8 @@ module.exports = {
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-use-before-define": "error",
-    "@typescript-eslint/no-var-requires": "off",
 
+    "@typescript-eslint/no-var-requires": "off",
     "arrow-body-style": "error",
     "camelcase": "off",
     "global-require": "off",
@@ -71,24 +71,25 @@ module.exports = {
     "no-console": ["error", { allow: ["warn", "error"] }],
     "no-shadow": "off",
     "no-unused-vars": "off",
+
     "no-useless-return": "error",
     "object-shorthand": "error",
-
     "perfectionist/sort-classes": "error",
     "perfectionist/sort-enums": "error",
     "perfectionist/sort-exports": "error",
     "perfectionist/sort-interfaces": "error",
     "perfectionist/sort-object-types": "error",
+
     "perfectionist/sort-objects": "error",
     "perfectionist/sort-union-types": "error",
-
     "prefer-const": "error",
+
     "prefer-template": "error",
     "quote-props": ["error", "consistent-as-needed"],
 
     "react-hooks/exhaustive-deps": "error",
-    "react-hooks/rules-of-hooks": "error",
 
+    "react-hooks/rules-of-hooks": "error",
     "react/destructuring-assignment": [
       "error",
       "always",

@@ -7,6 +7,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: normal;
   overflow-x: hidden;
+
+  /* React Tooltip */
+  --rt-opacity: 1;
 }
 
 * {

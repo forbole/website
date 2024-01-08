@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { concat, uniq } from "ramda";
 import type { ReactNode, RefObject } from "react";
+import { memo } from "react";
 import isURL from "validator/lib/isURL";
 
 import Footer from "../footer";
@@ -143,4 +144,4 @@ const LayoutVal = ({
   );
 };
 
-export default LayoutVal;
+export default memo(LayoutVal);

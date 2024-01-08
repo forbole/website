@@ -1,6 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import type { MouseEvent, RefObject } from "react";
+import type { FC, MouseEvent, RefObject } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
 import {
@@ -13,6 +14,13 @@ import { DesktopNavMenu, MobileNavMenu } from "./components";
 import LangMenuButton from "./components/lang_menu_button";
 import { useNavHook } from "./hooks";
 import * as styles from "./index.module.scss";
+
+const StakingWidget = dynamic(
+  () => import("@src/screens/staking/components/staking_widget"),
+  {
+    ssr: false,
+  },
+) as unknown as FC;
 
 interface NavProps {
   itemColor?: string;
@@ -71,6 +79,7 @@ const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
             </div>
             {staking ? (
               <div className={styles.stakingWrapper}>
+                <StakingWidget />
                 <HighlightButton onClick={scrollToRef}>
                   {t("stake_now")}
                 </HighlightButton>
