@@ -21,6 +21,7 @@ import { assets } from "chain-registry";
 import { MsgDelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx";
 import { useContext, useEffect, useState } from "react";
 
+import { tooltipId } from "@src/components/tooltip";
 import {
   ChainId,
   ENABLE_TESTNETS,
@@ -29,8 +30,8 @@ import {
   addToConnectedWallets,
   getConnectedWallets,
   setUserWallet,
-} from "../../lib/context";
-import { tooltipId } from "../tooltip";
+} from "@src/screens/staking/lib/context";
+
 import * as styles from "./index.module.scss";
 import StakingModal from "./staking_modal";
 import { stakingClient } from "./utils/staking_client";

@@ -1,16 +1,5 @@
 @import "src/styles/sass.scss";
 
-$popover-box-shadow:
-  10px 8px 12px -6px rgba(2, 38, 225, 0.08),
-  18px 14px 24px -4px rgba(2, 38, 225, 0.04),
-  inset 6px 6px 6px rgba(255, 255, 255, 0.2);
-$popover-background: linear-gradient(
-    269.66deg,
-    rgba(2, 158, 225, 0.4) -12.39%,
-    rgba(2, 38, 225, 0.2) 99.38%
-  ),
-  rgba(255, 255, 255, 0.8);
-
 $image-box-shadow:
   0 8px 22px -6px rgba(2, 38, 225, 0.12),
   0 14px 64px -4px rgba(2, 38, 225, 0.12);
@@ -20,10 +9,9 @@ $image-box-shadow:
   border-radius: spacing(1.5);
   color: $color-forbole-indigo6;
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: column;
   font-size: spacing(2);
   gap: spacing(0.5);
-  height: 100%;
   justify-content: center;
   padding: 20% 0;
   position: relative;
@@ -43,47 +31,6 @@ $image-box-shadow:
 
     &:hover {
       background-color: $color-primary-light;
-    }
-  }
-
-  &:hover {
-    opacity: 1;
-
-    @include up-tablet {
-      .popover {
-        display: flex !important;
-      }
-    }
-  }
-}
-
-.closeBtn {
-  margin-top: -spacing(1);
-  position: absolute;
-  right: spacing(2);
-
-  @include up-tablet {
-    display: none;
-  }
-}
-
-.dataBox {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
-
-  div {
-    align-items: center;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: row;
-    font-size: 12px;
-    justify-content: space-between;
-    padding: 2px 8px;
-
-    &:nth-of-type(even) {
-      background: rgba(255, 255, 255, 0.4);
     }
   }
 }
@@ -118,19 +65,6 @@ $image-box-shadow:
   padding: 0;
 }
 
-.label {
-  align-items: center;
-  display: block;
-  flex-flow: row nowrap;
-  font-size: 20px;
-  font-weight: 600;
-  gap: spacing(1);
-  justify-content: center;
-  text-align: left;
-  white-space: nowrap;
-  width: 100%;
-}
-
 .networkName {
   color: $color-forbole-indigo6;
   font-size: spacing(2);
@@ -141,53 +75,6 @@ $image-box-shadow:
 
   @include down-mobile {
     font-size: 1.25rem;
-  }
-}
-
-.popover {
-  align-items: center;
-  border-radius: spacing(3);
-  box-shadow: $popover-box-shadow;
-  color: $color-text-primary;
-  flex-flow: column;
-  gap: spacing(1);
-  justify-content: space-between;
-  padding: spacing(3);
-  position: absolute;
-  z-index: 3;
-
-  &::before {
-    backdrop-filter: blur(5px);
-    background: $popover-background;
-    border-radius: spacing(3);
-    box-shadow: $popover-box-shadow;
-    content: "";
-    display: block;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-
-    @include down-tablet {
-      margin-top: -spacing(1);
-    }
-
-    @include up-tablet {
-      max-height: spacing(27.25);
-      max-width: spacing(34);
-    }
-  }
-
-  @include down-tablet {
-    margin-top: -spacing(1);
-  }
-
-  @include up-tablet {
-    max-height: spacing(27.25);
-    max-width: spacing(34);
-    min-height: 125%;
-    min-width: 125%;
   }
 }
 
@@ -216,10 +103,6 @@ $image-box-shadow:
   }
 }
 
-.progress {
-  width: 100%;
-}
-
 .root {
   align-items: center;
   background: rgba(255, 255, 255, 0.6);
@@ -231,14 +114,4 @@ $image-box-shadow:
   min-height: spacing(10);
   min-width: spacing(15);
   text-align: center;
-}
-
-.value {
-  display: flex;
-  flex-flow: column nowrap;
-  font-size: 16px;
-  gap: spacing(1);
-  justify-content: space-between;
-  text-align: right;
-  width: 100%;
 }

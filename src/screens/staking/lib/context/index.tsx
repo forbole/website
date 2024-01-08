@@ -1,6 +1,8 @@
 import type { PropsWithChildren } from "react";
 import { createContext, useMemo, useState } from "react";
 
+import { networks } from "@src/utils/network_info";
+
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
 
@@ -14,6 +16,17 @@ export enum ChainId {
   CosmosHub = "cosmoshub-4",
   CosmosHubTestnet = "theta-testnet-001",
 }
+
+export const networkNameToChainId: Record<string, ChainId> = {
+  // @TODO: Move from testnet to mainnet via env variable
+  [networks.celestia.name]: ChainId.CelestiaTestnet,
+  [networks.cosmos.name]: ChainId.CosmosHubTestnet,
+};
+
+export const networksWithStaking = new Set([
+  networks.cosmos.name,
+  networks.celestia.name,
+]);
 
 export type Account = {
   address: string;
@@ -92,10 +105,10 @@ export const setSelectedAccount = (
 // Selectors
 
 export const getUserAccountsForNetwork = (
-  context: Context,
+  state: State,
   walletName: WalletId,
   userNetwork: ChainId,
-) => context.state?.wallets?.[walletName]?.[userNetwork]?.accounts;
+) => state?.wallets?.[walletName]?.[userNetwork]?.accounts;
 
 // Utils
 

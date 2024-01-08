@@ -51,6 +51,8 @@ const StakingModal = () => {
     }
   }, [isOpen, selectedAccount]);
 
+  if (!open) return null;
+
   return (
     <Modal
       onClose={() => setSelectedAccount(setStakingState, undefined)}

@@ -20,9 +20,7 @@ export type Network = {
   value?: string;
 };
 
-interface IStringIndex extends Record<string, Network> {}
-
-const logos: IStringIndex = {
+export const networks = {
   "agoric": {
     address: "agoricvaloper1pcc069wu2utgnf5qsm6n2pk2x8xt6cah954t4g",
     bigDipper: "https://testnet.explorer.agoric.net/",
@@ -712,9 +710,10 @@ const logos: IStringIndex = {
     label: "XPLA - XPLA",
     name: "XPLA",
   },
-};
+} satisfies Record<string, Network>;
 
-export const getNetworkInfo = (key: number | string) => logos[key] || null;
+export const getNetworkInfo = (key: keyof typeof networks) =>
+  networks[key] || null;
 
 export const cosmosNetworkKeys = [
   "agoric",

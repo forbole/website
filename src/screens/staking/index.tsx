@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
 
 import LayoutVal from "@src/components/layout_val";
-import Tooltip from "@src/screens/staking/components/tooltip";
+import Tooltip from "@src/components/tooltip";
 import GQLProvider from "@src/utils/gql";
 
 import CalculateRewards from "./components/calculate_rewards";

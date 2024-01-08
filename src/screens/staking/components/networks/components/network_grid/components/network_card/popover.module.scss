@@ -1,0 +1,117 @@
+@import "src/styles/sass.scss";
+
+$popover-box-shadow:
+  10px 8px 12px -6px rgba(2, 38, 225, 0.08),
+  18px 14px 24px -4px rgba(2, 38, 225, 0.04),
+  inset 6px 6px 6px rgba(255, 255, 255, 0.2);
+$popover-background: linear-gradient(
+    269.66deg,
+    rgba(2, 158, 225, 0.4) -12.39%,
+    rgba(2, 38, 225, 0.2) 99.38%
+  ),
+  rgba(255, 255, 255, 0.8);
+
+.popover {
+  align-items: center;
+  border-radius: spacing(3);
+  box-shadow: $popover-box-shadow;
+  color: $color-text-primary;
+  display: flex;
+  flex-flow: column;
+  gap: spacing(1);
+  justify-content: space-between;
+  padding: spacing(3);
+  position: absolute;
+  top: 0;
+  z-index: 3;
+
+  &::before {
+    backdrop-filter: blur(5px);
+    background: $popover-background;
+    border-radius: spacing(3);
+    box-shadow: $popover-box-shadow;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+
+    @include down-tablet {
+      margin-top: -spacing(1);
+    }
+
+    @include up-tablet {
+      max-width: spacing(34);
+    }
+  }
+
+  @include down-tablet {
+    margin-top: -spacing(1);
+  }
+
+  @include up-tablet {
+    max-width: spacing(34);
+    min-height: 125%;
+    min-width: 125%;
+  }
+}
+
+.closeBtn {
+  margin-top: -spacing(1);
+  position: absolute;
+  right: spacing(2);
+
+  @include up-tablet {
+    display: none;
+  }
+}
+
+.dataBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+
+  div {
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    justify-content: space-between;
+    padding: 2px 8px;
+
+    &:nth-of-type(even) {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  }
+}
+
+.label {
+  align-items: center;
+  display: block;
+  flex-flow: row nowrap;
+  font-size: 20px;
+  font-weight: 600;
+  gap: spacing(1);
+  justify-content: center;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.progress {
+  width: 100%;
+}
+
+.value {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 16px;
+  gap: spacing(1);
+  justify-content: space-between;
+  text-align: right;
+  width: 100%;
+}
