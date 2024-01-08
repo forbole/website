@@ -16,7 +16,7 @@ import { memo, useMemo, useRef } from "react";
 
 import CtaButton from "../cta-button";
 import FormInput from "../formInput";
-import { Close } from "../icons";
+import CloseIcon from "../icons/close.svg";
 
 interface Props {
   canSubmit: boolean;
@@ -149,7 +149,7 @@ const TalkModal = ({
             </Typography>
           </Stack>
           {close && (
-            <Close
+            <CloseIcon
               onClick={() => close?.(false)}
               style={{
                 border: "8px solid transparent",

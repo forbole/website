@@ -9,11 +9,9 @@ import type { MouseEvent } from "react";
 import { useContext, useEffect, useState } from "react";
 
 import { CtaLink } from "@src/components/cta-button";
-import {
-  Forbole as ForboleLogo,
-  LangIcon,
-  MenuIcon,
-} from "@src/components/icons";
+import ForboleLogo from "@src/components/icons/forbole";
+import LangIcon from "@src/components/icons/icon_language.svg";
+import MenuIcon from "@src/components/icons/menu";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import { anchorElContext } from "@src/utils/menu";
 

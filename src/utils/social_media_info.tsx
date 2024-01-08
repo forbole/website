@@ -1,13 +1,11 @@
 import type { FunctionComponent } from "react";
 
-import {
-  Github,
-  Instagram,
-  LinkedIn,
-  Medium,
-  Telegram,
-  Twitter,
-} from "@src/components/icons";
+import Instagram from "@src/components/icons/Instagram";
+import Github from "@src/components/icons/github";
+import LinkedIn from "@src/components/icons/linkedIn";
+import Medium from "@src/components/icons/medium";
+import Telegram from "@src/components/icons/telegram";
+import Twitter from "@src/components/icons/twitter";
 
 interface SocialMediaProps {
   component: FunctionComponent<{ fill?: string }>;

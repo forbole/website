@@ -5,7 +5,7 @@ import {
   ListItem,
 } from "@mui/material";
 
-import { ExpandIcon } from "@src/components/icons";
+import ExpandIcon from "@src/components/icons/icon_expand_more.svg";
 
 import type { FAQProps } from "../../config";
 import * as styles from "./index.module.scss";

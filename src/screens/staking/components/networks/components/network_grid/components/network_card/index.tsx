@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { useCallback, useRef } from "react";
 
-import { CloseIcon } from "@src/components/icons";
+import CloseIcon from "@src/components/icons/icon_cross.svg";
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import {

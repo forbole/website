@@ -9,7 +9,6 @@ import IntroPanel from "@src/components/intro_panel";
 import Layout from "@src/components/layout";
 import ScrollToBottom from "@src/components/scroll_to_bottom";
 import ScrollToTop from "@src/components/scroll_to_top";
-import { useWindowDimensions } from "@src/hooks/get_screen_size";
 
 import * as styles from "./index.module.scss";
 import { FilterBG } from "./styles";
@@ -30,7 +29,6 @@ const Home: FC<Props> = ({ pages }) => {
   const theme = useTheme();
   const topRef = useRef(null);
   const bottomRef = useRef(null);
-  const { isMobile } = useWindowDimensions();
 
   const filteredPages = pages.reduce((pageList: Page[], current) => {
     // filter out forbole academy page
@@ -73,11 +71,10 @@ const Home: FC<Props> = ({ pages }) => {
                 btnLink="/infrastructure"
                 btnName={t("see_more")}
                 desc={t("Validator_Infrastructure_desc")}
-                imageHref={
-                  isMobile
-                    ? require("/public/home/mobile@2x.png")
-                    : require("/public/home/Desktop@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/home/mobile@2x.png"),
+                  require("/public/home/Desktop@2x.png"),
+                ]}
                 img_not_response
                 title={t("Validator_Infrastructure_title")}
               />
@@ -87,11 +84,10 @@ const Home: FC<Props> = ({ pages }) => {
                 btnLink="/staking-service"
                 btnName={t("see_more")}
                 desc={t("Native_Staking_Service_desc")}
-                imageHref={
-                  isMobile
-                    ? require("/public/home/mobile-1@2x.png")
-                    : require("/public/home/Desktop-1@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/home/mobile-1@2x.png"),
+                  require("/public/home/Desktop-1@2x.png"),
+                ]}
                 img_not_response
                 title={t("Native_Staking_Service_title")}
               />
@@ -101,11 +97,10 @@ const Home: FC<Props> = ({ pages }) => {
                 btnLink="/analytics-tools"
                 btnName={t("see_more")}
                 desc={t("Blockchain_Data_Analytics_Tools_desc")}
-                imageHref={
-                  isMobile
-                    ? require("/public/home/mobile-2@2x.png")
-                    : require("/public/home/Desktop-2@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/home/mobile-2@2x.png"),
+                  require("/public/home/Desktop-2@2x.png"),
+                ]}
                 img_not_response
                 title={t("Blockchain_Data_Analytics_Tools_title")}
               />
@@ -115,11 +110,10 @@ const Home: FC<Props> = ({ pages }) => {
                 btnLink="/developer-tools"
                 btnName={t("see_more")}
                 desc={t("Developer_Tools_desc")}
-                imageHref={
-                  isMobile
-                    ? require("/public/home/mobile-3@2x.png")
-                    : require("/public/home/Desktop-3@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/home/mobile-3@2x.png"),
+                  require("/public/home/Desktop-3@2x.png"),
+                ]}
                 img_not_response
                 title={t("Developer_Tools_title")}
               />
@@ -129,11 +123,10 @@ const Home: FC<Props> = ({ pages }) => {
                 btnLink="/enterprise-solution"
                 btnName={t("see_more")}
                 desc={t("Enterprise_Solution_desc")}
-                imageHref={
-                  isMobile
-                    ? require("/public/home/mobile-4@2x.png")
-                    : require("/public/home/Desktop-4@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/home/mobile-4@2x.png"),
+                  require("/public/home/Desktop-4@2x.png"),
+                ]}
                 img_not_response
                 title={t("Enterprise_Solution_title")}
               />

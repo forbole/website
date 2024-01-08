@@ -74,11 +74,10 @@ const DeveloperTools = () => {
             <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
                 imageAlt="RPC service"
-                imageHref={
-                  !isMobile
-                    ? require("/public/developer_tools/desk_productcard_item_3@2x.png")
-                    : require("/public/developer_tools/mobile_productcard_item_3@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/developer_tools/mobile_productcard_item_3@2x.png"),
+                  require("/public/developer_tools/desk_productcard_item_3@2x.png"),
+                ]}
                 title={t("pinfo_item1")}
               />
             </Grid>
@@ -86,22 +85,20 @@ const DeveloperTools = () => {
               <span className={styles.label}>{t("common:coming_soon")}</span>
               <IntroPanel
                 imageAlt="GraphQL service"
-                imageHref={
-                  !isMobile
-                    ? require("/public/developer_tools/desk_productcard_item_1@2x.png")
-                    : require("/public/developer_tools/mobile_productcard_item_1@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/developer_tools/mobile_productcard_item_1@2x.png"),
+                  require("/public/developer_tools/desk_productcard_item_1@2x.png"),
+                ]}
                 title={t("pinfo_item2")}
               />
             </Grid>
             <Grid className={styles.card} item laptop={4} mobile={12}>
               <IntroPanel
                 imageAlt="Data API service"
-                imageHref={
-                  !isMobile
-                    ? require("/public/developer_tools/desk_productcard_item_2@2x.png")
-                    : require("/public/developer_tools/mobile_productcard_item_2@2x.png")
-                }
+                imageHrefs={[
+                  require("/public/developer_tools/mobile_productcard_item_2@2x.png"),
+                  require("/public/developer_tools/desk_productcard_item_2@2x.png"),
+                ]}
                 title={t("pinfo_item3")}
               />
             </Grid>

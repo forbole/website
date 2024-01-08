@@ -12,3 +12,19 @@
     }
   }
 }
+
+.imgMobile {
+  display: none;
+
+  @include down-tablet {
+    display: block;
+  }
+}
+
+.imgDesktop {
+  display: block;
+
+  @include down-tablet {
+    display: none;
+  }
+}

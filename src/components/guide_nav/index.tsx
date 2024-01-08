@@ -1,9 +1,7 @@
 import Link from "next/link";
 
-import {
-  Forbole as ForboleLogo,
-  ForboleShadowIcon,
-} from "@src/components/icons";
+import ForboleLogo from "@src/components/icons/forbole";
+import ForboleShadowIcon from "@src/components/icons/icon_forbole_shadow.svg";
 
 import { useNavHook } from "./hooks";
 import * as styles from "./index.module.scss";

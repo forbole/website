@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
 import Arrow, { Direction } from "@src/components/arrow";
-import { Horse } from "@src/components/icons";
+import Horse from "@src/components/icons/horse.svg";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";

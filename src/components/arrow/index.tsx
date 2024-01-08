@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { BottomIcon } from "../icons";
+import BottomIcon from "../icons/icon_bottom.svg";
 import * as styles from "./index.module.scss";
 
 export enum Direction {
