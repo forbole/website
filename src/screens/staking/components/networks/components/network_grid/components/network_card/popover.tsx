@@ -5,12 +5,13 @@ import type {
   ReactNode,
   SetStateAction,
 } from "react";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
-import { CloseIcon } from "@src/components/icons";
+import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { toastError, toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
+import type { Account } from "@src/screens/staking/lib/context";
 import {
   StakingContext,
   WalletId,
@@ -42,11 +43,43 @@ const PopOver = ({
   networkSummary,
   setShowPopover,
 }: PopOverProps) => {
-  // @TODO: Check if the user has an account on the network
-  const isStakingSupported = networksWithStaking.has(network.name);
+  const isStakingSupported = networksWithStaking.has(network.graphql);
 
   const { setState: setStakingState, state: stakingState } =
     useContext(StakingContext);
+
+  const { account, chainId, hasRewards } = useMemo(() => {
+    const wallet = WalletId.Keplr;
+    const newChainId = networkNameToChainId[network.graphql];
+
+    const result = {
+      account: null as Account | null,
+      chainId: newChainId,
+      hasRewards: false,
+    };
+
+    if (!!newChainId && !!wallet) {
+      const accounts = getUserAccountsForNetwork(
+        stakingState,
+        WalletId.Keplr, // @TODO
+        newChainId,
+      );
+
+      if (!accounts?.length) {
+        return result;
+      }
+
+      const newAccount = accounts.find((a) => !!a.info);
+
+      if (newAccount) {
+        result.account = newAccount;
+      }
+
+      result.hasRewards = !!accounts.find((a) => !!a.rewards);
+    }
+
+    return result;
+  }, [network, stakingState]);
 
   return (
     <div
@@ -61,7 +94,15 @@ const PopOver = ({
         onClickCapture={() => setShowPopover("")}
       />
       <div>{networkImage}</div>
-      <div style={{ border: "1px solid black" }}>Staking data</div>
+      {/* @TODO: This should be the aggreage of all accounts in all wallets */}
+      {!!account?.info && (
+        <div style={{ border: "1px solid black" }}>
+          <div>Staking data</div>
+          {!!account.info.delegation && (
+            <div>Delegation: {JSON.stringify(account.info.delegation)}</div>
+          )}
+        </div>
+      )}
       {!!networkSummary ? (
         <div className={styles.dataBox}>
           {!!networkSummary.bonded && networkSummary.bonded > 0 && (
@@ -115,51 +156,35 @@ const PopOver = ({
       ) : (
         <LinearProgress className={styles.progress} color="secondary" />
       )}
-      {isStakingSupported && (
+      {isStakingSupported && !!account?.address && (
         <>
           <button
             onClick={() => {
-              // @TODO
-              const wallet = WalletId.Keplr;
-              const chainId = networkNameToChainId[network.name];
-
-              if (!chainId || !wallet) {
-                return;
-              }
-
-              const accounts = getUserAccountsForNetwork(
-                stakingState,
-                WalletId.Keplr, // @TODO
+              setSelectedAccount(setStakingState, {
+                address: account.address,
                 chainId,
-              );
+                wallet: WalletId.Keplr,
+              });
 
-              if (!accounts?.length) {
-                return;
-              }
-
-              const address = accounts[0].address;
-
-              setSelectedAccount(setStakingState, { address, chainId, wallet });
               setStakingState({ selectedAction: "stake" });
             }}
           >
             Stake Now
           </button>
-          <button
-            onClick={() => {
-              toastSuccess({
-                title: "Rewards claimed",
-              });
-            }}
-          >
-            Claim Rewards
-          </button>
+          {hasRewards && (
+            <button
+              onClick={() => {
+                toastSuccess({
+                  title: "Rewards claimed",
+                });
+              }}
+            >
+              Claim Rewards
+            </button>
+          )}
         </>
       )}
-      {canClickNetwork && (
-        <button onClick={handleExploreClick}>See network details</button>
-      )}
-      {isStakingSupported && (
+      {isStakingSupported && account?.info?.delegation?.amount && (
         <button
           onClick={() => {
             toastError({
@@ -169,6 +194,9 @@ const PopOver = ({
         >
           Unstake
         </button>
+      )}
+      {canClickNetwork && (
+        <button onClick={handleExploreClick}>See network details</button>
       )}
     </div>
   );

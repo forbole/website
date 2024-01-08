@@ -43,8 +43,13 @@ type StakeResponse = {
   };
 };
 
-type GetAddressInfoResponse = {
+export type GetAddressInfoResponse = {
   balances: { amount: string; denom: string };
+  delegation: { amount: string; denom: string };
+};
+
+export type GetRewardsResponse = {
+  foo: "bar";
 };
 
 type GetStakingInfoResponse = {
@@ -69,7 +74,7 @@ export const stakingClient = {
     fetchJson<GetAddressInfoResponse>(`/api/address/${network}/${address}`),
 
   getRewardsInfo: async (network: ChainId, address: string) =>
-    fetchJson(`/api/rewards/${network}/${address}`),
+    fetchJson<GetRewardsResponse>(`/api/rewards/${network}/${address}`),
   getStakingInfo: async (network: ChainId) =>
     fetchJson<GetStakingInfoResponse>(`/api/staking_info/${network}`),
   stake: async (network: ChainId, address: string, amount: string) =>

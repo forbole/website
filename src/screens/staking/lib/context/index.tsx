@@ -3,6 +3,11 @@ import { createContext, useMemo, useState } from "react";
 
 import { networks } from "@src/utils/network_info";
 
+import type {
+  GetAddressInfoResponse,
+  GetRewardsResponse,
+} from "../../components/staking_section/utils/staking_client";
+
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
 
@@ -13,23 +18,25 @@ export enum WalletId {
 export enum ChainId {
   Celestia = "celestia",
   CelestiaTestnet = "mocha-4",
-  CosmosHub = "cosmoshub-4",
+  CosmosHub = "cosmoshub",
   CosmosHubTestnet = "theta-testnet-001",
 }
 
 export const networkNameToChainId: Record<string, ChainId> = {
   // @TODO: Move from testnet to mainnet via env variable
-  [networks.celestia.name]: ChainId.CelestiaTestnet,
-  [networks.cosmos.name]: ChainId.CosmosHubTestnet,
+  [networks.celestia.graphql]: ChainId.CelestiaTestnet,
+  [networks.cosmos.graphql]: ChainId.CosmosHubTestnet,
 };
 
 export const networksWithStaking = new Set([
-  networks.cosmos.name,
-  networks.celestia.name,
+  networks.cosmos.graphql,
+  networks.celestia.graphql,
 ]);
 
 export type Account = {
   address: string;
+  info?: GetAddressInfoResponse;
+  rewards?: GetRewardsResponse;
 };
 
 type StakeAction = "stake" | "unstake";

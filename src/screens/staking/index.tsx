@@ -1,6 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 import LayoutVal from "@src/components/layout_val";
 import Tooltip from "@src/components/tooltip";
@@ -22,7 +22,6 @@ const StakingSection = dynamic(() => import("./components/staking_section"), {
 
 const Staking = () => {
   const { t } = useTranslation("staking");
-  const stakeNowRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo({
@@ -38,7 +37,6 @@ const Staking = () => {
         <LayoutVal
           footer
           image="/images/assets/image_forbole_validator_website_preview.png"
-          stakeNowRef={stakeNowRef}
           title={t("title")}
           twitterImage="/images/assets/image_forbole_validator_website_preview.png"
         >
@@ -57,7 +55,7 @@ const Staking = () => {
           <LaptopCSS>
             <WhyForbole />
           </LaptopCSS>
-          <LaptopCSS ref={stakeNowRef}>
+          <LaptopCSS>
             <CalculateRewards />
           </LaptopCSS>
           <LaptopCSS>

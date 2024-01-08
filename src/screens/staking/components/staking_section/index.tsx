@@ -22,6 +22,7 @@ import { MsgDelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx";
 import { useContext, useEffect, useState } from "react";
 
 import { tooltipId } from "@src/components/tooltip";
+import type { Account } from "@src/screens/staking/lib/context";
 import {
   ChainId,
   ENABLE_TESTNETS,
@@ -148,6 +149,22 @@ const StakingSection = () => {
             return [] as AccountData[];
           };
 
+          const parseAccounts =
+            (chainId: ChainId) =>
+            (accounts: readonly AccountData[]): Promise<Account[]> =>
+              Promise.all(
+                accounts.map((account) =>
+                  Promise.all([
+                    stakingClient.getAddressInfo(chainId, account.address),
+                    stakingClient.getRewardsInfo(chainId, account.address),
+                  ]).then(([info, rewards]) => ({
+                    address: account.address,
+                    info,
+                    rewards,
+                  })),
+                ),
+              );
+
           const [
             cosmosAccounts,
             cosmosTestnetAccounts,
@@ -157,39 +174,39 @@ const StakingSection = () => {
             window.keplr
               .getOfflineSigner(ChainId.CosmosHub)
               .getAccounts()
+              .then(parseAccounts(ChainId.CosmosHub))
               .catch(handleError),
             window.keplr
               .getOfflineSigner(ChainId.CosmosHubTestnet)
               .getAccounts()
+              .then(parseAccounts(ChainId.CosmosHubTestnet))
               .catch(handleError),
             window.keplr
               .getOfflineSigner(ChainId.CelestiaTestnet)
               .getAccounts()
+              .then(parseAccounts(ChainId.CelestiaTestnet))
               .catch(handleError),
             window.keplr
               .getOfflineSigner(ChainId.Celestia)
               .getAccounts()
+              .then(parseAccounts(ChainId.Celestia))
               .catch(handleError),
           ]);
 
           addToConnectedWallets(WalletId.Keplr);
 
-          const parseAccount = (account: AccountData) => ({
-            address: account.address,
-          });
-
           setUserWallet(stakingState, setStakingState, WalletId.Keplr, {
             [ChainId.Celestia]: {
-              accounts: celestiaAccounts.map(parseAccount),
+              accounts: celestiaAccounts,
             },
             [ChainId.CelestiaTestnet]: {
-              accounts: celestiaTestnetAccounts.map(parseAccount),
+              accounts: celestiaTestnetAccounts,
             },
             [ChainId.CosmosHub]: {
-              accounts: cosmosAccounts.map(parseAccount),
+              accounts: cosmosAccounts,
             },
             [ChainId.CosmosHubTestnet]: {
-              accounts: cosmosTestnetAccounts.map(parseAccount),
+              accounts: cosmosTestnetAccounts,
             },
           });
 

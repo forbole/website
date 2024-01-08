@@ -1,5 +1,6 @@
 import { memo, useContext } from "react";
 
+import HighlightButton from "@src/components/highlight-button";
 import {
   ChainId,
   StakingContext,
@@ -38,29 +39,35 @@ type Props = {
   cosmosAccounts: Account[] | undefined;
 };
 
-const StakingWidgetBase = ({ celestiaAccounts, cosmosAccounts }: Props) => (
-  <div>
-    StakingWidget:{" "}
-    {!!cosmosAccounts &&
-      cosmosAccounts.map((account) => (
-        <WalletAccount
-          address={account.address}
-          chainId={ChainId.CosmosHubTestnet}
-          key={account.address}
-          wallet={WalletId.Keplr}
-        />
-      ))}
-    {!!celestiaAccounts &&
-      celestiaAccounts.map((account) => (
-        <WalletAccount
-          address={account.address}
-          chainId={ChainId.CelestiaTestnet}
-          key={account.address}
-          wallet={WalletId.Keplr}
-        />
-      ))}
-  </div>
-);
+const StakingWidgetBase = ({ celestiaAccounts, cosmosAccounts }: Props) => {
+  if (!celestiaAccounts && !cosmosAccounts) {
+    return <HighlightButton>Connect Wallet</HighlightButton>;
+  }
+
+  return (
+    <div>
+      StakingWidget:{" "}
+      {!!cosmosAccounts &&
+        cosmosAccounts.map((account) => (
+          <WalletAccount
+            address={account.address}
+            chainId={ChainId.CosmosHubTestnet}
+            key={account.address}
+            wallet={WalletId.Keplr}
+          />
+        ))}
+      {!!celestiaAccounts &&
+        celestiaAccounts.map((account) => (
+          <WalletAccount
+            address={account.address}
+            chainId={ChainId.CelestiaTestnet}
+            key={account.address}
+            wallet={WalletId.Keplr}
+          />
+        ))}
+    </div>
+  );
+};
 
 const StakingComponent = memo(StakingWidgetBase);
 
@@ -70,12 +77,12 @@ const StakingWidgetContainer = () => {
   return (
     <StakingComponent
       celestiaAccounts={getUserAccountsForNetwork(
-        stakingContext,
+        stakingContext.state,
         WalletId.Keplr,
         ChainId.CelestiaTestnet,
       )}
       cosmosAccounts={getUserAccountsForNetwork(
-        stakingContext,
+        stakingContext.state,
         WalletId.Keplr,
         ChainId.CosmosHubTestnet,
       )}
