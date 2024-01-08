@@ -8,7 +8,7 @@ import {
 import Image from "next/legacy/image";
 import { forwardRef } from "react";
 
-import { Close } from "../icons";
+import Close from "../icons/close.svg";
 import * as styles from "./index.module.scss";
 
 type Props = {

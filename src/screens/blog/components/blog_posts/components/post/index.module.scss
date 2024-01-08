@@ -67,6 +67,18 @@
 }
 
 .imgWrapper {
+  height: 156px;
+  position: relative;
+  width: 100%;
+
+  &.main {
+    height: 324px;
+
+    @include down-laptop {
+      height: 156px;
+    }
+  }
+
   & > span {
     width: 100% !important;
   }

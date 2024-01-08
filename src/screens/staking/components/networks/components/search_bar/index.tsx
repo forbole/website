@@ -17,7 +17,7 @@ import Image from "next/legacy/image";
 import type { ComponentProps, FocusEventHandler, HTMLAttributes } from "react";
 import { useCallback, useState } from "react";
 
-import { SearchIcon } from "@src/components/icons";
+import SearchIcon from "@src/components/icons/icon_search.svg";
 import {
   getCanClickNetwork,
   handleNetworkClick,

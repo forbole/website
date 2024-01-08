@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
-import { LangIcon } from "@src/components/icons";
+import LangIcon from "@src/components/icons/icon_language.svg";
 
 import MenuList from "../menu_list";
 import * as styles from "./index.module.scss";

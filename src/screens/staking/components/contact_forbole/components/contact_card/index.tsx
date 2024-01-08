@@ -14,7 +14,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useEffect, useMemo, useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
-import { ExpandIcon } from "@src/components/icons";
+import ExpandIcon from "@src/components/icons/icon_expand_more.svg";
 
 import useContactCard from "./hooks";
 import * as styles from "./index.module.scss";
