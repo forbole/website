@@ -1,7 +1,7 @@
 @import "src/styles/sass.scss";
 
 .contact {
-  color: $color-forbole-blue;
+  color: $color-forbole-blue-1;
   font-size: spacing(2);
   font-weight: 400;
   padding: spacing(3) 0 spacing(3) 0;
@@ -18,20 +18,11 @@
 }
 
 .tr0 {
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
 }
 
 .tr1 {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  background-clip: text;
-  // stylelint-disable-next-line
-  text-fill-color: transparent;
-  // stylelint-disable-next-line
-  -webkit-background-clip: text;
-  // stylelint-disable-next-line
-  -webkit-text-fill-color: transparent;
-  // stylelint-disable-next-line
-  background-clip: text;
+  @include gradient-text($gradient-unnamed-1);
 }
 
 .wrapper {

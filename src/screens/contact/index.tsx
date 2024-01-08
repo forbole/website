@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useRef } from "react";
 
 import CtaButton from "@src/components/cta-button";
-import FormInput from "@src/components/formInput";
+import FormInput from "@src/components/form_input";
 import Layout from "@src/components/layout";
 import SuccessModal from "@src/components/success-modal";
 

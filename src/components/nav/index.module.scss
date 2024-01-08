@@ -8,31 +8,6 @@
   justify-content: center;
 }
 
-.stakeNowButton {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  border: none;
-  border-radius: spacing(3);
-  box-shadow: none;
-  color: $color-primary-light;
-  cursor: pointer;
-  font-weight: 600;
-  height: 32px;
-  line-height: 17px;
-  padding: 0;
-  transition: all 0.3s;
-  white-space: nowrap;
-  width: 97px;
-
-  &:hover {
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-  }
-
-  @include up-laptop {
-    height: 45px;
-    width: 111px;
-  }
-}
-
 .stakingLang {
   @include down-laptop {
     display: none;

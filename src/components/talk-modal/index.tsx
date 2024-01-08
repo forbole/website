@@ -15,7 +15,7 @@ import useTranslation from "next-translate/useTranslation";
 import { memo, useMemo, useRef } from "react";
 
 import CtaButton from "../cta-button";
-import FormInput from "../formInput";
+import FormInput from "../form_input";
 import CloseIcon from "../icons/close.svg";
 
 interface Props {

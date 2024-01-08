@@ -1,7 +1,7 @@
 @import "src/styles/sass.scss";
 
 .button {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
+  background: $gradient-unnamed-1;
   border: none;
   border-radius: spacing(3);
   box-shadow: none;
@@ -17,6 +17,17 @@
 
   &:hover {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+  }
+
+  &:disabled {
+    &,
+    &:hover {
+      background: $color-forbole-blue-5;
+      box-shadow: none;
+      color: rgba(195, 204, 226, 1);
+      cursor: not-allowed;
+    }
   }
 
   @include up-laptop {

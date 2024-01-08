@@ -31,28 +31,3 @@
     justify-content: center;
   }
 }
-
-.stakeButton {
-  align-items: center;
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  border-radius: spacing(3);
-  box-shadow: none;
-  color: $color-primary-light;
-  display: flex;
-  font-weight: 600;
-  height: 32px;
-  justify-content: center;
-  line-height: 17px;
-  padding: 0;
-  text-decoration: none;
-  width: 97px;
-
-  @include up-laptop {
-    height: 45px;
-    width: 111px;
-  }
-
-  &:hover {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-  }
-}

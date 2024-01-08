@@ -1,7 +1,7 @@
 @import "src/styles/sass.scss";
 
 .list {
-  background: $color-secondary-light;
+  background: $color-indigo-3;
   border-radius: spacing(25);
   display: inline-block;
   margin: spacing(0) spacing(1) spacing(1) spacing(0);
@@ -15,7 +15,7 @@
   }
 
   &:hover {
-    background: $color-forbole-purple;
+    background: $color-indigo-5;
   }
 }
 

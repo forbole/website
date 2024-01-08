@@ -12,18 +12,14 @@
   padding: spacing(4) spacing(3);
 
   h3 {
-    background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-    background-clip: text;
+    @include gradient-text($gradient-unnamed-1);
+
     font-size: spacing(3);
     font-weight: 700;
     letter-spacing: 0.0015em;
     line-height: 29px;
     padding-top: spacing(2);
     text-align: center;
-    // stylelint-disable-next-line
-    text-fill-color: transparent;
-    // stylelint-disable-next-line
-    -webkit-text-fill-color: transparent;
   }
 
   h6 {
