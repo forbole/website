@@ -29,12 +29,12 @@ $popover-background: linear-gradient(
     backdrop-filter: blur(5px);
     background: $popover-background;
     border-radius: spacing(3);
+    bottom: 0;
     box-shadow: $popover-box-shadow;
     content: "";
     display: block;
     position: absolute;
     top: 0;
-    bottom: 0;
     width: 100%;
     z-index: -1;
 

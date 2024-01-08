@@ -2,7 +2,7 @@ import type { PropsWithChildren, ReactNode } from "react";
 import type { ToastOptions } from "react-toastify";
 import { toast } from "react-toastify";
 
-import * as styles from "./notification.module.scss";
+import * as styles from "./index.module.scss";
 
 const NotificationTitle = ({ children }: PropsWithChildren) => (
   <div className={styles.notificationTitle}>{children}</div>
@@ -14,16 +14,6 @@ const NotificationSubtitle = ({ children }: PropsWithChildren) => (
 
 const NotificationBox = ({ children }: PropsWithChildren) => (
   <div className={styles.notificationBox}>{children}</div>
-);
-
-export const NotificationCloseButton = () => (
-  <img
-    alt=""
-    className={styles.closeButton}
-    data-test="notification-close-button"
-    // @TODO
-    src=""
-  />
 );
 
 const NotificationContent = ({ children }: PropsWithChildren) => (
@@ -65,16 +55,7 @@ export const toastSuccess = (
 ) => {
   toast(<NotificationBase {...props} icon="checkmarkFilled" />, {
     className: styles.success,
-    ...toastOpts,
-  });
-};
-
-export const toastInfo = (
-  props: ToastOptsBase,
-  toastOpts: ToastOptions = {},
-) => {
-  toast(<NotificationBase {...props} icon={null} />, {
-    className: styles.info,
+    position: "top-right",
     ...toastOpts,
   });
 };
@@ -85,6 +66,7 @@ export const toastError = (
 ) => {
   toast(<NotificationBase {...props} icon="errorCross" />, {
     className: styles.error,
+    position: "top-right",
     ...toastOpts,
   });
 };

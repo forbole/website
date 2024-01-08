@@ -9,6 +9,7 @@ import { useContext } from "react";
 
 import { CloseIcon } from "@src/components/icons";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
+import { toastError, toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
@@ -138,21 +139,37 @@ const PopOver = ({
 
               const address = accounts[0].address;
 
-              console.log("debug: popover.tsx: chainId", chainId);
-
               setSelectedAccount(setStakingState, { address, chainId, wallet });
               setStakingState({ selectedAction: "stake" });
             }}
           >
             Stake Now
           </button>
-          <button>Claim Rewards</button>
+          <button
+            onClick={() => {
+              toastSuccess({
+                title: "Rewards claimed",
+              });
+            }}
+          >
+            Claim Rewards
+          </button>
         </>
       )}
       {canClickNetwork && (
         <button onClick={handleExploreClick}>See network details</button>
       )}
-      {isStakingSupported && <button>Unstake</button>}
+      {isStakingSupported && (
+        <button
+          onClick={() => {
+            toastError({
+              title: "Unstake",
+            });
+          }}
+        >
+          Unstake
+        </button>
+      )}
     </div>
   );
 };

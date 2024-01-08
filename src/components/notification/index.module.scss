@@ -33,21 +33,7 @@
   border: 2px solid var(--color-notification-border-success);
 }
 
-.info,
 .error,
 .success {
   border-radius: 8px;
-}
-
-.closeButton {
-  height: 20px;
-  width: 20px;
-}
-
-.info {
-  background-color: var(--color-toast-info);
-
-  .notificationTitle {
-    color: var(--color-white);
-  }
 }
