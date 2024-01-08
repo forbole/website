@@ -1,11 +1,4 @@
-$color-forbole-blue: #202a43;
-$color-forbole-indigo6: #2a1a6a;
-$color-forbole-purple: #6061e4;
-$color-grey2: #c2c2c2;
-$color-indigo: #362187;
-$color-primary-light: #fff;
-$color-secondary-light: #4d2fc2;
-$color-text-primary: #000;
+@import "./colors.scss";
 
 $box-shadow-variant-1:
   0 6px 14px -6px rgba(2, 38, 225, 0.12),
