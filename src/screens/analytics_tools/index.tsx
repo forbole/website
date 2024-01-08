@@ -7,35 +7,18 @@ import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import IntroPanel from "@src/components/intro_panel";
 import Layout from "@src/components/layout";
+import { NoSSR } from "@src/components/no-ssr";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 
 import * as styles from "./index.module.scss";
 
-const AnalyticsTools = () => {
-  const topRef = useRef(null);
+const NoteboolSwiper = () => {
   const theme = useTheme();
-  const { t } = useTranslation("analytics_tools");
 
   const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
     noSsr: true,
   });
-
-  const imagesList = useMemo(() => {
-    if (isMobile) {
-      return [
-        require("/public/data_visualization/opensource_m@2x.png"),
-        require("/public/data_visualization/staking_m@2x.png"),
-        require("/public/data_visualization/product details_m@2x.png"),
-      ];
-    }
-
-    return [
-      require("/public/data_visualization/opensource@2x.png"),
-      require("/public/data_visualization/staking@2x.png"),
-      require("/public/data_visualization/product details@2x.png"),
-    ];
-  }, [isMobile]);
 
   const noteBook = useMemo(() => {
     if (isMobile) {
@@ -53,16 +36,23 @@ const AnalyticsTools = () => {
     ];
   }, [isMobile]);
 
+  return <CardSwiper className={styles.swiper} imagesList={noteBook} />;
+};
+
+const AnalyticsTools = () => {
+  const topRef = useRef(null);
+  const theme = useTheme();
+  const { t } = useTranslation("analytics_tools");
+
   return (
     <Layout description={t("empowering")} footer title={t("title")}>
       <Container className={styles.container} ref={topRef}>
         <HeaderCard
           desc_1st={t("empowering")}
-          head_bg={
-            isMobile
-              ? "/data_visualization/head_bg_m@2x.png"
-              : "/data_visualization/head_bg@2x.png"
-          }
+          head_bgs={[
+            "/data_visualization/head_bg_m@2x.png",
+            "/data_visualization/head_bg@2x.png",
+          ]}
           title={t("title")}
         />
         <Stack>
@@ -78,21 +68,30 @@ const AnalyticsTools = () => {
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
                 desc={t("desc_1")}
-                imageHref={imagesList[0]}
+                imageHrefs={[
+                  require("/public/data_visualization/opensource_m@2x.png"),
+                  require("/public/data_visualization/opensource@2x.png"),
+                ]}
                 title={t("always")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
                 desc={t("desc_2")}
-                imageHref={imagesList[1]}
+                imageHrefs={[
+                  require("/public/data_visualization/staking_m@2x.png"),
+                  require("/public/data_visualization/staking@2x.png"),
+                ]}
                 title={t("staking_tool")}
               />
             </Grid>
             <Grid item laptop={4} mobile={12}>
               <IntroPanel
                 desc={t("desc_3")}
-                imageHref={imagesList[2]}
+                imageHrefs={[
+                  require("/public/data_visualization/product details_m@2x.png"),
+                  require("/public/data_visualization/product details@2x.png"),
+                ]}
                 title={t("governance_tool")}
               />
             </Grid>
@@ -105,7 +104,9 @@ const AnalyticsTools = () => {
         />
       </Container>
       <Stack>
-        <CardSwiper className={styles.swiper} imagesList={noteBook} />
+        <NoSSR>
+          <NoteboolSwiper />
+        </NoSSR>
         <ScrollToTop topRef={topRef} />
       </Stack>
     </Layout>

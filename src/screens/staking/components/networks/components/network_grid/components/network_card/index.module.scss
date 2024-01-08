@@ -7,7 +7,7 @@ $image-box-shadow:
 .anchor {
   align-items: center;
   border-radius: spacing(1.5);
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
   display: flex;
   flex-direction: column;
   font-size: spacing(2);
@@ -35,21 +35,6 @@ $image-box-shadow:
   }
 }
 
-.exploreButton {
-  background-color: #f6504b;
-  background-image: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  border-radius: 200px;
-  color: #fff;
-  font-size: 1rem;
-  height: 45px;
-  padding: 0.75rem 1rem;
-  width: 111px;
-
-  &:hover {
-    filter: brightness(1.2);
-  }
-}
-
 .image {
   align-items: center;
   border: 2px solid rgba(2, 38, 225, 0.16);
@@ -66,7 +51,7 @@ $image-box-shadow:
 }
 
 .networkName {
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
   font-size: spacing(2);
   font-weight: 600;
   overflow: hidden;
@@ -88,7 +73,7 @@ $image-box-shadow:
   }
 
   .label {
-    color: $color-forbole-indigo6;
+    color: $color-indigo-1;
     font-size: spacing(2);
   }
 

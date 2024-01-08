@@ -58,18 +58,7 @@ const IntroPanel = ({
           mb="12px"
         >
           <Typography
-            sx={{
-              color: "#202A43",
-              fontWeight: "590",
-              pr: "10px",
-              [theme.breakpoints.down("tablet")]: {
-                fontSize: "18px",
-                width: "max-content",
-              },
-              [theme.breakpoints.up("tablet")]: {
-                fontSize: "20px",
-              },
-            }}
+            className={styles.title}
             variant={level ? (`h${level}` as "h1") : undefined}
           >
             {title}
@@ -82,12 +71,7 @@ const IntroPanel = ({
         </Stack>
         <div>
           <Typography
-            sx={{
-              color: "#2A1A6A",
-              fontSize: "16px",
-              fontWeight: "400",
-              lineHeight: "22px",
-            }}
+            className={styles.desc}
             variant={level ? (`h${level + 1}` as "h1") : undefined}
           >
             {desc}

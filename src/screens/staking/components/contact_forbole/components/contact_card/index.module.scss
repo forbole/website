@@ -26,7 +26,7 @@
 
 .name {
   align-items: stretch;
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
   display: flex;
   flex-direction: column;
 
@@ -59,7 +59,7 @@ $input-shadow:
 
 .mail {
   align-items: stretch;
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
   display: flex;
   flex-direction: column;
 
@@ -77,7 +77,7 @@ $input-shadow:
   }
 
   :global(.MuiFormLabel-root) {
-    color: #878787;
+    color: $color-grey-2;
   }
 
   :global(.MuiOutlinedInput-notchedOutline) {
@@ -98,18 +98,5 @@ $input-shadow:
     grid-column: 6 / span 1;
     grid-row: 2 / span 1;
     justify-content: flex-end;
-  }
-}
-
-.button {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  border-radius: spacing(3);
-  box-shadow: $input-shadow;
-  font-size: spacing(1.875);
-  line-height: 1.5;
-  padding: spacing(1.25) spacing(2);
-
-  @include up-laptop {
-    width: 125px;
   }
 }

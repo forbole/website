@@ -30,7 +30,7 @@ $form-shadow:
 
 .icon {
   align-items: center;
-  background: #2a1a6a;
+  background: $color-indigo-1;
   border-radius: 50%;
   box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.28);
   display: flex;
@@ -69,7 +69,7 @@ $form-shadow:
 }
 
 .method {
-  color: #202a43;
+  color: $color-forbole-blue-1;
   font-size: 16px;
   opacity: 0.6;
 }
@@ -89,7 +89,7 @@ $form-shadow:
 }
 
 .checkbox {
-  color: #afafaf;
+  color: $color-icon-grey;
   padding-bottom: 0;
   padding-top: 0;
 
@@ -114,14 +114,14 @@ $form-shadow:
 }
 
 .input {
-  color: #878787;
+  color: $color-grey-2;
   font-size: 16px;
   line-height: 30px;
   padding: 12px;
 }
 
 .checkboxAgree {
-  color: #afafaf;
+  color: $color-icon-grey;
   padding-bottom: 0;
   padding-top: 0;
 
@@ -155,5 +155,5 @@ $form-shadow:
 }
 
 .required {
-  color: #ff426b;
+  color: $color-pink-1;
 }

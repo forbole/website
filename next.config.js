@@ -2,6 +2,8 @@ const million = require("million/compiler");
 const bundleAnalyzer = require("@next/bundle-analyzer");
 const nextTranslate = require("next-translate-plugin");
 
+const { changeCssClasses } = require("./scripts/change_css_classes");
+
 const localePrefixes = ["", "/zh-HK", "/zh-CN"];
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -45,11 +47,15 @@ const baseConfig = nextTranslate({
   typescript: {
     ignoreBuildErrors: process.env.QUICK_BUILD === "true",
   },
-  webpack: (config) => {
+  webpack: (config, { dev }) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
+
+    if (!dev) {
+      changeCssClasses(config);
+    }
 
     return config;
   },

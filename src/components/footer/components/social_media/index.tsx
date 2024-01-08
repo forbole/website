@@ -11,13 +11,13 @@ import { socialMedia } from "@src/utils/social_media_info";
 import * as styles from "./index.module.scss";
 
 const SocialMedia = () => {
-  const socialKeys = ["github", "twitter", "telegram", "linkedIn", "Instagram"];
+  const socialKeys = ["github", "twitter", "telegram", "linkedin", "instagram"];
   const { locale } = useRouter();
 
   const socialMediaInfo = socialKeys.map((keyParam: string) => {
     let key = keyParam;
 
-    if (key === "Instagram") {
+    if (key === "instagram") {
       if (locale !== "en") {
         key += "_zh";
       }

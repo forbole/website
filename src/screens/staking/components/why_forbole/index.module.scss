@@ -64,7 +64,7 @@ $content-bg: linear-gradient(
 }
 
 .whyForbole {
-  color: $color-forbole-blue;
+  color: $color-forbole-blue-1;
   font-size: spacing(2);
   font-weight: 600;
   padding-bottom: spacing(3);
@@ -76,7 +76,7 @@ $content-bg: linear-gradient(
 }
 
 .reasonDesc {
-  color: $color-forbole-blue;
+  color: $color-forbole-blue-1;
   font-size: spacing(1.75);
   line-height: spacing(2.5);
   text-align: center;
@@ -89,7 +89,7 @@ $content-bg: linear-gradient(
 }
 
 .reasonTitle {
-  color: $color-forbole-blue;
+  color: $color-forbole-blue-1;
   font-size: spacing(2.25);
   font-weight: 600;
   padding: spacing(5.75) 0 spacing(3) 0;
@@ -114,19 +114,15 @@ $content-bg: linear-gradient(
 }
 
 .tr0 {
-  color: $color-forbole-indigo6;
-  width: 80%;
+  color: $color-indigo-1;
 }
 
 .tr1 {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  background-clip: text;
-  // stylelint-disable-next-line
-  -webkit-background-clip: text;
-  // stylelint-disable-next-line
-  text-fill-color: transparent;
-  // stylelint-disable-next-line
-  -webkit-text-fill-color: transparent;
+  @include gradient-text($gradient-unnamed-1);
+}
+
+.tr0,
+.tr1 {
   width: 80%;
 }
 

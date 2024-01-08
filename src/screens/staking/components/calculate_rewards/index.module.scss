@@ -39,17 +39,9 @@
 }
 
 .tr0 {
-  color: $color-forbole-indigo6;
+  color: $color-indigo-1;
 }
 
 .tr1 {
-  background: linear-gradient(286.17deg, #d431ee 0%, #ff426b 100%);
-  // stylelint-disable-next-line
-  background-clip: text;
-  // stylelint-disable-next-line
-  -webkit-background-clip: text;
-  // stylelint-disable-next-line
-  -webkit-text-fill-color: transparent;
-  // stylelint-disable-next-line
-  text-fill-color: transparent;
+  @include gradient-text($gradient-unnamed-1);
 }

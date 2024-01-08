@@ -12,7 +12,7 @@ import useTranslation from "next-translate/useTranslation";
 import { forwardRef } from "react";
 
 import CtaButton from "../cta-button";
-import FormInput from "../formInput";
+import FormInput from "../form_input";
 
 type Props = {
   canSubmit: boolean;

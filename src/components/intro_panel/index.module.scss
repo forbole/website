@@ -28,3 +28,25 @@
     display: none;
   }
 }
+
+.desc {
+  color: $color-indigo-1;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.title {
+  color: $color-forbole-blue-1;
+  font-weight: 590;
+  padding: 0 0 10px;
+
+  @include down-tablet {
+    font-size: 18px;
+    width: max-content;
+  }
+
+  @include up-tablet {
+    font-size: 20px;
+  }
+}
