@@ -27,9 +27,18 @@ $color-white: #fff;
 
 $gradient-unnamed-1: linear-gradient(286.17deg, #d431ee 0%, $color-pink-1 100%);
 $gradient-unnamed-2: linear-gradient(315deg, #ee3131 0%, $color-pink-1 100%);
+$gradient-unnamed-3: linear-gradient(
+  180deg,
+  #fff 0%,
+  rgba(255, 255, 255, 0.64) 64.58%,
+  #fff 100%
+);
 
 // Shadows
 
 $box-shadow-variant-1:
   0 6px 14px -6px rgba(2, 38, 225, 0.12),
   0 10px 32px -4px rgba(2, 38, 225, 0.1);
+$box-shadow-variant-2:
+  0 10px 32px -4px rgba(96, 60, 238, 0.1),
+  0 6px 14px -6px rgba(96, 60, 238, 0.28);
