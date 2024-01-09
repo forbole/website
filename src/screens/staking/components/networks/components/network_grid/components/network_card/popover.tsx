@@ -9,7 +9,7 @@ import { useContext, useMemo } from "react";
 
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
-import { toastError, toastSuccess } from "@src/components/notification";
+import { toastError } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import type { Account } from "@src/screens/staking/lib/context";
 import {

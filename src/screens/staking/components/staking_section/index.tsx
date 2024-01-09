@@ -125,7 +125,9 @@ const StakingSection = () => {
         chains.filter((c) => c.chain_id.includes("mocha")),
       );
 
-      const newChainInfo = chains.find((chain) => chain.chain_id === "mocha-4");
+      const newChainInfo = chains.find(
+        (chain) => chain.chain_id === ChainId.CosmosHubTestnet,
+      );
 
       if (newChainInfo) {
         console.log("debug: index.tsx: newChainInfo", newChainInfo);
