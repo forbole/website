@@ -7,9 +7,6 @@ import {
   List,
   ListItem,
   Modal,
-  Stack,
-  Typography,
-  useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { memo, useMemo, useRef } from "react";
@@ -17,6 +14,7 @@ import { memo, useMemo, useRef } from "react";
 import CtaButton from "../cta-button";
 import FormInput from "../form_input";
 import CloseIcon from "../icons/close.svg";
+import * as styles from "./index.module.scss";
 
 interface Props {
   canSubmit: boolean;
@@ -54,7 +52,6 @@ const TalkModal = ({
   open = false,
   staking,
 }: Props) => {
-  const theme = useTheme();
   const { t } = useTranslation("developer_tools");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -103,51 +100,15 @@ const TalkModal = ({
         overflow: "auto",
       }}
     >
-      <Stack
-        sx={{
-          background:
-            "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.64) 64.58%, #FFF 100%)",
-          borderRadius: "24px",
-          boxShadow:
-            "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
-          color: "#202A43",
-          gap: staking ? "24px" : "40px",
-          margin: "164px auto",
-          padding: "64px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "24px",
-            mt: "104px",
-            padding: "24px",
-            width: "343px",
-          },
-          width: "1000px",
-        }}
+      <div
+        className={[styles.wrapper, staking ? styles.staking : ""].join(" ")}
       >
-        <Stack direction="row" justifyContent="space-between">
-          <Stack>
-            <Typography
-              sx={{
-                fontSize: "32px",
-                fontWeight: 590,
-                mb: "8px",
-                [theme.breakpoints.down("laptop")]: {
-                  fontSize: "18px",
-                  mb: "15px",
-                },
-              }}
-            >
-              {t("form_title")}
-            </Typography>
+        <div className={styles.content}>
+          <div>
+            <div className={styles.title}>{t("form_title")}</div>
 
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: 300,
-              }}
-            >
-              {t("form_desc")}
-            </Typography>
-          </Stack>
+            <div className={styles.desc}>{t("form_desc")}</div>
+          </div>
           {close && (
             <CloseIcon
               onClick={() => close?.(false)}
@@ -158,21 +119,13 @@ const TalkModal = ({
               }}
             />
           )}
-        </Stack>
-        <Grid
-          container
-          spacing={{ desktop: theme.spacing(4), mobile: theme.spacing(3) }}
-        >
+        </div>
+        <Grid container spacing={{ desktop: "32px", mobile: "24px" }}>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-              }}
-            >
+            <div className={styles.name}>
               {t("label_name")}
               <span style={{ color: "#FF426B" }}>*</span>
-            </Typography>
+            </div>
             <FormInput
               name="name"
               onInput={handleInputChange}
@@ -181,14 +134,7 @@ const TalkModal = ({
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-              }}
-            >
-              {t("label_company")}
-            </Typography>
+            <div className={styles.company}>{t("label_company")}</div>
             <FormInput
               name="company"
               onInput={handleInputChange}
@@ -197,15 +143,10 @@ const TalkModal = ({
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-              }}
-            >
+            <div className={styles.email}>
               {t("label_email")}
               <span style={{ color: "#FF426B" }}>*</span>
-            </Typography>
+            </div>
             <FormInput
               name="email"
               onInput={handleInputChange}
@@ -215,14 +156,7 @@ const TalkModal = ({
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-              }}
-            >
-              {t("label_telegram")}
-            </Typography>
+            <div className={styles.telegram}>{t("label_telegram")}</div>
             <FormInput
               name="telegram"
               onInput={handleInputChange}
@@ -231,16 +165,10 @@ const TalkModal = ({
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-                mb: "16px",
-              }}
-            >
+            <div className={styles.start}>
               {t("get_start")}
               <span style={{ color: "#FF426B" }}>*</span>
-            </Typography>
+            </div>
             <List
               dense
               sx={{
@@ -355,7 +283,7 @@ const TalkModal = ({
             </CtaButton>
           </Grid>
         </Grid>
-      </Stack>
+      </div>
     </Modal>
   );
 };

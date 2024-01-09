@@ -1,20 +1,13 @@
 @import "src/styles/sass.scss";
 
-$form-background: linear-gradient(
-  180deg,
-  #fff 0%,
-  rgba(255, 255, 255, 0.64) 64.58%,
-  #fff 100%
-);
-
 $form-shadow:
   0 10px 32px -4px rgba(2, 38, 225, 0.1),
   0 6px 14px -6px rgba(2, 38, 225, 0.12);
 
 .form {
-  background: $form-background;
+  background: $gradient-unnamed-3;
   border-radius: 24px;
-  box-shadow: $form-shadow;
+  box-shadow: $box-shadow-variant-1;
   gap: 40px;
   margin: 164px auto;
   padding: 64px;
@@ -145,9 +138,7 @@ $form-shadow:
 
 .list {
   border-radius: 8px;
-  box-shadow:
-    0 10px 32px -4px rgba(96, 60, 238, 0.1),
-    0 6px 14px -6px rgba(96, 60, 238, 0.28);
+  box-shadow: $box-shadow-variant-2;
   overflow: hidden;
   padding-bottom: 0;
   padding-top: 0;

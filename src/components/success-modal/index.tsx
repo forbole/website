@@ -27,25 +27,12 @@ const Alert = forwardRef<HTMLDivElement, Omit<Props, "open">>(
 
     return (
       <Stack
+        className={[
+          styles.wrapper,
+          fixed ? styles.fixed : "",
+          matches ? styles.matches : "",
+        ].join(" ")}
         ref={ref}
-        sx={{
-          background:
-            "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.64) 64.58%, #FFF 100%)",
-          borderRadius: "24px",
-          boxShadow:
-            "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
-          color: "#202A43",
-          gap: matches ? "24px" : "40px",
-          margin: fixed ? "164px auto" : "0 auto",
-          padding: "64px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "24px",
-            mt: "104px",
-            padding: "24px",
-            width: "343px",
-          },
-          width: "823px",
-        }}
       >
         <Stack
           alignItems="center"

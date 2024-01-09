@@ -13,6 +13,7 @@ import { forwardRef } from "react";
 
 import CtaButton from "../cta-button";
 import FormInput from "../form_input";
+import * as styles from "./index.module.scss";
 
 type Props = {
   canSubmit: boolean;
@@ -65,26 +66,7 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
     ];
 
     return (
-      <Stack
-        component="div"
-        ref={ref}
-        sx={{
-          background:
-            "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.64) 64.58%, #FFF 100%)",
-          borderRadius: "24px",
-          boxShadow:
-            "0px 10px 32px -4px rgba(2, 38, 225, 0.10), 0px 6px 14px -6px rgba(2, 38, 225, 0.12)",
-          color: "#202A43",
-          gap: "32px",
-          margin: "40px auto",
-          maxWidth: "776px",
-          padding: "40px",
-          [theme.breakpoints.down("laptop")]: {
-            gap: "24px",
-            padding: "24px",
-          },
-        }}
-      >
+      <Stack className={styles.wrapper} component="div" ref={ref}>
         <Grid
           columnSpacing={theme.spacing(4)}
           container

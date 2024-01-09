@@ -47,13 +47,13 @@ $question-shadow:
     padding: spacing(3) spacing(5) spacing(2) spacing(3);
   }
 
-  & > :global(.MuiAccordionSummary-expandIconWrapper) {
+  > :global(.MuiAccordionSummary-expandIconWrapper) {
     svg {
       fill: $color-grey-2;
     }
   }
 
-  & > :global(.Mui-expanded) {
+  > :global(.Mui-expanded) {
     h3 {
       @include gradient-text($gradient-unnamed-1);
     }
