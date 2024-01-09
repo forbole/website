@@ -52,6 +52,7 @@ module.exports = {
   ],
   rules: {
     "@next/next/no-img-element": "off",
+
     "@stylistic/padding-line-between-statements": paddingLineBetweenStatements,
 
     "@typescript-eslint/consistent-type-imports": "error",
@@ -59,8 +60,8 @@ module.exports = {
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-use-before-define": "error",
-
     "@typescript-eslint/no-var-requires": "off",
+
     "arrow-body-style": "error",
     "camelcase": "off",
     "global-require": "off",
@@ -68,28 +69,28 @@ module.exports = {
     "import/no-duplicates": "error",
 
     "jsx-a11y/anchor-is-valid": "off",
+
     "no-console": ["error", { allow: ["warn", "error"] }],
     "no-shadow": "off",
     "no-unused-vars": "off",
-
     "no-useless-return": "error",
     "object-shorthand": "error",
+
     "perfectionist/sort-classes": "error",
     "perfectionist/sort-enums": "error",
     "perfectionist/sort-exports": "error",
     "perfectionist/sort-interfaces": "error",
     "perfectionist/sort-object-types": "error",
-
     "perfectionist/sort-objects": "error",
     "perfectionist/sort-union-types": "error",
-    "prefer-const": "error",
 
+    "prefer-const": "error",
     "prefer-template": "error",
     "quote-props": ["error", "consistent-as-needed"],
 
     "react-hooks/exhaustive-deps": "error",
-
     "react-hooks/rules-of-hooks": "error",
+
     "react/destructuring-assignment": [
       "error",
       "always",
