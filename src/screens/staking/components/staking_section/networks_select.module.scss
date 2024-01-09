@@ -5,9 +5,10 @@
   box-shadow:
     0 14px 64px -4px #0226e11f,
     0 8px 22px -6px #0226e11f;
-  margin: 8px;
+  height: 80px;
+  margin: 0;
   overflow: hidden;
-  width: 300px;
+  width: 100%;
 }
 
 .logo {
@@ -23,4 +24,24 @@
   flex-direction: row;
   gap: 20px;
   justify-content: flex-start;
+}
+
+.select {
+  height: 100%;
+  width: 100%;
+
+  :global(.MuiOutlinedInput-notchedOutline) {
+    background-color: transparent !important;
+    border: none;
+    outline-color: transparent !important;
+
+    &:hover {
+      background-color: transparent !important;
+      border: none !important;
+      border-color: transparent !important;
+      border-right-style: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+  }
 }

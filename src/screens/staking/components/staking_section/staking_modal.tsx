@@ -2,6 +2,7 @@
 import useTranslation from "next-translate/useTranslation";
 import { useContext, useEffect, useState } from "react";
 
+import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
@@ -13,6 +14,7 @@ import {
 } from "@src/screens/staking/lib/context";
 import { stakeAmount } from "@src/screens/staking/lib/context/operations";
 
+import Label from "./label";
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";
 import * as styles from "./staking_modal.module.scss";
@@ -35,6 +37,7 @@ const StakingModal = () => {
   );
 
   const [networkInfo, setNetworkInfo] = useState<ModalNetworkInfo | null>(null);
+  const [amount, setAmount] = useState("");
   const [memo, setMemo] = useState("");
 
   const isOpen = !!selectedAccount && selectedAction === "stake";
@@ -77,30 +80,40 @@ const StakingModal = () => {
             value={selectedNetwork}
           />
         </div>
-        <div>
-          <div>
+        <div className={styles.row}>
+          <Label className={styles.apy}>
             <IconInfoCircle
               data-tooltip-content="Foo Tooltip"
               data-tooltip-id={tooltipId}
             />{" "}
             APY
-          </div>
+          </Label>
           <div>12%</div>
         </div>
         {availableTokens && (
           <div>
-            {t("stakingModal.available")}: {availableTokens[0]}{" "}
+            <Label>{t("stakingModal.available")}</Label>: {availableTokens[0]}{" "}
             {availableTokens[1].toUpperCase()}
           </div>
         )}
-        <div>
-          <div>{t("stakingModal.tokenAmount")}</div>
-          <input placeholder="0" />{" "}
-          {availableTokens && availableTokens[1].toUpperCase()}
+        <div className={styles.group}>
+          <Label>{t("stakingModal.tokenAmount")}</Label>
+          <div className={styles.row}>
+            <FormInput
+              className={styles.input}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="0"
+              {...(availableTokens && {
+                rightText: availableTokens[1].toUpperCase(),
+              })}
+              value={amount}
+            />{" "}
+          </div>
         </div>
-        <div>
-          <div>{t("stakingModal.memo")}</div>
-          <input
+        <div className={styles.group}>
+          <Label>{t("stakingModal.memo")}</Label>
+          <FormInput
+            className={styles.input}
             onChange={(e) => {
               setMemo(e.target.value);
             }}
@@ -109,7 +122,6 @@ const StakingModal = () => {
           />{" "}
         </div>
         <HighlightButton
-          className={styles.button}
           onClick={() => {
             if (!selectedAccount || !networkInfo) return;
 
@@ -121,6 +133,8 @@ const StakingModal = () => {
               memo,
             });
           }}
+          pinkShadow
+          size="big"
         >
           {t("stake_now")}
         </HighlightButton>

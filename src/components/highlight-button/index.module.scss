@@ -32,4 +32,19 @@
   @include up-laptop {
     height: 45px;
   }
+
+  &.big {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    line-height: 19px;
+    min-height: 48px;
+  }
+
+  &.pinkShadow {
+    &,
+    &:hover {
+      box-shadow: 4px 8px 24px 0 #fd247240;
+    }
+  }
 }

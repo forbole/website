@@ -136,6 +136,13 @@ export const networks: Record<string, Network> = {
     label: "Celestia - TIA",
     name: "Celestia",
   },
+  "celestia-testnet": {
+    denom: "tia",
+    graphql: "celestia",
+    image: "/images/network/celestia.svg",
+    key: "celestia-testnet",
+    name: "Celestia Testnet",
+  },
   "cheqd": {
     address: "cheqdvaloper1pknp3fyss23xeezcj6ypd8pl6d2ql4758zpxej",
     delegate: "https://wallet.cheqd.io",
@@ -201,6 +208,13 @@ export const networks: Record<string, Network> = {
     label: "Cosmos Hub - ATOM",
     name: "Cosmos Hub",
     value: "cosmos",
+  },
+  "cosmos-testnet": {
+    denom: "ATOM",
+    graphql: "",
+    image: "/images/network/cosmos_hub.png",
+    key: "cosmos-testnet",
+    name: "Cosmos Hub Testnet",
   },
   "crescent": {
     address: "crevaloper1ls9w867xu0q5zjze5vrakfa2zluahtv44gwn7y",

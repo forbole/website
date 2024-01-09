@@ -2,6 +2,8 @@
 import { Modal } from "@mui/material";
 import type { ReactNode } from "react";
 
+import IconClose from "@src/components/icons/icon_cross_grey.svg";
+
 import * as styles from "./modal_base.module.scss";
 
 type Props = {
@@ -33,7 +35,9 @@ const ModalBase = ({ children, onClose, open, title }: Props) => {
       <div className={styles.wrapper}>
         <h2 className={styles.title}>
           {title && <span>{title}</span>}
-          <button onClick={onClose}>X</button>
+          <button onClick={onClose}>
+            <IconClose />
+          </button>
         </h2>
         {children}
       </div>

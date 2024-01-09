@@ -1,11 +1,13 @@
 @import "src/styles/sass.scss";
 
+$box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.28);
+
 .input {
   background-color: $color-white;
   border: 2px solid;
   border-color: #fff;
   border-radius: 8px;
-  box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.28);
+  box-shadow: $box-shadow;
   display: block;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -25,4 +27,34 @@
   &::placeholder {
     color: $color-grey-2;
   }
+
+  &.withText {
+    box-shadow: none;
+    margin: 0;
+    padding-right: 32px;
+    width: 100%;
+
+    &:focus {
+      border-color: none;
+    }
+  }
+}
+
+.wrapper {
+  background-color: $color-white;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+
+  input {
+    flex: 1;
+  }
+}
+
+.rightText {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
 }

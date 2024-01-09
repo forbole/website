@@ -1,11 +1,40 @@
-.button {
-  flex: 1;
-  padding: 12px;
-}
+@import "src/styles/sass.scss";
 
 .wrapper {
   display: flex;
   flex: 1;
   flex-direction: column;
+  gap: 24px;
+
+  @include up-laptop {
+    min-width: 500px;
+  }
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
   gap: 12px;
+  justify-content: space-between;
+}
+
+.apy {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.group {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input {
+  margin: 0;
+  width: 100%;
 }

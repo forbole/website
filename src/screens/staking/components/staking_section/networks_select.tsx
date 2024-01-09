@@ -1,5 +1,3 @@
-import { OutlinedInput } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
@@ -11,6 +9,8 @@ import * as styles from "./networks_select.module.scss";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
+const IconComponent = () => null;
+
 const MenuProps = {
   PaperProps: {
     style: {
@@ -20,6 +20,7 @@ const MenuProps = {
   },
 };
 
+// @TODO: Get this from context (so testnets are filtered out)
 const networks = Object.values(ChainId).sort();
 
 type NetworkItemProps = {
@@ -27,18 +28,16 @@ type NetworkItemProps = {
 };
 
 const NetworkItem = ({ value }: NetworkItemProps) => {
-  const imgSrc = (() => {
-    const networkName = chainIdToNetworkKey[value];
+  const networkName = chainIdToNetworkKey[value];
+  const networkInfo = networkName ? getNetworkInfo(networkName) : "";
 
-    if (!networkName) return "";
-
-    return getNetworkInfo(networkName).image;
-  })();
+  const imgSrc = networkInfo ? networkInfo.image : "";
+  const name = networkInfo ? networkInfo.name : "";
 
   return (
     <div className={styles.row}>
       {!!imgSrc && <img alt="" className={styles.logo} src={imgSrc} />}
-      <div>{value}</div>
+      <div>{name}</div>
     </div>
   );
 };
@@ -54,10 +53,11 @@ const NetworksSelect = ({ setValue, value }: Props) => {
   };
 
   return (
-    <FormControl className={styles.control}>
+    <div className={styles.control}>
       <Select
+        IconComponent={IconComponent}
         MenuProps={MenuProps}
-        input={<OutlinedInput />}
+        className={styles.select}
         onChange={handleChange}
         value={value as string}
       >
@@ -67,7 +67,7 @@ const NetworksSelect = ({ setValue, value }: Props) => {
           </MenuItem>
         ))}
       </Select>
-    </FormControl>
+    </div>
   );
 };
 

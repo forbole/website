@@ -30,9 +30,9 @@ export const networkNameToChainId: Record<string, ChainId> = {
 
 export const chainIdToNetworkKey: Record<ChainId, string> = {
   [ChainId.Celestia]: "celestia",
-  [ChainId.CelestiaTestnet]: "celestia",
+  [ChainId.CelestiaTestnet]: "celestia-testnet",
   [ChainId.CosmosHub]: "cosmos",
-  [ChainId.CosmosHubTestnet]: "cosmos",
+  [ChainId.CosmosHubTestnet]: "cosmos-testnet",
 };
 
 export const networksWithStaking = new Set([
