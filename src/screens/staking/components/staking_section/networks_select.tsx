@@ -1,12 +1,12 @@
-import Checkbox from "@mui/material/Checkbox";
+import { OutlinedInput } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import type { SelectChangeEvent } from "@mui/material/Select";
 import Select from "@mui/material/Select";
-import { useState } from "react";
+
+import { ChainId, chainIdToNetworkKey } from "@src/screens/staking/lib/context";
+import { getNetworkInfo } from "@src/utils/network_info";
+
+import * as styles from "./networks_select.module.scss";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,56 +20,54 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
+const networks = Object.values(ChainId).sort();
 
-const NetworksSelect = () => {
-  const [personName, setPersonName] = useState<string[]>([]);
+type NetworkItemProps = {
+  value: ChainId;
+};
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
+const NetworkItem = ({ value }: NetworkItemProps) => {
+  const imgSrc = (() => {
+    const networkName = chainIdToNetworkKey[value];
 
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value,
-    );
+    if (!networkName) return "";
+
+    return getNetworkInfo(networkName).image;
+  })();
+
+  return (
+    <div className={styles.row}>
+      {!!imgSrc && <img alt="" className={styles.logo} src={imgSrc} />}
+      <div>{value}</div>
+    </div>
+  );
+};
+
+type Props = {
+  setValue: (value: ChainId) => void;
+  value: ChainId;
+};
+
+const NetworksSelect = ({ setValue, value }: Props) => {
+  const handleChange = (event: any) => {
+    setValue(event.target.value);
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
-        <Select
-          MenuProps={MenuProps}
-          id="demo-multiple-checkbox"
-          input={<OutlinedInput label="Tag" />}
-          labelId="demo-multiple-checkbox-label"
-          multiple
-          onChange={handleChange}
-          renderValue={(selected) => selected.join(", ")}
-          value={personName}
-        >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl className={styles.control}>
+      <Select
+        MenuProps={MenuProps}
+        input={<OutlinedInput />}
+        onChange={handleChange}
+        value={value as string}
+      >
+        {networks.map((network) => (
+          <MenuItem key={network} value={network}>
+            <NetworkItem value={network} />
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 

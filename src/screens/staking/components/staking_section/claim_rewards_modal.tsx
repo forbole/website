@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
-import { useContext } from "react";
+import useTranslation from "next-translate/useTranslation";
+import { useContext, useState } from "react";
 
 import { toastSuccess } from "@src/components/notification";
 import {
+  ChainId,
   StakingContext,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
@@ -15,6 +17,12 @@ const ClaimRewardsModal = () => {
   const { setState: setStakingState, state: stakingState } =
     useContext(StakingContext);
 
+  const [selectedNetwork, setSelectedNetwork] = useState<ChainId>(
+    ChainId.CosmosHubTestnet,
+  );
+
+  const { t } = useTranslation("staking");
+
   const { selectedAccount, selectedAction } = stakingState;
 
   const isOpen = !!selectedAccount && selectedAction === "claim_rewards";
@@ -23,9 +31,9 @@ const ClaimRewardsModal = () => {
     <ModalBase
       onClose={() => setSelectedAccount(setStakingState, undefined)}
       open={isOpen}
+      title={t("claimRewards.title")}
     >
-      <div>Claim Rewards Modal</div>
-      <NetworksSelect />
+      <NetworksSelect setValue={setSelectedNetwork} value={selectedNetwork} />
       <div>
         <div>Gas Fee</div>
         <div>0.002 ATOM</div>

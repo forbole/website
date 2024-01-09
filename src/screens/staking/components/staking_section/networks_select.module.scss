@@ -1,0 +1,26 @@
+@import "src/styles/sass.scss";
+
+.control {
+  border-radius: 8px;
+  box-shadow:
+    0 14px 64px -4px #0226e11f,
+    0 8px 22px -6px #0226e11f;
+  margin: 8px;
+  overflow: hidden;
+  width: 300px;
+}
+
+.logo {
+  border-radius: 50%;
+  height: 40px;
+  overflow: hidden;
+  width: 40px;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-start;
+}

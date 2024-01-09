@@ -1,0 +1,39 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  background-color: #fff;
+  border-radius: 24px;
+  left: 50%;
+  padding: 32px 32px 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  @include down-tablet {
+    padding: 12px 12px 20px;
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+  margin-bottom: 12px;
+
+  span {
+    @include gradient-text($gradient-unnamed-1);
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 2px 20px;
+  }
+}
+
+.modal {
+  overflow: auto;
+}

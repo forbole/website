@@ -1,0 +1,24 @@
+.button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid #202a43;
+  border-radius: 24px;
+  color: #202a43;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 0.005em;
+  line-height: 19px;
+  padding: 12px;
+  text-align: left;
+
+  &.withoutBorder {
+    border: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

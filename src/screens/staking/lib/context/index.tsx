@@ -28,6 +28,13 @@ export const networkNameToChainId: Record<string, ChainId> = {
   [networks.cosmos.graphql]: ChainId.CosmosHubTestnet,
 };
 
+export const chainIdToNetworkKey: Record<ChainId, string> = {
+  [ChainId.Celestia]: "celestia",
+  [ChainId.CelestiaTestnet]: "celestia",
+  [ChainId.CosmosHub]: "cosmos",
+  [ChainId.CosmosHubTestnet]: "cosmos",
+};
+
 export const networksWithStaking = new Set([
   networks.cosmos.graphql,
   networks.celestia.graphql,

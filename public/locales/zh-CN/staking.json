@@ -10,6 +10,9 @@
   "cancel": "取消",
   "claim para 1": "没有模型答案，因为这取决于太多因素，包括质押的代币数量、特定网络中的交易费用等。",
   "claim q": "我应该多久领取我的质押奖励？",
+  "claimRewards": {
+    "title": "Claim Rewards"
+  },
   "commission": "佣金率",
   "contact Forbole": "联系 Forbole",
   "contact Forbole desc": "我们很高兴为你提供专业的服务。",
@@ -39,6 +42,7 @@
   "non-custodial": "非托管",
   "non-custodial desc": "我们提供非托管质押服务，你可随时提取你的资产",
   "noResultsFound": "未找到结果",
+  "optionalInput": "Optional",
   "others": "其他",
   "our future": "我们的未来",
   "our future desc": "Forbole 运行一个跨链生态系统，我们与时并进，永不停步，时刻留意最新的技术发展，确保应用最高级的安全标准于质押服务中，让你高枕无忧。",
@@ -72,6 +76,12 @@
   "staking para 1": "代币持有者将其代币质押给验证者以保护网络的行为称为质押。",
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
   "staking q": "什么是质押？",
+  "stakingModal": {
+    "available": "Available",
+    "memo": "Memo",
+    "title": "Stake with forbole",
+    "tokenAmount": "Token amount"
+  },
   "string": " ",
   "success": "邮件已发送！",
   "technical_support": "技术支持",
@@ -85,6 +95,9 @@
   "unstaking para 2": "因此，如果您的计划是继续质押，并且您只是希望切换到不同的验证器，请使用重新质押来继续累积您的质押奖励和空投。",
   "unstaking para 3": "第一次重质押后，您需要等待一定时间（对应解质押期）才能进行下一次重质押交易。",
   "unstaking q": "什么是解除质押和重新质押？",
+  "unstakingModal": {
+    "title": "Unstaking"
+  },
   "why forbole title": "<0>Forbole<1>坚实基建，硅步千里</1></0>",
   "why forbole?": "为何选择 Forbole？",
   "your email": "你的邮箱地址",

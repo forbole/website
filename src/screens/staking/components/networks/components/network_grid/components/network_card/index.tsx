@@ -95,10 +95,7 @@ const NetworkCard = ({
       {isMobile ? (
         <>
           <div
-            className={[
-              styles.popoverContainer,
-              showPopover === network.name ? styles.active : "",
-            ].join(" ")}
+            className={[styles.popoverContainer].join(" ")}
             data-test="network-item"
           >
             {popover}

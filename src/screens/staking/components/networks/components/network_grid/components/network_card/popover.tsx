@@ -7,6 +7,9 @@ import type {
 } from "react";
 import { useContext, useMemo } from "react";
 
+import CtaButton from "@src/components/cta-button";
+import EmptyButton from "@src/components/empty-button";
+import HighlightButton from "@src/components/highlight-button";
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { toastError } from "@src/components/notification";
@@ -83,7 +86,7 @@ const PopOver = ({
 
   return (
     <div
-      className={[styles.popover].join(" ")}
+      className={styles.popover}
       onMouseLeave={() => {
         setShowPopover("");
       }}
@@ -96,7 +99,7 @@ const PopOver = ({
       <div>{networkImage}</div>
       {/* @TODO: This should be the aggreage of all accounts in all wallets */}
       {!!account?.info && (
-        <div style={{ border: "1px solid black" }}>
+        <div className={styles.stakingData}>
           <div>Staking data</div>
           {!!account.info.delegation && (
             <div>Delegation: {JSON.stringify(account.info.delegation)}</div>
@@ -156,23 +159,10 @@ const PopOver = ({
       ) : (
         <LinearProgress className={styles.progress} color="secondary" />
       )}
-      {isStakingSupported && !!account?.address && (
-        <>
-          <button
-            onClick={() => {
-              setSelectedAccount(setStakingState, {
-                address: account.address,
-                chainId,
-                wallet: WalletId.Keplr,
-              });
-
-              setStakingState({ selectedAction: "stake" });
-            }}
-          >
-            Stake Now
-          </button>
-          {hasRewards && (
-            <button
+      <div className={styles.buttons}>
+        {isStakingSupported && !!account?.address && (
+          <>
+            <HighlightButton
               onClick={() => {
                 setSelectedAccount(setStakingState, {
                   address: account.address,
@@ -180,36 +170,53 @@ const PopOver = ({
                   wallet: WalletId.Keplr,
                 });
 
-                setStakingState({ selectedAction: "claim_rewards" });
+                setStakingState({ selectedAction: "stake" });
               }}
             >
-              Claim Rewards
-            </button>
-          )}
-        </>
-      )}
-      {isStakingSupported && account?.info?.delegation?.amount && (
-        <button
-          onClick={() => {
-            setSelectedAccount(setStakingState, {
-              address: account.address,
-              chainId,
-              wallet: WalletId.Keplr,
-            });
+              Stake Now
+            </HighlightButton>
+            {hasRewards && (
+              <CtaButton
+                onClick={() => {
+                  setSelectedAccount(setStakingState, {
+                    address: account.address,
+                    chainId,
+                    wallet: WalletId.Keplr,
+                  });
 
-            setStakingState({ selectedAction: "unstake" });
+                  setStakingState({ selectedAction: "claim_rewards" });
+                }}
+              >
+                Claim Rewards
+              </CtaButton>
+            )}
+          </>
+        )}
+        {isStakingSupported && account?.info?.delegation?.amount && (
+          <EmptyButton
+            onClick={() => {
+              setSelectedAccount(setStakingState, {
+                address: account.address,
+                chainId,
+                wallet: WalletId.Keplr,
+              });
 
-            toastError({
-              title: "Unstake",
-            });
-          }}
-        >
-          Unstake
-        </button>
-      )}
-      {canClickNetwork && (
-        <button onClick={handleExploreClick}>See network details</button>
-      )}
+              setStakingState({ selectedAction: "unstake" });
+
+              toastError({
+                title: "Unstake",
+              });
+            }}
+          >
+            Unstake
+          </EmptyButton>
+        )}
+        {canClickNetwork && (
+          <EmptyButton onClick={handleExploreClick} withoutBorder>
+            See network details
+          </EmptyButton>
+        )}
+      </div>
     </div>
   );
 };

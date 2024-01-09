@@ -67,22 +67,6 @@ $image-box-shadow:
   align-self: flex-start;
   display: block;
 
-  .popover {
-    left: spacing(3);
-    right: spacing(3);
-  }
-
-  .label {
-    color: $color-indigo-1;
-    font-size: spacing(2);
-  }
-
-  &.active {
-    .popover {
-      display: flex !important;
-    }
-  }
-
   @include up-tablet {
     display: none;
   }

@@ -10,6 +10,9 @@
   "cancel": "Cancel",
   "claim para 1": "There is no model answer because this depends on too many factors, including how many tokens staked, transaction fees in that particular network, etc.",
   "claim q": "How often should I claim my staking rewards?",
+  "claimRewards": {
+    "title": "Claim Rewards"
+  },
   "commission": "Commission Rate",
   "contact Forbole": "Contact Forbole",
   "contact Forbole desc": "We are happy to serve you with our professional services.",
@@ -39,6 +42,7 @@
   "non-custodial": "Non-custodial",
   "non-custodial desc": "Our services are non-custodial so you can withdraw at any time",
   "noResultsFound": "No results found",
+  "optionalInput": "Optional",
   "others": "Others",
   "our future": "Our Future",
   "our future desc": "Forbole runs a cross-chain ecosystem, we never stop and constantly improve our user experience. By exploring more opportunities and innovating our products and services to meet the ever changing landscape, stakers are equipped to make their best choices.",
@@ -72,6 +76,12 @@
   "staking para 1": "The action that token holders stake their tokens to validators to secure the network is called staking. Staked tokens are eligible to receive staking rewards. Newly minted tokens and transactions fees are given out as rewards to bonded staking token holders.",
   "staking para 2": "Stakers stake their staking power to validators, but that does not mean the validators possess or have custody of the tokens staked to them. In other words, validators cannot steal or take away stakers’ tokens. Your staked amount of tokens will not be decreased in most situations, however, if your validator is punished by slashing, your staked token is at risk of being slashed too (see below for “slashing”).",
   "staking q": "What is staking?",
+  "stakingModal": {
+    "available": "Available",
+    "memo": "Memo",
+    "title": "Stake with Forbole",
+    "tokenAmount": "Token amount"
+  },
   "string": " ",
   "success": "Email sent! We will get back to you shortly",
   "technical_support": "Technical support",
@@ -85,6 +95,9 @@
   "unstaking para 2": "Therefore, if your plan is to continue with staking, and you simply wish to switch to a different validator, use restake instead to continue accruing your staking rewards and airdrops.",
   "unstaking para 3": "After the first restaking, you need to wait for a certain period of time (corresponding with unstaking period) before making another restaking transaction. And do make sure you have sufficient funds in your available balance to pay for the transaction fee.",
   "unstaking q": "What are unstaking and restaking?",
+  "unstakingModal": {
+    "title": "Unstaking"
+  },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
   "why forbole?": "Why Forbole?",
   "your email": "Your Email",

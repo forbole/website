@@ -2,17 +2,21 @@
 import { Modal } from "@mui/material";
 import type { ReactNode } from "react";
 
+import * as styles from "./modal_base.module.scss";
+
 type Props = {
   children: ReactNode;
   onClose: () => void;
   open: boolean;
+  title?: string;
 };
 
-const ModalBase = ({ children, onClose, open }: Props) => {
+const ModalBase = ({ children, onClose, open, title }: Props) => {
   if (!open) return null;
 
   return (
     <Modal
+      className={styles.modal}
       onClose={onClose}
       open={open}
       slotProps={{
@@ -25,20 +29,12 @@ const ModalBase = ({ children, onClose, open }: Props) => {
           },
         },
       }}
-      sx={{
-        overflow: "auto",
-      }}
     >
-      <div
-        style={{
-          backgroundColor: "#fff",
-          left: "50%",
-          position: "absolute",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <button onClick={onClose}>X</button>
+      <div className={styles.wrapper}>
+        <h2 className={styles.title}>
+          {title && <span>{title}</span>}
+          <button onClick={onClose}>X</button>
+        </h2>
         {children}
       </div>
     </Modal>

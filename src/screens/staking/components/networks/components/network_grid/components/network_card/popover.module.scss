@@ -13,6 +13,8 @@ $popover-background: linear-gradient(
 
 .popover {
   align-items: center;
+  backdrop-filter: blur(5px);
+  background: $popover-background;
   border-radius: spacing(3);
   box-shadow: $popover-box-shadow;
   color: $color-text-primary;
@@ -20,41 +22,19 @@ $popover-background: linear-gradient(
   flex-flow: column;
   gap: spacing(1);
   justify-content: space-between;
-  padding: spacing(3);
+  min-width: 300px;
+  padding: 24px;
   position: absolute;
   top: 0;
   z-index: 3;
 
-  &::before {
-    backdrop-filter: blur(5px);
-    background: $popover-background;
-    border-radius: spacing(3);
-    bottom: 0;
-    box-shadow: $popover-box-shadow;
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-
-    @include down-tablet {
-      margin-top: -spacing(1);
-    }
-
-    @include up-tablet {
-      max-width: spacing(34);
-    }
-  }
-
   @include down-tablet {
     margin-top: -spacing(1);
+    padding: 8px;
   }
 
   @include up-tablet {
-    max-width: spacing(34);
     min-height: 125%;
-    min-width: 125%;
   }
 }
 
@@ -82,20 +62,17 @@ $popover-background: linear-gradient(
     font-size: 12px;
     justify-content: space-between;
     padding: 2px 8px;
-
-    &:nth-of-type(even) {
-      background: rgba(255, 255, 255, 0.4);
-    }
   }
 }
 
 .label {
   align-items: center;
-  display: block;
+  display: flex;
+  flex: 1;
   flex-flow: row nowrap;
   font-size: 20px;
-  font-weight: 600;
-  gap: spacing(1);
+  font-weight: 400;
+  gap: 2px;
   justify-content: center;
   text-align: left;
   white-space: nowrap;
@@ -113,5 +90,24 @@ $popover-background: linear-gradient(
   gap: spacing(1);
   justify-content: space-between;
   text-align: right;
+  width: 100%;
+}
+
+.stakingData {
+  background: #ffffff8f;
+  border-radius: 8px;
+  box-shadow:
+    0 10px 32px -4px #0226e11a,
+    0 6px 14px -6px #0226e11f;
+  line-break: anywhere;
+  max-width: 100%;
+  padding: 12px 16px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(2);
+  justify-content: space-between;
   width: 100%;
 }
