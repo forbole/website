@@ -174,9 +174,13 @@ const PopOver = ({
           {hasRewards && (
             <button
               onClick={() => {
-                toastSuccess({
-                  title: "Rewards claimed",
+                setSelectedAccount(setStakingState, {
+                  address: account.address,
+                  chainId,
+                  wallet: WalletId.Keplr,
                 });
+
+                setStakingState({ selectedAction: "claim_rewards" });
               }}
             >
               Claim Rewards
@@ -187,6 +191,14 @@ const PopOver = ({
       {isStakingSupported && account?.info?.delegation?.amount && (
         <button
           onClick={() => {
+            setSelectedAccount(setStakingState, {
+              address: account.address,
+              chainId,
+              wallet: WalletId.Keplr,
+            });
+
+            setStakingState({ selectedAction: "unstake" });
+
             toastError({
               title: "Unstake",
             });

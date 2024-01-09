@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
 import { useContext } from "react";
 
+import { toastSuccess } from "@src/components/notification";
 import {
   StakingContext,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
+import { claimRewards } from "@src/screens/staking/lib/context/operations";
 
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -22,20 +24,34 @@ const ClaimRewardsModal = () => {
       onClose={() => setSelectedAccount(setStakingState, undefined)}
       open={isOpen}
     >
+      <div>Claim Rewards Modal</div>
+      <NetworksSelect />
       <div>
-        <NetworksSelect />
-        <div
-          style={{
-            backgroundColor: "#fff",
-            left: "50%",
-            position: "absolute",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          Claim Rewards Modal
-        </div>
+        <div>Gas Fee</div>
+        <div>0.002 ATOM</div>
       </div>
+      <button
+        onClick={() => {
+          if (!selectedAccount) return;
+
+          const { address, chainId } = selectedAccount;
+
+          claimRewards({
+            address,
+            chainId,
+          })
+            .then(() => {
+              toastSuccess({
+                title: "Rewards claimed",
+              });
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }}
+      >
+        Claim Rewards
+      </button>
     </ModalBase>
   );
 };

@@ -1,7 +1,4 @@
 /* eslint-disable no-console */
-import type { MsgDelegateEncodeObject, StdFee } from "@cosmjs/stargate";
-import { SigningStargateClient } from "@cosmjs/stargate";
-import { MsgDelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx";
 import { useContext, useEffect, useState } from "react";
 
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
@@ -11,6 +8,7 @@ import {
   getSelectedAccount,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
+import { stakeAmount } from "@src/screens/staking/lib/context/operations";
 
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -97,47 +95,10 @@ const StakingModal = () => {
 
             const { address, chainId } = selectedAccount;
 
-            stakingClient.stake(chainId, address, "1").then(async (info) => {
-              const message = info.tx.body.messages[0];
-
-              if (!message) return;
-
-              const msg = MsgDelegate.fromPartial({
-                amount: message.amount,
-                delegatorAddress: message.delegator_address,
-                validatorAddress: message.validator_address,
-              });
-
-              const msgAny: MsgDelegateEncodeObject = {
-                typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
-                value: msg,
-              };
-
-              const fee: StdFee = {
-                amount: info.tx.authInfo.fee.amount,
-                gas: info.tx.authInfo.fee.gas_limit,
-              };
-
-              const offlineSigner =
-                window.keplr?.getOfflineSignerOnlyAmino(chainId);
-
-              if (!offlineSigner) {
-                throw new Error("Can't get offline signer");
-              }
-
-              const client = await SigningStargateClient.connectWithSigner(
-                networkInfo.rpc,
-                offlineSigner,
-              );
-
-              client
-                .signAndBroadcast(address, [msgAny], fee, memo)
-                .then((signed) => {
-                  console.log("debug: index.tsx: signed", signed);
-                })
-                .catch((err) => {
-                  console.log("debug: index.tsx: err", err);
-                });
+            stakeAmount({
+              address,
+              chainId,
+              memo,
             });
           }}
         >
