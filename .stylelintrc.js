@@ -24,10 +24,13 @@ module.exports = {
 
     "scss/at-import-no-partial-leading-underscore": null,
     "scss/at-import-partial-extension": null,
+    "scss/at-mixin-argumentless-call-parentheses": "never",
     "scss/dollar-variable-colon-space-after": null,
     "scss/dollar-variable-empty-line-before": null,
     "scss/function-no-unknown": null,
     "scss/no-duplicate-dollar-variables": true,
+    "scss/no-duplicate-mixins": true,
+    "scss/selector-no-redundant-nesting-selector": true,
 
     "selector-class-pattern": null,
     "selector-id-pattern": null,

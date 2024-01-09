@@ -1,5 +1,6 @@
 import { Container, Grid, Stack, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 
 import CtaButton, { CtaLink } from "@src/components/cta-button";
@@ -11,11 +12,14 @@ import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import SignatureCard from "@src/components/signature-card";
 import SuccessModal from "@src/components/success-modal";
-import TalkModal from "@src/components/talk-modal";
 import { useDelayedIsMobile } from "@src/hooks/delayed_is_mobile";
 
 import useTalkModalForm from "./hooks";
 import * as styles from "./index.module.scss";
+
+const TalkModal = dynamic(() => import("@src/components/talk-modal"), {
+  ssr: false,
+});
 
 type Props = {
   setShow: (b: boolean) => void;
@@ -159,17 +163,19 @@ const DeveloperTools = () => {
         </Stack>
         <ScrollToTop topRef={topRef} />
       </Container>
-      <TalkModal
-        canSubmit={canSubmit}
-        close={setShow}
-        handleCheckedChange={handleCheckedChange}
-        handleClear={handleClear}
-        handleInputChange={handleInputChange}
-        handleSubmit={handleSubmit}
-        inputs={inputs}
-        isLoading={isLoading}
-        open={show}
-      />
+      {show && (
+        <TalkModal
+          canSubmit={canSubmit}
+          close={setShow}
+          handleCheckedChange={handleCheckedChange}
+          handleClear={handleClear}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+          inputs={inputs}
+          isLoading={isLoading}
+          open={show}
+        />
+      )}
       <ResultModal
         setShow={setShow}
         setSuccess={setSuccess}

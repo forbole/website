@@ -3,9 +3,7 @@
 .wrapper {
   background: #fff;
   border-radius: 24px;
-  box-shadow:
-    0 10px 32px -4px rgba(96, 60, 238, 0.1),
-    0 6px 14px -6px rgba(96, 60, 238, 0.28);
+  box-shadow: $box-shadow-variant-2;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
