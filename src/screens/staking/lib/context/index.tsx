@@ -39,14 +39,21 @@ export type Account = {
   rewards?: GetRewardsResponse;
 };
 
-type StakeAction = "stake" | "unstake";
+type StakeAction = "claim_rewards" | "stake" | "unstake";
 
 type Wallet = { [key in ChainId]?: { accounts: Account[] } };
 
+type SelectedAccount = {
+  address: string;
+  chainId: ChainId;
+  wallet: WalletId;
+};
+
 type State = {
-  selectedAccount?: { address: string; chainId: ChainId; wallet: WalletId };
-  selectedAction?: StakeAction;
-  wallets?: Record<WalletId, Wallet>;
+  isConnectingWallet: boolean;
+  selectedAccount: null | SelectedAccount;
+  selectedAction: null | StakeAction;
+  wallets: { [key in WalletId]?: Wallet };
 };
 
 type SetState = (state: Partial<State>) => void;
@@ -56,9 +63,16 @@ type Context = {
   state: State;
 };
 
+const defaultState: State = {
+  isConnectingWallet: false,
+  selectedAccount: null,
+  selectedAction: null,
+  wallets: {},
+};
+
 const baseContext: Context = {
   setState: () => {},
-  state: {},
+  state: defaultState,
 };
 
 export const StakingContext = createContext(baseContext);

@@ -33,6 +33,7 @@ import {
   setUserWallet,
 } from "@src/screens/staking/lib/context";
 
+import ClaimRewardsModal from "./claim_rewards_modal";
 import * as styles from "./index.module.scss";
 import StakingModal from "./staking_modal";
 import UnstakingModal from "./unstaking_modal";
@@ -401,6 +402,7 @@ const StakingSection = () => {
     <Box className={styles.wrapper}>
       <StakingModal />
       <UnstakingModal />
+      <ClaimRewardsModal />
       <Box className={styles.container}>
         <Box>Staking section</Box>
         <Box>
