@@ -47,6 +47,11 @@
   "our future": "Our Future",
   "our future desc": "Forbole runs a cross-chain ecosystem, we never stop and constantly improve our user experience. By exploring more opportunities and innovating our products and services to meet the ever changing landscape, stakers are equipped to make their best choices.",
   "percentage": "%",
+  "popover": {
+    "claimRewards": "Claim Rewards",
+    "stake": "Stake Now",
+    "unstake": "Unstake"
+  },
   "receiving bullet 1": "Nominated validators are not in the active set",
   "receiving bullet 2": "Nominated a validator with 100% commission holders. The rewards rate varies depending on the total amount of staked tokens, and each network has their specific settings.",
   "receiving q": "Why am I not receiving staking rewards?",
@@ -77,6 +82,10 @@
   "staking para 2": "Stakers stake their staking power to validators, but that does not mean the validators possess or have custody of the tokens staked to them. In other words, validators cannot steal or take away stakers’ tokens. Your staked amount of tokens will not be decreased in most situations, however, if your validator is punished by slashing, your staked token is at risk of being slashed too (see below for “slashing”).",
   "staking q": "What is staking?",
   "stakingModal": {
+    "amountError": {
+      "invalid": "You have to input a valid number",
+      "positive": "You have to input a positive number"
+    },
     "available": "Available",
     "memo": "Memo",
     "title": "Stake with Forbole",
@@ -96,6 +105,7 @@
   "unstaking para 3": "After the first restaking, you need to wait for a certain period of time (corresponding with unstaking period) before making another restaking transaction. And do make sure you have sufficient funds in your available balance to pay for the transaction fee.",
   "unstaking q": "What are unstaking and restaking?",
   "unstakingModal": {
+    "button": "Unstake",
     "title": "Unstaking"
   },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",

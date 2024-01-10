@@ -54,6 +54,7 @@ export type GetRewardsResponse = {
 
 type GetStakingInfoResponse = {
   rpc: string;
+  unbonding_period: string;
 };
 
 export const stakingClient = {

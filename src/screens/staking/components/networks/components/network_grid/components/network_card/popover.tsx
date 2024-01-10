@@ -1,4 +1,5 @@
 import { LinearProgress } from "@mui/material";
+import useTranslation from "next-translate/useTranslation";
 import type {
   Dispatch,
   MouseEventHandler,
@@ -12,7 +13,6 @@ import EmptyButton from "@src/components/empty-button";
 import HighlightButton from "@src/components/highlight-button";
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
-import { toastError } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import type { Account } from "@src/screens/staking/lib/context";
 import {
@@ -47,6 +47,7 @@ const PopOver = ({
   setShowPopover,
 }: PopOverProps) => {
   const isStakingSupported = networksWithStaking.has(network.graphql);
+  const { t } = useTranslation("staking");
 
   const { setState: setStakingState, state: stakingState } =
     useContext(StakingContext);
@@ -173,7 +174,7 @@ const PopOver = ({
                 setStakingState({ selectedAction: "stake" });
               }}
             >
-              Stake Now
+              {t("popover.stake")}
             </HighlightButton>
             {hasRewards && (
               <CtaButton
@@ -187,7 +188,7 @@ const PopOver = ({
                   setStakingState({ selectedAction: "claim_rewards" });
                 }}
               >
-                Claim Rewards
+                {t("popover.claimRewards")}
               </CtaButton>
             )}
           </>
@@ -202,13 +203,9 @@ const PopOver = ({
               });
 
               setStakingState({ selectedAction: "unstake" });
-
-              toastError({
-                title: "Unstake",
-              });
             }}
           >
-            Unstake
+            {t("popover.unstake")}
           </EmptyButton>
         )}
         {canClickNetwork && (

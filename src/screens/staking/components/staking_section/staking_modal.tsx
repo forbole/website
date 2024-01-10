@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
+import LoadingSpinner from "@src/components/loading_spinner";
 import { tooltipId } from "@src/components/tooltip";
 import {
   ChainId,
@@ -30,6 +31,7 @@ const StakingModal = () => {
 
   const { t } = useTranslation("staking");
 
+  const [isLoading, setIsLoading] = useState(false);
   const { selectedAccount, selectedAction } = stakingState;
 
   const [selectedNetwork, setSelectedNetwork] = useState<ChainId>(
@@ -38,9 +40,13 @@ const StakingModal = () => {
 
   const [networkInfo, setNetworkInfo] = useState<ModalNetworkInfo | null>(null);
   const [amount, setAmount] = useState("");
+  const [amountError, setAmountError] = useState("");
   const [memo, setMemo] = useState("");
 
   const isOpen = !!selectedAccount && selectedAction === "stake";
+
+  const amountNum = Number(amount);
+  const isValidAmount = !Number.isNaN(amountNum);
 
   useEffect(() => {
     if (isOpen) {
@@ -55,6 +61,12 @@ const StakingModal = () => {
 
         setNetworkInfo({ rpc: info.rpc });
       });
+
+      return () => {
+        setAmount("");
+        setAmountError("");
+        setMemo("");
+      };
     }
   }, [isOpen, selectedAccount]);
 
@@ -101,14 +113,36 @@ const StakingModal = () => {
           <div className={styles.row}>
             <FormInput
               className={styles.input}
-              onChange={(e) => setAmount(e.target.value)}
+              onChange={(e) => {
+                if (amountError) {
+                  setAmountError("");
+                }
+
+                setAmount(e.target.value);
+              }}
               placeholder="0"
               {...(availableTokens && {
                 rightText: availableTokens[1].toUpperCase(),
               })}
+              onBlur={() => {
+                const newAmountError = (() => {
+                  if (!amount) return "";
+
+                  if (!isValidAmount) {
+                    return t("stakingModal.amountError.invalid");
+                  }
+
+                  if (amountNum <= 0) {
+                    return t("stakingModal.amountError.positive");
+                  }
+                })() as string;
+
+                setAmountError(newAmountError);
+              }}
               value={amount}
             />{" "}
           </div>
+          {!!amountError && <div className={styles.error}>{amountError}</div>}
         </div>
         <div className={styles.group}>
           <Label>{t("stakingModal.memo")}</Label>
@@ -122,21 +156,34 @@ const StakingModal = () => {
           />{" "}
         </div>
         <HighlightButton
+          disabled={!!amountError}
           onClick={() => {
-            if (!selectedAccount || !networkInfo) return;
+            if (
+              !selectedAccount ||
+              !networkInfo ||
+              isLoading ||
+              !isValidAmount ||
+              !!amountError
+            )
+              return;
 
             const { address, chainId } = selectedAccount;
 
+            setIsLoading(true);
+
             stakeAmount({
               address,
+              amount,
               chainId,
               memo,
+            }).finally(() => {
+              setIsLoading(false);
             });
           }}
           pinkShadow
           size="big"
         >
-          {t("stake_now")}
+          {isLoading ? <LoadingSpinner /> : t("stake_now")}
         </HighlightButton>
       </div>
     </ModalBase>

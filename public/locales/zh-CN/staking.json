@@ -47,6 +47,11 @@
   "our future": "我们的未来",
   "our future desc": "Forbole 运行一个跨链生态系统，我们与时并进，永不停步，时刻留意最新的技术发展，确保应用最高级的安全标准于质押服务中，让你高枕无忧。",
   "percentage": "%",
+  "popover": {
+    "claimRewards": "Claim Rewards",
+    "stake": "Stake Now",
+    "unstake": "Unstake"
+  },
   "receiving bullet 1": "指定验证人不在活跃集中",
   "receiving bullet 2": "提名一名验证者，佣金持有者为 100%。",
   "receiving q": "为什么我没有收到质押奖励？",
@@ -77,6 +82,10 @@
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
   "staking q": "什么是质押？",
   "stakingModal": {
+    "amountError": {
+      "invalid": "You have to input a valid number",
+      "positive": "You have to input a positive number"
+    },
     "available": "Available",
     "memo": "Memo",
     "title": "Stake with forbole",
@@ -96,6 +105,7 @@
   "unstaking para 3": "第一次重质押后，您需要等待一定时间（对应解质押期）才能进行下一次重质押交易。",
   "unstaking q": "什么是解除质押和重新质押？",
   "unstakingModal": {
+    "button": "Unstake",
     "title": "Unstaking"
   },
   "why forbole title": "<0>Forbole<1>坚实基建，硅步千里</1></0>",
