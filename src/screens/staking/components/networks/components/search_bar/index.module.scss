@@ -109,12 +109,11 @@ body .listItem {
 
 body .paper {
   backdrop-filter: blur(24px);
-  background-color: rgba(2, 38, 225, 0.9);
   border-radius: spacing(1.5);
   margin: spacing(2) 0;
 }
 
-body .poper {
+body .popper {
   z-index: 2001 !important;
 
   :global(.MuiAutocomplete-listbox) {

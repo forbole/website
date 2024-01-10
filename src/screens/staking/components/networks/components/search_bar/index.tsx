@@ -136,12 +136,12 @@ const SearchBar = ({ sortedNetworks }: Props) => {
   );
 
   const RenderInput: StyledAutocompleteProps["renderInput"] = useCallback(
-    ({ className, InputProps, ...params }) => (
+    ({ InputProps, ...params }) => (
       <TextField
         {...params}
         // eslint-disable-next-line react-hooks/rules-of-hooks
         InputProps={useSearch(InputProps)}
-        className={[styles.textField, className || ""].join(" ")}
+        className={styles.textField}
         placeholder={t("searchNetwork")}
       />
     ),

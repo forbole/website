@@ -27,7 +27,7 @@
   text-transform: none;
 
   &:global(.Mui-disabled) {
-    box-shadow: 4px 8px 24px 0px rgba(42, 34, 194, 0.16);
+    box-shadow: 4px 8px 24px 0 rgba(42, 34, 194, 0.16);
     color: #fff;
     opacity: 0.5;
   }
@@ -35,7 +35,7 @@
   &:global(.Mui-hover) {
     background: linear-gradient(175.41deg, #623df5 11.57%, #362187 173.5%),
       linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32));
-    box-shadow: 4px 8px 24px 0px rgba(42, 34, 194, 0.16);
+    box-shadow: 4px 8px 24px 0 rgba(42, 34, 194, 0.16);
   }
 
   &:global(.Mui-selected) {

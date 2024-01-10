@@ -85,6 +85,10 @@ $card-shadow:
     border: 8px solid #fff !important;
     border-radius: 50%;
   }
+
+  @include down-tablet {
+    display: none;
+  }
 }
 
 .post {
@@ -147,6 +151,8 @@ $card-shadow:
   padding-left: spacing(2);
 
   @include down-laptop {
+    margin-right: spacing(2);
+    margin-top: spacing(2);
     padding-left: spacing(1);
   }
 }

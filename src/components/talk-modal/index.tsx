@@ -228,6 +228,7 @@ const TalkModal = ({
                 }}
               >
                 <Input
+                  className={styles.input}
                   disableUnderline
                   disabled={!inputs.Other}
                   fullWidth
@@ -235,12 +236,6 @@ const TalkModal = ({
                   onInput={handleInputChange}
                   placeholder={t("item_5")}
                   ref={inputRef}
-                  sx={{
-                    color: "#878787",
-                    fontSize: "16px",
-                    lineHeight: "30px",
-                    p: "12px",
-                  }}
                   value={inputs.specify}
                 />
               </ListItem>
