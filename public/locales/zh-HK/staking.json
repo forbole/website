@@ -105,7 +105,15 @@
   "unstaking para 3": "第一次重質押後，您需要等待一定時間（對應解質押期）才能進行下一次重質押交易。",
   "unstaking q": "什麼是解除質押和重新質押？",
   "unstakingModal": {
+    "amount": {
+      "label": "Unstake token amount",
+      "placeholder": "1,000"
+    },
     "button": "Unstake",
+    "memo": {
+      "label": "Memo",
+      "placeholder": "Optional"
+    },
     "title": "Unstaking"
   },
   "why forbole title": "<0>Forbole <1>堅實基建，硅步千里</1></0>",

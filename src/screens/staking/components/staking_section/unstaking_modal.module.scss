@@ -1,0 +1,12 @@
+@import "src/styles/sass.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 24px;
+
+  @include up-laptop {
+    min-width: 500px;
+  }
+}

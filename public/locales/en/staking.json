@@ -105,7 +105,15 @@
   "unstaking para 3": "After the first restaking, you need to wait for a certain period of time (corresponding with unstaking period) before making another restaking transaction. And do make sure you have sufficient funds in your available balance to pay for the transaction fee.",
   "unstaking q": "What are unstaking and restaking?",
   "unstakingModal": {
+    "amount": {
+      "label": "Unstake token amount",
+      "placeholder": "1,000"
+    },
     "button": "Unstake",
+    "memo": {
+      "label": "Memo",
+      "placeholder": "Optional"
+    },
     "title": "Unstaking"
   },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",

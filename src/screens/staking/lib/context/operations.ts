@@ -27,7 +27,7 @@ type StakeOpts = {
 
 export const stakeAmount = ({ address, amount, chainId, memo }: StakeOpts) =>
   stakingClient.stake(chainId, address, amount).then(async (info) => {
-    const message = info.tx.body.messages[0];
+    const [message] = info.tx.body.messages;
 
     if (!message) return;
 
@@ -77,7 +77,7 @@ type ClaimOpts = {
 
 export const claimRewards = async (opts: ClaimOpts) =>
   stakingClient.claimRewards(opts.chainId, opts.address).then(async (info) => {
-    const message = info.tx.body.messages[0];
+    const [message] = info.tx.body.messages;
 
     if (!message) return;
 
@@ -129,7 +129,7 @@ export const unstake = async (opts: UnstakeAmount) =>
   stakingClient
     .unstake(opts.chainId, opts.address, opts.amount)
     .then(async (info) => {
-      const message = info.tx.body.messages[0];
+      const [message] = info.tx.body.messages;
 
       if (!message) return;
 

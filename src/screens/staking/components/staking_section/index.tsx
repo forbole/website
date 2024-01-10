@@ -462,7 +462,7 @@ const StakingSection = () => {
                   stakingClient
                     .stake(defaultChainId, address, "1")
                     .then(async (info) => {
-                      const message = info.tx.body.messages[0];
+                      const [message] = info.tx.body.messages;
 
                       if (!message) return;
 

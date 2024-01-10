@@ -48,7 +48,7 @@ export async function getServerSideProps(context: {
     );
 
     formattedTags = removeInternalTags(tags).map((tag) => Tag.fromJson(tag));
-    meta = posts.meta;
+    ({ meta } = posts);
   } catch (err) {
     error = true;
     // eslint-disable-next-line no-console
