@@ -1,0 +1,49 @@
+@import "src/styles/sass.scss";
+
+.tabs {
+  background: $color-black;
+  border-radius: 24px;
+  padding: 4px;
+
+  :global(.MuiTabs-indicator) {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+  }
+
+  :global(.MuiTabs-indicatorSpan) {
+    max-width: 40px;
+    width: 100%;
+  }
+}
+
+.tab {
+  border-radius: 200px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 590;
+  min-height: 45px;
+  text-shadow: none;
+  text-transform: none;
+
+  &:global(.Mui-disabled) {
+    box-shadow: 4px 8px 24px 0px rgba(42, 34, 194, 0.16);
+    color: #fff;
+    opacity: 0.5;
+  }
+
+  &:global(.Mui-hover) {
+    background: linear-gradient(175.41deg, #623df5 11.57%, #362187 173.5%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32));
+    box-shadow: 4px 8px 24px 0px rgba(42, 34, 194, 0.16);
+  }
+
+  &:global(.Mui-selected) {
+    background: linear-gradient(175.41deg, #623df5 11.57%, #362187 173.5%),
+      linear-gradient(175.41deg, #623df5 11.57%, #362187 173.5%);
+
+    @include down-laptop {
+      font-size: 12px;
+    }
+  }
+}

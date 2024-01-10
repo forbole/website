@@ -52,6 +52,7 @@ module.exports = {
   ],
   rules: {
     "@next/next/no-img-element": "off",
+
     "@stylistic/padding-line-between-statements": paddingLineBetweenStatements,
 
     "@typescript-eslint/consistent-type-imports": "error",
@@ -68,7 +69,9 @@ module.exports = {
     "import/no-duplicates": "error",
 
     "jsx-a11y/anchor-is-valid": "off",
+
     "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-else-return": "error",
     "no-shadow": "off",
     "no-unused-vars": "off",
     "no-useless-return": "error",
@@ -83,6 +86,8 @@ module.exports = {
     "perfectionist/sort-union-types": "error",
 
     "prefer-const": "error",
+    "prefer-destructuring": ["error"],
+    "prefer-spread": "error",
     "prefer-template": "error",
     "quote-props": ["error", "consistent-as-needed"],
 
