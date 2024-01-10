@@ -64,3 +64,96 @@ body .root {
     }
   }
 }
+
+body .listItem {
+  :global(.MuiListItemIcon-root) {
+    flex: 0 0 spacing(7) !important;
+    justify-content: center !important;
+    width: spacing(7);
+
+    :global(.image) {
+      align-items: center;
+      border: 1px solid rgba(177, 177, 242, 0.3);
+      border-radius: 100%;
+      box-shadow:
+        0 8px 22px -6px rgb(2 38 225 / 12%),
+        0 14px 64px -4px rgb(2 38 225 / 12%);
+      display: flex;
+      height: spacing(4) !important;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      width: spacing(4) !important;
+    }
+  }
+
+  align-items: center !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  height: spacing(7) !important;
+  justify-content: space-between !important;
+  padding: 0 !important;
+
+  :global(.MuiListItemText-root) {
+    color: $color-indigo-1;
+    flex: 1 0 spacing(3) !important;
+    flex-flow: row wrap !important;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.42;
+    padding: 0 !important;
+  }
+}
+
+body .paper {
+  backdrop-filter: blur(24px);
+  border-radius: spacing(1.5);
+  margin: spacing(2) 0;
+}
+
+body .popper {
+  z-index: 2001 !important;
+
+  :global(.MuiAutocomplete-listbox) {
+    max-height: calc(50vh - spacing(10));
+
+    @include up-tablet {
+      max-height: 70vh;
+    }
+  }
+
+  :global(.MuiAutocomplete-noOptions) {
+    color: $color-black;
+  }
+
+  :global(.MuiPaper-root) {
+    box-shadow:
+      0 6px 14px -6px rgb(2 38 225 / 12%),
+      0 10px 32px -4px rgb(2 38 225 / 10%);
+  }
+
+  @include down-tablet {
+    backdrop-filter: blur(16px);
+    background-color: linear-gradient(
+      180deg,
+      #fff 0%,
+      rgba(255, 255, 255, 0) 100%
+    ) !important;
+    box-shadow:
+      0 6px 14px -6px rgb(2 38 225 / 12%),
+      0 10px 32px -4px rgb(2 38 225 / 10%);
+    inset: spacing(8) 0 0 0 !important;
+    padding: 0 spacing(4) !important;
+    position: fixed !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+}
+
+body .textField {
+  :global(.MuiOutlinedInput-notchedOutline) {
+    border: none;
+  }
+}

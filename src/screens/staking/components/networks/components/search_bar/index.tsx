@@ -24,8 +24,7 @@ import {
 } from "@src/utils/network_functions";
 import type { Network } from "@src/utils/network_info";
 
-import * as scssStyles from "./index.module.scss";
-import useStyles from "./useStyles";
+import * as styles from "./index.module.scss";
 
 const filterOptions = createFilterOptions({
   matchFrom: "any",
@@ -62,29 +61,29 @@ interface OptionsProps {
   props: HTMLAttributes<HTMLLIElement>;
 }
 
-const Options = ({ network, props }: OptionsProps) => {
-  const styles = useStyles();
-
-  return (
-    <ListItem {...props} sx={styles.listItem} title={network.delegate}>
-      <ListItemIcon>
-        <div className="image">
-          {network.image && (
-            <Image
-              alt=""
-              height="32"
-              objectFit="contain"
-              quality={100}
-              src={network.image}
-              width="32"
-            />
-          )}
-        </div>
-      </ListItemIcon>
-      <ListItemText>{network.name}</ListItemText>
-    </ListItem>
-  );
-};
+const Options = ({ network, props }: OptionsProps) => (
+  <ListItem
+    {...props}
+    className={[styles.listItem, props.className || ""].join(" ")}
+    title={network.delegate}
+  >
+    <ListItemIcon>
+      <div className="image">
+        {network.image && (
+          <Image
+            alt=""
+            height="32"
+            objectFit="contain"
+            quality={100}
+            src={network.image}
+            width="32"
+          />
+        )}
+      </div>
+    </ListItemIcon>
+    <ListItemText>{network.name}</ListItemText>
+  </ListItem>
+);
 
 /**
  * It takes a React element and a network object, and returns a React element
@@ -106,17 +105,13 @@ function handleChange(_event: unknown, value: unknown) {
   }
 }
 
-const PopperComponent = (props: PopperProps) => {
-  const styles = useStyles();
+const PopperComponent = ({ className, ...props }: PopperProps) => (
+  <Popper {...props} className={[styles.popper, className || ""].join(" ")} />
+);
 
-  return <Popper {...props} sx={styles.popper} />;
-};
-
-const PaperComponent = (props: PaperProps) => {
-  const styles = useStyles();
-
-  return <Paper {...props} sx={styles.paper} />;
-};
+const PaperComponent = ({ className, ...props }: PaperProps) => (
+  <Paper {...props} className={[styles.paper, className || ""].join(" ")} />
+);
 
 type StyledAutocompleteProps = ComponentProps<typeof Autocomplete>;
 
@@ -140,19 +135,17 @@ const SearchBar = ({ sortedNetworks }: Props) => {
     (item, idx) => optionsNames.indexOf(item.label) === idx,
   );
 
-  const styles = useStyles();
-
   const RenderInput: StyledAutocompleteProps["renderInput"] = useCallback(
     ({ InputProps, ...params }) => (
       <TextField
         {...params}
         // eslint-disable-next-line react-hooks/rules-of-hooks
         InputProps={useSearch(InputProps)}
+        className={styles.textField}
         placeholder={t("searchNetwork")}
-        sx={styles.textField}
       />
     ),
-    [styles.textField, t],
+    [t],
   );
 
   const [focused, setFocused] = useState(false);
@@ -187,7 +180,7 @@ const SearchBar = ({ sortedNetworks }: Props) => {
         focused
           ? "searchbox__focused searchbox__container"
           : "searchbox__container",
-        scssStyles.root,
+        styles.root,
       ].join(" ")}
     >
       <Autocomplete

@@ -142,9 +142,7 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
                 onChange={handleInputChange}
                 renderValue={(selected) => {
                   if (selected.length === 0) {
-                    return (
-                      <span style={{ color: "#878787" }}>{t("select")}</span>
-                    );
+                    return <span className={styles.select}>{t("select")}</span>;
                   }
 
                   return selected;

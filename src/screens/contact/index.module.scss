@@ -87,7 +87,7 @@ $form-shadow:
   padding-top: 0;
 
   &:global(.Mui-checked) {
-    color: #ee3131;
+    color: $color-red-unnamed;
   }
 }
 
@@ -119,7 +119,7 @@ $form-shadow:
   padding-top: 0;
 
   &:global(.Mui-checked) {
-    color: #ee3131;
+    color: $color-red-unnamed;
   }
 }
 
