@@ -1,4 +1,4 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import type { SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
@@ -8,20 +8,18 @@ import { CtaLink } from "@src/components/cta-button";
 import HeaderCard from "@src/components/header-card";
 import IntroPanel from "@src/components/intro_panel";
 import Layout from "@src/components/layout";
-import { NoSSR } from "@src/components/no-ssr";
 import ProductPanel from "@src/components/product-panel";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import Stats from "@src/components/stats";
+import { useDelayedIsLaptop } from "@src/hooks/delayed_is_mobile";
 import GQLProvider from "@src/utils/gql";
 import { scrollBottom } from "@src/utils/scroll";
 
-import style from "./index.module.css";
 import * as styles from "./index.module.scss";
 
 const Infrastructure = () => {
-  const theme = useTheme();
   const [v1, setV1] = useState(0);
   const topRef = useRef(null);
   const PanelRef = useRef(null);
@@ -31,12 +29,10 @@ const Infrastructure = () => {
     setV1(newValue);
   };
 
-  const onlyLargeScreen = useMediaQuery(theme.breakpoints.up("laptop"), {
-    noSsr: true,
-  });
+  const isLaptop = useDelayedIsLaptop();
 
   const personList = useMemo(() => {
-    if (onlyLargeScreen) {
+    if (isLaptop) {
       return [
         {
           desc: `Forbole is an exceptional SaaS provider that offers valuable solutions, especially within the Cosmos
@@ -99,7 +95,7 @@ const Infrastructure = () => {
         position: "Node Foundation Director, Humans.ai",
       },
     ];
-  }, [onlyLargeScreen]);
+  }, [isLaptop]);
 
   const textList = [
     [
@@ -122,18 +118,7 @@ const Infrastructure = () => {
   return (
     <GQLProvider>
       <Layout description={t("expertise_item1")} footer title={t("page_title")}>
-        <Container
-          maxWidth="desktop"
-          ref={topRef}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "184px",
-            [theme.breakpoints.down("laptop")]: {
-              gap: "40px",
-            },
-          }}
-        >
+        <div className={styles.container} ref={topRef}>
           <HeaderCard
             desc_1st={t("headercard_desc")}
             head_bgs={[
@@ -143,32 +128,24 @@ const Infrastructure = () => {
             title={t("headercard_title")}
           />
           <Stats red />
-          <Stack
-            sx={{
-              alignItems: "center",
-              gap: "40px",
-              [theme.breakpoints.down("laptop")]: {
-                gap: "32px",
-              },
-            }}
-          >
+          <div className={styles.section}>
             <Section
               desc={t("section_1st_desc")}
               title={t("section_1st_title")}
               title_large_trans={t("section_1st_large_title")}
             />
-            <CtaLink className={style.mobile} href="/staking">
+            <CtaLink className={styles.mobile} href="/staking">
               {t("see_more_networks")}
             </CtaLink>
             <Grid
               columnSpacing={{
-                laptop: theme.spacing(2),
-                mobile: theme.spacing(2),
+                laptop: "16px",
+                mobile: "16px",
               }}
               container
               rowSpacing={{
-                laptop: theme.spacing(3),
-                mobile: theme.spacing(2),
+                laptop: "24px",
+                mobile: "16px",
               }}
             >
               <Grid item laptop={4} mobile={12} tablet={6}>
@@ -196,20 +173,12 @@ const Infrastructure = () => {
                 />
               </Grid>
             </Grid>
-            <CtaLink className={style.desktop} href="/staking">
+            <CtaLink className={styles.desktop} href="/staking">
               {t("see_more_networks")}
             </CtaLink>
-          </Stack>
+          </div>
 
-          <Stack
-            sx={{
-              alignItems: "center",
-              gap: "40px",
-              [theme.breakpoints.down("laptop")]: {
-                gap: "32px",
-              },
-            }}
-          >
+          <div className={styles.section}>
             <Section
               title={t("section_2nd_title")}
               title_large_trans={t("section_2nd_large_title")}
@@ -220,7 +189,7 @@ const Infrastructure = () => {
                 icon={
                   <img
                     alt=""
-                    className={style.icon}
+                    className={styles.icon}
                     src="/validator_infastructure/tab1.svg"
                   />
                 }
@@ -233,7 +202,7 @@ const Infrastructure = () => {
                 icon={
                   <img
                     alt=""
-                    className={style.icon}
+                    className={styles.icon}
                     src="/validator_infastructure/tab2.svg"
                   />
                 }
@@ -255,45 +224,30 @@ const Infrastructure = () => {
                 ref={PanelRef}
                 value={v1}
               >
-                <Stack
-                  sx={{
-                    gap: "24px",
-                    maxWidth: "490px",
-                  }}
-                >
+                <div className={styles.list}>
                   {textList[indexUpper].map((item, index) => (
                     <span className={styles.item} key={index}>
                       {item}
                     </span>
                   ))}
-                </Stack>
+                </div>
               </ProductPanel>
             ))}
-          </Stack>
+          </div>
 
-          <Stack
-            sx={{
-              alignItems: "center",
-              gap: "40px",
-              [theme.breakpoints.down("laptop")]: {
-                gap: "32px",
-              },
-            }}
-          >
+          <div className={styles.section}>
             <Section
               desc={t("section_3rd_desc")}
               title={t("section_3rd_title")}
               title_large_trans={t("section_3rd_large_title")}
             />
             <CtaLink href="/staking">{t("stake_now")}</CtaLink>
-          </Stack>
-          <Stack>
-            <NoSSR>
-              <Carousel personList={personList} />
-            </NoSSR>
-          </Stack>
+          </div>
+          <div>
+            <Carousel personList={personList} />
+          </div>
           <ScrollToTop topRef={topRef} />
-        </Container>
+        </div>
       </Layout>
     </GQLProvider>
   );
