@@ -6,6 +6,16 @@ import IconClose from "@src/components/icons/icon_cross_grey.svg";
 
 import * as styles from "./modal_base.module.scss";
 
+type ModalErrorProps = {
+  children: ReactNode;
+};
+
+export const ModalError = ({ children }: ModalErrorProps) => {
+  if (!children) return null;
+
+  return <div className={styles.error}>{children}</div>;
+};
+
 type Props = {
   children: ReactNode;
   onClose: () => void;

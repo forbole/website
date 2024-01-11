@@ -6,7 +6,7 @@ import type {
   ReactNode,
   SetStateAction,
 } from "react";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
 import EmptyButton from "@src/components/empty-button";
@@ -16,10 +16,15 @@ import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
+  getNetworkInfo,
   getUserAccountsForNetwork,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
-import type { Account } from "@src/screens/staking/lib/context/types";
+import type {
+  Account,
+  NetworkInfo,
+  TStakingContext,
+} from "@src/screens/staking/lib/context/types";
 import {
   WalletId,
   networkNameToChainId,
@@ -50,25 +55,45 @@ const PopOver = ({
 }: PopOverProps) => {
   const isStakingSupported = networksWithStaking.has(network.graphql);
   const { t } = useTranslation("staking");
+  const stakingRef = useRef({} as TStakingContext);
+
+  const [stakingNetworkInfo, setStakingNetworkInfo] =
+    useState<NetworkInfo | null>(null);
 
   const { setState: setStakingState, state: stakingState } =
     useContext(StakingContext);
 
+  stakingRef.current.state = stakingState;
+  stakingRef.current.setState = setStakingState;
+
+  const stakingChainId = networkNameToChainId[network.graphql];
+
+  useEffect(() => {
+    if (stakingChainId) {
+      getNetworkInfo(
+        stakingRef.current.setState,
+        stakingRef.current.state,
+        stakingChainId,
+      ).then((newInfo) => {
+        setStakingNetworkInfo(newInfo);
+      });
+    }
+  }, [stakingChainId]);
+
   const { account, chainId, hasRewards } = useMemo(() => {
     const wallet = WalletId.Keplr;
-    const newChainId = networkNameToChainId[network.graphql];
 
     const result = {
       account: null as Account | null,
-      chainId: newChainId,
+      chainId: stakingChainId,
       hasRewards: false,
     };
 
-    if (!!newChainId && !!wallet) {
+    if (!!stakingChainId && !!wallet) {
       const accounts = getUserAccountsForNetwork(
         stakingState,
         WalletId.Keplr, // @TODO
-        newChainId,
+        stakingChainId,
       );
 
       if (!accounts?.length) {
@@ -85,7 +110,7 @@ const PopOver = ({
     }
 
     return result;
-  }, [network, stakingState]);
+  }, [stakingState, stakingChainId]);
 
   return (
     <div
@@ -115,7 +140,7 @@ const PopOver = ({
             <div>
               <h6 className={styles.label}>
                 <IconInfoCircle
-                  data-tooltip-content="Foo Tooltip"
+                  data-tooltip-content="@TODO"
                   data-tooltip-id={tooltipId}
                 />
                 {network.denom?.toUpperCase()}
@@ -125,17 +150,28 @@ const PopOver = ({
               </span>
             </div>
           )}
-          {!!networkSummary.APY && networkSummary.APY > 0 && (
-            <div>
-              <h6 className={styles.label}>
-                <IconInfoCircle />
-                APY
-              </h6>
-              <span className={styles.value}>{`${Math.round(
-                networkSummary.APY * 100,
-              )}%`}</span>
-            </div>
-          )}
+          {(() => {
+            const apy = (() => {
+              if (stakingChainId) return stakingNetworkInfo?.apy;
+
+              return networkSummary.APY;
+            })();
+
+            return (
+              !!apy &&
+              apy > 0 && (
+                <div>
+                  <h6 className={styles.label}>
+                    <IconInfoCircle />
+                    APY
+                  </h6>
+                  <span className={styles.value}>{`${Math.round(
+                    apy * 100,
+                  )}%`}</span>
+                </div>
+              )
+            );
+          })()}
           {!!networkSummary.TVL && (
             <div>
               <h6 className={styles.label}>

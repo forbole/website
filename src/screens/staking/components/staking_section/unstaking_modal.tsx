@@ -6,17 +6,18 @@ import { useContext, useEffect, useState } from "react";
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import LoadingSpinner from "@src/components/loading_spinner";
-import { toastError } from "@src/components/notification";
+import { toastError, toastSuccess } from "@src/components/notification";
 import {
   StakingContext,
   getSelectedAccount,
   setSelectedAccount,
+  syncAccountData,
 } from "@src/screens/staking/lib/context";
 import { formatDenom } from "@src/screens/staking/lib/context/formatters";
 import { unstake } from "@src/screens/staking/lib/context/operations";
 
 import Label from "./label";
-import ModalBase from "./modal_base";
+import ModalBase, { ModalError } from "./modal_base";
 import * as styles from "./unstaking_modal.module.scss";
 import { stakingClient } from "./utils/staking_client";
 
@@ -47,12 +48,24 @@ const UnstakingModal = () => {
 
   const { t } = useTranslation("staking");
 
-  const defaultAmount = "1.000";
-
   const [memo, setMemo] = useState("");
-  const [amount, setAmount] = useState(defaultAmount);
+  const [memoError, setMemoError] = useState("");
+  const [amount, setAmount] = useState("");
+  const [amountError, setAmountError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const account = getSelectedAccount(stakingState);
+
+  useEffect(() => {
+    if (isOpen) {
+      return () => {
+        setAmount("");
+        setAmountError("");
+        setMemo("");
+        setMemoError("");
+      };
+    }
+  }, [isOpen]);
 
   const unlockedDate = (() => {
     if (!networkInfo) {
@@ -81,6 +94,9 @@ const UnstakingModal = () => {
     };
   })();
 
+  const amountNum = Number(amount);
+  const isValidAmount = !Number.isNaN(amountNum);
+
   return (
     <ModalBase
       onClose={() => setSelectedAccount(setStakingState, undefined)}
@@ -99,22 +115,59 @@ const UnstakingModal = () => {
           </div>
         )}
         <FormInput
+          onBlur={() => {
+            const newAmountError = (() => {
+              if (!isValidAmount) {
+                return t("stakingModal.amountError.invalid");
+              }
+
+              if (amountNum <= 0) {
+                return t("stakingModal.amountError.positive");
+              }
+            })() as string;
+
+            setAmountError(newAmountError);
+          }}
           onChange={(e) => {
+            if (amountError) {
+              setAmountError("");
+            }
+
             setAmount(e.target.value);
           }}
           placeholder={t("unstakingModal.amount.placeholder")}
           rightText="ATOM"
           value={amount}
         />
+        {!!amountError && <ModalError>{amountError}</ModalError>}
         <Label>{t("unstakingModal.memo.label")}</Label>
         <FormInput
+          className={styles.input}
           noMargin
+          onBlur={() => {
+            const newMemoError = (() => {
+              if (!memo) return "";
+
+              if (memo.length > 256) {
+                return t("stakingModal.memoError.tooLong");
+              }
+            })() as string;
+
+            if (newMemoError !== memoError) {
+              setMemoError(newMemoError);
+            }
+          }}
           onChange={(e) => {
+            if (memoError) {
+              setMemoError("");
+            }
+
             setMemo(e.target.value);
           }}
           placeholder={t("unstakingModal.memo.placeholder")}
           value={memo}
         />
+        {!!memoError && <ModalError>{memoError}</ModalError>}
         <div>
           <div>{t("unstakingModal.infoTitle")}</div>
           {networkInfo ? (
@@ -138,24 +191,35 @@ const UnstakingModal = () => {
         </div>
         <HighlightButton
           onClick={() => {
-            if (!selectedAccount || !chainId) return;
+            if (!selectedAccount || amountError || memoError) return;
 
-            const { address } = selectedAccount;
+            setIsLoading(true);
 
             unstake({
-              address,
+              account: selectedAccount,
               amount,
-              chainId,
-            }).catch(() => {
-              toastError({
-                title: "foo",
+            })
+              .then(() => {
+                syncAccountData(setStakingState, stakingState, selectedAccount);
+                setSelectedAccount(setStakingState, null);
+
+                toastSuccess({
+                  title: "Success", // @TODO: Message
+                });
+              })
+              .catch(() => {
+                toastError({
+                  title: "Error", // @TODO
+                });
+              })
+              .finally(() => {
+                setIsLoading(false);
               });
-            });
           }}
           pinkShadow
           size="big"
         >
-          {t("unstakingModal.button")}
+          {isLoading ? <LoadingSpinner /> : t("unstakingModal.button")}
         </HighlightButton>
       </div>
     </ModalBase>

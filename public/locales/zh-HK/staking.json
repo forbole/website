@@ -63,6 +63,9 @@
   "reward q": "什麼是質押獎勵以及獎勵多久發放一次？",
   "rewards": "賺取收益",
   "rewards desc": "可以透過質押通證賺取收益",
+  "rewardsModal": {
+    "button": "Claim Rewards"
+  },
   "risks para 1": "當您的驗證人表現不佳或犯嚴重錯誤時，可能會存在一些風險，您的資金將被相應削減。",
   "risks q": "質押有哪些風險？",
   "searchNetwork": "搜尋網絡",
@@ -94,6 +97,9 @@
     "success": "Your amount has been staked",
     "title": "Stake with forbole",
     "tokenAmount": "Token amount"
+  },
+  "stakingWidget": {
+    "connectWallet": "Connect Wallet"
   },
   "string": " ",
   "success": "郵件已發送！",

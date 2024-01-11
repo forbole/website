@@ -63,6 +63,9 @@
   "reward q": "What is staking reward and how often are the rewards distributed?",
   "rewards": "Earn Rewards",
   "rewards desc": "You earn staking rewards on your tokens",
+  "rewardsModal": {
+    "button": "Claim Rewards"
+  },
   "risks para 1": "There may be some risks when your validator is having poor performance or making critical mistakes, your funds will be slashed accordingly.",
   "risks q": "What are the risks of staking?",
   "searchNetwork": "Search network",
@@ -94,6 +97,9 @@
     "success": "Your amount has been staked",
     "title": "Stake with Forbole",
     "tokenAmount": "Token amount"
+  },
+  "stakingWidget": {
+    "connectWallet": "Connect Wallet"
   },
   "string": " ",
   "success": "Email sent! We will get back to you shortly",

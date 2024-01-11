@@ -53,6 +53,7 @@ export type GetRewardsResponse = {
 };
 
 type GetStakingInfoResponse = {
+  apy: number;
   rpc: string;
   unbonding_period: string;
 };

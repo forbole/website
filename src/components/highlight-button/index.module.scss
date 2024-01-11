@@ -46,6 +46,10 @@
     &,
     &:hover {
       box-shadow: 4px 8px 24px 0 #fd247240;
+
+      &:disabled {
+        box-shadow: none;
+      }
     }
   }
 }

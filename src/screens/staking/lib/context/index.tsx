@@ -5,16 +5,16 @@ import { stakingClient } from "../../components/staking_section/utils/staking_cl
 import { sortAccounts } from "./formatters";
 import type {
   Account,
-  ChainId,
-  Context,
+  NetworkInfo,
   SetState,
   State,
+  TStakingContext,
   Wallet,
   WalletId,
 } from "./types";
-import { defaultState } from "./types";
+import { ChainId, defaultState } from "./types";
 
-const baseContext: Context = {
+const baseContext: TStakingContext = {
   setState: () => {},
   state: defaultState,
 };
@@ -25,7 +25,13 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState<State>(baseContext.state);
 
   const contextValue = useMemo(() => {
-    const wrappedSetState = (newState: Partial<State>) => {
+    const wrappedSetState: SetState = (newState) => {
+      if (typeof newState === "function") {
+        setState(newState);
+
+        return;
+      }
+
       setState((prevState) => ({ ...prevState, ...newState }));
     };
 
@@ -43,6 +49,56 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
 };
 
 // Actions
+
+export const fetchNetworksInfo = async (setState: SetState) => {
+  // @TODO: Prioritize here which networks to fetch
+  const [cosmosTestnet, celestiaTestnet, cosmos, celestia] = await Promise.all(
+    [
+      ChainId.CosmosHubTestnet,
+      ChainId.CelestiaTestnet,
+      ChainId.CosmosHub,
+      ChainId.Celestia,
+    ].map((chainId) =>
+      stakingClient.getStakingInfo(chainId).then((info) => ({
+        chainId,
+        info,
+      })),
+    ),
+  );
+
+  setState((state) => ({
+    ...state,
+    networksInfo: {
+      ...state.networksInfo,
+      [celestia.chainId]: celestia.info,
+      [celestiaTestnet.chainId]: celestiaTestnet.info,
+      [cosmos.chainId]: cosmos.info,
+      [cosmosTestnet.chainId]: cosmosTestnet.info,
+    },
+  }));
+};
+
+export const getNetworkInfo = async (
+  setState: SetState,
+  state: State,
+  chainId: ChainId,
+) => {
+  if (state.networksInfo[chainId]) {
+    return state.networksInfo[chainId] as NetworkInfo;
+  }
+
+  const newInfo = await stakingClient.getStakingInfo(chainId);
+
+  setState((prevState) => ({
+    ...prevState,
+    networksInfo: {
+      ...prevState.networksInfo,
+      [chainId]: newInfo,
+    },
+  }));
+
+  return newInfo as NetworkInfo;
+};
 
 export const setUserWallet = (
   state: State,

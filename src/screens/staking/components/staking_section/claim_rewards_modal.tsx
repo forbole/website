@@ -2,13 +2,14 @@
 import useTranslation from "next-translate/useTranslation";
 import { useContext, useState } from "react";
 
+import HighlightButton from "@src/components/highlight-button";
 import { toastSuccess } from "@src/components/notification";
 import {
-  ChainId,
   StakingContext,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
 import { claimRewards } from "@src/screens/staking/lib/context/operations";
+import { ChainId } from "@src/screens/staking/lib/context/types";
 
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -38,7 +39,7 @@ const ClaimRewardsModal = () => {
         <div>Gas Fee</div>
         <div>0.002 ATOM</div>
       </div>
-      <button
+      <HighlightButton
         onClick={() => {
           if (!selectedAccount) return;
 
@@ -57,9 +58,11 @@ const ClaimRewardsModal = () => {
               console.error(error);
             });
         }}
+        pinkShadow
+        size="big"
       >
-        Claim Rewards
-      </button>
+        {t("rewardsModal.button")}
+      </HighlightButton>
     </ModalBase>
   );
 };

@@ -54,22 +54,29 @@ type SelectedAccount = {
   wallet: WalletId;
 };
 
+export type NetworkInfo = {
+  apy: number;
+  rpc: string;
+};
+
 export type State = {
-  isConnectingWallet: boolean;
+  hasInit: boolean;
+  networksInfo: { [key in ChainId]?: NetworkInfo };
   selectedAccount: null | SelectedAccount;
   selectedAction: null | StakeAction;
   wallets: { [key in WalletId]?: Wallet };
 };
 
-export type SetState = (state: Partial<State>) => void;
+export type SetState = (state: ((s: State) => State) | Partial<State>) => void;
 
-export type Context = {
+export type TStakingContext = {
   setState: SetState;
   state: State;
 };
 
 export const defaultState: State = {
-  isConnectingWallet: false,
+  hasInit: false,
+  networksInfo: {},
   selectedAccount: null,
   selectedAction: null,
   wallets: {},

@@ -65,11 +65,11 @@ export const stakeAmount = ({ account, amount, memo }: StakeOpts) =>
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
-        .then((signed) => {
-          console.log("debug: index.tsx: signed", signed);
-        })
+        .then(() => true)
         .catch((err) => {
           console.log("debug: index.tsx: err", err);
+
+          return false;
         });
     });
 
@@ -123,20 +123,21 @@ export const claimRewards = async (opts: ClaimOpts) =>
   });
 
 type UnstakeAmount = {
-  address: string;
+  account: Account;
   amount: string;
-  chainId: ChainId;
 };
 
 export const unstake = async (opts: UnstakeAmount) =>
   stakingClient
-    .unstake(opts.chainId, opts.address, opts.amount)
+    .unstake(opts.account.chainId, opts.account.address, opts.amount)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
       if (!message) return;
 
-      const networkInfo = await stakingClient.getStakingInfo(opts.chainId);
+      const networkInfo = await stakingClient.getStakingInfo(
+        opts.account.chainId,
+      );
 
       const msg = MsgUndelegate.fromPartial({
         amount: message.amount,
@@ -155,7 +156,7 @@ export const unstake = async (opts: UnstakeAmount) =>
       };
 
       const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
-        opts.chainId,
+        opts.account.chainId,
       );
 
       if (!offlineSigner) {
@@ -168,7 +169,7 @@ export const unstake = async (opts: UnstakeAmount) =>
       );
 
       return client
-        .signAndBroadcast(opts.address, [msgAny], fee, "")
+        .signAndBroadcast(opts.account.address, [msgAny], fee, "")
         .then((signed) => {
           console.log("debug: index.tsx: signed", signed);
         })

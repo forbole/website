@@ -25,6 +25,7 @@ import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
   addToConnectedWallets,
+  fetchNetworksInfo,
   getConnectedWallets,
   setUserWallet,
 } from "@src/screens/staking/lib/context";
@@ -233,7 +234,13 @@ const StakingSection = () => {
   useEffect(() => {
     const connectedWallets = getConnectedWallets();
 
-    tryToConnectWallets(connectedWallets);
+    fetchNetworksInfo(setStakingState);
+
+    tryToConnectWallets(connectedWallets).then(() => {
+      setStakingState({
+        hasInit: true,
+      });
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -63,6 +63,9 @@
   "reward q": "什么是质押奖励以及奖励多久发放一次？",
   "rewards": "赚取收益",
   "rewards desc": "可以通过质押通证赚取收益",
+  "rewardsModal": {
+    "button": "Claim Rewards"
+  },
   "risks para 1": "当您的验证人表现不佳或犯严重错误时，可能会存在一些风险，您的资金将被相应削减。",
   "risks q": "质押有哪些风险？",
   "searchNetwork": "搜索网络",
@@ -94,6 +97,9 @@
     "success": "Your amount has been staked",
     "title": "Stake with forbole",
     "tokenAmount": "Token amount"
+  },
+  "stakingWidget": {
+    "connectWallet": "Connect Wallet"
   },
   "string": " ",
   "success": "邮件已发送！",
