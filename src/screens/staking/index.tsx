@@ -11,7 +11,7 @@ import Hero from "./components/hero";
 import HowItWorks from "./components/how_it_works";
 import Networks from "./components/networks";
 import WhyForbole from "./components/why_forbole";
-import { LaptopCSS } from "./styles";
+import * as styles from "./index.module.scss";
 
 const Staking = () => {
   const { t } = useTranslation("staking");
@@ -34,27 +34,27 @@ const Staking = () => {
         title={t("title")}
         twitterImage="/images/assets/image_forbole_validator_website_preview.png"
       >
-        <LaptopCSS>
+        <div className={styles.container}>
           <Hero />
-        </LaptopCSS>
-        <LaptopCSS>
+        </div>
+        <div className={styles.container}>
           <Networks />
-        </LaptopCSS>
-        <LaptopCSS>
+        </div>
+        <div className={styles.container}>
           <HowItWorks />
-        </LaptopCSS>
-        <LaptopCSS>
+        </div>
+        <div className={styles.container}>
           <WhyForbole />
-        </LaptopCSS>
-        <LaptopCSS ref={stakeNowRef}>
+        </div>
+        <div className={styles.container} ref={stakeNowRef}>
           <CalculateRewards />
-        </LaptopCSS>
-        <LaptopCSS>
+        </div>
+        <div className={styles.container}>
           <ContactForbole />
-        </LaptopCSS>
-        <LaptopCSS>
+        </div>
+        <div className={styles.container}>
           <FAQ />
-        </LaptopCSS>
+        </div>
       </LayoutVal>
     </GQLProvider>
   );
