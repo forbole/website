@@ -6,10 +6,21 @@
   gap: 184px;
   margin: 0 auto;
   max-width: $breakpoint-desktop;
+  padding: 0 16px;
+  width: 100%;
 
   @include down-laptop {
     gap: 40px;
     max-width: 100%;
     padding: 0 12px;
+  }
+}
+
+.ctaButton {
+  display: block;
+  margin: 40px auto;
+
+  @include down-laptop {
+    margin: 32px auto;
   }
 }

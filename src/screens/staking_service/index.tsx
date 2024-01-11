@@ -1,4 +1,4 @@
-import { Container, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRef } from "react";
 
@@ -10,6 +10,7 @@ import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import Stats from "@src/components/stats";
+import * as commonStyles from "@src/styles/common.module.scss";
 import GQLProvider from "@src/utils/gql";
 
 import * as styles from "./index.module.scss";
@@ -25,7 +26,7 @@ const StakingService = () => {
   return (
     <GQLProvider>
       <Layout description={t("desc")} footer title={t("page_title")}>
-        <Container className={styles.container} maxWidth="desktop" ref={topRef}>
+        <div className={commonStyles.pageContainer} ref={topRef}>
           <HeaderCard
             desc_1st={t("desc")}
             head_bgs={[
@@ -103,7 +104,7 @@ const StakingService = () => {
             <Horse {...horseStyle} />
             <ScrollToTop topRef={topRef} />
           </Stack>
-        </Container>
+        </div>
       </Layout>
     </GQLProvider>
   );

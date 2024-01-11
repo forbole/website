@@ -8,6 +8,7 @@ import Layout from "@src/components/layout";
 import ProductPanel from "@src/components/product-panel";
 import ScrollToTop from "@src/components/scroll_to_top";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
+import * as commonStyles from "@src/styles/common.module.scss";
 import { scrollBottom } from "@src/utils/scroll";
 
 import * as styles from "./index.module.scss";
@@ -134,7 +135,7 @@ const Products = () => {
 
   return (
     <Layout description={t("desc")} footer title={t("product")}>
-      <div className={styles.container} ref={topRef}>
+      <div className={commonStyles.pageContainer} ref={topRef}>
         <HeaderCard
           desc_1st={t("desc")}
           desc_2nd={t("customized")}

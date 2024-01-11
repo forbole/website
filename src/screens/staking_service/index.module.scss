@@ -1,15 +1,5 @@
 @import "src/styles/sass.scss";
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 184px;
-
-  @include down-laptop {
-    gap: 40px;
-  }
-}
-
 .stakingCta {
   display: block;
   margin: 54px auto;
