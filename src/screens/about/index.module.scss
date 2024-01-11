@@ -79,20 +79,6 @@ $card-desc-shadow:
   }
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 184px;
-  margin: 0 auto;
-  max-width: $breakpoint-desktop;
-
-  @include down-laptop {
-    gap: 40px;
-    max-width: 100%;
-    padding: 0 12px;
-  }
-}
-
 .sectionStack {
   align-items: center;
   color: $color-forbole-blue-1;

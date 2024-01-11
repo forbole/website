@@ -30,7 +30,7 @@
   margin-bottom: 18px;
 }
 
-.wrapper {
+body .wrapper {
   background: $gradient-unnamed-3;
   border-radius: 24px;
   box-shadow: $box-shadow-variant-1;
@@ -63,4 +63,46 @@
   font-size: 16px;
   line-height: 30px;
   padding: 12px;
+}
+
+.list {
+  border-radius: 8px;
+  box-shadow:
+    0 10px 32px -4px rgba(96, 60, 238, 0.1),
+    0 6px 14px -6px rgba(96, 60, 238, 0.28);
+  overflow: hidden;
+  padding-bottom: 0;
+  padding-top: 0;
+  width: 100%;
+}
+
+.item {
+  background: #fff;
+  border-bottom: 2px solid rgba(96, 60, 238, 0.28);
+}
+
+.control {
+  font-size: 16px;
+  justify-content: space-between;
+  line-height: 30px;
+  margin: 0;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.inputItem {
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  background: #fff;
+  border-bottom: 2px solid rgba(96, 60, 238, 0.28);
+  width: auto;
+}
+
+.agree {
+  align-items: flex-start;
+  line-height: 30px;
+  margin-right: 0;
+  vertical-align: top;
 }

@@ -10,6 +10,7 @@ import Horse from "@src/components/icons/horse.svg";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
 import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
+import * as commonStyles from "@src/styles/common.module.scss";
 import { IS_E2E } from "@src/utils/e2e";
 
 import * as styles from "./index.module.scss";
@@ -70,7 +71,7 @@ const About = () => {
       redBgFooter
       title={t("page_title")}
     >
-      <div className={styles.container} ref={topRef}>
+      <div className={commonStyles.pageContainer} ref={topRef}>
         <div className={styles.topStack}>
           <div className={styles.topStackInner}>
             <h1 className={styles.cardTitle}>{t("headercard_title")}</h1>
@@ -177,7 +178,7 @@ const About = () => {
         </div>
       </YTBSwiperCSS>
 
-      <div className={styles.container}>
+      <div className={commonStyles.pageContainer}>
         <div>
           <div className={styles.sectionStack}>
             <Trans
