@@ -13,6 +13,7 @@ import Section from "@src/components/section";
 import SignatureCard from "@src/components/signature-card";
 import SuccessModal from "@src/components/success-modal";
 import { useDelayedIsMobile } from "@src/hooks/delayed_is_mobile";
+import * as commonStyles from "@src/styles/common.module.scss";
 
 import useTalkModalForm from "./hooks";
 import * as styles from "./index.module.scss";
@@ -72,7 +73,7 @@ const DeveloperTools = () => {
       footer
       title={t("page_title")}
     >
-      <Container className={styles.container} ref={topRef}>
+      <Container className={commonStyles.pageContainer} ref={topRef}>
         <HeaderCard
           desc_1st={t("headercard_1st_desc")}
           desc_2nd={t("headercard_2nd_desc")}

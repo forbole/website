@@ -19,19 +19,6 @@
   }
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 184px;
-  margin: 0 auto;
-  max-width: $breakpoint-desktop;
-  padding: 0 16px;
-
-  @include down-laptop {
-    gap: 40px;
-  }
-}
-
 .section {
   align-items: center;
   display: flex;

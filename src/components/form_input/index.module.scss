@@ -18,6 +18,10 @@
   transition: all 0.3s ease-in-out;
   width: calc(100% - 36px);
 
+  &.fullWidth {
+    width: 100%;
+  }
+
   &:focus {
     border-color: $color-indigo-2;
   }

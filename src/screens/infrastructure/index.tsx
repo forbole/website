@@ -14,6 +14,7 @@ import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
 import Stats from "@src/components/stats";
 import { useDelayedIsLaptop } from "@src/hooks/delayed_is_mobile";
+import * as commonStyles from "@src/styles/common.module.scss";
 import GQLProvider from "@src/utils/gql";
 import { scrollBottom } from "@src/utils/scroll";
 
@@ -118,7 +119,7 @@ const Infrastructure = () => {
   return (
     <GQLProvider>
       <Layout description={t("expertise_item1")} footer title={t("page_title")}>
-        <div className={styles.container} ref={topRef}>
+        <div className={commonStyles.pageContainer} ref={topRef}>
           <HeaderCard
             desc_1st={t("headercard_desc")}
             head_bgs={[
