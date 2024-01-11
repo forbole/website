@@ -92,7 +92,7 @@
     "available": "Available",
     "memo": "Memo",
     "memoError": {
-      "tooLong": ""
+      "tooLongMemo": "Please enter a smaller memo"
     },
     "success": "Your amount has been staked",
     "title": "Stake with Forbole",

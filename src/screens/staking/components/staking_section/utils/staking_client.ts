@@ -1,4 +1,4 @@
-import type { ChainId } from "@src/screens/staking/lib/context";
+import type { ChainId } from "@src/screens/staking/lib/context/types";
 
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API as string;
 

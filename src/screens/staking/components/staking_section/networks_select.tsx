@@ -1,12 +1,17 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { useContext } from "react";
 
-import {
-  ChainId,
-  chainIdToNetworkKey,
-} from "@src/screens/staking/lib/context/types";
+import type { Account, ChainId } from "@src/screens/staking/lib/context/types";
+import { chainIdToNetworkKey } from "@src/screens/staking/lib/context/types";
 import { getNetworkInfo } from "@src/utils/network_info";
 
+import {
+  StakingContext,
+  getSelectedAccount,
+  setSelectedAccount,
+} from "../../lib/context";
+import { sortAccounts } from "../../lib/context/formatters";
 import * as styles from "./networks_select.module.scss";
 
 const ITEM_HEIGHT = 48;
@@ -23,12 +28,11 @@ const MenuProps = {
   },
 };
 
-// @TODO: Get this from context (so testnets are filtered out)
-const networks = Object.values(ChainId).sort();
-
 type NetworkItemProps = {
   value: ChainId;
 };
+
+const SEPARATOR = "____";
 
 const NetworkItem = ({ value }: NetworkItemProps) => {
   const networkName = chainIdToNetworkKey[value];
@@ -46,14 +50,42 @@ const NetworkItem = ({ value }: NetworkItemProps) => {
 };
 
 type Props = {
-  setValue: (value: ChainId) => void;
-  value: ChainId;
+  variant: "accounts";
 };
 
-const NetworksSelect = ({ setValue, value }: Props) => {
+const NetworksSelect = ({ variant }: Props) => {
+  const { setState: setStakingState, state: stakingState } =
+    useContext(StakingContext);
+
+  const selectedAccount = getSelectedAccount(stakingState);
+
+  if (!variant || !selectedAccount) return null;
+
+  const wallet = stakingState.wallets[selectedAccount.wallet];
+
+  if (!wallet) return null;
+
+  const allAccounts = Object.values(wallet)
+    .reduce((acc, chain) => {
+      acc.push(...chain.accounts);
+
+      return acc;
+    }, [] as Account[])
+    .sort(sortAccounts);
+
   const handleChange = (event: any) => {
-    setValue(event.target.value);
+    const [address, chainId] = event.target.value.split(SEPARATOR);
+
+    setSelectedAccount(setStakingState, {
+      address,
+      chainId,
+      wallet: selectedAccount.wallet,
+    });
   };
+
+  const selectedItem = [selectedAccount.address, selectedAccount.chainId].join(
+    SEPARATOR,
+  );
 
   return (
     <div className={styles.control}>
@@ -62,13 +94,17 @@ const NetworksSelect = ({ setValue, value }: Props) => {
         MenuProps={MenuProps}
         className={styles.select}
         onChange={handleChange}
-        value={value as string}
+        value={selectedItem}
       >
-        {networks.map((network) => (
-          <MenuItem key={network} value={network}>
-            <NetworkItem value={network} />
-          </MenuItem>
-        ))}
+        {allAccounts.map((account) => {
+          const item = [account.address, account.chainId].join(SEPARATOR);
+
+          return (
+            <MenuItem key={item} value={item}>
+              <NetworkItem value={account.chainId} />
+            </MenuItem>
+          );
+        })}
       </Select>
     </div>
   );

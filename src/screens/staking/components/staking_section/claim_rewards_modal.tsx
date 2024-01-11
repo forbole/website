@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import useTranslation from "next-translate/useTranslation";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
 import { toastSuccess } from "@src/components/notification";
@@ -9,7 +9,6 @@ import {
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
 import { claimRewards } from "@src/screens/staking/lib/context/operations";
-import { ChainId } from "@src/screens/staking/lib/context/types";
 
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -17,10 +16,6 @@ import NetworksSelect from "./networks_select";
 const ClaimRewardsModal = () => {
   const { setState: setStakingState, state: stakingState } =
     useContext(StakingContext);
-
-  const [selectedNetwork, setSelectedNetwork] = useState<ChainId>(
-    ChainId.CosmosHubTestnet,
-  );
 
   const { t } = useTranslation("staking");
 
@@ -34,7 +29,7 @@ const ClaimRewardsModal = () => {
       open={isOpen}
       title={t("claimRewards.title")}
     >
-      <NetworksSelect setValue={setSelectedNetwork} value={selectedNetwork} />
+      <NetworksSelect variant="accounts" />
       <div>
         <div>Gas Fee</div>
         <div>0.002 ATOM</div>

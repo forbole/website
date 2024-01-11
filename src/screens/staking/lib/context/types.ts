@@ -7,6 +7,8 @@ import { networks } from "@src/utils/network_info";
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
 
+export const MAX_MEMO = 256;
+
 export enum WalletId {
   Keplr = "keplr",
 }

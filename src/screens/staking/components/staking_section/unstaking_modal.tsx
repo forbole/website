@@ -13,8 +13,12 @@ import {
   setSelectedAccount,
   syncAccountData,
 } from "@src/screens/staking/lib/context";
-import { formatDenom } from "@src/screens/staking/lib/context/formatters";
+import {
+  formatDenom,
+  resolveDenom,
+} from "@src/screens/staking/lib/context/formatters";
 import { unstake } from "@src/screens/staking/lib/context/operations";
+import { MAX_MEMO } from "@src/screens/staking/lib/context/types";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -136,7 +140,9 @@ const UnstakingModal = () => {
             setAmount(e.target.value);
           }}
           placeholder={t("unstakingModal.amount.placeholder")}
-          rightText="ATOM"
+          {...(account?.info?.delegation?.denom && {
+            rightText: resolveDenom(account.info.delegation?.denom),
+          })}
           value={amount}
         />
         {!!amountError && <ModalError>{amountError}</ModalError>}
@@ -148,8 +154,8 @@ const UnstakingModal = () => {
             const newMemoError = (() => {
               if (!memo) return "";
 
-              if (memo.length > 256) {
-                return t("stakingModal.memoError.tooLong");
+              if (memo.length > MAX_MEMO) {
+                return t("stakingModal.memoError.tooLongMemo");
               }
             })() as string;
 

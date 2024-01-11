@@ -24,7 +24,6 @@ import type {
   NetworkInfo,
   TStakingContext,
 } from "@src/screens/staking/lib/context/types";
-import { ChainId } from "@src/screens/staking/lib/context/types";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -39,10 +38,6 @@ const StakingModal = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const { selectedAccount, selectedAction } = stakingState;
-
-  const [selectedNetwork, setSelectedNetwork] = useState<ChainId>(
-    ChainId.CosmosHubTestnet,
-  );
 
   const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
   const [amount, setAmount] = useState("");
@@ -98,12 +93,7 @@ const StakingModal = () => {
       title={t("stakingModal.title")}
     >
       <div className={styles.wrapper}>
-        <div>
-          <NetworksSelect
-            setValue={setSelectedNetwork}
-            value={selectedNetwork}
-          />
-        </div>
+        <div>{selectedAccount && <NetworksSelect variant="accounts" />}</div>
         {networkInfo?.apy && (
           <div className={styles.row}>
             <Label className={styles.apy}>
@@ -166,7 +156,7 @@ const StakingModal = () => {
                 if (!memo) return "";
 
                 if (memo.length > 256) {
-                  return t("stakingModal.memoError.tooLong");
+                  return t("stakingModal.memoError.tooLongMemo");
                 }
               })() as string;
 
