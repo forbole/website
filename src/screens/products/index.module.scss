@@ -81,7 +81,7 @@
 }
 
 .tr1 {
-  color: #ee3131;
+  color: $color-red-unnamed;
   text-shadow: 0 0 20px #fff;
 
   @include down-laptop {
@@ -144,8 +144,9 @@
   }
 }
 
-.tr3 {
-  color: #ee3131;
+.tr3,
+.tr5 {
+  color: $color-red-unnamed;
   display: inline;
   text-shadow: 0 0 20px #fff;
 
@@ -240,24 +241,6 @@
 
 .tr4 {
   color: $color-forbole-blue-1;
-
-  @include down-laptop {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 16px;
-  }
-
-  @include up-laptop {
-    font-size: 40px;
-    font-weight: 590;
-    margin-bottom: 40px;
-  }
-}
-
-.tr5 {
-  color: #ee3131;
-  display: inline;
-  text-shadow: 0 0 20px #fff;
 
   @include down-laptop {
     font-size: 24px;
