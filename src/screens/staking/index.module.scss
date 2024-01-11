@@ -1,0 +1,10 @@
+@import "src/styles/sass.scss";
+
+.container {
+  padding-bottom: 40px;
+
+  @include up-laptop {
+    min-height: 100vh;
+    padding-top: 120px;
+  }
+}

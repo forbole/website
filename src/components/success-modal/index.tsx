@@ -1,14 +1,9 @@
-import {
-  Modal,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/legacy/image";
 import { forwardRef } from "react";
 
 import Close from "../icons/close.svg";
+import Modal from "../modal";
 import * as styles from "./index.module.scss";
 
 type Props = {
@@ -137,24 +132,7 @@ export default function SuccessModal({
   }
 
   return (
-    <Modal
-      disableEnforceFocus
-      onClose={() => close?.(false)}
-      open={open}
-      slotProps={{
-        backdrop: {
-          sx() {
-            return {
-              backdropFilter: "blur(8px)",
-              background: "rgba(123, 123, 123, 0.20)",
-            };
-          },
-        },
-      }}
-      sx={{
-        overflow: "auto",
-      }}
-    >
+    <Modal disableEnforceFocus onClose={() => close?.(false)} open={open}>
       <Alert
         bottom_word={bottom_word}
         close={close}

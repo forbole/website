@@ -1,4 +1,4 @@
-import { Container, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import type { MouseEvent } from "react";
 import { useRef } from "react";
@@ -12,6 +12,7 @@ import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import SuccessModal from "@src/components/success-modal";
 import { useDelayedIsMobile } from "@src/hooks/delayed_is_mobile";
+import * as commonStyles from "@src/styles/common.module.scss";
 
 import useContactForm from "./hook";
 import * as styles from "./index.module.scss";
@@ -65,7 +66,7 @@ const EnterpriseSolution = () => {
 
   return (
     <Layout description={t("trusted")} footer title={t("page_title")}>
-      <Container className={styles.container} ref={topRef}>
+      <div className={commonStyles.pageContainer} ref={topRef}>
         <HeaderCard
           desc_1st={t("trusted")}
           head_bgs={[
@@ -135,7 +136,7 @@ const EnterpriseSolution = () => {
           <ScrollToTop topRef={topRef} />
         </Stack>
         <ModalResult setSuccess={setSuccess} success={success} />
-      </Container>
+      </div>
     </Layout>
   );
 };

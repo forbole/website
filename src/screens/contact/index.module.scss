@@ -133,7 +133,6 @@ $form-shadow:
 .labelStart {
   font-size: 16px;
   font-weight: 590;
-  margin-bottom: 16px;
 }
 
 .list {
@@ -147,4 +146,10 @@ $form-shadow:
 
 .required {
   color: $color-pink-1;
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

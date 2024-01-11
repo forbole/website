@@ -20,6 +20,10 @@ $box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.28);
   transition: all 0.3s ease-in-out;
   width: calc(100% - 36px);
 
+  &.fullWidth {
+    width: 100%;
+  }
+
   &:focus {
     border-color: $color-indigo-2;
   }

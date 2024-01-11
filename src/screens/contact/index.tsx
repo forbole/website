@@ -17,6 +17,7 @@ import CtaButton from "@src/components/cta-button";
 import FormInput from "@src/components/form_input";
 import Layout from "@src/components/layout";
 import SuccessModal from "@src/components/success-modal";
+import * as commonStyles from "@src/styles/common.module.scss";
 
 import useContactForm from "./hooks";
 import * as styles from "./index.module.scss";
@@ -65,7 +66,7 @@ const Contact = () => {
 
   return (
     <Layout description={t("form_desc")} footer title={t("page_title")}>
-      <div>
+      <div className={commonStyles.pageContainer}>
         <Stack className={styles.form}>
           <Stack>
             <span className={styles.title}>{t("form_title")}</span>
@@ -97,6 +98,7 @@ const Contact = () => {
                 <span className={styles.required}>*</span>
               </span>
               <FormInput
+                fullWidth
                 name="name"
                 onInput={handleInputChange}
                 placeholder={t("name")}
@@ -106,6 +108,7 @@ const Contact = () => {
             <Grid item laptop={6} mobile={12}>
               <span className={styles.label}>{t("label_company")}</span>
               <FormInput
+                fullWidth
                 name="company"
                 onInput={handleInputChange}
                 placeholder={t("Company")}
@@ -118,6 +121,7 @@ const Contact = () => {
                 <span className={styles.required}>*</span>
               </span>
               <FormInput
+                fullWidth
                 name="email"
                 onInput={handleInputChange}
                 placeholder={t("Email")}
@@ -128,13 +132,14 @@ const Contact = () => {
             <Grid item laptop={6} mobile={12}>
               <span className={styles.label}>{t("label_telegram")}</span>
               <FormInput
+                fullWidth
                 name="telegram"
                 onInput={handleInputChange}
                 placeholder={t("Telegram")}
                 value={inputs.telegram}
               />
             </Grid>
-            <Grid item laptop={6} mobile={12}>
+            <Grid className={styles.listWrapper} item laptop={6} mobile={12}>
               <span className={styles.labelStart}>
                 {t("get_start")}
                 <span className={styles.required}>*</span>

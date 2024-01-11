@@ -1,16 +1,5 @@
 @import "src/styles/sass.scss";
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 184px;
-  max-width: $breakpoint-desktop;
-
-  @include down-laptop {
-    gap: 40px;
-  }
-}
-
 .ctaButton {
   display: block;
   margin: 80px auto;

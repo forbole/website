@@ -1,4 +1,4 @@
-import { Container, Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, Stack, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useMemo, useRef } from "react";
 
@@ -10,15 +10,13 @@ import Layout from "@src/components/layout";
 import { NoSSR } from "@src/components/no-ssr";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
+import { useDelayedIsMobile } from "@src/hooks/delayed_is_mobile";
+import * as commonStyles from "@src/styles/common.module.scss";
 
 import * as styles from "./index.module.scss";
 
 const NoteboolSwiper = () => {
-  const theme = useTheme();
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("tablet"), {
-    noSsr: true,
-  });
+  const isMobile = useDelayedIsMobile();
 
   const noteBook = useMemo(() => {
     if (isMobile) {
@@ -46,7 +44,7 @@ const AnalyticsTools = () => {
 
   return (
     <Layout description={t("empowering")} footer title={t("title")}>
-      <Container className={styles.container} ref={topRef}>
+      <div className={commonStyles.pageContainer} ref={topRef}>
         <HeaderCard
           desc_1st={t("empowering")}
           head_bgs={[
@@ -102,7 +100,7 @@ const AnalyticsTools = () => {
           title={t("customizable")}
           title_large_trans={t("networks")}
         />
-      </Container>
+      </div>
       <Stack>
         <NoSSR>
           <NoteboolSwiper />

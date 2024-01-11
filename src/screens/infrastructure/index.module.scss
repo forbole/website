@@ -18,3 +18,51 @@
     font-size: 20px;
   }
 }
+
+.section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include down-laptop {
+    gap: 32px;
+  }
+}
+
+.list {
+  gap: 24px;
+  max-width: 490px;
+}
+
+.icon {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 24px;
+  width: 24px;
+}
+
+.desktop {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .icon {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+@media (max-width: 1025px) {
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+}

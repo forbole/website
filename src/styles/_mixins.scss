@@ -1,0 +1,62 @@
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1025px;
+$breakpoint-desktop: 1208px;
+
+@mixin down-mobile {
+  @media (max-width: $breakpoint-mobile - 1) {
+    @content;
+  }
+}
+
+@mixin up-mobile {
+  @media (min-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin down-tablet {
+  @media (max-width: $breakpoint-tablet - 1) {
+    @content;
+  }
+}
+
+@mixin up-tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin down-laptop {
+  @media (max-width: $breakpoint-laptop - 1) {
+    @content;
+  }
+}
+
+@mixin up-laptop {
+  @media (min-width: $breakpoint-laptop) {
+    @content;
+  }
+}
+
+@mixin up-desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin gradient-text($gradient) {
+  background-image: $gradient;
+  // stylelint-disable-next-line
+  -webkit-text-fill-color: rgba(0, 0, 0, 0);
+  // stylelint-disable-next-line property-no-unknown
+  text-fill-color: rgba(0, 0, 0, 0);
+  // stylelint-disable-next-line
+  background-clip: text;
+  // stylelint-disable-next-line
+  -webkit-background-clip: text;
+}
+
+@function spacing($num) {
+  @return $num * 8px;
+}

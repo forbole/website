@@ -21,13 +21,13 @@
   flex-direction: row;
   height: 100px;
   justify-content: space-between;
-  padding: spacing(2) 0 0 0;
+  padding: spacing(2) 0 0;
 
   @include up-laptop {
     height: unset;
     justify-content: space-between;
     overflow: unset;
-    padding: spacing(5.5) 0 0 0;
+    padding: spacing(5.5) spacing(2) 0;
   }
 }
 

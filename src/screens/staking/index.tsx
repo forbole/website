@@ -13,8 +13,8 @@ import Hero from "./components/hero";
 import HowItWorks from "./components/how_it_works";
 import Networks from "./components/networks";
 import WhyForbole from "./components/why_forbole";
+import * as styles from "./index.module.scss";
 import { StakingProvider } from "./lib/context";
-import { LaptopCSS } from "./styles";
 
 const StakingSection = dynamic(() => import("./components/staking_section"), {
   ssr: false,
@@ -40,30 +40,30 @@ const Staking = () => {
           title={t("title")}
           twitterImage="/images/assets/image_forbole_validator_website_preview.png"
         >
-          <LaptopCSS>
+          <div className={styles.container}>
             <Hero />
-          </LaptopCSS>
-          <LaptopCSS>
-            <StakingSection />.
-          </LaptopCSS>
-          <LaptopCSS>
+          </div>
+          <div className={styles.container}>
+            <StakingSection />
+          </div>
+          <div className={styles.container}>
             <Networks />
-          </LaptopCSS>
-          <LaptopCSS>
+          </div>
+          <div className={styles.container}>
             <HowItWorks />
-          </LaptopCSS>
-          <LaptopCSS>
+          </div>
+          <div className={styles.container}>
             <WhyForbole />
-          </LaptopCSS>
-          <LaptopCSS>
+          </div>
+          <div className={styles.container}>
             <CalculateRewards />
-          </LaptopCSS>
-          <LaptopCSS>
+          </div>
+          <div className={styles.container}>
             <ContactForbole />
-          </LaptopCSS>
-          <LaptopCSS>
+          </div>
+          <div className={styles.container}>
             <FAQ />
-          </LaptopCSS>
+          </div>
         </LayoutVal>
         <Tooltip />
       </GQLProvider>
