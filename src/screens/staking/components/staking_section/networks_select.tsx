@@ -1,7 +1,10 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import { ChainId, chainIdToNetworkKey } from "@src/screens/staking/lib/context";
+import {
+  ChainId,
+  chainIdToNetworkKey,
+} from "@src/screens/staking/lib/context/types";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import * as styles from "./networks_select.module.scss";

@@ -16,59 +16,62 @@ import {
 
 import { stakingClient } from "@src/screens/staking/components/staking_section/utils/staking_client";
 
-import type { ChainId } from "./index";
+import type { Account, ChainId } from "./types";
 
 type StakeOpts = {
-  address: string;
+  account: Account;
   amount: string;
-  chainId: ChainId;
   memo: string;
 };
 
-export const stakeAmount = ({ address, amount, chainId, memo }: StakeOpts) =>
-  stakingClient.stake(chainId, address, amount).then(async (info) => {
-    const [message] = info.tx.body.messages;
+export const stakeAmount = ({ account, amount, memo }: StakeOpts) =>
+  stakingClient
+    .stake(account.chainId, account.address, amount)
+    .then(async (info) => {
+      const [message] = info.tx.body.messages;
 
-    if (!message) return;
+      if (!message) return;
 
-    const networkInfo = await stakingClient.getStakingInfo(chainId);
+      const networkInfo = await stakingClient.getStakingInfo(account.chainId);
 
-    const msg = MsgDelegate.fromPartial({
-      amount: message.amount,
-      delegatorAddress: message.delegator_address,
-      validatorAddress: message.validator_address,
-    });
-
-    const msgAny: MsgDelegateEncodeObject = {
-      typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
-      value: msg,
-    };
-
-    const fee: StdFee = {
-      amount: info.tx.authInfo.fee.amount,
-      gas: info.tx.authInfo.fee.gas_limit,
-    };
-
-    const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(chainId);
-
-    if (!offlineSigner) {
-      throw new Error("Can't get offline signer");
-    }
-
-    const client = await SigningStargateClient.connectWithSigner(
-      networkInfo.rpc,
-      offlineSigner,
-    );
-
-    return client
-      .signAndBroadcast(address, [msgAny], fee, memo)
-      .then((signed) => {
-        console.log("debug: index.tsx: signed", signed);
-      })
-      .catch((err) => {
-        console.log("debug: index.tsx: err", err);
+      const msg = MsgDelegate.fromPartial({
+        amount: message.amount,
+        delegatorAddress: message.delegator_address,
+        validatorAddress: message.validator_address,
       });
-  });
+
+      const msgAny: MsgDelegateEncodeObject = {
+        typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
+        value: msg,
+      };
+
+      const fee: StdFee = {
+        amount: info.tx.authInfo.fee.amount,
+        gas: info.tx.authInfo.fee.gas_limit,
+      };
+
+      const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
+        account.chainId,
+      );
+
+      if (!offlineSigner) {
+        throw new Error("Can't get offline signer");
+      }
+
+      const client = await SigningStargateClient.connectWithSigner(
+        networkInfo.rpc,
+        offlineSigner,
+      );
+
+      return client
+        .signAndBroadcast(account.address, [msgAny], fee, memo)
+        .then((signed) => {
+          console.log("debug: index.tsx: signed", signed);
+        })
+        .catch((err) => {
+          console.log("debug: index.tsx: err", err);
+        });
+    });
 
 type ClaimOpts = {
   address: string;

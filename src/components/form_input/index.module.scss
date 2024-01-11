@@ -38,6 +38,10 @@ $box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.28);
       border-color: none;
     }
   }
+
+  &.noMargin {
+    margin: 0;
+  }
 }
 
 .wrapper {

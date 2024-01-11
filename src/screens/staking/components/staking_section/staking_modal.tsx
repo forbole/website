@@ -6,14 +6,20 @@ import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
+import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import {
-  ChainId,
   StakingContext,
   getSelectedAccount,
   setSelectedAccount,
+  syncAccountData,
 } from "@src/screens/staking/lib/context";
+import {
+  formatDenom,
+  resolveDenom,
+} from "@src/screens/staking/lib/context/formatters";
 import { stakeAmount } from "@src/screens/staking/lib/context/operations";
+import { ChainId } from "@src/screens/staking/lib/context/types";
 
 import Label from "./label";
 import ModalBase from "./modal_base";
@@ -41,6 +47,7 @@ const StakingModal = () => {
   const [networkInfo, setNetworkInfo] = useState<ModalNetworkInfo | null>(null);
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
+  const [memoError, setMemoError] = useState("");
   const [memo, setMemo] = useState("");
 
   const isOpen = !!selectedAccount && selectedAction === "stake";
@@ -66,6 +73,7 @@ const StakingModal = () => {
         setAmount("");
         setAmountError("");
         setMemo("");
+        setMemoError("");
       };
     }
   }, [isOpen, selectedAccount]);
@@ -75,8 +83,8 @@ const StakingModal = () => {
   if (!account?.info?.balances) return null;
 
   const availableTokens = [
-    account.info.balances.amount,
     account.info.balances.denom,
+    account.info.balances.amount,
   ];
 
   return (
@@ -104,8 +112,8 @@ const StakingModal = () => {
         </div>
         {availableTokens && (
           <div>
-            <Label>{t("stakingModal.available")}</Label>: {availableTokens[0]}{" "}
-            {availableTokens[1].toUpperCase()}
+            <Label>{t("stakingModal.available")}</Label>:{" "}
+            {formatDenom(availableTokens[0], availableTokens[1])}
           </div>
         )}
         <div className={styles.group}>
@@ -122,12 +130,10 @@ const StakingModal = () => {
               }}
               placeholder="0"
               {...(availableTokens && {
-                rightText: availableTokens[1].toUpperCase(),
+                rightText: resolveDenom(availableTokens[0]),
               })}
               onBlur={() => {
                 const newAmountError = (() => {
-                  if (!amount) return "";
-
                   if (!isValidAmount) {
                     return t("stakingModal.amountError.invalid");
                   }
@@ -140,7 +146,7 @@ const StakingModal = () => {
                 setAmountError(newAmountError);
               }}
               value={amount}
-            />{" "}
+            />
           </div>
           {!!amountError && <div className={styles.error}>{amountError}</div>}
         </div>
@@ -148,15 +154,33 @@ const StakingModal = () => {
           <Label>{t("stakingModal.memo")}</Label>
           <FormInput
             className={styles.input}
+            onBlur={() => {
+              const newMemoError = (() => {
+                if (!memo) return "";
+
+                if (memo.length > 256) {
+                  return t("stakingModal.memoError.tooLong");
+                }
+              })() as string;
+
+              if (newMemoError !== memoError) {
+                setMemoError(newMemoError);
+              }
+            }}
             onChange={(e) => {
+              if (memoError) {
+                setMemoError("");
+              }
+
               setMemo(e.target.value);
             }}
             placeholder={t("optionalInput")}
             value={memo}
-          />{" "}
+          />
+          {!!memoError && <div className={styles.error}>{memoError}</div>}
         </div>
         <HighlightButton
-          disabled={!!amountError}
+          disabled={!!amountError || !!memoError}
           onClick={() => {
             if (
               !selectedAccount ||
@@ -167,17 +191,21 @@ const StakingModal = () => {
             )
               return;
 
-            const { address, chainId } = selectedAccount;
-
             setIsLoading(true);
 
             stakeAmount({
-              address,
+              account,
               amount,
-              chainId,
               memo,
             }).finally(() => {
               setIsLoading(false);
+
+              syncAccountData(setStakingState, stakingState, selectedAccount);
+              setSelectedAccount(setStakingState, null);
+
+              toastSuccess({
+                title: t("stakingModal.success"), // @TODO: Message
+              });
             });
           }}
           pinkShadow

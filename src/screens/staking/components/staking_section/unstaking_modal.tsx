@@ -9,8 +9,10 @@ import LoadingSpinner from "@src/components/loading_spinner";
 import { toastError } from "@src/components/notification";
 import {
   StakingContext,
+  getSelectedAccount,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
+import { formatDenom } from "@src/screens/staking/lib/context/formatters";
 import { unstake } from "@src/screens/staking/lib/context/operations";
 
 import Label from "./label";
@@ -50,6 +52,8 @@ const UnstakingModal = () => {
   const [memo, setMemo] = useState("");
   const [amount, setAmount] = useState(defaultAmount);
 
+  const account = getSelectedAccount(stakingState);
+
   const unlockedDate = (() => {
     if (!networkInfo) {
       return null;
@@ -57,20 +61,24 @@ const UnstakingModal = () => {
 
     const { unbondingPeriod } = networkInfo;
 
-    console.log("debug: unstaking_modal.tsx: unbondingPeriod", unbondingPeriod);
-
     if (!unbondingPeriod) {
       return null;
     }
 
     const now = new Date();
+    const days = Math.ceil(unbondingPeriod / 86400);
     const nextDate = new Date(now.getTime() + unbondingPeriod * 1000);
 
-    return nextDate.toLocaleDateString(locale, {
+    const nextDateStr = nextDate.toLocaleDateString(locale, {
       day: "numeric",
       month: "long",
       year: "numeric",
     });
+
+    return {
+      date: nextDateStr,
+      days,
+    };
   })();
 
   return (
@@ -81,8 +89,15 @@ const UnstakingModal = () => {
     >
       <div className={styles.wrapper}>
         <Label>{t("unstakingModal.amount.label")}</Label>
-        {/* @TODO */}
-        <div>Staked: 1.000 ATOM</div>
+        {!!account?.info?.delegation?.amount && (
+          <div>
+            Staked:{" "}
+            {formatDenom(
+              account.info.delegation.denom,
+              account.info.delegation.amount,
+            )}
+          </div>
+        )}
         <FormInput
           onChange={(e) => {
             setAmount(e.target.value);
@@ -93,6 +108,7 @@ const UnstakingModal = () => {
         />
         <Label>{t("unstakingModal.memo.label")}</Label>
         <FormInput
+          noMargin
           onChange={(e) => {
             setMemo(e.target.value);
           }}
@@ -100,31 +116,24 @@ const UnstakingModal = () => {
           value={memo}
         />
         <div>
-          <div>
-            We are sorry to hear that you are leaving. Before you go, please
-            note the following:
-          </div>
+          <div>{t("unstakingModal.infoTitle")}</div>
           {networkInfo ? (
             <ul>
               {/* @TODO */}
               {unlockedDate && (
                 <li>
-                  Your staking will be locked in until {unlockedDate} (21 days
-                  later).{" "}
+                  {t("unstakingModal.unlockedDate", {
+                    date: unlockedDate.date,
+                    days: unlockedDate.days,
+                  })}
                 </li>
               )}
-              <li>During this time, you won't receive staking rewards. </li>
-              <li>
-                However, if you change your mind, you can cancel the process at
-                any time.{" "}
-              </li>
-              <li>
-                To continue staking after this period, you'll need to stake
-                again.
-              </li>
+              <li>{t("unstakingModal.info2")}</li>
+              <li>{t("unstakingModal.info3")}</li>
+              <li>{t("unstakingModal.info4")}</li>
             </ul>
           ) : (
-            <LoadingSpinner />
+            <LoadingSpinner className={styles.spinner} />
           )}
         </div>
         <HighlightButton

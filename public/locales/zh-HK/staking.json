@@ -88,6 +88,10 @@
     },
     "available": "Available",
     "memo": "Memo",
+    "memoError": {
+      "tooLong": ""
+    },
+    "success": "Your amount has been staked",
     "title": "Stake with forbole",
     "tokenAmount": "Token amount"
   },
@@ -110,11 +114,16 @@
       "placeholder": "1,000"
     },
     "button": "Unstake",
+    "info2": "During this time, you won't receive staking rewards.",
+    "info3": "However, if you change your mind, you can cancel the process at any time.",
+    "info4": "To continue staking after this period, you'll need to stake again.",
+    "infoTitle": "We are sorry to hear that you are leaving. Before you go, please note the following:",
     "memo": {
       "label": "Memo",
       "placeholder": "Optional"
     },
-    "title": "Unstaking"
+    "title": "Unstaking",
+    "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."
   },
   "why forbole title": "<0>Forbole <1>堅實基建，硅步千里</1></0>",
   "why forbole?": "為何選擇 Forbole？",

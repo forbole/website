@@ -1,81 +1,18 @@
 import type { PropsWithChildren } from "react";
 import { createContext, useMemo, useState } from "react";
 
-import { networks } from "@src/utils/network_info";
-
+import { stakingClient } from "../../components/staking_section/utils/staking_client";
+import { sortAccounts } from "./formatters";
 import type {
-  GetAddressInfoResponse,
-  GetRewardsResponse,
-} from "../../components/staking_section/utils/staking_client";
-
-export const ENABLE_TESTNETS =
-  process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
-
-export enum WalletId {
-  Keplr = "keplr",
-}
-
-export enum ChainId {
-  Celestia = "celestia",
-  CelestiaTestnet = "mocha-4",
-  CosmosHub = "cosmoshub",
-  CosmosHubTestnet = "theta-testnet-001",
-}
-
-export const networkNameToChainId: Record<string, ChainId> = {
-  // @TODO: Move from testnet to mainnet via env variable
-  [networks.celestia.graphql]: ChainId.CelestiaTestnet,
-  [networks.cosmos.graphql]: ChainId.CosmosHubTestnet,
-};
-
-export const chainIdToNetworkKey: Record<ChainId, string> = {
-  [ChainId.Celestia]: "celestia",
-  [ChainId.CelestiaTestnet]: "celestia-testnet",
-  [ChainId.CosmosHub]: "cosmos",
-  [ChainId.CosmosHubTestnet]: "cosmos-testnet",
-};
-
-export const networksWithStaking = new Set([
-  networks.cosmos.graphql,
-  networks.celestia.graphql,
-]);
-
-export type Account = {
-  address: string;
-  info?: GetAddressInfoResponse;
-  rewards?: GetRewardsResponse;
-};
-
-type StakeAction = "claim_rewards" | "stake" | "unstake";
-
-type Wallet = { [key in ChainId]?: { accounts: Account[] } };
-
-type SelectedAccount = {
-  address: string;
-  chainId: ChainId;
-  wallet: WalletId;
-};
-
-type State = {
-  isConnectingWallet: boolean;
-  selectedAccount: null | SelectedAccount;
-  selectedAction: null | StakeAction;
-  wallets: { [key in WalletId]?: Wallet };
-};
-
-type SetState = (state: Partial<State>) => void;
-
-type Context = {
-  setState: SetState;
-  state: State;
-};
-
-const defaultState: State = {
-  isConnectingWallet: false,
-  selectedAccount: null,
-  selectedAction: null,
-  wallets: {},
-};
+  Account,
+  ChainId,
+  Context,
+  SetState,
+  State,
+  Wallet,
+  WalletId,
+} from "./types";
+import { defaultState } from "./types";
 
 const baseContext: Context = {
   setState: () => {},
@@ -127,6 +64,42 @@ export const setSelectedAccount = (
 ) => {
   setState({
     selectedAccount,
+  });
+};
+
+export const syncAccountData = async (
+  setState: SetState,
+  state: State,
+  account: Account,
+) => {
+  const { address, chainId, wallet: walletId } = account;
+
+  const [info, rewards] = await Promise.all([
+    stakingClient.getAddressInfo(chainId, address),
+    stakingClient.getRewardsInfo(chainId, address),
+  ]);
+
+  const newWallets = {
+    ...state.wallets,
+    [walletId]: {
+      ...state.wallets[walletId],
+      [chainId]: {
+        accounts: [
+          ...(state.wallets[walletId]?.[chainId]?.accounts || []).filter(
+            (a) => a.address !== address,
+          ),
+          {
+            ...account,
+            info,
+            rewards,
+          },
+        ].sort(sortAccounts),
+      },
+    },
+  };
+
+  setState({
+    wallets: newWallets,
   });
 };
 

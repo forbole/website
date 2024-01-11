@@ -22,16 +22,18 @@ import { MsgDelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx";
 import { useContext, useEffect, useState } from "react";
 
 import { tooltipId } from "@src/components/tooltip";
-import type { Account } from "@src/screens/staking/lib/context";
 import {
-  ChainId,
-  ENABLE_TESTNETS,
   StakingContext,
-  WalletId,
   addToConnectedWallets,
   getConnectedWallets,
   setUserWallet,
 } from "@src/screens/staking/lib/context";
+import type { Account } from "@src/screens/staking/lib/context/types";
+import {
+  ChainId,
+  ENABLE_TESTNETS,
+  WalletId,
+} from "@src/screens/staking/lib/context/types";
 
 import ClaimRewardsModal from "./claim_rewards_modal";
 import * as styles from "./index.module.scss";
@@ -150,7 +152,7 @@ const StakingSection = () => {
           const handleError = (err: unknown) => {
             console.log("debug: index.tsx: err", err);
 
-            return [] as AccountData[];
+            return [] as Account[];
           };
 
           const parseAccounts =
@@ -163,8 +165,10 @@ const StakingSection = () => {
                     stakingClient.getRewardsInfo(chainId, account.address),
                   ]).then(([info, rewards]) => ({
                     address: account.address,
+                    chainId,
                     info,
                     rewards,
+                    wallet: WalletId.Keplr,
                   })),
                 ),
               );

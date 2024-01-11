@@ -14,15 +14,17 @@ import HighlightButton from "@src/components/highlight-button";
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
-import type { Account } from "@src/screens/staking/lib/context";
 import {
   StakingContext,
-  WalletId,
   getUserAccountsForNetwork,
-  networkNameToChainId,
-  networksWithStaking,
   setSelectedAccount,
 } from "@src/screens/staking/lib/context";
+import type { Account } from "@src/screens/staking/lib/context/types";
+import {
+  WalletId,
+  networkNameToChainId,
+  networksWithStaking,
+} from "@src/screens/staking/lib/context/types";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network } from "@src/utils/network_info";
 
