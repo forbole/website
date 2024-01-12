@@ -7,7 +7,6 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography,
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
@@ -59,17 +58,7 @@ const ContactCard = () => {
       <form noValidate onSubmit={handleSubmit}>
         <CardContent className={styles.cardContent}>
           <div className={styles.name}>
-            <Typography
-              component="div"
-              fontSize={theme.spacing(2)}
-              fontWeight={600}
-              gutterBottom
-              pb={theme.spacing(1)}
-              textAlign="left"
-              variant="h6"
-            >
-              {t("your name")}
-            </Typography>
+            <h6 className={styles.label}>{t("your name")}</h6>
             <TextField
               className={styles.input}
               helperText=" "
@@ -81,17 +70,7 @@ const ContactCard = () => {
             />
           </div>
           <div className={styles.mail}>
-            <Typography
-              component="div"
-              fontSize={theme.spacing(2)}
-              fontWeight={600}
-              gutterBottom
-              pb={theme.spacing(1)}
-              textAlign="left"
-              variant="h6"
-            >
-              {t("your email")}
-            </Typography>
+            <h6 className={styles.label}>{t("your email")}</h6>
             <TextField
               className={styles.input}
               helperText=" "
@@ -103,17 +82,7 @@ const ContactCard = () => {
             />
           </div>
           <div className={styles.select}>
-            <Typography
-              component="div"
-              fontSize={theme.spacing(2)}
-              fontWeight={600}
-              gutterBottom
-              pb={theme.spacing(1)}
-              textAlign="left"
-              variant="h6"
-            >
-              {t("how can we help you")}
-            </Typography>
+            <h6 className={styles.label}>{t("how can we help you")}</h6>
             <FormControl>
               {inputs.option === "" ? (
                 <InputLabel focused={false} id="item_type_label" shrink={false}>

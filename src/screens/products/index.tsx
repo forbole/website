@@ -209,7 +209,7 @@ const Products = () => {
                 label={t("developer")}
               />
             </StyledTabs>
-            <div className={styles.mobileOnly}>
+            <div className={styles.mobileButtons}>
               <CtaButton
                 className={styles.response36}
                 onClick={(e) => {
@@ -333,7 +333,7 @@ const Products = () => {
                 label={t("enterprise-solution")}
               />
             </StyledTabs>
-            <div className={styles.mobileOnly}>
+            <div className={styles.mobileButtons}>
               <CtaButton
                 className={styles.response}
                 onClick={(e) => {

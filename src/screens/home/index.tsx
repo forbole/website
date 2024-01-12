@@ -11,7 +11,6 @@ import ScrollToBottom from "@src/components/scroll_to_bottom";
 import ScrollToTop from "@src/components/scroll_to_top";
 
 import * as styles from "./index.module.scss";
-import { FilterBG } from "./styles";
 
 export type Page = {
   btnClick: string;
@@ -55,7 +54,7 @@ const Home: FC<Props> = ({ pages }) => {
           <Stack className={styles.stack}>
             <h1 className={styles.topTitle}>{t("coBuildingInterchain")}</h1>
             <ScrollToBottom bottomRef={bottomRef} />
-            <FilterBG />
+            <div className={styles.filterBg} />
           </Stack>
         </Container>
         <div className={styles.containerTitle} ref={bottomRef}>

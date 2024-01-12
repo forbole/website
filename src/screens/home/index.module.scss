@@ -125,3 +125,12 @@
     margin: 0 auto;
   }
 }
+
+.filterBg {
+  background: #fd3317;
+  filter: blur(40px);
+  inset: 0 16px;
+  opacity: 0.8;
+  position: absolute;
+  z-index: -1;
+}
