@@ -100,3 +100,10 @@ $input-shadow:
     justify-content: flex-end;
   }
 }
+
+.label {
+  font-size: spacing(2);
+  font-weight: 600;
+  padding-bottom: 14px;
+  text-align: left;
+}

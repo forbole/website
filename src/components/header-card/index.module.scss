@@ -32,7 +32,7 @@ $card-box-shadow:
   text-align: center;
 
   @include down-laptop {
-    padding-left: 0;
+    padding: 0 4px;
   }
 }
 

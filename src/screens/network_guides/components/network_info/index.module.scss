@@ -108,6 +108,8 @@ $card-shadow:
 }
 
 .readMoreButton {
+  background: transparent;
+  border: none;
   color: #007fff;
   display: inline-block;
   padding: 0;
@@ -161,4 +163,48 @@ $card-shadow:
   color: #ba6600;
   font-size: 14px;
   font-weight: 700;
+}
+
+.contentCss {
+  :global {
+    -webkit-box-orient: vertical;
+    color: $color-forbole-blue-1;
+    display: -webkit-box;
+    font-size: 14px;
+    -webkit-line-clamp: 8;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 16px;
+    text-overflow: ellipsis;
+    width: 100%;
+    word-break: break-word;
+
+    a {
+      transition: 0.3s;
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.87);
+      }
+    }
+
+    li {
+      display: none;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    @media only screen and (min-width: 1024px) {
+      flex: 1;
+      font-size: 16px;
+      -webkit-line-clamp: 5;
+      line-height: 22px;
+      margin: inherit;
+
+      p {
+        text-align: left;
+      }
+    }
+  }
 }

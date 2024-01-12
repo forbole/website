@@ -17,13 +17,13 @@ import { useCallback, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
 import CopyIcon from "@src/components/icons/icon_copy.svg";
+import * as guideStyles from "@src/screens/network_guides/components/guide/components/guide_details/index.module.scss";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import InfoCard from "./components/info_card";
 import { useNetworkGuidesHook } from "./hooks";
 import * as styles from "./index.module.scss";
-import { ContentBox, ContentCSS } from "./styles";
 
 const excludedImgChains = new Set([
   "archway",
@@ -152,13 +152,14 @@ const NetworkInfo = ({ post }: any) => {
               {!onlyLargeScreen ? (
                 <div className={styles.post}>
                   {readMore ? (
-                    <ContentCSS theme={theme}>
-                      <ContentBox
+                    <div className={styles.contentCss}>
+                      <div
+                        className={guideStyles.guideContentBox}
                         dangerouslySetInnerHTML={{
                           __html: sanitize(post.html),
                         }}
                       />
-                    </ContentCSS>
+                    </div>
                   ) : (
                     <>
                       <span
@@ -183,11 +184,12 @@ const NetworkInfo = ({ post }: any) => {
                   )}
                 </div>
               ) : (
-                <ContentCSS theme={theme}>
-                  <ContentBox
+                <div className={styles.contentCss}>
+                  <div
+                    className={guideStyles.guideContentBox}
                     dangerouslySetInnerHTML={{ __html: sanitize(post.html) }}
                   />
-                </ContentCSS>
+                </div>
               )}
               {!!networkStats?.length && (
                 <div className={styles.infoBox}>
