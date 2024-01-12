@@ -5,6 +5,7 @@ import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { memo, useCallback, useRef } from "react";
 
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
+import { networkNameToChainId } from "@src/screens/staking/lib/context/types";
 import {
   getCanClickNetwork,
   handleNetworkClick,
@@ -45,10 +46,13 @@ const NetworkCard = ({
     [network],
   );
 
+  const stakingChainId = networkNameToChainId[network.graphql];
+
   const isEmptyPopover =
     showPopover !== network.name ||
     networksWithHiddenInfo.has(network.graphql) ||
     (!!networkSummary &&
+      !stakingChainId &&
       (!networkSummary.bonded || networkSummary.bonded < 0) &&
       (!networkSummary.APY || networkSummary.APY < 0) &&
       (!networkSummary.TVL || networkSummary.TVL < 0) &&

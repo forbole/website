@@ -744,12 +744,14 @@ export const cosmosNetworkKeys = [
   "band",
   "bitsong",
   "celer",
+  "celestia",
   "cheqd",
   "comdex",
   "coreum",
   "cosmos",
   "crescent",
   "crypto.org",
+  "dydx",
   "e-money",
   "evmos",
   "fetch-ai",
@@ -789,7 +791,6 @@ export const cosmosNetworkKeys = [
   "xpla",
 
   // Preparing:
-  // "celestia",
   // "islamic_coin",
   // 'desmos',
 ];

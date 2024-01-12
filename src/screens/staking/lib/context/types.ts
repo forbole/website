@@ -50,6 +50,7 @@ export const networkNameToChainId: Record<string, ChainId> = {
   [networks.cosmos.graphql]: ENABLE_TESTNETS
     ? ChainId.CosmosHubTestnet
     : ChainId.CosmosHub,
+  [networks.dydx.graphql]: ChainId.DyDx,
 };
 
 export const chainIdToNetworkKey: Record<ChainId, string> = {
