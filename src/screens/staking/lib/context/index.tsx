@@ -1,3 +1,4 @@
+import { identity } from "ramda";
 import type { PropsWithChildren } from "react";
 import { createContext, useMemo, useState } from "react";
 
@@ -5,6 +6,7 @@ import { stakingClient } from "../../components/staking_section/utils/staking_cl
 import { sortAccounts } from "./formatters";
 import type {
   Account,
+  ChainId,
   NetworkInfo,
   SetState,
   State,
@@ -12,7 +14,12 @@ import type {
   Wallet,
   WalletId,
 } from "./types";
-import { ChainId, defaultState } from "./types";
+import {
+  ENABLE_TESTNETS,
+  defaultState,
+  networksWithStaking,
+  testnetNetworks,
+} from "./types";
 
 const baseContext: TStakingContext = {
   setState: () => {},
@@ -51,29 +58,28 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
 // Actions
 
 export const fetchNetworksInfo = async (setState: SetState) => {
-  // @TODO: Prioritize here which networks to fetch
-  const [cosmosTestnet, celestiaTestnet, cosmos, celestia] = await Promise.all(
-    [
-      ChainId.CosmosHubTestnet,
-      ChainId.CelestiaTestnet,
-      ChainId.CosmosHub,
-      ChainId.Celestia,
-    ].map((chainId) =>
-      stakingClient.getStakingInfo(chainId).then((info) => ({
-        chainId,
-        info,
-      })),
-    ),
+  const stakingNetworksInfo = await Promise.all(
+    Array.from(networksWithStaking)
+      .filter(ENABLE_TESTNETS ? identity : (n) => !testnetNetworks.has(n))
+      .map((chainId) =>
+        stakingClient.getStakingInfo(chainId).then((info) => ({
+          chainId,
+          info,
+        })),
+      ),
   );
 
   setState((state) => ({
     ...state,
     networksInfo: {
       ...state.networksInfo,
-      [celestia.chainId]: celestia.info,
-      [celestiaTestnet.chainId]: celestiaTestnet.info,
-      [cosmos.chainId]: cosmos.info,
-      [cosmosTestnet.chainId]: cosmosTestnet.info,
+      ...stakingNetworksInfo.reduce(
+        (acc, { chainId, info }) => ({
+          ...acc,
+          [chainId]: info,
+        }),
+        {},
+      ),
     },
   }));
 };

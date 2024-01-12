@@ -248,6 +248,13 @@ export const networks: Record<string, Network> = {
     key: "desmos",
     name: "Desmos",
   },
+  "dydx": {
+    denom: "dydxprotocold",
+    graphql: "dydx",
+    image: "/images/network/dydx.svg",
+    key: "dydx",
+    name: "dydx",
+  },
   "e-money": {
     address: "emoneyvaloper1293pqwtzu67zp8txuya4yts03ccw5kgf98hz9y",
     bigDipper: "https://e-money.network/",

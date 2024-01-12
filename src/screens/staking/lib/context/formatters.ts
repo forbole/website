@@ -42,5 +42,10 @@ export const formatDenom = (denom: string, value: string): string => {
   return `${formatNum(num)} ${denom.toUpperCase()}`;
 };
 
-export const sortAccounts = (a: Account, b: Account) =>
-  a.address.localeCompare(b.address);
+export const sortAccounts = (a: Account, b: Account) => {
+  if (a.chainId !== b.chainId) {
+    return a.chainId.localeCompare(b.chainId);
+  }
+
+  return a.address.localeCompare(b.address);
+};

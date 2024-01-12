@@ -178,7 +178,6 @@ const UnstakingModal = () => {
           <div>{t("unstakingModal.infoTitle")}</div>
           {networkInfo ? (
             <ul>
-              {/* @TODO */}
               {unlockedDate && (
                 <li>
                   {t("unstakingModal.unlockedDate", {

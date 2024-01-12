@@ -53,7 +53,12 @@ const PopOver = ({
   networkSummary,
   setShowPopover,
 }: PopOverProps) => {
-  const isStakingSupported = networksWithStaking.has(network.graphql);
+  const networkChainId = networkNameToChainId[network.graphql];
+
+  const isStakingSupported = networkChainId
+    ? networksWithStaking.has(networkChainId)
+    : false;
+
   const { t } = useTranslation("staking");
   const stakingRef = useRef({} as TStakingContext);
 

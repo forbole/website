@@ -13,17 +13,43 @@ export enum WalletId {
   Keplr = "keplr",
 }
 
+// For now these values match the id in the chain registry
 export enum ChainId {
   Celestia = "celestia",
   CelestiaTestnet = "mocha-4",
   CosmosHub = "cosmoshub",
   CosmosHubTestnet = "theta-testnet-001",
+  DyDx = "dydx-mainnet-1",
 }
 
+export const keplrNetworks = new Set([
+  ChainId.CosmosHubTestnet,
+  ChainId.CelestiaTestnet,
+  ChainId.CosmosHub,
+  ChainId.Celestia,
+  ChainId.DyDx,
+]);
+
+export const networksWithStaking = new Set([
+  ChainId.CosmosHubTestnet,
+  ChainId.CelestiaTestnet,
+  ChainId.CosmosHub,
+  ChainId.Celestia,
+  ChainId.DyDx,
+]);
+
+export const testnetNetworks = new Set([
+  ChainId.CosmosHubTestnet,
+  ChainId.CelestiaTestnet,
+]);
+
 export const networkNameToChainId: Record<string, ChainId> = {
-  // @TODO: Move from testnet to mainnet via env variable
-  [networks.celestia.graphql]: ChainId.CelestiaTestnet,
-  [networks.cosmos.graphql]: ChainId.CosmosHubTestnet,
+  [networks.celestia.graphql]: ENABLE_TESTNETS
+    ? ChainId.CelestiaTestnet
+    : ChainId.Celestia,
+  [networks.cosmos.graphql]: ENABLE_TESTNETS
+    ? ChainId.CosmosHubTestnet
+    : ChainId.CosmosHub,
 };
 
 export const chainIdToNetworkKey: Record<ChainId, string> = {
@@ -31,12 +57,8 @@ export const chainIdToNetworkKey: Record<ChainId, string> = {
   [ChainId.CelestiaTestnet]: "celestia-testnet",
   [ChainId.CosmosHub]: "cosmos",
   [ChainId.CosmosHubTestnet]: "cosmos-testnet",
+  [ChainId.DyDx]: "dydx",
 };
-
-export const networksWithStaking = new Set([
-  networks.cosmos.graphql,
-  networks.celestia.graphql,
-]);
 
 export type Account = {
   address: string;
@@ -48,7 +70,9 @@ export type Account = {
 
 type StakeAction = "claim_rewards" | "stake" | "unstake";
 
-export type Wallet = { [key in ChainId]?: { accounts: Account[] } };
+export type Wallet = {
+  [key in ChainId]?: { accounts: Account[]; chainId: ChainId };
+};
 
 type SelectedAccount = {
   address: string;

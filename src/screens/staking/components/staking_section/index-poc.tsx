@@ -11,26 +11,24 @@ import {
   setupStakingExtension,
 } from "@cosmjs/stargate";
 import { Tendermint34Client } from "@cosmjs/tendermint-rpc";
-import type { AccountData, Window as KeplrWindow } from "@keplr-wallet/types";
+import { wallets as keplrWallets } from "@cosmos-kit/keplr";
+import { wallets as leapWallets } from "@cosmos-kit/leap";
+import { ChainProvider, useWalletClient } from "@cosmos-kit/react";
+import type { Window as KeplrWindow } from "@keplr-wallet/types";
 import { Dec } from "@keplr-wallet/unit";
 import { Box, Button } from "@mui/material";
+import { assets } from "chain-registry";
 import { MsgDelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx";
 import { useContext, useEffect, useState } from "react";
 
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
-  addToConnectedWallets,
   fetchNetworksInfo,
-  getConnectedWallets,
-  setUserWallet,
 } from "@src/screens/staking/lib/context";
-import type { Account, Wallet } from "@src/screens/staking/lib/context/types";
 import {
   ChainId,
-  WalletId,
-  keplrNetworks,
-  networksWithStaking,
+  ENABLE_TESTNETS,
 } from "@src/screens/staking/lib/context/types";
 
 import ClaimRewardsModal from "./claim_rewards_modal";
@@ -70,11 +68,49 @@ declare global {
 const earthValidatorAddress =
   "cosmosvaloper10v6wvdenee8r9l6wlsphcgur2ltl8ztkfrvj9a";
 
+const WalletComp = () => {
+  const keplrExtension = useWalletClient("keplr-extension");
+  // const leapExtension = useWalletClient("leap-extension");
+
+  useEffect(() => {
+    const { client, status } = keplrExtension;
+
+    if (status === "Done" && client) {
+      (async () => {
+        const chainsToEnable = [ChainId.CosmosHub, ChainId.Celestia];
+
+        if (ENABLE_TESTNETS) {
+          chainsToEnable.push(
+            ChainId.CosmosHubTestnet,
+            ChainId.CelestiaTestnet,
+          );
+        }
+
+        await window.keplr?.enable(chainsToEnable);
+      })();
+    }
+  }, [keplrExtension]);
+
+  // useEffect(() => {
+  //   const { client, status } = leapExtension;
+
+  //   if (status === "Done" && client) {
+  //     client.enable?.([chainId]);
+
+  //     client
+  //       .getAccount?.(chainId)
+  //       .then((account) => console.log("WALLET Comp Leap", account))
+  //       .catch((error) => console.log("WALLET Comp Leap error", error));
+  //   }
+  // }, [leapExtension]);
+
+  return <div>Keplr Provider</div>;
+};
+
 const StakingSection = () => {
   const [chainInfo, setChainInfo] = useState<Chain | null>(null);
 
-  const { setState: setStakingState, state: stakingState } =
-    useContext(StakingContext);
+  const { setState: setStakingState } = useContext(StakingContext);
 
   useEffect(() => {
     (async () => {
@@ -83,7 +119,7 @@ const StakingSection = () => {
 
       console.log(
         "debug: index.tsx: chains",
-        chains.filter((c) => c.chain_id.includes("dydx")),
+        chains.filter((c) => c.chain_id.includes("mocha")),
       );
 
       const newChainInfo = chains.find(
@@ -104,89 +140,8 @@ const StakingSection = () => {
     sequence: "",
   });
 
-  const tryToConnectWallets = async (walletsIds: WalletId[]) => {
-    if (walletsIds.includes(WalletId.Keplr)) {
-      if (window.keplr) {
-        const chainsToConnect = Array.from(keplrNetworks);
-
-        await window.keplr?.enable(chainsToConnect);
-
-        try {
-          const handleError = (err: unknown) => {
-            console.log("debug: index.tsx: err", err);
-
-            return [] as Account[];
-          };
-
-          const parseAccounts =
-            (chainId: ChainId) =>
-            (accounts: readonly AccountData[]): Promise<Account[]> =>
-              Promise.all(
-                accounts.map((account) =>
-                  Promise.all([
-                    stakingClient.getAddressInfo(chainId, account.address),
-                    stakingClient.getRewardsInfo(chainId, account.address),
-                  ]).then(([info, rewards]) => ({
-                    address: account.address,
-                    chainId,
-                    info,
-                    rewards,
-                    wallet: WalletId.Keplr,
-                  })),
-                ),
-              );
-
-          const keplrAccounts = await Promise.all(
-            Array.from(keplrNetworks).map(async (network) => {
-              if (networksWithStaking.has(network)) {
-                const accounts = await window
-                  .keplr!.getOfflineSigner(network)
-                  .getAccounts()
-                  .then(parseAccounts(network))
-                  .catch(handleError);
-
-                return {
-                  accounts,
-                  chainId: network,
-                };
-              }
-            }),
-          );
-
-          addToConnectedWallets(WalletId.Keplr);
-
-          setUserWallet(
-            stakingState,
-            setStakingState,
-            WalletId.Keplr,
-            keplrAccounts.reduce((acc, networkObj) => {
-              if (networkObj) {
-                acc[networkObj.chainId] = {
-                  accounts: networkObj.accounts,
-                  chainId: networkObj.chainId,
-                };
-              }
-
-              return acc;
-            }, {} as Wallet),
-          );
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    }
-  };
-
   useEffect(() => {
-    const connectedWallets = getConnectedWallets();
-
     fetchNetworksInfo(setStakingState);
-
-    tryToConnectWallets(connectedWallets).then(() => {
-      setStakingState({
-        hasInit: true,
-      });
-    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -368,7 +323,6 @@ const StakingSection = () => {
           <Button
             data-tooltip-content="Test tooltip"
             data-tooltip-id={tooltipId}
-            onClick={() => tryToConnectWallets([WalletId.Keplr])}
           >
             Get address
           </Button>
@@ -531,6 +485,13 @@ const StakingSection = () => {
         <Box>Balance delegated: {balanceStaked}</Box>
         <Box>Sequence: {sequence}</Box>
         <Box>Has leap wallet: {String(!!window.leap)}</Box>
+        <ChainProvider
+          assetLists={assets}
+          chains={[chainInfo]}
+          wallets={[...keplrWallets, ...leapWallets]}
+        >
+          <WalletComp />
+        </ChainProvider>
       </Box>
     </Box>
   );
