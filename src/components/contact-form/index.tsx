@@ -5,7 +5,6 @@ import {
   MenuItem,
   Select,
   Stack,
-  Typography,
   useTheme,
 } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
@@ -73,15 +72,10 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
           rowSpacing={{ desktop: theme.spacing(4), mobile: theme.spacing(3) }}
         >
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-              }}
-            >
+            <p className={styles.label}>
               {t("your_name")}
               <span style={{ color: "#FF426B" }}>*</span>
-            </Typography>
+            </p>
             <FormInput
               name="name"
               onInput={handleInputChange}
@@ -90,14 +84,7 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-              }}
-            >
-              {t("your_company")}
-            </Typography>
+            <p className={styles.label}>{t("your_company")}</p>
             <FormInput
               name="company"
               onInput={handleInputChange}
@@ -106,15 +93,10 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-              }}
-            >
+            <p className={styles.label}>
               {t("your_email")}
               <span style={{ color: "#FF426B" }}>*</span>
-            </Typography>
+            </p>
             <FormInput
               name="email"
               onInput={handleInputChange}
@@ -123,16 +105,10 @@ const ContactFrom = forwardRef<HTMLDivElement, Props>(
             />
           </Grid>
           <Grid item laptop={6} mobile={12}>
-            <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "590",
-                mb: "16px",
-              }}
-            >
+            <p className={styles.label}>
               {t("how")}
               <span style={{ color: "#FF426B" }}>*</span>
-            </Typography>
+            </p>
             <FormControl fullWidth>
               <Select
                 IconComponent={KeyboardArrowDownTwoTone}

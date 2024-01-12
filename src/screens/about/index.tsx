@@ -9,7 +9,6 @@ import Arrow, { Direction } from "@src/components/arrow";
 import Horse from "@src/components/icons/horse.svg";
 import Layout from "@src/components/layout";
 import ScrollToTop from "@src/components/scroll_to_top";
-import { ImgBox, YTBSwiperCSS } from "@src/screens/about/SwiperCSS";
 import * as commonStyles from "@src/styles/common.module.scss";
 import { IS_E2E } from "@src/utils/e2e";
 
@@ -87,7 +86,7 @@ const About = () => {
             />
           </div>
           <div className={styles.swiperContainer}>
-            <ImgBox>
+            <div className={styles.imgBox}>
               <Swiper
                 autoplay={{
                   delay: 2000,
@@ -123,7 +122,7 @@ const About = () => {
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </ImgBox>
+            </div>
             <Arrow
               className={[styles.arrow, styles.right, "h-next"].join(" ")}
               direction={Direction.Right}
@@ -142,7 +141,7 @@ const About = () => {
           <span className={styles.sectionDesc}>{t("section_1st_sesc")}</span>
         </div>
       </div>
-      <YTBSwiperCSS>
+      <div className={styles.ytbSwiperBox}>
         <div className={styles.ytbStack}>
           <Swiper
             className={["swiper-no-swiping", styles.ytbSwiper].join(" ")}
@@ -176,7 +175,7 @@ const About = () => {
           <Arrow className="v-next" direction={Direction.Right} role="button" />
           <Arrow className="v-prev" direction={Direction.Left} role="button" />
         </div>
-      </YTBSwiperCSS>
+      </div>
 
       <div className={commonStyles.pageContainer}>
         <div>

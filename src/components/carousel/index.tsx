@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
 import Arrow, { Direction } from "../arrow";
-import { BoxCSS } from "./BoxCSS";
 import * as styles from "./index.module.scss";
 
 SwiperCore.use([Navigation]);
@@ -62,7 +61,7 @@ const Carousel = ({ personList }: CarouselProps) => {
   }
 
   return (
-    <BoxCSS>
+    <div className={styles.boxCss}>
       <div className={styles.wrapper}>
         <Swiper
           breakpoints={{
@@ -110,7 +109,7 @@ const Carousel = ({ personList }: CarouselProps) => {
           role="button"
         />
       </div>
-    </BoxCSS>
+    </div>
   );
 };
 

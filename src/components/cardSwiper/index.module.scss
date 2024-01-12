@@ -1,3 +1,5 @@
+@import "src/styles/sass.scss";
+
 .wrapper {
   position: relative;
 }
@@ -14,4 +16,48 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.boxCss {
+  :global {
+    .swiper-slide.scale {
+      align-self: center;
+      flex-shrink: 0;
+      text-align: center;
+      transform: scale(0.8) !important;
+      transition: 300ms;
+      width: auto;
+    }
+
+    .swiper-slide-active.scale {
+      transform: scale(1) !important;
+    }
+
+    .c-next.swiper-button-disabled,
+    .c-prev.swiper-button-disabled {
+      display: none;
+    }
+
+    .c-next,
+    .c-prev {
+      display: none;
+    }
+
+    @include down-tablet {
+      .c-next,
+      .c-prev {
+        display: block;
+      }
+
+      .swiper-container {
+        padding: 0 40px;
+      }
+    }
+  }
+}
+
+.slide {
+  @include down-laptop {
+    width: 100%;
+  }
 }
