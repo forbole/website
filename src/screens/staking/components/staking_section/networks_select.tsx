@@ -65,7 +65,7 @@ const NetworksSelect = ({ variant }: Props) => {
 
   if (!wallet) return null;
 
-  const allAccounts = Object.values(wallet)
+  const allAccounts = Object.values(wallet.networks)
     .reduce((acc, chain) => {
       acc.push(...chain.accounts);
 

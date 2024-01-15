@@ -1,55 +1,31 @@
 import useTranslation from "next-translate/useTranslation";
-import { memo, useContext } from "react";
+import { memo, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
+import IconMobile from "@src/components/icons/icon_mobile.svg";
+import IconPlus from "@src/components/icons/icon_plus.svg";
+import IconKeplr from "@src/components/icons/keplr.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
-import {
-  StakingContext,
-  getUserAccountsForNetwork,
-  setSelectedAccount,
-} from "@src/screens/staking/lib/context";
-import type { Account } from "@src/screens/staking/lib/context/types";
-import { ChainId, WalletId } from "@src/screens/staking/lib/context/types";
+import { useStakingRef } from "@src/screens/staking/lib/context";
+import type { TStakingContext } from "@src/screens/staking/lib/context/types";
 
 import { useInitStaking } from "../hooks";
+import ClaimRewardsModal from "../staking_section/claim_rewards_modal";
+import StakingModal from "../staking_section/staking_modal";
+import UnstakingModal from "../staking_section/unstaking_modal";
 import * as styles from "./index.module.scss";
 
-type WalletAccountProps = {
-  address: string;
-  chainId: ChainId;
-  wallet: WalletId;
-};
-
-const WalletAccount = ({ address, chainId, wallet }: WalletAccountProps) => {
-  const { setState } = useContext(StakingContext);
-
-  return (
-    <div>
-      [{wallet}]: {chainId}: {address}{" "}
-      <button
-        onClick={() => {
-          setSelectedAccount(setState, { address, chainId, wallet });
-          setState({ selectedAction: "stake" });
-        }}
-      >
-        Check
-      </button>
-    </div>
-  );
-};
-
 type Props = {
-  celestiaAccounts: Account[] | undefined;
-  cosmosAccounts: Account[] | undefined;
+  hasInit: boolean;
+  wallets: TStakingContext["state"]["wallets"];
 };
 
-const StakingWidgetBase = ({ celestiaAccounts, cosmosAccounts }: Props) => {
+const StakingWidgetBase = ({ hasInit, wallets }: Props) => {
   const { t } = useTranslation("staking");
-  const { state: stakingState } = useContext(StakingContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const walletsIds = Object.keys(wallets).sort();
 
-  if (!celestiaAccounts && !cosmosAccounts) {
-    const { hasInit } = stakingState;
-
+  if (!hasInit || !walletsIds.length) {
     return (
       <HighlightButton className={styles.connectButton}>
         {hasInit ? t("stakingWidget.connectWallet") : <LoadingSpinner />}
@@ -58,26 +34,39 @@ const StakingWidgetBase = ({ celestiaAccounts, cosmosAccounts }: Props) => {
   }
 
   return (
-    <div>
-      StakingWidget:{" "}
-      {!!cosmosAccounts &&
-        cosmosAccounts.map((account) => (
-          <WalletAccount
-            address={account.address}
-            chainId={ChainId.CosmosHubTestnet}
-            key={account.address}
-            wallet={WalletId.Keplr}
-          />
-        ))}
-      {!!celestiaAccounts &&
-        celestiaAccounts.map((account) => (
-          <WalletAccount
-            address={account.address}
-            chainId={ChainId.CelestiaTestnet}
-            key={account.address}
-            wallet={WalletId.Keplr}
-          />
-        ))}
+    <div className={styles.wrapper}>
+      <button
+        className={styles.trigger}
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        <IconKeplr />
+      </button>
+      <div className={[styles.dropdown, isOpen ? styles.open : ""].join(" ")}>
+        <div className={styles.header}>
+          <div>
+            {t("stakingWidget.connected", {
+              count: walletsIds.length,
+            })}
+          </div>
+          <span>
+            <IconPlus />
+          </span>
+          <span>
+            <IconMobile />
+          </span>
+        </div>
+        {walletsIds.map((walletId) => {
+          const walletName = wallets[walletId as keyof typeof wallets]?.name;
+
+          return (
+            <div key={walletId}>
+              {walletName} - {walletId}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
@@ -85,23 +74,21 @@ const StakingWidgetBase = ({ celestiaAccounts, cosmosAccounts }: Props) => {
 const StakingComponent = memo(StakingWidgetBase);
 
 const StakingWidgetContainer = () => {
-  const stakingContext = useContext(StakingContext);
+  const stakingRef = useStakingRef();
+  const { state: stakingState } = stakingRef.current;
 
   useInitStaking();
 
   return (
-    <StakingComponent
-      celestiaAccounts={getUserAccountsForNetwork(
-        stakingContext.state,
-        WalletId.Keplr,
-        ChainId.CelestiaTestnet,
-      )}
-      cosmosAccounts={getUserAccountsForNetwork(
-        stakingContext.state,
-        WalletId.Keplr,
-        ChainId.CosmosHubTestnet,
-      )}
-    />
+    <>
+      <StakingComponent
+        hasInit={stakingState.hasInit}
+        wallets={stakingState.wallets}
+      />
+      <StakingModal />
+      <UnstakingModal />
+      <ClaimRewardsModal />
+    </>
   );
 };
 

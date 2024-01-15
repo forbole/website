@@ -152,15 +152,15 @@ export const syncAccountData = async (
     stakingClient.getRewardsInfo(chainId, address),
   ]);
 
-  const newWallets = {
-    ...state.wallets,
-    [walletId]: {
-      ...state.wallets[walletId],
+  const newWallet: Wallet = {
+    ...state.wallets[walletId],
+    networks: {
+      ...state.wallets[walletId]?.networks,
       [chainId]: {
         accounts: [
-          ...(state.wallets[walletId]?.[chainId]?.accounts || []).filter(
-            (a) => a.address !== address,
-          ),
+          ...(
+            state.wallets[walletId]?.networks?.[chainId]?.accounts || []
+          ).filter((a) => a.address !== address),
           {
             ...account,
             info,
@@ -169,6 +169,12 @@ export const syncAccountData = async (
         ].sort(sortAccounts),
       },
     },
+    wallet: walletId,
+  };
+
+  const newWallets = {
+    ...state.wallets,
+    [walletId]: newWallet,
   };
 
   setState({
@@ -182,7 +188,7 @@ export const getUserAccountsForNetwork = (
   state: State,
   walletName: WalletId,
   userNetwork: ChainId,
-) => state?.wallets?.[walletName]?.[userNetwork]?.accounts;
+) => state?.wallets?.[walletName]?.networks?.[userNetwork]?.accounts;
 
 export const getSelectedAccount = (state: State) => {
   const { selectedAccount } = state;
@@ -193,7 +199,7 @@ export const getSelectedAccount = (state: State) => {
 
   const { address, chainId, wallet } = selectedAccount;
 
-  return state?.wallets?.[wallet]?.[chainId]?.accounts?.find(
+  return state?.wallets?.[wallet]?.networks?.[chainId]?.accounts?.find(
     (a) => a.address === address,
   );
 };

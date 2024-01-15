@@ -211,6 +211,8 @@ export const tryToConnectWallets = async (
           return [] as Account[];
         };
 
+        let walletName = "";
+
         const parseAccounts =
           (chainId: ChainId) =>
           (accounts: readonly AccountData[]): Promise<Account[]> =>
@@ -219,13 +221,20 @@ export const tryToConnectWallets = async (
                 Promise.all([
                   stakingClient.getAddressInfo(chainId, account.address),
                   stakingClient.getRewardsInfo(chainId, account.address),
-                ]).then(([info, rewards]) => ({
-                  address: account.address,
-                  chainId,
-                  info,
-                  rewards,
-                  wallet: WalletId.Keplr,
-                })),
+                  window.keplr!.getKey(chainId),
+                ]).then(([info, rewards, key]) => {
+                  if (key?.name) {
+                    walletName = key.name;
+                  }
+
+                  return {
+                    address: account.address,
+                    chainId,
+                    info,
+                    rewards,
+                    wallet: WalletId.Keplr,
+                  };
+                }),
               ),
             );
 
@@ -252,16 +261,23 @@ export const tryToConnectWallets = async (
           stakingState,
           setStakingState,
           WalletId.Keplr,
-          keplrAccounts.reduce((acc, networkObj) => {
-            if (networkObj) {
-              acc[networkObj.chainId] = {
-                accounts: networkObj.accounts,
-                chainId: networkObj.chainId,
-              };
-            }
+          keplrAccounts.reduce(
+            (acc, networkObj) => {
+              if (networkObj) {
+                acc.networks[networkObj.chainId] = {
+                  accounts: networkObj.accounts,
+                  chainId: networkObj.chainId,
+                };
+              }
 
-            return acc;
-          }, {} as Wallet),
+              return acc;
+            },
+            {
+              name: walletName,
+              networks: {},
+              wallet: WalletId.Keplr,
+            } as Wallet,
+          ),
         );
       } catch (error) {
         console.log(error);

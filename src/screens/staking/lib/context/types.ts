@@ -72,7 +72,9 @@ export type Account = {
 type StakeAction = "claim_rewards" | "stake" | "unstake";
 
 export type Wallet = {
-  [key in ChainId]?: { accounts: Account[]; chainId: ChainId };
+  name?: string;
+  networks: { [key in ChainId]?: { accounts: Account[]; chainId: ChainId } };
+  wallet: WalletId;
 };
 
 type SelectedAccount = {

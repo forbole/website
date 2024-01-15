@@ -105,6 +105,8 @@
     "tokenAmount": "Token amount"
   },
   "stakingWidget": {
+    "connected_one": "Connected wallet",
+    "connected_other": "Connected wallets",
     "connectWallet": "Connect Wallet"
   },
   "string": " ",

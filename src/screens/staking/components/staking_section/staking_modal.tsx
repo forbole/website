@@ -71,6 +71,8 @@ const StakingModal = () => {
     }
   }, [isOpen, selectedAccount, stakingRef]);
 
+  if (!isOpen) return null;
+
   const account = getSelectedAccount(stakingState);
 
   if (!account?.info?.balances) return null;

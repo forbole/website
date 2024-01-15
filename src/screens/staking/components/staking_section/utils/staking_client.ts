@@ -2,7 +2,7 @@ import type { ChainId } from "@src/screens/staking/lib/context/types";
 
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API as string;
 
-if (!baseUrl) {
+if (!baseUrl && typeof window !== "undefined") {
   throw new Error("NEXT_PUBLIC_STAKING_API is not set");
 }
 
