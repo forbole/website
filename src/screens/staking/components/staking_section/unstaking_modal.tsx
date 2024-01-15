@@ -175,10 +175,10 @@ const UnstakingModal = () => {
           value={memo}
         />
         {!!memoError && <ModalError>{memoError}</ModalError>}
-        <div>
-          <div>{t("unstakingModal.infoTitle")}</div>
+        <div className={styles.info}>
+          <div className={styles.title}>{t("unstakingModal.infoTitle")}</div>
           {networkInfo ? (
-            <ul>
+            <ul className={styles.desc}>
               {unlockedDate && (
                 <li>
                   {t("unstakingModal.unlockedDate", {
