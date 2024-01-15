@@ -131,6 +131,7 @@ export const setUserWallet = (
   });
 };
 
+// @TODO: Update this function and also set the selected action
 export const setSelectedAccount = (
   setState: SetState,
   selectedAccount: State["selectedAccount"] | undefined,

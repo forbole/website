@@ -1,33 +1,43 @@
 import useTranslation from "next-translate/useTranslation";
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
 import IconMobile from "@src/components/icons/icon_mobile.svg";
 import IconPlus from "@src/components/icons/icon_plus.svg";
-import IconKeplr from "@src/components/icons/keplr.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { useStakingRef } from "@src/screens/staking/lib/context";
-import type { TStakingContext } from "@src/screens/staking/lib/context/types";
+import type {
+  TStakingContext,
+  WalletId,
+} from "@src/screens/staking/lib/context/types";
 
+import { getWalletName, walletsIcons } from "../../lib/wallet_info";
 import { useInitStaking } from "../hooks";
 import ClaimRewardsModal from "../staking_section/claim_rewards_modal";
+import ConnectWalletModal from "../staking_section/connect_wallet_modal";
 import StakingModal from "../staking_section/staking_modal";
 import UnstakingModal from "../staking_section/unstaking_modal";
 import * as styles from "./index.module.scss";
 
 type Props = {
   hasInit: boolean;
+  onConnectWallet: () => void;
   wallets: TStakingContext["state"]["wallets"];
 };
 
-const StakingWidgetBase = ({ hasInit, wallets }: Props) => {
+const StakingWidgetBase = ({ hasInit, onConnectWallet, wallets }: Props) => {
   const { t } = useTranslation("staking");
   const [isOpen, setIsOpen] = useState(false);
-  const walletsIds = Object.keys(wallets).sort();
+  const walletsIds = Object.keys(wallets).sort() as WalletId[];
+
+  const canConnectMoreWallets = true; // @TODO
 
   if (!hasInit || !walletsIds.length) {
     return (
-      <HighlightButton className={styles.connectButton}>
+      <HighlightButton
+        className={styles.connectButton}
+        onClick={hasInit ? onConnectWallet : undefined}
+      >
         {hasInit ? t("stakingWidget.connectWallet") : <LoadingSpinner />}
       </HighlightButton>
     );
@@ -41,7 +51,11 @@ const StakingWidgetBase = ({ hasInit, wallets }: Props) => {
           setIsOpen(!isOpen);
         }}
       >
-        <IconKeplr />
+        {walletsIds.map((walletId) => {
+          const WalletIcon = walletsIcons[walletId];
+
+          return <WalletIcon key={walletId} />;
+        })}
       </button>
       <div className={[styles.dropdown, isOpen ? styles.open : ""].join(" ")}>
         <div className={styles.header}>
@@ -50,19 +64,29 @@ const StakingWidgetBase = ({ hasInit, wallets }: Props) => {
               count: walletsIds.length,
             })}
           </div>
-          <span>
-            <IconPlus />
-          </span>
-          <span>
+          {canConnectMoreWallets && (
+            <button className={styles.clickableIcon} onClick={onConnectWallet}>
+              <IconPlus />
+            </button>
+          )}
+          <button className={styles.clickableIcon}>
             <IconMobile />
-          </span>
+          </button>
         </div>
         {walletsIds.map((walletId) => {
-          const walletName = wallets[walletId as keyof typeof wallets]?.name;
+          const walletUserName =
+            wallets[walletId as keyof typeof wallets]?.name;
+
+          const WalletIcon = walletsIcons[walletId];
+          const walletName = getWalletName(walletId, t);
 
           return (
-            <div key={walletId}>
-              {walletName} - {walletId}
+            <div className={styles.walletRow} key={walletId}>
+              <WalletIcon />
+              <div className={styles.walletContent}>
+                <div>{walletUserName}</div>
+                <div className={styles.subtitle}>{walletName}</div>
+              </div>
             </div>
           );
         })}
@@ -79,15 +103,24 @@ const StakingWidgetContainer = () => {
 
   useInitStaking();
 
+  const onConnectWallet = useCallback(() => {
+    stakingRef.current.setState({
+      selectedAccount: undefined,
+      selectedAction: "connect_wallet",
+    });
+  }, [stakingRef]);
+
   return (
     <>
       <StakingComponent
         hasInit={stakingState.hasInit}
+        onConnectWallet={onConnectWallet}
         wallets={stakingState.wallets}
       />
       <StakingModal />
       <UnstakingModal />
       <ClaimRewardsModal />
+      <ConnectWalletModal />
     </>
   );
 };

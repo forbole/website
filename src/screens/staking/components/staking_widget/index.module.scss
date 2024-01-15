@@ -9,8 +9,8 @@ $wallet-icon-size: 28px;
 .trigger {
   align-items: center;
   background: #fff;
-  border-radius: 60px;
   border: none;
+  border-radius: 60px;
   box-shadow: $box-shadow-variant-3;
   cursor: pointer;
   display: flex;
@@ -56,14 +56,52 @@ $wallet-icon-size: 28px;
 
 .header {
   align-items: center;
+  color: #25282d;
   display: flex;
-  flex-direction: row;
   flex: 1;
+  flex-direction: row;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
   gap: 10px;
   justify-content: space-between;
+  letter-spacing: 0.108px;
+  line-height: 21px;
+  margin-bottom: 24px;
   width: 100%;
 
   > div:first-child {
     flex: 1;
   }
+}
+
+.walletRow {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.walletContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subtitle {
+  color: #9d9d9d;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
+}
+
+.clickableIcon {
+  background: #fff;
+  border: none;
+  cursor: pointer;
 }

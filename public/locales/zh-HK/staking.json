@@ -14,6 +14,9 @@
     "title": "Claim Rewards"
   },
   "commission": "佣金率",
+  "connectWallet": {
+    "title": "Connect Wallet"
+  },
   "contact Forbole": "聯絡 Forbole",
   "contact Forbole desc": "我們很高興為你提供專業的服務。",
   "contact forbole title": "<0>立即與我們團隊商討<1>合作</1> ！</0>",
@@ -142,6 +145,9 @@
     },
     "title": "Unstaking",
     "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."
+  },
+  "wallets": {
+    "keplr": "Keplr"
   },
   "why forbole title": "<0>Forbole <1>堅實基建，硅步千里</1></0>",
   "why forbole?": "為何選擇 Forbole？",

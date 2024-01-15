@@ -14,6 +14,9 @@
     "title": "Claim Rewards"
   },
   "commission": "Commission Rate",
+  "connectWallet": {
+    "title": "Connect Wallet"
+  },
   "contact Forbole": "Contact Forbole",
   "contact Forbole desc": "We are happy to serve you with our professional services.",
   "contact forbole title": "<0><1>Get in touch</1> with our team to discuss our <1>collaboration</1> today!</0>",
@@ -143,6 +146,9 @@
     },
     "title": "Unstaking",
     "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."
+  },
+  "wallets": {
+    "keplr": "Keplr"
   },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
   "why forbole?": "Why Forbole?",

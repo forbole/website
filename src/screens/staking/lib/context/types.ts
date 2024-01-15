@@ -69,7 +69,7 @@ export type Account = {
   wallet: WalletId;
 };
 
-type StakeAction = "claim_rewards" | "stake" | "unstake";
+type StakeAction = "claim_rewards" | "connect_wallet" | "stake" | "unstake";
 
 export type Wallet = {
   name?: string;
