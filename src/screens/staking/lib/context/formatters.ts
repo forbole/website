@@ -1,4 +1,7 @@
+import type { Network } from "@src/utils/network_info";
+
 import type { Account } from "./types";
+import { networkNameToChainId } from "./types";
 
 const formatNum = (num: number): string =>
   num.toLocaleString("en-US", {
@@ -48,4 +51,19 @@ export const sortAccounts = (a: Account, b: Account) => {
   }
 
   return a.address.localeCompare(b.address);
+};
+
+export const sortNetworks = (a: Network, b: Network) => {
+  const chainIdA = networkNameToChainId[a.graphql];
+  const chainIdB = networkNameToChainId[b.graphql];
+
+  if (chainIdA && !chainIdB) {
+    return -1;
+  }
+
+  if (!chainIdA && chainIdB) {
+    return 1;
+  }
+
+  return a.name.localeCompare(b.name);
 };

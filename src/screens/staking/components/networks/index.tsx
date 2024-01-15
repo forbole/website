@@ -1,7 +1,8 @@
+import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import dynamic from "next/dynamic";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
+import { sortNetworks } from "@src/screens/staking/lib/context/formatters";
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
 import NetworkGrid from "./components/network_grid";
@@ -9,8 +10,6 @@ import type { NetworkProps } from "./components/network_grid/config";
 import { useNetworkHook } from "./components/network_grid/hooks";
 import SearchBar from "./components/search_bar";
 import * as styles from "./index.module.scss";
-
-const Trans = dynamic(() => import("next-translate/Trans"), { ssr: false });
 
 const Networks = () => {
   const { t } = useTranslation("staking");
@@ -39,9 +38,7 @@ const Networks = () => {
     .map((x: number | string) => getNetworkInfo(x))
     .filter(Boolean);
 
-  const sortedNetworks = [...allNetworkData].sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
+  const sortedNetworks = [...allNetworkData].sort(sortNetworks);
 
   return (
     <div className={styles.wrapper}>

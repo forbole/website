@@ -17,6 +17,12 @@ $image-box-shadow:
   position: relative;
   width: 100%;
 
+  &.staking {
+    background: #fff;
+    border: 2px solid #623df5;
+    box-shadow: 4px 8px 24px 0 rgba(90, 117, 255, 0.24);
+  }
+
   @include up-tablet {
     display: flex;
 

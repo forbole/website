@@ -84,6 +84,7 @@
   "staking para 1": "代币持有者将其代币质押给验证者以保护网络的行为称为质押。",
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
   "staking q": "什么是质押？",
+  "stakingLabel": "Stake here!",
   "stakingModal": {
     "amountError": {
       "invalid": "You have to input a valid number",
@@ -110,6 +111,7 @@
   "trusted provider": "选择值得信赖的营运商",
   "trusted provider desc": "我们已经建立了完善的验证人基础设施，全天候监控区块链网络安全",
   "unbonding period": "解绑期",
+  "unexpectedError": "There was an unexpected error",
   "unstaking para 1": "将您质押的代币从一个验证器转移到另一个验证器的操作称为重新质押您的代币。",
   "unstaking para 2": "因此，如果您的计划是继续质押，并且您只是希望切换到不同的验证器，请使用重新质押来继续累积您的质押奖励和空投。",
   "unstaking para 3": "第一次重质押后，您需要等待一定时间（对应解质押期）才能进行下一次重质押交易。",
@@ -127,6 +129,10 @@
     "memo": {
       "label": "Memo",
       "placeholder": "Optional"
+    },
+    "success": {
+      "subtitle": "Hope to see you again soon.",
+      "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on January 21st, 2024."
     },
     "title": "Unstaking",
     "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."

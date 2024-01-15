@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import LoadingSpinner from "@src/components/loading_spinner";
-import { toastError, toastSuccess } from "@src/components/notification";
+import { toastSuccess } from "@src/components/notification";
 import {
   StakingContext,
   getSelectedAccount,
@@ -19,6 +19,7 @@ import {
 } from "@src/screens/staking/lib/context/formatters";
 import { unstake } from "@src/screens/staking/lib/context/operations";
 import { MAX_MEMO } from "@src/screens/staking/lib/context/types";
+import { displayGenericError } from "@src/screens/staking/lib/error";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -209,13 +210,12 @@ const UnstakingModal = () => {
                 setSelectedAccount(setStakingState, null);
 
                 toastSuccess({
-                  title: "Success", // @TODO: Message
+                  subtitle: t("unstakingModal.success.subtitle"),
+                  title: t("unstakingModal.success.title"),
                 });
               })
               .catch(() => {
-                toastError({
-                  title: "Error", // @TODO
-                });
+                displayGenericError(t);
               })
               .finally(() => {
                 setIsLoading(false);

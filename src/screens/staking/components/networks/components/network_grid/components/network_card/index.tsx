@@ -16,6 +16,7 @@ import { networksWithHiddenInfo } from "@src/utils/network_info";
 import type { ParamsProps } from "../../config";
 import * as styles from "./index.module.scss";
 import PopOver from "./popover";
+import StakingLabel from "./staking-label";
 
 interface CardProp {
   network: Network;
@@ -46,13 +47,13 @@ const NetworkCard = ({
     [network],
   );
 
-  const stakingChainId = networkNameToChainId[network.graphql];
+  const chainSupportsStaking = networkNameToChainId[network.graphql];
 
   const isEmptyPopover =
     showPopover !== network.name ||
     networksWithHiddenInfo.has(network.graphql) ||
     (!!networkSummary &&
-      !stakingChainId &&
+      !chainSupportsStaking &&
       (!networkSummary.bonded || networkSummary.bonded < 0) &&
       (!networkSummary.APY || networkSummary.APY < 0) &&
       (!networkSummary.TVL || networkSummary.TVL < 0) &&
@@ -84,6 +85,11 @@ const NetworkCard = ({
 
   const networkName = <h4 className={styles.networkName}>{network.name}</h4>;
 
+  const anchorClassName = [
+    styles.anchor,
+    chainSupportsStaking ? styles.staking : "",
+  ].join(" ");
+
   return (
     <motion.div
       className={styles.root}
@@ -105,12 +111,13 @@ const NetworkCard = ({
             {popover}
           </div>
           <Button
-            className={styles.anchor}
+            className={anchorClassName}
             onClick={
               isEmptyPopover && canClickNetwork ? handleExploreClick : undefined
             }
             variant="text"
           >
+            {chainSupportsStaking && <StakingLabel />}
             {networkImage}
             {networkName}
           </Button>
@@ -118,11 +125,12 @@ const NetworkCard = ({
       ) : (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div
-          className={styles.anchor}
+          className={anchorClassName}
           onMouseEnter={() => setShowPopover(network.name)}
           role="button"
           tabIndex={canClickNetwork ? 0 : -1}
         >
+          {chainSupportsStaking && <StakingLabel />}
           {popover}
           {networkImage}
           {networkName}
