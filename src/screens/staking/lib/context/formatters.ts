@@ -5,7 +5,7 @@ import { networkNameToChainId } from "./types";
 
 const formatNum = (num: number): string =>
   num.toLocaleString("en-US", {
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 6,
     minimumFractionDigits: 0,
   });
 

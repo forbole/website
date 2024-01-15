@@ -106,14 +106,20 @@ const StakingModal = () => {
             <div>{(networkInfo.apy * 100).toFixed(0)}%</div>
           </div>
         )}
-        {availableTokens && (
-          <div>
-            <Label>{t("stakingModal.available")}</Label>:{" "}
-            {formatDenom(availableTokens[0], availableTokens[1])}
-          </div>
-        )}
         <div className={styles.group}>
-          <Label>{t("stakingModal.tokenAmount")}</Label>
+          <div className={styles.row}>
+            <Label>{t("stakingModal.tokenAmount")}</Label>
+            <div>
+              {availableTokens && (
+                <>
+                  <Label>{t("stakingModal.available")}</Label>:{" "}
+                  <span className={styles.amount}>
+                    {formatDenom(availableTokens[0], availableTokens[1])}
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
           <div className={styles.row}>
             <FormInput
               className={styles.input}

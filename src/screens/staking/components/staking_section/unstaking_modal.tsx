@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
@@ -9,6 +9,7 @@ import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import {
   StakingContext,
+  getNetworkInfo,
   getSelectedAccount,
   setSelectedAccount,
   syncAccountData,
@@ -18,17 +19,16 @@ import {
   resolveDenom,
 } from "@src/screens/staking/lib/context/formatters";
 import { unstake } from "@src/screens/staking/lib/context/operations";
+import type {
+  NetworkInfo,
+  TStakingContext,
+} from "@src/screens/staking/lib/context/types";
 import { MAX_MEMO } from "@src/screens/staking/lib/context/types";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
 import * as styles from "./unstaking_modal.module.scss";
-import { stakingClient } from "./utils/staking_client";
-
-type ModalNetworkInfo = {
-  unbondingPeriod: number;
-};
 
 const UnstakingModal = () => {
   const { setState: setStakingState, state: stakingState } =
@@ -36,20 +36,30 @@ const UnstakingModal = () => {
 
   const { locale } = useRouter();
   const { selectedAccount, selectedAction } = stakingState;
-  const [networkInfo, setNetworkInfo] = useState<ModalNetworkInfo | null>(null);
+  const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
 
   const isOpen = !!selectedAccount && selectedAction === "unstake";
-  const chainId = selectedAccount?.chainId;
+
+  const stakingRef = useRef({} as TStakingContext);
+
+  stakingRef.current.state = stakingState;
+  stakingRef.current.setState = setStakingState;
 
   useEffect(() => {
-    if (isOpen && chainId) {
-      stakingClient.getStakingInfo(chainId).then((info) => {
-        setNetworkInfo({
-          unbondingPeriod: Number(info.unbonding_period),
-        });
+    if (isOpen) {
+      setNetworkInfo(null);
+
+      const { chainId } = selectedAccount;
+
+      getNetworkInfo(
+        stakingRef.current.setState,
+        stakingRef.current.state,
+        chainId,
+      ).then((info) => {
+        setNetworkInfo(info);
       });
     }
-  }, [isOpen, chainId]);
+  }, [isOpen, selectedAccount]);
 
   const { t } = useTranslation("staking");
 
@@ -77,7 +87,7 @@ const UnstakingModal = () => {
       return null;
     }
 
-    const { unbondingPeriod } = networkInfo;
+    const { unbonding_period: unbondingPeriod } = networkInfo;
 
     if (!unbondingPeriod) {
       return null;
@@ -205,14 +215,21 @@ const UnstakingModal = () => {
               account: selectedAccount,
               amount,
             })
-              .then(() => {
-                syncAccountData(setStakingState, stakingState, selectedAccount);
-                setSelectedAccount(setStakingState, null);
+              .then((unstaked) => {
+                if (unstaked) {
+                  syncAccountData(
+                    setStakingState,
+                    stakingState,
+                    selectedAccount,
+                  );
 
-                toastSuccess({
-                  subtitle: t("unstakingModal.success.subtitle"),
-                  title: t("unstakingModal.success.title"),
-                });
+                  setSelectedAccount(setStakingState, null);
+
+                  toastSuccess({
+                    subtitle: t("unstakingModal.success.subtitle"),
+                    title: t("unstakingModal.success.title"),
+                  });
+                }
               })
               .catch(() => {
                 displayGenericError(t);

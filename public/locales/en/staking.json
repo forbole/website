@@ -64,7 +64,12 @@
   "rewards": "Earn Rewards",
   "rewards desc": "You earn staking rewards on your tokens",
   "rewardsModal": {
-    "button": "Claim Rewards"
+    "button": "Claim Rewards",
+    "gasFee": "Gas fee",
+    "success": {
+      "sub": "Congratulations!",
+      "title": "Your rewards have been claimed!"
+    }
   },
   "risks para 1": "There may be some risks when your validator is having poor performance or making critical mistakes, your funds will be slashed accordingly.",
   "risks q": "What are the risks of staking?",

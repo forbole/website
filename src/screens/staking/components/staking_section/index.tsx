@@ -11,7 +11,7 @@ import {
   setupStakingExtension,
 } from "@cosmjs/stargate";
 import { Tendermint34Client } from "@cosmjs/tendermint-rpc";
-import type { AccountData, Window as KeplrWindow } from "@keplr-wallet/types";
+import type { Window as KeplrWindow } from "@keplr-wallet/types";
 import { Dec } from "@keplr-wallet/unit";
 import { Box, Button } from "@mui/material";
 import { MsgDelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx";
@@ -20,19 +20,12 @@ import { useContext, useEffect, useState } from "react";
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
-  addToConnectedWallets,
   fetchNetworksInfo,
   getConnectedWallets,
-  setUserWallet,
 } from "@src/screens/staking/lib/context";
-import type { Account, Wallet } from "@src/screens/staking/lib/context/types";
-import {
-  ChainId,
-  WalletId,
-  keplrNetworks,
-  networksWithStaking,
-} from "@src/screens/staking/lib/context/types";
+import { ChainId, WalletId } from "@src/screens/staking/lib/context/types";
 
+import { tryToConnectWallets } from "../../lib/context/operations";
 import ClaimRewardsModal from "./claim_rewards_modal";
 import * as styles from "./index.module.scss";
 import StakingModal from "./staking_modal";
@@ -104,89 +97,18 @@ const StakingSection = () => {
     sequence: "",
   });
 
-  const tryToConnectWallets = async (walletsIds: WalletId[]) => {
-    if (walletsIds.includes(WalletId.Keplr)) {
-      if (window.keplr) {
-        const chainsToConnect = Array.from(keplrNetworks);
-
-        await window.keplr?.enable(chainsToConnect);
-
-        try {
-          const handleError = (err: unknown) => {
-            console.log("debug: index.tsx: err", err);
-
-            return [] as Account[];
-          };
-
-          const parseAccounts =
-            (chainId: ChainId) =>
-            (accounts: readonly AccountData[]): Promise<Account[]> =>
-              Promise.all(
-                accounts.map((account) =>
-                  Promise.all([
-                    stakingClient.getAddressInfo(chainId, account.address),
-                    stakingClient.getRewardsInfo(chainId, account.address),
-                  ]).then(([info, rewards]) => ({
-                    address: account.address,
-                    chainId,
-                    info,
-                    rewards,
-                    wallet: WalletId.Keplr,
-                  })),
-                ),
-              );
-
-          const keplrAccounts = await Promise.all(
-            Array.from(keplrNetworks).map(async (network) => {
-              if (networksWithStaking.has(network)) {
-                const accounts = await window
-                  .keplr!.getOfflineSigner(network)
-                  .getAccounts()
-                  .then(parseAccounts(network))
-                  .catch(handleError);
-
-                return {
-                  accounts,
-                  chainId: network,
-                };
-              }
-            }),
-          );
-
-          addToConnectedWallets(WalletId.Keplr);
-
-          setUserWallet(
-            stakingState,
-            setStakingState,
-            WalletId.Keplr,
-            keplrAccounts.reduce((acc, networkObj) => {
-              if (networkObj) {
-                acc[networkObj.chainId] = {
-                  accounts: networkObj.accounts,
-                  chainId: networkObj.chainId,
-                };
-              }
-
-              return acc;
-            }, {} as Wallet),
-          );
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    }
-  };
-
   useEffect(() => {
     const connectedWallets = getConnectedWallets();
 
     fetchNetworksInfo(setStakingState);
 
-    tryToConnectWallets(connectedWallets).then(() => {
-      setStakingState({
-        hasInit: true,
-      });
-    });
+    tryToConnectWallets(stakingState, setStakingState, connectedWallets).then(
+      () => {
+        setStakingState({
+          hasInit: true,
+        });
+      },
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -368,7 +290,11 @@ const StakingSection = () => {
           <Button
             data-tooltip-content="Test tooltip"
             data-tooltip-id={tooltipId}
-            onClick={() => tryToConnectWallets([WalletId.Keplr])}
+            onClick={() =>
+              tryToConnectWallets(stakingState, setStakingState, [
+                WalletId.Keplr,
+              ])
+            }
           >
             Get address
           </Button>

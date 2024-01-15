@@ -84,6 +84,7 @@ type SelectedAccount = {
 export type NetworkInfo = {
   apy: number;
   rpc: string;
+  unbonding_period: number;
 };
 
 export type State = {

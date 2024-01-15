@@ -2,12 +2,14 @@
 
 /* eslint-disable no-console */
 import type {
+  Coin,
   MsgDelegateEncodeObject,
   MsgUndelegateEncodeObject,
   MsgWithdrawDelegatorRewardEncodeObject,
   StdFee,
 } from "@cosmjs/stargate";
 import { SigningStargateClient } from "@cosmjs/stargate";
+import type { AccountData } from "@keplr-wallet/types";
 import { MsgWithdrawDelegatorReward } from "cosmjs-types/cosmos/distribution/v1beta1/tx";
 import {
   MsgDelegate,
@@ -16,7 +18,9 @@ import {
 
 import { stakingClient } from "@src/screens/staking/components/staking_section/utils/staking_client";
 
-import type { Account, ChainId } from "./types";
+import { addToConnectedWallets, setUserWallet } from ".";
+import type { Account, ChainId, SetState, State, Wallet } from "./types";
+import { WalletId, keplrNetworks, networksWithStaking } from "./types";
 
 type StakeOpts = {
   account: Account;
@@ -114,12 +118,23 @@ export const claimRewards = async (opts: ClaimOpts) =>
 
     return client
       .signAndBroadcast(opts.address, [msgAny], fee)
-      .then((signed) => {
-        console.log("debug: index.tsx: signed", signed);
-      })
+      .then(() => true)
       .catch((err) => {
         console.log("debug: index.tsx: err", err);
+
+        return false;
       });
+  });
+
+export const getClaimRewardsFee = async (
+  opts: ClaimOpts,
+): Promise<Coin | null> =>
+  stakingClient.claimRewards(opts.chainId, opts.address).then((info) => {
+    const [message] = info.tx.body.messages;
+
+    if (!message) return null;
+
+    return info.tx.authInfo.fee.amount?.[0] ?? null;
   });
 
 type UnstakeAmount = {
@@ -170,10 +185,87 @@ export const unstake = async (opts: UnstakeAmount) =>
 
       return client
         .signAndBroadcast(opts.account.address, [msgAny], fee, "")
-        .then((signed) => {
-          console.log("debug: index.tsx: signed", signed);
-        })
+        .then(() => true)
         .catch((err) => {
           console.log("debug: index.tsx: err", err);
+
+          return false;
         });
     });
+
+export const tryToConnectWallets = async (
+  stakingState: State,
+  setStakingState: SetState,
+  walletsIds: WalletId[],
+) => {
+  if (walletsIds.includes(WalletId.Keplr)) {
+    if (window.keplr) {
+      const chainsToConnect = Array.from(keplrNetworks);
+
+      await window.keplr?.enable(chainsToConnect);
+
+      try {
+        const handleError = (err: unknown) => {
+          console.log("debug: index.tsx: err", err);
+
+          return [] as Account[];
+        };
+
+        const parseAccounts =
+          (chainId: ChainId) =>
+          (accounts: readonly AccountData[]): Promise<Account[]> =>
+            Promise.all(
+              accounts.map((account) =>
+                Promise.all([
+                  stakingClient.getAddressInfo(chainId, account.address),
+                  stakingClient.getRewardsInfo(chainId, account.address),
+                ]).then(([info, rewards]) => ({
+                  address: account.address,
+                  chainId,
+                  info,
+                  rewards,
+                  wallet: WalletId.Keplr,
+                })),
+              ),
+            );
+
+        const keplrAccounts = await Promise.all(
+          Array.from(keplrNetworks).map(async (network) => {
+            if (networksWithStaking.has(network)) {
+              const accounts = await window
+                .keplr!.getOfflineSigner(network)
+                .getAccounts()
+                .then(parseAccounts(network))
+                .catch(handleError);
+
+              return {
+                accounts,
+                chainId: network,
+              };
+            }
+          }),
+        );
+
+        addToConnectedWallets(WalletId.Keplr);
+
+        setUserWallet(
+          stakingState,
+          setStakingState,
+          WalletId.Keplr,
+          keplrAccounts.reduce((acc, networkObj) => {
+            if (networkObj) {
+              acc[networkObj.chainId] = {
+                accounts: networkObj.accounts,
+                chainId: networkObj.chainId,
+              };
+            }
+
+            return acc;
+          }, {} as Wallet),
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+};

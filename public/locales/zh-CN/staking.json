@@ -64,7 +64,12 @@
   "rewards": "赚取收益",
   "rewards desc": "可以通过质押通证赚取收益",
   "rewardsModal": {
-    "button": "Claim Rewards"
+    "button": "Claim Rewards",
+    "gasFee": "Gas Fee",
+    "success": {
+      "sub": "Congratulations!",
+      "title": "Your rewards have been claimed!"
+    }
   },
   "risks para 1": "当您的验证人表现不佳或犯严重错误时，可能会存在一些风险，您的资金将被相应削减。",
   "risks q": "质押有哪些风险？",
