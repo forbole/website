@@ -1,5 +1,4 @@
 import useTranslation from "next-translate/useTranslation";
-import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
 import LayoutVal from "@src/components/layout_val";
@@ -15,10 +14,6 @@ import Networks from "./components/networks";
 import WhyForbole from "./components/why_forbole";
 import * as styles from "./index.module.scss";
 import { StakingProvider } from "./lib/context";
-
-const StakingSection = dynamic(() => import("./components/staking_section"), {
-  ssr: false,
-}) as unknown as React.FC;
 
 const Staking = () => {
   const { t } = useTranslation("staking");
@@ -42,9 +37,6 @@ const Staking = () => {
         >
           <div className={styles.container}>
             <Hero />
-          </div>
-          <div className={styles.container}>
-            <StakingSection />
           </div>
           <div className={styles.container}>
             <Networks />

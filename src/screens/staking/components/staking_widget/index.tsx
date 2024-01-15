@@ -11,6 +11,7 @@ import {
 import type { Account } from "@src/screens/staking/lib/context/types";
 import { ChainId, WalletId } from "@src/screens/staking/lib/context/types";
 
+import { useInitStaking } from "../hooks";
 import * as styles from "./index.module.scss";
 
 type WalletAccountProps = {
@@ -85,6 +86,8 @@ const StakingComponent = memo(StakingWidgetBase);
 
 const StakingWidgetContainer = () => {
   const stakingContext = useContext(StakingContext);
+
+  useInitStaking();
 
   return (
     <StakingComponent

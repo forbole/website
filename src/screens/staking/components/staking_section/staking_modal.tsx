@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import useTranslation from "next-translate/useTranslation";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
@@ -9,21 +9,18 @@ import LoadingSpinner from "@src/components/loading_spinner";
 import { toastError, toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import {
-  StakingContext,
   getNetworkInfo,
   getSelectedAccount,
   setSelectedAccount,
   syncAccountData,
+  useStakingRef,
 } from "@src/screens/staking/lib/context";
 import {
   formatDenom,
   resolveDenom,
 } from "@src/screens/staking/lib/context/formatters";
 import { stakeAmount } from "@src/screens/staking/lib/context/operations";
-import type {
-  NetworkInfo,
-  TStakingContext,
-} from "@src/screens/staking/lib/context/types";
+import type { NetworkInfo } from "@src/screens/staking/lib/context/types";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -31,25 +28,22 @@ import NetworksSelect from "./networks_select";
 import * as styles from "./staking_modal.module.scss";
 
 const StakingModal = () => {
-  const { setState: setStakingState, state: stakingState } =
-    useContext(StakingContext);
+  const stakingRef = useStakingRef();
 
   const { t } = useTranslation("staking");
 
   const [isLoading, setIsLoading] = useState(false);
-  const { selectedAccount, selectedAction } = stakingState;
+  const { selectedAccount, selectedAction } = stakingRef.current.state;
 
   const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
   const [memoError, setMemoError] = useState("");
   const [memo, setMemo] = useState("");
-  const stakingRef = useRef({} as TStakingContext);
-
-  stakingRef.current.state = stakingState;
-  stakingRef.current.setState = setStakingState;
 
   const isOpen = !!selectedAccount && selectedAction === "stake";
+
+  const { setState: setStakingState, state: stakingState } = stakingRef.current;
 
   const amountNum = Number(amount);
   const isValidAmount = !Number.isNaN(amountNum);
@@ -75,7 +69,7 @@ const StakingModal = () => {
         setMemoError("");
       };
     }
-  }, [isOpen, selectedAccount]);
+  }, [isOpen, selectedAccount, stakingRef]);
 
   const account = getSelectedAccount(stakingState);
 

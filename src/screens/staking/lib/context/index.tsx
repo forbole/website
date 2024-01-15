@@ -1,6 +1,6 @@
 import { identity } from "ramda";
 import type { PropsWithChildren } from "react";
-import { createContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useRef, useState } from "react";
 
 import { stakingClient } from "../../components/staking_section/utils/staking_client";
 import { sortAccounts } from "./formatters";
@@ -53,6 +53,17 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
       {children}
     </StakingContext.Provider>
   );
+};
+
+export const useStakingRef = () => {
+  const { setState, state } = useContext(StakingContext);
+
+  const stakingRef = useRef({} as TStakingContext);
+
+  stakingRef.current.state = state;
+  stakingRef.current.setState = setState;
+
+  return stakingRef;
 };
 
 // Actions

@@ -54,6 +54,11 @@
 }
 
 .error {
-  // @TODO: Use correct color
-  color: red;
+  color: $color-forbole-red-1;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.192px;
+  line-height: 22px;
+  text-shadow: $box-shadow-variant-3;
 }

@@ -1,28 +1,25 @@
 /* eslint-disable no-console */
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import {
-  StakingContext,
   getNetworkInfo,
   getSelectedAccount,
   setSelectedAccount,
   syncAccountData,
+  useStakingRef,
 } from "@src/screens/staking/lib/context";
 import {
   formatDenom,
   resolveDenom,
 } from "@src/screens/staking/lib/context/formatters";
 import { unstake } from "@src/screens/staking/lib/context/operations";
-import type {
-  NetworkInfo,
-  TStakingContext,
-} from "@src/screens/staking/lib/context/types";
+import type { NetworkInfo } from "@src/screens/staking/lib/context/types";
 import { MAX_MEMO } from "@src/screens/staking/lib/context/types";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 
@@ -31,19 +28,13 @@ import ModalBase, { ModalError } from "./modal_base";
 import * as styles from "./unstaking_modal.module.scss";
 
 const UnstakingModal = () => {
-  const { setState: setStakingState, state: stakingState } =
-    useContext(StakingContext);
+  const stakingRef = useStakingRef();
 
   const { locale } = useRouter();
-  const { selectedAccount, selectedAction } = stakingState;
+  const { selectedAccount, selectedAction } = stakingRef.current.state;
   const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
 
   const isOpen = !!selectedAccount && selectedAction === "unstake";
-
-  const stakingRef = useRef({} as TStakingContext);
-
-  stakingRef.current.state = stakingState;
-  stakingRef.current.setState = setStakingState;
 
   useEffect(() => {
     if (isOpen) {
@@ -59,7 +50,7 @@ const UnstakingModal = () => {
         setNetworkInfo(info);
       });
     }
-  }, [isOpen, selectedAccount]);
+  }, [isOpen, selectedAccount, stakingRef]);
 
   const { t } = useTranslation("staking");
 
@@ -68,6 +59,8 @@ const UnstakingModal = () => {
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const { setState: setStakingState, state: stakingState } = stakingRef.current;
 
   const account = getSelectedAccount(stakingState);
 
