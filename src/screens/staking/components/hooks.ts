@@ -4,13 +4,10 @@ import { useEffect, useRef, useState } from "react";
 
 import { IS_E2E } from "@src/utils/e2e";
 
-import {
-  fetchNetworksInfo,
-  getConnectedWallets,
-  useStakingRef,
-} from "../lib/context";
+import { fetchNetworksInfo, useStakingRef } from "../lib/context";
 import { tryToConnectWallets } from "../lib/context/operations";
 import { ChainId } from "../lib/context/types";
+import { getConnectedWallets } from "../lib/context/utils";
 
 export const useCounter = (targetValue: unknown) => {
   const [counterValue, setCounterValue] = useState<unknown>(0);

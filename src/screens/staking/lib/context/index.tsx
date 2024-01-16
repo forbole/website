@@ -19,6 +19,7 @@ import {
   defaultState,
   networksWithStaking,
   testnetNetworks,
+  walletsSupported,
 } from "./types";
 
 const baseContext: TStakingContext = {
@@ -205,29 +206,14 @@ export const getSelectedAccount = (state: State) => {
   );
 };
 
-// Utils
+export const getCanAddWallet = (state: State) => {
+  const { wallets } = state;
 
-export const getConnectedWallets = (): WalletId[] => {
-  const connectedWallets = window.localStorage.getItem("connectedWallets");
+  const connectedWallets = new Set(Object.keys(wallets));
 
-  if (!connectedWallets) {
-    return [];
-  }
-
-  try {
-    const parsedWallets = JSON.parse(connectedWallets);
-
-    return parsedWallets;
-  } catch (e) {
-    return [];
-  }
-};
-
-export const addToConnectedWallets = (wallet: WalletId) => {
-  const connectedWallets = getConnectedWallets();
-
-  const newWalletsSet = new Set([...connectedWallets, wallet]);
-  const newWallets = Array.from(newWalletsSet);
-
-  window.localStorage.setItem("connectedWallets", JSON.stringify(newWallets));
+  return (
+    Array.from(walletsSupported).filter(
+      (wallet) => !connectedWallets.has(wallet),
+    ).length > 0
+  );
 };

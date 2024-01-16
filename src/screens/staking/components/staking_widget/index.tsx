@@ -1,3 +1,4 @@
+import { Menu } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { memo, useCallback, useState } from "react";
 
@@ -6,7 +7,10 @@ import IconChevron from "@src/components/icons/icon_chevron.svg";
 import IconMobile from "@src/components/icons/icon_mobile.svg";
 import IconPlus from "@src/components/icons/icon_plus.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
-import { useStakingRef } from "@src/screens/staking/lib/context";
+import {
+  getCanAddWallet,
+  useStakingRef,
+} from "@src/screens/staking/lib/context";
 import type {
   TStakingContext,
   Wallet,
@@ -60,17 +64,23 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
 };
 
 type Props = {
+  canConnectMoreWallets: boolean;
   hasInit: boolean;
   onConnectWallet: () => void;
   wallets: TStakingContext["state"]["wallets"];
 };
 
-const StakingWidgetBase = ({ hasInit, onConnectWallet, wallets }: Props) => {
+const StakingWidgetBase = ({
+  canConnectMoreWallets,
+  hasInit,
+  onConnectWallet,
+  wallets,
+}: Props) => {
   const { t } = useTranslation("staking");
-  const [isOpen, setIsOpen] = useState(false);
   const walletsIds = Object.keys(wallets).sort() as WalletId[];
 
-  const canConnectMoreWallets = true; // @TODO
+  const [anchor, setAnchor] = useState<Element>();
+  const onClose = useCallback(() => setAnchor(undefined), [setAnchor]);
 
   if (!hasInit || !walletsIds.length) {
     return (
@@ -87,8 +97,8 @@ const StakingWidgetBase = ({ hasInit, onConnectWallet, wallets }: Props) => {
     <div className={styles.wrapper}>
       <button
         className={styles.trigger}
-        onClick={() => {
-          setIsOpen(!isOpen);
+        onClick={(e) => {
+          setAnchor(e.currentTarget);
         }}
       >
         {walletsIds.map((walletId) => {
@@ -97,7 +107,26 @@ const StakingWidgetBase = ({ hasInit, onConnectWallet, wallets }: Props) => {
           return <WalletIcon key={walletId} />;
         })}
       </button>
-      <div className={[styles.dropdown, isOpen ? styles.open : ""].join(" ")}>
+      <Menu
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+        PaperProps={{
+          className: styles.paper,
+        }}
+        anchorEl={anchor}
+        anchorOrigin={{
+          horizontal: "right",
+          vertical: "bottom",
+        }}
+        keepMounted
+        onClose={onClose}
+        open={!!anchor}
+        transformOrigin={{
+          horizontal: "right",
+          vertical: "top",
+        }}
+      >
         <div className={styles.header}>
           <div>
             {t("stakingWidget.connected", {
@@ -118,7 +147,7 @@ const StakingWidgetBase = ({ hasInit, onConnectWallet, wallets }: Props) => {
             <WalletRow key={walletId} wallet={wallets[walletId]} />
           ))}
         </div>
-      </div>
+      </Menu>
     </div>
   );
 };
@@ -138,9 +167,12 @@ const StakingWidgetContainer = () => {
     });
   }, [stakingRef]);
 
+  const canConnectMoreWallets = getCanAddWallet(stakingRef.current.state);
+
   return (
     <>
       <StakingComponent
+        canConnectMoreWallets={canConnectMoreWallets}
         hasInit={stakingState.hasInit}
         onConnectWallet={onConnectWallet}
         wallets={stakingState.wallets}

@@ -48,10 +48,12 @@ const ConnectWalletModal = () => {
                   stakingRef.current.state,
                   stakingRef.current.setState,
                   [walletId],
-                ).then(() => {
-                  toastSuccess({
-                    title: "Success", // @TODO
-                  });
+                ).then((connected) => {
+                  if (connected) {
+                    toastSuccess({
+                      title: "Success", // @TODO
+                    });
+                  }
                 });
               }}
             >

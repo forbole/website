@@ -18,9 +18,10 @@ import {
 
 import { stakingClient } from "@src/screens/staking/components/staking_section/utils/staking_client";
 
-import { addToConnectedWallets, setUserWallet } from ".";
+import { setUserWallet } from ".";
 import type { Account, ChainId, SetState, State, Wallet } from "./types";
 import { WalletId, keplrNetworks, networksWithStaking } from "./types";
+import { addToConnectedWallets } from "./utils";
 
 type StakeOpts = {
   account: Account;
@@ -279,6 +280,8 @@ export const tryToConnectWallets = async (
             } as Wallet,
           ),
         );
+
+        return true;
       } catch (error) {
         console.log(error);
       }

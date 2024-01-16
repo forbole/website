@@ -38,6 +38,8 @@ export const networksWithStaking = new Set([
   ChainId.DyDx,
 ]);
 
+export const walletsSupported = new Set([WalletId.Keplr]);
+
 export const testnetNetworks = new Set([
   ChainId.CosmosHubTestnet,
   ChainId.CelestiaTestnet,
