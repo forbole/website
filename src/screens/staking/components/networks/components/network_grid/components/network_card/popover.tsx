@@ -19,17 +19,17 @@ import {
   getNetworkInfo,
   getUserAccountsForNetwork,
   setSelectedAccount,
-} from "@src/screens/staking/lib/context";
-import type {
-  Account,
-  NetworkInfo,
-  TStakingContext,
-} from "@src/screens/staking/lib/context/types";
+} from "@src/screens/staking/lib/staking_sdk/context";
 import {
   WalletId,
   networkNameToChainId,
   networksWithStaking,
-} from "@src/screens/staking/lib/context/types";
+} from "@src/screens/staking/lib/staking_sdk/types";
+import type {
+  Account,
+  NetworkInfo,
+  TStakingContext,
+} from "@src/screens/staking/lib/staking_sdk/types";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network } from "@src/utils/network_info";
 

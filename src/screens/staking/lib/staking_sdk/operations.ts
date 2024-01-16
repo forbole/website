@@ -18,7 +18,7 @@ import {
 
 import { stakingClient } from "@src/screens/staking/components/staking_section/utils/staking_client";
 
-import { setUserWallet } from ".";
+import { setUserWallet } from "./context";
 import type { Account, ChainId, SetState, State, Wallet } from "./types";
 import { WalletId, keplrNetworks, networksWithStaking } from "./types";
 import { addToConnectedWallets } from "./utils";

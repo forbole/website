@@ -2,7 +2,7 @@ import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
-import { sortNetworks } from "@src/screens/staking/lib/context/formatters";
+import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
 import NetworkGrid from "./components/network_grid";

@@ -25,11 +25,11 @@ import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
   fetchNetworksInfo,
-} from "@src/screens/staking/lib/context";
+} from "@src/screens/staking/lib/staking_sdk/context";
 import {
   ChainId,
   ENABLE_TESTNETS,
-} from "@src/screens/staking/lib/context/types";
+} from "@src/screens/staking/lib/staking_sdk/types";
 
 import ClaimRewardsModal from "./claim_rewards_modal";
 import * as styles from "./index.module.scss";

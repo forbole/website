@@ -7,21 +7,21 @@ import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
+import { displayGenericError } from "@src/screens/staking/lib/error";
 import {
   getNetworkInfo,
   getSelectedAccount,
   setSelectedAccount,
   syncAccountData,
   useStakingRef,
-} from "@src/screens/staking/lib/context";
+} from "@src/screens/staking/lib/staking_sdk/context";
 import {
   formatDenom,
   resolveDenom,
-} from "@src/screens/staking/lib/context/formatters";
-import { unstake } from "@src/screens/staking/lib/context/operations";
-import type { NetworkInfo } from "@src/screens/staking/lib/context/types";
-import { MAX_MEMO } from "@src/screens/staking/lib/context/types";
-import { displayGenericError } from "@src/screens/staking/lib/error";
+} from "@src/screens/staking/lib/staking_sdk/formatters";
+import { unstake } from "@src/screens/staking/lib/staking_sdk/operations";
+import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
+import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
