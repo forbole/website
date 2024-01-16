@@ -15,6 +15,7 @@
   },
   "commission": "Commission Rate",
   "connectWallet": {
+    "intro": "Stake with Forbole and earn rewards!",
     "title": "Connect Wallet"
   },
   "contact Forbole": "Contact Forbole",
@@ -45,6 +46,7 @@
   "non-custodial": "Non-custodial",
   "non-custodial desc": "Our services are non-custodial so you can withdraw at any time",
   "noResultsFound": "No results found",
+  "notice": "<0>By connecting your wallet, you agrees to the <1>Terms & Conditions</1> and <2>Privacy Policy</2>.</0>",
   "optionalInput": "Optional",
   "others": "Others",
   "our future": "Our Future",

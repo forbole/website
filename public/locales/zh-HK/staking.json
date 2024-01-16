@@ -15,6 +15,7 @@
   },
   "commission": "佣金率",
   "connectWallet": {
+    "intro": "Stake with Forbole and earn rewards!",
     "title": "Connect Wallet"
   },
   "contact Forbole": "聯絡 Forbole",
@@ -45,6 +46,7 @@
   "non-custodial": "非託管",
   "non-custodial desc": "我們提供非託管質押服務，你可隨時提取你的資產",
   "noResultsFound": "未找到結果",
+  "notice": "<0>By connecting your wallet, you agrees to the <1>Terms & Conditions</1> and <2>Privacy Policy</2>.</0>",
   "optionalInput": "Optional",
   "others": "其他的",
   "our future": "我們的未來",

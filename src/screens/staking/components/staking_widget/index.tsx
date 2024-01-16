@@ -2,12 +2,14 @@ import useTranslation from "next-translate/useTranslation";
 import { memo, useCallback, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
+import IconChevron from "@src/components/icons/icon_chevron.svg";
 import IconMobile from "@src/components/icons/icon_mobile.svg";
 import IconPlus from "@src/components/icons/icon_plus.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { useStakingRef } from "@src/screens/staking/lib/context";
 import type {
   TStakingContext,
+  Wallet,
   WalletId,
 } from "@src/screens/staking/lib/context/types";
 
@@ -18,6 +20,44 @@ import ConnectWalletModal from "../staking_section/connect_wallet_modal";
 import StakingModal from "../staking_section/staking_modal";
 import UnstakingModal from "../staking_section/unstaking_modal";
 import * as styles from "./index.module.scss";
+
+type WalletRowProps = {
+  wallet: undefined | Wallet;
+};
+
+const WalletRow = ({ wallet }: WalletRowProps) => {
+  const { t } = useTranslation("staking");
+
+  const [isOpen, setIsOpen] = useState(false);
+  const walletUserName = wallet?.name;
+  const walletId = wallet?.wallet;
+
+  if (!walletId) {
+    return null;
+  }
+
+  const WalletIcon = walletsIcons[walletId];
+  const walletName = getWalletName(walletId, t);
+
+  return (
+    <div className={styles.walletRow} key={walletId}>
+      <WalletIcon />
+      <div className={styles.walletContent}>
+        <div>{walletUserName}</div>
+        <div className={styles.subtitle}>{walletName}</div>
+      </div>
+      <span className={[styles.expand, isOpen ? styles.open : ""].join(" ")}>
+        <button
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <IconChevron />
+        </button>
+      </span>
+    </div>
+  );
+};
 
 type Props = {
   hasInit: boolean;
@@ -73,23 +113,11 @@ const StakingWidgetBase = ({ hasInit, onConnectWallet, wallets }: Props) => {
             <IconMobile />
           </button>
         </div>
-        {walletsIds.map((walletId) => {
-          const walletUserName =
-            wallets[walletId as keyof typeof wallets]?.name;
-
-          const WalletIcon = walletsIcons[walletId];
-          const walletName = getWalletName(walletId, t);
-
-          return (
-            <div className={styles.walletRow} key={walletId}>
-              <WalletIcon />
-              <div className={styles.walletContent}>
-                <div>{walletUserName}</div>
-                <div className={styles.subtitle}>{walletName}</div>
-              </div>
-            </div>
-          );
-        })}
+        <div className={styles.list}>
+          {walletsIds.map((walletId) => (
+            <WalletRow key={walletId} wallet={wallets[walletId]} />
+          ))}
+        </div>
       </div>
     </div>
   );

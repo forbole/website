@@ -81,6 +81,7 @@ $wallet-icon-size: 28px;
   flex-direction: row;
   gap: 14px;
   justify-content: flex-start;
+  padding: 16px;
   width: 100%;
 }
 
@@ -104,4 +105,44 @@ $wallet-icon-size: 28px;
   background: #fff;
   border: none;
   cursor: pointer;
+}
+
+.list {
+  border-radius: 12px;
+  box-shadow: $box-shadow-variant-3;
+  overflow: hidden;
+  width: 100%;
+}
+
+.expand {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+
+  svg {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &.open {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.icon svg {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
 }
