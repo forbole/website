@@ -16,6 +16,10 @@
   "commission": "佣金率",
   "connectWallet": {
     "intro": "Stake with Forbole and earn rewards!",
+    "success": {
+      "subtitle": "Welcome  🎉",
+      "title": "Sign up success"
+    },
     "title": "Connect Wallet"
   },
   "contact Forbole": "联系 Forbole",
@@ -111,7 +115,8 @@
   },
   "stakingWidget": {
     "connected_other": "Connected wallet",
-    "connectWallet": "Connect Wallet"
+    "connectWallet": "Connect Wallet",
+    "disconnectWallets": "Disconnect Wallets"
   },
   "string": " ",
   "success": "邮件已发送！",

@@ -1,3 +1,4 @@
+import type { Coin } from "@cosmjs/stargate";
 import { identity } from "ramda";
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useMemo, useRef, useState } from "react";
@@ -21,6 +22,7 @@ import {
   testnetNetworks,
   walletsSupported,
 } from "./types";
+import { clearConnectedWallets } from "./utils";
 
 const baseContext: TStakingContext = {
   setState: () => {},
@@ -184,6 +186,14 @@ export const syncAccountData = async (
   });
 };
 
+export const disconnectAllWallets = async (setState: SetState) => {
+  setState({
+    wallets: {},
+  });
+
+  clearConnectedWallets();
+};
+
 // Selectors
 
 export const getUserAccountsForNetwork = (
@@ -216,4 +226,36 @@ export const getCanAddWallet = (state: State) => {
       (wallet) => !connectedWallets.has(wallet),
     ).length > 0
   );
+};
+
+export const getStakedDataForNetwork = (
+  state: State,
+  network: ChainId,
+): Coin | null => {
+  const wallets = Object.values(state.wallets);
+
+  const accountsForNetwork = wallets.reduce(
+    (acc, wallet) => [...acc, ...(wallet.networks?.[network]?.accounts || [])],
+    [] as Account[],
+  );
+
+  if (!accountsForNetwork.length) {
+    return null;
+  }
+
+  const aggregate = accountsForNetwork.reduce<{
+    amount: number;
+    denom: string;
+  }>(
+    (acc, account) => ({
+      amount: acc.amount + Number(account.info?.delegation?.amount || 0),
+      denom: account.info?.balances?.denom || "", // @TODO : This assumes that all accounts use the same denom
+    }),
+    { amount: 0, denom: "" },
+  );
+
+  return {
+    amount: aggregate.amount.toString(),
+    denom: aggregate.denom,
+  };
 };

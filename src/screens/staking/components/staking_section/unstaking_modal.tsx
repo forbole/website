@@ -114,13 +114,7 @@ const UnstakingModal = () => {
       <div className={styles.wrapper}>
         <Label>{t("unstakingModal.amount.label")}</Label>
         {!!account?.info?.delegation?.amount && (
-          <div>
-            Staked:{" "}
-            {formatDenom(
-              account.info.delegation.denom,
-              account.info.delegation.amount,
-            )}
-          </div>
+          <div>Staked (@TODO): {formatDenom(account.info.delegation)}</div>
         )}
         <FormInput
           onBlur={() => {

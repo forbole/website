@@ -4,10 +4,12 @@ import { memo, useCallback, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
 import IconChevron from "@src/components/icons/icon_chevron.svg";
-import IconMobile from "@src/components/icons/icon_mobile.svg";
+import IconMobile from "@src/components/icons/icon_logout.svg";
 import IconPlus from "@src/components/icons/icon_plus.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
+import { tooltipId } from "@src/components/tooltip";
 import {
+  disconnectAllWallets,
   getCanAddWallet,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
@@ -67,6 +69,7 @@ type Props = {
   canConnectMoreWallets: boolean;
   hasInit: boolean;
   onConnectWallet: () => void;
+  onDisconnectWallets: () => Promise<void>;
   wallets: TStakingContext["state"]["wallets"];
 };
 
@@ -74,6 +77,7 @@ const StakingWidgetBase = ({
   canConnectMoreWallets,
   hasInit,
   onConnectWallet,
+  onDisconnectWallets,
   wallets,
 }: Props) => {
   const { t } = useTranslation("staking");
@@ -138,7 +142,16 @@ const StakingWidgetBase = ({
               <IconPlus />
             </button>
           )}
-          <button className={styles.clickableIcon}>
+          <button
+            className={styles.clickableIcon}
+            data-tooltip-content={t("stakingWidget.disconnectWallets")}
+            data-tooltip-id={tooltipId}
+            onClick={() =>
+              onDisconnectWallets().then(() => {
+                onClose();
+              })
+            }
+          >
             <IconMobile />
           </button>
         </div>
@@ -160,6 +173,10 @@ const StakingWidgetContainer = () => {
 
   useInitStaking();
 
+  const onDisconnectWallets = useCallback(async () => {
+    await disconnectAllWallets(stakingRef.current.setState);
+  }, [stakingRef]);
+
   const onConnectWallet = useCallback(() => {
     stakingRef.current.setState({
       selectedAccount: undefined,
@@ -175,6 +192,7 @@ const StakingWidgetContainer = () => {
         canConnectMoreWallets={canConnectMoreWallets}
         hasInit={stakingState.hasInit}
         onConnectWallet={onConnectWallet}
+        onDisconnectWallets={onDisconnectWallets}
         wallets={stakingState.wallets}
       />
       <StakingModal />

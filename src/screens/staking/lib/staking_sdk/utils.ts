@@ -1,7 +1,9 @@
 import type { WalletId } from "./types";
 
+const localStorageKey = "connectedWallets";
+
 export const getConnectedWallets = (): WalletId[] => {
-  const connectedWallets = window.localStorage.getItem("connectedWallets");
+  const connectedWallets = window.localStorage.getItem(localStorageKey);
 
   if (!connectedWallets) {
     return [];
@@ -22,5 +24,9 @@ export const addToConnectedWallets = (wallet: WalletId) => {
   const newWalletsSet = new Set([...connectedWallets, wallet]);
   const newWallets = Array.from(newWalletsSet);
 
-  window.localStorage.setItem("connectedWallets", JSON.stringify(newWallets));
+  window.localStorage.setItem(localStorageKey, JSON.stringify(newWallets));
+};
+
+export const clearConnectedWallets = () => {
+  window.localStorage.removeItem(localStorageKey);
 };

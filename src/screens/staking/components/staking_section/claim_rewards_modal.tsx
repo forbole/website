@@ -54,7 +54,9 @@ const ClaimRewardsModal = () => {
         {gasFee && (
           <div className={styles.feeRow}>
             <div>{t("rewardsModal.gasFee")}</div>
-            <div>{formatDenom(gasFee.denom, gasFee.amount)}</div>
+            <div>
+              {formatDenom({ amount: gasFee.amount, denom: gasFee.denom })}
+            </div>
           </div>
         )}
         <HighlightButton

@@ -6,7 +6,7 @@ import type {
   ReactNode,
   SetStateAction,
 } from "react";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
 import EmptyButton from "@src/components/empty-button";
@@ -17,9 +17,12 @@ import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
   getNetworkInfo,
+  getStakedDataForNetwork,
   getUserAccountsForNetwork,
   setSelectedAccount,
+  useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
+import { formatDenom } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   WalletId,
   networkNameToChainId,
@@ -28,7 +31,6 @@ import {
 import type {
   Account,
   NetworkInfo,
-  TStakingContext,
 } from "@src/screens/staking/lib/staking_sdk/types";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network } from "@src/utils/network_info";
@@ -54,24 +56,21 @@ const PopOver = ({
   setShowPopover,
 }: PopOverProps) => {
   const networkChainId = networkNameToChainId[network.graphql];
+  const stakingChainId = networkNameToChainId[network.graphql];
+
+  const stakingRef = useStakingRef();
 
   const isStakingSupported = networkChainId
     ? networksWithStaking.has(networkChainId)
     : false;
 
   const { t } = useTranslation("staking");
-  const stakingRef = useRef({} as TStakingContext);
 
   const [stakingNetworkInfo, setStakingNetworkInfo] =
     useState<NetworkInfo | null>(null);
 
   const { setState: setStakingState, state: stakingState } =
     useContext(StakingContext);
-
-  stakingRef.current.state = stakingState;
-  stakingRef.current.setState = setStakingState;
-
-  const stakingChainId = networkNameToChainId[network.graphql];
 
   useEffect(() => {
     if (stakingChainId) {
@@ -83,26 +82,39 @@ const PopOver = ({
         setStakingNetworkInfo(newInfo);
       });
     }
-  }, [stakingChainId]);
+  }, [stakingChainId, stakingRef]);
 
-  const { account, chainId, hasRewards } = useMemo(() => {
+  const { account, chainId, hasRewards, stakedData } = useMemo(() => {
     const wallet = WalletId.Keplr;
 
     const result = {
       account: null as Account | null,
       chainId: stakingChainId,
       hasRewards: false,
+      stakedData: null as null | string,
     };
 
     if (!!stakingChainId && !!wallet) {
       const accounts = getUserAccountsForNetwork(
         stakingState,
-        WalletId.Keplr, // @TODO
+        WalletId.Keplr, // @TODO: This should consider all wallets
         stakingChainId,
       );
 
       if (!accounts?.length) {
         return result;
+      }
+
+      const stakedDataObj = getStakedDataForNetwork(
+        stakingRef.current.state,
+        stakingChainId,
+      );
+
+      if (stakedDataObj) {
+        result.stakedData = formatDenom({
+          amount: stakedDataObj.amount,
+          denom: stakedDataObj.denom,
+        });
       }
 
       const newAccount = accounts.find((a) => !!a.info);
@@ -115,7 +127,7 @@ const PopOver = ({
     }
 
     return result;
-  }, [stakingState, stakingChainId]);
+  }, [stakingState, stakingChainId, stakingRef]);
 
   return (
     <div
@@ -131,12 +143,18 @@ const PopOver = ({
       />
       <div>{networkImage}</div>
       {/* @TODO: This should be the aggreage of all accounts in all wallets */}
-      {!!account?.info && (
+      {!!stakedData && (
         <div className={styles.stakingData}>
-          <div>Staking data</div>
-          {!!account.info.delegation && (
-            <div>Delegation: {JSON.stringify(account.info.delegation)}</div>
+          {stakedData && (
+            <div className={styles.total}>
+              <div>Total staked</div>
+              <div>{stakedData}</div>
+            </div>
           )}
+          <div className={styles.rewards}>
+            <div>Claimable Rewards</div>
+            <div>+223.4 ATOM</div>
+          </div>
         </div>
       )}
       {!!networkSummary ? (

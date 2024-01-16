@@ -25,8 +25,14 @@ export const resolveDenom = (denom: string): string => {
   return denom.toUpperCase();
 };
 
-export const formatDenom = (denom: string, value: string): string => {
-  const num = Number(value);
+export const formatDenom = ({
+  amount,
+  denom,
+}: {
+  amount: string;
+  denom: string;
+}): string => {
+  const num = Number(amount);
 
   if (!denom) {
     return "";

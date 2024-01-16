@@ -110,7 +110,10 @@ const StakingModal = () => {
                 <>
                   <Label>{t("stakingModal.available")}</Label>:{" "}
                   <span className={styles.amount}>
-                    {formatDenom(availableTokens[0], availableTokens[1])}
+                    {formatDenom({
+                      amount: availableTokens[1],
+                      denom: availableTokens[0],
+                    })}
                   </span>
                 </>
               )}
