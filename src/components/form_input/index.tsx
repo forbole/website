@@ -1,14 +1,17 @@
+import type { ReactNode } from "react";
+
 import * as styles from "./index.module.scss";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   classNameWrapper?: string;
   fullWidth?: boolean;
   noMargin?: boolean;
-  rightText?: string;
+  rightText?: ReactNode;
 };
 
 const FormInput = ({
   className,
+  classNameWrapper,
   fullWidth,
   noMargin,
   rightText,
@@ -30,7 +33,7 @@ const FormInput = ({
   if (!rightText) return input;
 
   return (
-    <span className={styles.wrapper}>
+    <span className={[styles.wrapper, classNameWrapper || ""].join(" ")}>
       {input}
       {!!rightText && <span className={styles.rightText}>{rightText}</span>}
     </span>

@@ -1,5 +1,6 @@
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
+import { useState } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
 import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -13,6 +14,7 @@ import * as styles from "./index.module.scss";
 
 const Networks = () => {
   const { t } = useTranslation("staking");
+  const [networksFilter, setNetworksFilter] = useState<string>("");
 
   const {
     cosmosNetworks,
@@ -38,11 +40,21 @@ const Networks = () => {
     .map((x: number | string) => getNetworkInfo(x))
     .filter(Boolean);
 
-  const sortedNetworks = [...allNetworkData].sort(sortNetworks);
+  const sortedNetworks = [...allNetworkData].sort(sortNetworks).filter((a) => {
+    if (networksFilter === "") {
+      return true;
+    }
+
+    return a.name.toLowerCase().includes(networksFilter.toLowerCase());
+  });
 
   return (
     <div className={styles.wrapper}>
-      <div className={commonStyles.stakingContent}>
+      <div
+        className={[commonStyles.stakingContent, styles.stakingContent].join(
+          " ",
+        )}
+      >
         <h4 className={commonStyles.stakingTitle}>{t("stake with Forbole")}</h4>
         <Trans
           components={[
@@ -56,7 +68,11 @@ const Networks = () => {
           {t("stake with Forbole desc")}
         </span>
         <div className={styles.grid}>
-          <SearchBar sortedNetworks={sortedNetworks} />
+          <SearchBar
+            networksFilter={networksFilter}
+            noResultsFound={sortedNetworks.length === 0}
+            setNetworksFilter={setNetworksFilter}
+          />
           <NetworkGrid
             allNetworkInfo={allNetworkInfo}
             sortedNetworks={sortedNetworks}
