@@ -1,12 +1,12 @@
 import type { ChainId } from "@src/screens/staking/lib/context/types";
 
-const baseUrl = process.env.NEXT_PUBLIC_STAKING_API as string;
+const baseUrl = process.env.NEXT_PUBLIC_STAKING_API;
 
 if (!baseUrl && typeof window !== "undefined") {
   throw new Error("NEXT_PUBLIC_STAKING_API is not set");
 }
 
-const parsedBaseUrl = baseUrl.replace(/\/$/, "");
+const parsedBaseUrl = (baseUrl || "").replace(/\/$/, "");
 
 type Options = {
   body?: FormData | string;
