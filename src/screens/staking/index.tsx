@@ -13,7 +13,7 @@ import HowItWorks from "./components/how_it_works";
 import Networks from "./components/networks";
 import WhyForbole from "./components/why_forbole";
 import * as styles from "./index.module.scss";
-import { StakingProvider } from "./lib/context";
+import { StakingProvider } from "./lib/staking_sdk/context";
 
 const Staking = () => {
   const { t } = useTranslation("staking");

@@ -3,9 +3,9 @@ import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 
 import { toastSuccess } from "@src/components/notification";
-import { useStakingRef } from "@src/screens/staking/lib/context";
-import { tryToConnectWallets } from "@src/screens/staking/lib/context/operations";
-import { WalletId } from "@src/screens/staking/lib/context/types";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
+import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/operations";
+import { WalletId } from "@src/screens/staking/lib/staking_sdk/types";
 import {
   getWalletName,
   walletsIcons,

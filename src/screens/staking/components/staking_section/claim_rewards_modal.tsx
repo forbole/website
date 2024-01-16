@@ -5,17 +5,17 @@ import { useContext, useEffect, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
 import { toastSuccess } from "@src/components/notification";
+import { displayGenericError } from "@src/screens/staking/lib/error";
 import {
   StakingContext,
   setSelectedAccount,
-} from "@src/screens/staking/lib/context";
+} from "@src/screens/staking/lib/staking_sdk/context";
+import { formatDenom } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   claimRewards,
   getClaimRewardsFee,
-} from "@src/screens/staking/lib/context/operations";
+} from "@src/screens/staking/lib/staking_sdk/operations";
 
-import { formatDenom } from "../../lib/context/formatters";
-import { displayGenericError } from "../../lib/error";
 import * as styles from "./claim_rewards_modal.module.scss";
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";

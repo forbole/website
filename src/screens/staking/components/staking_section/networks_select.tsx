@@ -2,16 +2,19 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useContext } from "react";
 
-import type { Account, ChainId } from "@src/screens/staking/lib/context/types";
-import { chainIdToNetworkKey } from "@src/screens/staking/lib/context/types";
-import { getNetworkInfo } from "@src/utils/network_info";
-
 import {
   StakingContext,
   getSelectedAccount,
   setSelectedAccount,
-} from "../../lib/context";
-import { sortAccounts } from "../../lib/context/formatters";
+} from "@src/screens/staking/lib/staking_sdk/context";
+import { sortAccounts } from "@src/screens/staking/lib/staking_sdk/formatters";
+import type {
+  Account,
+  ChainId,
+} from "@src/screens/staking/lib/staking_sdk/types";
+import { chainIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/types";
+import { getNetworkInfo } from "@src/utils/network_info";
+
 import * as styles from "./networks_select.module.scss";
 
 const ITEM_HEIGHT = 48;

@@ -14,13 +14,13 @@ import {
   setSelectedAccount,
   syncAccountData,
   useStakingRef,
-} from "@src/screens/staking/lib/context";
+} from "@src/screens/staking/lib/staking_sdk/context";
 import {
   formatDenom,
   resolveDenom,
-} from "@src/screens/staking/lib/context/formatters";
-import { stakeAmount } from "@src/screens/staking/lib/context/operations";
-import type { NetworkInfo } from "@src/screens/staking/lib/context/types";
+} from "@src/screens/staking/lib/staking_sdk/formatters";
+import { stakeAmount } from "@src/screens/staking/lib/staking_sdk/operations";
+import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";

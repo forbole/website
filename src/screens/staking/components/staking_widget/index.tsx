@@ -10,12 +10,12 @@ import LoadingSpinner from "@src/components/loading_spinner";
 import {
   getCanAddWallet,
   useStakingRef,
-} from "@src/screens/staking/lib/context";
+} from "@src/screens/staking/lib/staking_sdk/context";
 import type {
   TStakingContext,
   Wallet,
   WalletId,
-} from "@src/screens/staking/lib/context/types";
+} from "@src/screens/staking/lib/staking_sdk/types";
 
 import { getWalletName, walletsIcons } from "../../lib/wallet_info";
 import { useInitStaking } from "../hooks";

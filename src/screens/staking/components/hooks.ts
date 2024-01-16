@@ -2,12 +2,14 @@ import type { Chain } from "@chain-registry/types";
 import type { Window as KeplrWindow } from "@keplr-wallet/types";
 import { useEffect, useRef, useState } from "react";
 
+import {
+  fetchNetworksInfo,
+  useStakingRef,
+} from "@src/screens/staking/lib/staking_sdk/context";
+import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/operations";
+import { ChainId } from "@src/screens/staking/lib/staking_sdk/types";
+import { getConnectedWallets } from "@src/screens/staking/lib/staking_sdk/utils";
 import { IS_E2E } from "@src/utils/e2e";
-
-import { fetchNetworksInfo, useStakingRef } from "../lib/context";
-import { tryToConnectWallets } from "../lib/context/operations";
-import { ChainId } from "../lib/context/types";
-import { getConnectedWallets } from "../lib/context/utils";
 
 export const useCounter = (targetValue: unknown) => {
   const [counterValue, setCounterValue] = useState<unknown>(0);
