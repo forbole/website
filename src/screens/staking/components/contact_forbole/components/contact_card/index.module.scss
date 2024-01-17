@@ -1,7 +1,7 @@
 @import "src/styles/sass.scss";
 
 .wrapper {
-  background: $color-primary-light;
+  background: $color-white;
   border-radius: spacing(3);
   box-shadow: $box-shadow-variant-1;
   margin: auto;
@@ -52,7 +52,7 @@ $input-shadow:
   }
 
   -webkit-autofill {
-    -webkit-text-fill-color: #000;
+    -webkit-text-fill-color: $color-text-primary;
     transition-delay: 9999s;
   }
 }

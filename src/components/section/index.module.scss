@@ -15,7 +15,7 @@
   display: inline;
   font-size: 40px;
   font-weight: 590;
-  text-shadow: 0 0 20px #fff;
+  text-shadow: 0 0 20px $color-white;
 
   @include down-laptop {
     font-size: 24px;

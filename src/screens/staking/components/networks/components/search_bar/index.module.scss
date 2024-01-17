@@ -22,7 +22,7 @@ body .root {
       backdrop-filter: blur(4px);
       // stylelint-disable-next-line
       -webkit-backdrop-filter: blur(4px);
-      background: #fff;
+      background: $color-white;
       border: 1px solid rgba(219, 219, 219, 0.2) !important;
       mix-blend-mode: normal;
       padding: spacing(0.5) spacing(2.25) spacing(0.5) spacing(2.25) !important;
@@ -47,7 +47,11 @@ body .root {
       }
 
       align-items: center;
-      background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(
+        180deg,
+        $color-white 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
 
       // stylelint-disable-next-line
       background-filter: blur(16px);
@@ -141,7 +145,7 @@ body .popper {
     backdrop-filter: blur(16px);
     background-color: linear-gradient(
       180deg,
-      #fff 0%,
+      $color-white 0%,
       rgba(255, 255, 255, 0) 100%
     ) !important;
     box-shadow:
@@ -166,7 +170,7 @@ body .textField {
 }
 
 .noResults {
-  background: #fff;
+  background: $color-white;
   border-radius: 10px;
   box-shadow: $box-shadow-variant-1;
   padding: 10px;

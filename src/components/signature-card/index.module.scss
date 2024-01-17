@@ -2,7 +2,7 @@
 
 .gridContent {
   align-items: center;
-  background: #fff;
+  background: $color-white;
   border-radius: 16px;
   box-shadow: 4px 8px 24px 0 rgba(90, 117, 255, 0.24);
   display: flex;
@@ -45,8 +45,8 @@
 
 .activeSection {
   align-items: center;
-  background: #fff;
-  border: 1px solid var(--gradient-fb-red-gradient-01, #ee3131);
+  background: $color-white;
+  border: 1px solid $color-red-unnamed;
   border-radius: 28.241px;
   display: flex;
   flex-direction: row;

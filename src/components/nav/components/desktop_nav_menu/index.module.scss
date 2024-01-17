@@ -1,7 +1,7 @@
 @import "src/styles/sass.scss";
 
 .navItem {
-  color: $color-primary-light;
+  color: $color-white;
   cursor: pointer;
   font-size: spacing(2);
   font-weight: 600;
@@ -13,7 +13,7 @@
   &:hover {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 24px;
-    color: $color-primary-light;
+    color: $color-white;
   }
 }
 

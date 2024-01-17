@@ -25,7 +25,7 @@
 
 .pagination {
   :global(.MuiPaginationItem-root) {
-    color: $color-primary-light;
+    color: $color-white;
   }
 
   :global(.MuiPaginationItem-root.Mui-disabled) {
@@ -36,7 +36,7 @@
 
   :global(.MuiPaginationItem-page.Mui-selected) {
     background: $color-indigo-5;
-    color: $color-primary-light;
+    color: $color-white;
   }
 
   :global(.MuiPaginationItem-previousNext) {

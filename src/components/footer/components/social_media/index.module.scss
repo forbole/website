@@ -4,7 +4,7 @@
   align-items: center;
   background-color: $color-dark-grey;
   border-radius: 45px;
-  color: #fff;
+  color: $color-white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,7 +16,7 @@
 .input {
   background-color: inherit;
   border: none;
-  color: #fff;
+  color: $color-white;
   flex: 1;
   font-size: 15px;
   height: 100%;

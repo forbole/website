@@ -19,9 +19,9 @@ body .imgDesktop {
 .wrapper {
   background: linear-gradient(
     179deg,
-    #fff 0%,
+    $color-white 0%,
     rgba(255, 255, 255, 0.5) 34.9%,
-    #fff 100%
+    $color-white 100%
   );
   border-radius: 40px;
   box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.16);
