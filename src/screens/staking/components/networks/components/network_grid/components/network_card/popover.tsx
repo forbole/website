@@ -88,18 +88,17 @@ const PopOver = ({
     }
   }, [stakingChainId, stakingRef]);
 
-  const { accounts, chainId, claimableRewards, stakedData } = useMemo(() => {
+  const { accounts, claimableRewards, stakedData } = useMemo(() => {
     const wallet = WalletId.Keplr;
 
     const result = {
       accounts: null as Account[] | null,
-      chainId: stakingChainId,
       claimableRewards: "",
       stakedData: "",
     };
 
     if (!!stakingChainId && !!wallet) {
-      result.accounts = getAccountsForNetwork(stakingState, chainId);
+      result.accounts = getAccountsForNetwork(stakingState, stakingChainId);
 
       if (!result.accounts?.length) {
         return result;

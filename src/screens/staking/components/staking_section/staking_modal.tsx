@@ -24,6 +24,7 @@ import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
 import { stakeAmount } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import { displayGenericError } from "../../lib/error";
+import { getAccountResolvedBalance } from "../../lib/staking_sdk/utils";
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -46,9 +47,6 @@ const StakingModal = () => {
   const isOpen = !!selectedAccount && selectedAction === "stake";
 
   const { setState: setStakingState, state: stakingState } = stakingRef.current;
-
-  const amountNum = Number(amount);
-  const isValidAmount = !Number.isNaN(amountNum);
 
   useEffect(() => {
     if (isOpen) {
@@ -76,13 +74,16 @@ const StakingModal = () => {
   if (!isOpen) return null;
 
   const account = getSelectedAccount(stakingState);
+  const balance = getAccountResolvedBalance(account);
 
-  if (!account?.info?.balances) return null;
+  if (!balance || !account) return null;
 
-  const availableTokens = [
-    account.info.balances.denom,
-    account.info.balances.amount,
-  ];
+  const amountNum = Number(amount);
+
+  const isValidAmount =
+    !Number.isNaN(amountNum) &&
+    typeof balance.num === "number" &&
+    amountNum <= balance.num;
 
   return (
     <ModalBase
@@ -108,14 +109,11 @@ const StakingModal = () => {
           <div className={styles.row}>
             <Label>{t("stakingModal.tokenAmount")}</Label>
             <div>
-              {availableTokens && (
+              {typeof balance?.num === "number" && (
                 <>
                   <Label>{t("stakingModal.available")}</Label>:{" "}
                   <span className={styles.amount}>
-                    {formatDenom({
-                      amount: availableTokens[1],
-                      denom: availableTokens[0],
-                    })}
+                    {formatDenom(balance.coin)}
                   </span>
                 </>
               )}
@@ -132,8 +130,8 @@ const StakingModal = () => {
                 setAmount(e.target.value);
               }}
               placeholder="0"
-              {...(availableTokens && {
-                rightText: resolveDenom(availableTokens[0]),
+              {...(balance.coin && {
+                rightText: resolveDenom(balance.coin.denom),
               })}
               onBlur={() => {
                 const newAmountError = (() => {
@@ -204,21 +202,23 @@ const StakingModal = () => {
               amount,
               memo,
             })
-              .then(async (success) => {
-                if (!success) return;
+              .then(async (result) => {
+                if (result.success) {
+                  await syncAccountData(
+                    setStakingState,
+                    stakingState,
+                    selectedAccount,
+                  );
 
-                await syncAccountData(
-                  setStakingState,
-                  stakingState,
-                  selectedAccount,
-                );
+                  setSelectedAccount(setStakingState, null, null);
 
-                setSelectedAccount(setStakingState, null, null);
-
-                toastSuccess({
-                  subtitle: `${t("stakingModal.success.sub")} 🎉`,
-                  title: t("stakingModal.success.title"),
-                });
+                  toastSuccess({
+                    subtitle: `${t("stakingModal.success.sub")} 🎉`,
+                    title: t("stakingModal.success.title"),
+                  });
+                } else if (result.hasError) {
+                  displayGenericError(t);
+                }
               })
               .catch(() => {
                 displayGenericError(t);

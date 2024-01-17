@@ -22,6 +22,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
 import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
+import { getAccountResolvedDelegation } from "@src/screens/staking/lib/staking_sdk/utils";
 import { unstake } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import Label from "./label";
@@ -76,10 +77,16 @@ const UnstakingModal = () => {
     }
   }, [isOpen]);
 
-  const unlockedDate = getUnbondingTimeForNetwork(networkInfo, locale);
+  const availableAmount = getAccountResolvedDelegation(account);
 
   const amountNum = Number(amount);
-  const isValidAmount = !Number.isNaN(amountNum);
+
+  const isValidAmount =
+    !Number.isNaN(amountNum) &&
+    !!availableAmount &&
+    amountNum <= availableAmount;
+
+  const unlockedDate = getUnbondingTimeForNetwork(networkInfo, locale);
 
   return (
     <ModalBase
@@ -178,8 +185,12 @@ const UnstakingModal = () => {
           )}
         </div>
         <HighlightButton
+          disabled={
+            !selectedAccount || !!amountError || !!memoError || isLoading
+          }
           onClick={() => {
-            if (!selectedAccount || amountError || memoError) return;
+            if (!selectedAccount || amountError || memoError || isLoading)
+              return;
 
             setIsLoading(true);
 
@@ -188,7 +199,7 @@ const UnstakingModal = () => {
               amount,
             })
               .then(async (unstaked) => {
-                if (unstaked) {
+                if (unstaked.success) {
                   await syncAccountData(
                     setStakingState,
                     stakingState,
@@ -203,6 +214,8 @@ const UnstakingModal = () => {
                       date: unlockedDate?.date,
                     }),
                   });
+                } else if (unstaked.hasError) {
+                  displayGenericError(t);
                 }
               })
               .catch(() => {

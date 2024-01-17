@@ -23,19 +23,41 @@ import type { Account, ChainId, SetState, State, Wallet } from "./types";
 import { WalletId, keplrNetworks, networksWithStaking } from "./types";
 import { addToConnectedWallets } from "./utils";
 
+const handleKeplrSignError = (err: Error) => {
+  console.log("debug: index.tsx: err", err);
+
+  return {
+    hasError: !err?.message?.includes("rejected"),
+    success: false,
+  };
+};
+
+type WalletOperationResult =
+  | {
+      hasError: boolean;
+      success: false;
+    }
+  | {
+      success: true;
+    };
+
 type StakeOpts = {
   account: Account;
   amount: string;
   memo: string;
 };
 
-export const stakeAmount = ({ account, amount, memo }: StakeOpts) =>
+export const stakeAmount = ({
+  account,
+  amount,
+  memo,
+}: StakeOpts): Promise<WalletOperationResult> =>
   stakingClient
     .stake(account.chainId, account.address, amount)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
-      if (!message) return;
+      if (!message) return { hasError: true, success: false };
 
       const networkInfo = await stakingClient.getStakingInfo(account.chainId);
 
@@ -70,12 +92,8 @@ export const stakeAmount = ({ account, amount, memo }: StakeOpts) =>
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
-        .then(() => true)
-        .catch((err) => {
-          console.log("debug: index.tsx: err", err);
-
-          return false;
-        });
+        .then(() => ({ success: true }) as const)
+        .catch(handleKeplrSignError);
     });
 
 type ClaimOpts = {
@@ -83,11 +101,13 @@ type ClaimOpts = {
   chainId: ChainId;
 };
 
-export const claimRewards = async (opts: ClaimOpts) =>
+export const claimRewards = async (
+  opts: ClaimOpts,
+): Promise<WalletOperationResult> =>
   stakingClient.claimRewards(opts.chainId, opts.address).then(async (info) => {
     const [message] = info.tx.body.messages;
 
-    if (!message) return;
+    if (!message) return { hasError: true, success: false };
 
     const networkInfo = await stakingClient.getStakingInfo(opts.chainId);
 
@@ -119,12 +139,8 @@ export const claimRewards = async (opts: ClaimOpts) =>
 
     return client
       .signAndBroadcast(opts.address, [msgAny], fee)
-      .then(() => true)
-      .catch((err) => {
-        console.log("debug: index.tsx: err", err);
-
-        return false;
-      });
+      .then(() => ({ success: true }) as const)
+      .catch(handleKeplrSignError);
   });
 
 export const getClaimRewardsFee = async (
@@ -143,13 +159,15 @@ type UnstakeAmount = {
   amount: string;
 };
 
-export const unstake = async (opts: UnstakeAmount) =>
+export const unstake = async (
+  opts: UnstakeAmount,
+): Promise<WalletOperationResult> =>
   stakingClient
     .unstake(opts.account.chainId, opts.account.address, opts.amount)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
-      if (!message) return;
+      if (!message) return { hasError: true, success: false };
 
       const networkInfo = await stakingClient.getStakingInfo(
         opts.account.chainId,
@@ -186,12 +204,8 @@ export const unstake = async (opts: UnstakeAmount) =>
 
       return client
         .signAndBroadcast(opts.account.address, [msgAny], fee, "")
-        .then(() => true)
-        .catch((err) => {
-          console.log("debug: index.tsx: err", err);
-
-          return false;
-        });
+        .then(() => ({ success: true }) as const)
+        .catch(handleKeplrSignError);
     });
 
 export const tryToConnectWallets = async (

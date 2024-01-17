@@ -107,7 +107,7 @@
   "stakingLabel": "Stake here!",
   "stakingModal": {
     "amountError": {
-      "invalid": "You have to input a valid number",
+      "invalid": "You have to input a valid amount",
       "positive": "You have to input a positive number"
     },
     "available": "Available",

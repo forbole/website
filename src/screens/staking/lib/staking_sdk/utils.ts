@@ -1,5 +1,6 @@
 import type { Coin } from "@cosmjs/stargate";
 
+import { resolveCoin } from "./formatters";
 import type { Account, WalletId } from "./types";
 
 const localStorageKey = "connectedWallets";
@@ -43,3 +44,26 @@ export const getEmptyCoin = (): Coin => ({ amount: "0", denom: "" });
 
 export const accountHasDelegations = (account?: Account): boolean =>
   !!account?.info?.delegation;
+
+export const getAccountResolvedDelegation = (account?: Account) => {
+  if (!account?.info) return null;
+
+  const available = resolveCoin(account.info.delegation);
+  const availableNum = Number(available.amount);
+
+  return Number.isNaN(availableNum) ? null : availableNum;
+};
+
+export const getAccountResolvedBalance = (
+  account?: Account,
+): { coin: Coin; num: null | number } | null => {
+  if (!account?.info) return null;
+
+  const balance = resolveCoin(account.info.balances);
+  const balanceNum = Number(balance.amount);
+
+  return {
+    coin: balance,
+    num: Number.isNaN(balanceNum) ? null : balanceNum,
+  };
+};

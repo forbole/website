@@ -1,3 +1,5 @@
+import type { Coin } from "@cosmjs/stargate";
+
 import type { Network } from "@src/utils/network_info";
 
 import type { Account, NetworkInfo } from "./types";
@@ -7,36 +9,64 @@ const uatomExp = 6;
 const utiaExp = 6;
 const adydxExp = 18;
 
-export const resolveDenom = (denom: string): string => {
-  if (!denom) {
-    return "";
+type Denom = "adydx" | "uatom" | "utia";
+
+export const resolveCoin = (coin: Coin): Coin => {
+  const num = Number(coin.amount);
+
+  if (Number.isNaN(num)) {
+    return coin;
   }
 
-  switch (denom?.toLowerCase()) {
+  const compared = coin.denom?.toLowerCase() as Denom;
+
+  switch (compared) {
     case "uatom": {
-      return "ATOM";
+      return {
+        amount: (num / 10 ** uatomExp).toString(),
+        denom: "ATOM",
+      };
     }
 
     case "utia": {
-      return "TIA";
+      return {
+        amount: (num / 10 ** utiaExp).toString(),
+        denom: "TIA",
+      };
     }
 
     case "adydx": {
-      return "DYDX";
+      return {
+        amount: (num / 10 ** adydxExp).toString(),
+        denom: "DYDX",
+      };
+    }
+
+    default: {
+      compared satisfies never;
     }
   }
 
-  return denom.toUpperCase();
+  return {
+    ...coin,
+    denom: coin.denom?.toUpperCase(),
+  };
 };
 
-export const formatDenom = ({
-  amount,
-  denom,
-}: {
-  amount: string;
-  denom: string;
-}): string => {
-  const num = Number(amount);
+export const resolveDenom = (denom: string): string =>
+  resolveCoin({ amount: "0", denom }).denom;
+
+export const formatDenom = (coin: Coin): string => {
+  if (!coin?.denom) {
+    return "";
+  }
+
+  const resolvedCoin = resolveCoin(coin);
+  const num = Number(resolvedCoin?.amount);
+
+  if (Number.isNaN(num)) {
+    return `- ${coin.denom.toUpperCase()}`;
+  }
 
   const formatNum = (n: number): string =>
     n.toLocaleString("en-US", {
@@ -45,29 +75,7 @@ export const formatDenom = ({
       minimumFractionDigits: 1,
     });
 
-  if (!denom) {
-    return "";
-  }
-
-  if (Number.isNaN(num)) {
-    return `- ${denom.toUpperCase()}`;
-  }
-
-  switch (denom?.toLowerCase()) {
-    case "uatom": {
-      return `${formatNum(num / 10 ** uatomExp)} ATOM`;
-    }
-
-    case "utia": {
-      return `${formatNum(num / 10 ** utiaExp)} TIA`;
-    }
-
-    case "adydx": {
-      return `${formatNum(num / 10 ** adydxExp)} DYDX`;
-    }
-  }
-
-  return `${formatNum(num)} ${denom.toUpperCase()}`;
+  return `${formatNum(num)} ${resolvedCoin.denom}`;
 };
 
 export const sortAccounts = (a: Account, b: Account) => {
