@@ -18,7 +18,7 @@
       stroke: $color-forbole-blue-1;
     }
 
-    fill: #fff;
+    fill: $color-white;
     filter: drop-shadow(0 14px 64px rgba(2, 38, 225, 0.12))
       drop-shadow(0 8px 22px rgba(2, 38, 225, 0.12));
     transition: fill 0.3s;
