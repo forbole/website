@@ -123,6 +123,9 @@
     "tokenAmount": "Token amount"
   },
   "stakingWidget": {
+    "accounts": {
+      "title": "Available token"
+    },
     "connected_other": "Connected wallet",
     "connectWallet": "Connect Wallet",
     "disconnectWallets": "Disconnect Wallets"

@@ -3,18 +3,13 @@ import Select from "@mui/material/Select";
 
 import {
   getSelectedAccount,
+  getWalletAccounts,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import type {
-  Account,
-  ChainId,
-} from "@src/screens/staking/lib/staking_sdk/types";
+import type { ChainId } from "@src/screens/staking/lib/staking_sdk/types";
 import { chainIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/types";
-import {
-  getAccountResolvedBalance,
-  sortAccounts,
-} from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import * as styles from "./networks_select.module.scss";
@@ -71,17 +66,7 @@ const NetworksSelect = ({ variant }: Props) => {
 
   if (!variant || !selectedAccount) return null;
 
-  const wallet = stakingState.wallets[selectedAccount.wallet];
-
-  if (!wallet) return null;
-
-  const allAccounts = Object.values(wallet.networks)
-    .reduce((acc, chain) => {
-      acc.push(...chain.accounts);
-
-      return acc;
-    }, [] as Account[])
-    .sort(sortAccounts);
+  const allAccounts = getWalletAccounts(stakingState, selectedAccount.wallet);
 
   const handleChange = (event: any) => {
     const [address, chainId] = event.target.value.split(SEPARATOR);

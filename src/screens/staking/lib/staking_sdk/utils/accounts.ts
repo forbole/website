@@ -20,19 +20,24 @@ export const filterUniqueAddresses = () => {
   };
 };
 
-export const getAccountResolvedDelegation = (account?: Account) => {
-  if (!account?.info) return null;
+type ResolvedInfo = { coin: Coin; num: null | number } | null;
+
+export const getAccountResolvedDelegation = (
+  account?: Account,
+): ResolvedInfo => {
+  if (!account?.info?.delegation) return null;
 
   const available = resolveCoin(account.info.delegation);
   const availableNum = Number(available.amount);
 
-  return Number.isNaN(availableNum) ? null : availableNum;
+  return {
+    coin: available,
+    num: Number.isNaN(availableNum) ? null : availableNum,
+  };
 };
 
-export const getAccountResolvedBalance = (
-  account?: Account,
-): { coin: Coin; num: null | number } | null => {
-  if (!account?.info) return null;
+export const getAccountResolvedBalance = (account?: Account): ResolvedInfo => {
+  if (!account?.info?.balances) return null;
 
   const balance = resolveCoin(account.info.balances);
   const balanceNum = Number(balance.amount);

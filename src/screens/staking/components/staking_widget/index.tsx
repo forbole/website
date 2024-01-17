@@ -11,15 +11,23 @@ import { tooltipId } from "@src/components/tooltip";
 import {
   disconnectAllWallets,
   getCanAddWallet,
+  getWalletAccounts,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import type {
-  TStakingContext,
-  Wallet,
-  WalletId,
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
+import {
+  type TStakingContext,
+  type Wallet,
+  type WalletId,
+  chainIdToNetworkKey,
 } from "@src/screens/staking/lib/staking_sdk/types";
+import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import {
+  getWalletName,
+  walletsIcons,
+} from "@src/screens/staking/lib/wallet_info";
+import { getNetworkInfo } from "@src/utils/network_info";
 
-import { getWalletName, walletsIcons } from "../../lib/wallet_info";
 import { useInitStaking } from "../hooks";
 import ClaimRewardsModal from "../staking_section/claim_rewards_modal";
 import ConnectWalletModal from "../staking_section/connect_wallet_modal";
@@ -33,6 +41,7 @@ type WalletRowProps = {
 
 const WalletRow = ({ wallet }: WalletRowProps) => {
   const { t } = useTranslation("staking");
+  const stakingRef = useStakingRef();
 
   const [isOpen, setIsOpen] = useState(false);
   const walletUserName = wallet?.name;
@@ -42,26 +51,76 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
     return null;
   }
 
+  const accounts = getWalletAccounts(stakingRef.current.state, walletId);
+
   const WalletIcon = walletsIcons[walletId];
   const walletName = getWalletName(walletId, t);
 
   return (
-    <div className={styles.walletRow} key={walletId}>
-      <WalletIcon />
-      <div className={styles.walletContent}>
-        <div>{walletUserName}</div>
-        <div className={styles.subtitle}>{walletName}</div>
+    <>
+      <div className={styles.walletRow} key={walletId}>
+        <WalletIcon />
+        <div className={styles.walletContent}>
+          <div>{walletUserName}</div>
+          <div className={styles.subtitle}>{walletName}</div>
+        </div>
+        {!!accounts.length && (
+          <span
+            className={[styles.expand, isOpen ? styles.open : ""].join(" ")}
+          >
+            <button
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            >
+              <IconChevron />
+            </button>
+          </span>
+        )}
       </div>
-      <span className={[styles.expand, isOpen ? styles.open : ""].join(" ")}>
-        <button
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        >
-          <IconChevron />
-        </button>
-      </span>
-    </div>
+      {isOpen && (
+        <div className={styles.accountsSection}>
+          <div className={styles.accountsTitle}>
+            {t("stakingWidget.accounts.title")}
+          </div>
+          <div>
+            {accounts.map((account) => {
+              const networkName = chainIdToNetworkKey[account.chainId];
+
+              const networkInfo = networkName
+                ? getNetworkInfo(networkName)
+                : "";
+
+              const imgSrc = networkInfo ? networkInfo.image : "";
+              const name = networkInfo ? networkInfo.name : "";
+              const balance = getAccountResolvedBalance(account);
+
+              if (!balance) {
+                return null;
+              }
+
+              return (
+                <div
+                  className={styles.account}
+                  key={[account.address, account.chainId].join(" ")}
+                >
+                  <div className={styles.logo}>
+                    <img alt="" src={imgSrc} />
+                  </div>
+                  <div className={styles.accountContent}>
+                    <div>{name}</div>
+                    <div>{balance.coin.denom}</div>
+                  </div>
+                  <div className={styles.accountBalance}>
+                    <div>{formatCoin(balance.coin)}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -115,9 +174,6 @@ const StakingWidgetBase = ({
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
-        PaperProps={{
-          className: styles.paper,
-        }}
         anchorEl={anchor}
         anchorOrigin={{
           horizontal: "right",
@@ -126,6 +182,11 @@ const StakingWidgetBase = ({
         keepMounted
         onClose={onClose}
         open={!!anchor}
+        slotProps={{
+          paper: {
+            className: styles.paper,
+          },
+        }}
         transformOrigin={{
           horizontal: "right",
           vertical: "top",

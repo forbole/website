@@ -9,7 +9,7 @@ import { resolveCoin } from "./utils/coins";
 export const resolveDenom = (denom: string): string =>
   resolveCoin({ amount: "0", denom }).denom;
 
-export const formatDenom = (coin: Coin): string => {
+export const formatCoin = (coin: Coin): string => {
   if (!coin?.denom) {
     return "";
   }

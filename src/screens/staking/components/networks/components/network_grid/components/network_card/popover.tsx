@@ -18,12 +18,12 @@ import {
   StakingContext,
   getAccountsForNetwork,
   getClaimableRewardsForNetwork,
-  getNetworkInfo,
+  getNetworkStakingInfo,
   getStakedDataForNetwork,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { formatDenom } from "@src/screens/staking/lib/staking_sdk/formatters";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   WalletId,
   networkNameToChainId,
@@ -78,7 +78,7 @@ const PopOver = ({
 
   useEffect(() => {
     if (stakingChainId) {
-      getNetworkInfo(
+      getNetworkStakingInfo(
         stakingRef.current.setState,
         stakingRef.current.state,
         stakingChainId,
@@ -110,7 +110,7 @@ const PopOver = ({
       );
 
       if (stakedDataObj) {
-        result.stakedData = formatDenom(stakedDataObj);
+        result.stakedData = formatCoin(stakedDataObj);
       }
 
       const claimableRewardsObj = getClaimableRewardsForNetwork(
@@ -119,7 +119,7 @@ const PopOver = ({
       );
 
       if (claimableRewardsObj) {
-        result.claimableRewards = formatDenom(claimableRewardsObj);
+        result.claimableRewards = formatCoin(claimableRewardsObj);
       }
     }
 

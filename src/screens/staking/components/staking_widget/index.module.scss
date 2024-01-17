@@ -140,6 +140,43 @@ $wallet-icon-size: 28px;
   box-shadow: $box-shadow-variant-3;
   flex-direction: column;
   flex-shrink: 0;
-  min-width: 300px;
+  width: 380px;
   padding: spacing(2);
+
+  @include down-tablet {
+    width: 100%;
+  }
+}
+
+.logo {
+  img {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.account {
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.accountContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+}
+
+.accountsTitle {
+  color: #616161;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.032px;
+  line-height: 20px;
+  padding: 16px;
 }

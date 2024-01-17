@@ -9,14 +9,14 @@ import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 import {
-  getNetworkInfo,
+  getNetworkStakingInfo,
   getSelectedAccount,
   setSelectedAccount,
   syncAccountData,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import {
-  formatDenom,
+  formatCoin,
   getUnbondingTimeForNetwork,
   resolveDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -44,7 +44,7 @@ const UnstakingModal = () => {
 
       const { chainId } = selectedAccount;
 
-      getNetworkInfo(
+      getNetworkStakingInfo(
         stakingRef.current.setState,
         stakingRef.current.state,
         chainId,
@@ -83,8 +83,8 @@ const UnstakingModal = () => {
 
   const isValidAmount =
     !Number.isNaN(amountNum) &&
-    !!availableAmount &&
-    amountNum <= availableAmount;
+    !!availableAmount?.num &&
+    amountNum <= availableAmount.num;
 
   const unlockedDate = getUnbondingTimeForNetwork(networkInfo, locale);
 
@@ -102,7 +102,7 @@ const UnstakingModal = () => {
               <>
                 <Label>{t("unstakingModal.available")}</Label>:{" "}
                 <span className={styles.amount}>
-                  {formatDenom(account.info.delegation)}
+                  {formatCoin(account.info.delegation)}
                 </span>
               </>
             )}

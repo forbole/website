@@ -99,7 +99,7 @@ export const fetchNetworksInfo = async (setState: SetState) => {
   }));
 };
 
-export const getNetworkInfo = async (
+export const getNetworkStakingInfo = async (
   setState: SetState,
   state: State,
   chainId: ChainId,
@@ -243,6 +243,21 @@ export const getSelectedAccount = (state: State) => {
   return state?.wallets?.[wallet]?.networks?.[chainId]?.accounts?.find(
     (a) => a.address === address,
   );
+};
+
+export const getWalletAccounts = (
+  state: State,
+  walletId: WalletId,
+): Account[] => {
+  const wallet = state.wallets[walletId];
+
+  return Object.values(wallet?.networks || {})
+    .reduce((acc, chain) => {
+      acc.push(...chain.accounts);
+
+      return acc;
+    }, [] as Account[])
+    .sort(sortAccounts);
 };
 
 export const getCanAddWallet = (state: State) => {

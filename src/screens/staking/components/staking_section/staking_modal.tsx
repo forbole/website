@@ -10,14 +10,14 @@ import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 import {
-  getNetworkInfo,
+  getNetworkStakingInfo,
   getSelectedAccount,
   setSelectedAccount,
   syncAccountData,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import {
-  formatDenom,
+  formatCoin,
   resolveDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
@@ -54,7 +54,7 @@ const StakingModal = () => {
 
       const { chainId } = selectedAccount;
 
-      getNetworkInfo(
+      getNetworkStakingInfo(
         stakingRef.current.setState,
         stakingRef.current.state,
         chainId,
@@ -113,7 +113,7 @@ const StakingModal = () => {
                 <>
                   <Label>{t("stakingModal.available")}</Label>:{" "}
                   <span className={styles.amount}>
-                    {formatDenom(balance.coin)}
+                    {formatCoin(balance.coin)}
                   </span>
                 </>
               )}

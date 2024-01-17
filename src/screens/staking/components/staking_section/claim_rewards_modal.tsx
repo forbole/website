@@ -10,7 +10,7 @@ import {
   StakingContext,
   setSelectedAccount,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { formatDenom } from "@src/screens/staking/lib/staking_sdk/formatters";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   claimRewards,
   getClaimRewardsFee,
@@ -55,7 +55,7 @@ const ClaimRewardsModal = () => {
           <div className={styles.feeRow}>
             <div>{t("rewardsModal.gasFee")}</div>
             <div>
-              {formatDenom({ amount: gasFee.amount, denom: gasFee.denom })}
+              {formatCoin({ amount: gasFee.amount, denom: gasFee.denom })}
             </div>
           </div>
         )}
