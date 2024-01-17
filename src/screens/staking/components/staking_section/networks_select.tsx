@@ -14,6 +14,7 @@ import type {
 import { chainIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/types";
 import { getNetworkInfo } from "@src/utils/network_info";
 
+import { getAccountResolvedBalance } from "../../lib/staking_sdk/utils";
 import * as styles from "./networks_select.module.scss";
 
 const ITEM_HEIGHT = 48;
@@ -31,12 +32,13 @@ const MenuProps = {
 };
 
 type NetworkItemProps = {
+  denom: string;
   value: ChainId;
 };
 
 const SEPARATOR = "____";
 
-const NetworkItem = ({ value }: NetworkItemProps) => {
+const NetworkItem = ({ denom, value }: NetworkItemProps) => {
   const networkName = chainIdToNetworkKey[value];
   const networkInfo = networkName ? getNetworkInfo(networkName) : "";
 
@@ -46,7 +48,10 @@ const NetworkItem = ({ value }: NetworkItemProps) => {
   return (
     <div className={styles.row}>
       {!!imgSrc && <img alt="" className={styles.logo} src={imgSrc} />}
-      <div>{name}</div>
+      <div className={styles.content}>
+        <div>{denom}</div>
+        <div>{name}</div>
+      </div>
     </div>
   );
 };
@@ -105,10 +110,13 @@ const NetworksSelect = ({ variant }: Props) => {
       >
         {allAccounts.map((account) => {
           const item = [account.address, account.chainId].join(SEPARATOR);
+          const balance = getAccountResolvedBalance(account);
+
+          if (!balance) return null;
 
           return (
             <MenuItem key={item} value={item}>
-              <NetworkItem value={account.chainId} />
+              <NetworkItem denom={balance.coin.denom} value={account.chainId} />
             </MenuItem>
           );
         })}

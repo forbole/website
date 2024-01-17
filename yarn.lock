@@ -1547,7 +1547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chain-registry/types@npm:^0.17.0, @chain-registry/types@npm:^0.17.1":
+"@chain-registry/types@npm:^0.17.0":
   version: 0.17.1
   resolution: "@chain-registry/types@npm:0.17.1"
   dependencies:
@@ -7510,16 +7510,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chain-registry@npm:^1.25.0":
-  version: 1.25.0
-  resolution: "chain-registry@npm:1.25.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.21.0"
-    "@chain-registry/types": "npm:^0.17.1"
-  checksum: 26f17775e6300d6f4c7ee3907766827ec258c580722caff193a3bd8987dab35608be7057b980b0d9b3eeec81a576176b2ae086ddba94541f29b2bee127ea430a
-  languageName: node
-  linkType: hard
-
 "chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
@@ -9690,7 +9680,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.18.1"
     "@typescript-eslint/parser": "npm:^6.18.1"
     autoprefixer: "npm:^10.4.16"
-    chain-registry: "npm:^1.25.0"
     dotenv: "npm:^16.3.1"
     dotenv-defaults: "npm:^5.0.2"
     eslint: "npm:^8.56.0"

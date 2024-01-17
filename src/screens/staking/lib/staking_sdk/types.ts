@@ -13,7 +13,9 @@ export enum WalletId {
   Keplr = "keplr",
 }
 
-// For now these values match the id in the chain registry
+// For now these values match the id in the chain registry:
+// - https://github.com/cosmos/chain-registry
+// - https://github.com/cosmos/chain-registry/tree/master/testnets
 export enum ChainId {
   Celestia = "celestia",
   CelestiaTestnet = "mocha-4",

@@ -12,7 +12,8 @@
 }
 
 .logo {
-  border-radius: 50%;
+  border-radius: 200px;
+  box-shadow: $box-shadow-variant-3;
   height: 40px;
   overflow: hidden;
   width: 40px;
@@ -43,5 +44,19 @@
       box-shadow: none !important;
       outline: none !important;
     }
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  div:nth-child(2) {
+    color: #616161;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.308px;
+    line-height: 20px;
   }
 }
