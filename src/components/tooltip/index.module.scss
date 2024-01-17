@@ -1,8 +1,8 @@
 @import "src/styles/sass.scss";
 
 body .main {
-  z-index: 99999;
   max-width: 400px;
+  z-index: 99999;
 
   @include down-tablet {
     max-width: 100%;

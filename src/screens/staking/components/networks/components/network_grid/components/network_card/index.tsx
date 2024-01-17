@@ -103,26 +103,28 @@ const NetworkCard = ({
       whileInView="appear"
     >
       {isMobile ? (
-        <Button
-          className={anchorClassName}
-          onClick={() => {
-            if (!isEmptyPopover) {
-              setShowPopover(network.name);
+        <>
+          <div className={styles.popoverWrapper}>{popover}</div>
+          <Button
+            className={anchorClassName}
+            onClick={() => {
+              if (!isEmptyPopover) {
+                setShowPopover(network.name);
 
-              return;
-            }
+                return;
+              }
 
-            if (canClickNetwork && handleNetworkClick) {
-              handleNetworkClick(network);
-            }
-          }}
-          variant="text"
-        >
-          {chainSupportsStaking && <StakingLabel />}
-          {popover}
-          {networkImage}
-          {networkName}
-        </Button>
+              if (canClickNetwork && handleNetworkClick) {
+                handleNetworkClick(network);
+              }
+            }}
+            variant="text"
+          >
+            {chainSupportsStaking && <StakingLabel />}
+            {networkImage}
+            {networkName}
+          </Button>
+        </>
       ) : (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div

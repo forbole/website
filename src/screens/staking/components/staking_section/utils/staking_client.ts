@@ -1,3 +1,5 @@
+import type { Coin } from "@cosmjs/stargate";
+
 import type { ChainId } from "@src/screens/staking/lib/staking_sdk/types";
 
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API;
@@ -48,9 +50,7 @@ export type GetAddressInfoResponse = {
   delegation: { amount: string; denom: string };
 };
 
-export type GetRewardsResponse = {
-  foo: "bar";
-};
+export type GetRewardsResponse = Array<Coin> | Record<string, never>;
 
 type GetStakingInfoResponse = {
   apy: number;

@@ -1,3 +1,5 @@
+import type { Coin } from "@cosmjs/stargate";
+
 import type { WalletId } from "./types";
 
 const localStorageKey = "connectedWallets";
@@ -30,3 +32,11 @@ export const addToConnectedWallets = (wallet: WalletId) => {
 export const clearConnectedWallets = () => {
   window.localStorage.removeItem(localStorageKey);
 };
+
+// @TODO: Improve multiple denoms handling
+export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin => ({
+  amount: (Number(coinA?.amount || 0) + Number(coinB?.amount || 0)).toString(),
+  denom: coinA?.denom || coinB?.denom || "",
+});
+
+export const getEmptyCoin = (): Coin => ({ amount: "0", denom: "" });

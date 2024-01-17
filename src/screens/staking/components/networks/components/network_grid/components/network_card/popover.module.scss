@@ -29,13 +29,10 @@ $popover-background: linear-gradient(
   z-index: 3;
 
   @include down-tablet {
-    bottom: 0;
-    left: 0;
+    inset: 0;
     overflow: auto;
     pointer-events: all;
     position: fixed;
-    right: 0;
-    top: 0;
     width: unset;
     z-index: 999;
   }
@@ -123,6 +120,25 @@ $popover-background: linear-gradient(
     font-size: 16px;
     justify-content: space-between;
     width: 100%;
+
+    > div {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.032px;
+      line-height: 20px;
+      text-shadow: $box-shadow-variant-3;
+    }
+
+    > div:first-child {
+      color: #25282d;
+    }
+  }
+
+  .rewards {
+    > div:nth-child(2) {
+      color: #059c78;
+    }
   }
 }
 

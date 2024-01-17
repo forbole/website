@@ -53,7 +53,7 @@ export const toastSuccess = (
   props: ToastOptsBase,
   toastOpts: ToastOptions = {},
 ) => {
-  toast(<NotificationBase {...props} icon="checkmarkFilled" />, {
+  toast(<NotificationBase {...props} icon="/icons/checkmark_filled.svg" />, {
     className: styles.success,
     position: "top-right",
     ...toastOpts,
@@ -64,7 +64,7 @@ export const toastError = (
   props: ToastOptsBase,
   toastOpts: ToastOptions = {},
 ) => {
-  toast(<NotificationBase {...props} icon="errorCross" />, {
+  toast(<NotificationBase {...props} icon="/icons/error_cross.svg" />, {
     className: styles.error,
     position: "top-right",
     ...toastOpts,

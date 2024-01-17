@@ -157,6 +157,7 @@ const StakingModal = () => {
           <Label>{t("stakingModal.memo")}</Label>
           <FormInput
             className={styles.input}
+            fullWidth
             noMargin
             onBlur={() => {
               const newMemoError = (() => {
@@ -215,7 +216,8 @@ const StakingModal = () => {
                 setSelectedAccount(setStakingState, null);
 
                 toastSuccess({
-                  title: t("stakingModal.success"), // @TODO: Message
+                  subtitle: `${t("stakingModal.success.sub")} 🎉`,
+                  title: t("stakingModal.success.title"),
                 });
               })
               .catch(() => {

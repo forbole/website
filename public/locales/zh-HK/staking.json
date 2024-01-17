@@ -9,6 +9,7 @@
   "calculate rewards title": "<0><1>計算</1> 你的收益</0>",
   "claim para 1": "沒有模型答案，因為這取決於太多因素，包括質押的代幣數量、特定網路中的交易費用等。",
   "claim q": "我應該多久領取我的質押獎勵？",
+  "claimableRewards": "Claimable Rewards",
   "claimRewards": {
     "title": "Claim Rewards"
   },
@@ -62,6 +63,7 @@
   "percentage": "%",
   "popover": {
     "claimRewards": "Claim Rewards",
+    "networkDetails": "See network details",
     "stake": "Stake Now",
     "unstake": "Unstake"
   },
@@ -113,7 +115,10 @@
     "memoError": {
       "tooLongMemo": "Please enter a smaller memo"
     },
-    "success": "Your amount has been staked",
+    "success": {
+      "sub": "Thank you for supporting Forbole !",
+      "title": "Your token has been staked!"
+    },
     "title": "Stake with forbole",
     "tokenAmount": "Token amount"
   },
@@ -128,10 +133,10 @@
   "title": "委託 Forbole 質押原生通證",
   "token amount": "通證數量",
   "token amount placeholder": "多少通證？",
+  "totalStaked": "Total staked",
   "trusted provider": "選擇值得信賴的營運商",
   "trusted provider desc": "我們已經建立了完善的驗證人基礎設施，全天候監控區塊鏈網路安全",
   "unbonding period": "解綁期",
-  "unexpectedError": "There was an unexpected error",
   "unstaking para 1": "將您質押的代幣從一個驗證器轉移到另一個驗證器的操作稱為重新質押您的代幣。",
   "unstaking para 2": "因此，如果您的計劃是繼續質押，並且您只是希望切換到不同的驗證器，請使用重新質押來繼續累積您的質押獎勵和空投。",
   "unstaking para 3": "第一次重質押後，您需要等待一定時間（對應解質押期）才能進行下一次重質押交易。",
@@ -141,6 +146,7 @@
       "label": "Unstake token amount",
       "placeholder": "1,000"
     },
+    "available": "Staked",
     "button": "Unstake",
     "info2": "During this time, you won't receive staking rewards.",
     "info3": "However, if you change your mind, you can cancel the process at any time.",
@@ -152,7 +158,7 @@
     },
     "success": {
       "subtitle": "Hope to see you again soon.",
-      "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on January 21st, 2024."
+      "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on {{date}}."
     },
     "title": "Unstake",
     "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."

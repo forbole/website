@@ -22,7 +22,7 @@ import {
   testnetNetworks,
   walletsSupported,
 } from "./types";
-import { clearConnectedWallets } from "./utils";
+import { clearConnectedWallets, getEmptyCoin, sumCoins } from "./utils";
 
 const baseContext: TStakingContext = {
   setState: () => {},
@@ -255,34 +255,60 @@ export const getCanAddWallet = (state: State) => {
   );
 };
 
+const getAccountsForNetwork = (state: State, network: ChainId) => {
+  const wallets = Object.values(state.wallets);
+
+  return wallets.reduce(
+    (acc, wallet) => [...acc, ...(wallet.networks?.[network]?.accounts || [])],
+    [] as Account[],
+  );
+};
+
 export const getStakedDataForNetwork = (
   state: State,
   network: ChainId,
 ): Coin | null => {
-  const wallets = Object.values(state.wallets);
-
-  const accountsForNetwork = wallets.reduce(
-    (acc, wallet) => [...acc, ...(wallet.networks?.[network]?.accounts || [])],
-    [] as Account[],
-  );
+  const accountsForNetwork = getAccountsForNetwork(state, network);
 
   if (!accountsForNetwork.length) {
     return null;
   }
 
-  const aggregate = accountsForNetwork.reduce<{
-    amount: number;
-    denom: string;
-  }>(
-    (acc, account) => ({
-      amount: acc.amount + Number(account.info?.delegation?.amount || 0),
-      denom: account.info?.balances?.denom || "", // @TODO : This assumes that all accounts use the same denom
-    }),
-    { amount: 0, denom: "" },
-  );
+  const usedAddresses = new Set<string>();
 
-  return {
-    amount: aggregate.amount.toString(),
-    denom: aggregate.denom,
-  };
+  return accountsForNetwork.reduce((acc, account) => {
+    if (usedAddresses.has(account.address)) {
+      return acc;
+    }
+
+    usedAddresses.add(account.address);
+
+    return sumCoins(acc, account.info?.delegation);
+  }, getEmptyCoin());
+};
+
+export const getClaimableRewardsForNetwork = (
+  state: State,
+  network: ChainId,
+): Coin | null => {
+  const accountsForNetwork = getAccountsForNetwork(state, network);
+
+  if (!accountsForNetwork.length) {
+    return null;
+  }
+
+  const usedAddresses = new Set<string>();
+
+  return accountsForNetwork.reduce((acc, account) => {
+    if (usedAddresses.has(account.address)) {
+      return acc;
+    }
+
+    usedAddresses.add(account.address);
+
+    return (Array.isArray(account.rewards) ? account.rewards : []).reduce(
+      (acc2, reward) => sumCoins(acc2, reward),
+      acc,
+    );
+  }, getEmptyCoin());
 };

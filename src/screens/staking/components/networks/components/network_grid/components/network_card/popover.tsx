@@ -16,6 +16,7 @@ import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
+  getClaimableRewardsForNetwork,
   getNetworkInfo,
   getStakedDataForNetwork,
   getUserAccountsForNetwork,
@@ -72,6 +73,8 @@ const PopOver = ({
   const { setState: setStakingState, state: stakingState } =
     useContext(StakingContext);
 
+  const { hasInit } = stakingState;
+
   useEffect(() => {
     if (stakingChainId) {
       getNetworkInfo(
@@ -84,14 +87,14 @@ const PopOver = ({
     }
   }, [stakingChainId, stakingRef]);
 
-  const { account, chainId, hasRewards, stakedData } = useMemo(() => {
+  const { account, chainId, claimableRewards, stakedData } = useMemo(() => {
     const wallet = WalletId.Keplr;
 
     const result = {
       account: null as Account | null,
       chainId: stakingChainId,
-      hasRewards: false,
-      stakedData: null as null | string,
+      claimableRewards: "",
+      stakedData: "",
     };
 
     if (!!stakingChainId && !!wallet) {
@@ -111,10 +114,7 @@ const PopOver = ({
       );
 
       if (stakedDataObj) {
-        result.stakedData = formatDenom({
-          amount: stakedDataObj.amount,
-          denom: stakedDataObj.denom,
-        });
+        result.stakedData = formatDenom(stakedDataObj);
       }
 
       const newAccount = accounts.find((a) => !!a.info);
@@ -123,7 +123,14 @@ const PopOver = ({
         result.account = newAccount;
       }
 
-      result.hasRewards = !!accounts.find((a) => !!a.rewards);
+      const claimableRewardsObj = getClaimableRewardsForNetwork(
+        stakingRef.current.state,
+        stakingChainId,
+      );
+
+      if (claimableRewardsObj) {
+        result.claimableRewards = formatDenom(claimableRewardsObj);
+      }
     }
 
     return result;
@@ -144,21 +151,23 @@ const PopOver = ({
       <div>{networkImage}</div>
       {/* @TODO: This should be the aggreage of all accounts in all wallets */}
       {network.name && <div className={styles.name}>{network.name}</div>}
-      {!!stakedData && (
+      {(!!stakedData || !!claimableRewards) && (
         <div className={styles.stakingData}>
           {stakedData && (
             <div className={styles.total}>
-              <div>Total staked</div>
+              <div>{t("totalStaked")}</div>
               <div>{stakedData}</div>
             </div>
           )}
-          <div className={styles.rewards}>
-            <div>Claimable Rewards</div>
-            <div>+223.4 ATOM</div>
-          </div>
+          {!!claimableRewards && (
+            <div className={styles.rewards}>
+              <div>{t("claimableRewards")}</div>
+              <div>{claimableRewards}</div>
+            </div>
+          )}
         </div>
       )}
-      {!!networkSummary ? (
+      {!!networkSummary && (
         <div className={styles.dataBox}>
           {!!networkSummary.bonded && networkSummary.bonded > 0 && (
             <div>
@@ -225,7 +234,8 @@ const PopOver = ({
                 </div>
               ))}
         </div>
-      ) : (
+      )}
+      {!hasInit && (
         <LinearProgress className={styles.progress} color="secondary" />
       )}
       <div className={styles.buttons}>
@@ -244,7 +254,7 @@ const PopOver = ({
             >
               {t("popover.stake")}
             </HighlightButton>
-            {hasRewards && (
+            {!!claimableRewards && (
               <CtaButton
                 onClick={() => {
                   setSelectedAccount(setStakingState, {
@@ -278,7 +288,7 @@ const PopOver = ({
         )}
         {canClickNetwork && (
           <EmptyButton onClick={handleExploreClick} withoutBorder>
-            See network details
+            {t("popover.networkDetails")}
           </EmptyButton>
         )}
       </div>

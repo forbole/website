@@ -17,6 +17,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   formatDenom,
+  getUnbondingTimeForNetwork,
   resolveDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { unstake } from "@src/screens/staking/lib/staking_sdk/operations";
@@ -75,32 +76,7 @@ const UnstakingModal = () => {
     }
   }, [isOpen]);
 
-  const unlockedDate = (() => {
-    if (!networkInfo) {
-      return null;
-    }
-
-    const { unbonding_period: unbondingPeriod } = networkInfo;
-
-    if (!unbondingPeriod) {
-      return null;
-    }
-
-    const now = new Date();
-    const days = Math.ceil(unbondingPeriod / 86400);
-    const nextDate = new Date(now.getTime() + unbondingPeriod * 1000);
-
-    const nextDateStr = nextDate.toLocaleDateString(locale, {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-
-    return {
-      date: nextDateStr,
-      days,
-    };
-  })();
+  const unlockedDate = getUnbondingTimeForNetwork(networkInfo, locale);
 
   const amountNum = Number(amount);
   const isValidAmount = !Number.isNaN(amountNum);
@@ -223,7 +199,9 @@ const UnstakingModal = () => {
 
                   toastSuccess({
                     subtitle: t("unstakingModal.success.subtitle"),
-                    title: t("unstakingModal.success.title"),
+                    title: t("unstakingModal.success.title", {
+                      date: unlockedDate?.date,
+                    }),
                   });
                 }
               })

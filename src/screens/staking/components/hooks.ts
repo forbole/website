@@ -119,11 +119,6 @@ export const useInitStaking = () => {
       // @TODO: hardcode this and just use in a testing script before deployment
       const { chains } = await import("chain-registry");
 
-      console.log(
-        "debug: index.tsx: chains",
-        chains.filter((c) => c.chain_id.includes("dydx")),
-      );
-
       const newChainInfo = chains.find(
         (chain) => chain.chain_id === ChainId.CosmosHubTestnet,
       );

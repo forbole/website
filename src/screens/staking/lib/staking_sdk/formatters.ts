@@ -1,13 +1,7 @@
 import type { Network } from "@src/utils/network_info";
 
-import type { Account } from "./types";
+import type { Account, NetworkInfo } from "./types";
 import { networkNameToChainId } from "./types";
-
-const formatNum = (num: number): string =>
-  num.toLocaleString("en-US", {
-    maximumFractionDigits: 6,
-    minimumFractionDigits: 0,
-  });
 
 const uatomExp = 6;
 const utiaExp = 6;
@@ -43,6 +37,13 @@ export const formatDenom = ({
   denom: string;
 }): string => {
   const num = Number(amount);
+
+  const formatNum = (n: number): string =>
+    n.toLocaleString("en-US", {
+      maximumFractionDigits: 6,
+      maximumSignificantDigits: 6,
+      minimumFractionDigits: 1,
+    });
 
   if (!denom) {
     return "";
@@ -90,4 +91,34 @@ export const sortNetworks = (a: Network, b: Network) => {
   }
 
   return a.name.localeCompare(b.name);
+};
+
+export const getUnbondingTimeForNetwork = (
+  networkInfo: NetworkInfo | null,
+  locale?: string,
+) => {
+  if (!networkInfo) {
+    return null;
+  }
+
+  const { unbonding_period: unbondingPeriod } = networkInfo;
+
+  if (!unbondingPeriod) {
+    return null;
+  }
+
+  const now = new Date();
+  const days = Math.ceil(unbondingPeriod / 86400);
+  const nextDate = new Date(now.getTime() + unbondingPeriod * 1000);
+
+  const nextDateStr = nextDate.toLocaleDateString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  return {
+    date: nextDateStr,
+    days,
+  };
 };
