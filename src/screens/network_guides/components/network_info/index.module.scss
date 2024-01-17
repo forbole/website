@@ -1,9 +1,5 @@
 @import "src/styles/sass.scss";
 
-$card-shadow:
-  0 8px 22px -6px rgba(2, 38, 225, 0.12),
-  0 14px 64px -4px rgba(2, 38, 225, 0.12);
-
 .wrapper {
   align-items: center;
   display: flex;
@@ -75,14 +71,14 @@ $card-shadow:
 }
 
 .card {
-  background: $color-primary-light;
+  background: $color-white;
   border-radius: spacing(2);
-  box-shadow: $card-shadow;
+  box-shadow: $box-shadow-variant-3;
 }
 
 .logoBox {
   > span {
-    border: 8px solid #fff !important;
+    border: 8px solid $color-white !important;
     border-radius: 50%;
   }
 
@@ -110,7 +106,7 @@ $card-shadow:
 .readMoreButton {
   background: transparent;
   border: none;
-  color: #007fff;
+  color: $color-blue-1;
   display: inline-block;
   padding: 0;
 

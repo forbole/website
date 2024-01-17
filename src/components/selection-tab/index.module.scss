@@ -19,7 +19,7 @@
 
 .tab {
   border-radius: 200px;
-  color: #fff;
+  color: $color-white;
   font-size: 16px;
   font-weight: 590;
   min-height: 45px;
@@ -28,7 +28,7 @@
 
   &:global(.Mui-disabled) {
     box-shadow: 4px 8px 24px 0 rgba(42, 34, 194, 0.16);
-    color: #fff;
+    color: $color-white;
     opacity: 0.5;
   }
 

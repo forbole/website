@@ -1,4 +1,3 @@
-$color-primary-light: #fff;
 $color-text-primary: #000;
 
 // Primary Color
@@ -17,6 +16,7 @@ $color-pink-1: #ff426b;
 
 // Neutral Color
 
+$color-background-grey: #f7f7f7;
 $color-black: #1d1e22;
 $color-dark-grey: #34383e;
 $color-grey-2: #878787;
@@ -27,7 +27,7 @@ $color-white: #fff;
 // Accent Color
 
 $color-blue-1: #007fff;
-$color-forbole-red-1: #fd565f;
+$color-red-1: #fd565f;
 
 // Others
 
@@ -39,9 +39,16 @@ $gradient-unnamed-1: linear-gradient(286.17deg, #d431ee 0%, $color-pink-1 100%);
 $gradient-unnamed-2: linear-gradient(315deg, #ee3131 0%, $color-pink-1 100%);
 $gradient-unnamed-3: linear-gradient(
   180deg,
-  #fff 0%,
+  $color-white 0%,
   rgba(255, 255, 255, 0.64) 64.58%,
-  #fff 100%
+  $color-white 100%
+);
+
+$indigo-gradient-1: linear-gradient(
+  175deg,
+  #8484ea -15.63%,
+  #6061e4 120.28%,
+  #6061e4 120.29%
 );
 
 $indigo-gradient-1: linear-gradient(

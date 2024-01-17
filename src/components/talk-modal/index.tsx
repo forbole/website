@@ -164,15 +164,9 @@ const TalkModal = ({
                   control={
                     <Checkbox
                       checked={inputs[value.name]}
+                      className={styles.checkbox}
                       name={value.name}
                       onChange={handleToggle}
-                      sx={{
-                        "&.Mui-checked": {
-                          color: "#EE3131",
-                        },
-                        "color": "#AFAFAF",
-                        "py": "0",
-                      }}
                       value={value.name}
                     />
                   }
@@ -202,17 +196,7 @@ const TalkModal = ({
             <FormControlLabel
               checked={inputs.agree}
               className={styles.agree}
-              control={
-                <Checkbox
-                  sx={{
-                    "&.Mui-checked": {
-                      color: "#EE3131",
-                    },
-                    "color": "#AFAFAF",
-                    "py": "0",
-                  }}
-                />
-              }
+              control={<Checkbox className={styles.checkbox} />}
               label={t("check_word")}
               name="agree"
               onChange={handleCheckedChange}

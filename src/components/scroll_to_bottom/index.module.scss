@@ -1,16 +1,12 @@
 @import "src/styles/sass.scss";
 
-$wrapper-shadow:
-  0 10px 32px -4px rgba(125, 92, 255, 0.1),
-  0 6px 14px -6px rgba(126, 94, 255, 0.28);
-
 $wrapper-filter: drop-shadow(0 14px 64px rgba(2, 38, 225, 0.12))
   drop-shadow(0 8px 22px rgba(2, 38, 225, 0.12));
 
 .wrapper {
   align-items: center;
   border-radius: 48px;
-  box-shadow: $wrapper-shadow;
+  box-shadow: $box-shadow-variant-2;
   cursor: pointer;
   filter: $wrapper-filter;
   height: 48px;
@@ -20,7 +16,7 @@ $wrapper-filter: drop-shadow(0 14px 64px rgba(2, 38, 225, 0.12))
   z-index: 2;
 
   svg {
-    fill: $color-primary-light;
+    fill: $color-white;
     transition: all 0.3s;
 
     path {
