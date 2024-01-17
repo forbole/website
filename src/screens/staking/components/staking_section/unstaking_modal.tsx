@@ -112,10 +112,19 @@ const UnstakingModal = () => {
       title={t("unstakingModal.title")}
     >
       <div className={styles.wrapper}>
-        <Label>{t("unstakingModal.amount.label")}</Label>
-        {!!account?.info?.delegation?.amount && (
-          <div>Staked (@TODO): {formatDenom(account.info.delegation)}</div>
-        )}
+        <div className={styles.row}>
+          <Label>{t("unstakingModal.amount.label")}</Label>
+          <div>
+            {!!account?.info && (
+              <>
+                <Label>{t("unstakingModal.available")}</Label>:{" "}
+                <span className={styles.amount}>
+                  {formatDenom(account.info.delegation)}
+                </span>
+              </>
+            )}
+          </div>
+        </div>
         <FormInput
           onBlur={() => {
             const newAmountError = (() => {
@@ -202,9 +211,9 @@ const UnstakingModal = () => {
               account: selectedAccount,
               amount,
             })
-              .then((unstaked) => {
+              .then(async (unstaked) => {
                 if (unstaked) {
-                  syncAccountData(
+                  await syncAccountData(
                     setStakingState,
                     stakingState,
                     selectedAccount,

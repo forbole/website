@@ -49,3 +49,22 @@
     text-shadow: $box-shadow-variant-3;
   }
 }
+
+.row {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.amount {
+  color: $color-blue-1;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.08px;
+  line-height: normal;
+  text-shadow: $box-shadow-variant-3;
+}

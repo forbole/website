@@ -50,7 +50,6 @@ const NetworkCard = ({
   const chainSupportsStaking = networkNameToChainId[network.graphql];
 
   const isEmptyPopover =
-    showPopover !== network.name ||
     networksWithHiddenInfo.has(network.graphql) ||
     (!!networkSummary &&
       !chainSupportsStaking &&
@@ -72,16 +71,17 @@ const NetworkCard = ({
     </div>
   );
 
-  const popover = isEmptyPopover ? null : (
-    <PopOver
-      canClickNetwork={canClickNetwork}
-      handleExploreClick={handleExploreClick}
-      network={network}
-      networkImage={networkImage}
-      networkSummary={networkSummary}
-      setShowPopover={setShowPopover}
-    />
-  );
+  const popover =
+    isEmptyPopover || network.name !== showPopover ? null : (
+      <PopOver
+        canClickNetwork={canClickNetwork}
+        handleExploreClick={handleExploreClick}
+        network={network}
+        networkImage={networkImage}
+        networkSummary={networkSummary}
+        setShowPopover={setShowPopover}
+      />
+    );
 
   const networkName = <h4 className={styles.networkName}>{network.name}</h4>;
 
@@ -103,25 +103,26 @@ const NetworkCard = ({
       whileInView="appear"
     >
       {isMobile ? (
-        <>
-          <div
-            className={[styles.popoverContainer].join(" ")}
-            data-test="network-item"
-          >
-            {popover}
-          </div>
-          <Button
-            className={anchorClassName}
-            onClick={
-              isEmptyPopover && canClickNetwork ? handleExploreClick : undefined
+        <Button
+          className={anchorClassName}
+          onClick={() => {
+            if (!isEmptyPopover) {
+              setShowPopover(network.name);
+
+              return;
             }
-            variant="text"
-          >
-            {chainSupportsStaking && <StakingLabel />}
-            {networkImage}
-            {networkName}
-          </Button>
-        </>
+
+            if (canClickNetwork && handleNetworkClick) {
+              handleNetworkClick(network);
+            }
+          }}
+          variant="text"
+        >
+          {chainSupportsStaking && <StakingLabel />}
+          {popover}
+          {networkImage}
+          {networkName}
+        </Button>
       ) : (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div

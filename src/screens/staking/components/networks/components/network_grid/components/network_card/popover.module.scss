@@ -29,8 +29,15 @@ $popover-background: linear-gradient(
   z-index: 3;
 
   @include down-tablet {
-    margin-top: -spacing(1);
-    padding: 8px;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    pointer-events: all;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: unset;
+    z-index: 999;
   }
 
   @include up-tablet {
@@ -124,5 +131,18 @@ $popover-background: linear-gradient(
   flex-direction: column;
   gap: spacing(2);
   justify-content: space-between;
+  margin-top: 16px;
   width: 100%;
+}
+
+.name {
+  color: #25282d;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.72px;
+  line-height: normal;
+  margin: 8px 0 16px;
+  text-align: center;
+  text-shadow: $box-shadow-variant-3;
 }

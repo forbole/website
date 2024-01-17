@@ -25,6 +25,11 @@
   "contact Forbole desc": "我們很高興為你提供專業的服務。",
   "contact forbole title": "<0>立即與我們團隊商討<1>合作</1> ！</0>",
   "copied to clipboard": "複製到剪貼簿",
+  "definitions": {
+    "apy": "Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from staking. It includes compound interest, helping you gauge the potential growth of your investment.",
+    "tvl": "Total Value Locked (TVL) is the total USD value of all assets staked with Forbole on this network. It indicates Forbole's staking scale and popularity.",
+    "votingPower": "The \"Voting Power\" is the total amount of tokens staked with Forbole on the network. The more amount of tokens staked, the higher the voting power."
+  },
   "description": " 在 Forbole 质押，赚取收益，守护网络",
   "difference para 1": "對於託管，私鑰由第三方持有，而對於非託管，用戶對其資產負責並完全控制。",
   "difference q": "託管和非託管有什麼區別？",
@@ -149,7 +154,7 @@
       "subtitle": "Hope to see you again soon.",
       "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on January 21st, 2024."
     },
-    "title": "Unstaking",
+    "title": "Unstake",
     "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."
   },
   "wallets": {

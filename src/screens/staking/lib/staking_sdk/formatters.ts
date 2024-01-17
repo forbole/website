@@ -10,15 +10,25 @@ const formatNum = (num: number): string =>
   });
 
 const uatomExp = 6;
+const utiaExp = 6;
+const adydxExp = 18;
 
 export const resolveDenom = (denom: string): string => {
   if (!denom) {
     return "";
   }
 
-  switch (denom) {
+  switch (denom?.toLowerCase()) {
     case "uatom": {
       return "ATOM";
+    }
+
+    case "utia": {
+      return "TIA";
+    }
+
+    case "adydx": {
+      return "DYDX";
     }
   }
 
@@ -42,9 +52,17 @@ export const formatDenom = ({
     return `- ${denom.toUpperCase()}`;
   }
 
-  switch (denom) {
+  switch (denom?.toLowerCase()) {
     case "uatom": {
       return `${formatNum(num / 10 ** uatomExp)} ATOM`;
+    }
+
+    case "utia": {
+      return `${formatNum(num / 10 ** utiaExp)} TIA`;
+    }
+
+    case "adydx": {
+      return `${formatNum(num / 10 ** adydxExp)} DYDX`;
     }
   }
 

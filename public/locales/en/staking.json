@@ -25,6 +25,11 @@
   "contact Forbole desc": "We are happy to serve you with our professional services.",
   "contact forbole title": "<0><1>Get in touch</1> with our team to discuss our <1>collaboration</1> today!</0>",
   "copied to clipboard": "Copied to your clipboard",
+  "definitions": {
+    "apy": "Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from staking. It includes compound interest, helping you gauge the potential growth of your investment.",
+    "tvl": "Total Value Locked (TVL) is the total USD value of all assets staked with Forbole on this network. It indicates Forbole's staking scale and popularity.",
+    "votingPower": "The \"Voting Power\" is the total amount of tokens staked with Forbole on the network. The more amount of tokens staked, the higher the voting power."
+  },
   "description": "Stake, earn and secure the networks with Forbole",
   "difference para 1": "For custodial, the private key is held by a third party whereas non-custodial, users are responsible for their assets and in full control.",
   "difference q": "What is the difference between custodial and non-custodial?",
@@ -150,7 +155,7 @@
       "subtitle": "Hope to see you again soon.",
       "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on January 21st, 2024."
     },
-    "title": "Unstaking",
+    "title": "Unstake",
     "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."
   },
   "wallets": {

@@ -6,7 +6,7 @@ import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
-import { toastError, toastSuccess } from "@src/components/notification";
+import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import {
   getNetworkInfo,
@@ -21,7 +21,9 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { stakeAmount } from "@src/screens/staking/lib/staking_sdk/operations";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
+import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
 
+import { displayGenericError } from "../../lib/error";
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -94,7 +96,7 @@ const StakingModal = () => {
           <div className={styles.row}>
             <Label className={styles.apy}>
               <IconInfoCircle
-                data-tooltip-content="@TODO"
+                data-tooltip-content={t("definitions.apy")}
                 data-tooltip-id={tooltipId}
               />{" "}
               APY
@@ -160,7 +162,7 @@ const StakingModal = () => {
               const newMemoError = (() => {
                 if (!memo) return "";
 
-                if (memo.length > 256) {
+                if (memo.length > MAX_MEMO) {
                   return t("stakingModal.memoError.tooLongMemo");
                 }
               })() as string;
@@ -201,10 +203,14 @@ const StakingModal = () => {
               amount,
               memo,
             })
-              .then((success) => {
+              .then(async (success) => {
                 if (!success) return;
 
-                syncAccountData(setStakingState, stakingState, selectedAccount);
+                await syncAccountData(
+                  setStakingState,
+                  stakingState,
+                  selectedAccount,
+                );
 
                 setSelectedAccount(setStakingState, null);
 
@@ -213,9 +219,7 @@ const StakingModal = () => {
                 });
               })
               .catch(() => {
-                toastError({
-                  title: "Error", // @TODO
-                });
+                displayGenericError(t);
               })
               .finally(() => {
                 setIsLoading(false);

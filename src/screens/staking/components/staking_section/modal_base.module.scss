@@ -46,6 +46,10 @@
     outline: none;
     padding: 0;
   }
+
+  @include down-tablet {
+    margin-top: spacing(2);
+  }
 }
 
 .modal {

@@ -143,6 +143,7 @@ const PopOver = ({
       />
       <div>{networkImage}</div>
       {/* @TODO: This should be the aggreage of all accounts in all wallets */}
+      {network.name && <div className={styles.name}>{network.name}</div>}
       {!!stakedData && (
         <div className={styles.stakingData}>
           {stakedData && (
@@ -163,7 +164,7 @@ const PopOver = ({
             <div>
               <h6 className={styles.label}>
                 <IconInfoCircle
-                  data-tooltip-content="@TODO"
+                  data-tooltip-content={t("definitions.votingPower")}
                   data-tooltip-id={tooltipId}
                 />
                 {network.denom?.toUpperCase()}
@@ -185,7 +186,10 @@ const PopOver = ({
               apy > 0 && (
                 <div>
                   <h6 className={styles.label}>
-                    <IconInfoCircle />
+                    <IconInfoCircle
+                      data-tooltip-content={t("definitions.apy")}
+                      data-tooltip-id={tooltipId}
+                    />
                     APY
                   </h6>
                   <span className={styles.value}>{`${Math.round(
@@ -198,7 +202,10 @@ const PopOver = ({
           {!!networkSummary.TVL && (
             <div>
               <h6 className={styles.label}>
-                <IconInfoCircle />
+                <IconInfoCircle
+                  data-tooltip-content={t("definitions.tvl")}
+                  data-tooltip-id={tooltipId}
+                />
                 TVL
               </h6>
               <span className={styles.value}>

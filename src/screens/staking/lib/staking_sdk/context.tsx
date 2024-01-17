@@ -13,10 +13,10 @@ import type {
   State,
   TStakingContext,
   Wallet,
-  WalletId,
 } from "./types";
 import {
   ENABLE_TESTNETS,
+  WalletId,
   defaultState,
   networksWithStaking,
   testnetNetworks,
@@ -186,7 +186,34 @@ export const syncAccountData = async (
   });
 };
 
-export const disconnectAllWallets = async (setState: SetState) => {
+export const disconnectAllWallets = async (
+  setState: SetState,
+  state: State,
+) => {
+  const wallets = Object.keys(state.wallets);
+
+  await Promise.all(
+    wallets.map(async (wallet) => {
+      switch (wallet) {
+        case WalletId.Keplr: {
+          const networks = Object.keys(
+            state.wallets[WalletId.Keplr]?.networks || {},
+          );
+
+          await window.keplr?.disable(networks).catch((err) => {
+            // eslint-disable-next-line no-console
+            console.log("Disable Error", err);
+          });
+
+          return;
+        }
+
+        default:
+          return Promise.resolve();
+      }
+    }),
+  );
+
   setState({
     wallets: {},
   });

@@ -174,7 +174,10 @@ const StakingWidgetContainer = () => {
   useInitStaking();
 
   const onDisconnectWallets = useCallback(async () => {
-    await disconnectAllWallets(stakingRef.current.setState);
+    await disconnectAllWallets(
+      stakingRef.current.setState,
+      stakingRef.current.state,
+    );
   }, [stakingRef]);
 
   const onConnectWallet = useCallback(() => {
