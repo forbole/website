@@ -24,6 +24,7 @@ import {
 import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
 import { getEmptyCoin, sumCoins } from "./utils/coins";
 import { clearConnectedWallets } from "./utils/storage";
+import { useWalletsListeners } from "./wallet_operations";
 
 const baseContext: TStakingContext = {
   setState: () => {},
@@ -51,6 +52,8 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
       state,
     };
   }, [state, setState]);
+
+  useWalletsListeners(contextValue);
 
   return (
     <StakingContext.Provider value={contextValue}>
@@ -198,7 +201,7 @@ export const disconnectAllWallets = async (
   setState: SetState,
   state: State,
 ) => {
-  const wallets = Object.keys(state.wallets);
+  const wallets = Object.keys(state.wallets) as WalletId[];
 
   await Promise.all(
     wallets.map(async (wallet) => {
@@ -217,7 +220,7 @@ export const disconnectAllWallets = async (
         }
 
         default:
-          return Promise.resolve();
+          wallet satisfies never;
       }
     }),
   );

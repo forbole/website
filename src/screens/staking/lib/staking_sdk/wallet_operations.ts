@@ -13,12 +13,23 @@ import {
   MsgDelegate,
   MsgUndelegate,
 } from "cosmjs-types/cosmos/staking/v1beta1/tx";
+import useTranslation from "next-translate/useTranslation";
+import { useEffect } from "react";
+
+import { toastSuccess } from "@src/components/notification";
 
 import { setUserWallet } from "./context";
 import { stakingClient } from "./staking_client";
-import type { Account, ChainId, SetState, State, Wallet } from "./types";
+import type {
+  Account,
+  ChainId,
+  SetState,
+  State,
+  TStakingContext,
+  Wallet,
+} from "./types";
 import { WalletId, keplrNetworks, networksWithStaking } from "./types";
-import { addToConnectedWallets } from "./utils/storage";
+import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 const handleKeplrSignError = (err: Error) => {
   console.log("debug: index.tsx: err", err);
@@ -214,7 +225,7 @@ export const tryToConnectWallets = async (
     if (window.keplr) {
       const chainsToConnect = Array.from(keplrNetworks);
 
-      await window.keplr?.enable(chainsToConnect);
+      await window.keplr.enable(chainsToConnect);
 
       try {
         const handleError = (err: unknown) => {
@@ -298,4 +309,30 @@ export const tryToConnectWallets = async (
       }
     }
   }
+};
+
+export const useWalletsListeners = (contextValue: TStakingContext) => {
+  const { t } = useTranslation("staking");
+
+  useEffect(() => {
+    const listener = () => {
+      const connectedWallets = getConnectedWallets();
+
+      if (connectedWallets.includes(WalletId.Keplr)) {
+        toastSuccess({
+          title: t("keplrWalletUpdate"),
+        });
+
+        tryToConnectWallets(contextValue.state, contextValue.setState, [
+          WalletId.Keplr,
+        ]);
+      }
+    };
+
+    window.addEventListener("keplr_keystorechange", listener);
+
+    return () => {
+      window.removeEventListener("keplr_keystorechange", listener);
+    };
+  }, [contextValue, t]);
 };

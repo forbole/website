@@ -98,7 +98,7 @@ const UnstakingModal = () => {
         <div className={styles.row}>
           <Label>{t("unstakingModal.amount.label")}</Label>
           <div>
-            {!!account?.info && (
+            {!!account?.info?.delegation?.amount && (
               <>
                 <Label>{t("unstakingModal.available")}</Label>:{" "}
                 <span className={styles.amount}>
@@ -109,6 +109,7 @@ const UnstakingModal = () => {
           </div>
         </div>
         <FormInput
+          fullWidth
           onBlur={() => {
             const newAmountError = (() => {
               if (!isValidAmount) {

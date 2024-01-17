@@ -4,7 +4,8 @@ import type { Account } from "../types";
 import { resolveCoin } from "./coins";
 
 export const accountHasDelegations = (account?: Account): boolean =>
-  !!account?.info?.delegation;
+  !!account?.info?.delegation &&
+  Object.keys(account.info.delegation).length > 0;
 
 export const filterUniqueAddresses = () => {
   const usedAddresses = new Set<string>();

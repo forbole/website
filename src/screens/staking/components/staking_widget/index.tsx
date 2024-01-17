@@ -59,7 +59,7 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
   return (
     <>
       <div className={styles.walletRow} key={walletId}>
-        <WalletIcon />
+        <WalletIcon className={styles.walletIcon} />
         <div className={styles.walletContent}>
           <div>{walletUserName}</div>
           <div className={styles.subtitle}>{walletName}</div>

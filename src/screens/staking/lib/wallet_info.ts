@@ -5,7 +5,7 @@ import IconKeplr from "@src/components/icons/keplr.svg";
 
 import { WalletId } from "./staking_sdk/types";
 
-export const walletsIcons: Record<WalletId, FC> = {
+export const walletsIcons: Record<WalletId, FC<{ className?: string }>> = {
   [WalletId.Keplr]: IconKeplr,
 };
 
