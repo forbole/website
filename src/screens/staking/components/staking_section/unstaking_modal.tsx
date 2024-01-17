@@ -22,7 +22,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
 import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
-import { getAccountResolvedDelegation } from "@src/screens/staking/lib/staking_sdk/utils";
+import { getAccountResolvedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { unstake } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import Label from "./label";

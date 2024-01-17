@@ -1,5 +1,3 @@
-// @TODO
-
 /* eslint-disable no-console */
 import type {
   Coin,
@@ -16,12 +14,11 @@ import {
   MsgUndelegate,
 } from "cosmjs-types/cosmos/staking/v1beta1/tx";
 
-import { stakingClient } from "@src/screens/staking/components/staking_section/utils/staking_client";
-
 import { setUserWallet } from "./context";
+import { stakingClient } from "./staking_client";
 import type { Account, ChainId, SetState, State, Wallet } from "./types";
 import { WalletId, keplrNetworks, networksWithStaking } from "./types";
-import { addToConnectedWallets } from "./utils";
+import { addToConnectedWallets } from "./utils/storage";
 
 const handleKeplrSignError = (err: Error) => {
   console.log("debug: index.tsx: err", err);

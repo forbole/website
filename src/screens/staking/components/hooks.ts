@@ -5,7 +5,7 @@ import {
   fetchNetworksInfo,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { getConnectedWallets } from "@src/screens/staking/lib/staking_sdk/utils";
+import { getConnectedWallets } from "@src/screens/staking/lib/staking_sdk/utils/storage";
 import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { IS_E2E } from "@src/utils/e2e";
 

@@ -3,8 +3,7 @@ import { identity } from "ramda";
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useMemo, useRef, useState } from "react";
 
-import { stakingClient } from "../../components/staking_section/utils/staking_client";
-import { sortAccounts } from "./formatters";
+import { stakingClient } from "./staking_client";
 import type {
   Account,
   ChainId,
@@ -22,7 +21,9 @@ import {
   testnetNetworks,
   walletsSupported,
 } from "./types";
-import { clearConnectedWallets, getEmptyCoin, sumCoins } from "./utils";
+import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
+import { getEmptyCoin, sumCoins } from "./utils/coins";
+import { clearConnectedWallets } from "./utils/storage";
 
 const baseContext: TStakingContext = {
   setState: () => {},
@@ -275,17 +276,12 @@ export const getStakedDataForNetwork = (
     return null;
   }
 
-  const usedAddresses = new Set<string>();
-
-  return accountsForNetwork.reduce((acc, account) => {
-    if (usedAddresses.has(account.address)) {
-      return acc;
-    }
-
-    usedAddresses.add(account.address);
-
-    return sumCoins(acc, account.info?.delegation);
-  }, getEmptyCoin());
+  return accountsForNetwork
+    .filter(filterUniqueAddresses())
+    .reduce(
+      (acc, account) => sumCoins(acc, account.info?.delegation),
+      getEmptyCoin(),
+    );
 };
 
 export const getClaimableRewardsForNetwork = (
@@ -298,18 +294,14 @@ export const getClaimableRewardsForNetwork = (
     return null;
   }
 
-  const usedAddresses = new Set<string>();
-
-  return accountsForNetwork.reduce((acc, account) => {
-    if (usedAddresses.has(account.address)) {
-      return acc;
-    }
-
-    usedAddresses.add(account.address);
-
-    return (Array.isArray(account.rewards) ? account.rewards : []).reduce(
-      (acc2, reward) => sumCoins(acc2, reward),
-      acc,
+  return accountsForNetwork
+    .filter(filterUniqueAddresses())
+    .reduce(
+      (acc, account) =>
+        (Array.isArray(account.rewards) ? account.rewards : []).reduce(
+          (acc2, reward) => sumCoins(acc2, reward),
+          acc,
+        ),
+      getEmptyCoin(),
     );
-  }, getEmptyCoin());
 };

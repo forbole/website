@@ -6,15 +6,17 @@ import {
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { sortAccounts } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type {
   Account,
   ChainId,
 } from "@src/screens/staking/lib/staking_sdk/types";
 import { chainIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/types";
+import {
+  getAccountResolvedBalance,
+  sortAccounts,
+} from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getNetworkInfo } from "@src/utils/network_info";
 
-import { getAccountResolvedBalance } from "../../lib/staking_sdk/utils";
 import * as styles from "./networks_select.module.scss";
 
 const ITEM_HEIGHT = 48;

@@ -1,8 +1,9 @@
+import { networks } from "@src/utils/network_info";
+
 import type {
   GetAddressInfoResponse,
   GetRewardsResponse,
-} from "@src/screens/staking/components/staking_section/utils/staking_client";
-import { networks } from "@src/utils/network_info";
+} from "./staking_client";
 
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";

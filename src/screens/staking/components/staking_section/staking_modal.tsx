@@ -8,6 +8,7 @@ import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
+import { displayGenericError } from "@src/screens/staking/lib/error";
 import {
   getNetworkInfo,
   getSelectedAccount,
@@ -21,10 +22,9 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
 import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
+import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { stakeAmount } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
-import { displayGenericError } from "../../lib/error";
-import { getAccountResolvedBalance } from "../../lib/staking_sdk/utils";
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
 import NetworksSelect from "./networks_select";

@@ -2,56 +2,9 @@ import type { Coin } from "@cosmjs/stargate";
 
 import type { Network } from "@src/utils/network_info";
 
-import type { Account, NetworkInfo } from "./types";
+import type { NetworkInfo } from "./types";
 import { networkNameToChainId } from "./types";
-
-const uatomExp = 6;
-const utiaExp = 6;
-const adydxExp = 18;
-
-type Denom = "adydx" | "uatom" | "utia";
-
-export const resolveCoin = (coin: Coin): Coin => {
-  const num = Number(coin.amount);
-
-  if (Number.isNaN(num)) {
-    return coin;
-  }
-
-  const compared = coin.denom?.toLowerCase() as Denom;
-
-  switch (compared) {
-    case "uatom": {
-      return {
-        amount: (num / 10 ** uatomExp).toString(),
-        denom: "ATOM",
-      };
-    }
-
-    case "utia": {
-      return {
-        amount: (num / 10 ** utiaExp).toString(),
-        denom: "TIA",
-      };
-    }
-
-    case "adydx": {
-      return {
-        amount: (num / 10 ** adydxExp).toString(),
-        denom: "DYDX",
-      };
-    }
-
-    default: {
-      compared satisfies never;
-    }
-  }
-
-  return {
-    ...coin,
-    denom: coin.denom?.toUpperCase(),
-  };
-};
+import { resolveCoin } from "./utils/coins";
 
 export const resolveDenom = (denom: string): string =>
   resolveCoin({ amount: "0", denom }).denom;
@@ -76,14 +29,6 @@ export const formatDenom = (coin: Coin): string => {
     });
 
   return `${formatNum(num)} ${resolvedCoin.denom}`;
-};
-
-export const sortAccounts = (a: Account, b: Account) => {
-  if (a.chainId !== b.chainId) {
-    return a.chainId.localeCompare(b.chainId);
-  }
-
-  return a.address.localeCompare(b.address);
 };
 
 export const sortNetworks = (a: Network, b: Network) => {

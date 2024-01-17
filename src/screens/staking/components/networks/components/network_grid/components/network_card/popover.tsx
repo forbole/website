@@ -33,7 +33,7 @@ import type {
   Account,
   NetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/types";
-import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils";
+import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network } from "@src/utils/network_info";
 
@@ -141,7 +141,6 @@ const PopOver = ({
         onClickCapture={() => setShowPopover("")}
       />
       <div>{networkImage}</div>
-      {/* @TODO: This should be the aggreage of all accounts in all wallets */}
       {network.name && <div className={styles.name}>{network.name}</div>}
       {(!!stakedData || !!claimableRewards) && (
         <div className={styles.stakingData}>
