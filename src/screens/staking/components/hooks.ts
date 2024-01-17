@@ -6,9 +6,9 @@ import {
   fetchNetworksInfo,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/operations";
 import { ChainId } from "@src/screens/staking/lib/staking_sdk/types";
 import { getConnectedWallets } from "@src/screens/staking/lib/staking_sdk/utils";
+import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { IS_E2E } from "@src/utils/e2e";
 
 export const useCounter = (targetValue: unknown) => {

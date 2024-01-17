@@ -256,7 +256,7 @@ const PopOver = ({
             )}
           </>
         )}
-        {isStakingSupported && accountsWithDelegations?.length && (
+        {isStakingSupported && !!accountsWithDelegations?.length && (
           <EmptyButton
             onClick={() => {
               setSelectedAccount(

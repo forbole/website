@@ -14,7 +14,7 @@ import { formatDenom } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   claimRewards,
   getClaimRewardsFee,
-} from "@src/screens/staking/lib/staking_sdk/operations";
+} from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import * as styles from "./claim_rewards_modal.module.scss";
 import ModalBase from "./modal_base";

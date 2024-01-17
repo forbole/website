@@ -19,9 +19,9 @@ import {
   formatDenom,
   resolveDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
-import { stakeAmount } from "@src/screens/staking/lib/staking_sdk/operations";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
 import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
+import { stakeAmount } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import { displayGenericError } from "../../lib/error";
 import Label from "./label";

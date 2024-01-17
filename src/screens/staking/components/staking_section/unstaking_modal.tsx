@@ -20,9 +20,9 @@ import {
   getUnbondingTimeForNetwork,
   resolveDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
-import { unstake } from "@src/screens/staking/lib/staking_sdk/operations";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
 import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
+import { unstake } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
