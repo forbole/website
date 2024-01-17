@@ -71,7 +71,7 @@
 
 .tr1 {
   color: $color-red-unnamed;
-  text-shadow: 0 0 20px #fff;
+  text-shadow: 0 0 20px $color-white;
 
   @include down-laptop {
     font-size: 24px;
@@ -125,7 +125,7 @@
 .tr5 {
   color: $color-red-unnamed;
   display: inline;
-  text-shadow: 0 0 20px #fff;
+  text-shadow: 0 0 20px $color-white;
 
   @include down-laptop {
     font-size: 24px;

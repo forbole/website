@@ -92,12 +92,12 @@ $form-shadow:
 }
 
 .listItem {
-  background: #fff;
+  background: $color-white;
   border-bottom: 2px solid rgba(96, 60, 238, 0.28);
 }
 
 .listItemInput {
-  background: #fff;
+  background: $color-white;
   border-bottom: 2px solid rgba(96, 60, 238, 0.28);
   width: auto;
 

@@ -7,7 +7,7 @@
   max-width: 100%;
 
   @include up-laptop {
-    background: $color-primary-light;
+    background: $color-white;
     border-radius: spacing(3);
     box-shadow: $box-shadow-variant-1;
     max-width: 70%;
@@ -78,7 +78,7 @@
   }
 
   li {
-    border-left: 1px solid #202a43;
+    border-left: 1px solid $color-forbole-blue-1;
     color: $color-forbole-blue-1;
     counter-increment: my-awesome-counter;
     font-size: 16px;
@@ -88,7 +88,7 @@
     text-align: center;
 
     a {
-      color: #007fff;
+      color: $color-blue-1;
       transition: 0.3s;
 
       &:hover {
@@ -270,10 +270,10 @@
     }
 
     code {
-      background: #f0f6f9;
+      background: $color-background-grey;
       border: #e1eaef 1px solid;
       border-radius: 0.25em;
-      color: #dc0050;
+      color: $color-pink-1;
       font-size: 0.9em;
       font-weight: 400 !important;
       line-height: 1em;

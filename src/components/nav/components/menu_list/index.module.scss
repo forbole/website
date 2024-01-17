@@ -1,7 +1,7 @@
 @import "src/styles/sass.scss";
 
 .list {
-  background: $color-primary-light;
+  background: $color-white;
   min-width: 100%;
   width: max-content;
 
@@ -12,7 +12,7 @@
 
 .menuItem {
   align-items: center;
-  background: $color-primary-light;
+  background: $color-white;
   border: none;
   color: $color-indigo-2;
   cursor: pointer;
@@ -31,7 +31,7 @@
 
   &:hover {
     background: linear-gradient(to right, #623df5, $color-indigo-2);
-    color: $color-primary-light;
+    color: $color-white;
   }
 
   @include up-laptop {

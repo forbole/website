@@ -28,9 +28,9 @@ $h3-shadow:
 
 $content-bg: linear-gradient(
   179.61deg,
-  #fff 0.33%,
+  $color-white 0.33%,
   rgba(255, 255, 255, 0) 34.99%,
-  #fff 99.66%
+  $color-white 99.66%
 );
 
 .content {

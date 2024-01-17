@@ -9,7 +9,7 @@
   z-index: 1;
 
   &.red {
-    color: $color-primary-light;
+    color: $color-white;
   }
 
   @include down-laptop {
