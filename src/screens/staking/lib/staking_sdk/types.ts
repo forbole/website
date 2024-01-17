@@ -17,7 +17,7 @@ export enum WalletId {
 // For now these values match the id in the chain registry:
 // - https://github.com/cosmos/chain-registry
 // - https://github.com/cosmos/chain-registry/tree/master/testnets
-export enum ChainId {
+export enum NetworkId {
   Celestia = "celestia",
   CelestiaTestnet = "mocha-4",
   CosmosHub = "cosmoshub",
@@ -26,50 +26,50 @@ export enum ChainId {
 }
 
 export const keplrNetworks = new Set([
-  ChainId.CosmosHubTestnet,
-  ChainId.CelestiaTestnet,
-  ChainId.CosmosHub,
-  ChainId.Celestia,
-  ChainId.DyDx,
+  NetworkId.CosmosHubTestnet,
+  NetworkId.CelestiaTestnet,
+  NetworkId.CosmosHub,
+  NetworkId.Celestia,
+  NetworkId.DyDx,
 ]);
 
 export const networksWithStaking = new Set([
-  ChainId.CosmosHubTestnet,
-  ChainId.CelestiaTestnet,
-  ChainId.CosmosHub,
-  ChainId.Celestia,
-  ChainId.DyDx,
+  NetworkId.CosmosHubTestnet,
+  NetworkId.CelestiaTestnet,
+  NetworkId.CosmosHub,
+  NetworkId.Celestia,
+  NetworkId.DyDx,
 ]);
 
 export const walletsSupported = new Set([WalletId.Keplr]);
 
 export const testnetNetworks = new Set([
-  ChainId.CosmosHubTestnet,
-  ChainId.CelestiaTestnet,
+  NetworkId.CosmosHubTestnet,
+  NetworkId.CelestiaTestnet,
 ]);
 
-export const networkNameToChainId: Record<string, ChainId> = {
+export const networkNameToNetworkId: Record<string, NetworkId> = {
   [networks.celestia.graphql]: ENABLE_TESTNETS
-    ? ChainId.CelestiaTestnet
-    : ChainId.Celestia,
+    ? NetworkId.CelestiaTestnet
+    : NetworkId.Celestia,
   [networks.cosmos.graphql]: ENABLE_TESTNETS
-    ? ChainId.CosmosHubTestnet
-    : ChainId.CosmosHub,
-  [networks.dydx.graphql]: ChainId.DyDx,
+    ? NetworkId.CosmosHubTestnet
+    : NetworkId.CosmosHub,
+  [networks.dydx.graphql]: NetworkId.DyDx,
 };
 
-export const chainIdToNetworkKey: Record<ChainId, string> = {
-  [ChainId.Celestia]: "celestia",
-  [ChainId.CelestiaTestnet]: "celestia-testnet",
-  [ChainId.CosmosHub]: "cosmos",
-  [ChainId.CosmosHubTestnet]: "cosmos-testnet",
-  [ChainId.DyDx]: "dydx",
+export const networkIdToNetworkKey: Record<NetworkId, string> = {
+  [NetworkId.Celestia]: "celestia",
+  [NetworkId.CelestiaTestnet]: "celestia-testnet",
+  [NetworkId.CosmosHub]: "cosmos",
+  [NetworkId.CosmosHubTestnet]: "cosmos-testnet",
+  [NetworkId.DyDx]: "dydx",
 };
 
 export type Account = {
   address: string;
-  chainId: ChainId;
   info?: GetAddressInfoResponse;
+  networkId: NetworkId;
   rewards?: GetRewardsResponse;
   wallet: WalletId;
 };
@@ -78,13 +78,15 @@ type StakeAction = "claim_rewards" | "connect_wallet" | "stake" | "unstake";
 
 export type Wallet = {
   name?: string;
-  networks: { [key in ChainId]?: { accounts: Account[]; chainId: ChainId } };
+  networks: {
+    [key in NetworkId]?: { accounts: Account[]; networkId: NetworkId };
+  };
   wallet: WalletId;
 };
 
 type SelectedAccount = {
   address: string;
-  chainId: ChainId;
+  networkId: NetworkId;
   wallet: WalletId;
 };
 
@@ -96,7 +98,7 @@ export type NetworkInfo = {
 
 export type State = {
   hasInit: boolean;
-  networksInfo: { [key in ChainId]?: NetworkInfo };
+  networksInfo: { [key in NetworkId]?: NetworkInfo };
   selectedAccount: null | SelectedAccount;
   selectedAction: null | StakeAction;
   wallets: { [key in WalletId]?: Wallet };

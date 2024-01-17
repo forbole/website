@@ -26,7 +26,7 @@ import {
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   WalletId,
-  networkNameToChainId,
+  networkNameToNetworkId,
   networksWithStaking,
 } from "@src/screens/staking/lib/staking_sdk/types";
 import type {
@@ -57,13 +57,13 @@ const PopOver = ({
   networkSummary,
   setShowPopover,
 }: PopOverProps) => {
-  const networkChainId = networkNameToChainId[network.graphql];
-  const stakingChainId = networkNameToChainId[network.graphql];
+  const networkNetworkId = networkNameToNetworkId[network.graphql];
+  const stakingNetworkId = networkNameToNetworkId[network.graphql];
 
   const stakingRef = useStakingRef();
 
-  const isStakingSupported = networkChainId
-    ? networksWithStaking.has(networkChainId)
+  const isStakingSupported = networkNetworkId
+    ? networksWithStaking.has(networkNetworkId)
     : false;
 
   const { t } = useTranslation("staking");
@@ -77,16 +77,16 @@ const PopOver = ({
   const { hasInit } = stakingState;
 
   useEffect(() => {
-    if (stakingChainId) {
+    if (stakingNetworkId) {
       getNetworkStakingInfo(
         stakingRef.current.setState,
         stakingRef.current.state,
-        stakingChainId,
+        stakingNetworkId,
       ).then((newInfo) => {
         setStakingNetworkInfo(newInfo);
       });
     }
-  }, [stakingChainId, stakingRef]);
+  }, [stakingNetworkId, stakingRef]);
 
   const { accounts, claimableRewards, stakedData } = useMemo(() => {
     const wallet = WalletId.Keplr;
@@ -97,8 +97,8 @@ const PopOver = ({
       stakedData: "",
     };
 
-    if (!!stakingChainId && !!wallet) {
-      result.accounts = getAccountsForNetwork(stakingState, stakingChainId);
+    if (!!stakingNetworkId && !!wallet) {
+      result.accounts = getAccountsForNetwork(stakingState, stakingNetworkId);
 
       if (!result.accounts?.length) {
         return result;
@@ -106,7 +106,7 @@ const PopOver = ({
 
       const stakedDataObj = getStakedDataForNetwork(
         stakingRef.current.state,
-        stakingChainId,
+        stakingNetworkId,
       );
 
       if (stakedDataObj) {
@@ -115,7 +115,7 @@ const PopOver = ({
 
       const claimableRewardsObj = getClaimableRewardsForNetwork(
         stakingRef.current.state,
-        stakingChainId,
+        stakingNetworkId,
       );
 
       if (claimableRewardsObj) {
@@ -124,7 +124,7 @@ const PopOver = ({
     }
 
     return result;
-  }, [stakingState, stakingChainId, stakingRef]);
+  }, [stakingState, stakingNetworkId, stakingRef]);
 
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
 
@@ -176,7 +176,7 @@ const PopOver = ({
           )}
           {(() => {
             const apy = (() => {
-              if (stakingChainId) return stakingNetworkInfo?.apy;
+              if (stakingNetworkId) return stakingNetworkInfo?.apy;
 
               return networkSummary.APY;
             })();

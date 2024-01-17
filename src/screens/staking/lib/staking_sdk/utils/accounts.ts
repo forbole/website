@@ -50,8 +50,8 @@ export const getAccountResolvedBalance = (account?: Account): ResolvedInfo => {
 };
 
 export const sortAccounts = (a: Account, b: Account) => {
-  if (a.chainId !== b.chainId) {
-    return a.chainId.localeCompare(b.chainId);
+  if (a.networkId !== b.networkId) {
+    return a.networkId.localeCompare(b.networkId);
   }
 
   return a.address.localeCompare(b.address);

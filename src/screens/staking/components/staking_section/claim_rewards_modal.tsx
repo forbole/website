@@ -31,17 +31,17 @@ const ClaimRewardsModal = () => {
 
   const { selectedAccount, selectedAction } = stakingState;
   const isOpen = !!selectedAccount && selectedAction === "claim_rewards";
-  const { address, chainId } = selectedAccount || {};
+  const { address, networkId } = selectedAccount || {};
 
   useEffect(() => {
-    if (isOpen && chainId && address) {
+    if (isOpen && networkId && address) {
       setGasFee(null);
 
-      getClaimRewardsFee({ address, chainId }).then((fee) => {
+      getClaimRewardsFee({ address, networkId }).then((fee) => {
         setGasFee(fee);
       });
     }
-  }, [isOpen, chainId, address]);
+  }, [isOpen, networkId, address]);
 
   return (
     <ModalBase
@@ -60,15 +60,15 @@ const ClaimRewardsModal = () => {
           </div>
         )}
         <HighlightButton
-          disabled={!address || !chainId || isLoading}
+          disabled={!address || !networkId || isLoading}
           onClick={() => {
-            if (!address || !chainId || isLoading) return;
+            if (!address || !networkId || isLoading) return;
 
             setIsLoading(true);
 
             claimRewards({
               address,
-              chainId,
+              networkId,
             })
               .then((claimed) => {
                 if (claimed) {

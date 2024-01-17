@@ -27,7 +27,7 @@
 //   fetchNetworksInfo,
 // } from "@src/screens/staking/lib/staking_sdk/context";
 // import {
-//   ChainId,
+//   NetworkId,
 //   ENABLE_TESTNETS,
 // } from "@src/screens/staking/lib/staking_sdk/types";
 
@@ -37,7 +37,7 @@
 // import UnstakingModal from "./unstaking_modal";
 // import { stakingClient } from "./utils/staking_client";
 
-// const defaultChainId = ChainId.CosmosHubTestnet;
+// const defaultNetworkId = NetworkId.CosmosHubTestnet;
 
 // interface LeapWindow {
 //   leap: any;
@@ -77,12 +77,12 @@
 
 //     if (status === "Done" && client) {
 //       (async () => {
-//         const chainsToEnable = [ChainId.CosmosHub, ChainId.Celestia];
+//         const chainsToEnable = [NetworkId.CosmosHub, NetworkId.Celestia];
 
 //         if (ENABLE_TESTNETS) {
 //           chainsToEnable.push(
-//             ChainId.CosmosHubTestnet,
-//             ChainId.CelestiaTestnet,
+//             NetworkId.CosmosHubTestnet,
+//             NetworkId.CelestiaTestnet,
 //           );
 //         }
 
@@ -95,10 +95,10 @@
 //   //   const { client, status } = leapExtension;
 
 //   //   if (status === "Done" && client) {
-//   //     client.enable?.([chainId]);
+//   //     client.enable?.([networkId]);
 
 //   //     client
-//   //       .getAccount?.(chainId)
+//   //       .getAccount?.(networkId)
 //   //       .then((account) => console.log("WALLET Comp Leap", account))
 //   //       .catch((error) => console.log("WALLET Comp Leap error", error));
 //   //   }
@@ -123,7 +123,7 @@
 //       );
 
 //       const newChainInfo = chains.find(
-//         (chain) => chain.chain_id === ChainId.CosmosHubTestnet,
+//         (chain) => chain.chain_id === NetworkId.CosmosHubTestnet,
 //       );
 
 //       if (newChainInfo) {
@@ -179,14 +179,14 @@
 //   };
 
 //   const getKey = async () => {
-//     const key = await window.keplr?.getKey(defaultChainId);
+//     const key = await window.keplr?.getKey(defaultNetworkId);
 
 //     console.log("debug: index.tsx: key", key);
 //   };
 
 //   const claimRewards = async () => {
 //     const offlineSigner =
-//       window.keplr?.getOfflineSignerOnlyAmino(defaultChainId);
+//       window.keplr?.getOfflineSignerOnlyAmino(defaultNetworkId);
 
 //     if (!offlineSigner) {
 //       throw new Error("Can't get offline signer");
@@ -214,7 +214,7 @@
 
 //   const delegateTokens = async () => {
 //     const offlineSigner =
-//       window.keplr?.getOfflineSignerOnlyAmino(defaultChainId);
+//       window.keplr?.getOfflineSignerOnlyAmino(defaultNetworkId);
 
 //     if (!offlineSigner) {
 //       throw new Error("Can't get offline signer");
@@ -295,7 +295,7 @@
 //   };
 
 //   const runKeplrUtils = () => {
-//     window.keplr?.getKeysSettled([defaultChainId]).then((keys) => {
+//     window.keplr?.getKeysSettled([defaultNetworkId]).then((keys) => {
 //       console.log("debug: index.tsx: getKeysSettled", keys);
 //     });
 
@@ -347,7 +347,7 @@
 //             <h1>With API</h1>
 //             <Button
 //               onClick={() => {
-//                 stakingClient.getStakingInfo(defaultChainId).then((info) => {
+//                 stakingClient.getStakingInfo(defaultNetworkId).then((info) => {
 //                   console.log("debug: index.tsx: info", info);
 //                 });
 //               }}
@@ -358,7 +358,7 @@
 //               <Button
 //                 onClick={() => {
 //                   stakingClient
-//                     .getAddressInfo(defaultChainId, address)
+//                     .getAddressInfo(defaultNetworkId, address)
 //                     .then((info) => {
 //                       console.log("debug: index.tsx: info", info);
 //                     });
@@ -371,7 +371,7 @@
 //               <Button
 //                 onClick={async () => {
 //                   stakingClient
-//                     .stake(defaultChainId, address, "1")
+//                     .stake(defaultNetworkId, address, "1")
 //                     .then(async (info) => {
 //                       const [message] = info.tx.body.messages;
 
@@ -398,7 +398,7 @@
 //                       console.log("debug: index.tsx: info", info);
 
 //                       const offlineSigner =
-//                         window.keplr?.getOfflineSignerOnlyAmino(defaultChainId);
+//                         window.keplr?.getOfflineSignerOnlyAmino(defaultNetworkId);
 
 //                       if (!offlineSigner) {
 //                         throw new Error("Can't get offline signer");
@@ -429,7 +429,7 @@
 //                 onClick={async () => {
 //                   if (Math.random() > 1) {
 //                     const rewards = await stakingClient.getRewardsInfo(
-//                       defaultChainId,
+//                       defaultNetworkId,
 //                       address,
 //                     );
 

@@ -7,8 +7,8 @@ import {
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import type { ChainId } from "@src/screens/staking/lib/staking_sdk/types";
-import { chainIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/types";
+import type { NetworkId } from "@src/screens/staking/lib/staking_sdk/types";
+import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/types";
 import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getNetworkInfo } from "@src/utils/network_info";
 
@@ -30,13 +30,13 @@ const MenuProps = {
 
 type NetworkItemProps = {
   denom: string;
-  value: ChainId;
+  value: NetworkId;
 };
 
 const SEPARATOR = "____";
 
 const NetworkItem = ({ denom, value }: NetworkItemProps) => {
-  const networkName = chainIdToNetworkKey[value];
+  const networkName = networkIdToNetworkKey[value];
   const networkInfo = networkName ? getNetworkInfo(networkName) : "";
 
   const imgSrc = networkInfo ? networkInfo.image : "";
@@ -69,22 +69,23 @@ const NetworksSelect = ({ variant }: Props) => {
   const allAccounts = getWalletAccounts(stakingState, selectedAccount.wallet);
 
   const handleChange = (event: any) => {
-    const [address, chainId] = event.target.value.split(SEPARATOR);
+    const [address, networkId] = event.target.value.split(SEPARATOR);
 
     setSelectedAccount(
       setStakingState,
       stakingRef.current.state.selectedAction,
       {
         address,
-        chainId,
+        networkId,
         wallet: selectedAccount.wallet,
       },
     );
   };
 
-  const selectedItem = [selectedAccount.address, selectedAccount.chainId].join(
-    SEPARATOR,
-  );
+  const selectedItem = [
+    selectedAccount.address,
+    selectedAccount.networkId,
+  ].join(SEPARATOR);
 
   return (
     <div className={styles.control}>
@@ -96,14 +97,17 @@ const NetworksSelect = ({ variant }: Props) => {
         value={selectedItem}
       >
         {allAccounts.map((account) => {
-          const item = [account.address, account.chainId].join(SEPARATOR);
+          const item = [account.address, account.networkId].join(SEPARATOR);
           const balance = getAccountResolvedBalance(account);
 
           if (!balance) return null;
 
           return (
             <MenuItem key={item} value={item}>
-              <NetworkItem denom={balance.coin.denom} value={account.chainId} />
+              <NetworkItem
+                denom={balance.coin.denom}
+                value={account.networkId}
+              />
             </MenuItem>
           );
         })}

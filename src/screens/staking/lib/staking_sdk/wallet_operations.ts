@@ -22,7 +22,7 @@ import { setUserWallet } from "./context";
 import { stakingClient } from "./staking_client";
 import type {
   Account,
-  ChainId,
+  NetworkId,
   SetState,
   State,
   TStakingContext,
@@ -61,13 +61,13 @@ export const stakeAmount = ({
   memo,
 }: StakeOpts): Promise<WalletOperationResult> =>
   stakingClient
-    .stake(account.chainId, account.address, amount)
+    .stake(account.networkId, account.address, amount)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
       if (!message) return { hasError: true, success: false };
 
-      const networkInfo = await stakingClient.getStakingInfo(account.chainId);
+      const networkInfo = await stakingClient.getStakingInfo(account.networkId);
 
       const msg = MsgDelegate.fromPartial({
         amount: message.amount,
@@ -86,7 +86,7 @@ export const stakeAmount = ({
       };
 
       const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
-        account.chainId,
+        account.networkId,
       );
 
       if (!offlineSigner) {
@@ -106,55 +106,59 @@ export const stakeAmount = ({
 
 type ClaimOpts = {
   address: string;
-  chainId: ChainId;
+  networkId: NetworkId;
 };
 
 export const claimRewards = async (
   opts: ClaimOpts,
 ): Promise<WalletOperationResult> =>
-  stakingClient.claimRewards(opts.chainId, opts.address).then(async (info) => {
-    const [message] = info.tx.body.messages;
+  stakingClient
+    .claimRewards(opts.networkId, opts.address)
+    .then(async (info) => {
+      const [message] = info.tx.body.messages;
 
-    if (!message) return { hasError: true, success: false };
+      if (!message) return { hasError: true, success: false };
 
-    const networkInfo = await stakingClient.getStakingInfo(opts.chainId);
+      const networkInfo = await stakingClient.getStakingInfo(opts.networkId);
 
-    const msg = MsgWithdrawDelegatorReward.fromPartial({
-      delegatorAddress: message.delegator_address,
-      validatorAddress: message.validator_address,
+      const msg = MsgWithdrawDelegatorReward.fromPartial({
+        delegatorAddress: message.delegator_address,
+        validatorAddress: message.validator_address,
+      });
+
+      const msgAny: MsgWithdrawDelegatorRewardEncodeObject = {
+        typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
+        value: msg,
+      };
+
+      const fee: StdFee = {
+        amount: info.tx.authInfo.fee.amount,
+        gas: info.tx.authInfo.fee.gas_limit,
+      };
+
+      const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
+        opts.networkId,
+      );
+
+      if (!offlineSigner) {
+        throw new Error("Can't get offline signer");
+      }
+
+      const client = await SigningStargateClient.connectWithSigner(
+        networkInfo.rpc,
+        offlineSigner,
+      );
+
+      return client
+        .signAndBroadcast(opts.address, [msgAny], fee)
+        .then(() => ({ success: true }) as const)
+        .catch(handleKeplrSignError);
     });
-
-    const msgAny: MsgWithdrawDelegatorRewardEncodeObject = {
-      typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
-      value: msg,
-    };
-
-    const fee: StdFee = {
-      amount: info.tx.authInfo.fee.amount,
-      gas: info.tx.authInfo.fee.gas_limit,
-    };
-
-    const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(opts.chainId);
-
-    if (!offlineSigner) {
-      throw new Error("Can't get offline signer");
-    }
-
-    const client = await SigningStargateClient.connectWithSigner(
-      networkInfo.rpc,
-      offlineSigner,
-    );
-
-    return client
-      .signAndBroadcast(opts.address, [msgAny], fee)
-      .then(() => ({ success: true }) as const)
-      .catch(handleKeplrSignError);
-  });
 
 export const getClaimRewardsFee = async (
   opts: ClaimOpts,
 ): Promise<Coin | null> =>
-  stakingClient.claimRewards(opts.chainId, opts.address).then((info) => {
+  stakingClient.claimRewards(opts.networkId, opts.address).then((info) => {
     const [message] = info.tx.body.messages;
 
     if (!message) return null;
@@ -171,14 +175,14 @@ export const unstake = async (
   opts: UnstakeAmount,
 ): Promise<WalletOperationResult> =>
   stakingClient
-    .unstake(opts.account.chainId, opts.account.address, opts.amount)
+    .unstake(opts.account.networkId, opts.account.address, opts.amount)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
       if (!message) return { hasError: true, success: false };
 
       const networkInfo = await stakingClient.getStakingInfo(
-        opts.account.chainId,
+        opts.account.networkId,
       );
 
       const msg = MsgUndelegate.fromPartial({
@@ -198,7 +202,7 @@ export const unstake = async (
       };
 
       const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
-        opts.account.chainId,
+        opts.account.networkId,
       );
 
       if (!offlineSigner) {
@@ -237,14 +241,14 @@ export const tryToConnectWallets = async (
         let walletName = "";
 
         const parseAccounts =
-          (chainId: ChainId) =>
+          (networkId: NetworkId) =>
           (accounts: readonly AccountData[]): Promise<Account[]> =>
             Promise.all(
               accounts.map((account) =>
                 Promise.all([
-                  stakingClient.getAddressInfo(chainId, account.address),
-                  stakingClient.getRewardsInfo(chainId, account.address),
-                  window.keplr!.getKey(chainId),
+                  stakingClient.getAddressInfo(networkId, account.address),
+                  stakingClient.getRewardsInfo(networkId, account.address),
+                  window.keplr!.getKey(networkId),
                 ]).then(([info, rewards, key]) => {
                   if (key?.name) {
                     walletName = key.name;
@@ -252,8 +256,8 @@ export const tryToConnectWallets = async (
 
                   return {
                     address: account.address,
-                    chainId,
                     info,
+                    networkId,
                     rewards,
                     wallet: WalletId.Keplr,
                   };
@@ -272,7 +276,7 @@ export const tryToConnectWallets = async (
 
               return {
                 accounts,
-                chainId: network,
+                networkId: network,
               };
             }
           }),
@@ -287,9 +291,9 @@ export const tryToConnectWallets = async (
           keplrAccounts.reduce(
             (acc, networkObj) => {
               if (networkObj) {
-                acc.networks[networkObj.chainId] = {
+                acc.networks[networkObj.networkId] = {
                   accounts: networkObj.accounts,
-                  chainId: networkObj.chainId,
+                  networkId: networkObj.networkId,
                 };
               }
 

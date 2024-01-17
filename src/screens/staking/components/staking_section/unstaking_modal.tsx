@@ -42,12 +42,12 @@ const UnstakingModal = () => {
     if (isOpen) {
       setNetworkInfo(null);
 
-      const { chainId } = selectedAccount;
+      const { networkId } = selectedAccount;
 
       getNetworkStakingInfo(
         stakingRef.current.setState,
         stakingRef.current.state,
-        chainId,
+        networkId,
       ).then((info) => {
         setNetworkInfo(info);
       });

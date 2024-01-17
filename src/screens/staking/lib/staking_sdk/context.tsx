@@ -6,7 +6,7 @@ import { createContext, useContext, useMemo, useRef, useState } from "react";
 import { stakingClient } from "./staking_client";
 import type {
   Account,
-  ChainId,
+  NetworkId,
   NetworkInfo,
   SetState,
   State,
@@ -79,10 +79,10 @@ export const fetchNetworksInfo = async (setState: SetState) => {
   const stakingNetworksInfo = await Promise.all(
     Array.from(networksWithStaking)
       .filter(ENABLE_TESTNETS ? identity : (n) => !testnetNetworks.has(n))
-      .map((chainId) =>
-        stakingClient.getStakingInfo(chainId).then((info) => ({
-          chainId,
+      .map((networkId) =>
+        stakingClient.getStakingInfo(networkId).then((info) => ({
           info,
+          networkId,
         })),
       ),
   );
@@ -92,9 +92,9 @@ export const fetchNetworksInfo = async (setState: SetState) => {
     networksInfo: {
       ...state.networksInfo,
       ...stakingNetworksInfo.reduce(
-        (acc, { chainId, info }) => ({
+        (acc, { info, networkId }) => ({
           ...acc,
-          [chainId]: info,
+          [networkId]: info,
         }),
         {},
       ),
@@ -105,19 +105,19 @@ export const fetchNetworksInfo = async (setState: SetState) => {
 export const getNetworkStakingInfo = async (
   setState: SetState,
   state: State,
-  chainId: ChainId,
+  networkId: NetworkId,
 ) => {
-  if (state.networksInfo[chainId]) {
-    return state.networksInfo[chainId] as NetworkInfo;
+  if (state.networksInfo[networkId]) {
+    return state.networksInfo[networkId] as NetworkInfo;
   }
 
-  const newInfo = await stakingClient.getStakingInfo(chainId);
+  const newInfo = await stakingClient.getStakingInfo(networkId);
 
   setState((prevState) => ({
     ...prevState,
     networksInfo: {
       ...prevState.networksInfo,
-      [chainId]: newInfo,
+      [networkId]: newInfo,
     },
   }));
 
@@ -147,7 +147,7 @@ export const setSelectedAccount = (
     selectedAccount: selectedAccount
       ? {
           address: selectedAccount.address,
-          chainId: selectedAccount.chainId,
+          networkId: selectedAccount.networkId,
           wallet: selectedAccount.wallet,
         }
       : selectedAccount,
@@ -160,21 +160,21 @@ export const syncAccountData = async (
   state: State,
   account: Account,
 ) => {
-  const { address, chainId, wallet: walletId } = account;
+  const { address, networkId, wallet: walletId } = account;
 
   const [info, rewards] = await Promise.all([
-    stakingClient.getAddressInfo(chainId, address),
-    stakingClient.getRewardsInfo(chainId, address),
+    stakingClient.getAddressInfo(networkId, address),
+    stakingClient.getRewardsInfo(networkId, address),
   ]);
 
   const newWallet: Wallet = {
     ...state.wallets[walletId],
     networks: {
       ...state.wallets[walletId]?.networks,
-      [chainId]: {
+      [networkId]: {
         accounts: [
           ...(
-            state.wallets[walletId]?.networks?.[chainId]?.accounts || []
+            state.wallets[walletId]?.networks?.[networkId]?.accounts || []
           ).filter((a) => a.address !== address),
           {
             ...account,
@@ -241,9 +241,9 @@ export const getSelectedAccount = (state: State) => {
     return undefined;
   }
 
-  const { address, chainId, wallet } = selectedAccount;
+  const { address, networkId, wallet } = selectedAccount;
 
-  return state?.wallets?.[wallet]?.networks?.[chainId]?.accounts?.find(
+  return state?.wallets?.[wallet]?.networks?.[networkId]?.accounts?.find(
     (a) => a.address === address,
   );
 };
@@ -275,7 +275,7 @@ export const getCanAddWallet = (state: State) => {
   );
 };
 
-export const getAccountsForNetwork = (state: State, network: ChainId) => {
+export const getAccountsForNetwork = (state: State, network: NetworkId) => {
   const wallets = Object.values(state.wallets);
 
   return wallets.reduce(
@@ -286,7 +286,7 @@ export const getAccountsForNetwork = (state: State, network: ChainId) => {
 
 export const getStakedDataForNetwork = (
   state: State,
-  network: ChainId,
+  network: NetworkId,
 ): Coin | null => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
 
@@ -304,7 +304,7 @@ export const getStakedDataForNetwork = (
 
 export const getClaimableRewardsForNetwork = (
   state: State,
-  network: ChainId,
+  network: NetworkId,
 ): Coin | null => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
 

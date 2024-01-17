@@ -3,7 +3,7 @@ import type { Coin } from "@cosmjs/stargate";
 import type { Network } from "@src/utils/network_info";
 
 import type { NetworkInfo } from "./types";
-import { networkNameToChainId } from "./types";
+import { networkNameToNetworkId } from "./types";
 import { resolveCoin } from "./utils/coins";
 
 export const resolveDenom = (denom: string): string =>
@@ -32,14 +32,14 @@ export const formatCoin = (coin: Coin): string => {
 };
 
 export const sortNetworks = (a: Network, b: Network) => {
-  const chainIdA = networkNameToChainId[a.graphql];
-  const chainIdB = networkNameToChainId[b.graphql];
+  const networkIdA = networkNameToNetworkId[a.graphql];
+  const networkIdB = networkNameToNetworkId[b.graphql];
 
-  if (chainIdA && !chainIdB) {
+  if (networkIdA && !networkIdB) {
     return -1;
   }
 
-  if (!chainIdA && chainIdB) {
+  if (!networkIdA && networkIdB) {
     return 1;
   }
 

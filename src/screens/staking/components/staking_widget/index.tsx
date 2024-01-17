@@ -19,7 +19,7 @@ import {
   type TStakingContext,
   type Wallet,
   type WalletId,
-  chainIdToNetworkKey,
+  networkIdToNetworkKey,
 } from "@src/screens/staking/lib/staking_sdk/types";
 import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
@@ -79,13 +79,13 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
         )}
       </div>
       {isOpen && (
-        <div className={styles.accountsSection}>
+        <div>
           <div className={styles.accountsTitle}>
             {t("stakingWidget.accounts.title")}
           </div>
           <div>
             {accounts.map((account) => {
-              const networkName = chainIdToNetworkKey[account.chainId];
+              const networkName = networkIdToNetworkKey[account.networkId];
 
               const networkInfo = networkName
                 ? getNetworkInfo(networkName)
@@ -102,7 +102,7 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
               return (
                 <div
                   className={styles.account}
-                  key={[account.address, account.chainId].join(" ")}
+                  key={[account.address, account.networkId].join(" ")}
                 >
                   <div className={styles.logo}>
                     <img alt="" src={imgSrc} />
@@ -111,9 +111,7 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
                     <div>{name}</div>
                     <div>{balance.coin.denom}</div>
                   </div>
-                  <div className={styles.accountBalance}>
-                    <div>{formatCoin(balance.coin)}</div>
-                  </div>
+                  <div>{formatCoin(balance.coin)}</div>
                 </div>
               );
             })}
