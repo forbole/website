@@ -134,13 +134,20 @@ export const setUserWallet = (
   });
 };
 
-// @TODO: Update this function and also set the selected action
 export const setSelectedAccount = (
   setState: SetState,
-  selectedAccount: State["selectedAccount"] | undefined,
+  selectedAction: State["selectedAction"],
+  selectedAccount: State["selectedAccount"],
 ) => {
   setState({
-    selectedAccount,
+    selectedAccount: selectedAccount
+      ? {
+          address: selectedAccount.address,
+          chainId: selectedAccount.chainId,
+          wallet: selectedAccount.wallet,
+        }
+      : selectedAccount,
+    selectedAction,
   });
 };
 
@@ -223,12 +230,6 @@ export const disconnectAllWallets = async (
 
 // Selectors
 
-export const getUserAccountsForNetwork = (
-  state: State,
-  walletName: WalletId,
-  userNetwork: ChainId,
-) => state?.wallets?.[walletName]?.networks?.[userNetwork]?.accounts;
-
 export const getSelectedAccount = (state: State) => {
   const { selectedAccount } = state;
 
@@ -255,7 +256,7 @@ export const getCanAddWallet = (state: State) => {
   );
 };
 
-const getAccountsForNetwork = (state: State, network: ChainId) => {
+export const getAccountsForNetwork = (state: State, network: ChainId) => {
   const wallets = Object.values(state.wallets);
 
   return wallets.reduce(

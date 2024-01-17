@@ -1,6 +1,6 @@
 import type { Coin } from "@cosmjs/stargate";
 
-import type { WalletId } from "./types";
+import type { Account, WalletId } from "./types";
 
 const localStorageKey = "connectedWallets";
 
@@ -40,3 +40,6 @@ export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin => ({
 });
 
 export const getEmptyCoin = (): Coin => ({ amount: "0", denom: "" });
+
+export const accountHasDelegations = (account?: Account): boolean =>
+  !!account?.info?.delegation;

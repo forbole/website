@@ -16,10 +16,10 @@ import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
+  getAccountsForNetwork,
   getClaimableRewardsForNetwork,
   getNetworkInfo,
   getStakedDataForNetwork,
-  getUserAccountsForNetwork,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
@@ -33,6 +33,7 @@ import type {
   Account,
   NetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/types";
+import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network } from "@src/utils/network_info";
 
@@ -87,24 +88,20 @@ const PopOver = ({
     }
   }, [stakingChainId, stakingRef]);
 
-  const { account, chainId, claimableRewards, stakedData } = useMemo(() => {
+  const { accounts, chainId, claimableRewards, stakedData } = useMemo(() => {
     const wallet = WalletId.Keplr;
 
     const result = {
-      account: null as Account | null,
+      accounts: null as Account[] | null,
       chainId: stakingChainId,
       claimableRewards: "",
       stakedData: "",
     };
 
     if (!!stakingChainId && !!wallet) {
-      const accounts = getUserAccountsForNetwork(
-        stakingState,
-        WalletId.Keplr, // @TODO: This should consider all wallets
-        stakingChainId,
-      );
+      result.accounts = getAccountsForNetwork(stakingState, chainId);
 
-      if (!accounts?.length) {
+      if (!result.accounts?.length) {
         return result;
       }
 
@@ -115,12 +112,6 @@ const PopOver = ({
 
       if (stakedDataObj) {
         result.stakedData = formatDenom(stakedDataObj);
-      }
-
-      const newAccount = accounts.find((a) => !!a.info);
-
-      if (newAccount) {
-        result.account = newAccount;
       }
 
       const claimableRewardsObj = getClaimableRewardsForNetwork(
@@ -135,6 +126,8 @@ const PopOver = ({
 
     return result;
   }, [stakingState, stakingChainId, stakingRef]);
+
+  const accountsWithDelegations = accounts?.filter(accountHasDelegations);
 
   return (
     <div
@@ -239,17 +232,11 @@ const PopOver = ({
         <LinearProgress className={styles.progress} color="secondary" />
       )}
       <div className={styles.buttons}>
-        {isStakingSupported && !!account?.address && (
+        {isStakingSupported && !!accounts?.length && (
           <>
             <HighlightButton
               onClick={() => {
-                setSelectedAccount(setStakingState, {
-                  address: account.address,
-                  chainId,
-                  wallet: WalletId.Keplr,
-                });
-
-                setStakingState({ selectedAction: "stake" });
+                setSelectedAccount(setStakingState, "stake", accounts[0]);
               }}
             >
               {t("popover.stake")}
@@ -257,13 +244,11 @@ const PopOver = ({
             {!!claimableRewards && (
               <CtaButton
                 onClick={() => {
-                  setSelectedAccount(setStakingState, {
-                    address: account.address,
-                    chainId,
-                    wallet: WalletId.Keplr,
-                  });
-
-                  setStakingState({ selectedAction: "claim_rewards" });
+                  setSelectedAccount(
+                    setStakingState,
+                    "claim_rewards",
+                    accounts[0],
+                  );
                 }}
               >
                 {t("popover.claimRewards")}
@@ -271,16 +256,14 @@ const PopOver = ({
             )}
           </>
         )}
-        {isStakingSupported && account?.info?.delegation?.amount && (
+        {isStakingSupported && accountsWithDelegations?.length && (
           <EmptyButton
             onClick={() => {
-              setSelectedAccount(setStakingState, {
-                address: account.address,
-                chainId,
-                wallet: WalletId.Keplr,
-              });
-
-              setStakingState({ selectedAction: "unstake" });
+              setSelectedAccount(
+                setStakingState,
+                "unstake",
+                accountsWithDelegations[0],
+              );
             }}
           >
             {t("popover.unstake")}

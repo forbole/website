@@ -114,7 +114,7 @@ const StakingSection = () => {
 
   useEffect(() => {
     (async () => {
-      // @TODO: hardcode this and just use in a testing script before deployment
+      // TODO: hardcode this and just use in a testing script before deployment
       const { chains } = await import("chain-registry");
 
       console.log(

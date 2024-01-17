@@ -45,7 +45,7 @@ const ClaimRewardsModal = () => {
 
   return (
     <ModalBase
-      onClose={() => setSelectedAccount(setStakingState, undefined)}
+      onClose={() => setSelectedAccount(setStakingState, null, null)}
       open={isOpen}
       title={t("claimRewards.title")}
     >

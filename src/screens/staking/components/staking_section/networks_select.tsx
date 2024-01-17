@@ -1,11 +1,10 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { useContext } from "react";
 
 import {
-  StakingContext,
   getSelectedAccount,
   setSelectedAccount,
+  useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import { sortAccounts } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type {
@@ -57,8 +56,9 @@ type Props = {
 };
 
 const NetworksSelect = ({ variant }: Props) => {
-  const { setState: setStakingState, state: stakingState } =
-    useContext(StakingContext);
+  const stakingRef = useStakingRef();
+
+  const { setState: setStakingState, state: stakingState } = stakingRef.current;
 
   const selectedAccount = getSelectedAccount(stakingState);
 
@@ -79,11 +79,15 @@ const NetworksSelect = ({ variant }: Props) => {
   const handleChange = (event: any) => {
     const [address, chainId] = event.target.value.split(SEPARATOR);
 
-    setSelectedAccount(setStakingState, {
-      address,
-      chainId,
-      wallet: selectedAccount.wallet,
-    });
+    setSelectedAccount(
+      setStakingState,
+      stakingRef.current.state.selectedAction,
+      {
+        address,
+        chainId,
+        wallet: selectedAccount.wallet,
+      },
+    );
   };
 
   const selectedItem = [selectedAccount.address, selectedAccount.chainId].join(

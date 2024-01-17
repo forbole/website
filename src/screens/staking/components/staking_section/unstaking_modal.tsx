@@ -83,7 +83,7 @@ const UnstakingModal = () => {
 
   return (
     <ModalBase
-      onClose={() => setSelectedAccount(setStakingState, undefined)}
+      onClose={() => setSelectedAccount(setStakingState, null, null)}
       open={isOpen}
       title={t("unstakingModal.title")}
     >
@@ -195,7 +195,7 @@ const UnstakingModal = () => {
                     selectedAccount,
                   );
 
-                  setSelectedAccount(setStakingState, null);
+                  setSelectedAccount(setStakingState, null, null);
 
                   toastSuccess({
                     subtitle: t("unstakingModal.success.subtitle"),

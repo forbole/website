@@ -86,7 +86,7 @@ const StakingModal = () => {
 
   return (
     <ModalBase
-      onClose={() => setSelectedAccount(setStakingState, undefined)}
+      onClose={() => setSelectedAccount(setStakingState, null, null)}
       open={isOpen}
       title={t("stakingModal.title")}
     >
@@ -213,7 +213,7 @@ const StakingModal = () => {
                   selectedAccount,
                 );
 
-                setSelectedAccount(setStakingState, null);
+                setSelectedAccount(setStakingState, null, null);
 
                 toastSuccess({
                   subtitle: `${t("stakingModal.success.sub")} 🎉`,
