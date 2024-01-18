@@ -8,7 +8,12 @@ const selectors = {
   stakingCardLabel: '[data-test="staking-card-label"]',
 };
 
+const networksWithoutStaking = ["sui", "agoric"];
+const networksWithStaking = ["akash", "cosmos", "dydx", "celestia"];
+
 export class StakingPage {
+  static networksWithoutStaking = networksWithoutStaking;
+  static networksWithStaking = networksWithStaking;
   static selectors = selectors;
 
   constructor(private page: Page) {}

@@ -7,34 +7,35 @@ test.beforeEach(async ({ page }) => {
   await prepareEnv(page);
 });
 
-test.describe.parallel("Staking", () => {
+test.describe.parallel("Staking Page", () => {
   test("Can see the staking banner in the expected cards", async ({ page }) => {
     const stakingPage = new StakingPage(page);
 
     await stakingPage.navigate();
 
-    const networksKeysWithStaking = ["akash", "cosmos", "dydx", "celestia"].map(
-      (n) => [n, 1],
-    ) as [string, number][];
-
-    const networksKeysWithoutStaking = ["sui", "agoric"].map((n) => [n, 0]) as [
+    const stakingCount = StakingPage.networksWithStaking.map((n) => [n, 1]) as [
       string,
       number,
     ][];
 
-    await networksKeysWithStaking
-      .concat(networksKeysWithoutStaking)
-      .reduce(async (promise, [network, count]) => {
-        await promise;
+    const noStakingCount = StakingPage.networksWithoutStaking.map((n) => [
+      n,
+      0,
+    ]) as [string, number][];
 
-        await expect(
-          page.locator(
-            [
-              StakingPage.selectors.networkCard(network),
-              StakingPage.selectors.stakingCardLabel,
-            ].join(" >> "),
-          ),
-        ).toHaveCount(count);
-      }, Promise.resolve());
+    await stakingCount.concat(noStakingCount).reduce(
+      async (p, [network, count]) =>
+        p.then(async () => {
+          await expect(
+            page.locator(
+              [
+                StakingPage.selectors.networkCard(network),
+                StakingPage.selectors.stakingCardLabel,
+              ].join(" >> "),
+            ),
+          ).toHaveCount(count);
+        }),
+      Promise.resolve(),
+    );
   });
 });
