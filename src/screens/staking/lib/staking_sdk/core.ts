@@ -18,6 +18,7 @@ export enum WalletId {
 // - https://github.com/cosmos/chain-registry
 // - https://github.com/cosmos/chain-registry/tree/master/testnets
 export enum NetworkId {
+  Akash = "akashnet-2",
   Celestia = "celestia",
   CelestiaTestnet = "mocha-4",
   CosmosHub = "cosmoshub",
@@ -26,6 +27,7 @@ export enum NetworkId {
 }
 
 export const keplrNetworks = new Set([
+  NetworkId.Akash,
   NetworkId.CosmosHubTestnet,
   NetworkId.CelestiaTestnet,
   NetworkId.CosmosHub,
@@ -34,6 +36,7 @@ export const keplrNetworks = new Set([
 ]);
 
 export const networksWithStaking = new Set([
+  NetworkId.Akash,
   NetworkId.CosmosHubTestnet,
   NetworkId.CelestiaTestnet,
   NetworkId.CosmosHub,
@@ -59,11 +62,12 @@ export const networkNameToNetworkId: Record<string, NetworkId> = {
 };
 
 export const networkIdToNetworkKey: Record<NetworkId, string> = {
-  [NetworkId.Celestia]: "celestia",
-  [NetworkId.CelestiaTestnet]: "celestia-testnet",
-  [NetworkId.CosmosHub]: "cosmos",
-  [NetworkId.CosmosHubTestnet]: "cosmos-testnet",
-  [NetworkId.DyDx]: "dydx",
+  [NetworkId.Akash]: networks.akash.key,
+  [NetworkId.Celestia]: networks.celestia.key,
+  [NetworkId.CelestiaTestnet]: networks["celestia-testnet"].key,
+  [NetworkId.CosmosHub]: networks.cosmos.key,
+  [NetworkId.CosmosHubTestnet]: networks["cosmos-testnet"].key,
+  [NetworkId.DyDx]: networks.dydx.key,
 };
 
 export type Account = {
