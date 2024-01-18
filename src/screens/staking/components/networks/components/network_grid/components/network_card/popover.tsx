@@ -233,6 +233,7 @@ const PopOver = ({
         {isStakingSupported && !!accounts?.length && (
           <>
             <HighlightButton
+              data-test="popover-stake-button"
               onClick={() => {
                 setSelectedAccount(setStakingState, "stake", accounts[0]);
               }}

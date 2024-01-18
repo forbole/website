@@ -318,6 +318,13 @@ export const tryToConnectWallets = async (
   }
 };
 
+export const disconnecKeplr = async (networks: StakingNetworkId[]) => {
+  await window.keplr?.disable(networks).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.log("Disable Error", err);
+  });
+};
+
 export const useWalletsListeners = (contextValue: TStakingContext) => {
   const { t } = useTranslation("staking");
 
@@ -337,6 +344,10 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
     };
 
     window.addEventListener("keplr_keystorechange", listener);
+
+    if (IS_E2E) {
+      (window as any).stakingContext = contextValue;
+    }
 
     return () => {
       window.removeEventListener("keplr_keystorechange", listener);

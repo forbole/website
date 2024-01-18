@@ -24,7 +24,7 @@ import { stakingClient } from "./staking_client";
 import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
 import { getEmptyCoin, sumCoins } from "./utils/coins";
 import { setConnectedWallet } from "./utils/storage";
-import { useWalletsListeners } from "./wallet_operations";
+import { disconnecKeplr, useWalletsListeners } from "./wallet_operations";
 
 const baseContext: TStakingContext = {
   setState: () => {},
@@ -203,16 +203,13 @@ export const disconnectWallet = async (
   walletId: WalletId,
 ) => {
   if (state.wallets[walletId]) {
+    const networks = Object.keys(
+      state.wallets[WalletId.Keplr]?.networks || {},
+    ) as StakingNetworkId[];
+
     switch (walletId) {
       case WalletId.Keplr: {
-        const networks = Object.keys(
-          state.wallets[WalletId.Keplr]?.networks || {},
-        );
-
-        await window.keplr?.disable(networks).catch((err) => {
-          // eslint-disable-next-line no-console
-          console.log("Disable Error", err);
-        });
+        await disconnecKeplr(networks);
 
         break;
       }
