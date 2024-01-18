@@ -29,6 +29,7 @@ import {
 import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
+import { getCanStakeToAnyWallet } from "../../lib/staking_sdk/wallet_operations";
 import { useInitStaking } from "../hooks";
 import ClaimRewardsModal from "../staking_section/claim_rewards_modal";
 import ConnectWalletModal from "../staking_section/connect_wallet_modal";
@@ -140,9 +141,14 @@ const StakingWidgetBase = ({
 }: Props) => {
   const { t } = useTranslation("staking");
   const walletsIds = Object.keys(wallets).sort() as WalletId[];
+  const canStake = getCanStakeToAnyWallet();
 
   const [anchor, setAnchor] = useState<Element>();
   const onClose = useCallback(() => setAnchor(undefined), [setAnchor]);
+
+  if (!canStake) {
+    return null;
+  }
 
   if (!hasInit || !walletsIds.length) {
     return (

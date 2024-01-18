@@ -5,6 +5,7 @@ import type { Network, NetworkKey } from "@src/utils/network_info";
 import type { NetworkInfo } from "./core";
 import { networkKeyToNetworkId } from "./core";
 import { resolveCoin } from "./utils/coins";
+import { getCanStakeToAnyWallet } from "./wallet_operations";
 
 export const resolveDenom = (denom: string): string =>
   resolveCoin({ amount: "0", denom }).denom;
@@ -30,19 +31,25 @@ export const formatCoin = (coin: Coin): string => {
   return `${formatNum(num)} ${resolvedCoin.denom}`;
 };
 
-export const sortNetworks = (a: Network, b: Network) => {
-  const networkIdA = networkKeyToNetworkId[a.key as NetworkKey];
-  const networkIdB = networkKeyToNetworkId[b.key as NetworkKey];
+export const sortNetworks = () => {
+  const canStake = getCanStakeToAnyWallet();
 
-  if (networkIdA && !networkIdB) {
-    return -1;
-  }
+  return (a: Network, b: Network) => {
+    if (canStake) {
+      const networkIdA = networkKeyToNetworkId[a.key as NetworkKey];
+      const networkIdB = networkKeyToNetworkId[b.key as NetworkKey];
 
-  if (!networkIdA && networkIdB) {
-    return 1;
-  }
+      if (networkIdA && !networkIdB) {
+        return -1;
+      }
 
-  return a.name.localeCompare(b.name);
+      if (!networkIdA && networkIdB) {
+        return 1;
+      }
+    }
+
+    return a.name.localeCompare(b.name);
+  };
 };
 
 export const getUnbondingTimeForNetwork = (

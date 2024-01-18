@@ -41,13 +41,15 @@ const Networks = () => {
     .map((x: number | string) => getNetworkInfo(x as NetworkKey))
     .filter(Boolean);
 
-  const sortedNetworks = [...allNetworkData].sort(sortNetworks).filter((a) => {
-    if (networksFilter === "") {
-      return true;
-    }
+  const sortedNetworks = [...allNetworkData]
+    .sort(sortNetworks())
+    .filter((a) => {
+      if (networksFilter === "") {
+        return true;
+      }
 
-    return a.name.toLowerCase().includes(networksFilter.toLowerCase());
-  });
+      return a.name.toLowerCase().includes(networksFilter.toLowerCase());
+    });
 
   return (
     <div className={styles.wrapper}>

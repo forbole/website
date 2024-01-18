@@ -342,3 +342,6 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
     };
   }, [contextValue, t]);
 };
+
+export const getCanStakeToAnyWallet = () =>
+  typeof window !== "undefined" && !!window.keplr;

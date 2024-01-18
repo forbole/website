@@ -19,6 +19,7 @@ import PopOver from "./popover";
 import StakingLabel from "./staking-label";
 
 interface CardProp {
+  canStakeToAnyWallet: boolean;
   network: Network;
   networkSummary: ParamsProps;
   setShowPopover: Dispatch<SetStateAction<string>>;
@@ -26,6 +27,7 @@ interface CardProp {
 }
 
 const NetworkCard = ({
+  canStakeToAnyWallet,
   network,
   networkSummary,
   setShowPopover,
@@ -47,7 +49,8 @@ const NetworkCard = ({
     [network],
   );
 
-  const chainSupportsStaking = networkKeyToNetworkId[network.key as NetworkKey];
+  const chainSupportsStaking =
+    canStakeToAnyWallet && networkKeyToNetworkId[network.key as NetworkKey];
 
   const isEmptyPopover =
     networksWithHiddenInfo.has(network.graphql) ||

@@ -2,6 +2,7 @@ import { LayoutGroup } from "framer-motion";
 import { useState } from "react";
 
 import { NoSSR } from "@src/components/no-ssr";
+import { getCanStakeToAnyWallet } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import type { Network } from "@src/utils/network_info";
 
 import NetworkCard from "./components/network_card";
@@ -15,6 +16,7 @@ type Props = {
 
 const NetworkGrid = ({ allNetworkInfo, sortedNetworks }: Props) => {
   const [showPopover, setShowPopover] = useState("");
+  const canStakeToAnyWallet = getCanStakeToAnyWallet();
 
   return (
     <div className={styles.root}>
@@ -22,6 +24,7 @@ const NetworkGrid = ({ allNetworkInfo, sortedNetworks }: Props) => {
         <LayoutGroup>
           {sortedNetworks.map((network, index) => (
             <NetworkCard
+              canStakeToAnyWallet={canStakeToAnyWallet}
               key={network.name ?? index}
               network={network}
               networkSummary={allNetworkInfo[network.graphql]}
