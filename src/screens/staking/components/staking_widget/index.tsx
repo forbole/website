@@ -80,7 +80,7 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
         )}
       </div>
       {isOpen && (
-        <div>
+        <div className={styles.accounts}>
           <div className={styles.accountsTitle}>
             {t("stakingWidget.accounts.title")}
           </div>

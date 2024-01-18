@@ -24,8 +24,7 @@ export const formatCoin = (coin: Coin): string => {
   const formatNum = (n: number): string =>
     n.toLocaleString("en-US", {
       maximumFractionDigits: 6,
-      maximumSignificantDigits: 6,
-      minimumFractionDigits: 1,
+      minimumFractionDigits: 2,
     });
 
   return `${formatNum(num)} ${resolvedCoin.denom}`;

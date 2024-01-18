@@ -1,8 +1,20 @@
 import type { Coin } from "@cosmjs/stargate";
 
-type DenomToResolve = "adydx" | "uatom" | "utia";
+import { StakingNetworkId } from "../core";
+
+const networkToResolvedDenom = {
+  [StakingNetworkId.Akash]: "uakt",
+  [StakingNetworkId.Celestia]: "utia",
+  [StakingNetworkId.CelestiaTestnet]: "utia",
+  [StakingNetworkId.CosmosHub]: "uatom",
+  [StakingNetworkId.CosmosHubTestnet]: "uatom",
+  [StakingNetworkId.DyDx]: "adydx",
+} as const satisfies Record<StakingNetworkId, string>;
+
+type DenomToResolve = (typeof networkToResolvedDenom)[StakingNetworkId];
 
 const uatomExp = 6;
+const uaktExp = 6;
 const utiaExp = 6;
 const adydxExp = 18;
 
@@ -34,6 +46,13 @@ export const resolveCoin = (coin: Coin): Coin => {
       return {
         amount: (num / 10 ** adydxExp).toString(),
         denom: "DYDX",
+      };
+    }
+
+    case "uakt": {
+      return {
+        amount: (num / 10 ** uaktExp).toString(),
+        denom: "AKT",
       };
     }
 
