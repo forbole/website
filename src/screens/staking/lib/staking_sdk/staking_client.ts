@@ -1,6 +1,6 @@
 import type { Coin } from "@cosmjs/stargate";
 
-import type { NetworkId } from "@src/screens/staking/lib/staking_sdk/types";
+import type { NetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API;
 

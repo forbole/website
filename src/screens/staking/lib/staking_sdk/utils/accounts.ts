@@ -1,6 +1,6 @@
 import type { Coin } from "@cosmjs/stargate";
 
-import type { Account } from "../types";
+import type { Account } from "../core";
 import { resolveCoin } from "./coins";
 
 export const accountHasDelegations = (account?: Account): boolean =>

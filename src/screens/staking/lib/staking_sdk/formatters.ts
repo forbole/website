@@ -2,8 +2,8 @@ import type { Coin } from "@cosmjs/stargate";
 
 import type { Network } from "@src/utils/network_info";
 
-import type { NetworkInfo } from "./types";
-import { networkNameToNetworkId } from "./types";
+import type { NetworkInfo } from "./core";
+import { networkNameToNetworkId } from "./core";
 import { resolveCoin } from "./utils/coins";
 
 export const resolveDenom = (denom: string): string =>

@@ -3,7 +3,6 @@ import { identity } from "ramda";
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useMemo, useRef, useState } from "react";
 
-import { stakingClient } from "./staking_client";
 import type {
   Account,
   NetworkId,
@@ -12,7 +11,7 @@ import type {
   State,
   TStakingContext,
   Wallet,
-} from "./types";
+} from "./core";
 import {
   ENABLE_TESTNETS,
   WalletId,
@@ -20,7 +19,8 @@ import {
   networksWithStaking,
   testnetNetworks,
   walletsSupported,
-} from "./types";
+} from "./core";
+import { stakingClient } from "./staking_client";
 import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
 import { getEmptyCoin, sumCoins } from "./utils/coins";
 import { clearConnectedWallets } from "./utils/storage";

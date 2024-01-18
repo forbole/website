@@ -14,13 +14,13 @@ import {
   getWalletAccounts,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   type TStakingContext,
   type Wallet,
   type WalletId,
   networkIdToNetworkKey,
-} from "@src/screens/staking/lib/staking_sdk/types";
+} from "@src/screens/staking/lib/staking_sdk/core";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
   getWalletName,

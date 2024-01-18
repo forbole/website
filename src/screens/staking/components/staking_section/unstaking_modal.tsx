@@ -15,13 +15,13 @@ import {
   syncAccountData,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
+import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/core";
 import {
   formatCoin,
   getUnbondingTimeForNetwork,
   resolveDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
-import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/types";
-import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/types";
 import { getAccountResolvedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { unstake } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 

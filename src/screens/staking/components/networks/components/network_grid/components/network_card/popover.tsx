@@ -23,16 +23,16 @@ import {
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   WalletId,
   networkNameToNetworkId,
   networksWithStaking,
-} from "@src/screens/staking/lib/staking_sdk/types";
+} from "@src/screens/staking/lib/staking_sdk/core";
 import type {
   Account,
   NetworkInfo,
-} from "@src/screens/staking/lib/staking_sdk/types";
+} from "@src/screens/staking/lib/staking_sdk/core";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network } from "@src/utils/network_info";

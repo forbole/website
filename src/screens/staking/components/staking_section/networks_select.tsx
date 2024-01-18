@@ -7,8 +7,8 @@ import {
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import type { NetworkId } from "@src/screens/staking/lib/staking_sdk/types";
-import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/types";
+import type { NetworkId } from "@src/screens/staking/lib/staking_sdk/core";
+import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
 import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getNetworkInfo } from "@src/utils/network_info";
 

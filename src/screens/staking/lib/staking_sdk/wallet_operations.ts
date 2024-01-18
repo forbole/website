@@ -19,7 +19,6 @@ import { useEffect } from "react";
 import { toastSuccess } from "@src/components/notification";
 
 import { setUserWallet } from "./context";
-import { stakingClient } from "./staking_client";
 import type {
   Account,
   NetworkId,
@@ -27,8 +26,9 @@ import type {
   State,
   TStakingContext,
   Wallet,
-} from "./types";
-import { WalletId, keplrNetworks, networksWithStaking } from "./types";
+} from "./core";
+import { WalletId, keplrNetworks, networksWithStaking } from "./core";
+import { stakingClient } from "./staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 const handleKeplrSignError = (err: Error) => {

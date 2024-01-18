@@ -6,7 +6,7 @@ import { useState } from "react";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
-import { WalletId } from "@src/screens/staking/lib/staking_sdk/types";
+import { WalletId } from "@src/screens/staking/lib/staking_sdk/core";
 import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import {
   getWalletName,

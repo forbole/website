@@ -5,7 +5,7 @@ import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { memo, useCallback, useRef } from "react";
 
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
-import { networkNameToNetworkId } from "@src/screens/staking/lib/staking_sdk/types";
+import { networkNameToNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import {
   getCanClickNetwork,
   handleNetworkClick,

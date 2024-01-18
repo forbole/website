@@ -3,7 +3,7 @@ import type { FC } from "react";
 
 import IconKeplr from "@src/components/icons/keplr.svg";
 
-import { WalletId } from "./staking_sdk/types";
+import { WalletId } from "./staking_sdk/core";
 
 export const walletsIcons: Record<WalletId, FC<{ className?: string }>> = {
   [WalletId.Keplr]: IconKeplr,
