@@ -23,7 +23,7 @@ import {
 import { stakingClient } from "./staking_client";
 import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
 import { getEmptyCoin, sumCoins } from "./utils/coins";
-import { clearConnectedWallets } from "./utils/storage";
+import { setConnectedWallet } from "./utils/storage";
 import { useWalletsListeners } from "./wallet_operations";
 
 const baseContext: TStakingContext = {
@@ -197,39 +197,40 @@ export const syncAccountData = async (
   });
 };
 
-export const disconnectAllWallets = async (
+export const disconnectWallet = async (
   setState: SetState,
   state: State,
+  walletId: WalletId,
 ) => {
-  const wallets = Object.keys(state.wallets) as WalletId[];
+  if (state.wallets[walletId]) {
+    switch (walletId) {
+      case WalletId.Keplr: {
+        const networks = Object.keys(
+          state.wallets[WalletId.Keplr]?.networks || {},
+        );
 
-  await Promise.all(
-    wallets.map(async (wallet) => {
-      switch (wallet) {
-        case WalletId.Keplr: {
-          const networks = Object.keys(
-            state.wallets[WalletId.Keplr]?.networks || {},
-          );
+        await window.keplr?.disable(networks).catch((err) => {
+          // eslint-disable-next-line no-console
+          console.log("Disable Error", err);
+        });
 
-          await window.keplr?.disable(networks).catch((err) => {
-            // eslint-disable-next-line no-console
-            console.log("Disable Error", err);
-          });
-
-          return;
-        }
-
-        default:
-          wallet satisfies never;
+        break;
       }
-    }),
-  );
 
-  setState({
-    wallets: {},
-  });
+      default:
+        walletId satisfies never;
+    }
 
-  clearConnectedWallets();
+    const newWallets = { ...state.wallets };
+
+    delete newWallets[walletId];
+
+    setState({
+      wallets: newWallets,
+    });
+
+    setConnectedWallet(Object.keys(walletId) as WalletId[]);
+  }
 };
 
 // Selectors

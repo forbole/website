@@ -3,15 +3,13 @@ import useTranslation from "next-translate/useTranslation";
 import { memo, useCallback, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
-import IconChevron from "@src/components/icons/icon_chevron.svg";
 import IconMobile from "@src/components/icons/icon_logout.svg";
 import IconPlus from "@src/components/icons/icon_plus.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { tooltipId } from "@src/components/tooltip";
 import {
-  disconnectAllWallets,
+  disconnectWallet,
   getCanAddWallet,
-  getWalletAccounts,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type {
@@ -19,15 +17,10 @@ import type {
   Wallet,
   WalletId,
 } from "@src/screens/staking/lib/staking_sdk/core";
-import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
-import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
-import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
   getWalletName,
   walletsIcons,
 } from "@src/screens/staking/lib/wallet_info";
-import type { NetworkKey } from "@src/utils/network_info";
-import { getNetworkInfo } from "@src/utils/network_info";
 
 import { getCanStakeToAnyWallet } from "../../lib/staking_sdk/wallet_operations";
 import { useInitStaking } from "../hooks";
@@ -38,14 +31,13 @@ import UnstakingModal from "../staking_section/unstaking_modal";
 import * as styles from "./index.module.scss";
 
 type WalletRowProps = {
+  onDisconnect: () => void;
   wallet: undefined | Wallet;
 };
 
-const WalletRow = ({ wallet }: WalletRowProps) => {
+const WalletRow = ({ onDisconnect, wallet }: WalletRowProps) => {
   const { t } = useTranslation("staking");
-  const stakingRef = useStakingRef();
 
-  const [isOpen, setIsOpen] = useState(false);
   const walletUserName = wallet?.name;
   const walletId = wallet?.wallet;
 
@@ -53,74 +45,25 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
     return null;
   }
 
-  const accounts = getWalletAccounts(stakingRef.current.state, walletId);
-
   const WalletIcon = walletsIcons[walletId];
   const walletName = getWalletName(walletId, t);
 
   return (
-    <>
-      <div className={styles.walletRow} key={walletId}>
-        <WalletIcon className={styles.walletIcon} />
-        <div className={styles.walletContent}>
-          <div>{walletUserName}</div>
-          <div className={styles.subtitle}>{walletName}</div>
-        </div>
-        {!!accounts.length && (
-          <span
-            className={[styles.expand, isOpen ? styles.open : ""].join(" ")}
-          >
-            <button
-              onClick={() => {
-                setIsOpen(!isOpen);
-              }}
-            >
-              <IconChevron />
-            </button>
-          </span>
-        )}
+    <div className={styles.walletRow} key={walletId}>
+      <WalletIcon className={styles.walletIcon} />
+      <div className={styles.walletContent}>
+        <div>{walletUserName}</div>
+        <div className={styles.subtitle}>{walletName}</div>
       </div>
-      {isOpen && (
-        <div className={styles.accounts}>
-          <div className={styles.accountsTitle}>
-            {t("stakingWidget.accounts.title")}
-          </div>
-          <div>
-            {accounts.map((account) => {
-              const networkName = networkIdToNetworkKey[account.networkId];
-
-              const networkInfo = networkName
-                ? getNetworkInfo(networkName as NetworkKey)
-                : "";
-
-              const imgSrc = networkInfo ? networkInfo.image : "";
-              const name = networkInfo ? networkInfo.name : "";
-              const balance = getAccountResolvedBalance(account);
-
-              if (!balance) {
-                return null;
-              }
-
-              return (
-                <div
-                  className={styles.account}
-                  key={[account.address, account.networkId].join(" ")}
-                >
-                  <div className={styles.logo}>
-                    <img alt="" src={imgSrc} />
-                  </div>
-                  <div className={styles.accountContent}>
-                    <div>{name}</div>
-                    <div>{balance.coin.denom}</div>
-                  </div>
-                  <div>{formatCoin(balance.coin)}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </>
+      <button
+        className={styles.clickableIcon}
+        data-tooltip-content={t("stakingWidget.disconnectWallets")}
+        data-tooltip-id={tooltipId}
+        onClick={onDisconnect}
+      >
+        <IconMobile />
+      </button>
+    </div>
   );
 };
 
@@ -128,7 +71,7 @@ type Props = {
   canConnectMoreWallets: boolean;
   hasInit: boolean;
   onConnectWallet: () => void;
-  onDisconnectWallets: () => Promise<void>;
+  onDisconnectWallet: (walletId: WalletId) => Promise<void>;
   wallets: TStakingContext["state"]["wallets"];
 };
 
@@ -136,7 +79,7 @@ const StakingWidgetBase = ({
   canConnectMoreWallets,
   hasInit,
   onConnectWallet,
-  onDisconnectWallets,
+  onDisconnectWallet,
   wallets,
 }: Props) => {
   const { t } = useTranslation("staking");
@@ -208,22 +151,14 @@ const StakingWidgetBase = ({
               <IconPlus />
             </button>
           )}
-          <button
-            className={styles.clickableIcon}
-            data-tooltip-content={t("stakingWidget.disconnectWallets")}
-            data-tooltip-id={tooltipId}
-            onClick={() =>
-              onDisconnectWallets().then(() => {
-                onClose();
-              })
-            }
-          >
-            <IconMobile />
-          </button>
         </div>
         <div className={styles.list}>
           {walletsIds.map((walletId) => (
-            <WalletRow key={walletId} wallet={wallets[walletId]} />
+            <WalletRow
+              key={walletId}
+              onDisconnect={() => onDisconnectWallet(walletId).then(onClose)}
+              wallet={wallets[walletId]}
+            />
           ))}
         </div>
       </Menu>
@@ -239,12 +174,16 @@ const StakingWidgetContainer = () => {
 
   useInitStaking();
 
-  const onDisconnectWallets = useCallback(async () => {
-    await disconnectAllWallets(
-      stakingRef.current.setState,
-      stakingRef.current.state,
-    );
-  }, [stakingRef]);
+  const onDisconnectWallet = useCallback(
+    async (walletId: WalletId) => {
+      await disconnectWallet(
+        stakingRef.current.setState,
+        stakingRef.current.state,
+        walletId,
+      );
+    },
+    [stakingRef],
+  );
 
   const onConnectWallet = useCallback(() => {
     stakingRef.current.setState({
@@ -261,7 +200,7 @@ const StakingWidgetContainer = () => {
         canConnectMoreWallets={canConnectMoreWallets}
         hasInit={stakingState.hasInit}
         onConnectWallet={onConnectWallet}
-        onDisconnectWallets={onDisconnectWallets}
+        onDisconnectWallet={onDisconnectWallet}
         wallets={stakingState.wallets}
       />
       <StakingModal />

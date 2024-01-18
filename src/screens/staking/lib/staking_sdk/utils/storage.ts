@@ -27,6 +27,13 @@ export const addToConnectedWallets = (wallet: WalletId) => {
   window.localStorage.setItem(localStorageKey, JSON.stringify(newWallets));
 };
 
-export const clearConnectedWallets = () => {
-  window.localStorage.removeItem(localStorageKey);
+export const setConnectedWallet = (walletsIds: WalletId[]) => {
+  if (!walletsIds.length) {
+    window.localStorage.removeItem(localStorageKey);
+  } else {
+    const newWalletsSet = new Set([...walletsIds]);
+    const newWallets = Array.from(newWalletsSet);
+
+    window.localStorage.setItem(localStorageKey, JSON.stringify(newWallets));
+  }
 };
