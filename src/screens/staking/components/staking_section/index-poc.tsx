@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // import type { Chain } from "@chain-registry/types";
 // import { coin } from "@cosmjs/proto-signing";
 // import type { MsgDelegateEncodeObject, StdFee } from "@cosmjs/stargate";

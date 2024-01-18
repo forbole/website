@@ -106,7 +106,6 @@ declare global {
   interface Window extends KeplrWindow {}
 }
 
-/* eslint-disable no-console */
 export const useInitStaking = () => {
   const stakingRef = useStakingRef();
 

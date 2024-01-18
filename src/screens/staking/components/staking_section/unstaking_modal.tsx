@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -140,6 +139,7 @@ const UnstakingModal = () => {
         <Label>{t("unstakingModal.memo.label")}</Label>
         <FormInput
           className={styles.input}
+          noFocusEffect
           noMargin
           onBlur={() => {
             const newMemoError = (() => {

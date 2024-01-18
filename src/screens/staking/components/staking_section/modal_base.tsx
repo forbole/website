@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Modal } from "@mui/material";
 import type { ReactNode } from "react";
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 
@@ -156,6 +155,7 @@ const StakingModal = () => {
           <FormInput
             className={styles.input}
             fullWidth
+            noFocusEffect
             noMargin
             onBlur={() => {
               const newMemoError = (() => {

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";

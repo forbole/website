@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { Coin } from "@cosmjs/stargate";
 import useTranslation from "next-translate/useTranslation";
 import { useContext, useEffect, useState } from "react";
@@ -79,6 +78,7 @@ const ClaimRewardsModal = () => {
                 }
               })
               .catch((error) => {
+                // eslint-disable-next-line no-console
                 console.log("debug: claim_rewards_modal.tsx: error", error);
 
                 displayGenericError(t);

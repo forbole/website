@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type {
   Coin,
   MsgDelegateEncodeObject,
@@ -32,6 +31,7 @@ import { stakingClient } from "./staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 const handleKeplrSignError = (err: Error) => {
+  // eslint-disable-next-line no-console
   console.log("debug: index.tsx: err", err);
 
   return {
@@ -233,6 +233,7 @@ export const tryToConnectWallets = async (
 
       try {
         const handleError = (err: unknown) => {
+          // eslint-disable-next-line no-console
           console.log("debug: index.tsx: err", err);
 
           return [] as Account[];
@@ -309,7 +310,8 @@ export const tryToConnectWallets = async (
 
         return true;
       } catch (error) {
-        console.log(error);
+        // eslint-disable-next-line no-console
+        console.log("tryToConnectWallets", error);
       }
     }
   }
