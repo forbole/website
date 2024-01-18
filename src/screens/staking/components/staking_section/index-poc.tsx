@@ -27,7 +27,7 @@
 //   fetchNetworksInfo,
 // } from "@src/screens/staking/lib/staking_sdk/context";
 // import {
-//   NetworkId,
+//   StakingNetworkId,
 //   ENABLE_TESTNETS,
 // } from "@src/screens/staking/lib/staking_sdk/types";
 
@@ -37,7 +37,7 @@
 // import UnstakingModal from "./unstaking_modal";
 // import { stakingClient } from "./utils/staking_client";
 
-// const defaultNetworkId = NetworkId.CosmosHubTestnet;
+// const defaultNetworkId = StakingNetworkId.CosmosHubTestnet;
 
 // interface LeapWindow {
 //   leap: any;
@@ -77,12 +77,12 @@
 
 //     if (status === "Done" && client) {
 //       (async () => {
-//         const chainsToEnable = [NetworkId.CosmosHub, NetworkId.Celestia];
+//         const chainsToEnable = [StakingNetworkId.CosmosHub, StakingNetworkId.Celestia];
 
 //         if (ENABLE_TESTNETS) {
 //           chainsToEnable.push(
-//             NetworkId.CosmosHubTestnet,
-//             NetworkId.CelestiaTestnet,
+//             StakingNetworkId.CosmosHubTestnet,
+//             StakingNetworkId.CelestiaTestnet,
 //           );
 //         }
 
@@ -123,7 +123,7 @@
 //       );
 
 //       const newChainInfo = chains.find(
-//         (chain) => chain.chain_id === NetworkId.CosmosHubTestnet,
+//         (chain) => chain.chain_id === StakingNetworkId.CosmosHubTestnet,
 //       );
 
 //       if (newChainInfo) {

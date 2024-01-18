@@ -21,8 +21,8 @@ import { toastSuccess } from "@src/components/notification";
 import { setUserWallet } from "./context";
 import type {
   Account,
-  NetworkId,
   SetState,
+  StakingNetworkId,
   State,
   TStakingContext,
   Wallet,
@@ -106,7 +106,7 @@ export const stakeAmount = ({
 
 type ClaimOpts = {
   address: string;
-  networkId: NetworkId;
+  networkId: StakingNetworkId;
 };
 
 export const claimRewards = async (
@@ -241,7 +241,7 @@ export const tryToConnectWallets = async (
         let walletName = "";
 
         const parseAccounts =
-          (networkId: NetworkId) =>
+          (networkId: StakingNetworkId) =>
           (accounts: readonly AccountData[]): Promise<Account[]> =>
             Promise.all(
               accounts.map((account) =>

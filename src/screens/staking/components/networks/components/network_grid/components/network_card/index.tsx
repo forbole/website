@@ -5,12 +5,12 @@ import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { memo, useCallback, useRef } from "react";
 
 import { useWindowDimensions } from "@src/hooks/get_screen_size";
-import { networkNameToNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
+import { networkKeyToNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import {
   getCanClickNetwork,
   handleNetworkClick,
 } from "@src/utils/network_functions";
-import type { Network } from "@src/utils/network_info";
+import type { Network, NetworkKey } from "@src/utils/network_info";
 import { networksWithHiddenInfo } from "@src/utils/network_info";
 
 import type { ParamsProps } from "../../config";
@@ -47,7 +47,7 @@ const NetworkCard = ({
     [network],
   );
 
-  const chainSupportsStaking = networkNameToNetworkId[network.graphql];
+  const chainSupportsStaking = networkKeyToNetworkId[network.key as NetworkKey];
 
   const isEmptyPopover =
     networksWithHiddenInfo.has(network.graphql) ||

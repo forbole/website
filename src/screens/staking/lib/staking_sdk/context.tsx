@@ -5,9 +5,9 @@ import { createContext, useContext, useMemo, useRef, useState } from "react";
 
 import type {
   Account,
-  NetworkId,
   NetworkInfo,
   SetState,
+  StakingNetworkId,
   State,
   TStakingContext,
   Wallet,
@@ -105,7 +105,7 @@ export const fetchNetworksInfo = async (setState: SetState) => {
 export const getNetworkStakingInfo = async (
   setState: SetState,
   state: State,
-  networkId: NetworkId,
+  networkId: StakingNetworkId,
 ) => {
   if (state.networksInfo[networkId]) {
     return state.networksInfo[networkId] as NetworkInfo;
@@ -275,7 +275,10 @@ export const getCanAddWallet = (state: State) => {
   );
 };
 
-export const getAccountsForNetwork = (state: State, network: NetworkId) => {
+export const getAccountsForNetwork = (
+  state: State,
+  network: StakingNetworkId,
+) => {
   const wallets = Object.values(state.wallets);
 
   return wallets.reduce(
@@ -286,7 +289,7 @@ export const getAccountsForNetwork = (state: State, network: NetworkId) => {
 
 export const getStakedDataForNetwork = (
   state: State,
-  network: NetworkId,
+  network: StakingNetworkId,
 ): Coin | null => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
 
@@ -304,7 +307,7 @@ export const getStakedDataForNetwork = (
 
 export const getClaimableRewardsForNetwork = (
   state: State,
-  network: NetworkId,
+  network: StakingNetworkId,
 ): Coin | null => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
 

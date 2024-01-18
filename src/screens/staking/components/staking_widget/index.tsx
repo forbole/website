@@ -14,18 +14,19 @@ import {
   getWalletAccounts,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import {
-  type TStakingContext,
-  type Wallet,
-  type WalletId,
-  networkIdToNetworkKey,
+import type {
+  TStakingContext,
+  Wallet,
+  WalletId,
 } from "@src/screens/staking/lib/staking_sdk/core";
+import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
   getWalletName,
   walletsIcons,
 } from "@src/screens/staking/lib/wallet_info";
+import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import { useInitStaking } from "../hooks";
@@ -88,7 +89,7 @@ const WalletRow = ({ wallet }: WalletRowProps) => {
               const networkName = networkIdToNetworkKey[account.networkId];
 
               const networkInfo = networkName
-                ? getNetworkInfo(networkName)
+                ? getNetworkInfo(networkName as NetworkKey)
                 : "";
 
               const imgSrc = networkInfo ? networkInfo.image : "";

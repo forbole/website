@@ -20,7 +20,7 @@ export type Network = {
   value?: string;
 };
 
-export const networks: Record<string, Network> = {
+const networks = {
   "agoric": {
     address: "agoricvaloper1pcc069wu2utgnf5qsm6n2pk2x8xt6cah954t4g",
     bigDipper: "https://testnet.explorer.agoric.net/",
@@ -731,9 +731,12 @@ export const networks: Record<string, Network> = {
     label: "XPLA - XPLA",
     name: "XPLA",
   },
-};
+} satisfies Record<string, Network>;
 
-export const getNetworkInfo = (key: number | string) => networks[key] || null;
+export type NetworkKey = keyof typeof networks;
+
+export const getNetworkInfo = (key: NetworkKey): Network =>
+  networks[key] || null;
 
 export const cosmosNetworkKeys = [
   "agoric",

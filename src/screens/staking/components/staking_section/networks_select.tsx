@@ -7,9 +7,10 @@ import {
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import type { NetworkId } from "@src/screens/staking/lib/staking_sdk/core";
+import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
 import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import * as styles from "./networks_select.module.scss";
@@ -30,14 +31,17 @@ const MenuProps = {
 
 type NetworkItemProps = {
   denom: string;
-  value: NetworkId;
+  value: StakingNetworkId;
 };
 
 const SEPARATOR = "____";
 
 const NetworkItem = ({ denom, value }: NetworkItemProps) => {
   const networkName = networkIdToNetworkKey[value];
-  const networkInfo = networkName ? getNetworkInfo(networkName) : "";
+
+  const networkInfo = networkName
+    ? getNetworkInfo(networkName as NetworkKey)
+    : "";
 
   const imgSrc = networkInfo ? networkInfo.image : "";
   const name = networkInfo ? networkInfo.name : "";

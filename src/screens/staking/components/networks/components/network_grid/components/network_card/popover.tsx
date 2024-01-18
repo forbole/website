@@ -25,7 +25,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   WalletId,
-  networkNameToNetworkId,
+  networkKeyToNetworkId,
   networksWithStaking,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import type {
@@ -35,7 +35,7 @@ import type {
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { convertToMoney } from "@src/utils/convert_to_money";
-import type { Network } from "@src/utils/network_info";
+import type { Network, NetworkKey } from "@src/utils/network_info";
 
 import type { ParamsProps } from "../../config";
 import * as styles from "./popover.module.scss";
@@ -57,8 +57,8 @@ const PopOver = ({
   networkSummary,
   setShowPopover,
 }: PopOverProps) => {
-  const networkNetworkId = networkNameToNetworkId[network.graphql];
-  const stakingNetworkId = networkNameToNetworkId[network.graphql];
+  const networkNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
+  const stakingNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
 
   const stakingRef = useStakingRef();
 

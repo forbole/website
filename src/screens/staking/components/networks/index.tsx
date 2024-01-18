@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
 import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/formatters";
+import type { NetworkKey } from "@src/utils/network_info";
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
 import NetworkGrid from "./components/network_grid";
@@ -37,7 +38,7 @@ const Networks = () => {
   };
 
   const allNetworkData = allNetworkKeys
-    .map((x: number | string) => getNetworkInfo(x))
+    .map((x: number | string) => getNetworkInfo(x as NetworkKey))
     .filter(Boolean);
 
   const sortedNetworks = [...allNetworkData].sort(sortNetworks).filter((a) => {

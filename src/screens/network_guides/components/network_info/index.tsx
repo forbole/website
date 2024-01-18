@@ -19,6 +19,7 @@ import HighlightButton from "@src/components/highlight-button";
 import CopyIcon from "@src/components/icons/icon_copy.svg";
 import * as guideStyles from "@src/screens/network_guides/components/guide/components/guide_details/index.module.scss";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
+import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import InfoCard from "./components/info_card";
@@ -59,7 +60,7 @@ const NetworkInfo = ({ post }: any) => {
     const mapping = mappings[tags[1].slug as string];
 
     if (mapping) {
-      return getNetworkInfo(mapping);
+      return getNetworkInfo(mapping as NetworkKey);
     }
 
     return getNetworkInfo(tags[1].slug);

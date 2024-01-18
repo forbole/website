@@ -1,6 +1,6 @@
 import type { Coin } from "@cosmjs/stargate";
 
-import type { NetworkId } from "@src/screens/staking/lib/staking_sdk/core";
+import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API;
 
@@ -59,12 +59,12 @@ type GetStakingInfoResponse = {
 };
 
 export const stakingClient = {
-  broadcast: async (network: NetworkId, body: unknown) =>
+  broadcast: async (network: StakingNetworkId, body: unknown) =>
     fetchJson(`/api/broadcast/${network}`, {
       body: JSON.stringify(body),
       method: "POST",
     }),
-  claimRewards: async (network: NetworkId, address: string) =>
+  claimRewards: async (network: StakingNetworkId, address: string) =>
     fetchJson(`/api/claim_rewards`, {
       body: JSON.stringify({
         address,
@@ -72,14 +72,14 @@ export const stakingClient = {
       }),
       method: "POST",
     }),
-  getAddressInfo: async (network: NetworkId, address: string) =>
+  getAddressInfo: async (network: StakingNetworkId, address: string) =>
     fetchJson<GetAddressInfoResponse>(`/api/address/${network}/${address}`),
 
-  getRewardsInfo: async (network: NetworkId, address: string) =>
+  getRewardsInfo: async (network: StakingNetworkId, address: string) =>
     fetchJson<GetRewardsResponse>(`/api/rewards/${network}/${address}`),
-  getStakingInfo: async (network: NetworkId) =>
+  getStakingInfo: async (network: StakingNetworkId) =>
     fetchJson<GetStakingInfoResponse>(`/api/staking_info/${network}`),
-  stake: async (network: NetworkId, address: string, amount: string) =>
+  stake: async (network: StakingNetworkId, address: string, amount: string) =>
     fetchJson<StakeResponse>(`/api/stake`, {
       body: JSON.stringify({
         address,
@@ -88,7 +88,7 @@ export const stakingClient = {
       }),
       method: "POST",
     }),
-  unstake: async (network: NetworkId, address: string, amount: string) =>
+  unstake: async (network: StakingNetworkId, address: string, amount: string) =>
     fetchJson(`/api/unstake`, {
       body: JSON.stringify({
         address,
