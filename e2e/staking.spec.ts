@@ -55,13 +55,13 @@ test.describe.parallel("Staking Page", () => {
     ].join(" >> ");
 
     // Before adding the account, there is no staking button
-    await page.hover(StakingPage.selectors.networkCard("akash"));
+    await stakingPage.showPopover("akash");
     await expect(page.locator(buttonLocator)).toHaveCount(0);
 
     await stakingPage.setNetworkAccount(StakingNetworkId.Akash);
 
     // After adding the account, there should be a staking button
-    await page.hover(StakingPage.selectors.networkCard("akash"));
+    await stakingPage.showPopover("akash");
     await expect(page.locator(buttonLocator)).toHaveCount(1);
   });
 });

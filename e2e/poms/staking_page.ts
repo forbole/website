@@ -16,8 +16,14 @@ const selectors = {
   stakingCardLabel: '[data-test="staking-card-label"]',
 };
 
-const networksWithoutStaking = ["sui", "agoric"];
-const networksWithStaking = ["akash", "cosmos", "dydx", "celestia"];
+const networksWithoutStaking: NetworkKey[] = ["sui", "agoric"];
+
+const networksWithStaking: NetworkKey[] = [
+  "akash",
+  "cosmos",
+  "dydx",
+  "celestia",
+];
 
 export class StakingPage {
   static networksWithoutStaking = networksWithoutStaking;
@@ -63,5 +69,15 @@ export class StakingPage {
       },
       { network, wallet: WalletId.Keplr },
     );
+  }
+
+  async showPopover(network: NetworkKey) {
+    const isMobile = await this.page.evaluate(() => window.innerWidth < 500);
+
+    if (isMobile) {
+      await this.page.click(StakingPage.selectors.networkCard(network));
+    } else {
+      await this.page.hover(StakingPage.selectors.networkCard(network));
+    }
   }
 }
