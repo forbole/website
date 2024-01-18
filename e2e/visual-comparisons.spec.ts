@@ -1,6 +1,8 @@
 import type { Page } from "@playwright/test";
 import { expect, test } from "@playwright/test";
 
+import { prepareEnv } from "./utils/prepare_env";
+
 const slowlyScrollToBottom = async (page: Page) => {
   await page.evaluate(
     () =>
@@ -35,6 +37,10 @@ const scrollToTop = async (page: Page) => {
   );
 };
 
+test.beforeEach(async ({ page }) => {
+  await prepareEnv(page);
+});
+
 test.describe.parallel("Main Pages", () => {
   const paths = [
     "/",
@@ -59,14 +65,6 @@ test.describe.parallel("Main Pages", () => {
 
   paths.forEach((path) => {
     test(`Path: ${path}`, async ({ page }) => {
-      await page.goto("/");
-
-      await page.evaluate(() => {
-        document.cookie = "is_e2e_test=true";
-      }, []);
-
-      await page.reload();
-
       await page.goto(path);
 
       await slowlyScrollToBottom(page);

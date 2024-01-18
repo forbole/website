@@ -10,6 +10,7 @@ import { tooltipId } from "@src/components/tooltip";
 import {
   disconnectWallet,
   getCanAddWallet,
+  setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type {
@@ -57,7 +58,7 @@ const WalletRow = ({ onDisconnect, wallet }: WalletRowProps) => {
       </div>
       <button
         className={styles.clickableIcon}
-        data-tooltip-content={t("stakingWidget.disconnectWallets")}
+        data-tooltip-content={t("stakingWidget.disconnectWallet")}
         data-tooltip-id={tooltipId}
         onClick={onDisconnect}
       >
@@ -186,10 +187,7 @@ const StakingWidgetContainer = () => {
   );
 
   const onConnectWallet = useCallback(() => {
-    stakingRef.current.setState({
-      selectedAccount: undefined,
-      selectedAction: "connect_wallet",
-    });
+    setSelectedAccount(stakingRef.current.setState, "connect_wallet", null);
   }, [stakingRef]);
 
   const canConnectMoreWallets = getCanAddWallet(stakingRef.current.state);

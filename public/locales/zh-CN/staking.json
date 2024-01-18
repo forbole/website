@@ -124,12 +124,9 @@
     "tokenAmount": "Token amount"
   },
   "stakingWidget": {
-    "accounts": {
-      "title": "Available token"
-    },
     "connected_other": "Connected wallet",
     "connectWallet": "Connect Wallet",
-    "disconnectWallets": "Disconnect Wallets"
+    "disconnectWallet": "Disconnect"
   },
   "string": " ",
   "success": "邮件已发送！",

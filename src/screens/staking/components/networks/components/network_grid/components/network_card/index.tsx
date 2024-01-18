@@ -96,6 +96,7 @@ const NetworkCard = ({
   return (
     <motion.div
       className={styles.root}
+      data-test={`network-card-${network.key}`}
       initial="initial"
       ref={ref}
       transition={{ duration: 0.3 }}

@@ -10,7 +10,7 @@
     "e2e": "playwright test",
     "i18next": "i18next 'src/**/*.{tsx,ts,jsx,js}'",
     "lint": "bash scripts/lint.sh",
-    "lint:eslint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:eslint": "eslint --ext .ts,.tsx,.js,.jsx .",
     "lint:prettier": "prettier --check src/**/*",
     "lint:prettier:fix": "prettier --write src/**/*",
     "lint:scss": "stylelint './src/**/*.scss'",

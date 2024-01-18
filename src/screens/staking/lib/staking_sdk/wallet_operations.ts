@@ -16,6 +16,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useEffect } from "react";
 
 import { toastSuccess } from "@src/components/notification";
+import { IS_E2E } from "@src/utils/e2e";
 
 import { setUserWallet } from "./context";
 import type {
@@ -344,4 +345,4 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
 };
 
 export const getCanStakeToAnyWallet = () =>
-  typeof window !== "undefined" && !!window.keplr;
+  typeof window !== "undefined" && (!!window.keplr || IS_E2E);
