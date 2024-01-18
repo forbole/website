@@ -1,7 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
 import Image from "next/legacy/image";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 
 import * as styles from "./index.module.scss";
 
@@ -69,4 +69,4 @@ const WhyForbole = () => {
   );
 };
 
-export default WhyForbole;
+export default memo(WhyForbole);

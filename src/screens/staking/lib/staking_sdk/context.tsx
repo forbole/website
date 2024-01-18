@@ -326,3 +326,6 @@ export const getClaimableRewardsForNetwork = (
       getEmptyCoin(),
     );
 };
+
+export const getHasConnectedWallets = (state: State) =>
+  Object.keys(state.wallets).length > 0;

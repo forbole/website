@@ -42,12 +42,14 @@ const ClaimRewardsModal = () => {
     }
   }, [isOpen, networkId, address]);
 
+  const onClose = () => {
+    if (isLoading) return;
+
+    setSelectedAccount(setStakingState, null, null);
+  };
+
   return (
-    <ModalBase
-      onClose={() => setSelectedAccount(setStakingState, null, null)}
-      open={isOpen}
-      title={t("claimRewards.title")}
-    >
+    <ModalBase onClose={onClose} open={isOpen} title={t("claimRewards.title")}>
       <div className={styles.wrapper}>
         <NetworksSelect variant="accounts" />
         {gasFee && (

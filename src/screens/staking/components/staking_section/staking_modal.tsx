@@ -84,12 +84,14 @@ const StakingModal = () => {
     typeof balance.num === "number" &&
     amountNum <= balance.num;
 
+  const onClose = () => {
+    if (isLoading) return;
+
+    setSelectedAccount(setStakingState, null, null);
+  };
+
   return (
-    <ModalBase
-      onClose={() => setSelectedAccount(setStakingState, null, null)}
-      open={isOpen}
-      title={t("stakingModal.title")}
-    >
+    <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
       <div className={styles.wrapper}>
         <div>{selectedAccount && <NetworksSelect variant="accounts" />}</div>
         {networkInfo?.apy && (

@@ -1,6 +1,6 @@
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
 import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -84,4 +84,4 @@ const Networks = () => {
   );
 };
 
-export default Networks;
+export default memo(Networks);

@@ -1,6 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
-import { useRef } from "react";
+import { memo, useRef } from "react";
 
 import horseImage from "@src/../public/images/assets/image_horse_blur.png";
 import horseShadow from "@src/../public/images/assets/image_water_shadow.png";
@@ -39,4 +39,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

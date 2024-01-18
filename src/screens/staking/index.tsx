@@ -13,10 +13,16 @@ import HowItWorks from "./components/how_it_works";
 import Networks from "./components/networks";
 import WhyForbole from "./components/why_forbole";
 import * as styles from "./index.module.scss";
-import { StakingProvider } from "./lib/staking_sdk/context";
+import {
+  getHasConnectedWallets,
+  useStakingRef,
+} from "./lib/staking_sdk/context";
 
 const Staking = () => {
   const { t } = useTranslation("staking");
+  const stakingRef = useStakingRef();
+
+  const hasConnectedWallets = getHasConnectedWallets(stakingRef.current.state);
 
   useEffect(() => {
     window.scrollTo({
@@ -27,39 +33,43 @@ const Staking = () => {
   }, []);
 
   return (
-    <StakingProvider>
-      <GQLProvider>
-        <LayoutVal
-          footer
-          image="/images/assets/image_forbole_validator_website_preview.png"
-          title={t("title")}
-          twitterImage="/images/assets/image_forbole_validator_website_preview.png"
-        >
-          <div className={styles.container}>
-            <Hero />
-          </div>
-          <div className={styles.container}>
-            <Networks />
-          </div>
+    <GQLProvider>
+      <LayoutVal
+        footer
+        image="/images/assets/image_forbole_validator_website_preview.png"
+        title={t("title")}
+        twitterImage="/images/assets/image_forbole_validator_website_preview.png"
+      >
+        <div className={styles.container}>
+          <Hero />
+        </div>
+        <div className={styles.container}>
+          <Networks />
+        </div>
+        {!hasConnectedWallets && (
           <div className={styles.container}>
             <HowItWorks />
           </div>
+        )}
+        {!hasConnectedWallets && (
           <div className={styles.container}>
             <WhyForbole />
           </div>
-          <div className={styles.container}>
-            <CalculateRewards />
-          </div>
+        )}
+        <div className={styles.container}>
+          <CalculateRewards />
+        </div>
+        {!hasConnectedWallets && (
           <div className={styles.container}>
             <ContactForbole />
           </div>
-          <div className={styles.container}>
-            <FAQ />
-          </div>
-        </LayoutVal>
-        <Tooltip />
-      </GQLProvider>
-    </StakingProvider>
+        )}
+        <div className={styles.container}>
+          <FAQ />
+        </div>
+      </LayoutVal>
+      <Tooltip />
+    </GQLProvider>
   );
 };
 
