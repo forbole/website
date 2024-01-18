@@ -93,7 +93,11 @@ const StakingModal = () => {
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
       <div className={styles.wrapper}>
-        <div>{selectedAccount && <NetworksSelect variant="accounts" />}</div>
+        <div>
+          {selectedAccount && (
+            <NetworksSelect disabled={isLoading} variant="accounts" />
+          )}
+        </div>
         {networkInfo?.apy && (
           <div className={styles.row}>
             <Label className={styles.apy}>
@@ -123,6 +127,7 @@ const StakingModal = () => {
           <div className={styles.row}>
             <FormInput
               className={styles.input}
+              disabled={isLoading}
               onChange={(e) => {
                 if (amountError) {
                   setAmountError("");
@@ -156,6 +161,7 @@ const StakingModal = () => {
           <Label>{t("stakingModal.memo")}</Label>
           <FormInput
             className={styles.input}
+            disabled={isLoading}
             fullWidth
             noFocusEffect
             noMargin

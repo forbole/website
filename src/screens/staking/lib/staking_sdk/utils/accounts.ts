@@ -7,6 +7,11 @@ export const accountHasDelegations = (account?: Account): boolean =>
   !!account?.info?.delegation &&
   Object.keys(account.info.delegation).length > 0;
 
+export const accountHasRewards = (account?: Account): boolean =>
+  !!account?.rewards &&
+  Array.isArray(account.rewards) &&
+  account.rewards.length > 0;
+
 export const filterUniqueAddresses = () => {
   const usedAddresses = new Set<string>();
 

@@ -51,7 +51,7 @@ const ClaimRewardsModal = () => {
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("claimRewards.title")}>
       <div className={styles.wrapper}>
-        <NetworksSelect variant="accounts" />
+        <NetworksSelect variant="accounts_with_rewards" />
         {gasFee && (
           <div className={styles.feeRow}>
             <div>{t("rewardsModal.gasFee")}</div>

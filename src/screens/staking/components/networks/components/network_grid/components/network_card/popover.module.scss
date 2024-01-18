@@ -134,6 +134,10 @@ $popover-background: linear-gradient(
       color: #25282d;
       text-align: left;
     }
+
+    > div:last-child {
+      text-align: right;
+    }
   }
 
   .rewards {

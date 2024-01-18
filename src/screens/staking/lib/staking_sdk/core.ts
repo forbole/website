@@ -21,7 +21,7 @@ export enum StakingNetworkId {
   Akash = "akashnet-2",
   Celestia = "celestia",
   CelestiaTestnet = "mocha-4",
-  CosmosHub = "cosmoshub",
+  CosmosHub = "cosmoshub-4",
   CosmosHubTestnet = "theta-testnet-001",
   DyDx = "dydx-mainnet-1",
 }

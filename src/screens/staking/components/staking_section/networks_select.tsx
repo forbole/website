@@ -1,5 +1,6 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { identity } from "ramda";
 
 import {
   getSelectedAccount,
@@ -9,7 +10,10 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
-import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import {
+  accountHasRewards,
+  getAccountResolvedBalance,
+} from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
@@ -58,10 +62,11 @@ const NetworkItem = ({ denom, value }: NetworkItemProps) => {
 };
 
 type Props = {
-  variant: "accounts";
+  disabled?: boolean;
+  variant: "accounts_with_rewards" | "accounts";
 };
 
-const NetworksSelect = ({ variant }: Props) => {
+const NetworksSelect = ({ disabled, variant }: Props) => {
   const stakingRef = useStakingRef();
 
   const { setState: setStakingState, state: stakingState } = stakingRef.current;
@@ -71,6 +76,10 @@ const NetworksSelect = ({ variant }: Props) => {
   if (!variant || !selectedAccount) return null;
 
   const allAccounts = getWalletAccounts(stakingState, selectedAccount.wallet);
+
+  const availableAccounts = allAccounts.filter(
+    variant === "accounts_with_rewards" ? accountHasRewards : identity,
+  );
 
   const handleChange = (event: any) => {
     const [address, networkId] = event.target.value.split(SEPARATOR);
@@ -97,10 +106,11 @@ const NetworksSelect = ({ variant }: Props) => {
         IconComponent={IconComponent}
         MenuProps={MenuProps}
         className={styles.select}
+        disabled={disabled}
         onChange={handleChange}
         value={selectedItem}
       >
-        {allAccounts.map((account) => {
+        {availableAccounts.map((account) => {
           const item = [account.address, account.networkId].join(SEPARATOR);
           const balance = getAccountResolvedBalance(account);
 

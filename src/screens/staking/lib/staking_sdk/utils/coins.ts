@@ -67,7 +67,7 @@ export const resolveCoin = (coin: Coin): Coin => {
   };
 };
 
-// @TODO: Improve multiple denoms handling
+// @TODO: Improve multiple denoms handling, also maybe use bigint here
 export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin => ({
   amount: (Number(coinA?.amount || 0) + Number(coinB?.amount || 0)).toString(),
   denom: coinA?.denom || coinB?.denom || "",
