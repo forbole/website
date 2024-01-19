@@ -194,6 +194,7 @@ const StakingModal = () => {
           <div className={styles.row}>
             <FormInput
               className={styles.input}
+              data-test="staking-modal-amount-input"
               disabled={isLoading}
               onChange={(e) => {
                 if (amountError) {
@@ -212,7 +213,11 @@ const StakingModal = () => {
               value={amount}
             />
           </div>
-          {!!amountError && <ModalError>{amountError}</ModalError>}
+          {!!amountError && (
+            <ModalError data-test="staking-modal-amount-error">
+              {amountError}
+            </ModalError>
+          )}
         </div>
         <div className={styles.group}>
           <Label>{t("stakingModal.memo")}</Label>

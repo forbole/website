@@ -1,8 +1,11 @@
+import type { Coin } from "@cosmjs/stargate";
 import type { Page } from "@playwright/test";
 
 import type {
+  Account,
   StakingNetworkId,
   TStakingContext,
+  Wallet,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import { WalletId } from "@src/screens/staking/lib/staking_sdk/core";
 import type { NetworkKey } from "@src/utils/network_info";
@@ -14,6 +17,7 @@ const selectors = {
   networkCard,
   popoverStakeButton: '[data-test="popover-stake-button"]',
   stakingCardLabel: '[data-test="staking-card-label"]',
+  stakingModalAmountError: '[data-test="staking-modal-amount-error"]',
 };
 
 const networksWithoutStaking: NetworkKey[] = ["sui", "agoric"];
@@ -25,6 +29,10 @@ const networksWithStaking: NetworkKey[] = [
   "celestia",
 ];
 
+type AccountOpts = {
+  balances?: Coin;
+};
+
 export class StakingPage {
   static networksWithoutStaking = networksWithoutStaking;
   static networksWithStaking = networksWithStaking;
@@ -32,11 +40,18 @@ export class StakingPage {
 
   constructor(private page: Page) {}
 
+  async fillStakingAmount(amount: string) {
+    const { page } = this;
+
+    await page.locator('[data-test="staking-modal-amount-input"]').fill(amount);
+    await page.locator('[data-test="staking-modal-amount-input"]').blur();
+  }
+
   navigate() {
     return this.page.goto("/staking");
   }
 
-  async setNetworkAccount(network: StakingNetworkId) {
+  async setNetworkAccount(network: StakingNetworkId, aOpts?: AccountOpts) {
     await this.page.evaluate(
       (opts) => {
         const { setState, state } = (window as any)
@@ -52,22 +67,32 @@ export class StakingPage {
                 accounts: [
                   {
                     address: "test-address",
+                    info: {
+                      balances: opts.balances ?? {
+                        amount: "10",
+                        denom: "utest",
+                      },
+                      delegation: {
+                        amount: "0",
+                        denom: "utest",
+                      },
+                    },
                     networkId: opts.network,
-                    walletId: opts.wallet,
+                    wallet: opts.wallet,
                   },
-                ],
-                networkId: opts.network,
+                ] satisfies Account[],
+                wallet: opts.network,
               },
             },
             wallet: opts.wallet,
-          },
+          } satisfies Wallet,
         };
 
         setState({
           wallets: newWallets,
         });
       },
-      { network, wallet: WalletId.Keplr },
+      { balances: aOpts?.balances, network, wallet: WalletId.Keplr },
     );
   }
 

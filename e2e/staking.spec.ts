@@ -64,4 +64,43 @@ test.describe.parallel("Staking Page", () => {
     await stakingPage.showPopover("akash");
     await expect(page.locator(buttonLocator)).toHaveCount(1);
   });
+
+  test("There is a validation error when trying to staking more than available", async ({
+    page,
+  }) => {
+    const stakingPage = new StakingPage(page);
+
+    await stakingPage.navigate();
+
+    await stakingPage.setNetworkAccount(StakingNetworkId.Akash, {
+      balances: {
+        amount: "10",
+        denom: "uakt",
+      },
+    });
+
+    // After adding the account, there should be a staking button
+    await stakingPage.showPopover("akash");
+
+    await page
+      .locator(
+        [
+          StakingPage.selectors.networkCard("akash"),
+          StakingPage.selectors.popoverStakeButton,
+        ].join(" >> "),
+      )
+      .click();
+
+    await stakingPage.fillStakingAmount("20");
+
+    await expect(
+      page.locator(StakingPage.selectors.stakingModalAmountError),
+    ).toHaveText("You have to input a valid amount");
+
+    await stakingPage.fillStakingAmount("1");
+
+    await expect(
+      page.locator(StakingPage.selectors.stakingModalAmountError),
+    ).toHaveCount(0);
+  });
 });

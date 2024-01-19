@@ -9,10 +9,14 @@ type ModalErrorProps = {
   children: ReactNode;
 };
 
-export const ModalError = ({ children }: ModalErrorProps) => {
+export const ModalError = ({ children, ...rest }: ModalErrorProps) => {
   if (!children) return null;
 
-  return <div className={styles.error}>{children}</div>;
+  return (
+    <div {...rest} className={styles.error}>
+      {children}
+    </div>
+  );
 };
 
 type Props = {
