@@ -108,6 +108,7 @@ const UnstakingModal = () => {
           </div>
         </div>
         <FormInput
+          disabled={isLoading}
           fullWidth
           onBlur={() => {
             const newAmountError = (() => {
@@ -139,6 +140,7 @@ const UnstakingModal = () => {
         <Label>{t("unstakingModal.memo.label")}</Label>
         <FormInput
           className={styles.input}
+          disabled={isLoading}
           noFocusEffect
           noMargin
           onBlur={() => {
