@@ -16,6 +16,7 @@ import HighlightButton from "@src/components/highlight-button";
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
+import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   StakingContext,
   getAccountsForNetwork,
@@ -28,14 +29,14 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   WalletId,
-  coinsDenoms,
+  mainNetworkDenom,
   networkKeyToNetworkId,
   networksWithStaking,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import type {
   Account,
-  CoinDenom,
   NetworkInfo,
+  StakingNetworkId,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
@@ -65,7 +66,6 @@ const PopOver = ({
 }: PopOverProps) => {
   const networkNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
   const stakingNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
-  const [coinPrice, setCoinPrice] = useState<null | string>(null);
   const requestingCoinPrice = useRef("");
 
   const stakingRef = useStakingRef();
@@ -101,7 +101,7 @@ const PopOver = ({
 
     const result = {
       accounts: null as Account[] | null,
-      claimableRewards: null as Coin | null,
+      claimableRewards: null as NetworkClaimableRewards | null,
       stakedData: null as Coin | null,
     };
 
@@ -117,10 +117,11 @@ const PopOver = ({
         stakingNetworkId,
       );
 
-      result.claimableRewards = getClaimableRewardsForNetwork(
-        stakingRef.current.state,
-        stakingNetworkId,
-      );
+      result.claimableRewards =
+        getClaimableRewardsForNetwork(
+          stakingRef.current.state,
+          stakingNetworkId,
+        ) || null;
     }
 
     return result;
@@ -128,57 +129,61 @@ const PopOver = ({
 
   // @TODO: move some logic to the sdk
   useEffect(() => {
-    if (!claimableRewards?.denom) return;
+    if (!stakingNetworkId) return;
 
-    const resolvedCoin = resolveCoin({
-      amount: "0",
-      denom: claimableRewards.denom,
-    });
-
-    const parsedDenom = resolvedCoin.denom?.toLowerCase() as CoinDenom;
+    const parsedDenom = mainNetworkDenom[stakingNetworkId];
+    const { coinsPrices } = stakingRef.current.state;
 
     if (
       parsedDenom &&
-      coinsDenoms.has(parsedDenom) &&
+      !coinsPrices[parsedDenom] &&
       requestingCoinPrice.current !== parsedDenom
     ) {
       requestingCoinPrice.current = parsedDenom;
 
       (async () => {
-        const coinPriceRespose = await getCoinPrice(
+        await getCoinPrice(
           stakingRef.current.state,
           stakingRef.current.setState,
           parsedDenom,
         );
 
-        setCoinPrice(coinPriceRespose ?? null);
-
         requestingCoinPrice.current = "";
       })();
     }
-  }, [claimableRewards?.denom, stakingRef]);
+  }, [stakingRef, stakingNetworkId]);
 
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
 
   // @TODO: Move to sdk
   const displayedRewards = (() => {
-    if (!claimableRewards) return null;
+    if (!claimableRewards?.usd) return null;
 
-    if (!coinPrice) return formatCoin(claimableRewards);
+    if (claimableRewards.usd.lt(new BigNumber(10).pow(-5))) {
+      return `< ${claimableRewards.usd.toFormat(5)} USD`;
+    }
 
-    const coinNum = new BigNumber(claimableRewards.amount);
-    const coinValue = coinNum.multipliedBy(new BigNumber(coinPrice));
-
-    return `${coinValue.toFormat(5)} USD`;
+    return `${claimableRewards.usd.toFormat(5)} USD`;
   })();
 
   const displayedStaked = (() => {
-    if (!stakedData) return null;
+    if (!stakedData || !stakingNetworkId) return null;
+
+    const mainDenom = mainNetworkDenom[stakingNetworkId as StakingNetworkId];
+
+    if (!mainDenom) return [formatCoin(stakedData)];
+
+    const coinPrice = stakingRef.current.state.coinsPrices[mainDenom];
 
     if (!coinPrice) return [formatCoin(stakedData)];
 
-    const coinNum = new BigNumber(stakedData.amount);
+    const stakedResolved = resolveCoin(stakedData);
+    const coinNum = new BigNumber(stakedResolved.amount);
     const coinValue = coinNum.multipliedBy(new BigNumber(coinPrice));
+
+    if (coinValue.isNaN() || coinValue.lt(new BigNumber(10).pow(-5))) {
+      return [formatCoin(stakedData), `< ${coinValue.toFormat(5)} USD`];
+    }
 
     return [formatCoin(stakedData), `≈ ${coinValue.toFormat(5)} USD`];
   })();

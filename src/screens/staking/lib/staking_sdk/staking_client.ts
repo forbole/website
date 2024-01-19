@@ -3,6 +3,8 @@ import BigNumber from "bignumber.js";
 
 import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 
+import { resolveCoin } from "./utils/coins";
+
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API;
 
 if (!baseUrl && typeof window !== "undefined") {
@@ -30,14 +32,16 @@ const rewardsDivisor = new BigNumber(10).pow(18);
 
 const parseStakingRewards = async (res: GetRewardsResponse) =>
   Array.isArray(res)
-    ? res.map((coin) => {
-        const num = new BigNumber(coin.amount);
+    ? res
+        .map((coin) => {
+          const num = new BigNumber(coin.amount);
 
-        return {
-          amount: num.dividedBy(rewardsDivisor).toString(),
-          denom: coin.denom,
-        };
-      })
+          return {
+            amount: num.dividedBy(rewardsDivisor).toString(),
+            denom: coin.denom,
+          };
+        })
+        .map(resolveCoin)
     : res;
 
 type StakeResponse = {

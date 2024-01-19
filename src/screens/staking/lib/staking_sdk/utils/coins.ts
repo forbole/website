@@ -1,7 +1,7 @@
 import type { Coin } from "@cosmjs/stargate";
 import BigNumber from "bignumber.js";
 
-import { StakingNetworkId } from "../core";
+import { CoinDenom, StakingNetworkId } from "../core";
 
 const networkToResolvedDenom = {
   [StakingNetworkId.Akash]: "uakt",
@@ -19,49 +19,30 @@ export const uaktExp = 6;
 export const utiaExp = 6;
 export const adydxExp = 18;
 
+const denomMap: Record<DenomToResolve, [CoinDenom, number]> = {
+  adydx: [CoinDenom.DYDX, adydxExp],
+  uakt: [CoinDenom.AKT, uaktExp],
+  uatom: [CoinDenom.ATOM, uatomExp],
+  utia: [CoinDenom.TIA, utiaExp],
+};
+
 export const resolveCoin = (coin: Coin): Coin => {
   const compared = coin.denom?.toLowerCase() as DenomToResolve;
 
   const parseNum = (exp: number) =>
-    new BigNumber(coin.amount).dividedBy(new BigNumber(10 ** exp)).toString();
+    new BigNumber(coin.amount).dividedBy(new BigNumber(10).pow(exp)).toString();
 
-  switch (compared) {
-    case "uatom": {
-      return {
-        amount: parseNum(uatomExp),
-        denom: "ATOM",
-      };
-    }
+  const [denom, exp] = denomMap[compared] || [coin.denom, 0];
 
-    case "utia": {
-      return {
-        amount: parseNum(utiaExp),
-        denom: "TIA",
-      };
-    }
+  let { amount } = coin;
 
-    case "adydx": {
-      return {
-        amount: parseNum(adydxExp),
-        denom: "DYDX",
-      };
-    }
-
-    case "uakt": {
-      return {
-        amount: parseNum(uaktExp),
-        denom: "AKT",
-      };
-    }
-
-    default: {
-      compared satisfies never;
-    }
+  if (compared !== denom.toLowerCase()) {
+    amount = parseNum(exp);
   }
 
   return {
-    ...coin,
-    denom: coin.denom?.toUpperCase(),
+    amount,
+    denom: denom.toUpperCase(),
   };
 };
 
@@ -71,4 +52,4 @@ export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin => ({
   denom: coinA?.denom || coinB?.denom || "",
 });
 
-export const getEmptyCoin = (): Coin => ({ amount: "0", denom: "" });
+export const getEmptyCoin = (denom = ""): Coin => ({ amount: "0", denom });

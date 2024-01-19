@@ -1,4 +1,5 @@
 import type { Coin } from "@cosmjs/stargate";
+import BigNumber from "bignumber.js";
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useMemo, useRef, useState } from "react";
 
@@ -6,6 +7,7 @@ import {
   ENABLE_TESTNETS,
   WalletId,
   defaultState,
+  mainNetworkDenom,
   networksWithStaking,
   testnetNetworks,
   walletsSupported,
@@ -326,26 +328,58 @@ export const getStakedDataForNetwork = (
     );
 };
 
+export type NetworkClaimableRewards = { coin: Coin; usd: BigNumber } | null;
+
+// This assumes that the rewards coins have been normalized (which happens in
+// the staking client)
 export const getClaimableRewardsForNetwork = (
   state: State,
   network: StakingNetworkId,
-): Coin | null => {
+): NetworkClaimableRewards => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
 
   if (!accountsForNetwork.length) {
     return null;
   }
 
-  return accountsForNetwork
-    .filter(filterUniqueAddresses())
-    .reduce(
-      (acc, account) =>
-        (Array.isArray(account.rewards) ? account.rewards : []).reduce(
-          (acc2, reward) => sumCoins(acc2, reward),
-          acc,
-        ),
-      getEmptyCoin(),
-    );
+  const { coinsPrices } = state;
+  const denom = mainNetworkDenom[network];
+
+  if (!denom) {
+    return null;
+  }
+
+  return accountsForNetwork.filter(filterUniqueAddresses()).reduce(
+    (acc, account) =>
+      (Array.isArray(account.rewards) ? account.rewards : []).reduce(
+        (acc2, reward) => {
+          const rewardDenomPrice =
+            coinsPrices[reward.denom.toLowerCase() as CoinDenom];
+
+          if (rewardDenomPrice) {
+            const price = new BigNumber(rewardDenomPrice);
+            const amount = new BigNumber(reward.amount);
+            const extraUSD = price.times(amount);
+
+            acc2.usd = acc2.usd.plus(extraUSD);
+          }
+
+          if (denom?.toLowerCase() === reward.denom?.toLowerCase()) {
+            const existingAmount = new BigNumber(acc2.coin.amount);
+            const amount = new BigNumber(reward.amount);
+
+            acc2.coin = {
+              amount: existingAmount.plus(amount).toString(),
+              denom: acc2.coin.denom,
+            };
+          }
+
+          return acc2;
+        },
+        acc,
+      ),
+    { coin: getEmptyCoin(denom.toUpperCase()), usd: new BigNumber(0) },
+  );
 };
 
 export const getHasConnectedWallets = (state: State) =>

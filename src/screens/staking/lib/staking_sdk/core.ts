@@ -8,10 +8,15 @@ import type {
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
 
-export const MAX_MEMO = 256;
-
 export enum WalletId {
   Keplr = "keplr",
+}
+
+export enum CoinDenom {
+  AKT = "akt",
+  ATOM = "atom",
+  DYDX = "dydx",
+  TIA = "tia",
 }
 
 // For now these values match the id in the chain registry:
@@ -25,6 +30,15 @@ export enum StakingNetworkId {
   CosmosHubTestnet = "theta-testnet-001",
   DyDx = "dydx-mainnet-1",
 }
+
+export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
+  [StakingNetworkId.Akash]: CoinDenom.AKT,
+  [StakingNetworkId.Celestia]: CoinDenom.TIA,
+  [StakingNetworkId.CelestiaTestnet]: CoinDenom.TIA,
+  [StakingNetworkId.CosmosHub]: CoinDenom.ATOM,
+  [StakingNetworkId.CosmosHubTestnet]: CoinDenom.ATOM,
+  [StakingNetworkId.DyDx]: CoinDenom.DYDX,
+};
 
 export const testnetNetworks = new Set([
   StakingNetworkId.CosmosHubTestnet,
@@ -94,15 +108,6 @@ export type NetworkInfo = {
   rpc: string;
   unbonding_period: number;
 };
-
-export enum CoinDenom {
-  AKT = "akt",
-  ATOM = "atom",
-  DYDX = "dydx",
-  TIA = "tia",
-}
-
-export const coinsDenoms = new Set([...Object.values(CoinDenom)]);
 
 export type State = {
   coinsPrices: { [key in CoinDenom]?: string };

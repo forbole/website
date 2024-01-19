@@ -31,6 +31,8 @@ import { WalletId, keplrNetworks, networksWithStaking } from "./core";
 import { stakingClient } from "./staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
+export const MAX_MEMO = 256;
+
 const handleKeplrSignError = (err: Error) => {
   // eslint-disable-next-line no-console
   console.log("debug: index.tsx: err", err);
@@ -345,7 +347,7 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
 
     window.addEventListener("keplr_keystorechange", listener);
 
-    if (IS_E2E) {
+    if (IS_E2E || process.env.NODE_ENV === "development") {
       (window as any).stakingContext = contextValue;
     }
 
