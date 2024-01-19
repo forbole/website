@@ -65,7 +65,7 @@ test.describe.parallel("Staking Page", () => {
     await expect(page.locator(buttonLocator)).toHaveCount(1);
   });
 
-  test("There is a validation error when trying to staking more than available", async ({
+  test("There is a validation error when trying to stake an incorrect amount", async ({
     page,
   }) => {
     const stakingPage = new StakingPage(page);
@@ -79,28 +79,29 @@ test.describe.parallel("Staking Page", () => {
       },
     });
 
-    // After adding the account, there should be a staking button
-    await stakingPage.showPopover("akash");
+    await stakingPage.openStakingModal("akash");
 
-    await page
-      .locator(
-        [
-          StakingPage.selectors.networkCard("akash"),
-          StakingPage.selectors.popoverStakeButton,
-        ].join(" >> "),
-      )
-      .click();
+    const performCheck = async (hasError: boolean) => {
+      if (hasError) {
+        await expect(
+          page.locator(StakingPage.selectors.stakingModalAmountError),
+        ).toHaveText("You have to input a valid amount");
+      } else {
+        await expect(
+          page.locator(StakingPage.selectors.stakingModalAmountError),
+        ).toHaveCount(0);
+      }
+    };
+
+    await performCheck(false);
 
     await stakingPage.fillStakingAmount("20");
+    await performCheck(true);
 
-    await expect(
-      page.locator(StakingPage.selectors.stakingModalAmountError),
-    ).toHaveText("You have to input a valid amount");
+    await stakingPage.fillStakingAmount("0");
+    await performCheck(true);
 
     await stakingPage.fillStakingAmount("1");
-
-    await expect(
-      page.locator(StakingPage.selectors.stakingModalAmountError),
-    ).toHaveCount(0);
+    await performCheck(false);
   });
 });

@@ -51,6 +51,19 @@ export class StakingPage {
     return this.page.goto("/staking");
   }
 
+  async openStakingModal(network: NetworkKey) {
+    await this.showPopover("akash");
+
+    await this.page
+      .locator(
+        [
+          StakingPage.selectors.networkCard(network),
+          StakingPage.selectors.popoverStakeButton,
+        ].join(" >> "),
+      )
+      .click();
+  }
+
   async setNetworkAccount(network: StakingNetworkId, aOpts?: AccountOpts) {
     await this.page.evaluate(
       (opts) => {
