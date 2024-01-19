@@ -39,3 +39,7 @@ input:-webkit-autofill:active {
 [class*="-next"] > svg {
   transform: rotate(-90deg);
 }
+
+.Toastify__progress-bar {
+  visibility: hidden;
+}

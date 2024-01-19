@@ -24,3 +24,11 @@
     margin: 32px auto;
   }
 }
+
+.notification {
+  min-width: max-content;
+
+  @include down-tablet {
+    min-width: 0;
+  }
+}
