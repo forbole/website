@@ -3,7 +3,7 @@ import BigNumber from "bignumber.js";
 
 import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 
-import { resolveCoin } from "./utils/coins";
+import { normaliseCoin } from "./utils/coins";
 
 const baseUrl = process.env.NEXT_PUBLIC_STAKING_API;
 
@@ -41,7 +41,7 @@ const parseStakingRewards = async (res: GetRewardsResponse) =>
             denom: coin.denom,
           };
         })
-        .map(resolveCoin)
+        .map(normaliseCoin)
     : res;
 
 type StakeResponse = {

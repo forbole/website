@@ -17,14 +17,16 @@ import {
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
-import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/core";
 import {
   formatCoin,
   getUnbondingTimeForNetwork,
-  resolveDenom,
+  normaliseDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
-import { getAccountResolvedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { unstake } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
+import { getAccountNormalisedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import {
+  MAX_MEMO,
+  unstake,
+} from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -78,7 +80,7 @@ const UnstakingModal = () => {
     }
   }, [isOpen]);
 
-  const availableAmount = getAccountResolvedDelegation(account);
+  const availableAmount = getAccountNormalisedDelegation(account);
 
   const amountNum = Number(amount);
 
@@ -190,7 +192,7 @@ const UnstakingModal = () => {
           }}
           placeholder={t("unstakingModal.amount.placeholder")}
           {...(account?.info?.delegation?.denom && {
-            rightText: resolveDenom(account.info.delegation?.denom),
+            rightText: normaliseDenom(account.info.delegation?.denom),
           })}
           value={amount}
         />

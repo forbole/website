@@ -40,7 +40,7 @@ import type {
 } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { resolveCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import { normaliseCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
@@ -177,8 +177,8 @@ const PopOver = ({
 
     if (!coinPrice) return [formatCoin(stakedData)];
 
-    const stakedResolved = resolveCoin(stakedData);
-    const coinNum = new BigNumber(stakedResolved.amount);
+    const stakedNormalised = normaliseCoin(stakedData);
+    const coinNum = new BigNumber(stakedNormalised.amount);
     const coinValue = coinNum.multipliedBy(new BigNumber(coinPrice));
 
     if (coinValue.isNaN() || coinValue.lt(new BigNumber(10).pow(-5))) {

@@ -3,7 +3,7 @@ import BigNumber from "bignumber.js";
 
 import { CoinDenom, StakingNetworkId } from "../core";
 
-const networkToResolvedDenom = {
+const networkToUnnormalisedDenom = {
   [StakingNetworkId.Akash]: "uakt",
   [StakingNetworkId.Celestia]: "utia",
   [StakingNetworkId.CelestiaTestnet]: "utia",
@@ -12,22 +12,22 @@ const networkToResolvedDenom = {
   [StakingNetworkId.DyDx]: "adydx",
 } as const satisfies Record<StakingNetworkId, string>;
 
-type DenomToResolve = (typeof networkToResolvedDenom)[StakingNetworkId];
+type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
 
-export const uatomExp = 6;
-export const uaktExp = 6;
-export const utiaExp = 6;
-export const adydxExp = 18;
+const uatomExp = 6;
+const uaktExp = 6;
+const utiaExp = 6;
+const adydxExp = 18;
 
-const denomMap: Record<DenomToResolve, [CoinDenom, number]> = {
+const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   adydx: [CoinDenom.DYDX, adydxExp],
   uakt: [CoinDenom.AKT, uaktExp],
   uatom: [CoinDenom.ATOM, uatomExp],
   utia: [CoinDenom.TIA, utiaExp],
 };
 
-export const resolveCoin = (coin: Coin): Coin => {
-  const compared = coin.denom?.toLowerCase() as DenomToResolve;
+export const normaliseCoin = (coin: Coin): Coin => {
+  const compared = coin.denom?.toLowerCase() as DenomToNormalise;
 
   const parseNum = (exp: number) =>
     new BigNumber(coin.amount).dividedBy(new BigNumber(10).pow(exp)).toString();

@@ -16,13 +16,15 @@ import {
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
-import { MAX_MEMO } from "@src/screens/staking/lib/staking_sdk/core";
 import {
   formatCoin,
-  resolveDenom,
+  normaliseDenom,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
-import { getAccountResolvedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { stakeAmount } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
+import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import {
+  MAX_MEMO,
+  stakeAmount,
+} from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -73,7 +75,7 @@ const StakingModal = () => {
   if (!isOpen) return null;
 
   const account = getSelectedAccount(stakingState);
-  const balance = getAccountResolvedBalance(account);
+  const balance = getAccountNormalisedBalance(account);
 
   if (!balance || !account) return null;
 
@@ -205,7 +207,7 @@ const StakingModal = () => {
               }}
               placeholder="0"
               {...(balance.coin && {
-                rightText: resolveDenom(balance.coin.denom),
+                rightText: normaliseDenom(balance.coin.denom),
               })}
               onBlur={() => {
                 setAmountError(newAmountError);

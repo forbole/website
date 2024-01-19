@@ -11,7 +11,7 @@ import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core
 import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
 import {
   accountHasRewards,
-  getAccountResolvedBalance,
+  getAccountNormalisedBalance,
 } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
@@ -111,7 +111,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
       >
         {availableAccounts.map((account) => {
           const item = [account.address, account.networkId].join(SEPARATOR);
-          const balance = getAccountResolvedBalance(account);
+          const balance = getAccountNormalisedBalance(account);
 
           if (!balance) return null;
 

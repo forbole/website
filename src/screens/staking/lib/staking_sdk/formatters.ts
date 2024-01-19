@@ -4,19 +4,19 @@ import type { Network, NetworkKey } from "@src/utils/network_info";
 
 import type { NetworkInfo } from "./core";
 import { networkKeyToNetworkId } from "./core";
-import { resolveCoin } from "./utils/coins";
+import { normaliseCoin } from "./utils/coins";
 import { getCanStakeToAnyWallet } from "./wallet_operations";
 
-export const resolveDenom = (denom: string): string =>
-  resolveCoin({ amount: "0", denom }).denom;
+export const normaliseDenom = (denom: string): string =>
+  normaliseCoin({ amount: "0", denom }).denom;
 
 export const formatCoin = (coin: Coin): string => {
   if (!coin?.denom) {
     return "";
   }
 
-  const resolvedCoin = resolveCoin(coin);
-  const num = Number(resolvedCoin?.amount);
+  const normalisedCoin = normaliseCoin(coin);
+  const num = Number(normalisedCoin?.amount);
 
   if (Number.isNaN(num)) {
     return `- ${coin.denom.toUpperCase()}`;
@@ -28,7 +28,7 @@ export const formatCoin = (coin: Coin): string => {
       minimumFractionDigits: 2,
     });
 
-  return `${formatNum(num)} ${resolvedCoin.denom}`;
+  return `${formatNum(num)} ${normalisedCoin.denom}`;
 };
 
 export const sortNetworks = () => {

@@ -1,7 +1,7 @@
 import type { Coin } from "@cosmjs/stargate";
 
 import type { Account } from "../core";
-import { resolveCoin } from "./coins";
+import { normaliseCoin } from "./coins";
 
 export const accountHasDelegations = (account?: Account): boolean =>
   !!account?.info?.delegation &&
@@ -26,14 +26,14 @@ export const filterUniqueAddresses = () => {
   };
 };
 
-type ResolvedInfo = { coin: Coin; num: null | number } | null;
+type NormalisedInfo = { coin: Coin; num: null | number } | null;
 
-export const getAccountResolvedDelegation = (
+export const getAccountNormalisedDelegation = (
   account?: Account,
-): ResolvedInfo => {
+): NormalisedInfo => {
   if (!account?.info?.delegation) return null;
 
-  const available = resolveCoin(account.info.delegation);
+  const available = normaliseCoin(account.info.delegation);
   const availableNum = Number(available.amount);
 
   return {
@@ -42,10 +42,12 @@ export const getAccountResolvedDelegation = (
   };
 };
 
-export const getAccountResolvedBalance = (account?: Account): ResolvedInfo => {
+export const getAccountNormalisedBalance = (
+  account?: Account,
+): NormalisedInfo => {
   if (!account?.info?.balances) return null;
 
-  const balance = resolveCoin(account.info.balances);
+  const balance = normaliseCoin(account.info.balances);
   const balanceNum = Number(balance.amount);
 
   return {
