@@ -172,7 +172,6 @@ const NetworkCard = ({
               styles.popoverContainer,
               showMobilePopover === network.name ? styles.active : "",
             ].join(" ")}
-            data-test="network-item"
           >
             {popover}
           </div>
