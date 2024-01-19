@@ -1,4 +1,5 @@
 import type { Coin } from "@cosmjs/stargate";
+import BigNumber from "bignumber.js";
 
 import { StakingNetworkId } from "../core";
 
@@ -13,45 +14,42 @@ const networkToResolvedDenom = {
 
 type DenomToResolve = (typeof networkToResolvedDenom)[StakingNetworkId];
 
-const uatomExp = 6;
-const uaktExp = 6;
-const utiaExp = 6;
-const adydxExp = 18;
+export const uatomExp = 6;
+export const uaktExp = 6;
+export const utiaExp = 6;
+export const adydxExp = 18;
 
 export const resolveCoin = (coin: Coin): Coin => {
-  const num = Number(coin.amount);
-
-  if (Number.isNaN(num)) {
-    return coin;
-  }
-
   const compared = coin.denom?.toLowerCase() as DenomToResolve;
+
+  const parseNum = (exp: number) =>
+    new BigNumber(coin.amount).dividedBy(new BigNumber(10 ** exp)).toString();
 
   switch (compared) {
     case "uatom": {
       return {
-        amount: (num / 10 ** uatomExp).toString(),
+        amount: parseNum(uatomExp),
         denom: "ATOM",
       };
     }
 
     case "utia": {
       return {
-        amount: (num / 10 ** utiaExp).toString(),
+        amount: parseNum(utiaExp),
         denom: "TIA",
       };
     }
 
     case "adydx": {
       return {
-        amount: (num / 10 ** adydxExp).toString(),
+        amount: parseNum(adydxExp),
         denom: "DYDX",
       };
     }
 
     case "uakt": {
       return {
-        amount: (num / 10 ** uaktExp).toString(),
+        amount: parseNum(uaktExp),
         denom: "AKT",
       };
     }

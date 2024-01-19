@@ -95,7 +95,17 @@ export type NetworkInfo = {
   unbonding_period: number;
 };
 
+export enum CoinDenom {
+  AKT = "akt",
+  ATOM = "atom",
+  DYDX = "dydx",
+  TIA = "tia",
+}
+
+export const coinsDenoms = new Set([...Object.values(CoinDenom)]);
+
 export type State = {
+  coinsPrices: { [key in CoinDenom]?: string };
   hasInit: boolean;
   networksInfo: { [key in StakingNetworkId]?: NetworkInfo };
   selectedAccount: null | SelectedAccount;
@@ -111,6 +121,7 @@ export type TStakingContext = {
 };
 
 export const defaultState: State = {
+  coinsPrices: {},
   hasInit: false,
   networksInfo: {},
   selectedAccount: null,

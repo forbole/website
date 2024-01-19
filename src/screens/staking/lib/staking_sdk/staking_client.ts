@@ -1,4 +1,5 @@
 import type { Coin } from "@cosmjs/stargate";
+import BigNumber from "bignumber.js";
 
 import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 
@@ -24,6 +25,20 @@ const fetchJson = <A = any>(uri: string, opts?: Options): Promise<A> =>
       "Content-Type": "application/json",
     },
   }).then((res) => res.json());
+
+const rewardsDivisor = new BigNumber(10).pow(18);
+
+const parseStakingRewards = async (res: GetRewardsResponse) =>
+  Array.isArray(res)
+    ? res.map((coin) => {
+        const num = new BigNumber(coin.amount);
+
+        return {
+          amount: num.dividedBy(rewardsDivisor).toString(),
+          denom: coin.denom,
+        };
+      })
+    : res;
 
 type StakeResponse = {
   tx: {
@@ -76,7 +91,9 @@ export const stakingClient = {
     fetchJson<GetAddressInfoResponse>(`/api/address/${network}/${address}`),
 
   getRewardsInfo: async (network: StakingNetworkId, address: string) =>
-    fetchJson<GetRewardsResponse>(`/api/rewards/${network}/${address}`),
+    fetchJson<GetRewardsResponse>(`/api/rewards/${network}/${address}`).then(
+      parseStakingRewards,
+    ),
   getStakingInfo: async (network: StakingNetworkId) =>
     fetchJson<GetStakingInfoResponse>(`/api/staking_info/${network}`),
   stake: async (network: StakingNetworkId, address: string, amount: string) =>

@@ -36,6 +36,7 @@
     "@socialgouv/matomo-next": "^1.8.0",
     "@tryghost/admin-api": "^1.13.11",
     "@tryghost/content-api": "^1.11.20",
+    "bignumber.js": "^9.1.2",
     "dotenv": "^16.3.1",
     "dotenv-defaults": "^5.0.2",
     "framer-motion": "^10.18.0",

@@ -12,6 +12,7 @@ import {
 } from "./core";
 import type {
   Account,
+  CoinDenom,
   NetworkInfo,
   SetState,
   StakingNetworkId,
@@ -19,6 +20,7 @@ import type {
   TStakingContext,
   Wallet,
 } from "./core";
+import { geckoClient } from "./gecko_client";
 import { stakingClient } from "./staking_client";
 import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
 import { getEmptyCoin, sumCoins } from "./utils/coins";
@@ -121,6 +123,28 @@ export const getNetworkStakingInfo = async (
   }));
 
   return newInfo as NetworkInfo;
+};
+
+export const getCoinPrice = async (
+  state: State,
+  setState: SetState,
+  denom: CoinDenom,
+) => {
+  if (state.coinsPrices[denom]) {
+    return state.coinsPrices[denom];
+  }
+
+  const price = await geckoClient.getCoinPrice(denom);
+
+  setState((prevState) => ({
+    ...prevState,
+    coinsPrices: {
+      ...prevState.coinsPrices,
+      [denom]: price,
+    },
+  }));
+
+  return price;
 };
 
 export const setUserWallet = (
