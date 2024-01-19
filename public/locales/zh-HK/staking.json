@@ -149,7 +149,7 @@
     },
     "available": "Staked",
     "button": "Unstake",
-    "info2": "During this time, you won't receive staking rewards.",
+    "info2T": "During this time, you <1>won't receive</1> staking rewards.",
     "info3": "However, if you change your mind, you can cancel the process at any time.",
     "info4": "To continue staking after this period, you'll need to stake again.",
     "infoTitle": "We are sorry to hear that you are leaving. Before you go, please note the following:",
@@ -162,7 +162,7 @@
       "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on {{date}}."
     },
     "title": "Unstake",
-    "unlockedDate": "Your staking will be locked in until {{date}} ({{days}} days later)."
+    "unlockedDateInfo": "Your token will be locked in until <2>{{date}} ({{days}} days later)</2>."
   },
   "wallets": {
     "keplr": "Keplr"

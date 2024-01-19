@@ -1,9 +1,11 @@
+import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
+import IconInfoCircle from "@src/components/icons/info_circle_blue.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
@@ -168,24 +170,38 @@ const UnstakingModal = () => {
         />
         {!!memoError && <ModalError>{memoError}</ModalError>}
         <div className={styles.info}>
-          <div className={styles.title}>{t("unstakingModal.infoTitle")}</div>
-          {networkInfo ? (
-            <ul className={styles.desc}>
-              {unlockedDate && (
+          <IconInfoCircle />
+          <div className={styles.infoContent}>
+            <div className={styles.title}>{t("unstakingModal.infoTitle")}</div>
+            {networkInfo ? (
+              <ul className={styles.desc}>
+                {unlockedDate && (
+                  <li>
+                    <Trans
+                      components={[<span key="0" />, <b key="1" />]}
+                      i18nKey="unstakingModal.unlockedDateInfo"
+                      ns="staking"
+                      values={{
+                        date: unlockedDate.date,
+                        days: unlockedDate.days,
+                      }}
+                    />
+                  </li>
+                )}
                 <li>
-                  {t("unstakingModal.unlockedDate", {
-                    date: unlockedDate.date,
-                    days: unlockedDate.days,
-                  })}
+                  <Trans
+                    components={[<span key="0" />, <b key="1" />]}
+                    i18nKey="unstakingModal.info2T"
+                    ns="staking"
+                  />
                 </li>
-              )}
-              <li>{t("unstakingModal.info2")}</li>
-              <li>{t("unstakingModal.info3")}</li>
-              <li>{t("unstakingModal.info4")}</li>
-            </ul>
-          ) : (
-            <LoadingSpinner className={styles.spinner} />
-          )}
+                <li>{t("unstakingModal.info3")}</li>
+                <li>{t("unstakingModal.info4")}</li>
+              </ul>
+            ) : (
+              <LoadingSpinner className={styles.spinner} />
+            )}
+          </div>
         </div>
         <HighlightButton
           disabled={
