@@ -1,5 +1,4 @@
 import type { Coin } from "@cosmjs/stargate";
-import { identity } from "ramda";
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useMemo, useRef, useState } from "react";
 
@@ -78,7 +77,7 @@ export const useStakingRef = () => {
 export const fetchNetworksInfo = async (setState: SetState) => {
   const stakingNetworksInfo = await Promise.all(
     Array.from(networksWithStaking)
-      .filter(ENABLE_TESTNETS ? identity : (n) => !testnetNetworks.has(n))
+      .filter(ENABLE_TESTNETS ? () => true : (n) => !testnetNetworks.has(n))
       .map((networkId) =>
         stakingClient.getStakingInfo(networkId).then((info) => ({
           info,

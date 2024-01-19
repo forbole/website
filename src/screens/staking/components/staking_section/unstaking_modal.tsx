@@ -84,10 +84,76 @@ const UnstakingModal = () => {
 
   const isValidAmount =
     !Number.isNaN(amountNum) &&
+    amountNum > 0 &&
     !!availableAmount?.num &&
     amountNum <= availableAmount.num;
 
   const unlockedDate = getUnbondingTimeForNetwork(networkInfo, locale);
+
+  const newAmountError = (() => {
+    if (!isValidAmount) {
+      return t("stakingModal.amountError.invalid");
+    }
+  })() as string;
+
+  const newMemoError = (() => {
+    if (!memo) return "";
+
+    if (memo.length > MAX_MEMO) {
+      return t("stakingModal.memoError.tooLongMemo");
+    }
+  })() as string;
+
+  const onSubmit = (e: any) => {
+    e?.preventDefault();
+
+    if (newAmountError) {
+      setAmountError(newAmountError);
+    }
+
+    if (newMemoError !== memoError) {
+      setMemoError(newMemoError);
+    }
+
+    if (
+      !selectedAccount ||
+      amountError ||
+      memoError ||
+      isLoading ||
+      newAmountError ||
+      newMemoError
+    )
+      return;
+
+    setIsLoading(true);
+
+    unstake({
+      account: selectedAccount,
+      amount,
+    })
+      .then(async (unstaked) => {
+        if (unstaked.success) {
+          await syncAccountData(setStakingState, stakingState, selectedAccount);
+
+          setSelectedAccount(setStakingState, null, null);
+
+          toastSuccess({
+            subtitle: t("unstakingModal.success.subtitle"),
+            title: t("unstakingModal.success.title", {
+              date: unlockedDate?.date,
+            }),
+          });
+        } else if (unstaked.hasError) {
+          displayGenericError(t);
+        }
+      })
+      .catch(() => {
+        displayGenericError(t);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   return (
     <ModalBase
@@ -95,7 +161,7 @@ const UnstakingModal = () => {
       open={isOpen}
       title={t("unstakingModal.title")}
     >
-      <div className={styles.wrapper}>
+      <form className={styles.wrapper} onSubmit={onSubmit}>
         <div className={styles.row}>
           <Label>{t("unstakingModal.amount.label")}</Label>
           <div>
@@ -113,16 +179,6 @@ const UnstakingModal = () => {
           disabled={isLoading}
           fullWidth
           onBlur={() => {
-            const newAmountError = (() => {
-              if (!isValidAmount) {
-                return t("stakingModal.amountError.invalid");
-              }
-
-              if (amountNum <= 0) {
-                return t("stakingModal.amountError.positive");
-              }
-            })() as string;
-
             setAmountError(newAmountError);
           }}
           onChange={(e) => {
@@ -146,14 +202,6 @@ const UnstakingModal = () => {
           noFocusEffect
           noMargin
           onBlur={() => {
-            const newMemoError = (() => {
-              if (!memo) return "";
-
-              if (memo.length > MAX_MEMO) {
-                return t("stakingModal.memoError.tooLongMemo");
-              }
-            })() as string;
-
             if (newMemoError !== memoError) {
               setMemoError(newMemoError);
             }
@@ -207,49 +255,13 @@ const UnstakingModal = () => {
           disabled={
             !selectedAccount || !!amountError || !!memoError || isLoading
           }
-          onClick={() => {
-            if (!selectedAccount || amountError || memoError || isLoading)
-              return;
-
-            setIsLoading(true);
-
-            unstake({
-              account: selectedAccount,
-              amount,
-            })
-              .then(async (unstaked) => {
-                if (unstaked.success) {
-                  await syncAccountData(
-                    setStakingState,
-                    stakingState,
-                    selectedAccount,
-                  );
-
-                  setSelectedAccount(setStakingState, null, null);
-
-                  toastSuccess({
-                    subtitle: t("unstakingModal.success.subtitle"),
-                    title: t("unstakingModal.success.title", {
-                      date: unlockedDate?.date,
-                    }),
-                  });
-                } else if (unstaked.hasError) {
-                  displayGenericError(t);
-                }
-              })
-              .catch(() => {
-                displayGenericError(t);
-              })
-              .finally(() => {
-                setIsLoading(false);
-              });
-          }}
+          onClick={onSubmit}
           pinkShadow
           size="big"
         >
           {isLoading ? <LoadingSpinner /> : t("unstakingModal.button")}
         </HighlightButton>
-      </div>
+      </form>
     </ModalBase>
   );
 };

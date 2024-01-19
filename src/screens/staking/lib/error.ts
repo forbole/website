@@ -4,6 +4,6 @@ import { toastError } from "@src/components/notification";
 
 export const displayGenericError = (t: Translate) => {
   toastError({
-    title: t("unexpectedError"),
+    title: t("common:error"),
   });
 };

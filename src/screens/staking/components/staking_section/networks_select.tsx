@@ -1,6 +1,5 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { identity } from "ramda";
 
 import {
   getSelectedAccount,
@@ -78,7 +77,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   const allAccounts = getWalletAccounts(stakingState, selectedAccount.wallet);
 
   const availableAccounts = allAccounts.filter(
-    variant === "accounts_with_rewards" ? accountHasRewards : identity,
+    variant === "accounts_with_rewards" ? accountHasRewards : () => true,
   );
 
   const handleChange = (event: any) => {

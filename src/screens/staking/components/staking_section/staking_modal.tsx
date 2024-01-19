@@ -81,6 +81,7 @@ const StakingModal = () => {
 
   const isValidAmount =
     !Number.isNaN(amountNum) &&
+    amountNum > 0 &&
     typeof balance.num === "number" &&
     amountNum <= balance.num;
 
@@ -90,9 +91,75 @@ const StakingModal = () => {
     setSelectedAccount(setStakingState, null, null);
   };
 
+  const newAmountError = (() => {
+    if (!isValidAmount) {
+      return t("stakingModal.amountError.invalid");
+    }
+  })() as string;
+
+  const newMemoError = (() => {
+    if (!memo) return "";
+
+    if (memo.length > MAX_MEMO) {
+      return t("stakingModal.memoError.tooLongMemo");
+    }
+  })() as string;
+
+  const onSubmit = (e: any) => {
+    e?.preventDefault();
+
+    if (newAmountError) {
+      setAmountError(newAmountError);
+    }
+
+    if (newMemoError !== memoError) {
+      setMemoError(newMemoError);
+    }
+
+    if (
+      !selectedAccount ||
+      !networkInfo ||
+      isLoading ||
+      !isValidAmount ||
+      amountError ||
+      memoError ||
+      newAmountError ||
+      newMemoError
+    )
+      return;
+
+    setIsLoading(true);
+
+    stakeAmount({
+      account,
+      amount,
+      memo,
+    })
+      .then(async (result) => {
+        if (result.success) {
+          await syncAccountData(setStakingState, stakingState, selectedAccount);
+
+          setSelectedAccount(setStakingState, null, null);
+
+          toastSuccess({
+            subtitle: `${t("stakingModal.success.sub")} 🎉`,
+            title: t("stakingModal.success.title"),
+          });
+        } else if (result.hasError) {
+          displayGenericError(t);
+        }
+      })
+      .catch(() => {
+        displayGenericError(t);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
-      <div className={styles.wrapper}>
+      <form className={styles.wrapper} onSubmit={onSubmit}>
         <div>
           {selectedAccount && (
             <NetworksSelect disabled={isLoading} variant="accounts" />
@@ -140,16 +207,6 @@ const StakingModal = () => {
                 rightText: resolveDenom(balance.coin.denom),
               })}
               onBlur={() => {
-                const newAmountError = (() => {
-                  if (!isValidAmount) {
-                    return t("stakingModal.amountError.invalid");
-                  }
-
-                  if (amountNum <= 0) {
-                    return t("stakingModal.amountError.positive");
-                  }
-                })() as string;
-
                 setAmountError(newAmountError);
               }}
               value={amount}
@@ -166,14 +223,6 @@ const StakingModal = () => {
             noFocusEffect
             noMargin
             onBlur={() => {
-              const newMemoError = (() => {
-                if (!memo) return "";
-
-                if (memo.length > MAX_MEMO) {
-                  return t("stakingModal.memoError.tooLongMemo");
-                }
-              })() as string;
-
               if (newMemoError !== memoError) {
                 setMemoError(newMemoError);
               }
@@ -191,56 +240,15 @@ const StakingModal = () => {
           {!!memoError && <ModalError>{memoError}</ModalError>}
         </div>
         <HighlightButton
-          disabled={!!amountError || !!memoError}
-          onClick={() => {
-            if (
-              !selectedAccount ||
-              !networkInfo ||
-              isLoading ||
-              !isValidAmount ||
-              amountNum <= 0 ||
-              !!amountError
-            )
-              return;
-
-            setIsLoading(true);
-
-            stakeAmount({
-              account,
-              amount,
-              memo,
-            })
-              .then(async (result) => {
-                if (result.success) {
-                  await syncAccountData(
-                    setStakingState,
-                    stakingState,
-                    selectedAccount,
-                  );
-
-                  setSelectedAccount(setStakingState, null, null);
-
-                  toastSuccess({
-                    subtitle: `${t("stakingModal.success.sub")} 🎉`,
-                    title: t("stakingModal.success.title"),
-                  });
-                } else if (result.hasError) {
-                  displayGenericError(t);
-                }
-              })
-              .catch(() => {
-                displayGenericError(t);
-              })
-              .finally(() => {
-                setIsLoading(false);
-              });
-          }}
+          disabled={!!amountError || !!memoError || isLoading}
+          onClick={onSubmit}
           pinkShadow
           size="big"
+          type="submit"
         >
           {isLoading ? <LoadingSpinner /> : t("stake_now")}
         </HighlightButton>
-      </div>
+      </form>
     </ModalBase>
   );
 };
