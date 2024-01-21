@@ -6,7 +6,6 @@ import { createContext, useContext, useMemo, useRef, useState } from "react";
 import {
   ENABLE_TESTNETS,
   WalletId,
-  defaultState,
   mainNetworkDenom,
   networksWithStaking,
   testnetNetworks,
@@ -16,10 +15,8 @@ import type {
   Account,
   CoinDenom,
   NetworkInfo,
-  SetState,
   StakingNetworkId,
   State,
-  TStakingContext,
   Wallet,
 } from "./core";
 import { geckoClient } from "./gecko_client";
@@ -27,7 +24,27 @@ import { stakingClient } from "./staking_client";
 import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
 import { getEmptyCoin, sumCoins } from "./utils/coins";
 import { setConnectedWallet } from "./utils/storage";
-import { disconnecKeplr, useWalletsListeners } from "./wallet_operations";
+import {
+  disconnecKeplr,
+  doesWalletSupportNetwork,
+  useWalletsListeners,
+} from "./wallet_operations";
+
+type SetState = (state: ((s: State) => State) | Partial<State>) => void;
+
+export type TStakingContext = {
+  setState: SetState;
+  state: State;
+};
+
+const defaultState: State = {
+  coinsPrices: {},
+  hasInit: false,
+  networksInfo: {},
+  selectedAccount: null,
+  selectedAction: null,
+  wallets: {},
+};
 
 const baseContext: TStakingContext = {
   setState: () => {},
@@ -105,56 +122,101 @@ export const fetchNetworksInfo = async (setState: SetState) => {
   }));
 };
 
+const networkInfoRequests: {
+  [key in StakingNetworkId]?: Promise<NetworkInfo>;
+} = {};
+
 export const getNetworkStakingInfo = async (
-  setState: SetState,
-  state: State,
+  context: TStakingContext,
   networkId: StakingNetworkId,
 ) => {
-  if (state.networksInfo[networkId]) {
+  const { setState, state } = context;
+
+  if (state.networksInfo[networkId])
     return state.networksInfo[networkId] as NetworkInfo;
-  }
 
-  const newInfo = await stakingClient.getStakingInfo(networkId);
+  const request = networkInfoRequests[networkId];
 
-  setState((prevState) => ({
-    ...prevState,
-    networksInfo: {
-      ...prevState.networksInfo,
-      [networkId]: newInfo,
-    },
-  }));
+  if (request) return request;
 
-  return newInfo as NetworkInfo;
+  const newRequest = stakingClient.getStakingInfo(networkId).then((newInfo) => {
+    setState((prevState) => ({
+      ...prevState,
+      networksInfo: {
+        ...prevState.networksInfo,
+        [networkId]: newInfo,
+      },
+    }));
+
+    networkInfoRequests[networkId] = undefined;
+
+    return newInfo as NetworkInfo;
+  });
+
+  networkInfoRequests[networkId] = newRequest;
+
+  return newRequest;
 };
 
-export const getCoinPrice = async (
-  state: State,
-  setState: SetState,
+const coinPriceRequests: { [key in CoinDenom]?: Promise<string> } = {};
+
+const getCoinPrice = async (
+  context: TStakingContext,
   denom: CoinDenom,
+): Promise<string> => {
+  const { setState, state } = context;
+
+  const coinPrice = state.coinsPrices[denom];
+
+  if (coinPrice) return coinPrice;
+
+  const coinRequest = coinPriceRequests[denom];
+
+  if (coinRequest) return coinRequest;
+
+  const newRequest = geckoClient.getCoinPrice(denom).then((price): string => {
+    setState((prevState) => ({
+      ...prevState,
+      coinsPrices: {
+        ...prevState.coinsPrices,
+        [denom]: price,
+      },
+    }));
+
+    coinPriceRequests[denom] = undefined;
+
+    return price;
+  });
+
+  coinPriceRequests[denom] = newRequest;
+
+  return newRequest;
+};
+
+export const getCoinPriceForNetwork = async (
+  context: TStakingContext,
+  networkId: StakingNetworkId | undefined,
 ) => {
-  if (state.coinsPrices[denom]) {
-    return state.coinsPrices[denom];
+  if (!networkId) return;
+
+  const parsedDenom = mainNetworkDenom[networkId];
+
+  const { coinsPrices } = context.state;
+
+  if (parsedDenom && !coinsPrices[parsedDenom]) {
+    (async () => {
+      await getCoinPrice(context, parsedDenom);
+    })();
   }
-
-  const price = await geckoClient.getCoinPrice(denom);
-
-  setState((prevState) => ({
-    ...prevState,
-    coinsPrices: {
-      ...prevState.coinsPrices,
-      [denom]: price,
-    },
-  }));
-
-  return price;
 };
 
 export const setUserWallet = (
-  state: State,
-  setState: SetState,
+  context: TStakingContext,
   walletName: WalletId,
   wallet: Wallet,
 ) => {
+  const { setState, state } = context;
+
   setState({
     wallets: {
       ...state.wallets,
@@ -181,10 +243,10 @@ export const setSelectedAccount = (
 };
 
 export const syncAccountData = async (
-  setState: SetState,
-  state: State,
+  context: TStakingContext,
   account: Account,
 ) => {
+  const { setState, state } = context;
   const { address, networkId, wallet: walletId } = account;
 
   const [info, rewards] = await Promise.all([
@@ -223,10 +285,11 @@ export const syncAccountData = async (
 };
 
 export const disconnectWallet = async (
-  setState: SetState,
-  state: State,
+  context: TStakingContext,
   walletId: WalletId,
 ) => {
+  const { setState, state } = context;
+
   if (state.wallets[walletId]) {
     const networks = Object.keys(
       state.wallets[WalletId.Keplr]?.networks || {},
@@ -255,7 +318,7 @@ export const disconnectWallet = async (
   }
 };
 
-// Selectors
+// Selectors (don't set new state)
 
 export const getSelectedAccount = (state: State) => {
   const { selectedAccount } = state;
@@ -320,15 +383,17 @@ export const getStakedDataForNetwork = (
     return null;
   }
 
+  const mainDenom = mainNetworkDenom[network];
+
   return accountsForNetwork
     .filter(filterUniqueAddresses())
     .reduce(
       (acc, account) => sumCoins(acc, account.info?.delegation),
-      getEmptyCoin(),
+      getEmptyCoin(mainDenom || undefined),
     );
 };
 
-export type NetworkClaimableRewards = { coin: Coin; usd: BigNumber } | null;
+export type NetworkClaimableRewards = Coin | null;
 
 // This assumes that the rewards coins have been normalized (which happens in
 // the staking client)
@@ -342,7 +407,6 @@ export const getClaimableRewardsForNetwork = (
     return null;
   }
 
-  const { coinsPrices } = state;
   const denom = mainNetworkDenom[network];
 
   if (!denom) {
@@ -353,24 +417,13 @@ export const getClaimableRewardsForNetwork = (
     (acc, account) =>
       (Array.isArray(account.rewards) ? account.rewards : []).reduce(
         (acc2, reward) => {
-          const rewardDenomPrice =
-            coinsPrices[reward.denom.toLowerCase() as CoinDenom];
-
-          if (rewardDenomPrice) {
-            const price = new BigNumber(rewardDenomPrice);
-            const amount = new BigNumber(reward.amount);
-            const extraUSD = price.times(amount);
-
-            acc2.usd = acc2.usd.plus(extraUSD);
-          }
-
           if (denom?.toLowerCase() === reward.denom?.toLowerCase()) {
-            const existingAmount = new BigNumber(acc2.coin.amount);
+            const existingAmount = new BigNumber(acc2.amount);
             const amount = new BigNumber(reward.amount);
 
-            acc2.coin = {
+            return {
               amount: existingAmount.plus(amount).toString(),
-              denom: acc2.coin.denom,
+              denom: acc2.denom,
             };
           }
 
@@ -378,9 +431,39 @@ export const getClaimableRewardsForNetwork = (
         },
         acc,
       ),
-    { coin: getEmptyCoin(denom.toUpperCase()), usd: new BigNumber(0) },
+    getEmptyCoin(denom.toUpperCase()),
   );
 };
 
 export const getHasConnectedWallets = (state: State) =>
   Object.keys(state.wallets).length > 0;
+
+export const getNetworkVotingPower = (
+  state: State,
+  network: StakingNetworkId,
+): Coin | null => {
+  const networkInfo = state.networksInfo[network];
+
+  if (!networkInfo) return null;
+
+  const mainDenom = mainNetworkDenom[network];
+
+  if (!mainDenom) return null;
+
+  const { voting_power: votingPower } = networkInfo;
+
+  if (!votingPower) return null;
+
+  return {
+    amount: votingPower.toString(),
+    denom: mainDenom,
+  };
+};
+
+export const getHasNetworkSupportedWallet = (
+  state: State,
+  network: StakingNetworkId,
+) =>
+  Object.keys(state.wallets).some((walletId) =>
+    doesWalletSupportNetwork(walletId as WalletId, network),
+  );

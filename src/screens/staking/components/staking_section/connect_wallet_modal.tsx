@@ -51,11 +51,7 @@ const ConnectWalletModal = () => {
                 onClick={() => {
                   setIsLoading(true);
 
-                  tryToConnectWallets(
-                    stakingRef.current.state,
-                    stakingRef.current.setState,
-                    [walletId],
-                  )
+                  tryToConnectWallets(stakingRef.current, [walletId], true)
                     .then((connected) => {
                       if (connected) {
                         toastSuccess({

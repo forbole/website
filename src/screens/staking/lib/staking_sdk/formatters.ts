@@ -1,83 +1,39 @@
 import type { Coin } from "@cosmjs/stargate";
+import BigNumber from "bignumber.js";
 
-import type { Network, NetworkKey } from "@src/utils/network_info";
-
-import type { NetworkInfo } from "./core";
-import { networkKeyToNetworkId } from "./core";
 import { normaliseCoin } from "./utils/coins";
-import { getCanStakeToAnyWallet } from "./wallet_operations";
 
-export const normaliseDenom = (denom: string): string =>
-  normaliseCoin({ amount: "0", denom }).denom;
-
-export const formatCoin = (coin: Coin): string => {
+export const formatCoin = (coin: Coin, decimals?: number): string => {
   if (!coin?.denom) {
     return "";
   }
 
   const normalisedCoin = normaliseCoin(coin);
-  const num = Number(normalisedCoin?.amount);
+  const num = new BigNumber(normalisedCoin?.amount);
 
-  if (Number.isNaN(num)) {
+  if (num.isNaN()) {
     return `- ${coin.denom.toUpperCase()}`;
   }
 
-  const formatNum = (n: number): string =>
-    n.toLocaleString("en-US", {
-      maximumFractionDigits: 6,
-      minimumFractionDigits: 2,
+  const formatNum = (n: BigNumber): string =>
+    n.toNumber().toLocaleString("en-US", {
+      maximumFractionDigits: decimals ?? 6,
+      minimumFractionDigits: decimals ?? 2,
     });
 
   return `${formatNum(num)} ${normalisedCoin.denom}`;
 };
 
-export const sortNetworks = () => {
-  const canStake = getCanStakeToAnyWallet();
+export const formatStakedDataUSD = (stakedData: Coin, coinPrice: string) => {
+  const stakedNormalised = normaliseCoin(stakedData);
+  const coinNum = new BigNumber(stakedNormalised.amount);
+  const coinValue = coinNum.multipliedBy(new BigNumber(coinPrice));
 
-  return (a: Network, b: Network) => {
-    if (canStake) {
-      const networkIdA = networkKeyToNetworkId[a.key as NetworkKey];
-      const networkIdB = networkKeyToNetworkId[b.key as NetworkKey];
+  const minNum = new BigNumber(10).pow(-5);
 
-      if (networkIdA && !networkIdB) {
-        return -1;
-      }
-
-      if (!networkIdA && networkIdB) {
-        return 1;
-      }
-    }
-
-    return a.name.localeCompare(b.name);
-  };
-};
-
-export const getUnbondingTimeForNetwork = (
-  networkInfo: NetworkInfo | null,
-  locale?: string,
-) => {
-  if (!networkInfo) {
-    return null;
+  if (coinValue.isNaN() || coinValue.lt(minNum)) {
+    return `< ${minNum.toFormat(5)} USD`;
   }
 
-  const { unbonding_period: unbondingPeriod } = networkInfo;
-
-  if (!unbondingPeriod) {
-    return null;
-  }
-
-  const now = new Date();
-  const days = Math.ceil(unbondingPeriod / 86400);
-  const nextDate = new Date(now.getTime() + unbondingPeriod * 1000);
-
-  const nextDateStr = nextDate.toLocaleDateString(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
-  return {
-    date: nextDateStr,
-    days,
-  };
+  return `≈ ${coinValue.toFormat(5)} USD`;
 };

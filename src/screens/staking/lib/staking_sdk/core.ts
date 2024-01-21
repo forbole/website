@@ -107,6 +107,7 @@ export type NetworkInfo = {
   apy: number;
   rpc: string;
   unbonding_period: number;
+  voting_power: number;
 };
 
 export type State = {
@@ -116,20 +117,4 @@ export type State = {
   selectedAccount: null | SelectedAccount;
   selectedAction: null | StakeAction;
   wallets: { [key in WalletId]?: Wallet };
-};
-
-export type SetState = (state: ((s: State) => State) | Partial<State>) => void;
-
-export type TStakingContext = {
-  setState: SetState;
-  state: State;
-};
-
-export const defaultState: State = {
-  coinsPrices: {},
-  hasInit: false,
-  networksInfo: {},
-  selectedAccount: null,
-  selectedAction: null,
-  wallets: {},
 };

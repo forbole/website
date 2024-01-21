@@ -1,6 +1,5 @@
 import type { Coin } from "@cosmjs/stargate";
 import { LinearProgress } from "@mui/material";
-import BigNumber from "bignumber.js";
 import useTranslation from "next-translate/useTranslation";
 import type {
   Dispatch,
@@ -8,7 +7,7 @@ import type {
   ReactNode,
   SetStateAction,
 } from "react";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
 import EmptyButton from "@src/components/empty-button";
@@ -21,8 +20,10 @@ import {
   StakingContext,
   getAccountsForNetwork,
   getClaimableRewardsForNetwork,
-  getCoinPrice,
+  getCoinPriceForNetwork,
+  getHasNetworkSupportedWallet,
   getNetworkStakingInfo,
+  getNetworkVotingPower,
   getStakedDataForNetwork,
   setSelectedAccount,
   useStakingRef,
@@ -38,9 +39,11 @@ import type {
   NetworkInfo,
   StakingNetworkId,
 } from "@src/screens/staking/lib/staking_sdk/core";
-import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
+import {
+  formatCoin,
+  formatStakedDataUSD,
+} from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { normaliseCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
@@ -66,13 +69,17 @@ const PopOver = ({
 }: PopOverProps) => {
   const networkNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
   const stakingNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
-  const requestingCoinPrice = useRef("");
 
   const stakingRef = useStakingRef();
 
   const isStakingSupported = networkNetworkId
     ? networksWithStaking.has(networkNetworkId)
     : false;
+
+  const hasNetworkSupportedWallet =
+    isStakingSupported && stakingNetworkId
+      ? getHasNetworkSupportedWallet(stakingRef.current.state, stakingNetworkId)
+      : false;
 
   const { t } = useTranslation("staking");
 
@@ -86,13 +93,11 @@ const PopOver = ({
 
   useEffect(() => {
     if (stakingNetworkId) {
-      getNetworkStakingInfo(
-        stakingRef.current.setState,
-        stakingRef.current.state,
-        stakingNetworkId,
-      ).then((newInfo) => {
-        setStakingNetworkInfo(newInfo);
-      });
+      getNetworkStakingInfo(stakingRef.current, stakingNetworkId).then(
+        (newInfo) => {
+          setStakingNetworkInfo(newInfo);
+        },
+      );
     }
   }, [stakingNetworkId, stakingRef]);
 
@@ -127,44 +132,15 @@ const PopOver = ({
     return result;
   }, [stakingState, stakingNetworkId, stakingRef]);
 
-  // @TODO: move some logic to the sdk
   useEffect(() => {
-    if (!stakingNetworkId) return;
-
-    const parsedDenom = mainNetworkDenom[stakingNetworkId];
-    const { coinsPrices } = stakingRef.current.state;
-
-    if (
-      parsedDenom &&
-      !coinsPrices[parsedDenom] &&
-      requestingCoinPrice.current !== parsedDenom
-    ) {
-      requestingCoinPrice.current = parsedDenom;
-
-      (async () => {
-        await getCoinPrice(
-          stakingRef.current.state,
-          stakingRef.current.setState,
-          parsedDenom,
-        );
-
-        requestingCoinPrice.current = "";
-      })();
-    }
+    getCoinPriceForNetwork(stakingRef.current, stakingNetworkId);
   }, [stakingRef, stakingNetworkId]);
 
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
 
-  // @TODO: Move to sdk
-  const displayedRewards = (() => {
-    if (!claimableRewards?.usd) return null;
-
-    if (claimableRewards.usd.lt(new BigNumber(10).pow(-5))) {
-      return `< ${claimableRewards.usd.toFormat(5)} USD`;
-    }
-
-    return `${claimableRewards.usd.toFormat(5)} USD`;
-  })();
+  const displayedRewards = claimableRewards
+    ? `+${formatCoin(claimableRewards)}`
+    : null;
 
   const displayedStaked = (() => {
     if (!stakedData || !stakingNetworkId) return null;
@@ -177,15 +153,9 @@ const PopOver = ({
 
     if (!coinPrice) return [formatCoin(stakedData)];
 
-    const stakedNormalised = normaliseCoin(stakedData);
-    const coinNum = new BigNumber(stakedNormalised.amount);
-    const coinValue = coinNum.multipliedBy(new BigNumber(coinPrice));
+    const stakedDataUSD = formatStakedDataUSD(stakedData, coinPrice);
 
-    if (coinValue.isNaN() || coinValue.lt(new BigNumber(10).pow(-5))) {
-      return [formatCoin(stakedData), `< ${coinValue.toFormat(5)} USD`];
-    }
-
-    return [formatCoin(stakedData), `≈ ${coinValue.toFormat(5)} USD`];
+    return [formatCoin(stakedData), stakedDataUSD].filter(Boolean);
   })();
 
   return (
@@ -207,7 +177,7 @@ const PopOver = ({
           {displayedStaked && (
             <div className={styles.total}>
               <div>{t("totalStaked")}</div>
-              <div>
+              <div className={styles.totalValue}>
                 {displayedStaked.map((item, itemIdx) => (
                   <div key={itemIdx}>{item}</div>
                 ))}
@@ -224,20 +194,44 @@ const PopOver = ({
       )}
       {!!networkSummary && (
         <div className={styles.dataBox}>
-          {!!networkSummary.bonded && networkSummary.bonded > 0 && (
-            <div>
-              <h6 className={styles.label}>
-                <IconInfoCircle
-                  data-tooltip-content={t("definitions.votingPower")}
-                  data-tooltip-id={tooltipId}
-                />
-                {network.denom?.toUpperCase()}
-              </h6>
-              <span className={styles.value}>
-                {convertToMoney(networkSummary.bonded)}
-              </span>
-            </div>
-          )}
+          {(() => {
+            const votingPower = (() => {
+              if (stakingNetworkId) {
+                const parsedVotingPower = getNetworkVotingPower(
+                  stakingRef.current.state,
+                  stakingNetworkId,
+                );
+
+                if (!parsedVotingPower) return null;
+
+                return parsedVotingPower
+                  ? [t("votingPower"), formatCoin(parsedVotingPower, 0)]
+                  : null;
+              }
+
+              return networkSummary?.bonded > 0
+                ? [
+                    network.denom?.toUpperCase(),
+                    convertToMoney(networkSummary.bonded),
+                  ]
+                : null;
+            })();
+
+            return (
+              !!votingPower && (
+                <div>
+                  <h6 className={styles.label}>
+                    <IconInfoCircle
+                      data-tooltip-content={t("definitions.votingPower")}
+                      data-tooltip-id={tooltipId}
+                    />
+                    {votingPower[0]}
+                  </h6>
+                  <span className={styles.value}>{votingPower[1]}</span>
+                </div>
+              )
+            );
+          })()}
           {(() => {
             const apy = (() => {
               if (stakingNetworkId) return stakingNetworkInfo?.apy;
@@ -294,18 +288,32 @@ const PopOver = ({
         <LinearProgress className={styles.progress} color="secondary" />
       )}
       <div className={styles.buttons}>
-        {isStakingSupported && !!accounts?.length && (
+        {isStakingSupported && (
           <>
-            <HighlightButton
-              className={styles.stake}
-              data-test="popover-stake-button"
-              onClick={() => {
-                setSelectedAccount(setStakingState, "stake", accounts[0]);
-              }}
-            >
-              {t("popover.stake")}
-            </HighlightButton>
-            {!!claimableRewards && (
+            {hasInit && (!hasNetworkSupportedWallet || !!accounts?.length) && (
+              <HighlightButton
+                className={styles.stake}
+                data-test="popover-stake-button"
+                onClick={() => {
+                  if (!hasNetworkSupportedWallet) {
+                    setSelectedAccount(
+                      stakingRef.current.setState,
+                      "connect_wallet",
+                      null,
+                    );
+
+                    return;
+                  }
+
+                  if (!accounts?.length) return;
+
+                  setSelectedAccount(setStakingState, "stake", accounts[0]);
+                }}
+              >
+                {t("popover.stake")}
+              </HighlightButton>
+            )}
+            {!!claimableRewards && !!accounts?.length && (
               <CtaButton
                 onClick={() => {
                   setSelectedAccount(

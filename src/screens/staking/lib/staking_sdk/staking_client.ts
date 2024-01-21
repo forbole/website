@@ -75,6 +75,7 @@ type GetStakingInfoResponse = {
   apy: number;
   rpc: string;
   unbonding_period: number;
+  voting_power: number;
 };
 
 export const stakingClient = {

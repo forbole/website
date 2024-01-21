@@ -1,4 +1,5 @@
 import type { Coin } from "@cosmjs/stargate";
+import BigNumber from "bignumber.js";
 
 import type { Account } from "../core";
 import { normaliseCoin } from "./coins";
@@ -26,7 +27,7 @@ export const filterUniqueAddresses = () => {
   };
 };
 
-type NormalisedInfo = { coin: Coin; num: null | number } | null;
+type NormalisedInfo = { coin: Coin; num: BigNumber } | null;
 
 export const getAccountNormalisedDelegation = (
   account?: Account,
@@ -34,11 +35,10 @@ export const getAccountNormalisedDelegation = (
   if (!account?.info?.delegation) return null;
 
   const available = normaliseCoin(account.info.delegation);
-  const availableNum = Number(available.amount);
 
   return {
     coin: available,
-    num: Number.isNaN(availableNum) ? null : availableNum,
+    num: new BigNumber(available.amount),
   };
 };
 
@@ -48,11 +48,10 @@ export const getAccountNormalisedBalance = (
   if (!account?.info?.balances) return null;
 
   const balance = normaliseCoin(account.info.balances);
-  const balanceNum = Number(balance.amount);
 
   return {
     coin: balance,
-    num: Number.isNaN(balanceNum) ? null : balanceNum,
+    num: new BigNumber(balance.amount),
   };
 };
 

@@ -71,14 +71,19 @@ $popover-background: linear-gradient(
 
 .label {
   align-items: center;
+  color: #25282d;
   display: flex;
   flex: 1;
   flex-flow: row nowrap;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
   gap: 2px;
   justify-content: center;
+  letter-spacing: 0.032px;
+  line-height: 20px;
   text-align: left;
+  text-shadow: $box-shadow-variant-3;
   white-space: nowrap;
   width: 100%;
 }
@@ -170,4 +175,17 @@ $popover-background: linear-gradient(
 
 body .stake {
   font-size: 16px;
+}
+
+.totalValue {
+  > div:nth-child(2) {
+    color: #616161;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.308px;
+    line-height: 20px;
+    text-align: right;
+    text-shadow: $box-shadow-variant-3;
+  }
 }

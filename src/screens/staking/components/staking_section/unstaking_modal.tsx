@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
@@ -17,12 +18,10 @@ import {
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
-import {
-  formatCoin,
-  getUnbondingTimeForNetwork,
-  normaliseDenom,
-} from "@src/screens/staking/lib/staking_sdk/formatters";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import { normaliseDenom } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
   MAX_MEMO,
   unstake,
@@ -47,11 +46,7 @@ const UnstakingModal = () => {
 
       const { networkId } = selectedAccount;
 
-      getNetworkStakingInfo(
-        stakingRef.current.setState,
-        stakingRef.current.state,
-        networkId,
-      ).then((info) => {
+      getNetworkStakingInfo(stakingRef.current, networkId).then((info) => {
         setNetworkInfo(info);
       });
     }
@@ -82,13 +77,13 @@ const UnstakingModal = () => {
 
   const availableAmount = getAccountNormalisedDelegation(account);
 
-  const amountNum = Number(amount);
+  const amountNum = new BigNumber(amount);
 
   const isValidAmount =
-    !Number.isNaN(amountNum) &&
-    amountNum > 0 &&
+    !amountNum.isNaN() &&
+    amountNum.gt(0) &&
     !!availableAmount?.num &&
-    amountNum <= availableAmount.num;
+    amountNum.lt(availableAmount.num);
 
   const unlockedDate = getUnbondingTimeForNetwork(networkInfo, locale);
 
@@ -135,7 +130,7 @@ const UnstakingModal = () => {
     })
       .then(async (unstaked) => {
         if (unstaked.success) {
-          await syncAccountData(setStakingState, stakingState, selectedAccount);
+          await syncAccountData(stakingRef.current, selectedAccount);
 
           setSelectedAccount(setStakingState, null, null);
 

@@ -1,10 +1,10 @@
 import type { Coin } from "@cosmjs/stargate";
 import type { Page } from "@playwright/test";
 
+import type { TStakingContext } from "@src/screens/staking/lib/staking_sdk/context";
 import type {
   Account,
   StakingNetworkId,
-  TStakingContext,
   Wallet,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import { WalletId } from "@src/screens/staking/lib/staking_sdk/core";

@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 
@@ -16,11 +17,9 @@ import {
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
-import {
-  formatCoin,
-  normaliseDenom,
-} from "@src/screens/staking/lib/staking_sdk/formatters";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import { normaliseDenom } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import {
   MAX_MEMO,
   stakeAmount,
@@ -55,11 +54,7 @@ const StakingModal = () => {
 
       const { networkId } = selectedAccount;
 
-      getNetworkStakingInfo(
-        stakingRef.current.setState,
-        stakingRef.current.state,
-        networkId,
-      ).then((info) => {
+      getNetworkStakingInfo(stakingRef.current, networkId).then((info) => {
         setNetworkInfo(info);
       });
 
@@ -79,13 +74,10 @@ const StakingModal = () => {
 
   if (!balance || !account) return null;
 
-  const amountNum = Number(amount);
+  const amountNum = new BigNumber(amount);
 
   const isValidAmount =
-    !Number.isNaN(amountNum) &&
-    amountNum > 0 &&
-    typeof balance.num === "number" &&
-    amountNum <= balance.num;
+    !amountNum.isNaN() && amountNum.gt(0) && amountNum.lt(balance.num);
 
   const onClose = () => {
     if (isLoading) return;
@@ -139,7 +131,7 @@ const StakingModal = () => {
     })
       .then(async (result) => {
         if (result.success) {
-          await syncAccountData(setStakingState, stakingState, selectedAccount);
+          await syncAccountData(stakingRef.current, selectedAccount);
 
           setSelectedAccount(setStakingState, null, null);
 
@@ -162,10 +154,13 @@ const StakingModal = () => {
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
       <form className={styles.wrapper} onSubmit={onSubmit}>
-        <div>
-          {selectedAccount && (
-            <NetworksSelect disabled={isLoading} variant="accounts" />
-          )}
+        <div className={styles.selectGroup}>
+          <Label>{t("stakingModal.networkSelect")}</Label>
+          <div>
+            {selectedAccount && (
+              <NetworksSelect disabled={isLoading} variant="accounts" />
+            )}
+          </div>
         </div>
         {networkInfo?.apy && (
           <div className={styles.row}>
@@ -179,11 +174,19 @@ const StakingModal = () => {
             <div>{(networkInfo.apy * 100).toFixed(0)}%</div>
           </div>
         )}
+        <div className={styles.selectGroup}>
+          <Label>{t("stakingModal.walletSellect")}</Label>
+          <div>
+            {selectedAccount && (
+              <NetworksSelect disabled={isLoading} variant="accounts_wallet" />
+            )}
+          </div>
+        </div>
         <div className={styles.group}>
           <div className={styles.row}>
             <Label>{t("stakingModal.tokenAmount")}</Label>
             <div>
-              {typeof balance?.num === "number" && (
+              {!!balance?.num && (
                 <>
                   <Label>{t("stakingModal.available")}</Label>:{" "}
                   <span className={styles.amount}>

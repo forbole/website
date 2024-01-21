@@ -7,6 +7,7 @@ import IconMobile from "@src/components/icons/icon_logout.svg";
 import IconPlus from "@src/components/icons/icon_plus.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { tooltipId } from "@src/components/tooltip";
+import type { TStakingContext } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   disconnectWallet,
   getCanAddWallet,
@@ -14,7 +15,6 @@ import {
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import type {
-  TStakingContext,
   Wallet,
   WalletId,
 } from "@src/screens/staking/lib/staking_sdk/core";
@@ -23,7 +23,6 @@ import {
   walletsIcons,
 } from "@src/screens/staking/lib/wallet_info";
 
-import { getCanStakeToAnyWallet } from "../../lib/staking_sdk/wallet_operations";
 import { useInitStaking } from "../hooks";
 import ClaimRewardsModal from "../staking_section/claim_rewards_modal";
 import ConnectWalletModal from "../staking_section/connect_wallet_modal";
@@ -85,14 +84,9 @@ const StakingWidgetBase = ({
 }: Props) => {
   const { t } = useTranslation("staking");
   const walletsIds = Object.keys(wallets).sort() as WalletId[];
-  const canStake = getCanStakeToAnyWallet();
 
   const [anchor, setAnchor] = useState<Element>();
   const onClose = useCallback(() => setAnchor(undefined), [setAnchor]);
-
-  if (!canStake) {
-    return null;
-  }
 
   if (!hasInit || !walletsIds.length) {
     return (
@@ -177,11 +171,7 @@ const StakingWidgetContainer = () => {
 
   const onDisconnectWallet = useCallback(
     async (walletId: WalletId) => {
-      await disconnectWallet(
-        stakingRef.current.setState,
-        stakingRef.current.state,
-        walletId,
-      );
+      await disconnectWallet(stakingRef.current, walletId);
     },
     [stakingRef],
   );

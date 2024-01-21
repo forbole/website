@@ -1,5 +1,6 @@
 @import "src/styles/sass.scss";
 
+.singleItem,
 .control {
   border-radius: 8px;
   box-shadow:
@@ -22,10 +23,12 @@
 .row {
   align-items: center;
   display: flex;
+  flex: 1;
   flex-direction: row;
   gap: 20px;
   justify-content: flex-start;
   min-height: 70px;
+  width: 100%;
 }
 
 .select {
@@ -69,4 +72,34 @@
     letter-spacing: 0.308px;
     line-height: 20px;
   }
+}
+
+.rewards {
+  color: #1ec490;
+  flex: 1;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.108px;
+  line-height: 21px;
+  text-align: right;
+}
+
+.singleItem {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+}
+
+.address {
+  background: none;
+  border: none;
+  color: #9d9d9d;
+  cursor: pointer;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
 }

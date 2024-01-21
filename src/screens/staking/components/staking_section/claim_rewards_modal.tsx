@@ -36,9 +36,7 @@ const ClaimRewardsModal = () => {
     if (isOpen && networkId && address) {
       setGasFee(null);
 
-      getClaimRewardsFee({ address, networkId }).then((fee) => {
-        setGasFee(fee);
-      });
+      getClaimRewardsFee({ address, networkId }).then(setGasFee);
     }
   }, [isOpen, networkId, address]);
 

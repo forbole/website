@@ -1,4 +1,5 @@
 {
+  "addressCopied": "Address copied",
   "apy": "Annual Percentage Yield",
   "benefits bullet 1": "Earn your staking rewards, it allows you to earn rewards for securing the network with your contribution",
   "benefits bullet 2": "Boost network security, the more token holders that stake, the more secure the network becomes",
@@ -115,12 +116,14 @@
     "memoError": {
       "tooLongMemo": "Please enter a smaller memo"
     },
+    "networkSelect": "Select network:",
     "success": {
       "sub": "Thank you for supporting Forbole !",
       "title": "Your token has been staked!"
     },
     "title": "Stake with Forbole",
-    "tokenAmount": "Token amount"
+    "tokenAmount": "Token amount",
+    "walletSellect": "Stake from:"
   },
   "stakingWidget": {
     "connected_one": "Connected wallet",
@@ -164,6 +167,7 @@
     "title": "Unstake",
     "unlockedDateInfo": "Your token will be locked in until <1>{{date}} ({{days}} days later)</1>."
   },
+  "votingPower": "Voting Power",
   "wallets": {
     "keplr": "Keplr"
   },

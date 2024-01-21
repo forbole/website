@@ -3,7 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import { memo, useState } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
-import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/formatters";
+import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import type { NetworkKey } from "@src/utils/network_info";
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 

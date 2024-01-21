@@ -18,15 +18,9 @@ import { useEffect } from "react";
 import { toastSuccess } from "@src/components/notification";
 import { IS_E2E } from "@src/utils/e2e";
 
+import type { TStakingContext } from "./context";
 import { setUserWallet } from "./context";
-import type {
-  Account,
-  SetState,
-  StakingNetworkId,
-  State,
-  TStakingContext,
-  Wallet,
-} from "./core";
+import type { Account, StakingNetworkId, Wallet } from "./core";
 import { WalletId, keplrNetworks, networksWithStaking } from "./core";
 import { stakingClient } from "./staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
@@ -223,101 +217,130 @@ export const unstake = async (
         .catch(handleKeplrSignError);
     });
 
-export const tryToConnectWallets = async (
-  stakingState: State,
-  setStakingState: SetState,
-  walletsIds: WalletId[],
+const tryToConnectKeplr = async (
+  context: TStakingContext,
+  openLinkIfMissing: boolean,
 ) => {
-  if (walletsIds.includes(WalletId.Keplr)) {
-    if (window.keplr) {
-      const chainsToConnect = Array.from(keplrNetworks);
+  if (window.keplr) {
+    const chainsToConnect = Array.from(keplrNetworks);
 
-      await window.keplr.enable(chainsToConnect);
+    await window.keplr.enable(chainsToConnect);
 
-      try {
-        const handleError = (err: unknown) => {
-          // eslint-disable-next-line no-console
-          console.log("debug: index.tsx: err", err);
+    try {
+      const handleError = (err: unknown) => {
+        // eslint-disable-next-line no-console
+        console.log("debug: index.tsx: err", err);
 
-          return [] as Account[];
-        };
+        return [] as Account[];
+      };
 
-        let walletName = "";
+      let walletName = "";
 
-        const parseAccounts =
-          (networkId: StakingNetworkId) =>
-          (accounts: readonly AccountData[]): Promise<Account[]> =>
-            Promise.all(
-              accounts.map((account) =>
-                Promise.all([
-                  stakingClient.getAddressInfo(networkId, account.address),
-                  stakingClient.getRewardsInfo(networkId, account.address),
-                  window.keplr!.getKey(networkId),
-                ]).then(([info, rewards, key]) => {
-                  if (key?.name) {
-                    walletName = key.name;
-                  }
+      const parseAccounts =
+        (networkId: StakingNetworkId) =>
+        (accounts: readonly AccountData[]): Promise<Account[]> =>
+          Promise.all(
+            accounts.map((account) =>
+              Promise.all([
+                stakingClient.getAddressInfo(networkId, account.address),
+                stakingClient.getRewardsInfo(networkId, account.address),
+                window.keplr!.getKey(networkId),
+              ]).then(([info, rewards, key]) => {
+                if (key?.name) {
+                  walletName = key.name;
+                }
 
-                  return {
-                    address: account.address,
-                    info,
-                    networkId,
-                    rewards,
-                    wallet: WalletId.Keplr,
-                  };
-                }),
-              ),
-            );
+                return {
+                  address: account.address,
+                  info,
+                  networkId,
+                  rewards,
+                  wallet: WalletId.Keplr,
+                };
+              }),
+            ),
+          );
 
-        const keplrAccounts = await Promise.all(
-          Array.from(keplrNetworks).map(async (network) => {
-            if (networksWithStaking.has(network)) {
-              const accounts = await window
-                .keplr!.getOfflineSigner(network)
-                .getAccounts()
-                .then(parseAccounts(network))
-                .catch(handleError);
+      const keplrAccounts = await Promise.all(
+        Array.from(keplrNetworks).map(async (network) => {
+          if (networksWithStaking.has(network)) {
+            const accounts = await window
+              .keplr!.getOfflineSigner(network)
+              .getAccounts()
+              .then(parseAccounts(network))
+              .catch(handleError);
 
-              return {
-                accounts,
-                networkId: network,
+            return {
+              accounts,
+              networkId: network,
+            };
+          }
+        }),
+      );
+
+      addToConnectedWallets(WalletId.Keplr);
+
+      setUserWallet(
+        context,
+        WalletId.Keplr,
+        keplrAccounts.reduce(
+          (acc, networkObj) => {
+            if (networkObj) {
+              acc.networks[networkObj.networkId] = {
+                accounts: networkObj.accounts,
+                networkId: networkObj.networkId,
               };
             }
-          }),
-        );
 
-        addToConnectedWallets(WalletId.Keplr);
+            return acc;
+          },
+          {
+            name: walletName,
+            networks: {},
+            wallet: WalletId.Keplr,
+          } as Wallet,
+        ),
+      );
 
-        setUserWallet(
-          stakingState,
-          setStakingState,
-          WalletId.Keplr,
-          keplrAccounts.reduce(
-            (acc, networkObj) => {
-              if (networkObj) {
-                acc.networks[networkObj.networkId] = {
-                  accounts: networkObj.accounts,
-                  networkId: networkObj.networkId,
-                };
-              }
+      return true;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log("tryToConnectWallets", error);
+    }
+  } else if (openLinkIfMissing) {
+    if (/Chrome/.test(navigator.userAgent)) {
+      window.open(
+        "https://chromewebstore.google.com/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap",
+        "_blank",
+      );
 
-              return acc;
-            },
-            {
-              name: walletName,
-              networks: {},
-              wallet: WalletId.Keplr,
-            } as Wallet,
-          ),
-        );
+      return;
+    }
 
-        return true;
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log("tryToConnectWallets", error);
+    window.open("https://wallet.keplr.app/#/dashboard", "_blank");
+  }
+};
+
+export const tryToConnectWallets = async (
+  context: TStakingContext,
+  walletsIds: WalletId[],
+  openLinkIfMissing = false,
+) => {
+  let connected = true as boolean | undefined;
+
+  for (const walletId of walletsIds) {
+    switch (walletId) {
+      case WalletId.Keplr:
+        connected = await tryToConnectKeplr(context, openLinkIfMissing);
+        break;
+
+      default: {
+        walletId satisfies never;
       }
     }
   }
+
+  return connected;
 };
 
 export const disconnecKeplr = async (networks: StakingNetworkId[]) => {
@@ -339,9 +362,7 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
           title: t("keplrWalletUpdate"),
         });
 
-        tryToConnectWallets(contextValue.state, contextValue.setState, [
-          WalletId.Keplr,
-        ]);
+        tryToConnectWallets(contextValue, [WalletId.Keplr]);
       }
     };
 
@@ -357,5 +378,18 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
   }, [contextValue, t]);
 };
 
-export const getCanStakeToAnyWallet = () =>
-  typeof window !== "undefined" && (!!window.keplr || IS_E2E);
+export const doesWalletSupportNetwork = (
+  wallet: WalletId,
+  networkId: string,
+) => {
+  switch (wallet) {
+    case WalletId.Keplr:
+      return keplrNetworks.has(networkId as StakingNetworkId);
+
+    default: {
+      wallet satisfies never;
+
+      return false;
+    }
+  }
+};

@@ -1,18 +1,27 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import useTranslation from "next-translate/useTranslation";
 
+import { toastSuccess } from "@src/components/notification";
+import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
 import {
+  getClaimableRewardsForNetwork,
   getSelectedAccount,
   getWalletAccounts,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
+import type {
+  Account,
+  StakingNetworkId,
+} from "@src/screens/staking/lib/staking_sdk/core";
 import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   accountHasRewards,
   getAccountNormalisedBalance,
 } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import { walletsIcons } from "@src/screens/staking/lib/wallet_info";
 import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
@@ -34,12 +43,13 @@ const MenuProps = {
 
 type NetworkItemProps = {
   denom: string;
+  rightSide?: React.ReactNode;
   value: StakingNetworkId;
 };
 
 const SEPARATOR = "____";
 
-const NetworkItem = ({ denom, value }: NetworkItemProps) => {
+const NetworkItem = ({ denom, rightSide, value }: NetworkItemProps) => {
   const networkName = networkIdToNetworkKey[value];
 
   const networkInfo = networkName
@@ -56,13 +66,48 @@ const NetworkItem = ({ denom, value }: NetworkItemProps) => {
         <div>{denom}</div>
         <div>{name}</div>
       </div>
+      {rightSide}
+    </div>
+  );
+};
+
+type WalletItemProps = {
+  account: Account;
+  walletName?: string;
+};
+
+const WalletItem = ({ account, walletName }: WalletItemProps) => {
+  const { wallet } = account;
+  const { t } = useTranslation("staking");
+  const WalletIcon = walletsIcons[wallet];
+  const parsedAddress = useMiddleEllipsis(account.address);
+
+  return (
+    <div className={styles.row}>
+      {!!WalletIcon && <WalletIcon className={styles.logo} />}
+      <div className={styles.content}>
+        <div>{walletName}</div>
+        <button
+          className={styles.address}
+          onClick={(e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText(account.address);
+
+            toastSuccess({
+              title: t("addressCopied"),
+            });
+          }}
+        >
+          {parsedAddress}
+        </button>
+      </div>
     </div>
   );
 };
 
 type Props = {
   disabled?: boolean;
-  variant: "accounts_with_rewards" | "accounts";
+  variant: "accounts_wallet" | "accounts_with_rewards" | "accounts";
 };
 
 const NetworksSelect = ({ disabled, variant }: Props) => {
@@ -74,10 +119,24 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
   if (!variant || !selectedAccount) return null;
 
+  const isRewards = variant === "accounts_with_rewards";
+  const isWallet = variant === "accounts_wallet";
+
+  if (isWallet) {
+    const walletName =
+      stakingRef.current.state.wallets[selectedAccount.wallet]?.name;
+
+    return (
+      <div className={styles.singleItem}>
+        <WalletItem account={selectedAccount} walletName={walletName} />
+      </div>
+    );
+  }
+
   const allAccounts = getWalletAccounts(stakingState, selectedAccount.wallet);
 
   const availableAccounts = allAccounts.filter(
-    variant === "accounts_with_rewards" ? accountHasRewards : () => true,
+    isRewards ? accountHasRewards : () => true,
   );
 
   const handleChange = (event: any) => {
@@ -115,10 +174,24 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
           if (!balance) return null;
 
+          const rightSide = (() => {
+            if (!isRewards) return null;
+
+            const rewards = getClaimableRewardsForNetwork(
+              stakingRef.current.state,
+              account.networkId,
+            );
+
+            if (!rewards) return null;
+
+            return <div className={styles.rewards}>+{formatCoin(rewards)}</div>;
+          })();
+
           return (
             <MenuItem key={item} value={item}>
               <NetworkItem
                 denom={balance.coin.denom}
+                rightSide={rightSide}
                 value={account.networkId}
               />
             </MenuItem>

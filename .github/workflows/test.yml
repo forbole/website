@@ -12,5 +12,6 @@ jobs:
       - run: yarn --immutable
 
       - run: yarn lint
+      - run: yarn test
       - run: yarn type-check
       - run: yarn build

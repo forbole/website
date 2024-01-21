@@ -46,10 +46,31 @@ export const normaliseCoin = (coin: Coin): Coin => {
   };
 };
 
-// @TODO: Improve multiple denoms handling, also maybe use bigint here
-export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin => ({
-  amount: (Number(coinA?.amount || 0) + Number(coinB?.amount || 0)).toString(),
-  denom: coinA?.denom || coinB?.denom || "",
-});
+export const normaliseDenom = (denom: string): string =>
+  normaliseCoin({ amount: "0", denom }).denom;
 
 export const getEmptyCoin = (denom = ""): Coin => ({ amount: "0", denom });
+
+export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin =>
+  [coinA, coinB]
+    .filter(Boolean)
+    .map((c) => normaliseCoin(c as Coin))
+    .reduce((acc, coin) => {
+      const { amount } = acc;
+      const { amount: amountB } = coin;
+
+      if (acc.denom && coin.denom && acc.denom !== coin.denom) {
+        console.error("Unexpected sum of different denoms", acc, coin);
+
+        // Don't throw here for now
+        return acc;
+      }
+
+      const newAmount = new BigNumber(amount).plus(amountB).toString();
+      const denom = [acc.denom, coin.denom].find(Boolean) || "";
+
+      return {
+        amount: newAmount,
+        denom,
+      };
+    }, getEmptyCoin());

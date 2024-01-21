@@ -1,4 +1,5 @@
 {
+  "addressCopied": "Address copied",
   "apy": "年收益率",
   "benefits bullet 1": "赚取您的质押奖励，它可以让您通过贡献来获得保护网络的奖励",
   "benefits bullet 2": "提高网络安全性，质押的代币持有者越多，网络就越安全",
@@ -115,12 +116,14 @@
     "memoError": {
       "tooLongMemo": "Please enter a smaller memo"
     },
+    "networkSelect": "Select network:",
     "success": {
       "sub": "Thank you for supporting Forbole !",
       "title": "Your token has been staked!"
     },
     "title": "Stake with forbole",
-    "tokenAmount": "Token amount"
+    "tokenAmount": "Token amount",
+    "walletSellect": "Stake from:"
   },
   "stakingWidget": {
     "connected_other": "Connected wallet",
@@ -163,6 +166,7 @@
     "title": "Unstake",
     "unlockedDateInfo": "Your token will be locked in until <2>{{date}} ({{days}} days later)</2>."
   },
+  "votingPower": "Voting Power",
   "wallets": {
     "keplr": "Keplr"
   },

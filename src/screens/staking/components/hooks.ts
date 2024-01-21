@@ -114,11 +114,7 @@ export const useInitStaking = () => {
 
     fetchNetworksInfo(stakingRef.current.setState);
 
-    tryToConnectWallets(
-      stakingRef.current.state,
-      stakingRef.current.setState,
-      connectedWallets,
-    ).then(() => {
+    tryToConnectWallets(stakingRef.current, connectedWallets).then(() => {
       stakingRef.current.setState({
         hasInit: true,
       });
