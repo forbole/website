@@ -168,7 +168,7 @@ const getCoinPrice = async (
   context: TStakingContext,
   denom: CoinDenom,
 ): Promise<string> => {
-  const { setState, state } = context;
+  const { state } = context;
 
   const coinPrice = state.coinsPrices[denom];
 
@@ -179,7 +179,7 @@ const getCoinPrice = async (
   if (coinRequest) return coinRequest;
 
   const newRequest = geckoClient.getCoinPrice(denom).then((price): string => {
-    setState((prevState) => ({
+    context.setState((prevState) => ({
       ...prevState,
       coinsPrices: {
         ...prevState.coinsPrices,

@@ -1,5 +1,6 @@
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
+import { useEffect } from "react";
 
 import CtaButton from "@src/components/cta-button";
 import HighlightButton from "@src/components/highlight-button";
@@ -7,10 +8,15 @@ import {
   getAllAccounts,
   getAllRewards,
   getAllStaked,
+  getCoinPriceForNetwork,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
-import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import {
+  accountHasRewards,
+  filterOutTestnets,
+  filterUniqueAddresses,
+} from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 
 import * as styles from "./index.module.scss";
 
@@ -24,6 +30,23 @@ const StakingHero = () => {
   const { t } = useTranslation("staking");
 
   const { hasInit } = stakingRef.current.state;
+
+  useEffect(() => {
+    if (hasInit) {
+      const filteredAccounts = getAllAccounts(stakingRef.current.state)
+        .filter(filterUniqueAddresses())
+        .filter(filterOutTestnets);
+
+      const networks = new Set(
+        filteredAccounts.map((account) => account.networkId),
+      );
+
+      // Once it has init, fetch all coin prices for all the networks
+      Array.from(networks).forEach((networkId) => {
+        getCoinPriceForNetwork(stakingRef.current, networkId);
+      });
+    }
+  }, [hasInit, stakingRef]);
 
   if (!hasInit) return null;
 

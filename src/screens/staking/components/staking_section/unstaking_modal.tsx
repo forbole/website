@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
-import IconInfoCircle from "@src/components/icons/info_circle_blue.svg";
+import IconWarning from "@src/components/icons/icon_warning.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
@@ -224,7 +224,7 @@ const UnstakingModal = () => {
         />
         {!!memoError && <ModalError>{memoError}</ModalError>}
         <div className={styles.info}>
-          <IconInfoCircle />
+          <IconWarning />
           <div className={styles.infoContent}>
             <div className={styles.title}>{t("unstakingModal.infoTitle")}</div>
             {networkInfo ? (

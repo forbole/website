@@ -20,8 +20,8 @@
 }
 
 .info {
-  background: #dbedff;
-  border-left: 2px solid #007fff;
+  background: #fffbd8;
+  border-left: 2px solid rgba(237, 213, 0, 1);
   border-radius: 8px;
   box-shadow:
     0 1px 10px 0 rgba(16, 24, 40, 0.05),
@@ -68,7 +68,7 @@
     line-height: 20px;
 
     b {
-      color: #007fff;
+      color: #e4a11e;
       font-size: 14px;
       font-style: normal;
       font-weight: 600;
