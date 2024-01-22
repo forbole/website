@@ -12,6 +12,8 @@
   "claim q": "How often should I claim my staking rewards?",
   "claimableRewards": "Claimable Rewards",
   "claimRewards": {
+    "claimFrom": "Claim from:",
+    "selectNetwork": "Select network:",
     "title": "Claim Rewards"
   },
   "commission": "Commission Rate",
@@ -137,6 +139,12 @@
   "title": "Stake with Forbole",
   "token amount": "Token amount",
   "token amount placeholder": "How much token?",
+  "tooltip": {
+    "poolAPY": "The pool's Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from the staking pool. It helps you evaluate the potential growth of your investment.",
+    "poolMevAPY": "The Pool MEV APY combines Maximum Extractable Value (MEV) with your staking returns. It represents your potential token earnings from both staking and advanced transaction strategies.",
+    "soloAvgAPY": "The Solo Average APY shows your expected token earnings from solo staking.",
+    "soloMevAPY": "The Maximal extractable value(MEV) refers to additional earnings from specialized transaction strategies in Ethereum solo staking. It signifies the extra value extractable beyond regular staking rewards."
+  },
   "totalStaked": "Total staked",
   "trusted provider": "Pick Trusted Provider",
   "trusted provider desc": "We have the infrastructure in place to act as validators and to secure networks",

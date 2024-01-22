@@ -1,13 +1,14 @@
 import type { Coin } from "@cosmjs/stargate";
 import useTranslation from "next-translate/useTranslation";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 import {
-  StakingContext,
   setSelectedAccount,
+  syncAccountData,
+  useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
@@ -16,19 +17,21 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
 import * as styles from "./claim_rewards_modal.module.scss";
+import Label from "./label";
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";
 
 const ClaimRewardsModal = () => {
-  const { setState: setStakingState, state: stakingState } =
-    useContext(StakingContext);
+  const stakingRef = useStakingRef();
 
   const [gasFee, setGasFee] = useState<Coin | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const { t } = useTranslation("staking");
 
-  const { selectedAccount, selectedAction } = stakingState;
+  const { selectedAccount, selectedAction } = stakingRef.current.state;
+  const { setState: setStakingState } = stakingRef.current;
+
   const isOpen = !!selectedAccount && selectedAction === "claim_rewards";
   const { address, networkId } = selectedAccount || {};
 
@@ -49,7 +52,25 @@ const ClaimRewardsModal = () => {
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("claimRewards.title")}>
       <div className={styles.wrapper}>
-        <NetworksSelect disabled={isLoading} variant="accounts_with_rewards" />
+        <div className={styles.selectGroup}>
+          <Label>{t("claimRewards.claimFrom")}</Label>
+          <div>
+            {selectedAccount && (
+              <NetworksSelect disabled={isLoading} variant="accounts_wallet" />
+            )}
+          </div>
+        </div>
+        <div className={styles.selectGroup}>
+          <Label>{t("claimRewards.selectNetwork")}</Label>
+          <div>
+            {selectedAccount && (
+              <NetworksSelect
+                disabled={isLoading}
+                variant="accounts_with_rewards"
+              />
+            )}
+          </div>
+        </div>
         {gasFee && (
           <div className={styles.feeRow}>
             <div>{t("rewardsModal.gasFee")}</div>
@@ -69,8 +90,15 @@ const ClaimRewardsModal = () => {
               address,
               networkId,
             })
-              .then((claimed) => {
+              .then(async (claimed) => {
                 if (claimed) {
+                  await syncAccountData(
+                    stakingRef.current,
+                    selectedAccount as NonNullable<typeof selectedAccount>,
+                  );
+
+                  setSelectedAccount(setStakingState, null, null);
+
                   toastSuccess({
                     subtitle: `${t("rewardsModal.success.sub")} 🎉`,
                     title: t("rewardsModal.success.title"),

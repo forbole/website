@@ -29,3 +29,9 @@
     min-width: 500px;
   }
 }
+
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

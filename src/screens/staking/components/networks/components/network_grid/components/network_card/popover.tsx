@@ -272,13 +272,21 @@ const PopOver = ({
             </div>
           )}
           {!!networkSummary.custom &&
-            Object.keys(networkSummary.custom)
+            Object.keys(networkSummary.custom.content)
               .sort()
               .map((customKey) => (
                 <div key={customKey}>
-                  <h6 className={styles.label}>{customKey}</h6>
+                  <h6 className={styles.label}>
+                    <IconInfoCircle
+                      data-tooltip-content={
+                        networkSummary.custom?.tooltips[customKey]
+                      }
+                      data-tooltip-id={tooltipId}
+                    />
+                    {customKey}
+                  </h6>
                   <span className={styles.value}>
-                    {networkSummary.custom?.[customKey]}
+                    {networkSummary.custom?.content[customKey]}
                   </span>
                 </div>
               ))}

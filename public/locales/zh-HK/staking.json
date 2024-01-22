@@ -12,6 +12,8 @@
   "claim q": "我應該多久領取我的質押獎勵？",
   "claimableRewards": "Claimable Rewards",
   "claimRewards": {
+    "claimFrom": "Claim from:",
+    "selectNetwork": "Select network:",
     "title": "Claim Rewards"
   },
   "commission": "佣金率",
@@ -136,6 +138,12 @@
   "title": "委託 Forbole 質押原生通證",
   "token amount": "通證數量",
   "token amount placeholder": "多少通證？",
+  "tooltip": {
+    "poolAPY": "The pool's Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from the staking pool. It helps you evaluate the potential growth of your investment.",
+    "poolMevAPY": "The Pool MEV APY combines Maximum Extractable Value (MEV) with your staking returns. It represents your potential token earnings from both staking and advanced transaction strategies.",
+    "soloAvgAPY": "The Solo Average APY shows your expected token earnings from solo staking.",
+    "soloMevAPY": "The Maximal extractable value(MEV) refers to additional earnings from specialized transaction strategies in Ethereum solo staking. It signifies the extra value extractable beyond regular staking rewards."
+  },
   "totalStaked": "Total staked",
   "trusted provider": "選擇值得信賴的營運商",
   "trusted provider desc": "我們已經建立了完善的驗證人基礎設施，全天候監控區塊鏈網路安全",
