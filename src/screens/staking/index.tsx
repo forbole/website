@@ -11,6 +11,8 @@ import FAQ from "./components/faq";
 import Hero from "./components/hero";
 import HowItWorks from "./components/how_it_works";
 import Networks from "./components/networks";
+import ShowMore from "./components/show_more";
+import StakingHero from "./components/staking_hero";
 import WhyForbole from "./components/why_forbole";
 import * as styles from "./index.module.scss";
 import {
@@ -32,6 +34,17 @@ const Staking = () => {
     });
   }, []);
 
+  const extraInfo = (
+    <>
+      <div className={styles.container}>
+        <HowItWorks />
+      </div>
+      <div className={styles.container}>
+        <WhyForbole />
+      </div>
+    </>
+  );
+
   return (
     <GQLProvider>
       <LayoutVal
@@ -43,19 +56,15 @@ const Staking = () => {
         <div className={styles.container}>
           <Hero />
         </div>
+        {hasConnectedWallets && (
+          <div className={styles.container}>
+            <StakingHero />
+          </div>
+        )}
         <div className={styles.container}>
           <Networks />
         </div>
-        {!hasConnectedWallets && (
-          <div className={styles.container}>
-            <HowItWorks />
-          </div>
-        )}
-        {!hasConnectedWallets && (
-          <div className={styles.container}>
-            <WhyForbole />
-          </div>
-        )}
+        {hasConnectedWallets ? <ShowMore>{extraInfo}</ShowMore> : extraInfo}
         <div className={styles.container}>
           <CalculateRewards />
         </div>
