@@ -80,7 +80,7 @@ const WalletItem = ({ account, walletName }: WalletItemProps) => {
   const { wallet } = account;
   const { t } = useTranslation("staking");
   const WalletIcon = walletsIcons[wallet];
-  const parsedAddress = useMiddleEllipsis(account.address);
+  const parsedAddress = useMiddleEllipsis(account.address, 15);
 
   return (
     <div className={styles.row}>

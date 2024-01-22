@@ -172,7 +172,8 @@
       "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on {{date}}."
     },
     "title": "Unstake",
-    "unlockedDateInfo": "Your token will be locked in until <2>{{date}} ({{days}} days later)</2>."
+    "unlockedDateInfo": "Your token will be locked in until <2>{{date}} ({{days}} days later)</2>.",
+    "unstakeFrom": "Unstake from:"
   },
   "votingPower": "Voting Power",
   "wallets": {

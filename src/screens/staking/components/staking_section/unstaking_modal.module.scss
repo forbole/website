@@ -96,3 +96,9 @@
   line-height: normal;
   text-shadow: $box-shadow-variant-3;
 }
+
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

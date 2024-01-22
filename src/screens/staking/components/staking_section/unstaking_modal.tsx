@@ -29,6 +29,7 @@ import {
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
+import NetworksSelect from "./networks_select";
 import * as styles from "./unstaking_modal.module.scss";
 
 const UnstakingModal = () => {
@@ -159,6 +160,14 @@ const UnstakingModal = () => {
       title={t("unstakingModal.title")}
     >
       <form className={styles.wrapper} onSubmit={onSubmit}>
+        <div className={styles.selectGroup}>
+          <Label>{t("unstakingModal.unstakeFrom")}</Label>
+          <div>
+            {selectedAccount && (
+              <NetworksSelect disabled={isLoading} variant="accounts_wallet" />
+            )}
+          </div>
+        </div>
         <div className={styles.row}>
           <Label>{t("unstakingModal.amount.label")}</Label>
           <div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useMiddleEllipsis = (text: string, chars = 10) => {
+export const useMiddleEllipsis = (text: string, chars: number) => {
   const [parsedText, setParsedText] = useState<string>("");
 
   useEffect(() => {
