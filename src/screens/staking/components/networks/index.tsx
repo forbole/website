@@ -1,5 +1,3 @@
-import Trans from "next-translate/Trans";
-import useTranslation from "next-translate/useTranslation";
 import { memo, useState } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
@@ -7,6 +5,7 @@ import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/utils/network
 import type { NetworkKey } from "@src/utils/network_info";
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
+import StakingHero from "../staking_hero";
 import NetworkGrid from "./components/network_grid";
 import type { NetworkProps } from "./components/network_grid/config";
 import { useNetworkHook } from "./components/network_grid/hooks";
@@ -14,7 +13,6 @@ import SearchBar from "./components/search_bar";
 import * as styles from "./index.module.scss";
 
 const Networks = () => {
-  const { t } = useTranslation("staking");
   const [networksFilter, setNetworksFilter] = useState<string>("");
 
   const {
@@ -58,18 +56,7 @@ const Networks = () => {
           " ",
         )}
       >
-        <h4 className={commonStyles.stakingTitle}>{t("stake with Forbole")}</h4>
-        <Trans
-          components={[
-            <span className={["h3", styles.tr0].join(" ")} key="0" />,
-            <span className={["h3", styles.tr1].join(" ")} key="1" />,
-          ]}
-          i18nKey="stake with Forbole title"
-          ns="staking"
-        />
-        <span className={styles.stakingDesc}>
-          {t("stake with Forbole desc")}
-        </span>
+        <StakingHero />
         <div className={styles.grid}>
           <SearchBar
             networksFilter={networksFilter}

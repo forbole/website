@@ -100,15 +100,21 @@
   "showMore": "Show more",
   "stake": "质押",
   "stake desc": "作为通证持有人，你可以安心在我们的基础建设上委托质押原生通证",
-  "stake with Forbole": "委託 Forbole 質押原生通證",
-  "stake with Forbole desc": "我们将会加入更多网络",
-  "stake with Forbole title": "<0>我们的<1>合作项目</1>如下</0>",
   "stake with us!": "与我们一起赌注！",
   "stake_now": "立即质押",
   "staked by forbole": "Forbole 质押",
   "staking para 1": "代币持有者将其代币质押给验证者以保护网络的行为称为质押。",
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
   "staking q": "什么是质押？",
+  "stakingHero": {
+    "claimRewards": "Claim rewards",
+    "connectWallet": "Connect Wallet",
+    "desc": "Provide liquidity and earn rewards!",
+    "stake": "Stake now",
+    "title": "<0>Stake</0> with Forbole",
+    "totalRewards": "My total rewards",
+    "totalStake": "My total stake"
+  },
   "stakingLabel": "Stake here!",
   "stakingModal": {
     "amountError": {

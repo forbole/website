@@ -22,7 +22,7 @@ import type {
 import { geckoClient } from "./gecko_client";
 import { stakingClient } from "./staking_client";
 import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
-import { getEmptyCoin, sumCoins } from "./utils/coins";
+import { getEmptyCoin, normaliseCoin, sumCoins } from "./utils/coins";
 import { setConnectedWallet } from "./utils/storage";
 import {
   disconnecKeplr,
@@ -467,3 +467,34 @@ export const getHasNetworkSupportedWallet = (
   Object.keys(state.wallets).some((walletId) =>
     doesWalletSupportNetwork(walletId as WalletId, network),
   );
+
+export const getAllAccounts = (state: State) =>
+  Object.values(state.wallets).reduce(
+    (acc, wallet) => [
+      ...acc,
+      ...Object.values(wallet.networks).reduce(
+        (acc2, network) => [...acc2, ...network.accounts],
+        [] as Account[],
+      ),
+    ],
+    [] as Account[],
+  );
+
+export const getAllStaked = (state: State): number => {
+  const accounts = getAllAccounts(state);
+  const uniqueAccounts = accounts.filter(filterUniqueAddresses());
+
+  return uniqueAccounts.reduce((acc, account) => {
+    const delegation = account.info?.delegation;
+
+    if (!delegation) return acc;
+
+    const normalised = normaliseCoin(delegation);
+    const denom = normalised.denom.toLowerCase() as CoinDenom;
+    const coinPrice = state.coinsPrices[denom];
+
+    if (!coinPrice) return acc;
+
+    return acc + new BigNumber(normalised.amount).times(coinPrice).toNumber();
+  }, 0);
+};
