@@ -151,7 +151,7 @@ const PopOver = ({
 
     const coinPrice = stakingRef.current.state.coinsPrices[mainDenom];
 
-    if (!coinPrice) return [formatCoin(stakedData)];
+    if (!coinPrice || Number(coinPrice) < 0) return [formatCoin(stakedData)];
 
     const stakedDataUSD = formatStakedDataUSD(stakedData, coinPrice);
 

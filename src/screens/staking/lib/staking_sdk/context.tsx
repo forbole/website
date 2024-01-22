@@ -507,7 +507,7 @@ export const getAllStaked = (
     const denom = normalised.denom.toLowerCase() as CoinDenom;
     const coinPrice = state.coinsPrices[denom];
 
-    if (!coinPrice) return acc;
+    if (!coinPrice || Number(coinPrice) < 0) return acc;
 
     const newValue = new BigNumber(normalised.amount)
       .times(coinPrice)
@@ -535,7 +535,7 @@ export const getAllRewards = (state: State, accountsProp?: Account[]) => {
       const denom = normalised.denom.toLowerCase() as CoinDenom;
       const coinPrice = state.coinsPrices[denom];
 
-      if (!coinPrice) return acc2;
+      if (!coinPrice || Number(coinPrice) < 0) return acc2;
 
       return new BigNumber(normalised.amount).times(coinPrice).toNumber();
     }, 0);

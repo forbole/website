@@ -42,5 +42,6 @@ export const geckoClient = {
             const multiplier = new BigNumber(10).pow(denomToMultiplier[denom]);
 
             return basePrice.multipliedBy(multiplier).toString();
-          }),
+          })
+          .catch(() => "-1"),
 };

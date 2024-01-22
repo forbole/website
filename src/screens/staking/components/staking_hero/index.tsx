@@ -77,7 +77,15 @@ const StakingHero = () => {
           <HighlightButton
             className={styles.stakeButton}
             onClick={() => {
-              if (!accounts?.length) return;
+              if (!accounts?.length) {
+                setSelectedAccount(
+                  stakingRef.current.setState,
+                  "connect_wallet",
+                  null,
+                );
+
+                return;
+              }
 
               setSelectedAccount(setStakingState, "stake", accounts[0]);
             }}
@@ -100,7 +108,7 @@ const StakingHero = () => {
               {t("stakingHero.claimRewards")}
             </CtaButton>
           ) : (
-            <div className={styles.claimRewards} />
+            <div className={[styles.claimRewards, styles.noShadow].join(" ")} />
           )}
         </div>
       </div>
