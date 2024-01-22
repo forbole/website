@@ -21,7 +21,11 @@ import type {
 } from "./core";
 import { geckoClient } from "./gecko_client";
 import { stakingClient } from "./staking_client";
-import { filterUniqueAddresses, sortAccounts } from "./utils/accounts";
+import {
+  filterOutTestnets,
+  filterUniqueAddresses,
+  sortAccounts,
+} from "./utils/accounts";
 import { getEmptyCoin, normaliseCoin, sumCoins } from "./utils/coins";
 import { setConnectedWallet } from "./utils/storage";
 import {
@@ -368,7 +372,10 @@ export const getAccountsForNetwork = (
   const wallets = Object.values(state.wallets);
 
   return wallets.reduce(
-    (acc, wallet) => [...acc, ...(wallet.networks?.[network]?.accounts || [])],
+    (acc, wallet) => [
+      ...acc,
+      ...(wallet.networks?.[network]?.accounts || []).filter(filterOutTestnets),
+    ],
     [] as Account[],
   );
 };
@@ -480,21 +487,59 @@ export const getAllAccounts = (state: State) =>
     [] as Account[],
   );
 
-export const getAllStaked = (state: State): number => {
-  const accounts = getAllAccounts(state);
-  const uniqueAccounts = accounts.filter(filterUniqueAddresses());
+export const getAllStaked = (
+  state: State,
+  accountsProp?: Account[],
+): number => {
+  const accounts = accountsProp || getAllAccounts(state);
 
-  return uniqueAccounts.reduce((acc, account) => {
+  const uniqueMainnetAccounts = accounts
+    .filter(filterUniqueAddresses())
+    .filter(filterOutTestnets);
+
+  return uniqueMainnetAccounts.reduce((acc, account) => {
     const delegation = account.info?.delegation;
 
     if (!delegation) return acc;
 
     const normalised = normaliseCoin(delegation);
+
     const denom = normalised.denom.toLowerCase() as CoinDenom;
     const coinPrice = state.coinsPrices[denom];
 
     if (!coinPrice) return acc;
 
-    return acc + new BigNumber(normalised.amount).times(coinPrice).toNumber();
+    const newValue = new BigNumber(normalised.amount)
+      .times(coinPrice)
+      .toNumber();
+
+    return acc + newValue;
+  }, 0);
+};
+
+export const getAllRewards = (state: State, accountsProp?: Account[]) => {
+  const accounts = accountsProp || getAllAccounts(state);
+
+  const uniqueMainnetAccounts = accounts
+    .filter(filterUniqueAddresses())
+    .filter(filterOutTestnets);
+
+  return uniqueMainnetAccounts.reduce((acc, account) => {
+    const { rewards } = account;
+
+    if (!rewards) return acc;
+
+    const newValue = rewards.reduce((acc2, reward) => {
+      const normalised = normaliseCoin(reward);
+
+      const denom = normalised.denom.toLowerCase() as CoinDenom;
+      const coinPrice = state.coinsPrices[denom];
+
+      if (!coinPrice) return acc2;
+
+      return new BigNumber(normalised.amount).times(coinPrice).toNumber();
+    }, 0);
+
+    return acc + newValue;
   }, 0);
 };

@@ -2,6 +2,7 @@ import type { Coin } from "@cosmjs/stargate";
 import BigNumber from "bignumber.js";
 
 import type { Account } from "../core";
+import { testnetNetworks } from "../core";
 import { normaliseCoin } from "./coins";
 
 export const accountHasDelegations = (account?: Account): boolean =>
@@ -17,15 +18,18 @@ export const filterUniqueAddresses = () => {
   const usedAddresses = new Set<string>();
 
   return (account: Account) => {
-    if (usedAddresses.has(account.address)) {
+    if (usedAddresses.has(account.address + account.networkId)) {
       return false;
     }
 
-    usedAddresses.add(account.address);
+    usedAddresses.add(account.address + account.networkId);
 
     return true;
   };
 };
+
+export const filterOutTestnets = (account: Account) =>
+  !testnetNetworks.has(account.networkId);
 
 type NormalisedInfo = { coin: Coin; num: BigNumber } | null;
 

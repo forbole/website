@@ -5,6 +5,7 @@ import CtaButton from "@src/components/cta-button";
 import HighlightButton from "@src/components/highlight-button";
 import {
   getAllAccounts,
+  getAllRewards,
   getAllStaked,
   setSelectedAccount,
   useStakingRef,
@@ -27,13 +28,16 @@ const StakingHero = () => {
   if (!hasInit) return null;
 
   const accounts = getAllAccounts(stakingRef.current.state);
+
   const accountsWithRewards = accounts.filter(accountHasRewards);
 
   const stakedDisplayed = accounts.length
-    ? getAllStaked(stakingRef.current.state)
+    ? getAllStaked(stakingRef.current.state, accounts)
     : defaultStake;
 
-  const rewardsDisplayed = accounts.length ? 0 : defaultRewards;
+  const rewardsDisplayed = accounts.length
+    ? getAllRewards(stakingRef.current.state, accountsWithRewards)
+    : defaultRewards;
 
   return (
     <div className={styles.wrapper}>
@@ -89,7 +93,18 @@ const StakingHero = () => {
             {t("stakingHero.totalRewards")}
           </div>
           <div className={styles.amount}>
-            <span>{rewardsDisplayed.toFixed(1)}</span> USD
+            <span>
+              {(() => {
+                const min = 0.1;
+
+                if (rewardsDisplayed && rewardsDisplayed < min) {
+                  return `<${min.toFixed(1)}`;
+                }
+
+                return rewardsDisplayed.toFixed(1);
+              })()}
+            </span>{" "}
+            USD
           </div>
         </div>
       </div>
