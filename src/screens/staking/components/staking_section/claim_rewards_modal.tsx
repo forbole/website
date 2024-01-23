@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 import HighlightButton from "@src/components/highlight-button";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
-import {
-  setSelectedAccount,
-  syncAccountData,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   claimRewards,
   getClaimRewardsFee,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
+import {
+  setSelectedAccount,
+  syncAccountData,
+} from "../../lib/staking_sdk/context/actions";
 import * as styles from "./claim_rewards_modal.module.scss";
 import Label from "./label";
 import ModalBase from "./modal_base";
@@ -30,7 +30,6 @@ const ClaimRewardsModal = () => {
   const { t } = useTranslation("staking");
 
   const { selectedAccount, selectedAction } = stakingRef.current.state;
-  const { setState: setStakingState } = stakingRef.current;
 
   const isOpen = !!selectedAccount && selectedAction === "claim_rewards";
   const { address, networkId } = selectedAccount || {};
@@ -46,7 +45,7 @@ const ClaimRewardsModal = () => {
   const onClose = () => {
     if (isLoading) return;
 
-    setSelectedAccount(setStakingState, null, null);
+    setSelectedAccount(stakingRef.current, null, null);
   };
 
   return (
@@ -97,7 +96,7 @@ const ClaimRewardsModal = () => {
                     selectedAccount as NonNullable<typeof selectedAccount>,
                   );
 
-                  setSelectedAccount(setStakingState, null, null);
+                  setSelectedAccount(stakingRef.current, null, null);
 
                   toastSuccess({
                     subtitle: `${t("rewardsModal.success.sub")} 🎉`,

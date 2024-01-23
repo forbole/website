@@ -8,11 +8,11 @@ import IconPlus from "@src/components/icons/icon_plus.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { tooltipId } from "@src/components/tooltip";
 import type { TStakingContext } from "@src/screens/staking/lib/staking_sdk/context";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   disconnectWallet,
   setSelectedAccount,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+} from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getCanAddWallet } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type {
   Wallet,
@@ -177,7 +177,7 @@ const StakingWidgetContainer = () => {
   );
 
   const onConnectWallet = useCallback(() => {
-    setSelectedAccount(stakingRef.current.setState, "connect_wallet", null);
+    setSelectedAccount(stakingRef.current, "connect_wallet", null);
   }, [stakingRef]);
 
   const canConnectMoreWallets = getCanAddWallet(stakingRef.current.state);

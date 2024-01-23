@@ -10,12 +10,12 @@ import IconWarning from "@src/components/icons/icon_warning.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   getNetworkStakingInfo,
   setSelectedAccount,
   syncAccountData,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+} from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -61,7 +61,7 @@ const UnstakingModal = () => {
   const [amountError, setAmountError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setState: setStakingState, state: stakingState } = stakingRef.current;
+  const { state: stakingState } = stakingRef.current;
 
   const account = getSelectedAccount(stakingState);
 
@@ -133,7 +133,7 @@ const UnstakingModal = () => {
         if (unstaked.success) {
           await syncAccountData(stakingRef.current, selectedAccount);
 
-          setSelectedAccount(setStakingState, null, null);
+          setSelectedAccount(stakingRef.current, null, null);
 
           toastSuccess({
             subtitle: t("unstakingModal.success.subtitle"),
@@ -155,7 +155,7 @@ const UnstakingModal = () => {
 
   return (
     <ModalBase
-      onClose={() => setSelectedAccount(setStakingState, null, null)}
+      onClose={() => setSelectedAccount(stakingRef.current, null, null)}
       open={isOpen}
       title={t("unstakingModal.title")}
     >

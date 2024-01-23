@@ -4,11 +4,11 @@ import { useEffect } from "react";
 
 import CtaButton from "@src/components/cta-button";
 import HighlightButton from "@src/components/highlight-button";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   fetchCoinPriceForNetwork,
   setSelectedAccount,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+} from "@src/screens/staking/lib/staking_sdk/context/actions";
 import {
   getAllAccounts,
   getAllRewards,
@@ -28,7 +28,6 @@ const defaultRewards = 10;
 const StakingHero = () => {
   const stakingRef = useStakingRef();
 
-  const { setState: setStakingState } = stakingRef.current;
   const { t } = useTranslation("staking");
 
   const { hasInit } = stakingRef.current.state;
@@ -80,16 +79,12 @@ const StakingHero = () => {
             className={styles.stakeButton}
             onClick={() => {
               if (!accounts?.length) {
-                setSelectedAccount(
-                  stakingRef.current.setState,
-                  "connect_wallet",
-                  null,
-                );
+                setSelectedAccount(stakingRef.current, "connect_wallet", null);
 
                 return;
               }
 
-              setSelectedAccount(setStakingState, "stake", accounts[0]);
+              setSelectedAccount(stakingRef.current, "stake", accounts[0]);
             }}
           >
             {accounts.length
@@ -101,7 +96,7 @@ const StakingHero = () => {
               className={styles.claimRewards}
               onClick={() => {
                 setSelectedAccount(
-                  setStakingState,
+                  stakingRef.current,
                   "claim_rewards",
                   accounts[0],
                 );

@@ -1,10 +1,9 @@
 import type { Window as KeplrWindow } from "@keplr-wallet/types";
 import { useEffect, useRef, useState } from "react";
 
-import {
-  fetchNetworksInfo,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+import type { TStakingContext } from "@src/screens/staking/lib/staking_sdk/context";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
+import { fetchNetworksInfo } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getConnectedWallets } from "@src/screens/staking/lib/staking_sdk/utils/storage";
 import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { IS_E2E } from "@src/utils/e2e";
@@ -103,7 +102,9 @@ export const useCounter = (targetValue: unknown) => {
 };
 
 declare global {
-  interface Window extends KeplrWindow {}
+  interface Window extends KeplrWindow {
+    stakingContext: TStakingContext | undefined;
+  }
 }
 
 export const useInitStaking = () => {
@@ -112,7 +113,7 @@ export const useInitStaking = () => {
   useEffect(() => {
     const connectedWallets = getConnectedWallets();
 
-    fetchNetworksInfo(stakingRef.current.setState);
+    fetchNetworksInfo(stakingRef.current);
 
     tryToConnectWallets(stakingRef.current, connectedWallets).then(() => {
       stakingRef.current.setState({

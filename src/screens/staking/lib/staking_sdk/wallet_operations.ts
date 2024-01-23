@@ -16,10 +16,9 @@ import useTranslation from "next-translate/useTranslation";
 import { useEffect } from "react";
 
 import { toastSuccess } from "@src/components/notification";
-import { IS_E2E } from "@src/utils/e2e";
 
 import type { TStakingContext } from "./context";
-import { setUserWallet } from "./context";
+import { setUserWallet } from "./context/actions";
 import type { Account, StakingNetworkId, Wallet } from "./core";
 import { WalletId, keplrNetworks, networksWithStaking } from "./core";
 import { stakingClient } from "./staking_client";
@@ -367,10 +366,6 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
     };
 
     window.addEventListener("keplr_keystorechange", listener);
-
-    if (IS_E2E || process.env.NODE_ENV === "development") {
-      (window as any).stakingContext = contextValue;
-    }
 
     return () => {
       window.removeEventListener("keplr_keystorechange", listener);

@@ -17,11 +17,13 @@ import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
+  useStakingRef,
+} from "@src/screens/staking/lib/staking_sdk/context";
+import {
   fetchCoinPriceForNetwork,
   getNetworkStakingInfo,
   setSelectedAccount,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+} from "@src/screens/staking/lib/staking_sdk/context/actions";
 import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   getAccountsForNetwork,
@@ -87,8 +89,7 @@ const PopOver = ({
   const [stakingNetworkInfo, setStakingNetworkInfo] =
     useState<NetworkInfo | null>(null);
 
-  const { setState: setStakingState, state: stakingState } =
-    useContext(StakingContext);
+  const { state: stakingState } = useContext(StakingContext);
 
   const { hasInit } = stakingState;
 
@@ -305,7 +306,7 @@ const PopOver = ({
                 onClick={() => {
                   if (!hasNetworkSupportedWallet) {
                     setSelectedAccount(
-                      stakingRef.current.setState,
+                      stakingRef.current,
                       "connect_wallet",
                       null,
                     );
@@ -315,7 +316,7 @@ const PopOver = ({
 
                   if (!accounts?.length) return;
 
-                  setSelectedAccount(setStakingState, "stake", accounts[0]);
+                  setSelectedAccount(stakingRef.current, "stake", accounts[0]);
                 }}
               >
                 {t("popover.stake")}
@@ -325,7 +326,7 @@ const PopOver = ({
               <CtaButton
                 onClick={() => {
                   setSelectedAccount(
-                    setStakingState,
+                    stakingRef.current,
                     "claim_rewards",
                     accounts[0],
                   );
@@ -338,7 +339,7 @@ const PopOver = ({
               <EmptyButton
                 onClick={() => {
                   setSelectedAccount(
-                    setStakingState,
+                    stakingRef.current,
                     "unstake",
                     accountsWithDelegations[0],
                   );

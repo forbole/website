@@ -4,10 +4,8 @@ import useTranslation from "next-translate/useTranslation";
 
 import { toastSuccess } from "@src/components/notification";
 import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
-import {
-  setSelectedAccount,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
+import { setSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import {
   getClaimableRewardsForNetwork,
   getSelectedAccount,
@@ -116,7 +114,7 @@ type Props = {
 const NetworksSelect = ({ disabled, variant }: Props) => {
   const stakingRef = useStakingRef();
 
-  const { setState: setStakingState, state: stakingState } = stakingRef.current;
+  const { state: stakingState } = stakingRef.current;
 
   const selectedAccount = getSelectedAccount(stakingState);
 
@@ -146,7 +144,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
     const [address, networkId] = event.target.value.split(SEPARATOR);
 
     setSelectedAccount(
-      setStakingState,
+      stakingRef.current,
       stakingRef.current.state.selectedAction,
       {
         address,

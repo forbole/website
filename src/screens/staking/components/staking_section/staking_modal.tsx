@@ -9,12 +9,12 @@ import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import { displayGenericError } from "@src/screens/staking/lib/error";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   getNetworkStakingInfo,
   setSelectedAccount,
   syncAccountData,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+} from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -46,7 +46,7 @@ const StakingModal = () => {
 
   const isOpen = !!selectedAccount && selectedAction === "stake";
 
-  const { setState: setStakingState, state: stakingState } = stakingRef.current;
+  const { state: stakingState } = stakingRef.current;
 
   useEffect(() => {
     if (isOpen) {
@@ -82,7 +82,7 @@ const StakingModal = () => {
   const onClose = () => {
     if (isLoading) return;
 
-    setSelectedAccount(setStakingState, null, null);
+    setSelectedAccount(stakingRef.current, null, null);
   };
 
   const newAmountError = (() => {
@@ -133,7 +133,7 @@ const StakingModal = () => {
         if (result.success) {
           await syncAccountData(stakingRef.current, selectedAccount);
 
-          setSelectedAccount(setStakingState, null, null);
+          setSelectedAccount(stakingRef.current, null, null);
 
           toastSuccess({
             subtitle: `${t("stakingModal.success.sub")} 🎉`,
