@@ -1,5 +1,5 @@
 {
-  "addressCopied": "Address copied",
+  "addressCopied": "地址已复制",
   "apy": "年收益率",
   "benefits bullet 1": "赚取您的质押奖励，它可以让您通过贡献来获得保护网络的奖励",
   "benefits bullet 2": "提高网络安全性，质押的代币持有者越多，网络就越安全",
@@ -10,29 +10,29 @@
   "calculate rewards title": "<0><1>计算</1> 你的收益</0>",
   "claim para 1": "没有模型答案，因为这取决于太多因素，包括质押的代币数量、特定网络中的交易费用等。",
   "claim q": "我应该多久领取我的质押奖励？",
-  "claimableRewards": "Claimable Rewards",
+  "claimableRewards": "可领取的奖励",
   "claimRewards": {
-    "claimFrom": "Claim from:",
-    "selectNetwork": "Select network:",
-    "title": "Claim Rewards"
+    "claimFrom": "选择网络：",
+    "selectNetwork": "选择网络：",
+    "title": "领取奖励"
   },
   "commission": "佣金率",
   "connectWallet": {
-    "intro": "Stake with Forbole and earn rewards!",
+    "intro": "与 Forbole 进行质押并赚取奖励！",
     "success": {
-      "subtitle": "Welcome  🎉",
-      "title": "Sign up success"
+      "subtitle": "欢迎 🎉",
+      "title": "注册成功"
     },
-    "title": "Connect Wallet"
+    "title": "连接钱包"
   },
   "contact Forbole": "联系 Forbole",
   "contact Forbole desc": "我们很高兴为你提供专业的服务。",
   "contact forbole title": "<0>立即与我们团队商讨<1>合作</1>！</0>",
   "copied to clipboard": "复制到剪贴板",
   "definitions": {
-    "apy": "Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from staking. It includes compound interest, helping you gauge the potential growth of your investment.",
-    "tvl": "Total Value Locked (TVL) is the total USD value of all assets staked with Forbole on this network. It indicates Forbole's staking scale and popularity.",
-    "votingPower": "The \"Voting Power\" is the total amount of tokens staked with Forbole on the network. The more amount of tokens staked, the higher the voting power."
+    "apy": "年收益率（APY）显示您可以通过质押获得的代币收益率。 它包括复利，帮助您衡量投资的潜在增长。",
+    "tvl": "锁定总价值 (TVL) 是 Forbole 在该网络上质押的所有资产的美元总价值。 它表明了 Forbole 的质押规模和受欢迎程度。",
+    "votingPower": "“投票权”是指 Forbole 在网络上质押的代币总量。 质押的代币数量越多，投票权就越高。"
   },
   "description": " 在 Forbole 质押，赚取收益，守护网络",
   "difference para 1": "对于托管，私钥由第三方持有，而对于非托管，用户对其资产负责并完全控制。",
@@ -59,17 +59,17 @@
   "non-custodial": "非托管",
   "non-custodial desc": "我们提供非托管质押服务，你可随时提取你的资产",
   "noResultsFound": "未找到结果",
-  "notice": "<0>By connecting your wallet, you agrees to the <1>Terms & Conditions</1> and <2>Privacy Policy</2>.</0>",
-  "optionalInput": "Optional",
+  "notice": "<0>连接您的钱包即表示您同意<1>条款及条件</1>和<2>隐私政策</2>。</0>",
+  "optionalInput": "选修的",
   "others": "其他",
   "our future": "我们的未来",
   "our future desc": "Forbole 运行一个跨链生态系统，我们与时并进，永不停步，时刻留意最新的技术发展，确保应用最高级的安全标准于质押服务中，让你高枕无忧。",
   "percentage": "%",
   "popover": {
-    "claimRewards": "Claim Rewards",
-    "networkDetails": "See network details",
-    "stake": "Stake Now",
-    "unstake": "Unstake"
+    "claimRewards": "领取奖励",
+    "networkDetails": "查看网络详细信息",
+    "stake": "立即质押",
+    "unstake": "取消质押"
   },
   "receiving bullet 1": "指定验证人不在活跃集中",
   "receiving bullet 2": "提名一名验证者，佣金持有者为 100%。",
@@ -83,11 +83,11 @@
   "rewards": "赚取收益",
   "rewards desc": "可以通过质押通证赚取收益",
   "rewardsModal": {
-    "button": "Claim Rewards",
-    "gasFee": "Gas Fee",
+    "button": "领取奖励",
+    "gasFee": "汽油费",
     "success": {
-      "sub": "Congratulations!",
-      "title": "Your rewards have been claimed!"
+      "sub": "恭喜！",
+      "title": "您的奖励已被领取！"
     }
   },
   "risks para 1": "当您的验证人表现不佳或犯严重错误时，可能会存在一些风险，您的资金将被相应削减。",
@@ -107,37 +107,37 @@
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
   "staking q": "什么是质押？",
   "stakingHero": {
-    "claimRewards": "Claim rewards",
-    "connectWallet": "Connect Wallet",
-    "desc": "Provide liquidity and earn rewards!",
-    "stake": "Stake now",
-    "title": "<0>Stake</0> with Forbole",
-    "totalRewards": "My total rewards",
-    "totalStake": "My total stake"
+    "claimRewards": "领取奖励",
+    "connectWallet": "连接钱包",
+    "desc": "提供流动性并赚取奖励！",
+    "stake": "立即质押",
+    "title": "与 Forbole <0>质押</0>",
+    "totalRewards": "我的总奖励",
+    "totalStake": "我的总股份"
   },
-  "stakingLabel": "Stake here!",
+  "stakingLabel": "在这里质押！",
   "stakingModal": {
     "amountError": {
-      "invalid": "You have to input a valid amount"
+      "invalid": "您必须输入有效金额"
     },
-    "available": "Available",
-    "memo": "Memo",
+    "available": "可用的",
+    "memo": "备忘录",
     "memoError": {
-      "tooLongMemo": "Please enter a smaller memo"
+      "tooLongMemo": "请输入较小的备注"
     },
-    "networkSelect": "Select network:",
+    "networkSelect": "选择网络：",
     "success": {
-      "sub": "Thank you for supporting Forbole !",
-      "title": "Your token has been staked!"
+      "sub": "感谢您对福博乐的支持！",
+      "title": "您的代币已被质押！"
     },
-    "title": "Stake with forbole",
-    "tokenAmount": "Token amount",
-    "walletSellect": "Stake from:"
+    "title": "用 Forbole 进行桩桩",
+    "tokenAmount": "代币数量",
+    "walletSellect": "股权来自："
   },
   "stakingWidget": {
-    "connected_other": "Connected wallet",
-    "connectWallet": "Connect Wallet",
-    "disconnectWallet": "Disconnect"
+    "connected_other": "连接钱包",
+    "connectWallet": "连接钱包",
+    "disconnectWallet": "断开"
   },
   "string": " ",
   "success": "邮件已发送！",
@@ -146,12 +146,12 @@
   "token amount": "通证数量",
   "token amount placeholder": "多少通证？",
   "tooltip": {
-    "poolAPY": "The pool's Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from the staking pool. It helps you evaluate the potential growth of your investment.",
-    "poolMevAPY": "The Pool MEV APY combines Maximum Extractable Value (MEV) with your staking returns. It represents your potential token earnings from both staking and advanced transaction strategies.",
-    "soloAvgAPY": "The Solo Average APY shows your expected token earnings from solo staking.",
-    "soloMevAPY": "The Maximal extractable value(MEV) refers to additional earnings from specialized transaction strategies in Ethereum solo staking. It signifies the extra value extractable beyond regular staking rewards."
+    "poolAPY": "池的年收益率 (APY) 显示您可以从质押池中获得的代币收益率。 它可以帮助您评估投资的潜在增长。",
+    "poolMevAPY": "MEV APY 池将最大可提取价值 (MEV) 与您的质押回报相结合。 它代表您从质押和高级交易策略中获得的潜在代币收入。",
+    "soloAvgAPY": "单独平均 APY 显示您从单独抵押中获得的预期代币收益。",
+    "soloMevAPY": "最大可提取价值（MEV）是指以太坊单独质押中专门交易策略带来的额外收益。 它意味着在常规质押奖励之外可提取的额外价值。"
   },
-  "totalStaked": "Total staked",
+  "totalStaked": "总质押",
   "trusted provider": "选择值得信赖的营运商",
   "trusted provider desc": "我们已经建立了完善的验证人基础设施，全天候监控区块链网络安全",
   "unbonding period": "解绑期",
@@ -161,28 +161,28 @@
   "unstaking q": "什么是解除质押和重新质押？",
   "unstakingModal": {
     "amount": {
-      "label": "Unstake token amount",
+      "label": "取消质押代币数量",
       "placeholder": "1,000"
     },
-    "available": "Staked",
-    "button": "Unstake",
-    "info2T": "During this time, you <1>won't receive</1> staking rewards.",
-    "info3": "However, if you change your mind, you can cancel the process at any time.",
-    "info4": "To continue staking after this period, you'll need to stake again.",
-    "infoTitle": "We are sorry to hear that you are leaving. Before you go, please note the following:",
+    "available": "质押",
+    "button": "取消质押",
+    "info2T": "在此期间，您<1>不会收到</1>质押奖励。",
+    "info3": "但是，如果您改变主意，可以随时取消该过程。",
+    "info4": "要在此期限后继续质押，您需要再次质押。",
+    "infoTitle": "得知您要离开，我们深感遗憾。出发前，请注意以下事项：",
     "memo": {
-      "label": "Memo",
-      "placeholder": "Optional"
+      "label": "备忘录",
+      "placeholder": "选修的"
     },
     "success": {
-      "subtitle": "Hope to see you again soon.",
-      "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on {{date}}."
+      "subtitle": "希望很快再见到你。",
+      "title": "您的代币目前正处于解押期，将于{{date}}成功解押。"
     },
-    "title": "Unstake",
-    "unlockedDateInfo": "Your token will be locked in until <2>{{date}} ({{days}} days later)</2>.",
-    "unstakeFrom": "Unstake from:"
+    "title": "取消质押",
+    "unlockedDateInfo": "您的令牌将被锁定到<2>{{date}}（{{days}}天后）</2>。",
+    "unstakeFrom": "解除质押："
   },
-  "votingPower": "Voting Power",
+  "votingPower": "投票权",
   "wallets": {
     "keplr": "Keplr"
   },
