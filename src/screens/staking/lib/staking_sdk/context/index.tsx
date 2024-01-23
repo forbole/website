@@ -10,7 +10,7 @@ import {
   networksWithStaking,
   testnetNetworks,
   walletsSupported,
-} from "./core";
+} from "../core";
 import type {
   Account,
   CoinDenom,
@@ -18,21 +18,21 @@ import type {
   StakingNetworkId,
   State,
   Wallet,
-} from "./core";
-import { geckoClient } from "./gecko_client";
-import { stakingClient } from "./staking_client";
+} from "../core";
+import { geckoClient } from "../gecko_client";
+import { stakingClient } from "../staking_client";
 import {
   filterOutTestnets,
   filterUniqueAddresses,
   sortAccounts,
-} from "./utils/accounts";
-import { getEmptyCoin, normaliseCoin, sumCoins } from "./utils/coins";
-import { setConnectedWallet } from "./utils/storage";
+} from "../utils/accounts";
+import { getEmptyCoin, normaliseCoin, sumCoins } from "../utils/coins";
+import { setConnectedWallet } from "../utils/storage";
 import {
   disconnecKeplr,
   doesWalletSupportNetwork,
   useWalletsListeners,
-} from "./wallet_operations";
+} from "../wallet_operations";
 
 type SetState = (state: ((s: State) => State) | Partial<State>) => void;
 
