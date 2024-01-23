@@ -8,6 +8,8 @@ import type {
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
 
+const ENABLE_LEAP = process.env.NEXT_PUBLIC_STAKING_ENABLE_LEAP === "true";
+
 export enum WalletId {
   Keplr = "keplr",
   Leap = "leap",
@@ -63,7 +65,9 @@ export const leapNetworks = keplrNetworks;
 
 export const networksWithStaking = new Set([...Array.from(keplrNetworks)]);
 
-export const walletsSupported = new Set([WalletId.Keplr]);
+export const walletsSupported = new Set(
+  [WalletId.Keplr].concat(ENABLE_LEAP ? [WalletId.Leap] : []),
+);
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",

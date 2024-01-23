@@ -6,16 +6,16 @@ import HighlightButton from "@src/components/highlight-button";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
+import {
+  setSelectedAccount,
+  syncAccountData,
+} from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   claimRewards,
   getClaimRewardsFee,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
-import {
-  setSelectedAccount,
-  syncAccountData,
-} from "../../lib/staking_sdk/context/actions";
 import * as styles from "./claim_rewards_modal.module.scss";
 import Label from "./label";
 import ModalBase from "./modal_base";
@@ -35,12 +35,12 @@ const ClaimRewardsModal = () => {
   const { address, networkId } = selectedAccount || {};
 
   useEffect(() => {
-    if (isOpen && networkId && address) {
+    if (isOpen && selectedAccount?.address) {
       setGasFee(null);
 
-      getClaimRewardsFee({ address, networkId }).then(setGasFee);
+      getClaimRewardsFee({ account: selectedAccount }).then(setGasFee);
     }
-  }, [isOpen, networkId, address]);
+  }, [isOpen, selectedAccount]);
 
   const onClose = () => {
     if (isLoading) return;
@@ -81,13 +81,12 @@ const ClaimRewardsModal = () => {
         <HighlightButton
           disabled={!address || !networkId || isLoading}
           onClick={() => {
-            if (!address || !networkId || isLoading) return;
+            if (!selectedAccount?.address || isLoading) return;
 
             setIsLoading(true);
 
             claimRewards({
-              address,
-              networkId,
+              account: selectedAccount,
             })
               .then(async (claimed) => {
                 if (claimed) {

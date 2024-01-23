@@ -31,7 +31,7 @@ import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 export const MAX_MEMO = 256;
 
-const handleKeplrSignError = (err: Error) => {
+const handleCosmosSignError = (err: Error) => {
   // eslint-disable-next-line no-console
   console.log("debug: index.tsx: err", err);
 
@@ -86,9 +86,10 @@ export const stakeAmount = ({
         gas: info.tx.authInfo.fee.gas_limit,
       };
 
-      const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
-        account.networkId,
-      );
+      const offlineSigner =
+        account.wallet === WalletId.Leap
+          ? window.leap?.getOfflineSignerOnlyAmino(account.networkId)
+          : window.keplr?.getOfflineSignerOnlyAmino(account.networkId);
 
       if (!offlineSigner) {
         throw new Error("Can't get offline signer");
@@ -102,25 +103,24 @@ export const stakeAmount = ({
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
         .then(() => ({ success: true }) as const)
-        .catch(handleKeplrSignError);
+        .catch(handleCosmosSignError);
     });
 
 type ClaimOpts = {
-  address: string;
-  networkId: StakingNetworkId;
+  account: Account;
 };
 
-export const claimRewards = async (
-  opts: ClaimOpts,
-): Promise<WalletOperationResult> =>
+export const claimRewards = async ({
+  account,
+}: ClaimOpts): Promise<WalletOperationResult> =>
   stakingClient
-    .claimRewards(opts.networkId, opts.address)
+    .claimRewards(account.networkId, account.address)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
       if (!message) return { hasError: true, success: false };
 
-      const networkInfo = await stakingClient.getStakingInfo(opts.networkId);
+      const networkInfo = await stakingClient.getStakingInfo(account.networkId);
 
       const msg = MsgWithdrawDelegatorReward.fromPartial({
         delegatorAddress: message.delegator_address,
@@ -137,9 +137,10 @@ export const claimRewards = async (
         gas: info.tx.authInfo.fee.gas_limit,
       };
 
-      const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
-        opts.networkId,
-      );
+      const offlineSigner =
+        account.wallet === WalletId.Leap
+          ? window.leap?.getOfflineSignerOnlyAmino(account.networkId)
+          : window.keplr?.getOfflineSignerOnlyAmino(account.networkId);
 
       if (!offlineSigner) {
         throw new Error("Can't get offline signer");
@@ -151,21 +152,23 @@ export const claimRewards = async (
       );
 
       return client
-        .signAndBroadcast(opts.address, [msgAny], fee)
+        .signAndBroadcast(account.address, [msgAny], fee)
         .then(() => ({ success: true }) as const)
-        .catch(handleKeplrSignError);
+        .catch(handleCosmosSignError);
     });
 
-export const getClaimRewardsFee = async (
-  opts: ClaimOpts,
-): Promise<Coin | null> =>
-  stakingClient.claimRewards(opts.networkId, opts.address).then((info) => {
-    const [message] = info.tx.body.messages;
+export const getClaimRewardsFee = async ({
+  account,
+}: ClaimOpts): Promise<Coin | null> =>
+  stakingClient
+    .claimRewards(account.networkId, account.address)
+    .then((info) => {
+      const [message] = info.tx.body.messages;
 
-    if (!message) return null;
+      if (!message) return null;
 
-    return info.tx.authInfo.fee.amount?.[0] ?? null;
-  });
+      return info.tx.authInfo.fee.amount?.[0] ?? null;
+    });
 
 type UnstakeAmount = {
   account: Account;
@@ -218,7 +221,7 @@ export const unstake = async (
       return client
         .signAndBroadcast(opts.account.address, [msgAny], fee, "")
         .then(() => ({ success: true }) as const)
-        .catch(handleKeplrSignError);
+        .catch(handleCosmosSignError);
     });
 
 const tryToConnectKeplr = async (
@@ -455,18 +458,26 @@ export const tryToConnectWallets = async (
   return connected;
 };
 
-export const disconnecKeplr = async (networks: StakingNetworkId[]) => {
+const disconnecKeplr = async (networks: StakingNetworkId[]) => {
   await window.keplr?.disable(networks).catch((err) => {
     // eslint-disable-next-line no-console
     console.log("Disable Error", err);
   });
 };
 
-export const disconnectLeap = async (networks: StakingNetworkId[]) => {
-  await window.leap?.disable(networks).catch((err) => {
+const disconnectLeap = async (networks: StakingNetworkId[]) => {
+  await (window.leap as any).disconnect(networks).catch((err: any) => {
     // eslint-disable-next-line no-console
     console.log("Disable Error", err);
   });
+};
+
+export const disconnectWalletFns: Record<
+  WalletId,
+  (n: StakingNetworkId[]) => Promise<void>
+> = {
+  [WalletId.Keplr]: disconnecKeplr,
+  [WalletId.Leap]: disconnectLeap,
 };
 
 export const useWalletsListeners = (contextValue: TStakingContext) => {

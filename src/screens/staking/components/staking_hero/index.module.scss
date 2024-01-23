@@ -23,9 +23,9 @@
 }
 
 .buttons {
-  display: flex;
-  flex-direction: row;
+  display: grid;
   gap: 16px;
+  grid-template: "a b";
   width: 100%;
 }
 
@@ -60,7 +60,9 @@
 
 body .stakeButton,
 body .claimRewards {
+  align-self: stretch;
   box-shadow: 4px 8px 24px 0 rgba(253, 36, 114, 0.25);
+  min-height: 100%;
 
   &.noShadow {
     box-shadow: none;

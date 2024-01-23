@@ -18,7 +18,7 @@ import { geckoClient } from "../gecko_client";
 import { stakingClient } from "../staking_client";
 import { sortAccounts } from "../utils/accounts";
 import { setConnectedWallet } from "../utils/storage";
-import { disconnecKeplr, disconnectLeap } from "../wallet_operations";
+import { disconnectWalletFns } from "../wallet_operations";
 
 // Actions
 
@@ -116,21 +116,29 @@ const fetchCoinPrice = async (
   return newRequest;
 };
 
-export const fetchCoinPriceForNetwork = async (
+export const fetchCoinPriceForNetwork = (
   context: TStakingContext,
-  networkId: StakingNetworkId | undefined,
+  network: StakingNetworkId | StakingNetworkId[] | undefined,
 ) => {
-  if (!networkId) return;
+  const networks = (Array.isArray(network) ? network : [network]).filter(
+    Boolean,
+  );
 
-  const parsedDenom = mainNetworkDenom[networkId];
+  if (!networks.length) return;
 
-  const { coinsPrices } = context.state;
+  const uniqueNetworks = Array.from(new Set(networks)) as StakingNetworkId[];
 
-  if (parsedDenom && !coinsPrices[parsedDenom]) {
-    (async () => {
-      await fetchCoinPrice(context, parsedDenom);
-    })();
-  }
+  uniqueNetworks.forEach((networkId) => {
+    const parsedDenom = mainNetworkDenom[networkId];
+
+    const { coinsPrices } = context.state;
+
+    if (parsedDenom && !coinsPrices[parsedDenom]) {
+      (async () => {
+        await fetchCoinPrice(context, parsedDenom);
+      })();
+    }
+  });
 };
 
 export const setUserWallet = (
@@ -214,22 +222,7 @@ export const disconnectWallet = async (
       context.state.wallets[WalletId.Keplr]?.networks || {},
     ) as StakingNetworkId[];
 
-    switch (walletId) {
-      case WalletId.Keplr: {
-        await disconnecKeplr(networks);
-
-        break;
-      }
-
-      case WalletId.Leap: {
-        await disconnectLeap(networks);
-
-        break;
-      }
-
-      default:
-        walletId satisfies never;
-    }
+    await disconnectWalletFns[walletId](networks);
 
     const newWallets = { ...context.state.wallets };
 
@@ -239,6 +232,6 @@ export const disconnectWallet = async (
       wallets: newWallets,
     });
 
-    setConnectedWallet(Object.keys(walletId) as WalletId[]);
+    setConnectedWallet(Object.keys(newWallets) as WalletId[]);
   }
 };

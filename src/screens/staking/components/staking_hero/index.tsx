@@ -38,14 +38,11 @@ const StakingHero = () => {
         .filter(filterUniqueAddresses())
         .filter(filterOutTestnets);
 
-      const networks = new Set(
-        filteredAccounts.map((account) => account.networkId),
-      );
-
       // Once it has init, fetch all coin prices for all the networks
-      Array.from(networks).forEach((networkId) => {
-        fetchCoinPriceForNetwork(stakingRef.current, networkId);
-      });
+      fetchCoinPriceForNetwork(
+        stakingRef.current,
+        filteredAccounts.map((a) => a.networkId),
+      );
     }
   }, [hasInit, stakingRef]);
 
@@ -86,6 +83,7 @@ const StakingHero = () => {
 
               setSelectedAccount(stakingRef.current, "stake", accounts[0]);
             }}
+            size="big"
           >
             {accounts.length
               ? t("stakingHero.stake")
