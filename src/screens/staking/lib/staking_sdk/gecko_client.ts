@@ -18,7 +18,7 @@ const denomToMultiplier: Record<CoinDenom, number> = {
   [CoinDenom.TIA]: 0,
 } as const;
 
-const queryOpts = new URLSearchParams({
+const coinPriceQuery = new URLSearchParams({
   community_data: "false",
   developer_data: "false",
   market_data: "true",
@@ -31,7 +31,7 @@ export const geckoClient = {
     IS_E2E
       ? Promise.resolve("0.1")
       : fetch(
-          `https://api.coingecko.com/api/v3/coins/${denomToEndpoint[denom]}?${queryOpts}`,
+          `https://api.coingecko.com/api/v3/coins/${denomToEndpoint[denom]}?${coinPriceQuery}`,
         )
           .then((res) => res.json())
           .then((data) => {

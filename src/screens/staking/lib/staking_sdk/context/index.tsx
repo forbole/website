@@ -150,7 +150,7 @@ export const getNetworkStakingInfo = async (
 
 const coinPriceRequests: { [key in CoinDenom]?: Promise<string> } = {};
 
-const getCoinPrice = async (
+const fetchCoinPrice = async (
   context: TStakingContext,
   denom: CoinDenom,
 ): Promise<string> => {
@@ -181,7 +181,7 @@ const getCoinPrice = async (
   return newRequest;
 };
 
-export const getCoinPriceForNetwork = async (
+export const fetchCoinPriceForNetwork = async (
   context: TStakingContext,
   networkId: StakingNetworkId | undefined,
 ) => {
@@ -193,7 +193,7 @@ export const getCoinPriceForNetwork = async (
 
   if (parsedDenom && !coinsPrices[parsedDenom]) {
     (async () => {
-      await getCoinPrice(context, parsedDenom);
+      await fetchCoinPrice(context, parsedDenom);
     })();
   }
 };

@@ -237,3 +237,18 @@ export const getAllRewards = (state: State, accountsProp?: Account[]) => {
     return acc + newValue;
   }, 0);
 };
+
+export const getCoinPriceForNetwork = (
+  state: State,
+  networkId: StakingNetworkId,
+) => {
+  const mainDenom = mainNetworkDenom[networkId];
+
+  if (!mainDenom) return null;
+
+  const coinPrice = state.coinsPrices[mainDenom];
+
+  if (!coinPrice || Number(coinPrice) < 0) return null;
+
+  return coinPrice;
+};

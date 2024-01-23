@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import CtaButton from "@src/components/cta-button";
 import HighlightButton from "@src/components/highlight-button";
 import {
-  getCoinPriceForNetwork,
+  fetchCoinPriceForNetwork,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
@@ -45,7 +45,7 @@ const StakingHero = () => {
 
       // Once it has init, fetch all coin prices for all the networks
       Array.from(networks).forEach((networkId) => {
-        getCoinPriceForNetwork(stakingRef.current, networkId);
+        fetchCoinPriceForNetwork(stakingRef.current, networkId);
       });
     }
   }, [hasInit, stakingRef]);

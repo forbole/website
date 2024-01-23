@@ -17,7 +17,7 @@ import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
 import {
   StakingContext,
-  getCoinPriceForNetwork,
+  fetchCoinPriceForNetwork,
   getNetworkStakingInfo,
   setSelectedAccount,
   useStakingRef,
@@ -26,20 +26,19 @@ import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_s
 import {
   getAccountsForNetwork,
   getClaimableRewardsForNetwork,
+  getCoinPriceForNetwork,
   getHasNetworkSupportedWallet,
   getNetworkVotingPower,
   getStakedDataForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   WalletId,
-  mainNetworkDenom,
   networkKeyToNetworkId,
   networksWithStaking,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import type {
   Account,
   NetworkInfo,
-  StakingNetworkId,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import {
   formatCoin,
@@ -135,7 +134,7 @@ const PopOver = ({
   }, [stakingState, stakingNetworkId, stakingRef]);
 
   useEffect(() => {
-    getCoinPriceForNetwork(stakingRef.current, stakingNetworkId);
+    fetchCoinPriceForNetwork(stakingRef.current, stakingNetworkId);
   }, [stakingRef, stakingNetworkId]);
 
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
@@ -147,13 +146,12 @@ const PopOver = ({
   const displayedStaked = (() => {
     if (!stakedData || !stakingNetworkId) return null;
 
-    const mainDenom = mainNetworkDenom[stakingNetworkId as StakingNetworkId];
+    const coinPrice = getCoinPriceForNetwork(
+      stakingRef.current.state,
+      stakingNetworkId,
+    );
 
-    if (!mainDenom) return [formatCoin(stakedData)];
-
-    const coinPrice = stakingRef.current.state.coinsPrices[mainDenom];
-
-    if (!coinPrice || Number(coinPrice) < 0) return [formatCoin(stakedData)];
+    if (!coinPrice) return [formatCoin(stakedData)];
 
     const stakedDataUSD = formatStakedDataUSD(stakedData, coinPrice);
 
@@ -336,20 +334,20 @@ const PopOver = ({
                 {t("popover.claimRewards")}
               </CtaButton>
             )}
+            {!!accountsWithDelegations?.length && (
+              <EmptyButton
+                onClick={() => {
+                  setSelectedAccount(
+                    setStakingState,
+                    "unstake",
+                    accountsWithDelegations[0],
+                  );
+                }}
+              >
+                {t("popover.unstake")}
+              </EmptyButton>
+            )}
           </>
-        )}
-        {isStakingSupported && !!accountsWithDelegations?.length && (
-          <EmptyButton
-            onClick={() => {
-              setSelectedAccount(
-                setStakingState,
-                "unstake",
-                accountsWithDelegations[0],
-              );
-            }}
-          >
-            {t("popover.unstake")}
-          </EmptyButton>
         )}
         {canClickNetwork && (
           <EmptyButton onClick={handleExploreClick} withoutBorder>
