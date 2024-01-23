@@ -7,9 +7,10 @@ import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { setSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import {
+  getAllAccounts,
   getClaimableRewardsForNetwork,
   getSelectedAccount,
-  getWalletAccounts,
+  getWalletCustomName,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type {
   Account,
@@ -123,25 +124,10 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   const isRewards = variant === "accounts_with_rewards";
   const isWallet = variant === "accounts_wallet";
 
-  if (isWallet) {
-    const walletName =
-      stakingRef.current.state.wallets[selectedAccount.wallet]?.name;
-
-    return (
-      <div className={styles.singleItem}>
-        <WalletItem account={selectedAccount} walletName={walletName} />
-      </div>
-    );
-  }
-
-  const allAccounts = getWalletAccounts(stakingState, selectedAccount.wallet);
-
-  const availableAccounts = allAccounts.filter(
-    isRewards ? accountHasRewards : () => true,
-  );
+  const allAccounts = getAllAccounts(stakingState);
 
   const handleChange = (event: any) => {
-    const [address, networkId] = event.target.value.split(SEPARATOR);
+    const [address, networkId, wallet] = event.target.value.split(SEPARATOR);
 
     setSelectedAccount(
       stakingRef.current,
@@ -149,7 +135,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
       {
         address,
         networkId,
-        wallet: selectedAccount.wallet,
+        wallet,
       },
     );
   };
@@ -157,7 +143,65 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   const selectedItem = [
     selectedAccount.address,
     selectedAccount.networkId,
+    selectedAccount.wallet,
   ].join(SEPARATOR);
+
+  if (isWallet) {
+    const otherWalletsAccounts = allAccounts.filter(
+      (account) =>
+        account.address === selectedAccount.address &&
+        account.networkId === selectedAccount.networkId,
+    );
+
+    if (otherWalletsAccounts.length < 2) {
+      const walletName = getWalletCustomName(
+        stakingRef.current.state,
+        selectedAccount.wallet,
+      );
+
+      return (
+        <div className={styles.singleItem}>
+          <WalletItem account={selectedAccount} walletName={walletName} />
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.singleItem}>
+        <Select
+          IconComponent={IconComponent}
+          MenuProps={MenuProps}
+          className={styles.select}
+          disabled={disabled}
+          onChange={handleChange}
+          value={selectedItem}
+        >
+          {otherWalletsAccounts.map((account) => {
+            const item = [
+              account.address,
+              account.networkId,
+              account.wallet,
+            ].join(SEPARATOR);
+
+            const walletName = getWalletCustomName(
+              stakingRef.current.state,
+              account.wallet,
+            );
+
+            return (
+              <MenuItem key={item} value={item}>
+                <WalletItem account={account} walletName={walletName} />
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </div>
+    );
+  }
+
+  const availableAccounts = allAccounts.filter(
+    isRewards ? accountHasRewards : () => true,
+  );
 
   return (
     <div className={styles.control}>
@@ -170,7 +214,12 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
         value={selectedItem}
       >
         {availableAccounts.map((account) => {
-          const item = [account.address, account.networkId].join(SEPARATOR);
+          const item = [
+            account.address,
+            account.networkId,
+            account.wallet,
+          ].join(SEPARATOR);
+
           const balance = getAccountNormalisedBalance(account);
 
           if (!balance) return null;

@@ -107,7 +107,7 @@ const StakingWidgetBase = ({
           setAnchor(e.currentTarget);
         }}
       >
-        {walletsIds.map((walletId) => {
+        {walletsIds.slice(0, 3).map((walletId) => {
           const WalletIcon = walletsIcons[walletId];
 
           return <WalletIcon key={walletId} />;

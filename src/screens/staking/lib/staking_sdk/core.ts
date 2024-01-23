@@ -10,6 +10,7 @@ export const ENABLE_TESTNETS =
 
 export enum WalletId {
   Keplr = "keplr",
+  Leap = "leap",
 }
 
 export enum CoinDenom {
@@ -57,6 +58,8 @@ export const keplrNetworks = new Set(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
 );
+
+export const leapNetworks = keplrNetworks;
 
 export const networksWithStaking = new Set([...Array.from(keplrNetworks)]);
 

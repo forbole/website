@@ -20,7 +20,12 @@ import { toastSuccess } from "@src/components/notification";
 import type { TStakingContext } from "./context";
 import { setUserWallet } from "./context/actions";
 import type { Account, StakingNetworkId, Wallet } from "./core";
-import { WalletId, keplrNetworks, networksWithStaking } from "./core";
+import {
+  WalletId,
+  keplrNetworks,
+  leapNetworks,
+  networksWithStaking,
+} from "./core";
 import { stakingClient } from "./staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
@@ -197,7 +202,7 @@ export const unstake = async (
         gas: info.tx.authInfo.fee.gas_limit,
       };
 
-      const offlineSigner = window.keplr?.getOfflineSignerOnlyAmino(
+      const offlineSigner = window.leap?.getOfflineSignerOnlyAmino(
         opts.account.networkId,
       );
 
@@ -320,6 +325,110 @@ const tryToConnectKeplr = async (
   }
 };
 
+const tryToConnectLeap = async (
+  context: TStakingContext,
+  openLinkIfMissing: boolean,
+) => {
+  if (window.leap) {
+    const chainsToConnect = Array.from(leapNetworks);
+
+    await window.leap.enable(chainsToConnect);
+
+    try {
+      const handleError = (err: unknown) => {
+        // eslint-disable-next-line no-console
+        console.log("debug: index.tsx: err", err);
+
+        return [] as Account[];
+      };
+
+      let walletName = "";
+
+      const parseAccounts =
+        (networkId: StakingNetworkId) =>
+        (accounts: readonly AccountData[]): Promise<Account[]> =>
+          Promise.all(
+            accounts.map((account) =>
+              Promise.all([
+                stakingClient.getAddressInfo(networkId, account.address),
+                stakingClient.getRewardsInfo(networkId, account.address),
+                window.leap!.getKey(networkId),
+              ]).then(([info, rewards, key]) => {
+                if (key?.name) {
+                  walletName = key.name;
+                }
+
+                return {
+                  address: account.address,
+                  info,
+                  networkId,
+                  rewards,
+                  wallet: WalletId.Leap,
+                };
+              }),
+            ),
+          );
+
+      const leapAccounts = await Promise.all(
+        Array.from(leapNetworks).map(async (network) => {
+          if (networksWithStaking.has(network)) {
+            const accounts = await window
+              .leap!.getOfflineSigner(network)
+              .getAccounts()
+              .then(parseAccounts(network))
+              .catch(handleError);
+
+            return {
+              accounts,
+              networkId: network,
+            };
+          }
+        }),
+      );
+
+      addToConnectedWallets(WalletId.Leap);
+
+      setUserWallet(
+        context,
+        WalletId.Leap,
+        leapAccounts.reduce(
+          (acc, networkObj) => {
+            if (networkObj) {
+              acc.networks[networkObj.networkId] = {
+                accounts: networkObj.accounts,
+                networkId: networkObj.networkId,
+              };
+            }
+
+            return acc;
+          },
+          {
+            name: walletName,
+            networks: {},
+            wallet: WalletId.Leap,
+          } as Wallet,
+        ),
+      );
+
+      return true;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log("tryToConnectWallets", error);
+    }
+  } else if (openLinkIfMissing) {
+    if (/Chrome/.test(navigator.userAgent)) {
+      window.open(
+        "https://chromewebstore.google.com/detail/leap-cosmos-wallet/fcfcfllfndlomdhbehjjcoimbgofdncg",
+        "_blank",
+      );
+
+      return;
+    }
+
+    window.open("https://www.leapwallet.io/download", "_blank");
+  }
+};
+
 export const tryToConnectWallets = async (
   context: TStakingContext,
   walletsIds: WalletId[],
@@ -333,6 +442,10 @@ export const tryToConnectWallets = async (
         connected = await tryToConnectKeplr(context, openLinkIfMissing);
         break;
 
+      case WalletId.Leap:
+        connected = await tryToConnectLeap(context, openLinkIfMissing);
+        break;
+
       default: {
         walletId satisfies never;
       }
@@ -344,6 +457,13 @@ export const tryToConnectWallets = async (
 
 export const disconnecKeplr = async (networks: StakingNetworkId[]) => {
   await window.keplr?.disable(networks).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.log("Disable Error", err);
+  });
+};
+
+export const disconnectLeap = async (networks: StakingNetworkId[]) => {
+  await window.leap?.disable(networks).catch((err) => {
     // eslint-disable-next-line no-console
     console.log("Disable Error", err);
   });
@@ -380,6 +500,9 @@ export const doesWalletSupportNetwork = (
   switch (wallet) {
     case WalletId.Keplr:
       return keplrNetworks.has(networkId as StakingNetworkId);
+
+    case WalletId.Leap:
+      return leapNetworks.has(networkId as StakingNetworkId);
 
     default: {
       wallet satisfies never;

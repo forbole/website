@@ -185,7 +185,8 @@
   },
   "votingPower": "Voting Power",
   "wallets": {
-    "keplr": "Keplr"
+    "keplr": "Keplr",
+    "leap": "Leap"
   },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
   "why forbole?": "Why Forbole?",

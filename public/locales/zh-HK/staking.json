@@ -184,7 +184,8 @@
   },
   "votingPower": "投票權",
   "wallets": {
-    "keplr": "Keplr"
+    "keplr": "Keplr",
+    "leap": "Leap"
   },
   "why forbole title": "<0>Forbole <1>堅實基建，硅步千里</1></0>",
   "why forbole?": "為何選擇 Forbole？",

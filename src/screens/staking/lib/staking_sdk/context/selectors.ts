@@ -9,11 +9,7 @@ import type {
   WalletId,
 } from "../core";
 import { mainNetworkDenom, walletsSupported } from "../core";
-import {
-  filterOutTestnets,
-  filterUniqueAddresses,
-  sortAccounts,
-} from "../utils/accounts";
+import { filterOutTestnets, filterUniqueAddresses } from "../utils/accounts";
 import { getEmptyCoin, normaliseCoin, sumCoins } from "../utils/coins";
 import { doesWalletSupportNetwork } from "../wallet_operations";
 
@@ -32,21 +28,6 @@ export const getSelectedAccount = (state: State) => {
   return state?.wallets?.[wallet]?.networks?.[networkId]?.accounts?.find(
     (a) => a.address === address,
   );
-};
-
-export const getWalletAccounts = (
-  state: State,
-  walletId: WalletId,
-): Account[] => {
-  const wallet = state.wallets[walletId];
-
-  return Object.values(wallet?.networks || {})
-    .reduce((acc, chain) => {
-      acc.push(...chain.accounts);
-
-      return acc;
-    }, [] as Account[])
-    .sort(sortAccounts);
 };
 
 export const getCanAddWallet = (state: State) => {
@@ -252,3 +233,6 @@ export const getCoinPriceForNetwork = (
 
   return coinPrice;
 };
+
+export const getWalletCustomName = (state: State, walletId: WalletId) =>
+  state.wallets[walletId]?.name;

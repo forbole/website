@@ -15,7 +15,7 @@ $wallet-icon-size: 28px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 0;
   height: 46px;
   justify-content: center;
   padding: 4px 16px;
@@ -24,6 +24,10 @@ $wallet-icon-size: 28px;
     display: block;
     height: $wallet-icon-size;
     width: $wallet-icon-size;
+
+    &:nth-child(2) {
+      transform: translateX(-16px);
+    }
   }
 
   &:hover {

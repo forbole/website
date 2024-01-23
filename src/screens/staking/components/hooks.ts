@@ -103,6 +103,7 @@ export const useCounter = (targetValue: unknown) => {
 
 declare global {
   interface Window extends KeplrWindow {
+    leap: KeplrWindow["keplr"];
     stakingContext: TStakingContext | undefined;
   }
 }

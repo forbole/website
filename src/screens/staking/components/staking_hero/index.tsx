@@ -113,7 +113,7 @@ const StakingHero = () => {
         <div>
           <div className={styles.statLabel}>{t("stakingHero.totalStake")}</div>
           <div className={styles.amount}>
-            <span>{stakedDisplayed.toFixed(0)}</span> USD
+            <span>{stakedDisplayed.toFixed(1)}</span> USD
           </div>
         </div>
         <div>

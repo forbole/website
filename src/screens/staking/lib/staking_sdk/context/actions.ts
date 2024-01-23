@@ -18,7 +18,7 @@ import { geckoClient } from "../gecko_client";
 import { stakingClient } from "../staking_client";
 import { sortAccounts } from "../utils/accounts";
 import { setConnectedWallet } from "../utils/storage";
-import { disconnecKeplr } from "../wallet_operations";
+import { disconnecKeplr, disconnectLeap } from "../wallet_operations";
 
 // Actions
 
@@ -183,7 +183,7 @@ export const syncAccountData = async (
           ...(
             context.state.wallets[walletId]?.networks?.[networkId]?.accounts ||
             []
-          ).filter((a) => a.address !== address),
+          ).filter((a: Account) => a.address !== address),
           {
             ...account,
             info,
@@ -217,6 +217,12 @@ export const disconnectWallet = async (
     switch (walletId) {
       case WalletId.Keplr: {
         await disconnecKeplr(networks);
+
+        break;
+      }
+
+      case WalletId.Leap: {
+        await disconnectLeap(networks);
 
         break;
       }
