@@ -50,7 +50,7 @@
   "how can we help you": "我们能为你做些什么？",
   "how it works": "如何运作？",
   "how it works title": "<0>通过质押通证轻松<1>赚取被动收入</1></0>",
-  "keplrWalletUpdate": "Keplr Wallet Updated",
+  "keplrWalletUpdate": "Keplr 钱包更新",
   "length of time": "时间长度（以月为单位）",
   "money": "$",
   "months": "个月",
@@ -97,7 +97,7 @@
   "security focus desc": "我们的团队由经验丰富的工程师和开发者组成。我们运用行业领先的安全风险管理制度，并提供7x24小时的监控，确保我们的节点在各个网络中都能维持最优表现。",
   "select option": "选择其中一项",
   "select token": "选择通证",
-  "showMore": "Show more",
+  "showMore": "展示更多",
   "stake": "质押",
   "stake desc": "作为通证持有人，你可以安心在我们的基础建设上委托质押原生通证",
   "stake with us!": "与我们一起赌注！",
@@ -169,7 +169,7 @@
     "info2T": "在此期间，您<1>不会收到</1>质押奖励。",
     "info3": "但是，如果您改变主意，可以随时取消该过程。",
     "info4": "要在此期限后继续质押，您需要再次质押。",
-    "infoTitle": "得知您要离开，我们深感遗憾。出发前，请注意以下事项：",
+    "infoTitle": "你确定吗？ 在继续之前，请注意：",
     "memo": {
       "label": "备忘录",
       "placeholder": "选修的"
@@ -179,7 +179,7 @@
       "title": "您的代币目前正处于解押期，将于{{date}}成功解押。"
     },
     "title": "取消质押",
-    "unlockedDateInfo": "您的令牌将被锁定到<2>{{date}}（{{days}}天后）</2>。",
+    "unlockedDateInfo": "您的令牌将被锁定到<1>{{date}}（{{days}}天后）</1>。",
     "unstakeFrom": "解除质押："
   },
   "votingPower": "投票权",

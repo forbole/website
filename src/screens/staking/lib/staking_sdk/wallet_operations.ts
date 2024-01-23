@@ -496,6 +496,7 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
       }
     };
 
+    // @TODO: Check this on Leap
     window.addEventListener("keplr_keystorechange", listener);
 
     return () => {

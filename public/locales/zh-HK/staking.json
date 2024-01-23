@@ -50,7 +50,7 @@
   "how can we help you": "我們能為你做些什麼？",
   "how it works": "如何運作？",
   "how it works title": "<0>透過質押通證輕鬆<1>賺取被動收入</1></0>",
-  "keplrWalletUpdate": "Keplr Wallet Updated",
+  "keplrWalletUpdate": "Keplr 錢包更新",
   "length of time": "時間長度（以月為單位）",
   "money": "$",
   "months": "個月",
@@ -83,11 +83,11 @@
   "rewards": "賺取收益",
   "rewards desc": "可以透過質押通證賺取收益",
   "rewardsModal": {
-    "button": "Claim Rewards",
-    "gasFee": "Gas Fee",
+    "button": "領取獎勵",
+    "gasFee": "汽油費",
     "success": {
-      "sub": "Congratulations!",
-      "title": "Your rewards have been claimed!"
+      "sub": "恭喜！",
+      "title": "您的獎勵已被領取！"
     }
   },
   "risks para 1": "當您的驗證人表現不佳或犯嚴重錯誤時，可能會存在一些風險，您的資金將被相應削減。",
@@ -135,9 +135,9 @@
     "walletSellect": "股權來自："
   },
   "stakingWidget": {
-    "connected_other": "Connected wallet",
-    "connectWallet": "Connect Wallet",
-    "disconnectWallet": "Disconnect"
+    "connected_other": "連接錢包",
+    "connectWallet": "連接錢包",
+    "disconnectWallet": "斷開"
   },
   "string": " ",
   "success": "郵件已發送！",
