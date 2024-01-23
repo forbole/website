@@ -84,7 +84,7 @@ const UnstakingModal = () => {
     !amountNum.isNaN() &&
     amountNum.gt(0) &&
     !!availableAmount?.num &&
-    amountNum.lt(availableAmount.num);
+    amountNum.lte(availableAmount.num);
 
   const unlockedDate = getUnbondingTimeForNetwork(networkInfo, locale);
 

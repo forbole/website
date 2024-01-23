@@ -2,8 +2,8 @@
 
 .wrapper {
   background-color: #fff;
-  border: none;
   border-radius: 24px;
+  border: none;
   display: flex;
   flex-direction: column;
   height: max-content;
@@ -11,6 +11,7 @@
   max-width: 100vw;
   outline: none;
   padding: 32px 32px 40px;
+  width: max-content;
 
   @include down-tablet {
     padding: 12px 12px 20px;

@@ -97,6 +97,7 @@ const WalletItem = ({ account, walletName }: WalletItemProps) => {
               title: t("addressCopied"),
             });
           }}
+          type="button"
         >
           {parsedAddress}
         </button>

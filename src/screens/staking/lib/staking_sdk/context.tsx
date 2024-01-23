@@ -134,17 +134,15 @@ export const getNetworkStakingInfo = async (
   context: TStakingContext,
   networkId: StakingNetworkId,
 ) => {
-  const { setState, state } = context;
-
-  if (state.networksInfo[networkId])
-    return state.networksInfo[networkId] as NetworkInfo;
+  if (context.state.networksInfo[networkId])
+    return context.state.networksInfo[networkId] as NetworkInfo;
 
   const request = networkInfoRequests[networkId];
 
   if (request) return request;
 
   const newRequest = stakingClient.getStakingInfo(networkId).then((newInfo) => {
-    setState((prevState) => ({
+    context.setState((prevState) => ({
       ...prevState,
       networksInfo: {
         ...prevState.networksInfo,
@@ -168,9 +166,7 @@ const getCoinPrice = async (
   context: TStakingContext,
   denom: CoinDenom,
 ): Promise<string> => {
-  const { state } = context;
-
-  const coinPrice = state.coinsPrices[denom];
+  const coinPrice = context.state.coinsPrices[denom];
 
   if (coinPrice) return coinPrice;
 
@@ -219,11 +215,9 @@ export const setUserWallet = (
   walletName: WalletId,
   wallet: Wallet,
 ) => {
-  const { setState, state } = context;
-
-  setState({
+  context.setState({
     wallets: {
-      ...state.wallets,
+      ...context.state.wallets,
       [walletName]: wallet,
     },
   });
@@ -250,7 +244,6 @@ export const syncAccountData = async (
   context: TStakingContext,
   account: Account,
 ) => {
-  const { setState, state } = context;
   const { address, networkId, wallet: walletId } = account;
 
   const [info, rewards] = await Promise.all([
@@ -259,13 +252,14 @@ export const syncAccountData = async (
   ]);
 
   const newWallet: Wallet = {
-    ...state.wallets[walletId],
+    ...context.state.wallets[walletId],
     networks: {
-      ...state.wallets[walletId]?.networks,
+      ...context.state.wallets[walletId]?.networks,
       [networkId]: {
         accounts: [
           ...(
-            state.wallets[walletId]?.networks?.[networkId]?.accounts || []
+            context.state.wallets[walletId]?.networks?.[networkId]?.accounts ||
+            []
           ).filter((a) => a.address !== address),
           {
             ...account,
@@ -279,11 +273,11 @@ export const syncAccountData = async (
   };
 
   const newWallets = {
-    ...state.wallets,
+    ...context.state.wallets,
     [walletId]: newWallet,
   };
 
-  setState({
+  context.setState({
     wallets: newWallets,
   });
 };
@@ -292,11 +286,9 @@ export const disconnectWallet = async (
   context: TStakingContext,
   walletId: WalletId,
 ) => {
-  const { setState, state } = context;
-
-  if (state.wallets[walletId]) {
+  if (context.state.wallets[walletId]) {
     const networks = Object.keys(
-      state.wallets[WalletId.Keplr]?.networks || {},
+      context.state.wallets[WalletId.Keplr]?.networks || {},
     ) as StakingNetworkId[];
 
     switch (walletId) {
@@ -310,11 +302,11 @@ export const disconnectWallet = async (
         walletId satisfies never;
     }
 
-    const newWallets = { ...state.wallets };
+    const newWallets = { ...context.state.wallets };
 
     delete newWallets[walletId];
 
-    setState({
+    context.setState({
       wallets: newWallets,
     });
 

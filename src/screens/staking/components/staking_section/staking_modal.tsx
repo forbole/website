@@ -77,7 +77,7 @@ const StakingModal = () => {
   const amountNum = new BigNumber(amount);
 
   const isValidAmount =
-    !amountNum.isNaN() && amountNum.gt(0) && amountNum.lt(balance.num);
+    !amountNum.isNaN() && amountNum.gt(0) && amountNum.lte(balance.num);
 
   const onClose = () => {
     if (isLoading) return;
