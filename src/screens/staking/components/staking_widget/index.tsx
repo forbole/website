@@ -10,10 +10,10 @@ import { tooltipId } from "@src/components/tooltip";
 import type { TStakingContext } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   disconnectWallet,
-  getCanAddWallet,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
+import { getCanAddWallet } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type {
   Wallet,
   WalletId,

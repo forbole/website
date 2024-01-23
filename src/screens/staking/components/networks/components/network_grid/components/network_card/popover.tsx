@@ -15,19 +15,21 @@ import HighlightButton from "@src/components/highlight-button";
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
-import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   StakingContext,
-  getAccountsForNetwork,
-  getClaimableRewardsForNetwork,
   getCoinPriceForNetwork,
-  getHasNetworkSupportedWallet,
   getNetworkStakingInfo,
-  getNetworkVotingPower,
-  getStakedDataForNetwork,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
+import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_sdk/context/selectors";
+import {
+  getAccountsForNetwork,
+  getClaimableRewardsForNetwork,
+  getHasNetworkSupportedWallet,
+  getNetworkVotingPower,
+  getStakedDataForNetwork,
+} from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   WalletId,
   mainNetworkDenom,

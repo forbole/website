@@ -12,11 +12,11 @@ import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 import {
   getNetworkStakingInfo,
-  getSelectedAccount,
   setSelectedAccount,
   syncAccountData,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
+import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";

@@ -1,5 +1,3 @@
-import type { Coin } from "@cosmjs/stargate";
-import BigNumber from "bignumber.js";
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useMemo, useRef, useState } from "react";
 
@@ -9,7 +7,6 @@ import {
   mainNetworkDenom,
   networksWithStaking,
   testnetNetworks,
-  walletsSupported,
 } from "../core";
 import type {
   Account,
@@ -21,18 +18,9 @@ import type {
 } from "../core";
 import { geckoClient } from "../gecko_client";
 import { stakingClient } from "../staking_client";
-import {
-  filterOutTestnets,
-  filterUniqueAddresses,
-  sortAccounts,
-} from "../utils/accounts";
-import { getEmptyCoin, normaliseCoin, sumCoins } from "../utils/coins";
+import { sortAccounts } from "../utils/accounts";
 import { setConnectedWallet } from "../utils/storage";
-import {
-  disconnecKeplr,
-  doesWalletSupportNetwork,
-  useWalletsListeners,
-} from "../wallet_operations";
+import { disconnecKeplr, useWalletsListeners } from "../wallet_operations";
 
 type SetState = (state: ((s: State) => State) | Partial<State>) => void;
 

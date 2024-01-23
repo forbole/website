@@ -5,12 +5,14 @@ import useTranslation from "next-translate/useTranslation";
 import { toastSuccess } from "@src/components/notification";
 import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
 import {
-  getClaimableRewardsForNetwork,
-  getSelectedAccount,
-  getWalletAccounts,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
+import {
+  getClaimableRewardsForNetwork,
+  getSelectedAccount,
+  getWalletAccounts,
+} from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type {
   Account,
   StakingNetworkId,

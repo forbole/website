@@ -5,13 +5,15 @@ import { useEffect } from "react";
 import CtaButton from "@src/components/cta-button";
 import HighlightButton from "@src/components/highlight-button";
 import {
-  getAllAccounts,
-  getAllRewards,
-  getAllStaked,
   getCoinPriceForNetwork,
   setSelectedAccount,
   useStakingRef,
 } from "@src/screens/staking/lib/staking_sdk/context";
+import {
+  getAllAccounts,
+  getAllRewards,
+  getAllStaked,
+} from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   accountHasRewards,
   filterOutTestnets,

@@ -14,10 +14,8 @@ import Networks from "./components/networks";
 import ShowMore from "./components/show_more";
 import WhyForbole from "./components/why_forbole";
 import * as styles from "./index.module.scss";
-import {
-  getHasConnectedWallets,
-  useStakingRef,
-} from "./lib/staking_sdk/context";
+import { useStakingRef } from "./lib/staking_sdk/context";
+import { getHasConnectedWallets } from "./lib/staking_sdk/context/selectors";
 
 const Staking = () => {
   const { t } = useTranslation("staking");

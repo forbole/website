@@ -33,7 +33,6 @@ $image-box-shadow:
 
   @include down-laptop {
     gap: spacing(3);
-    position: static;
 
     &:hover {
       background-color: $color-white;

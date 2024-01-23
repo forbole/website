@@ -13,10 +13,10 @@ export enum WalletId {
 }
 
 export enum CoinDenom {
-  AKT = "akt",
-  ATOM = "atom",
-  DYDX = "dydx",
-  TIA = "tia",
+  AKT = "AKT",
+  ATOM = "ATOM",
+  DYDX = "DYDX",
+  TIA = "TIA",
 }
 
 // For now these values match the id in the chain registry:

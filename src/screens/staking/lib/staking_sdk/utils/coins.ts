@@ -4,12 +4,12 @@ import BigNumber from "bignumber.js";
 import { CoinDenom, StakingNetworkId } from "../core";
 
 const networkToUnnormalisedDenom = {
-  [StakingNetworkId.Akash]: "uakt",
-  [StakingNetworkId.Celestia]: "utia",
-  [StakingNetworkId.CelestiaTestnet]: "utia",
-  [StakingNetworkId.CosmosHub]: "uatom",
-  [StakingNetworkId.CosmosHubTestnet]: "uatom",
-  [StakingNetworkId.DyDx]: "adydx",
+  [StakingNetworkId.Akash]: "UAKT",
+  [StakingNetworkId.Celestia]: "UTIA",
+  [StakingNetworkId.CelestiaTestnet]: "UTIA",
+  [StakingNetworkId.CosmosHub]: "UATOM",
+  [StakingNetworkId.CosmosHubTestnet]: "UATOM",
+  [StakingNetworkId.DyDx]: "ADYDX",
 } as const satisfies Record<StakingNetworkId, string>;
 
 type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
@@ -20,14 +20,14 @@ const utiaExp = 6;
 const adydxExp = 18;
 
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
-  adydx: [CoinDenom.DYDX, adydxExp],
-  uakt: [CoinDenom.AKT, uaktExp],
-  uatom: [CoinDenom.ATOM, uatomExp],
-  utia: [CoinDenom.TIA, utiaExp],
+  ADYDX: [CoinDenom.DYDX, adydxExp],
+  UAKT: [CoinDenom.AKT, uaktExp],
+  UATOM: [CoinDenom.ATOM, uatomExp],
+  UTIA: [CoinDenom.TIA, utiaExp],
 };
 
 export const normaliseCoin = (coin: Coin): Coin => {
-  const compared = coin.denom?.toLowerCase() as DenomToNormalise;
+  const compared = coin.denom?.toUpperCase() as DenomToNormalise;
 
   const parseNum = (exp: number) =>
     new BigNumber(coin.amount).dividedBy(new BigNumber(10).pow(exp)).toString();
@@ -36,7 +36,7 @@ export const normaliseCoin = (coin: Coin): Coin => {
 
   let { amount } = coin;
 
-  if (compared !== denom.toLowerCase()) {
+  if (compared !== denom.toUpperCase()) {
     amount = parseNum(exp);
   }
 

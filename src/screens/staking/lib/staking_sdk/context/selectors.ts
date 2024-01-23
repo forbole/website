@@ -120,7 +120,7 @@ export const getClaimableRewardsForNetwork = (
     (acc, account) =>
       (Array.isArray(account.rewards) ? account.rewards : []).reduce(
         (acc2, reward) => {
-          if (denom?.toLowerCase() === reward.denom?.toLowerCase()) {
+          if (denom?.toUpperCase() === reward.denom?.toUpperCase()) {
             const existingAmount = new BigNumber(acc2.amount);
             const amount = new BigNumber(reward.amount);
 
@@ -200,8 +200,7 @@ export const getAllStaked = (
 
     const normalised = normaliseCoin(delegation);
 
-    const denom = normalised.denom.toLowerCase() as CoinDenom;
-    const coinPrice = state.coinsPrices[denom];
+    const coinPrice = state.coinsPrices[normalised.denom as CoinDenom];
 
     if (!coinPrice || Number(coinPrice) < 0) return acc;
 
@@ -228,8 +227,7 @@ export const getAllRewards = (state: State, accountsProp?: Account[]) => {
     const newValue = rewards.reduce((acc2, reward) => {
       const normalised = normaliseCoin(reward);
 
-      const denom = normalised.denom.toLowerCase() as CoinDenom;
-      const coinPrice = state.coinsPrices[denom];
+      const coinPrice = state.coinsPrices[normalised.denom as CoinDenom];
 
       if (!coinPrice || Number(coinPrice) < 0) return acc2;
 

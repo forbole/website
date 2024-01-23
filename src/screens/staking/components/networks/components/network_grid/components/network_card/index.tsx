@@ -105,7 +105,7 @@ const NetworkCard = ({
     >
       {isMobile ? (
         <>
-          <div className={styles.popoverWrapper}>{popover}</div>
+          {!!popover && <div className={styles.popoverWrapper}>{popover}</div>}
           <Button
             className={anchorClassName}
             onClick={() => {
