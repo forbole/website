@@ -20,13 +20,14 @@ export const ModalError = ({ children, ...rest }: ModalErrorProps) => {
 };
 
 type Props = {
-  children: ReactNode;
-  onClose: () => void;
-  open: boolean;
-  title?: string;
+  "children": ReactNode;
+  "data-test"?: string;
+  "onClose": () => void;
+  "open": boolean;
+  "title"?: string;
 };
 
-const ModalBase = ({ children, onClose, open, title }: Props) => {
+const ModalBase = ({ children, onClose, open, title, ...rest }: Props) => {
   if (!open) return null;
 
   return (
@@ -45,7 +46,7 @@ const ModalBase = ({ children, onClose, open, title }: Props) => {
         },
       }}
     >
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} data-test={rest["data-test"]}>
         <h2 className={styles.title}>
           {title && <span>{title}</span>}
           <button onClick={onClose}>

@@ -86,7 +86,10 @@ const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
   const parsedAddress = useMiddleEllipsis(account.address, 15);
 
   return (
-    <div className={styles.row}>
+    <div
+      className={styles.row}
+      data-test={`networks-select-wallet-${account.wallet}`}
+    >
       {!!WalletIcon && <WalletIcon className={styles.logo} />}
       <div className={styles.content}>
         <div>{walletName}</div>
@@ -101,6 +104,7 @@ const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
               : (e) => {
                   e.preventDefault();
                   e.stopPropagation();
+
                   navigator.clipboard.writeText(account.address);
 
                   toastSuccess({

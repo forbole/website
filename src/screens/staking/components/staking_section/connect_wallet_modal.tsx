@@ -35,7 +35,12 @@ const ConnectWalletModal = () => {
   };
 
   return (
-    <ModalBase onClose={onClose} open={isOpen} title={t("connectWallet.title")}>
+    <ModalBase
+      data-test="connect-wallet-modal"
+      onClose={onClose}
+      open={isOpen}
+      title={t("connectWallet.title")}
+    >
       <p className={styles.intro}>{t("connectWallet.intro")}</p>
       {isLoading ? (
         <LoadingSpinner className={styles.loading} />

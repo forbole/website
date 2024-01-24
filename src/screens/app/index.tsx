@@ -25,6 +25,8 @@ export default function MyApp({
   pageProps,
 }: MyAppProps) {
   useEffect(() => {
+    if (!MATOMO_URL) return;
+
     init({
       siteId: MATOMO_SITE_ID,
       url: MATOMO_URL,

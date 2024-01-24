@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
 
-import { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
+import {
+  StakingNetworkId,
+  WalletId,
+} from "@src/screens/staking/lib/staking_sdk/core";
 import type { NetworkKey } from "@src/utils/network_info";
 
 import { StakingPage } from "./poms/staking_page";
@@ -79,7 +82,7 @@ test.describe.parallel("Staking Page", () => {
       },
     });
 
-    await stakingPage.openStakingModal("akash");
+    await stakingPage.clickNetworkStakeButton("akash");
 
     const performCheck = async (hasError: boolean) => {
       if (hasError) {
@@ -103,5 +106,67 @@ test.describe.parallel("Staking Page", () => {
 
     await stakingPage.fillStakingAmount("1");
     await performCheck(false);
+  });
+
+  test("The user can choose between Leap and Keplr when both are available", async ({
+    page,
+  }) => {
+    const stakingPage = new StakingPage(page);
+
+    await stakingPage.navigate();
+
+    const setupAccount = (wallet: WalletId) =>
+      stakingPage.setNetworkAccount(StakingNetworkId.Akash, {
+        balances: {
+          amount: "10",
+          denom: "akt",
+        },
+        wallet,
+      });
+
+    await setupAccount(WalletId.Keplr);
+
+    const performCheck = async (hasLeap: boolean) => {
+      await stakingPage.clickNetworkStakeButton("akash");
+
+      await page.locator(`[data-test="networks-select-wallet-keplr"]`).click();
+
+      await expect(
+        page.locator(`[data-test="networks-select-wallet-keplr"]`),
+        // If it has leap it means it is a dropdown with kepler two times (the
+        // selected one and the one in the select box)
+      ).toHaveCount(hasLeap ? 2 : 1);
+
+      await expect(
+        page.locator(`[data-test="networks-select-wallet-leap"]`),
+      ).toHaveCount(hasLeap ? 1 : 0);
+    };
+
+    await performCheck(false);
+
+    await page.reload();
+
+    await setupAccount(WalletId.Keplr);
+    await setupAccount(WalletId.Leap);
+
+    await performCheck(true);
+  });
+
+  test("when the user didn't connect any wallet, when clicking the stake button it opens the wallets connection modal", async ({
+    page,
+  }) => {
+    const stakingPage = new StakingPage(page);
+
+    await stakingPage.navigate();
+
+    await expect(
+      page.locator(`[data-test="connect-wallet-modal"]`),
+    ).toHaveCount(0);
+
+    await stakingPage.clickNetworkStakeButton("akash");
+
+    await expect(
+      page.locator(`[data-test="connect-wallet-modal"]`),
+    ).toHaveCount(1);
   });
 });

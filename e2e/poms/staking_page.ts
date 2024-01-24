@@ -31,6 +31,7 @@ const networksWithStaking: NetworkKey[] = [
 
 type AccountOpts = {
   balances?: Coin;
+  wallet?: WalletId;
 };
 
 export class StakingPage {
@@ -40,18 +41,7 @@ export class StakingPage {
 
   constructor(private page: Page) {}
 
-  async fillStakingAmount(amount: string) {
-    const { page } = this;
-
-    await page.locator('[data-test="staking-modal-amount-input"]').fill(amount);
-    await page.locator('[data-test="staking-modal-amount-input"]').blur();
-  }
-
-  navigate() {
-    return this.page.goto("/staking");
-  }
-
-  async openStakingModal(network: NetworkKey) {
+  async clickNetworkStakeButton(network: NetworkKey) {
     await this.showPopover("akash");
 
     await this.page
@@ -62,6 +52,17 @@ export class StakingPage {
         ].join(" >> "),
       )
       .click();
+  }
+
+  async fillStakingAmount(amount: string) {
+    const { page } = this;
+
+    await page.locator('[data-test="staking-modal-amount-input"]').fill(amount);
+    await page.locator('[data-test="staking-modal-amount-input"]').blur();
+  }
+
+  navigate() {
+    return this.page.goto("/staking");
   }
 
   async setNetworkAccount(network: StakingNetworkId, aOpts?: AccountOpts) {
@@ -105,7 +106,11 @@ export class StakingPage {
           wallets: newWallets,
         });
       },
-      { balances: aOpts?.balances, network, wallet: WalletId.Keplr },
+      {
+        balances: aOpts?.balances,
+        network,
+        wallet: aOpts?.wallet || WalletId.Keplr,
+      },
     );
   }
 
