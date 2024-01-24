@@ -96,11 +96,15 @@
   background: none;
   border: none;
   color: #9d9d9d;
-  cursor: pointer;
+  cursor: default;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.308px;
   line-height: 20px;
   text-align: left;
+
+  &.clickable {
+    cursor: pointer;
+  }
 }

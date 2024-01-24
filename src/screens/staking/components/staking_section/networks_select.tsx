@@ -1,6 +1,7 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import useTranslation from "next-translate/useTranslation";
+import { useState } from "react";
 
 import { toastSuccess } from "@src/components/notification";
 import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
@@ -74,10 +75,11 @@ const NetworkItem = ({ denom, rightSide, value }: NetworkItemProps) => {
 
 type WalletItemProps = {
   account: Account;
+  isOpened: boolean;
   walletName?: string;
 };
 
-const WalletItem = ({ account, walletName }: WalletItemProps) => {
+const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
   const { wallet } = account;
   const { t } = useTranslation("staking");
   const WalletIcon = walletsIcons[wallet];
@@ -89,15 +91,23 @@ const WalletItem = ({ account, walletName }: WalletItemProps) => {
       <div className={styles.content}>
         <div>{walletName}</div>
         <button
-          className={styles.address}
-          onClick={(e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(account.address);
+          className={[
+            styles.address,
+            !isOpened ? styles.clickable : undefined,
+          ].join(" ")}
+          onClick={
+            isOpened
+              ? undefined
+              : (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(account.address);
 
-            toastSuccess({
-              title: t("addressCopied"),
-            });
-          }}
+                  toastSuccess({
+                    title: t("addressCopied"),
+                  });
+                }
+          }
           type="button"
         >
           {parsedAddress}
@@ -118,6 +128,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   const { state: stakingState } = stakingRef.current;
 
   const selectedAccount = getSelectedAccount(stakingState);
+  const [isOpened, setIsOpened] = useState(false);
 
   if (!variant || !selectedAccount) return null;
 
@@ -161,7 +172,11 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
       return (
         <div className={styles.singleItem}>
-          <WalletItem account={selectedAccount} walletName={walletName} />
+          <WalletItem
+            account={selectedAccount}
+            isOpened={false}
+            walletName={walletName}
+          />
         </div>
       );
     }
@@ -174,6 +189,12 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
           className={styles.select}
           disabled={disabled}
           onChange={handleChange}
+          onClose={() => {
+            setIsOpened(false);
+          }}
+          onOpen={() => {
+            setIsOpened(true);
+          }}
           value={selectedItem}
         >
           {otherWalletsAccounts.map((account) => {
@@ -190,7 +211,11 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
             return (
               <MenuItem key={item} value={item}>
-                <WalletItem account={account} walletName={walletName} />
+                <WalletItem
+                  account={account}
+                  isOpened={isOpened}
+                  walletName={walletName}
+                />
               </MenuItem>
             );
           })}

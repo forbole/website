@@ -318,6 +318,7 @@ const PopOver = ({
 
                   setSelectedAccount(stakingRef.current, "stake", accounts[0]);
                 }}
+                size="big"
               >
                 {t("popover.stake")}
               </HighlightButton>
