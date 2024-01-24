@@ -44,6 +44,17 @@
   margin-right: -$spacing;
   padding: 34px;
   width: calc(100% + #{$spacing * 2});
+
+  @include down-tablet {
+    margin-left: 4px;
+    margin-right: 4px;
+    width: unset;
+  }
+
+  @include down-laptop {
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 
 .contentCta {
@@ -84,6 +95,11 @@ body .claimRewards {
   gap: 48px;
   justify-content: center;
   padding: 24px;
+
+  @include down-tablet {
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 
 .label {
