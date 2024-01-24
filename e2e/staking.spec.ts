@@ -42,7 +42,7 @@ test.describe.parallel("Staking Page", () => {
     );
   });
 
-  test("The staking card has the stake button when the user has an account", async ({
+  test("The staking card has the stake button regardless if the user connected a wallet", async ({
     page,
   }) => {
     const stakingPage = new StakingPage(page);
@@ -54,9 +54,9 @@ test.describe.parallel("Staking Page", () => {
       StakingPage.selectors.popoverStakeButton,
     ].join(" >> ");
 
-    // Before adding the account, there is no staking button
+    // Even before adding the account, there is a staking button
     await stakingPage.showPopover("akash");
-    await expect(page.locator(buttonLocator)).toHaveCount(0);
+    await expect(page.locator(buttonLocator)).toHaveCount(1);
 
     await stakingPage.setNetworkAccount(StakingNetworkId.Akash);
 
@@ -75,7 +75,7 @@ test.describe.parallel("Staking Page", () => {
     await stakingPage.setNetworkAccount(StakingNetworkId.Akash, {
       balances: {
         amount: "10",
-        denom: "uakt",
+        denom: "akt",
       },
     });
 
