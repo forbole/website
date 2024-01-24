@@ -9,6 +9,7 @@
   height: 80px;
   margin: 0;
   overflow: hidden;
+  padding: 16px;
   width: 100%;
 }
 
@@ -48,6 +49,10 @@
       box-shadow: none !important;
       outline: none !important;
     }
+  }
+
+  :global(.MuiSelect-select.MuiSelect-outlined.MuiInputBase-input) {
+    padding: 0 !important;
   }
 }
 

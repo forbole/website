@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import { memo, useState } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
@@ -12,7 +13,11 @@ import { useNetworkHook } from "./components/network_grid/hooks";
 import SearchBar from "./components/search_bar";
 import * as styles from "./index.module.scss";
 
-const Networks = () => {
+type Props = {
+  scrollRef: RefObject<HTMLDivElement>;
+};
+
+const Networks = ({ scrollRef }: Props) => {
   const [networksFilter, setNetworksFilter] = useState<string>("");
 
   const {
@@ -50,7 +55,7 @@ const Networks = () => {
     });
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={scrollRef}>
       <div
         className={[commonStyles.stakingContent, styles.stakingContent].join(
           " ",

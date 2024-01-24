@@ -131,6 +131,10 @@ body .claimRewards {
 
     @include gradient-text($gradient-unnamed-1);
   }
+
+  @include down-tablet {
+    text-align: center;
+  }
 }
 
 .statLabel {

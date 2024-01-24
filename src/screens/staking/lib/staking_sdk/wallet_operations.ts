@@ -37,6 +37,8 @@ const handleCosmosSignError = (err: Error) => {
 
   return {
     hasError:
+      // This appears to be fine, since the transaction is still broadcasted
+      !err?.message?.includes("transaction indexing is disabled") &&
       // Keplr message
       !err?.message?.includes("rejected") &&
       // Leap message

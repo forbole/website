@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import { useEffect } from "react";
+import { useRef } from "react";
 
 import LayoutVal from "@src/components/layout_val";
 import Tooltip from "@src/components/tooltip";
@@ -20,16 +20,9 @@ import { getHasConnectedWallets } from "./lib/staking_sdk/context/selectors";
 const Staking = () => {
   const { t } = useTranslation("staking");
   const stakingRef = useStakingRef();
+  const ref = useRef(null);
 
   const hasConnectedWallets = getHasConnectedWallets(stakingRef.current.state);
-
-  useEffect(() => {
-    window.scrollTo({
-      behavior: "smooth",
-      left: 0,
-      top: 0,
-    });
-  }, []);
 
   const extraInfo = (
     <>
@@ -51,10 +44,10 @@ const Staking = () => {
         twitterImage="/images/assets/image_forbole_validator_website_preview.png"
       >
         <div className={styles.container}>
-          <Hero />
+          <Hero scrollRef={ref} />
         </div>
         <div className={styles.container}>
-          <Networks />
+          <Networks scrollRef={ref} />
         </div>
         {hasConnectedWallets ? <ShowMore>{extraInfo}</ShowMore> : extraInfo}
         <div className={styles.container}>

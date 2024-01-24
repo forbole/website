@@ -70,6 +70,10 @@ body .root {
       width: 100%;
     }
   }
+
+  @include down-tablet {
+    margin-bottom: 24px;
+  }
 }
 
 body .listItem {
