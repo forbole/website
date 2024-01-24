@@ -6,6 +6,7 @@ import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { walletsSupported } from "@src/screens/staking/lib/staking_sdk/core";
+import { sortWallets } from "@src/screens/staking/lib/staking_sdk/utils/wallets";
 import { tryToConnectWallets } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import {
   getWalletName,
@@ -40,40 +41,42 @@ const ConnectWalletModal = () => {
         <LoadingSpinner className={styles.loading} />
       ) : (
         <div className={styles.wallets}>
-          {Array.from(walletsSupported).map((walletId) => {
-            const WalletIcon = walletsIcons[walletId];
-            const walletName = getWalletName(walletId, t);
+          {Array.from(walletsSupported)
+            .sort(sortWallets)
+            .map((walletId) => {
+              const WalletIcon = walletsIcons[walletId];
+              const walletName = getWalletName(walletId, t);
 
-            return (
-              <button
-                className={styles.wallet}
-                key={walletId}
-                onClick={() => {
-                  setIsLoading(true);
+              return (
+                <button
+                  className={styles.wallet}
+                  key={walletId}
+                  onClick={() => {
+                    setIsLoading(true);
 
-                  tryToConnectWallets(stakingRef.current, [walletId], true)
-                    .then((connected) => {
-                      if (connected) {
-                        toastSuccess({
-                          subtitle: t("connectWallet.success.subtitle"),
-                          title: t("connectWallet.success.title"),
-                        });
+                    tryToConnectWallets(stakingRef.current, [walletId], true)
+                      .then((connected) => {
+                        if (connected) {
+                          toastSuccess({
+                            subtitle: t("connectWallet.success.subtitle"),
+                            title: t("connectWallet.success.title"),
+                          });
 
-                        onClose();
-                      }
-                    })
-                    .finally(() => {
-                      setIsLoading(false);
-                    });
-                }}
-              >
-                <div className={styles.icon}>
-                  <WalletIcon />
-                </div>
-                <div className={styles.name}>{walletName}</div>
-              </button>
-            );
-          })}
+                          onClose();
+                        }
+                      })
+                      .finally(() => {
+                        setIsLoading(false);
+                      });
+                  }}
+                >
+                  <div className={styles.icon}>
+                    <WalletIcon />
+                  </div>
+                  <div className={styles.name}>{walletName}</div>
+                </button>
+              );
+            })}
         </div>
       )}
       <Trans
