@@ -141,7 +141,7 @@ const PopOver = ({
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
 
   const displayedRewards = claimableRewards
-    ? `+${formatCoin(claimableRewards)}`
+    ? `+${formatCoin(claimableRewards, 4)}`
     : null;
 
   const displayedStaked = (() => {

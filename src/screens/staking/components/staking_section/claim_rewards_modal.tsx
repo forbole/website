@@ -3,6 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 
 import HighlightButton from "@src/components/highlight-button";
+import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { displayGenericError } from "@src/screens/staking/lib/error";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
@@ -89,7 +90,7 @@ const ClaimRewardsModal = () => {
               account: selectedAccount,
             })
               .then(async (claimed) => {
-                if (claimed) {
+                if (claimed.success) {
                   await syncAccountData(
                     stakingRef.current,
                     selectedAccount as NonNullable<typeof selectedAccount>,
@@ -101,6 +102,8 @@ const ClaimRewardsModal = () => {
                     subtitle: `${t("rewardsModal.success.sub")} 🎉`,
                     title: t("rewardsModal.success.title"),
                   });
+                } else if (claimed.hasError) {
+                  displayGenericError(t);
                 }
               })
               .catch((error) => {
@@ -116,7 +119,7 @@ const ClaimRewardsModal = () => {
           pinkShadow
           size="big"
         >
-          {t("rewardsModal.button")}
+          {isLoading ? <LoadingSpinner /> : t("rewardsModal.button")}
         </HighlightButton>
       </div>
     </ModalBase>

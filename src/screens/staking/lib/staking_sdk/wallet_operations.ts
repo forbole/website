@@ -36,7 +36,11 @@ const handleCosmosSignError = (err: Error) => {
   console.log("debug: index.tsx: err", err);
 
   return {
-    hasError: !err?.message?.includes("rejected"),
+    hasError:
+      // Keplr message
+      !err?.message?.includes("rejected") &&
+      // Leap message
+      !err?.message?.includes("declined"),
     success: false,
   };
 };
@@ -496,11 +500,12 @@ export const useWalletsListeners = (contextValue: TStakingContext) => {
       }
     };
 
-    // @TODO: Check this on Leap
     window.addEventListener("keplr_keystorechange", listener);
+    window.addEventListener("leap_keystorechange", listener);
 
     return () => {
       window.removeEventListener("keplr_keystorechange", listener);
+      window.removeEventListener("leap_keystorechange", listener);
     };
   }, [contextValue, t]);
 };

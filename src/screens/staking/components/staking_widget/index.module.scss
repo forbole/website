@@ -21,12 +21,15 @@ $wallet-icon-size: 28px;
   padding: 4px 16px;
 
   svg {
+    border: 2px solid rgba(2, 38, 225, 0.3);
+    border-radius: 24px;
     display: block;
     height: $wallet-icon-size;
     width: $wallet-icon-size;
 
     &:nth-child(2) {
-      transform: translateX(-16px);
+      display: flex;
+      margin-left: -8px;
     }
   }
 
@@ -191,12 +194,12 @@ $wallet-icon-size: 28px;
   padding: 16px;
 }
 
-.walletIcon {
+body .walletIcon {
   border: 2px solid rgba(2, 38, 225, 0.3);
   border-radius: 200px;
   box-shadow: 0 4px 24px 0 rgba(2, 38, 225, 0.24);
-  height: 48px;
-  width: 48px;
+  height: 48px !important;
+  width: 48px !important;
 }
 
 .accounts {
