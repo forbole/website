@@ -8,7 +8,10 @@ import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
-import { displayGenericError } from "@src/screens/staking/lib/error";
+import {
+  displayGenericError,
+  notEnoughGasError,
+} from "@src/screens/staking/lib/error";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   getNetworkStakingInfo,
@@ -22,6 +25,7 @@ import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sd
 import { normaliseDenom } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import {
   MAX_MEMO,
+  StakeError,
   stakeAmount,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
@@ -139,8 +143,18 @@ const StakingModal = () => {
             subtitle: `${t("stakingModal.success.sub")} 🎉`,
             title: t("stakingModal.success.title"),
           });
-        } else if (result.hasError) {
-          displayGenericError(t);
+        } else if (result.error !== StakeError.None) {
+          const handlers: Record<StakeError, () => void> = {
+            [StakeError.None]: () => {},
+            [StakeError.NotEnoughGas]: () => {
+              notEnoughGasError(t);
+            },
+            [StakeError.Unknown]: () => {
+              displayGenericError(t);
+            },
+          };
+
+          handlers[result.error]?.();
         }
       })
       .catch(() => {

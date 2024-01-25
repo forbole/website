@@ -121,6 +121,11 @@
       "invalid": "您必须输入有效金额"
     },
     "available": "可用的",
+    "error": {
+      "notEnoughGas": {
+        "title": "Gas limit too low, increase gas to complete transaction."
+      }
+    },
     "memo": "备忘录",
     "memoError": {
       "tooLongMemo": "请输入较小的备注"

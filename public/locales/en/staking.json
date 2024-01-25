@@ -121,6 +121,11 @@
       "invalid": "You have to input a valid amount"
     },
     "available": "Available",
+    "error": {
+      "notEnoughGas": {
+        "title": "Gas limit too low, increase gas to complete transaction."
+      }
+    },
     "memo": "Memo",
     "memoError": {
       "tooLongMemo": "Please enter a smaller memo"

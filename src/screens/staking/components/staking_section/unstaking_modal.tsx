@@ -9,7 +9,10 @@ import HighlightButton from "@src/components/highlight-button";
 import IconWarning from "@src/components/icons/icon_warning.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
-import { displayGenericError } from "@src/screens/staking/lib/error";
+import {
+  displayGenericError,
+  notEnoughGasError,
+} from "@src/screens/staking/lib/error";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   getNetworkStakingInfo,
@@ -24,6 +27,7 @@ import { normaliseDenom } from "@src/screens/staking/lib/staking_sdk/utils/coins
 import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
   MAX_MEMO,
+  UnstakeError,
   unstake,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 
@@ -141,8 +145,18 @@ const UnstakingModal = () => {
               date: unlockedDate?.date,
             }),
           });
-        } else if (unstaked.hasError) {
-          displayGenericError(t);
+        } else if (unstaked.error) {
+          const handlers: Record<UnstakeError, () => void> = {
+            [UnstakeError.None]: () => {},
+            [UnstakeError.NotEnoughGas]: () => {
+              notEnoughGasError(t);
+            },
+            [UnstakeError.Unknown]: () => {
+              displayGenericError(t);
+            },
+          };
+
+          handlers[unstaked.error]?.();
         }
       })
       .catch(() => {

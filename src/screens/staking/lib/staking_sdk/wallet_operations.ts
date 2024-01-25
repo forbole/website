@@ -31,25 +31,23 @@ import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 export const MAX_MEMO = 256;
 
-const handleCosmosSignError = (err: Error) => {
+const getIsCosmosError = (err: Error) => {
   // eslint-disable-next-line no-console
   console.log("debug: index.tsx: err", err);
 
-  return {
-    hasError:
-      // This appears to be fine, since the transaction is still broadcasted
-      !err?.message?.includes("transaction indexing is disabled") &&
-      // Keplr message
-      !err?.message?.includes("rejected") &&
-      // Leap message
-      !err?.message?.includes("declined"),
-    success: false,
-  };
+  // This appears to be fine, since the transaction is still broadcasted
+  return (
+    !err?.message?.includes("transaction indexing is disabled") &&
+    // Keplr message
+    !err?.message?.includes("rejected") &&
+    // Leap message
+    !err?.message?.includes("declined")
+  );
 };
 
-type WalletOperationResult =
+type WalletOperationResult<ErrorType> =
   | {
-      hasError: boolean;
+      error: ErrorType;
       success: false;
     }
   | {
@@ -62,17 +60,23 @@ type StakeOpts = {
   memo: string;
 };
 
+export enum StakeError {
+  None = "None",
+  NotEnoughGas = "NotEnoughGas",
+  Unknown = "Unknown",
+}
+
 export const stakeAmount = ({
   account,
   amount,
   memo,
-}: StakeOpts): Promise<WalletOperationResult> =>
+}: StakeOpts): Promise<WalletOperationResult<StakeError>> =>
   stakingClient
     .stake(account.networkId, account.address, amount)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
-      if (!message) return { hasError: true, success: false };
+      if (!message) return { error: StakeError.Unknown, success: false };
 
       const networkInfo = await stakingClient.getStakingInfo(account.networkId);
 
@@ -108,8 +112,23 @@ export const stakeAmount = ({
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
-        .then(() => ({ success: true }) as const)
-        .catch(handleCosmosSignError);
+        .then((result) => {
+          const hasDelegated = !!result?.events?.find(
+            (ev) => ev.type === "delegate",
+          );
+
+          return hasDelegated
+            ? ({ success: true } as const)
+            : { error: StakeError.NotEnoughGas, success: false };
+        })
+        .catch((err) => {
+          const isCosmosError = getIsCosmosError(err);
+
+          return {
+            error: isCosmosError ? StakeError.Unknown : StakeError.None,
+            success: false,
+          };
+        });
     });
 
 type ClaimOpts = {
@@ -118,13 +137,13 @@ type ClaimOpts = {
 
 export const claimRewards = async ({
   account,
-}: ClaimOpts): Promise<WalletOperationResult> =>
+}: ClaimOpts): Promise<WalletOperationResult<boolean>> =>
   stakingClient
     .claimRewards(account.networkId, account.address)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
-      if (!message) return { hasError: true, success: false };
+      if (!message) return { error: true, success: false };
 
       const networkInfo = await stakingClient.getStakingInfo(account.networkId);
 
@@ -160,7 +179,14 @@ export const claimRewards = async ({
       return client
         .signAndBroadcast(account.address, [msgAny], fee)
         .then(() => ({ success: true }) as const)
-        .catch(handleCosmosSignError);
+        .catch((err) => {
+          const hasCosmosError = getIsCosmosError(err);
+
+          return {
+            error: hasCosmosError,
+            success: false,
+          };
+        });
     });
 
 export const getClaimRewardsFee = async ({
@@ -181,15 +207,21 @@ type UnstakeAmount = {
   amount: string;
 };
 
+export enum UnstakeError {
+  None = "None",
+  NotEnoughGas = "NotEnoughGas",
+  Unknown = "Unknown",
+}
+
 export const unstake = async (
   opts: UnstakeAmount,
-): Promise<WalletOperationResult> =>
+): Promise<WalletOperationResult<UnstakeError>> =>
   stakingClient
     .unstake(opts.account.networkId, opts.account.address, opts.amount)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
-      if (!message) return { hasError: true, success: false };
+      if (!message) return { error: UnstakeError.Unknown, success: false };
 
       const networkInfo = await stakingClient.getStakingInfo(
         opts.account.networkId,
@@ -227,8 +259,26 @@ export const unstake = async (
 
       return client
         .signAndBroadcast(opts.account.address, [msgAny], fee, "")
-        .then(() => ({ success: true }) as const)
-        .catch(handleCosmosSignError);
+        .then((result) => {
+          const hasUnbonded = !!result?.events?.find(
+            (ev) => ev.type === "unbond",
+          );
+
+          return hasUnbonded
+            ? ({ success: true } as const)
+            : {
+                error: UnstakeError.NotEnoughGas,
+                success: false,
+              };
+        })
+        .catch((err) => {
+          const hasCosmosError = getIsCosmosError(err);
+
+          return {
+            error: hasCosmosError ? UnstakeError.Unknown : UnstakeError.None,
+            success: false,
+          };
+        });
     });
 
 const tryToConnectKeplr = async (

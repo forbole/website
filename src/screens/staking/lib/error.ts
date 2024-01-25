@@ -7,3 +7,9 @@ export const displayGenericError = (t: Translate) => {
     title: t("common:error"),
   });
 };
+
+export const notEnoughGasError = (t: Translate) => {
+  toastError({
+    title: t("staking:stakingModal.error.notEnoughGas.title"),
+  });
+};

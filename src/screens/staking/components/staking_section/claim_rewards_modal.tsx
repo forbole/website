@@ -102,7 +102,7 @@ const ClaimRewardsModal = () => {
                     subtitle: `${t("rewardsModal.success.sub")} 🎉`,
                     title: t("rewardsModal.success.title"),
                   });
-                } else if (claimed.hasError) {
+                } else if (claimed.error) {
                   displayGenericError(t);
                 }
               })

@@ -121,6 +121,11 @@
       "invalid": "您必須輸入有效金額"
     },
     "available": "可用的",
+    "error": {
+      "notEnoughGas": {
+        "title": "Gas limit too low, increase gas to complete transaction."
+      }
+    },
     "memo": "備忘錄",
     "memoError": {
       "tooLongMemo": "請輸入較小的備註"
