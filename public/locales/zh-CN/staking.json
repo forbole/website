@@ -118,12 +118,13 @@
   "stakingLabel": "在这里质押！",
   "stakingModal": {
     "amountError": {
-      "invalid": "您必须输入有效金额"
+      "invalid": "您必须输入有效金额",
+      "noBalance": "您没有任何代币可供质押"
     },
     "available": "可用的",
     "error": {
       "notEnoughGas": {
-        "title": "Gas limit too low, increase gas to complete transaction."
+        "title": "Gas 限额太低，增加 Gas 来完成交易。"
       }
     },
     "memo": "备忘录",

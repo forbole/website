@@ -118,12 +118,13 @@
   "stakingLabel": "在這裡賭注！",
   "stakingModal": {
     "amountError": {
-      "invalid": "您必須輸入有效金額"
+      "invalid": "您必須輸入有效金額",
+      "noBalance": "您沒有任何代幣可供質押"
     },
     "available": "可用的",
     "error": {
       "notEnoughGas": {
-        "title": "Gas limit too low, increase gas to complete transaction."
+        "title": "Gas 限額太低，增加 Gas 完成交易"
       }
     },
     "memo": "備忘錄",

@@ -90,6 +90,10 @@ const StakingModal = () => {
   };
 
   const newAmountError = (() => {
+    if (!balance?.num.gt(0)) {
+      return t("stakingModal.amountError.noBalance");
+    }
+
     if (!isValidAmount) {
       return t("stakingModal.amountError.invalid");
     }

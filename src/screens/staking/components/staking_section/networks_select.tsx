@@ -1,5 +1,6 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import BigNumber from "bignumber.js";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
@@ -260,7 +261,29 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
             if (!rewards) return null;
 
-            return <div className={styles.rewards}>+{formatCoin(rewards)}</div>;
+            const formatted = formatCoin(rewards, 2);
+
+            if (rewards.amount === "0")
+              return <div className={styles.rewards}>{formatted}</div>;
+
+            if (new BigNumber(rewards.amount).lt(0.01)) {
+              const formattedLess = formatCoin(
+                {
+                  amount: "0.01",
+                  denom: rewards.denom,
+                },
+                2,
+              );
+
+              return (
+                <div className={styles.rewards}>
+                  {"<"}
+                  {formattedLess}
+                </div>
+              );
+            }
+
+            return <div className={styles.rewards}>+{formatted}</div>;
           })();
 
           return (

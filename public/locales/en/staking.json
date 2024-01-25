@@ -118,12 +118,13 @@
   "stakingLabel": "Stake here!",
   "stakingModal": {
     "amountError": {
-      "invalid": "You have to input a valid amount"
+      "invalid": "You have to input a valid amount",
+      "noBalance": "You don't have any tokens to stake"
     },
     "available": "Available",
     "error": {
       "notEnoughGas": {
-        "title": "Gas limit too low, increase gas to complete transaction."
+        "title": "Gas limit too low, increase gas to complete the transaction."
       }
     },
     "memo": "Memo",
