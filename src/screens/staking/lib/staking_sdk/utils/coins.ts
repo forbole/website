@@ -34,6 +34,10 @@ export const normaliseCoin = (coin: Coin): Coin => {
 
   const [denom, exp] = denomMap[compared] || [coin.denom, 0];
 
+  if (!denom) {
+    throw new Error(`Unknown denom ${coin}`);
+  }
+
   let { amount } = coin;
 
   if (compared !== denom.toUpperCase()) {
@@ -53,7 +57,7 @@ export const getEmptyCoin = (denom = ""): Coin => ({ amount: "0", denom });
 
 export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin =>
   [coinA, coinB]
-    .filter(Boolean)
+    .filter((c) => !!c?.denom)
     .map((c) => normaliseCoin(c as Coin))
     .reduce((acc, coin) => {
       const { amount } = acc;

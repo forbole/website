@@ -177,7 +177,7 @@ export const getAllStaked = (
   return uniqueMainnetAccounts.reduce((acc, account) => {
     const delegation = account.info?.delegation;
 
-    if (!delegation) return acc;
+    if (!delegation?.denom) return acc;
 
     const normalised = normaliseCoin(delegation);
 

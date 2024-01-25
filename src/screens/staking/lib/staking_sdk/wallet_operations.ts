@@ -211,9 +211,10 @@ export const unstake = async (
         gas: info.tx.authInfo.fee.gas_limit,
       };
 
-      const offlineSigner = window.leap?.getOfflineSignerOnlyAmino(
-        opts.account.networkId,
-      );
+      const offlineSigner =
+        opts.account.wallet === WalletId.Leap
+          ? window.leap?.getOfflineSignerOnlyAmino(opts.account.networkId)
+          : window.keplr?.getOfflineSignerOnlyAmino(opts.account.networkId);
 
       if (!offlineSigner) {
         throw new Error("Can't get offline signer");
