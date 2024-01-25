@@ -9,7 +9,6 @@ import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { setSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import {
   getAllAccounts,
-  getClaimableRewardsForNetwork,
   getSelectedAccount,
   getWalletCustomName,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
@@ -17,12 +16,16 @@ import type {
   Account,
   StakingNetworkId,
 } from "@src/screens/staking/lib/staking_sdk/core";
-import { networkIdToNetworkKey } from "@src/screens/staking/lib/staking_sdk/core";
+import {
+  mainNetworkDenom,
+  networkIdToNetworkKey,
+} from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
-  accountHasRewards,
   getAccountNormalisedBalance,
+  getClaimableRewardsForAccount,
 } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { walletsIcons } from "@src/screens/staking/lib/wallet_info";
 import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
@@ -163,9 +166,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
   if (isWallet) {
     const otherWalletsAccounts = allAccounts.filter(
-      (account) =>
-        account.address === selectedAccount.address &&
-        account.networkId === selectedAccount.networkId,
+      (account) => account.networkId === selectedAccount.networkId,
     );
 
     if (otherWalletsAccounts.length < 2) {
@@ -228,10 +229,6 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
     );
   }
 
-  const availableAccounts = allAccounts.filter(
-    isRewards ? accountHasRewards : () => true,
-  );
-
   return (
     <div className={styles.control}>
       <Select
@@ -242,7 +239,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
         onChange={handleChange}
         value={selectedItem}
       >
-        {availableAccounts.map((account) => {
+        {allAccounts.map((account) => {
           const item = [
             account.address,
             account.networkId,
@@ -254,11 +251,11 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
           if (!balance) return null;
 
           const rightSide = (() => {
-            if (!isRewards) return null;
+            if (!isRewards || !account.networkId) return null;
 
-            const rewards = getClaimableRewardsForNetwork(
-              stakingRef.current.state,
-              account.networkId,
+            const rewards = getClaimableRewardsForAccount(
+              getEmptyCoin(mainNetworkDenom[account.networkId] as string),
+              account,
             );
 
             if (!rewards) return null;

@@ -9,7 +9,11 @@ import type {
   WalletId,
 } from "../core";
 import { mainNetworkDenom, walletsSupported } from "../core";
-import { filterOutTestnets, filterUniqueAddresses } from "../utils/accounts";
+import {
+  filterOutTestnets,
+  filterUniqueAddresses,
+  getClaimableRewardsForAccount,
+} from "../utils/accounts";
 import { getEmptyCoin, normaliseCoin, sumCoins } from "../utils/coins";
 import { doesWalletSupportNetwork } from "../wallet_operations";
 
@@ -97,26 +101,12 @@ export const getClaimableRewardsForNetwork = (
     return null;
   }
 
-  return accountsForNetwork.filter(filterUniqueAddresses()).reduce(
-    (acc, account) =>
-      (Array.isArray(account.rewards) ? account.rewards : []).reduce(
-        (acc2, reward) => {
-          if (denom?.toUpperCase() === reward.denom?.toUpperCase()) {
-            const existingAmount = new BigNumber(acc2.amount);
-            const amount = new BigNumber(reward.amount);
-
-            return {
-              amount: existingAmount.plus(amount).toString(),
-              denom: acc2.denom,
-            };
-          }
-
-          return acc2;
-        },
-        acc,
-      ),
-    getEmptyCoin(denom.toUpperCase()),
-  );
+  return accountsForNetwork
+    .filter(filterUniqueAddresses())
+    .reduce(
+      (acc, account) => getClaimableRewardsForAccount(acc, account),
+      getEmptyCoin(denom.toUpperCase()),
+    );
 };
 
 export const getHasConnectedWallets = (state: State) =>

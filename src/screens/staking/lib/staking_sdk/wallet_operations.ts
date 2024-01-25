@@ -135,15 +135,21 @@ type ClaimOpts = {
   account: Account;
 };
 
+export enum ClaimRewardsError {
+  None = "None",
+  NotEnoughGas = "NotEnoughGas",
+  Unknown = "Unknown",
+}
+
 export const claimRewards = async ({
   account,
-}: ClaimOpts): Promise<WalletOperationResult<boolean>> =>
+}: ClaimOpts): Promise<WalletOperationResult<ClaimRewardsError>> =>
   stakingClient
     .claimRewards(account.networkId, account.address)
     .then(async (info) => {
       const [message] = info.tx.body.messages;
 
-      if (!message) return { error: true, success: false };
+      if (!message) return { error: ClaimRewardsError.Unknown, success: false };
 
       const networkInfo = await stakingClient.getStakingInfo(account.networkId);
 
@@ -178,12 +184,22 @@ export const claimRewards = async ({
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee)
-        .then(() => ({ success: true }) as const)
+        .then((result) => {
+          const hasClaimed = !!result?.events?.find(
+            (ev) => ev.type === "withdraw_rewards",
+          );
+
+          return hasClaimed
+            ? ({ success: true } as const)
+            : { error: ClaimRewardsError.NotEnoughGas, success: false };
+        })
         .catch((err) => {
           const hasCosmosError = getIsCosmosError(err);
 
           return {
-            error: hasCosmosError,
+            error: hasCosmosError
+              ? ClaimRewardsError.Unknown
+              : ClaimRewardsError.None,
             success: false,
           };
         });

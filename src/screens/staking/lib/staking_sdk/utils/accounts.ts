@@ -36,7 +36,7 @@ type NormalisedInfo = { coin: Coin; num: BigNumber } | null;
 export const getAccountNormalisedDelegation = (
   account?: Account,
 ): NormalisedInfo => {
-  if (!account?.info?.delegation) return null;
+  if (!account?.info?.delegation?.denom) return null;
 
   const available = normaliseCoin(account.info.delegation);
 
@@ -66,3 +66,21 @@ export const sortAccounts = (a: Account, b: Account) => {
 
   return a.address.localeCompare(b.address);
 };
+
+export const getClaimableRewardsForAccount = (start: Coin, account: Account) =>
+  (Array.isArray(account.rewards) ? account.rewards : []).reduce(
+    (acc2, reward) => {
+      if (start.denom?.toUpperCase() === reward.denom?.toUpperCase()) {
+        const existingAmount = new BigNumber(acc2.amount);
+        const amount = new BigNumber(reward.amount);
+
+        return {
+          amount: existingAmount.plus(amount).toString(),
+          denom: acc2.denom,
+        };
+      }
+
+      return acc2;
+    },
+    start,
+  );

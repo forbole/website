@@ -5,14 +5,20 @@ import { useEffect, useState } from "react";
 import HighlightButton from "@src/components/highlight-button";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
-import { displayGenericError } from "@src/screens/staking/lib/error";
+import {
+  displayGenericError,
+  notEnoughGasError,
+} from "@src/screens/staking/lib/error";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   setSelectedAccount,
   syncAccountData,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
+import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
+import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
+  ClaimRewardsError,
   claimRewards,
   getClaimRewardsFee,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
@@ -30,10 +36,15 @@ const ClaimRewardsModal = () => {
 
   const { t } = useTranslation("staking");
 
-  const { selectedAccount, selectedAction } = stakingRef.current.state;
+  const { selectedAction } = stakingRef.current.state;
 
+  const selectedAccount = getSelectedAccount(stakingRef.current.state);
   const isOpen = !!selectedAccount && selectedAction === "claim_rewards";
   const { address, networkId } = selectedAccount || {};
+
+  const hasRewards = selectedAccount
+    ? accountHasRewards(selectedAccount)
+    : null;
 
   useEffect(() => {
     if (isOpen && selectedAccount?.address) {
@@ -80,7 +91,7 @@ const ClaimRewardsModal = () => {
           </div>
         )}
         <HighlightButton
-          disabled={!address || !networkId || isLoading}
+          disabled={!address || !networkId || isLoading || !hasRewards}
           onClick={() => {
             if (!selectedAccount?.address || isLoading) return;
 
@@ -103,7 +114,17 @@ const ClaimRewardsModal = () => {
                     title: t("rewardsModal.success.title"),
                   });
                 } else if (claimed.error) {
-                  displayGenericError(t);
+                  const handlers: Record<ClaimRewardsError, () => void> = {
+                    [ClaimRewardsError.None]: () => {},
+                    [ClaimRewardsError.NotEnoughGas]: () => {
+                      notEnoughGasError(t);
+                    },
+                    [ClaimRewardsError.Unknown]: () => {
+                      displayGenericError(t);
+                    },
+                  };
+
+                  handlers[claimed.error]?.();
                 }
               })
               .catch((error) => {

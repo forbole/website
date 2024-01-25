@@ -46,7 +46,10 @@ import {
   formatCoin,
   formatStakedDataUSD,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
-import { accountHasDelegations } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import {
+  accountHasDelegations,
+  accountHasRewards,
+} from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
@@ -139,6 +142,7 @@ const PopOver = ({
   }, [stakingRef, stakingNetworkId]);
 
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
+  const accountsWithRewards = accounts?.filter(accountHasRewards);
 
   const displayedRewards = claimableRewards
     ? `+${formatCoin(claimableRewards, 4)}`
@@ -323,13 +327,13 @@ const PopOver = ({
                 {t("popover.stake")}
               </HighlightButton>
             )}
-            {!!claimableRewards && !!accounts?.length && (
+            {!!claimableRewards && !!accountsWithRewards?.length && (
               <CtaButton
                 onClick={() => {
                   setSelectedAccount(
                     stakingRef.current,
                     "claim_rewards",
-                    accounts[0],
+                    accountsWithRewards[0],
                   );
                 }}
               >
