@@ -280,7 +280,12 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
               );
 
               return (
-                <div className={styles.rewards}>{`< ${formattedLess}`}</div>
+                <div
+                  className={styles.rewards}
+                  data-tooltip-content={formatCoin(rewards)}
+                  data-tooltip-id={tooltipId}
+                  data-tooltip-place="top-end"
+                >{`< ${formattedLess}`}</div>
               );
             }
 

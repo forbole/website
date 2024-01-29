@@ -3,7 +3,7 @@ import BigNumber from "bignumber.js";
 
 import type { Account } from "../core";
 import { testnetNetworks } from "../core";
-import { normaliseCoin } from "./coins";
+import { normaliseCoin, sumCoins } from "./coins";
 
 export const accountHasDelegations = (account?: Account): boolean =>
   !!account?.info?.delegation &&
@@ -71,13 +71,7 @@ export const getClaimableRewardsForAccount = (start: Coin, account: Account) =>
   (Array.isArray(account.rewards) ? account.rewards : []).reduce(
     (acc2, reward) => {
       if (start.denom?.toUpperCase() === reward.denom?.toUpperCase()) {
-        const existingAmount = new BigNumber(acc2.amount);
-        const amount = new BigNumber(reward.amount);
-
-        return {
-          amount: existingAmount.plus(amount).toString(),
-          denom: acc2.denom,
-        };
+        return sumCoins(acc2, reward);
       }
 
       return acc2;

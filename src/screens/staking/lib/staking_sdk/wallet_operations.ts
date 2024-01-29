@@ -35,7 +35,7 @@ const getIsCosmosError = (err: Error): boolean | null => {
   // eslint-disable-next-line no-console
   console.log("debug: index.tsx: err", err);
 
-  if (!err?.message?.includes("transaction indexing is disabled")) {
+  if (err?.message?.includes("transaction indexing is disabled")) {
     return null;
   }
 
