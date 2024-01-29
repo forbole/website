@@ -5,6 +5,7 @@ import { memo } from "react";
 import horseImage from "@src/../public/images/assets/image_horse_blur.png";
 import horseShadow from "@src/../public/images/assets/image_water_shadow.png";
 import ScrollToBottom from "@src/components/scroll_to_bottom";
+import Stats from "@src/components/stats";
 
 import * as styles from "./index.module.scss";
 
@@ -35,6 +36,9 @@ const Hero = ({ scrollRef }: Props) => {
       </div>
       <div className={styles.arrowWrapper}>
         <ScrollToBottom bottomRef={scrollRef} staking />
+      </div>
+      <div className={styles.stats}>
+        <Stats />
       </div>
     </div>
   );

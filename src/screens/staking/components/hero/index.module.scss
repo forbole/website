@@ -96,6 +96,7 @@
 
 .shadow {
   mix-blend-mode: lighten;
+  pointer-events: none;
   position: absolute;
   width: 50%;
 
