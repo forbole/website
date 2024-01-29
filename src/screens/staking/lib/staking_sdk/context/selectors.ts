@@ -14,7 +14,12 @@ import {
   filterUniqueAddresses,
   getClaimableRewardsForAccount,
 } from "../utils/accounts";
-import { getEmptyCoin, normaliseCoin, sumCoins } from "../utils/coins";
+import {
+  getEmptyCoin,
+  networkToUnnormalisedDenom,
+  normaliseCoin,
+  sumCoins,
+} from "../utils/coins";
 import { doesWalletSupportNetwork } from "../wallet_operations";
 
 // This functions are only intended to be used for extracting data, so they
@@ -107,6 +112,46 @@ export const getClaimableRewardsForNetwork = (
       (acc, account) => getClaimableRewardsForAccount(acc, account),
       getEmptyCoin(denom.toUpperCase()),
     );
+};
+
+type UnbondingTokensResult = { coin: Coin; period: string } | null;
+
+export const getUnbondingTokensForNetwork = (
+  state: State,
+  network: StakingNetworkId,
+): UnbondingTokensResult => {
+  const accountsForNetwork = getAccountsForNetwork(state, network);
+
+  return accountsForNetwork.reduce((acc, account) => {
+    if (!account.info?.unbonding?.length) {
+      return acc;
+    }
+
+    const { unbonding } = account.info;
+
+    const denom = networkToUnnormalisedDenom[account.networkId];
+
+    return unbonding.reduce((acc2, unbondingInfo) => {
+      const baseCoin = acc2 ? acc2.coin : getEmptyCoin(denom);
+      const basePeriod = acc2 ? acc2.period : "0";
+
+      const newCoin = sumCoins(baseCoin, {
+        amount: unbondingInfo.balance,
+        denom,
+      });
+
+      const itemPeriod = unbondingInfo.completion_time.seconds;
+
+      const newPeriod = new BigNumber(basePeriod).isGreaterThan(itemPeriod)
+        ? basePeriod
+        : itemPeriod;
+
+      return {
+        coin: newCoin,
+        period: newPeriod,
+      };
+    }, acc);
+  }, null as UnbondingTokensResult);
 };
 
 export const getHasConnectedWallets = (state: State) =>

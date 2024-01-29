@@ -32,6 +32,7 @@ import {
   getHasNetworkSupportedWallet,
   getNetworkVotingPower,
   getStakedDataForNetwork,
+  getUnbondingTokensForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   WalletId,
@@ -106,36 +107,50 @@ const PopOver = ({
     }
   }, [stakingNetworkId, stakingRef]);
 
-  const { accounts, claimableRewards, stakedData } = useMemo(() => {
-    const wallet = WalletId.Keplr;
+  const { accounts, claimableRewards, stakedData, unbondingTokens } =
+    useMemo(() => {
+      const wallet = WalletId.Keplr;
 
-    const result = {
-      accounts: null as Account[] | null,
-      claimableRewards: null as NetworkClaimableRewards | null,
-      stakedData: null as Coin | null,
-    };
+      const result = {
+        accounts: null as Account[] | null,
+        claimableRewards: null as NetworkClaimableRewards | null,
+        stakedData: null as Coin | null,
+        unbondingTokens: null as { period: string; text: string } | null,
+      };
 
-    if (!!stakingNetworkId && !!wallet) {
-      result.accounts = getAccountsForNetwork(stakingState, stakingNetworkId);
+      if (!!stakingNetworkId && !!wallet) {
+        result.accounts = getAccountsForNetwork(stakingState, stakingNetworkId);
 
-      if (!result.accounts?.length) {
-        return result;
-      }
+        if (!result.accounts?.length) {
+          return result;
+        }
 
-      result.stakedData = getStakedDataForNetwork(
-        stakingRef.current.state,
-        stakingNetworkId,
-      );
-
-      result.claimableRewards =
-        getClaimableRewardsForNetwork(
+        result.stakedData = getStakedDataForNetwork(
           stakingRef.current.state,
           stakingNetworkId,
-        ) || null;
-    }
+        );
 
-    return result;
-  }, [stakingState, stakingNetworkId, stakingRef]);
+        result.claimableRewards =
+          getClaimableRewardsForNetwork(
+            stakingRef.current.state,
+            stakingNetworkId,
+          ) || null;
+
+        const unbonding = getUnbondingTokensForNetwork(
+          stakingRef.current.state,
+          stakingNetworkId,
+        );
+
+        if (unbonding) {
+          result.unbondingTokens = {
+            period: new Date(Number(unbonding.period) * 1000).toLocaleString(),
+            text: formatCoin(unbonding.coin, 4),
+          };
+        }
+      }
+
+      return result;
+    }, [stakingState, stakingNetworkId, stakingRef]);
 
   useEffect(() => {
     fetchCoinPriceForNetwork(stakingRef.current, stakingNetworkId);
@@ -177,7 +192,8 @@ const PopOver = ({
       />
       <div>{networkImage}</div>
       {network.name && <div className={styles.name}>{network.name}</div>}
-      {(!!stakedData || !!claimableRewards) && (
+      {!![stakedData, claimableRewards, unbondingTokens].filter(Boolean)
+        .length && (
         <div className={styles.stakingData}>
           {displayedStaked && (
             <div className={styles.total}>
@@ -193,6 +209,19 @@ const PopOver = ({
             <div className={styles.rewards}>
               <div>{t("claimableRewards")}</div>
               <div>{displayedRewards}</div>
+            </div>
+          )}
+          {!!unbondingTokens && (
+            <div className={styles.unbonding}>
+              <div>{t("unbondingTokens")}</div>
+              <div
+                data-tooltip-content={t("popover.unbondingTooltip", {
+                  period: unbondingTokens.period,
+                })}
+                data-tooltip-id={tooltipId}
+              >
+                {unbondingTokens.text}
+              </div>
             </div>
           )}
         </div>

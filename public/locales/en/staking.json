@@ -69,6 +69,7 @@
     "claimRewards": "Claim Rewards",
     "networkDetails": "See network details",
     "stake": "Stake Now",
+    "unbondingTooltip": "All tokens will have been unbonded by {{period}}",
     "unstake": "Unstake"
   },
   "receiving bullet 1": "Nominated validators are not in the active set",
@@ -162,6 +163,7 @@
   "trusted provider": "Pick Trusted Provider",
   "trusted provider desc": "We have the infrastructure in place to act as validators and to secure networks",
   "unbonding period": "Unbonding period",
+  "unbondingTokens": "Unbonding tokens",
   "unstaking para 1": "The action of transferring your staked tokens from one validator to another, it is called restaking your tokens. Your rewards will keep calculating if you choose to restake. Your rewards will stop calculating once you choose unstaking. It is subject to a lockup period (normally 21-day) and during this lockup, you cannot do anything with your tokens that are undergoing unlocking.",
   "unstaking para 2": "Therefore, if your plan is to continue with staking, and you simply wish to switch to a different validator, use restake instead to continue accruing your staking rewards and airdrops.",
   "unstaking para 3": "After the first restaking, you need to wait for a certain period of time (corresponding with unstaking period) before making another restaking transaction. And do make sure you have sufficient funds in your available balance to pay for the transaction fee.",

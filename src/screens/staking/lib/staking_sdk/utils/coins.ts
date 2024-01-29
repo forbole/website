@@ -3,7 +3,7 @@ import BigNumber from "bignumber.js";
 
 import { CoinDenom, StakingNetworkId } from "../core";
 
-const networkToUnnormalisedDenom = {
+export const networkToUnnormalisedDenom = {
   [StakingNetworkId.Akash]: "UAKT",
   [StakingNetworkId.Celestia]: "UTIA",
   [StakingNetworkId.CelestiaTestnet]: "UTIA",
@@ -27,12 +27,15 @@ const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
 };
 
 export const normaliseCoin = (coin: Coin): Coin => {
-  const compared = coin.denom?.toUpperCase() as DenomToNormalise;
+  const compared = coin.denom?.toUpperCase();
 
   const parseNum = (exp: number) =>
     new BigNumber(coin.amount).dividedBy(new BigNumber(10).pow(exp)).toString();
 
-  const [denom, exp] = denomMap[compared] || [coin.denom, 0];
+  const [denom, exp] = denomMap[compared as DenomToNormalise] || [
+    coin.denom,
+    0,
+  ];
 
   if (!denom) {
     throw new Error(`Unknown denom ${coin}`);
@@ -57,8 +60,8 @@ export const getEmptyCoin = (denom = ""): Coin => ({ amount: "0", denom });
 
 export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin =>
   [coinA, coinB]
-    .filter((c) => !!c?.denom)
-    .map((c) => normaliseCoin(c as Coin))
+    .filter((c): c is Coin => !!c?.denom)
+    .map((c) => normaliseCoin(c))
     .reduce((acc, coin) => {
       const { amount } = acc;
       const { amount: amountB } = coin;

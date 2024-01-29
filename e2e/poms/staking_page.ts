@@ -90,6 +90,7 @@ export class StakingPage {
                         amount: "0",
                         denom: "utest",
                       },
+                      unbonding: null,
                     },
                     networkId: opts.network,
                     wallet: opts.wallet,

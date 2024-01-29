@@ -67,6 +67,15 @@ type StakeResponse = {
 export type GetAddressInfoResponse = {
   balances: { amount: string; denom: string };
   delegation: { amount: string; denom: string };
+  unbonding:
+    | {
+        balance: string;
+        completion_time: {
+          nanos: number;
+          seconds: string;
+        };
+      }[]
+    | null;
 };
 
 export type GetRewardsResponse = Array<Coin> | Record<string, never>;

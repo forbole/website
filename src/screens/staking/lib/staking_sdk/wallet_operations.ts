@@ -31,13 +31,16 @@ import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 export const MAX_MEMO = 256;
 
-const getIsCosmosError = (err: Error) => {
+const getIsCosmosError = (err: Error): boolean | null => {
   // eslint-disable-next-line no-console
   console.log("debug: index.tsx: err", err);
 
+  if (!err?.message?.includes("transaction indexing is disabled")) {
+    return null;
+  }
+
   // This appears to be fine, since the transaction is still broadcasted
   return (
-    !err?.message?.includes("transaction indexing is disabled") &&
     // Keplr message
     !err?.message?.includes("rejected") &&
     // Leap message
@@ -124,6 +127,10 @@ export const stakeAmount = ({
         .catch((err) => {
           const isCosmosError = getIsCosmosError(err);
 
+          if (isCosmosError === null) {
+            return { success: true };
+          }
+
           return {
             error: isCosmosError ? StakeError.Unknown : StakeError.None,
             success: false,
@@ -194,10 +201,14 @@ export const claimRewards = async ({
             : { error: ClaimRewardsError.NotEnoughGas, success: false };
         })
         .catch((err) => {
-          const hasCosmosError = getIsCosmosError(err);
+          const isCosmosError = getIsCosmosError(err);
+
+          if (isCosmosError === null) {
+            return { success: true };
+          }
 
           return {
-            error: hasCosmosError
+            error: isCosmosError
               ? ClaimRewardsError.Unknown
               : ClaimRewardsError.None,
             success: false,
@@ -288,10 +299,14 @@ export const unstake = async (
               };
         })
         .catch((err) => {
-          const hasCosmosError = getIsCosmosError(err);
+          const isCosmosError = getIsCosmosError(err);
+
+          if (isCosmosError === null) {
+            return { success: true };
+          }
 
           return {
-            error: hasCosmosError ? UnstakeError.Unknown : UnstakeError.None,
+            error: isCosmosError ? UnstakeError.Unknown : UnstakeError.None,
             success: false,
           };
         });

@@ -69,6 +69,7 @@
     "claimRewards": "领取奖励",
     "networkDetails": "查看网络详细信息",
     "stake": "立即质押",
+    "unbondingTooltip": "所有代币将于 {{period}} 解除绑定",
     "unstake": "取消质押"
   },
   "receiving bullet 1": "指定验证人不在活跃集中",
@@ -161,6 +162,7 @@
   "trusted provider": "选择值得信赖的营运商",
   "trusted provider desc": "我们已经建立了完善的验证人基础设施，全天候监控区块链网络安全",
   "unbonding period": "解绑期",
+  "unbondingTokens": "解绑代币",
   "unstaking para 1": "将您质押的代币从一个验证器转移到另一个验证器的操作称为重新质押您的代币。",
   "unstaking para 2": "因此，如果您的计划是继续质押，并且您只是希望切换到不同的验证器，请使用重新质押来继续累积您的质押奖励和空投。",
   "unstaking para 3": "第一次重质押后，您需要等待一定时间（对应解质押期）才能进行下一次重质押交易。",

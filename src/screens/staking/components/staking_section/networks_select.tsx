@@ -5,6 +5,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
 import { toastSuccess } from "@src/components/notification";
+import { tooltipId } from "@src/components/tooltip";
 import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { setSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/actions";
@@ -28,7 +29,6 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { walletsIcons } from "@src/screens/staking/lib/wallet_info";
-import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import * as styles from "./networks_select.module.scss";
@@ -58,9 +58,7 @@ const SEPARATOR = "____";
 const NetworkItem = ({ denom, rightSide, value }: NetworkItemProps) => {
   const networkName = networkIdToNetworkKey[value];
 
-  const networkInfo = networkName
-    ? getNetworkInfo(networkName as NetworkKey)
-    : "";
+  const networkInfo = networkName ? getNetworkInfo(networkName) : "";
 
   const imgSrc = networkInfo ? networkInfo.image : "";
   const name = networkInfo ? networkInfo.name : "";
@@ -87,7 +85,7 @@ const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
   const { wallet } = account;
   const { t } = useTranslation("staking");
   const WalletIcon = walletsIcons[wallet];
-  const parsedAddress = useMiddleEllipsis(account.address, 15);
+  const parsedAddress = useMiddleEllipsis(account.address, 10);
 
   return (
     <div
@@ -102,6 +100,8 @@ const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
             styles.address,
             !isOpened ? styles.clickable : undefined,
           ].join(" ")}
+          data-tooltip-content={account.address}
+          data-tooltip-id={tooltipId}
           onClick={
             isOpened
               ? undefined
@@ -254,8 +254,12 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
           const rightSide = (() => {
             if (!isRewards || !account.networkId) return null;
 
+            const denom = mainNetworkDenom[account.networkId];
+
+            if (!denom) return null;
+
             const rewards = getClaimableRewardsForAccount(
-              getEmptyCoin(mainNetworkDenom[account.networkId] as string),
+              getEmptyCoin(denom),
               account,
             );
 
@@ -276,10 +280,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
               );
 
               return (
-                <div className={styles.rewards}>
-                  {"<"}
-                  {formattedLess}
-                </div>
+                <div className={styles.rewards}>{`< ${formattedLess}`}</div>
               );
             }
 
