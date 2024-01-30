@@ -1,47 +1,44 @@
-import BigNumber from "bignumber.js";
-
 import { IS_E2E } from "@src/utils/e2e";
 
 import { CoinDenom } from "./core";
 
-const denomToEndpoint: Record<CoinDenom, string> = {
-  [CoinDenom.AKT]: "akash-network",
-  [CoinDenom.ATOM]: "cosmos",
-  [CoinDenom.DYDX]: "dydx",
-  [CoinDenom.TIA]: "celestia",
-} as const;
-
-const denomToMultiplier: Record<CoinDenom, number> = {
-  [CoinDenom.AKT]: 0,
-  [CoinDenom.ATOM]: 0,
-  [CoinDenom.DYDX]: 0,
-  [CoinDenom.TIA]: 0,
-} as const;
-
-const coinPriceQuery = new URLSearchParams({
-  community_data: "false",
-  developer_data: "false",
-  market_data: "true",
-  sparkline: "false",
-  tickers: "false",
-});
+export type CoinsPricesResult = { [key in CoinDenom]?: string };
 
 export const geckoClient = {
-  getCoinPrice: async (denom: CoinDenom): Promise<string> =>
-    IS_E2E
-      ? Promise.resolve("0.1")
+  getCoinsPrices: async (): Promise<CoinsPricesResult> => {
+    const denomToEndpoint: Record<CoinDenom, string> = {
+      [CoinDenom.AKT]: "akash-network",
+      [CoinDenom.ATOM]: "cosmos",
+      [CoinDenom.DYDX]: "dydx",
+      [CoinDenom.TIA]: "celestia",
+    } as const;
+
+    const endpointToDenom = Object.fromEntries(
+      Object.entries(denomToEndpoint).map(([k, v]) => [v, k]),
+    ) as Record<string, CoinDenom>;
+
+    const denoms = Object.keys(denomToEndpoint) as CoinDenom[];
+    const ids = denoms.map((denom) => denomToEndpoint[denom]).join(",");
+    const defaultValue = {};
+
+    return IS_E2E
+      ? Promise.resolve(defaultValue)
       : fetch(
-          `https://api.coingecko.com/api/v3/coins/${denomToEndpoint[denom]}?${coinPriceQuery}`,
+          `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`,
         )
-          .then((res) => res.json())
-          .then((data) => {
-            const basePrice = new BigNumber(
-              data?.market_data?.current_price?.usd,
-            );
+          .then((res) => res.json() as Promise<Record<string, { usd: number }>>)
+          .then((data) =>
+            Object.keys(data).reduce((acc, key) => {
+              const price =
+                data[key as keyof typeof data]?.usd?.toString() || "-1";
 
-            const multiplier = new BigNumber(10).pow(denomToMultiplier[denom]);
+              const denom = endpointToDenom[key];
 
-            return basePrice.multipliedBy(multiplier).toString();
-          })
-          .catch(() => "-1"),
+              acc[denom] = price;
+
+              return acc;
+            }, {} as CoinsPricesResult),
+          )
+          .catch(() => defaultValue);
+  },
 };

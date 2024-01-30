@@ -14,6 +14,7 @@ import type {
   State,
   Wallet,
 } from "../core";
+import type { CoinsPricesResult } from "../gecko_client";
 import { geckoClient } from "../gecko_client";
 import { stakingClient } from "../staking_client";
 import { sortAccounts } from "../utils/accounts";
@@ -69,7 +70,7 @@ export const fetchNetworksInfo = async (context: TStakingContext) => {
   );
 };
 
-const coinPriceRequests: { [key in CoinDenom]?: Promise<string> } = {};
+let coinsPricesRequest: Promise<CoinsPricesResult> | undefined;
 
 const fetchCoinPrice = async (
   context: TStakingContext,
@@ -79,27 +80,23 @@ const fetchCoinPrice = async (
 
   if (coinPrice) return coinPrice;
 
-  const coinRequest = coinPriceRequests[denom];
+  const extractPrice = (data: CoinsPricesResult) => data[denom] || "-1";
 
-  if (coinRequest) return coinRequest;
+  if (coinsPricesRequest) return coinsPricesRequest.then(extractPrice);
 
-  const newRequest = geckoClient.getCoinPrice(denom).then((price): string => {
-    context.setState((prevState) => ({
-      ...prevState,
-      coinsPrices: {
-        ...prevState.coinsPrices,
-        [denom]: price,
-      },
-    }));
+  const newRequest = geckoClient.getCoinsPrices().then((coinsPrices) => {
+    coinsPricesRequest = undefined;
 
-    coinPriceRequests[denom] = undefined;
+    context.setState({
+      coinsPrices,
+    });
 
-    return price;
+    return coinsPrices;
   });
 
-  coinPriceRequests[denom] = newRequest;
+  coinsPricesRequest = newRequest;
 
-  return newRequest;
+  return newRequest.then(extractPrice);
 };
 
 export const fetchCoinPriceForNetwork = (
