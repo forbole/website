@@ -8,7 +8,7 @@ import type {
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
 
-const ENABLE_LEAP = process.env.NEXT_PUBLIC_STAKING_ENABLE_LEAP === "true";
+const ENABLE_LEAP = process.env.NEXT_PUBLIC_STAKING_ENABLE_LEAP !== "false";
 
 export enum WalletId {
   Keplr = "keplr",
