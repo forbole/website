@@ -5,11 +5,8 @@ import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core
 
 import { normaliseCoin } from "./utils/coins";
 
-const baseUrl = process.env.NEXT_PUBLIC_STAKING_API;
-
-if (!baseUrl && typeof window !== "undefined") {
-  throw new Error("NEXT_PUBLIC_STAKING_API is not set");
-}
+const baseUrl =
+  process.env.NEXT_PUBLIC_STAKING_API || "https://staking-api.forbole.com";
 
 const parsedBaseUrl = (baseUrl || "").replace(/\/$/, "");
 
