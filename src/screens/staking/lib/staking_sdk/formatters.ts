@@ -3,7 +3,12 @@ import BigNumber from "bignumber.js";
 
 import { normaliseCoin } from "./utils/coins";
 
-export const formatCoin = (coin: Coin, decimals?: number): string => {
+type FormatOpts = {
+  decimals?: number;
+  maximumFractionDigits?: number;
+};
+
+export const formatCoin = (coin: Coin, opts: FormatOpts = {}): string => {
   if (!coin?.denom) {
     return "";
   }
@@ -15,9 +20,11 @@ export const formatCoin = (coin: Coin, decimals?: number): string => {
     return `- ${coin.denom.toUpperCase()}`;
   }
 
+  const { decimals, maximumFractionDigits } = opts;
+
   const formatNum = (n: BigNumber): string =>
     n.toNumber().toLocaleString("en-US", {
-      maximumFractionDigits: decimals ?? 6,
+      maximumFractionDigits: maximumFractionDigits ?? decimals ?? 6,
       minimumFractionDigits: decimals ?? 2,
     });
 

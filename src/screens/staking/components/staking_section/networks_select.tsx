@@ -265,7 +265,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
             if (!rewards) return null;
 
-            const formatted = formatCoin(rewards, 2);
+            const formatted = formatCoin(rewards, { decimals: 2 });
 
             if (rewards.amount === "0")
               return <div className={styles.rewards}>{formatted}</div>;
@@ -276,7 +276,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
                   amount: "0.01",
                   denom: rewards.denom,
                 },
-                2,
+                { decimals: 2 },
               );
 
               return (

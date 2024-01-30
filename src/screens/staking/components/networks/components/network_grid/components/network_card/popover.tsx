@@ -144,7 +144,7 @@ const PopOver = ({
         if (unbonding) {
           result.unbondingTokens = {
             period: new Date(Number(unbonding.period) * 1000).toLocaleString(),
-            text: formatCoin(unbonding.coin, 4),
+            text: formatCoin(unbonding.coin, { decimals: 4 }),
           };
         }
       }
@@ -160,7 +160,7 @@ const PopOver = ({
   const accountsWithRewards = accounts?.filter(accountHasRewards);
 
   const displayedRewards = claimableRewards
-    ? `+${formatCoin(claimableRewards, 4)}`
+    ? `+${formatCoin(claimableRewards, { decimals: 4 })}`
     : null;
 
   const displayedStaked = (() => {
@@ -208,7 +208,14 @@ const PopOver = ({
           {!!claimableRewards && (
             <div className={styles.rewards}>
               <div>{t("claimableRewards")}</div>
-              <div>{displayedRewards}</div>
+              <div
+                data-tooltip-content={formatCoin(claimableRewards, {
+                  maximumFractionDigits: 12,
+                })}
+                data-tooltip-id={tooltipId}
+              >
+                {displayedRewards}
+              </div>
             </div>
           )}
           {!!unbondingTokens && (
@@ -239,7 +246,10 @@ const PopOver = ({
                 if (!parsedVotingPower) return null;
 
                 return parsedVotingPower
-                  ? [t("votingPower"), formatCoin(parsedVotingPower, 0)]
+                  ? [
+                      t("votingPower"),
+                      formatCoin(parsedVotingPower, { decimals: 0 }),
+                    ]
                   : null;
               }
 
