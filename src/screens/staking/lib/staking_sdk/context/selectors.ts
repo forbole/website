@@ -179,6 +179,25 @@ export const getNetworkVotingPower = (
   };
 };
 
+export const getNetworkTVL = (
+  state: State,
+  network: StakingNetworkId,
+): BigNumber | null => {
+  const votingPower = getNetworkVotingPower(state, network);
+
+  if (!votingPower) return null;
+
+  const mainDenom = mainNetworkDenom[network];
+
+  if (!mainDenom) return null;
+
+  const coinPrice = state.coinsPrices[mainDenom];
+
+  if (!coinPrice || Number(coinPrice) < 0) return null;
+
+  return new BigNumber(votingPower.amount).times(coinPrice);
+};
+
 export const getHasNetworkSupportedWallet = (
   state: State,
   network: StakingNetworkId,

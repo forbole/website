@@ -58,6 +58,7 @@
 
 .content {
   display: flex;
+  flex: 1;
   flex-direction: column;
 
   div:nth-child(1) {
@@ -81,7 +82,6 @@
 
 .rewards {
   color: #1ec490;
-  flex: 1;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;

@@ -30,6 +30,7 @@ import {
   getClaimableRewardsForNetwork,
   getCoinPriceForNetwork,
   getHasNetworkSupportedWallet,
+  getNetworkTVL,
   getNetworkVotingPower,
   getStakedDataForNetwork,
   getUnbondingTokensForNetwork,
@@ -301,20 +302,37 @@ const PopOver = ({
               )
             );
           })()}
-          {!!networkSummary.TVL && (
-            <div>
-              <h6 className={styles.label}>
-                <IconInfoCircle
-                  data-tooltip-content={t("definitions.tvl")}
-                  data-tooltip-id={tooltipId}
-                />
-                TVL
-              </h6>
-              <span className={styles.value}>
-                ${convertToMoney(networkSummary.TVL)}
-              </span>
-            </div>
-          )}
+          {(() => {
+            const tvl = (() => {
+              if (stakingNetworkId) {
+                const networkTVL = getNetworkTVL(
+                  stakingRef.current.state,
+                  stakingNetworkId,
+                );
+
+                if (networkTVL) return networkTVL.toFormat(0);
+              }
+
+              if (!networkSummary.TVL) return null;
+
+              return convertToMoney(networkSummary.TVL);
+            })();
+
+            return (
+              !!tvl && (
+                <div>
+                  <h6 className={styles.label}>
+                    <IconInfoCircle
+                      data-tooltip-content={t("definitions.tvl")}
+                      data-tooltip-id={tooltipId}
+                    />
+                    TVL
+                  </h6>
+                  <span className={styles.value}>${tvl}</span>
+                </div>
+              )
+            );
+          })()}
           {!!networkSummary.custom &&
             Object.keys(networkSummary.custom.content)
               .sort()
