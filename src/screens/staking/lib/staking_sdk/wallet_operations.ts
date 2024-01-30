@@ -31,20 +31,33 @@ import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 export const MAX_MEMO = 256;
 
-const getIsCosmosError = (err: Error): boolean | null => {
+enum CosmosError {
+  None = "None",
+  NotEnoughGas = "NotEnoughGas",
+  Success = "Success",
+  Unknown = "Unknown",
+}
+
+const getCosmosError = (err: Error): CosmosError => {
   // eslint-disable-next-line no-console
   console.log("debug: index.tsx: err", err);
 
   if (err?.message?.includes("transaction indexing is disabled")) {
-    return null;
+    return CosmosError.Success;
+  }
+
+  if (err?.message?.includes("out of gas in")) {
+    return CosmosError.NotEnoughGas;
   }
 
   // This appears to be fine, since the transaction is still broadcasted
   return (
     // Keplr message
     !err?.message?.includes("rejected") &&
-    // Leap message
-    !err?.message?.includes("declined")
+      // Leap message
+      !err?.message?.includes("declined")
+      ? CosmosError.Unknown
+      : CosmosError.None
   );
 };
 
@@ -124,18 +137,26 @@ export const stakeAmount = ({
             ? ({ success: true } as const)
             : { error: StakeError.NotEnoughGas, success: false };
         })
-        .catch((err) => {
-          const isCosmosError = getIsCosmosError(err);
-
-          if (isCosmosError === null) {
-            return { success: true };
-          }
-
-          return {
-            error: isCosmosError ? StakeError.Unknown : StakeError.None,
-            success: false,
-          };
-        });
+        .catch(
+          (err) =>
+            (
+              ({
+                [CosmosError.None]: { error: StakeError.None, success: false },
+                [CosmosError.NotEnoughGas]: {
+                  error: StakeError.NotEnoughGas,
+                  success: false,
+                },
+                [CosmosError.Success]: { success: true },
+                [CosmosError.Unknown]: {
+                  error: StakeError.Unknown,
+                  success: false,
+                },
+              }) satisfies Record<
+                CosmosError,
+                WalletOperationResult<StakeError>
+              >
+            )[getCosmosError(err)],
+        );
     });
 
 type ClaimOpts = {
@@ -200,20 +221,29 @@ export const claimRewards = async ({
             ? ({ success: true } as const)
             : { error: ClaimRewardsError.NotEnoughGas, success: false };
         })
-        .catch((err) => {
-          const isCosmosError = getIsCosmosError(err);
-
-          if (isCosmosError === null) {
-            return { success: true };
-          }
-
-          return {
-            error: isCosmosError
-              ? ClaimRewardsError.Unknown
-              : ClaimRewardsError.None,
-            success: false,
-          };
-        });
+        .catch(
+          (err) =>
+            (
+              ({
+                [CosmosError.None]: {
+                  error: ClaimRewardsError.None,
+                  success: false,
+                },
+                [CosmosError.NotEnoughGas]: {
+                  error: ClaimRewardsError.NotEnoughGas,
+                  success: false,
+                },
+                [CosmosError.Success]: { success: true },
+                [CosmosError.Unknown]: {
+                  error: ClaimRewardsError.Unknown,
+                  success: false,
+                },
+              }) satisfies Record<
+                CosmosError,
+                WalletOperationResult<ClaimRewardsError>
+              >
+            )[getCosmosError(err)],
+        );
     });
 
 export const getClaimRewardsFee = async ({
@@ -298,18 +328,29 @@ export const unstake = async (
                 success: false,
               };
         })
-        .catch((err) => {
-          const isCosmosError = getIsCosmosError(err);
-
-          if (isCosmosError === null) {
-            return { success: true };
-          }
-
-          return {
-            error: isCosmosError ? UnstakeError.Unknown : UnstakeError.None,
-            success: false,
-          };
-        });
+        .catch(
+          (err) =>
+            (
+              ({
+                [CosmosError.None]: {
+                  error: UnstakeError.None,
+                  success: false,
+                },
+                [CosmosError.NotEnoughGas]: {
+                  error: UnstakeError.NotEnoughGas,
+                  success: false,
+                },
+                [CosmosError.Success]: { success: true },
+                [CosmosError.Unknown]: {
+                  error: UnstakeError.Unknown,
+                  success: false,
+                },
+              }) satisfies Record<
+                CosmosError,
+                WalletOperationResult<UnstakeError>
+              >
+            )[getCosmosError(err)],
+        );
     });
 
 const tryToConnectKeplr = async (
