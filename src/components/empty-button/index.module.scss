@@ -16,9 +16,17 @@
 
   &.withoutBorder {
     border: none;
+
+    &:hover {
+      background: transparent;
+    }
   }
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  &:hover {
+    background: rgba(180, 180, 180, 0.1);
   }
 }
