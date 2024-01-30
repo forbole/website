@@ -48,6 +48,7 @@ const ConnectWalletModal = () => {
         <div className={styles.wallets}>
           {Array.from(walletsSupported)
             .sort(sortWallets)
+            .filter((walletId) => !stakingRef.current.state.wallets?.[walletId])
             .map((walletId) => {
               const WalletIcon = walletsIcons[walletId];
               const walletName = getWalletName(walletId, t);
