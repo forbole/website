@@ -18,7 +18,7 @@ import { useEffect } from "react";
 import { toastSuccess } from "@src/components/notification";
 
 import type { TStakingContext } from "./context";
-import { setUserWallet } from "./context/actions";
+import { fetchAccountData, setUserWallet } from "./context/actions";
 import type { Account, StakingNetworkId, Wallet } from "./core";
 import {
   WalletId,
@@ -337,10 +337,9 @@ const tryToConnectKeplr = async (
           Promise.all(
             accounts.map((account) =>
               Promise.all([
-                stakingClient.getAddressInfo(networkId, account.address),
-                stakingClient.getRewardsInfo(networkId, account.address),
+                fetchAccountData(context, account.address, networkId, true),
                 window.keplr!.getKey(networkId),
-              ]).then(([info, rewards, key]) => {
+              ]).then(([{ info, rewards }, key]) => {
                 if (key?.name) {
                   walletName = key.name;
                 }
@@ -441,10 +440,9 @@ const tryToConnectLeap = async (
           Promise.all(
             accounts.map((account) =>
               Promise.all([
-                stakingClient.getAddressInfo(networkId, account.address),
-                stakingClient.getRewardsInfo(networkId, account.address),
+                fetchAccountData(context, account.address, networkId, true),
                 window.leap!.getKey(networkId),
-              ]).then(([info, rewards, key]) => {
+              ]).then(([{ info, rewards }, key]) => {
                 if (key?.name) {
                   walletName = key.name;
                 }

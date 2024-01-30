@@ -22,33 +22,6 @@ import { disconnectWalletFns } from "../wallet_operations";
 
 // Actions
 
-export const fetchNetworksInfo = async (context: TStakingContext) => {
-  const stakingNetworksInfo = await Promise.all(
-    Array.from(networksWithStaking)
-      .filter(ENABLE_TESTNETS ? () => true : (n) => !testnetNetworks.has(n))
-      .map((networkId) =>
-        stakingClient.getStakingInfo(networkId).then((info) => ({
-          info,
-          networkId,
-        })),
-      ),
-  );
-
-  context.setState((state) => ({
-    ...state,
-    networksInfo: {
-      ...state.networksInfo,
-      ...stakingNetworksInfo.reduce(
-        (acc, { info, networkId }) => ({
-          ...acc,
-          [networkId]: info,
-        }),
-        {},
-      ),
-    },
-  }));
-};
-
 const networkInfoRequests: {
   [key in StakingNetworkId]?: Promise<NetworkInfo>;
 } = {};
@@ -81,6 +54,19 @@ export const getNetworkStakingInfo = async (
   networkInfoRequests[networkId] = newRequest;
 
   return newRequest;
+};
+
+export const fetchNetworksInfo = async (context: TStakingContext) => {
+  await Promise.all(
+    Array.from(networksWithStaking)
+      .filter(ENABLE_TESTNETS ? () => true : (n) => !testnetNetworks.has(n))
+      .map((networkId) =>
+        getNetworkStakingInfo(context, networkId).then((info) => ({
+          info,
+          networkId,
+        })),
+      ),
+  );
 };
 
 const coinPriceRequests: { [key in CoinDenom]?: Promise<string> } = {};
@@ -171,16 +157,76 @@ export const setSelectedAccount = (
   });
 };
 
+type FetchAccountResult = {
+  info: Awaited<ReturnType<typeof stakingClient.getAddressInfo>>;
+  rewards: Awaited<ReturnType<typeof stakingClient.getRewardsInfo>>;
+};
+
+const accountsRequests: Record<
+  string,
+  Promise<FetchAccountResult> | undefined
+> = {};
+
+export const fetchAccountData = async (
+  context: TStakingContext,
+  address: string,
+  networkId: StakingNetworkId,
+  useCache = false,
+): Promise<FetchAccountResult> => {
+  const id = [address, networkId].join("___");
+
+  if (useCache) {
+    const cachedResponse = accountsRequests[id];
+
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+
+    const foundResponse = Object.keys(context.state.wallets)
+      .map((wallet) => {
+        const maybeAccount = context.state.wallets[
+          wallet as WalletId
+        ]?.networks?.[networkId]?.accounts?.find((a) => a.address === address);
+
+        if (maybeAccount?.info && maybeAccount?.rewards) {
+          return { info: maybeAccount.info, rewards: maybeAccount.rewards };
+        }
+
+        return null;
+      })
+      .find(Boolean);
+
+    if (foundResponse) {
+      return foundResponse;
+    }
+  }
+
+  const newRequest = Promise.all([
+    stakingClient.getAddressInfo(networkId, address),
+    stakingClient.getRewardsInfo(networkId, address),
+  ]).then(([info, rewards]) => {
+    accountsRequests[id] = undefined;
+
+    return { info, rewards };
+  });
+
+  accountsRequests[id] = newRequest;
+
+  return newRequest;
+};
+
 export const syncAccountData = async (
   context: TStakingContext,
   account: Account,
 ) => {
   const { address, networkId, wallet: walletId } = account;
 
-  const [info, rewards] = await Promise.all([
-    stakingClient.getAddressInfo(networkId, address),
-    stakingClient.getRewardsInfo(networkId, address),
-  ]);
+  const { info, rewards } = await fetchAccountData(
+    context,
+    account.address,
+    account.networkId,
+    false,
+  );
 
   const newWallet: Wallet = {
     ...context.state.wallets[walletId],

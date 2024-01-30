@@ -1,3 +1,6 @@
+import { StakingProvider } from "@src/screens/staking/lib/staking_sdk/context";
+import GQLProvider from "@src/utils/gql";
+
 import StatsCard from "./components/stats_card";
 import { useStatsHook } from "./hooks";
 import * as styles from "./index.module.scss";
@@ -29,5 +32,13 @@ const Stats = ({ red }: Props) => {
     </div>
   );
 };
+
+export const StatsWithProvider = (props: Props) => (
+  <GQLProvider>
+    <StakingProvider>
+      <Stats {...props} />
+    </StakingProvider>
+  </GQLProvider>
+);
 
 export default Stats;
