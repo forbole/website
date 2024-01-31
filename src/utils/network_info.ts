@@ -512,7 +512,7 @@ const networks = {
     denom: "osmo",
     graphql: "osmosis",
     guide: "how-to-stake-osmo-on-osmosis",
-    image: "/images/network/osmosis.png",
+    image: "/images/network/osmosis.svg",
     key: "osmosis",
     label: "Osmosis - OSMO",
     name: "Osmosis",
