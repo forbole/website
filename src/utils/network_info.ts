@@ -448,6 +448,13 @@ const networks = {
     label: "",
     name: "Neutron",
   },
+  "nois": {
+    denom: "NOIS",
+    graphql: "nois",
+    image: "/images/network/nois.svg",
+    key: "nois",
+    name: "Nois",
+  },
   "nolus": {
     denom: "NLS",
     graphql: "nolus",
@@ -768,6 +775,7 @@ export const cosmosNetworkKeys = [
   "likecoin",
   "mars",
   "neutron",
+  "nois",
   "nolus",
   "nomic",
   "nym",
@@ -796,7 +804,7 @@ export const cosmosNetworkKeys = [
   // Preparing:
   // "islamic_coin",
   // 'desmos',
-];
+] satisfies NetworkKey[];
 
 // These networks are not supported by the rewards calculator yet
 export const skippedRewardsNetworks = new Set([
@@ -815,7 +823,7 @@ export const skippedRewardsNetworks = new Set([
 export const networksWithHiddenInfo = new Set();
 
 const getNetworkKeysArray = () => {
-  const arr = [...cosmosNetworkKeys];
+  const arr = [...cosmosNetworkKeys] as string[];
 
   arr.push("elrond", "solana", "oasis", "radix", "sui", "ethereum");
   arr.sort();

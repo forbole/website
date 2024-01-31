@@ -6,10 +6,11 @@ export type CoinsPricesResult = { [key in CoinDenom]?: string };
 
 export const geckoClient = {
   getCoinsPrices: async (): Promise<CoinsPricesResult> => {
-    const denomToEndpoint: Record<CoinDenom, string> = {
+    const denomToEndpoint: Record<CoinDenom, null | string> = {
       [CoinDenom.AKT]: "akash-network",
       [CoinDenom.ATOM]: "cosmos",
       [CoinDenom.DYDX]: "dydx",
+      [CoinDenom.NOIS]: null,
       [CoinDenom.TIA]: "celestia",
     } as const;
 
@@ -18,7 +19,12 @@ export const geckoClient = {
     ) as Record<string, CoinDenom>;
 
     const denoms = Object.keys(denomToEndpoint) as CoinDenom[];
-    const ids = denoms.map((denom) => denomToEndpoint[denom]).join(",");
+
+    const ids = denoms
+      .map((denom) => denomToEndpoint[denom])
+      .filter(Boolean)
+      .join(",");
+
     const defaultValue = {};
 
     return IS_E2E

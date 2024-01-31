@@ -8,8 +8,6 @@ import type {
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
 
-const ENABLE_LEAP = process.env.NEXT_PUBLIC_STAKING_ENABLE_LEAP !== "false";
-
 export enum WalletId {
   Keplr = "keplr",
   Leap = "leap",
@@ -19,6 +17,7 @@ export enum CoinDenom {
   AKT = "AKT",
   ATOM = "ATOM",
   DYDX = "DYDX",
+  NOIS = "NOIS",
   TIA = "TIA",
 }
 
@@ -32,6 +31,7 @@ export enum StakingNetworkId {
   CosmosHub = "cosmoshub-4",
   CosmosHubTestnet = "theta-testnet-001",
   DyDx = "dydx-mainnet-1",
+  Nois = "nois-1",
 }
 
 export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
@@ -41,6 +41,7 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
   [StakingNetworkId.CosmosHub]: CoinDenom.ATOM,
   [StakingNetworkId.CosmosHubTestnet]: CoinDenom.ATOM,
   [StakingNetworkId.DyDx]: CoinDenom.DYDX,
+  [StakingNetworkId.Nois]: CoinDenom.NOIS,
 };
 
 export const testnetNetworks = new Set([
@@ -56,6 +57,7 @@ export const keplrNetworks = new Set(
     StakingNetworkId.CosmosHub,
     StakingNetworkId.Celestia,
     StakingNetworkId.DyDx,
+    StakingNetworkId.Nois,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
@@ -65,9 +67,7 @@ export const leapNetworks = keplrNetworks;
 
 export const networksWithStaking = new Set([...Array.from(keplrNetworks)]);
 
-export const walletsSupported = new Set(
-  [WalletId.Keplr].concat(ENABLE_LEAP ? [WalletId.Leap] : []),
-);
+export const walletsSupported = new Set([WalletId.Keplr, WalletId.Keplr]);
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",
@@ -76,6 +76,7 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.CosmosHub]: "cosmos",
   [StakingNetworkId.CosmosHubTestnet]: "cosmos-testnet",
   [StakingNetworkId.DyDx]: "dydx",
+  [StakingNetworkId.Nois]: "nois",
 };
 
 export const networkKeyToNetworkId: { [key in NetworkKey]?: StakingNetworkId } =
