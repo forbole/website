@@ -10,7 +10,6 @@ export const networkToUnnormalisedDenom = {
   [StakingNetworkId.CosmosHub]: "UATOM",
   [StakingNetworkId.CosmosHubTestnet]: "UATOM",
   [StakingNetworkId.DyDx]: "ADYDX",
-  [StakingNetworkId.Nois]: "UNOIS",
 } as const satisfies Record<StakingNetworkId, string>;
 
 type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
@@ -19,13 +18,11 @@ const uatomExp = 6;
 const uaktExp = 6;
 const utiaExp = 6;
 const adydxExp = 18;
-const unoisExp = 6;
 
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   ADYDX: [CoinDenom.DYDX, adydxExp],
   UAKT: [CoinDenom.AKT, uaktExp],
   UATOM: [CoinDenom.ATOM, uatomExp],
-  UNOIS: [CoinDenom.NOIS, unoisExp],
   UTIA: [CoinDenom.TIA, utiaExp],
 };
 

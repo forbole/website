@@ -31,7 +31,6 @@ export enum StakingNetworkId {
   CosmosHub = "cosmoshub-4",
   CosmosHubTestnet = "theta-testnet-001",
   DyDx = "dydx-mainnet-1",
-  Nois = "nois-1",
 }
 
 export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
@@ -41,7 +40,6 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
   [StakingNetworkId.CosmosHub]: CoinDenom.ATOM,
   [StakingNetworkId.CosmosHubTestnet]: CoinDenom.ATOM,
   [StakingNetworkId.DyDx]: CoinDenom.DYDX,
-  [StakingNetworkId.Nois]: CoinDenom.NOIS,
 };
 
 export const testnetNetworks = new Set([
@@ -57,7 +55,6 @@ export const keplrNetworks = new Set(
     StakingNetworkId.CosmosHub,
     StakingNetworkId.Celestia,
     StakingNetworkId.DyDx,
-    StakingNetworkId.Nois,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
@@ -76,7 +73,6 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.CosmosHub]: "cosmos",
   [StakingNetworkId.CosmosHubTestnet]: "cosmos-testnet",
   [StakingNetworkId.DyDx]: "dydx",
-  [StakingNetworkId.Nois]: "nois",
 };
 
 export const networkKeyToNetworkId: { [key in NetworkKey]?: StakingNetworkId } =
