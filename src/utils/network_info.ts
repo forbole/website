@@ -176,6 +176,15 @@ const networks = {
     label: "Comdex - CMDX",
     name: "Comdex",
   },
+  "composable-finance": {
+    address: "centaurivaloper1fmz5pw0agjg4mz4nxs34ha6rc5337fc3vk3xrd",
+    denom: "PICA",
+    graphql: "composable-finance",
+    image: "/images/network/composable_finance.svg",
+    key: "composable-finance",
+    label: "Composable Finance - PICA",
+    name: "Composable Finance",
+  },
   "coreum": {
     address: "corevaloper1k3wy8ztt2e0uq3j5deukjxu2um4a4z5tvz35la",
     denom: "CORE",
@@ -353,11 +362,9 @@ const networks = {
     name: "Injective",
   },
   "islamic_coin": {
-    denom: "",
     graphql: "islamic_coin",
-    image: "/images/network/islamic_coin.png",
+    image: "/images/network/islamic_coin.svg",
     key: "islamic_coin",
-    label: "",
     name: "Islamic Coin",
   },
   "ixo": {
@@ -591,6 +598,12 @@ const networks = {
     label: "Rizon - ATOLO",
     name: "Rizon",
   },
+  "router-protocol": {
+    graphql: "router-protocol",
+    image: "",
+    key: "router-protocol",
+    name: "Router Protocol",
+  },
   "secret": {
     address: "secretvaloper1kvp570cd6zvzh8ffrhz7lmytt6v6u2gxz8tl0g",
     delegate: "https://wallet.keplr.app/chains/secret-network",
@@ -757,6 +770,7 @@ export const cosmosNetworkKeys = [
   "celestia",
   "cheqd",
   "comdex",
+  "composable-finance",
   "coreum",
   "cosmos",
   "crescent",
@@ -769,6 +783,7 @@ export const cosmosNetworkKeys = [
   "gravity_bridge",
   "humansai",
   "injective",
+  "islamic_coin",
   "jackal",
   "kava",
   "kyve",
@@ -802,7 +817,6 @@ export const cosmosNetworkKeys = [
   "xpla",
 
   // Preparing:
-  // "islamic_coin",
   // 'desmos',
 ] satisfies NetworkKey[];
 
@@ -820,7 +834,7 @@ export const skippedRewardsNetworks = new Set([
 ]);
 
 // The data of these networks is not ready yet
-export const networksWithHiddenInfo = new Set();
+export const networksWithHiddenInfo = new Set("composable-finance");
 
 const getNetworkKeysArray = () => {
   const arr = [...cosmosNetworkKeys] as string[];

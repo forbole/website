@@ -18,6 +18,7 @@ export enum CoinDenom {
   ATOM = "ATOM",
   DYDX = "DYDX",
   OSMO = "OSMO",
+  PICA = "PICA",
   TIA = "TIA",
 }
 
@@ -28,6 +29,7 @@ export enum StakingNetworkId {
   Akash = "akashnet-2",
   Celestia = "celestia",
   CelestiaTestnet = "mocha-4",
+  ComposableFinance = "centauri-1",
   CosmosHub = "cosmoshub-4",
   CosmosHubTestnet = "theta-testnet-001",
   DyDx = "dydx-mainnet-1",
@@ -38,6 +40,7 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
   [StakingNetworkId.Akash]: CoinDenom.AKT,
   [StakingNetworkId.Celestia]: CoinDenom.TIA,
   [StakingNetworkId.CelestiaTestnet]: CoinDenom.TIA,
+  [StakingNetworkId.ComposableFinance]: CoinDenom.PICA,
   [StakingNetworkId.CosmosHub]: CoinDenom.ATOM,
   [StakingNetworkId.CosmosHubTestnet]: CoinDenom.ATOM,
   [StakingNetworkId.DyDx]: CoinDenom.DYDX,
@@ -73,6 +76,7 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",
   [StakingNetworkId.Celestia]: "celestia",
   [StakingNetworkId.CelestiaTestnet]: "celestia-testnet",
+  [StakingNetworkId.ComposableFinance]: "composable-finance",
   [StakingNetworkId.CosmosHub]: "cosmos",
   [StakingNetworkId.CosmosHubTestnet]: "cosmos-testnet",
   [StakingNetworkId.DyDx]: "dydx",
@@ -81,7 +85,9 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
 
 export const networkKeyToNetworkId: { [key in NetworkKey]?: StakingNetworkId } =
   Object.fromEntries(
-    Object.entries(networkIdToNetworkKey).map(([k, v]) => [v, k]),
+    Object.entries(networkIdToNetworkKey)
+      .filter(([k]) => networksWithStaking.has(k as StakingNetworkId))
+      .map(([k, v]) => [v, k]),
   );
 
 export type Account = {
