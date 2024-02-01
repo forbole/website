@@ -11,7 +11,7 @@ import {
 import { getNetworkTVL } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import { networkFunctions } from "@src/utils/network_functions";
-import { networkNumber } from "@src/utils/network_info";
+import { EthData, VSYSData, networkNumber } from "@src/utils/network_info";
 
 const elrondNetworkFunctions = networkFunctions.elrond;
 
@@ -57,13 +57,16 @@ export const useStatsHook = () => {
     query: statsQuery,
   });
 
-  const extraTVL = networksWithStakingTVL.reduce((acc, network) => {
-    const networkTVL = getNetworkTVL(stakingRef.current.state, network);
+  const extraTVL =
+    EthData.TVL +
+    VSYSData.TVL +
+    networksWithStakingTVL.reduce((acc, network) => {
+      const networkTVL = getNetworkTVL(stakingRef.current.state, network);
 
-    if (!networkTVL) return acc;
+      if (!networkTVL) return acc;
 
-    return acc + networkTVL.toNumber();
-  }, 0);
+      return acc + networkTVL.toNumber();
+    }, 0);
 
   const parsedStats = useMemo(() => {
     if (!statsQueryLoading && statsQueryData) {

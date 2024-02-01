@@ -599,6 +599,7 @@ const networks = {
     name: "Rizon",
   },
   "router-protocol": {
+    denom: "Route",
     graphql: "router-protocol",
     image: "",
     key: "router-protocol",
@@ -847,3 +848,27 @@ const getNetworkKeysArray = () => {
 
 export const allNetworkKeys = getNetworkKeysArray();
 export const networkNumber = allNetworkKeys.length;
+
+// @hardcoded
+// https://www.coingecko.com/en/coins/ethereum
+const ethPrice = 2270;
+
+export const EthData = {
+  // @hardcoded
+  TVL: 521 * 32 * ethPrice,
+};
+
+// @hardcoded
+export const VSYSData = (() => {
+  // https://explorer.v.systems/nodeInfo/AR45wyKHZnmt7ujqJRT7b4hSk9wX1bjwDkz
+  // https://explorer.v.systems/superNodes
+  const bonded = 96_909_275;
+  // https://www.coingecko.com/en/coins/v-systems
+  const coinPrice = 0.001204;
+
+  const TVL = bonded * coinPrice;
+
+  return {
+    TVL,
+  };
+})();
