@@ -601,7 +601,7 @@ const networks = {
   "router-protocol": {
     denom: "Route",
     graphql: "router-protocol",
-    image: "",
+    image: "/images/network/router_protocol.svg",
     key: "router-protocol",
     name: "Router Protocol",
   },
@@ -805,6 +805,7 @@ export const cosmosNetworkKeys = [
   "quicksilver",
   "regen",
   "rizon",
+  "router-protocol",
   "sentinel",
   "ssv",
   "stafihub",
