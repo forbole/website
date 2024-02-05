@@ -95,31 +95,33 @@ const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
       {!!WalletIcon && <WalletIcon className={styles.logo} />}
       <div className={styles.content}>
         <div>{walletName}</div>
-        <button
-          className={[
-            styles.address,
-            !isOpened ? styles.clickable : undefined,
-          ].join(" ")}
-          data-tooltip-content={account.address}
-          data-tooltip-id={tooltipId}
-          onClick={
-            isOpened
-              ? undefined
-              : (e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
+        <div className={styles.addressWrap}>
+          <button
+            className={[
+              styles.address,
+              !isOpened ? styles.clickable : undefined,
+            ].join(" ")}
+            data-tooltip-content={account.address}
+            data-tooltip-id={tooltipId}
+            onClick={
+              isOpened
+                ? undefined
+                : (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
 
-                  navigator.clipboard.writeText(account.address);
+                    navigator.clipboard.writeText(account.address);
 
-                  toastSuccess({
-                    title: t("addressCopied"),
-                  });
-                }
-          }
-          type="button"
-        >
-          {parsedAddress}
-        </button>
+                    toastSuccess({
+                      title: t("addressCopied"),
+                    });
+                  }
+            }
+            type="button"
+          >
+            {parsedAddress}
+          </button>
+        </div>
       </div>
     </div>
   );
