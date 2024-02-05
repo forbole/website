@@ -70,7 +70,7 @@ export const leapNetworks = keplrNetworks;
 
 export const networksWithStaking = new Set([...Array.from(keplrNetworks)]);
 
-export const walletsSupported = new Set([WalletId.Keplr, WalletId.Keplr]);
+export const walletsSupported = new Set([WalletId.Keplr, WalletId.Leap]);
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",

@@ -1,3 +1,4 @@
+import type { EncodeObject } from "@cosmjs/proto-signing";
 import type {
   Coin,
   MsgDelegateEncodeObject,
@@ -30,6 +31,44 @@ import { stakingClient } from "./staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "./utils/storage";
 
 export const MAX_MEMO = 256;
+
+type FeeOpts = {
+  address: string;
+  amount: Coin[];
+  client: SigningStargateClient;
+  gasLimit: string;
+  memo: string;
+  msgs: EncodeObject[];
+};
+
+const getCosmosFee = async ({
+  address,
+  amount,
+  client,
+  gasLimit,
+  memo,
+  msgs,
+}: FeeOpts) => {
+  const gasEstimate = await client
+    .simulate(address, msgs, memo)
+    .catch((err) => {
+      // eslint-disable-next-line no-console
+      console.log("debug: wallet_operations.ts: Estimate error", err);
+
+      return 0;
+    });
+
+  // This is a factor to increase the gas fee, since the estimate can be a
+  // bit short in some cases (especially for the last events)
+  const gasFeeFactor = 1.2;
+
+  const fee: StdFee = {
+    amount,
+    gas: gasEstimate ? (gasEstimate * gasFeeFactor).toString() : gasLimit,
+  };
+
+  return fee;
+};
 
 enum CosmosError {
   None = "None",
@@ -107,11 +146,6 @@ export const stakeAmount = ({
         value: msg,
       };
 
-      const fee: StdFee = {
-        amount: info.tx.authInfo.fee.amount,
-        gas: info.tx.authInfo.fee.gas_limit,
-      };
-
       const offlineSigner =
         account.wallet === WalletId.Leap
           ? window.leap?.getOfflineSignerOnlyAmino(account.networkId)
@@ -125,6 +159,15 @@ export const stakeAmount = ({
         networkInfo.rpc,
         offlineSigner,
       );
+
+      const fee = await getCosmosFee({
+        address: account.address,
+        amount: info.tx.authInfo.fee.amount,
+        client,
+        gasLimit: info.tx.authInfo.fee.gas_limit,
+        memo,
+        msgs: [msgAny],
+      });
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
@@ -191,11 +234,6 @@ export const claimRewards = async ({
         value: msg,
       };
 
-      const fee: StdFee = {
-        amount: info.tx.authInfo.fee.amount,
-        gas: info.tx.authInfo.fee.gas_limit,
-      };
-
       const offlineSigner =
         account.wallet === WalletId.Leap
           ? window.leap?.getOfflineSignerOnlyAmino(account.networkId)
@@ -209,6 +247,15 @@ export const claimRewards = async ({
         networkInfo.rpc,
         offlineSigner,
       );
+
+      const fee = await getCosmosFee({
+        address: account.address,
+        amount: info.tx.authInfo.fee.amount,
+        client,
+        gasLimit: info.tx.authInfo.fee.gas_limit,
+        memo: "",
+        msgs: [msgAny],
+      });
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee)
@@ -262,6 +309,7 @@ export const getClaimRewardsFee = async ({
 type UnstakeAmount = {
   account: Account;
   amount: string;
+  memo: string;
 };
 
 export enum UnstakeError {
@@ -295,11 +343,6 @@ export const unstake = async (
         value: msg,
       };
 
-      const fee: StdFee = {
-        amount: info.tx.authInfo.fee.amount,
-        gas: info.tx.authInfo.fee.gas_limit,
-      };
-
       const offlineSigner =
         opts.account.wallet === WalletId.Leap
           ? window.leap?.getOfflineSignerOnlyAmino(opts.account.networkId)
@@ -314,8 +357,17 @@ export const unstake = async (
         offlineSigner,
       );
 
+      const fee = await getCosmosFee({
+        address: opts.account.address,
+        amount: info.tx.authInfo.fee.amount,
+        client,
+        gasLimit: info.tx.authInfo.fee.gas_limit,
+        memo: opts.memo,
+        msgs: [msgAny],
+      });
+
       return client
-        .signAndBroadcast(opts.account.address, [msgAny], fee, "")
+        .signAndBroadcast(opts.account.address, [msgAny], fee, opts.memo)
         .then((result) => {
           const hasUnbonded = !!result?.events?.find(
             (ev) => ev.type === "unbond",

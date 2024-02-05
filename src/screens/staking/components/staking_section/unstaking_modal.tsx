@@ -132,6 +132,7 @@ const UnstakingModal = () => {
     unstake({
       account: selectedAccount,
       amount,
+      memo,
     })
       .then(async (unstaked) => {
         if (unstaked.success) {
