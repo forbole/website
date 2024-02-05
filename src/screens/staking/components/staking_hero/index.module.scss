@@ -82,6 +82,10 @@ body .claimRewards {
 
 .claimRewards {
   flex: 1;
+
+  @include down-tablet {
+    display: none;
+  }
 }
 
 .contentStats {
