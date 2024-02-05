@@ -4,6 +4,7 @@ import BigNumber from "bignumber.js";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
+import IconChevronDown from "@src/components/icons/icon_chevron_down.svg";
 import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
@@ -36,7 +37,15 @@ import * as styles from "./networks_select.module.scss";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-const IconComponent = () => null;
+const IconComponent = ({ className }: { className: string }) => (
+  <IconChevronDown
+    className={[
+      className,
+      styles.trigger,
+      className.includes("disabled") ? styles.disabled : "",
+    ].join(" ")}
+  />
+);
 
 const MenuProps = {
   PaperProps: {

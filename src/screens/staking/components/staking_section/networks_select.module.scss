@@ -118,3 +118,11 @@
     cursor: pointer;
   }
 }
+
+.trigger {
+  cursor: pointer;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
