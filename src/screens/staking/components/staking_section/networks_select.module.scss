@@ -68,6 +68,14 @@
     font-weight: 600;
     letter-spacing: 0.72px;
     line-height: normal;
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include down-tablet {
+      max-width: 200px;
+    }
   }
 
   div:nth-child(2) {
