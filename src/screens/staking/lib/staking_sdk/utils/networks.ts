@@ -33,8 +33,9 @@ export const getUnbondingTimeForNetwork = (
   }
 
   const now = new Date();
-  const days = Math.ceil(unbondingPeriod / 86400);
-  const nextDate = new Date(now.getTime() + unbondingPeriod * 1000);
+  const unbondingPeriodSeconds = parseInt(unbondingPeriod, 10);
+  const days = Math.ceil(unbondingPeriodSeconds / 86400);
+  const nextDate = new Date(now.getTime() + unbondingPeriodSeconds * 1000);
 
   const nextDateStr = nextDate.toLocaleDateString(locale, {
     day: "numeric",

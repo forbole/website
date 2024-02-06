@@ -120,7 +120,7 @@ type SelectedAccount = {
 export type NetworkInfo = {
   apy: number;
   rpc: string;
-  unbonding_period: number;
+  unbonding_period: null | string;
   voting_power: number;
 };
 

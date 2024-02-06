@@ -80,7 +80,7 @@ export type GetRewardsResponse = Array<Coin> | Record<string, never>;
 type GetStakingInfoResponse = {
   apy: number;
   rpc: string;
-  unbonding_period: number;
+  unbonding_period: null | string;
   voting_power: number;
 };
 
