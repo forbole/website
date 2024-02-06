@@ -241,6 +241,20 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
     );
   }
 
+  const filteredAccountsNetworks = new Set<StakingNetworkId>([]);
+
+  const filteredAccounts = [selectedAccount]
+    .concat(allAccounts)
+    .filter((account) => {
+      if (filteredAccountsNetworks.has(account.networkId)) {
+        return false;
+      }
+
+      filteredAccountsNetworks.add(account.networkId);
+
+      return true;
+    });
+
   return (
     <div className={styles.control}>
       <Select
@@ -251,7 +265,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
         onChange={handleChange}
         value={selectedItem}
       >
-        {allAccounts.map((account) => {
+        {filteredAccounts.map((account) => {
           const item = [
             account.address,
             account.networkId,

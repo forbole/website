@@ -585,7 +585,7 @@ const networks = {
     address: "regenvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0c7xhe5",
     denom: "regen",
     graphql: "regen",
-    image: "/images/network/regen.png",
+    image: "/images/network/regen.svg",
     key: "regen",
     label: "Regen - REGEN",
     name: "Regen",
