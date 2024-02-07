@@ -60,7 +60,9 @@ const ConnectWalletModal = () => {
                   onClick={() => {
                     setIsLoading(true);
 
-                    tryToConnectWallets(stakingRef.current, [walletId], true)
+                    tryToConnectWallets(stakingRef.current, [walletId], true, {
+                      leapCreateWallet: t("connectWallet.leapCreateWallet"),
+                    })
                       .then((connected) => {
                         if (connected) {
                           toastSuccess({

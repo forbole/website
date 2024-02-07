@@ -27,9 +27,9 @@ import { normaliseDenom } from "@src/screens/staking/lib/staking_sdk/utils/coins
 import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
   MAX_MEMO,
-  UnstakeError,
   unstake,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
+import { UnstakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";

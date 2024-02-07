@@ -19,6 +19,7 @@
   "commission": "Commission Rate",
   "connectWallet": {
     "intro": "Stake with Forbole and earn rewards!",
+    "leapCreateWallet": "You need to create the Leap wallet in the browser extension, then reload this page.",
     "success": {
       "subtitle": "Welcome  🎉",
       "title": "Sign up success"

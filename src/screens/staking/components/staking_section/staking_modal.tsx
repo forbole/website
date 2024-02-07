@@ -26,9 +26,9 @@ import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sd
 import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import {
   MAX_MEMO,
-  StakeError,
   stakeAmount,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
+import { StakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";

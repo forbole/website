@@ -18,10 +18,10 @@ import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
-  ClaimRewardsError,
   claimRewards,
   getClaimRewardsFee,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
+import { ClaimRewardsError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
 
 import * as styles from "./claim_rewards_modal.module.scss";
 import Label from "./label";

@@ -19,6 +19,7 @@
   "commission": "佣金率",
   "connectWallet": {
     "intro": "与 Forbole 进行质押并赚取奖励！",
+    "leapCreateWallet": "您需要在浏览器扩展中创建 Leap 钱包，然后重新加载此页面。",
     "success": {
       "subtitle": "欢迎 🎉",
       "title": "注册成功"
