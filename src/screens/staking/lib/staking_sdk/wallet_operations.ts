@@ -20,10 +20,12 @@ import { toastSuccess } from "@src/components/notification";
 
 import type { TStakingContext } from "./context";
 import { fetchAccountData, setUserWallet } from "./context/actions";
+import { getHasConnectedWallet } from "./context/selectors";
 import type { Account, StakingNetworkId, Wallet } from "./core";
 import {
   WalletId,
   keplrNetworks,
+  keplrNonNativeChains,
   leapNetworks,
   networksWithStaking,
 } from "./core";
@@ -409,12 +411,26 @@ const tryToConnectKeplr = async (
   context: TStakingContext,
   openLinkIfMissing: boolean,
 ) => {
-  if (window.keplr) {
-    const chainsToConnect = Array.from(keplrNetworks);
+  const { keplr } = window;
 
-    await window.keplr.enable(chainsToConnect);
+  if (keplr) {
+    const chainsToConnect = Array.from(keplrNetworks).filter(
+      (n) => !keplrNonNativeChains.has(n),
+    );
+
+    const nonNativeChains = Array.from(keplrNonNativeChains);
 
     try {
+      await keplr.enable(chainsToConnect);
+
+      await nonNativeChains.reduce(async (acc, network) => {
+        await acc;
+
+        // Try non-native chains one by one, since it will throw if not already
+        // added
+        await keplr.enable([network]).catch(() => null);
+      }, Promise.resolve());
+
       const handleError = (err: unknown) => {
         // eslint-disable-next-line no-console
         console.log("debug: index.tsx: err", err);
@@ -515,9 +531,9 @@ const tryToConnectLeap = async (
   if (window.leap) {
     const chainsToConnect = Array.from(leapNetworks);
 
-    await window.leap.enable(chainsToConnect);
-
     try {
+      await window.leap.enable(chainsToConnect);
+
       const handleError = (err: unknown) => {
         // eslint-disable-next-line no-console
         console.log("debug: index.tsx: err", err);
@@ -701,5 +717,17 @@ export const doesWalletSupportNetwork = (
 
       return false;
     }
+  }
+};
+
+export const suggestAddWalletNetwork = (
+  context: TStakingContext,
+  networkId: StakingNetworkId,
+) => {
+  if (
+    getHasConnectedWallet(context.state, WalletId.Keplr) &&
+    keplrNonNativeChains.has(networkId)
+  ) {
+    window.open("https://chains.keplr.app/");
   }
 };
