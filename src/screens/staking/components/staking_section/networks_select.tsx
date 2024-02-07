@@ -25,8 +25,8 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
-  getAccountNormalisedBalance,
   getClaimableRewardsForAccount,
+  sortAccountsByNetworkName,
 } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { walletsIcons } from "@src/screens/staking/lib/wallet_info";
@@ -253,7 +253,8 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
       filteredAccountsNetworks.add(account.networkId);
 
       return true;
-    });
+    })
+    .sort(sortAccountsByNetworkName);
 
   return (
     <div className={styles.control}>
@@ -271,10 +272,6 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
             account.networkId,
             account.wallet,
           ].join(SEPARATOR);
-
-          const balance = getAccountNormalisedBalance(account);
-
-          if (!balance) return null;
 
           const rightSide = (() => {
             if (!isRewards || !account.networkId) return null;
@@ -317,10 +314,14 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
             return <div className={styles.rewards}>+{formatted}</div>;
           })();
 
+          const denom = mainNetworkDenom[account.networkId];
+
+          if (!denom) return null;
+
           return (
             <MenuItem key={item} value={item}>
               <NetworkItem
-                denom={balance.coin.denom}
+                denom={denom}
                 rightSide={rightSide}
                 value={account.networkId}
               />

@@ -3,7 +3,7 @@ import type { Network, NetworkKey } from "@src/utils/network_info";
 import type { NetworkInfo } from "../core";
 import { networkKeyToNetworkId } from "../core";
 
-export const sortNetworks = () => (a: Network, b: Network) => {
+export const sortNetworksByName = (a: Network, b: Network) => {
   const networkIdA = networkKeyToNetworkId[a.key as NetworkKey];
   const networkIdB = networkKeyToNetworkId[b.key as NetworkKey];
 

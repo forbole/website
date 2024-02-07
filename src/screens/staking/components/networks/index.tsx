@@ -2,7 +2,7 @@ import type { RefObject } from "react";
 import { memo, useState } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
-import { sortNetworks } from "@src/screens/staking/lib/staking_sdk/utils/networks";
+import { sortNetworksByName } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import type { NetworkKey } from "@src/utils/network_info";
 import { allNetworkKeys, getNetworkInfo } from "@src/utils/network_info";
 
@@ -45,7 +45,7 @@ const Networks = ({ scrollRef }: Props) => {
     .filter(Boolean);
 
   const sortedNetworks = [...allNetworkData]
-    .sort(sortNetworks())
+    .sort(sortNetworksByName)
     .filter((a) => {
       if (networksFilter === "") {
         return true;

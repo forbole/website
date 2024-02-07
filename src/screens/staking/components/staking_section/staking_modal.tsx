@@ -20,9 +20,10 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { normaliseDenom } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import {
   MAX_MEMO,
   StakeError,
@@ -76,12 +77,12 @@ const StakingModal = () => {
   const account = getSelectedAccount(stakingState);
   const balance = getAccountNormalisedBalance(account);
 
-  if (!balance || !account) return null;
+  if (!account) return null;
 
   const amountNum = new BigNumber(amount);
 
   const isValidAmount =
-    !amountNum.isNaN() && amountNum.gt(0) && amountNum.lte(balance.num);
+    !amountNum.isNaN() && amountNum.gt(0) && amountNum.lte(balance?.num || 0);
 
   const onClose = () => {
     if (isLoading) return;
@@ -169,6 +170,16 @@ const StakingModal = () => {
       });
   };
 
+  const denom = mainNetworkDenom[account.networkId];
+
+  const availableBalance = (() => {
+    if (balance) return balance.coin;
+
+    if (denom) return getEmptyCoin(denom);
+
+    return null;
+  })();
+
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
       <form className={styles.wrapper} onSubmit={onSubmit}>
@@ -204,11 +215,11 @@ const StakingModal = () => {
           <div className={styles.row}>
             <Label>{t("stakingModal.tokenAmount")}</Label>
             <div>
-              {!!balance?.num && (
+              {!!availableBalance && (
                 <>
                   <Label>{t("stakingModal.available")}</Label>:{" "}
                   <span className={styles.amount}>
-                    {formatCoin(balance.coin)}
+                    {formatCoin(availableBalance)}
                   </span>
                 </>
               )}
@@ -227,8 +238,8 @@ const StakingModal = () => {
                 setAmount(e.target.value);
               }}
               placeholder="0"
-              {...(balance.coin && {
-                rightText: normaliseDenom(balance.coin.denom),
+              {...(!!denom && {
+                rightText: denom,
               })}
               onBlur={() => {
                 setAmountError(newAmountError);

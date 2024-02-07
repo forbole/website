@@ -59,6 +59,7 @@ export const keplrNetworks = new Set(
   [
     StakingNetworkId.Akash,
     StakingNetworkId.CosmosHubTestnet,
+    StakingNetworkId.ComposableFinance,
     StakingNetworkId.CelestiaTestnet,
     StakingNetworkId.CosmosHub,
     StakingNetworkId.Celestia,
