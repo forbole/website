@@ -227,7 +227,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
             );
 
             return (
-              <MenuItem key={item} value={item}>
+              <MenuItem key={item} sx={{ padding: 0 }} value={item}>
                 <WalletItem
                   account={account}
                   isOpened={isOpened}
@@ -319,7 +319,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
           if (!denom) return null;
 
           return (
-            <MenuItem key={item} value={item}>
+            <MenuItem key={item} sx={{ padding: 0 }} value={item}>
               <NetworkItem
                 denom={denom}
                 rightSide={rightSide}
