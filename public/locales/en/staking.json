@@ -142,6 +142,7 @@
     "walletSellect": "Stake from:"
   },
   "stakingWidget": {
+    "addWallet": "Add Wallet",
     "connected_one": "Connected wallet",
     "connected_other": "Connected wallets",
     "connectWallet": "Connect Wallet",
