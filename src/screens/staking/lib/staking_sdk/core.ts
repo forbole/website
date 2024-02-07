@@ -58,22 +58,30 @@ export const testnetNetworks = new Set([
 export const keplrNetworks = new Set(
   [
     StakingNetworkId.Akash,
-    StakingNetworkId.CosmosHubTestnet,
-    StakingNetworkId.CelestiaTestnet,
-    StakingNetworkId.CosmosHub,
     StakingNetworkId.Celestia,
+    StakingNetworkId.CelestiaTestnet,
+    StakingNetworkId.ComposableFinance,
+    StakingNetworkId.CosmosHub,
+    StakingNetworkId.CosmosHubTestnet,
     StakingNetworkId.DyDx,
-    StakingNetworkId.Regen,
     StakingNetworkId.Osmosis,
+    StakingNetworkId.Regen,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
 );
 
+export const keplrNonNativeChains = new Set([
+  StakingNetworkId.ComposableFinance,
+  StakingNetworkId.CelestiaTestnet,
+  StakingNetworkId.CosmosHubTestnet,
+]);
+
 const leapExcludedNetworks = new Set([
-  StakingNetworkId.Regen,
-  StakingNetworkId.DyDx,
   StakingNetworkId.Celestia,
+  StakingNetworkId.ComposableFinance,
+  StakingNetworkId.DyDx,
+  StakingNetworkId.Regen,
 ]);
 
 export const leapNetworks = new Set(

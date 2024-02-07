@@ -52,6 +52,7 @@ import {
   accountHasDelegations,
   accountHasRewards,
 } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
+import { suggestAddWalletNetwork } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { convertToMoney } from "@src/utils/convert_to_money";
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
@@ -360,7 +361,7 @@ const PopOver = ({
       <div className={styles.buttons}>
         {isStakingSupported && (
           <>
-            {hasInit && (!hasNetworkSupportedWallet || !!accounts?.length) && (
+            {hasInit && (
               <HighlightButton
                 className={styles.stake}
                 data-test="popover-stake-button"
@@ -370,6 +371,15 @@ const PopOver = ({
                       stakingRef.current,
                       "connect_wallet",
                       null,
+                    );
+
+                    return;
+                  }
+
+                  if (stakingNetworkId && !accounts?.length) {
+                    suggestAddWalletNetwork(
+                      stakingRef.current,
+                      stakingNetworkId,
                     );
 
                     return;

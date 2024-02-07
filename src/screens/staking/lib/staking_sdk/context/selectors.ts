@@ -157,6 +157,9 @@ export const getUnbondingTokensForNetwork = (
 export const getHasConnectedWallets = (state: State) =>
   Object.keys(state.wallets).length > 0;
 
+export const getHasConnectedWallet = (state: State, walletId: WalletId) =>
+  state.wallets[walletId] !== undefined;
+
 export const getNetworkVotingPower = (
   state: State,
   network: StakingNetworkId,

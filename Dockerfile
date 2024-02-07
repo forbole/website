@@ -13,6 +13,9 @@ COPY ./scripts ./scripts
 COPY ./tsconfig.json .eslintrc.cjs .eslintignore next.config.js \
   .env next-sitemap.config.js i18n.js ./
 
+ARG QUICK_BUILD
+ENV QUICK_BUILD $QUICK_BUILD
+
 RUN yarn analyze-bundle && mv .next/analyze public/
 
 RUN rm -rf .next/cache
@@ -39,7 +42,6 @@ COPY --from=prod_node_modules --chown=nextjs:nodejs /app/node_modules ./node_mod
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 COPY --from=builder --chown=nextjs:nodejs /app/.yarn ./.yarn
-COPY --from=builder --chown=nextjs:nodejs /app/.env ./.env
 COPY --from=builder --chown=nextjs:nodejs /app/i18n.js ./i18n.js
 COPY --from=builder --chown=nextjs:nodejs /app/next.config.js ./next.config.js
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
