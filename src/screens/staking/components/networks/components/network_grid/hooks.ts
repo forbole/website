@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import { __, assocPath, identity, pipe, reduce } from "ramda";
 import { useMemo } from "react";
 import { useQuery } from "urql";
@@ -18,6 +19,8 @@ import {
 const elrondNetworkFunctions = networkFunctions.elrond;
 
 export const useNetworkHook = () => {
+  const { t } = useTranslation("staking");
+
   const [{ data: networkGridData, fetching: networkGridLoading }] = useQuery({
     query: networkGridQuery,
   });
@@ -69,15 +72,23 @@ export const useNetworkHook = () => {
         APY: 0,
         bonded: 0,
         custom: {
-          "POOL APY": "3.16%",
-          "POOL MEV APY": "4.55%",
-          "SOLO AVG APY": "4%",
-          "SOLO MEV APY": "5,69%",
+          content: {
+            "POOL APY": "3.16%",
+            "POOL MEV APY": "4.55%",
+            "SOLO AVG APY": "4%",
+            "SOLO MEV APY": "5,69%",
+          },
+          tooltips: {
+            "POOL APY": t("tooltip.poolAPY"),
+            "POOL MEV APY": t("tooltip.poolMevAPY"),
+            "SOLO AVG APY": t("tooltip.soloAvgAPY"),
+            "SOLO MEV APY": t("tooltip.soloMevAPY"),
+          },
         },
         TVL: 0,
       },
     }),
-    [],
+    [t],
   );
 
   const elrondNetwork = useMemo(() => {

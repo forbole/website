@@ -1,0 +1,137 @@
+@import "src/styles/sass.scss";
+
+.singleItem,
+.control {
+  border-radius: 8px;
+  box-shadow:
+    0 14px 64px -4px #0226e11f,
+    0 8px 22px -6px #0226e11f;
+  height: 80px;
+  margin: 0;
+  overflow: hidden;
+  padding: 16px;
+  width: 100%;
+}
+
+.logo {
+  border-radius: 200px;
+  box-shadow: $box-shadow-variant-3;
+  height: 40px;
+  overflow: hidden;
+  width: 40px;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-start;
+  min-height: 70px;
+  width: 100%;
+}
+
+.select {
+  height: 100%;
+  width: 100%;
+
+  :global(.MuiOutlinedInput-notchedOutline) {
+    background-color: transparent !important;
+    border: none;
+    outline-color: transparent !important;
+
+    &:hover {
+      background-color: transparent !important;
+      border: none !important;
+      border-color: transparent !important;
+      border-right-style: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+  }
+
+  :global(.MuiSelect-select.MuiSelect-outlined.MuiInputBase-input) {
+    padding: 0 !important;
+  }
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  div:nth-child(1) {
+    color: #25282d;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.72px;
+    line-height: normal;
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include down-tablet {
+      max-width: 200px;
+    }
+  }
+
+  div:nth-child(2) {
+    color: #616161;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.308px;
+    line-height: 20px;
+  }
+}
+
+.rewards {
+  color: #1ec490;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.108px;
+  line-height: 21px;
+  padding-right: 32px;
+  text-align: right;
+}
+
+.singleItem {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+}
+
+.addressWrap {
+  align-items: flex-start;
+  display: inline-flex;
+}
+
+.address {
+  background: none;
+  border: none;
+  color: #9d9d9d;
+  cursor: default;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
+  text-align: left;
+
+  &.clickable {
+    cursor: pointer;
+  }
+}
+
+.trigger {
+  cursor: pointer;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}

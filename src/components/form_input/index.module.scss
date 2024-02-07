@@ -32,18 +32,18 @@ $box-shadow: 4px 8px 24px 0 rgba(116, 81, 255, 0.28);
     color: $color-grey-2;
   }
 
-  &.noFocusEffect {
-    &:focus {
-      border-color: transparent;
-    }
-  }
-
   &.withText {
     box-shadow: none;
     margin: 0;
     padding-right: 32px;
     width: 100%;
 
+    &:focus {
+      border-color: transparent;
+    }
+  }
+
+  &.noFocusEffect {
     &:focus {
       border-color: transparent;
     }

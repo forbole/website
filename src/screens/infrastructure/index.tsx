@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import type { SyntheticEvent } from "react";
+import dynamic from "next/dynamic";
+import type { FC, SyntheticEvent } from "react";
 import { useMemo, useRef, useState } from "react";
 
 import Carousel from "@src/components/carousel";
@@ -12,13 +13,18 @@ import ProductPanel from "@src/components/product-panel";
 import ScrollToTop from "@src/components/scroll_to_top";
 import Section from "@src/components/section";
 import { StyledTab, StyledTabs } from "@src/components/selection-tab";
-import Stats from "@src/components/stats";
 import { useDelayedIsLaptop } from "@src/hooks/delayed_is_mobile";
 import * as commonStyles from "@src/styles/common.module.scss";
-import GQLProvider from "@src/utils/gql";
 import { scrollBottom } from "@src/utils/scroll";
 
 import * as styles from "./index.module.scss";
+
+const Stats = dynamic(
+  () => import("@src/components/stats").then((mod) => mod.StatsWithProvider),
+  {
+    ssr: false,
+  },
+) as FC<{ red?: boolean }>;
 
 const Infrastructure = () => {
   const [v1, setV1] = useState(0);
@@ -117,140 +123,138 @@ const Infrastructure = () => {
   ];
 
   return (
-    <GQLProvider>
-      <Layout description={t("expertise_item1")} footer title={t("page_title")}>
-        <div className={commonStyles.pageContainer} ref={topRef}>
-          <HeaderCard
-            desc_1st={t("headercard_desc")}
-            head_bgs={[
-              "/validator_infastructure/head_bg_m@2x.png",
-              "/validator_infastructure/head_bg@2x.png",
-            ]}
-            title={t("headercard_title")}
+    <Layout description={t("expertise_item1")} footer title={t("page_title")}>
+      <div className={commonStyles.pageContainer} ref={topRef}>
+        <HeaderCard
+          desc_1st={t("headercard_desc")}
+          head_bgs={[
+            "/validator_infastructure/head_bg_m@2x.png",
+            "/validator_infastructure/head_bg@2x.png",
+          ]}
+          title={t("headercard_title")}
+        />
+        <Stats red />
+        <div className={styles.section}>
+          <Section
+            desc={t("section_1st_desc")}
+            title={t("section_1st_title")}
+            title_large_trans={t("section_1st_large_title")}
           />
-          <Stats red />
-          <div className={styles.section}>
-            <Section
-              desc={t("section_1st_desc")}
-              title={t("section_1st_title")}
-              title_large_trans={t("section_1st_large_title")}
-            />
-            <CtaLink className={styles.mobile} href="/staking">
-              {t("see_more_networks")}
-            </CtaLink>
-            <Grid
-              columnSpacing={{
-                laptop: "16px",
-                mobile: "16px",
-              }}
-              container
-              rowSpacing={{
-                laptop: "24px",
-                mobile: "16px",
-              }}
-            >
-              <Grid item laptop={4} mobile={12} tablet={6}>
-                <IntroPanel
-                  desc={t("grid_1st_desc")}
-                  imageHref={require("/public/validator_infastructure/grid_1@2x.png")}
-                  level={2}
-                  title={t("grid_1st_title")}
-                />
-              </Grid>
-              <Grid item laptop={4} mobile={12} tablet={6}>
-                <IntroPanel
-                  desc={t("grid_2nd_desc")}
-                  imageHref={require("/public/validator_infastructure/grid_2@2x.png")}
-                  level={2}
-                  title={t("grid_2nd_title")}
-                />
-              </Grid>
-              <Grid item laptop={4} mobile={12} tablet={6}>
-                <IntroPanel
-                  desc={t("grid_3rd_desc")}
-                  imageHref={require("/public/validator_infastructure/grid_3@2x.png")}
-                  level={2}
-                  title={t("grid_3rd_title")}
-                />
-              </Grid>
+          <CtaLink className={styles.mobile} href="/staking">
+            {t("see_more_networks")}
+          </CtaLink>
+          <Grid
+            columnSpacing={{
+              laptop: "16px",
+              mobile: "16px",
+            }}
+            container
+            rowSpacing={{
+              laptop: "24px",
+              mobile: "16px",
+            }}
+          >
+            <Grid item laptop={4} mobile={12} tablet={6}>
+              <IntroPanel
+                desc={t("grid_1st_desc")}
+                imageHref={require("/public/validator_infastructure/grid_1@2x.png")}
+                level={2}
+                title={t("grid_1st_title")}
+              />
             </Grid>
-            <CtaLink className={styles.desktop} href="/staking">
-              {t("see_more_networks")}
-            </CtaLink>
-          </div>
-
-          <div className={styles.section}>
-            <Section
-              title={t("section_2nd_title")}
-              title_large_trans={t("section_2nd_large_title")}
-            />
-
-            <StyledTabs onChange={handleChange} value={v1}>
-              <StyledTab
-                icon={
-                  <img
-                    alt=""
-                    className={styles.icon}
-                    src="/validator_infastructure/tab1.svg"
-                  />
-                }
-                label={t("toggle_btn_left")}
-                onClick={(e: any) => {
-                  scrollBottom(e, PanelRef);
-                }}
+            <Grid item laptop={4} mobile={12} tablet={6}>
+              <IntroPanel
+                desc={t("grid_2nd_desc")}
+                imageHref={require("/public/validator_infastructure/grid_2@2x.png")}
+                level={2}
+                title={t("grid_2nd_title")}
               />
-              <StyledTab
-                icon={
-                  <img
-                    alt=""
-                    className={styles.icon}
-                    src="/validator_infastructure/tab2.svg"
-                  />
-                }
-                label={t("toggle_btn_right")}
-                onClick={(e: any) => {
-                  scrollBottom(e, PanelRef);
-                }}
+            </Grid>
+            <Grid item laptop={4} mobile={12} tablet={6}>
+              <IntroPanel
+                desc={t("grid_3rd_desc")}
+                imageHref={require("/public/validator_infastructure/grid_3@2x.png")}
+                level={2}
+                title={t("grid_3rd_title")}
               />
-            </StyledTabs>
-            {[
-              { img: "desk_toggle_1@2x.png", title: "infrastructure_item" },
-              { img: "desk_toggle_2@2x.png", title: "expertise_item" },
-            ].map((opt, indexUpper) => (
-              <ProductPanel
-                imageHref={`/validator_infastructure/${opt.img}`}
-                imgFull
-                index={indexUpper}
-                key={indexUpper}
-                ref={PanelRef}
-                value={v1}
-              >
-                <div className={styles.list}>
-                  {textList[indexUpper].map((item, index) => (
-                    <span className={styles.item} key={index}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </ProductPanel>
-            ))}
-          </div>
-
-          <div className={styles.section}>
-            <Section
-              desc={t("section_3rd_desc")}
-              title={t("section_3rd_title")}
-              title_large_trans={t("section_3rd_large_title")}
-            />
-            <CtaLink href="/staking">{t("stake_now")}</CtaLink>
-          </div>
-          <div>
-            <Carousel personList={personList} />
-          </div>
-          <ScrollToTop topRef={topRef} />
+            </Grid>
+          </Grid>
+          <CtaLink className={styles.desktop} href="/staking">
+            {t("see_more_networks")}
+          </CtaLink>
         </div>
-      </Layout>
-    </GQLProvider>
+
+        <div className={styles.section}>
+          <Section
+            title={t("section_2nd_title")}
+            title_large_trans={t("section_2nd_large_title")}
+          />
+
+          <StyledTabs onChange={handleChange} value={v1}>
+            <StyledTab
+              icon={
+                <img
+                  alt=""
+                  className={styles.icon}
+                  src="/validator_infastructure/tab1.svg"
+                />
+              }
+              label={t("toggle_btn_left")}
+              onClick={(e: any) => {
+                scrollBottom(e, PanelRef);
+              }}
+            />
+            <StyledTab
+              icon={
+                <img
+                  alt=""
+                  className={styles.icon}
+                  src="/validator_infastructure/tab2.svg"
+                />
+              }
+              label={t("toggle_btn_right")}
+              onClick={(e: any) => {
+                scrollBottom(e, PanelRef);
+              }}
+            />
+          </StyledTabs>
+          {[
+            { img: "desk_toggle_1@2x.png", title: "infrastructure_item" },
+            { img: "desk_toggle_2@2x.png", title: "expertise_item" },
+          ].map((opt, indexUpper) => (
+            <ProductPanel
+              imageHref={`/validator_infastructure/${opt.img}`}
+              imgFull
+              index={indexUpper}
+              key={indexUpper}
+              ref={PanelRef}
+              value={v1}
+            >
+              <div className={styles.list}>
+                {textList[indexUpper].map((item, index) => (
+                  <span className={styles.item} key={index}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </ProductPanel>
+          ))}
+        </div>
+
+        <div className={styles.section}>
+          <Section
+            desc={t("section_3rd_desc")}
+            title={t("section_3rd_title")}
+            title_large_trans={t("section_3rd_large_title")}
+          />
+          <CtaLink href="/staking">{t("stake_now")}</CtaLink>
+        </div>
+        <div>
+          <Carousel personList={personList} />
+        </div>
+        <ScrollToTop topRef={topRef} />
+      </div>
+    </Layout>
   );
 };
 

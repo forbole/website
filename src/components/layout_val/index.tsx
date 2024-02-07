@@ -2,7 +2,8 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { concat, uniq } from "ramda";
-import type { ReactNode, RefObject } from "react";
+import type { ReactNode } from "react";
+import { memo } from "react";
 import isURL from "validator/lib/isURL";
 
 import Footer from "../footer";
@@ -17,7 +18,6 @@ type Props = {
   footer?: boolean;
   image?: string;
   keywords?: string[];
-  stakeNowRef?: RefObject<HTMLElement>;
   stakingGuide?: boolean;
   title?: string;
   twitterImage?: string;
@@ -31,7 +31,6 @@ const LayoutVal = ({
   footer,
   image,
   keywords = [],
-  stakeNowRef,
   stakingGuide,
   title = "Forbole",
   twitterImage,
@@ -129,11 +128,7 @@ const LayoutVal = ({
             stakingGuide ? styles.stakingGuide : "",
           ].join(" ")}
         >
-          {stakingGuide ? (
-            <GuideNav staking />
-          ) : (
-            <Nav stakeNowRef={stakeNowRef} staking />
-          )}
+          {stakingGuide ? <GuideNav staking /> : <Nav staking />}
 
           {children}
           {!!footer && <Footer staking />}
@@ -143,4 +138,4 @@ const LayoutVal = ({
   );
 };
 
-export default LayoutVal;
+export default memo(LayoutVal);

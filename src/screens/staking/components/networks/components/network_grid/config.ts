@@ -3,7 +3,10 @@ import { cosmosNetworkKeys } from "@src/utils/network_info";
 export type ParamsProps = {
   APY: number;
   bonded: number;
-  custom?: Record<string, string>;
+  custom?: {
+    content: Record<string, string>;
+    tooltips: Record<string, string>;
+  };
   TVL: number;
 };
 

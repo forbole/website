@@ -5,29 +5,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 65vh;
+  min-height: 500px;
   user-select: none;
-
-  @include up-laptop {
-    height: 100vh;
-    min-height: 75vh;
-  }
 }
 
 .imgWrapper {
-  height: 60vh;
+  height: 400px;
   margin: auto;
   opacity: 1;
   position: absolute;
-  top: 10vh;
-  width: 100%;
+  top: 0;
+  width: 80vw;
 
   img {
     object-fit: contain;
-  }
-
-  @include down-laptop {
-    top: 5vh;
   }
 
   @include up-tablet {
@@ -38,7 +29,7 @@
 
   @include up-laptop {
     height: 80vh;
-    top: 10vh;
+    top: 0;
     width: spacing(100);
   }
 }
@@ -66,26 +57,27 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: spacing(5) spacing(3);
+  padding: spacing(5) spacing(3) 0;
 }
 
 .stats {
-  padding-top: spacing(5);
+  padding-top: spacing(3);
 
   @include up-laptop {
+    margin-top: -120px;
     padding-top: 0;
   }
 }
 
 .title {
   color: $color-white;
-  font-size: spacing(4);
+  font-size: 34px;
+  font-style: normal;
   font-weight: 600;
-  letter-spacing: 0.032em;
-  line-height: spacing(5);
-  padding: 0;
+  letter-spacing: 1.836px;
+  line-height: 34px;
   text-align: center;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.88);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   white-space: pre-wrap;
   z-index: 3;
 
@@ -93,13 +85,14 @@
     font-size: spacing(8);
     letter-spacing: 0.013em;
     line-height: spacing(9);
-    max-width: 610px;
-    padding: spacing(30) 0 0;
+    max-width: 900px;
+    padding: 0 20px spacing(10);
   }
 }
 
 .shadow {
   mix-blend-mode: lighten;
+  pointer-events: none;
   position: absolute;
   width: 50%;
 
@@ -125,4 +118,10 @@
     top: 65vh;
     width: 431px;
   }
+}
+
+.arrowWrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }

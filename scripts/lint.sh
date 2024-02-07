@@ -14,6 +14,8 @@ yarn ts-unused-exports tsconfig.json \
   --excludePathsFromReport='.*pages.*$' \
   --excludePathsFromReport='.*rss.xml' \
   --excludePathsFromReport='i18next-parser.config' \
+  --excludePathsFromReport='index-poc' \
+  --excludePathsFromReport='styleMock' \
   --excludePathsFromReport='playwright.config'
 
 yarn i18next

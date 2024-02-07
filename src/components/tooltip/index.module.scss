@@ -1,0 +1,10 @@
+@import "src/styles/sass.scss";
+
+body .main {
+  max-width: 400px;
+  z-index: 99999;
+
+  @include down-tablet {
+    max-width: 100%;
+  }
+}

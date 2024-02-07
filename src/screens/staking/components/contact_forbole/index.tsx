@@ -1,5 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
+import { memo } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
 
@@ -30,4 +31,4 @@ const ContactForbole = () => {
   );
 };
 
-export default ContactForbole;
+export default memo(ContactForbole);

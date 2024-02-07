@@ -1,4 +1,5 @@
 {
+  "addressCopied": "Address copied",
   "apy": "Annual Percentage Yield",
   "benefits bullet 1": "Earn your staking rewards, it allows you to earn rewards for securing the network with your contribution",
   "benefits bullet 2": "Boost network security, the more token holders that stake, the more secure the network becomes",
@@ -9,11 +10,30 @@
   "calculate rewards title": "<0><1>Calculate</1> your rewards</0>",
   "claim para 1": "There is no model answer because this depends on too many factors, including how many tokens staked, transaction fees in that particular network, etc.",
   "claim q": "How often should I claim my staking rewards?",
+  "claimableRewards": "Claimable Rewards",
+  "claimRewards": {
+    "claimFrom": "Claim from:",
+    "selectNetwork": "Select network:",
+    "title": "Claim Rewards"
+  },
   "commission": "Commission Rate",
+  "connectWallet": {
+    "intro": "Stake with Forbole and earn rewards!",
+    "success": {
+      "subtitle": "Welcome  🎉",
+      "title": "Sign up success"
+    },
+    "title": "Connect Wallet"
+  },
   "contact Forbole": "Contact Forbole",
   "contact Forbole desc": "We are happy to serve you with our professional services.",
   "contact forbole title": "<0><1>Get in touch</1> with our team to discuss our <1>collaboration</1> today!</0>",
   "copied to clipboard": "Copied to your clipboard",
+  "definitions": {
+    "apy": "Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from staking. It includes compound interest, helping you gauge the potential growth of your investment.",
+    "tvl": "Total Value Locked (TVL) is the total USD value of all assets staked with Forbole on this network. It indicates Forbole's staking scale and popularity.",
+    "votingPower": "The \"Voting Power\" is the total amount of tokens staked with Forbole on the network. The more amount of tokens staked, the higher the voting power."
+  },
   "description": "Stake, earn and secure the networks with Forbole",
   "difference para 1": "For custodial, the private key is held by a third party whereas non-custodial, users are responsible for their assets and in full control.",
   "difference q": "What is the difference between custodial and non-custodial?",
@@ -30,6 +50,7 @@
   "how can we help you": "How can we help you?",
   "how it works": "How it works?",
   "how it works title": "<0>Easy to <1>earn passive income</1> on tokens through staking</0>",
+  "keplrWalletUpdate": "Keplr Wallet Updated",
   "length of time": "Length of Time (in month)",
   "money": "$",
   "months": "Months",
@@ -38,10 +59,19 @@
   "non-custodial": "Non-custodial",
   "non-custodial desc": "Our services are non-custodial so you can withdraw at any time",
   "noResultsFound": "No results found",
+  "notice": "<0>By connecting your wallet, you agrees to the <1>Terms & Conditions</1> and <2>Privacy Policy</2>.</0>",
+  "optionalInput": "Optional",
   "others": "Others",
   "our future": "Our Future",
   "our future desc": "Forbole runs a cross-chain ecosystem, we never stop and constantly improve our user experience. By exploring more opportunities and innovating our products and services to meet the ever changing landscape, stakers are equipped to make their best choices.",
   "percentage": "%",
+  "popover": {
+    "claimRewards": "Claim Rewards",
+    "networkDetails": "See network details",
+    "stake": "Stake Now",
+    "unbondingTooltip": "All tokens will have been unbonded by {{period}}",
+    "unstake": "Unstake"
+  },
   "receiving bullet 1": "Nominated validators are not in the active set",
   "receiving bullet 2": "Nominated a validator with 100% commission holders. The rewards rate varies depending on the total amount of staked tokens, and each network has their specific settings.",
   "receiving q": "Why am I not receiving staking rewards?",
@@ -53,6 +83,14 @@
   "reward q": "What is staking reward and how often are the rewards distributed?",
   "rewards": "Earn Rewards",
   "rewards desc": "You earn staking rewards on your tokens",
+  "rewardsModal": {
+    "button": "Claim Rewards",
+    "gasFee": "Gas fee",
+    "success": {
+      "sub": "Congratulations!",
+      "title": "Your rewards have been claimed!"
+    }
+  },
   "risks para 1": "There may be some risks when your validator is having poor performance or making critical mistakes, your funds will be slashed accordingly.",
   "risks q": "What are the risks of staking?",
   "searchNetwork": "Search network",
@@ -60,31 +98,104 @@
   "security focus desc": "Our team consists of experienced engineers and skilled developers. We have implemented industry leading security and risk management protocols with 24/7 monitoring to ensure our infrastructure’s top performance across different networks.",
   "select option": "Select an option",
   "select token": "Select token",
+  "showMore": "Show more",
   "stake": "Stake",
   "stake desc": "As a token holder, you can utilize our infrastructure by staking your tokens with us",
-  "stake now": "Stake now",
-  "stake with Forbole": "Stake with Forbole",
-  "stake with Forbole desc": "More networks are coming",
-  "stake with Forbole title": "<0>We <1>partner</1> with and <1>support</1> the following projects</0>",
   "stake with us!": "Stake with us!",
   "stake_now": "Stake Now",
   "staked by forbole": "Staked by Forbole",
   "staking para 1": "The action that token holders stake their tokens to validators to secure the network is called staking. Staked tokens are eligible to receive staking rewards. Newly minted tokens and transactions fees are given out as rewards to bonded staking token holders.",
   "staking para 2": "Stakers stake their staking power to validators, but that does not mean the validators possess or have custody of the tokens staked to them. In other words, validators cannot steal or take away stakers’ tokens. Your staked amount of tokens will not be decreased in most situations, however, if your validator is punished by slashing, your staked token is at risk of being slashed too (see below for “slashing”).",
   "staking q": "What is staking?",
+  "stakingHero": {
+    "claimRewards": "Claim rewards",
+    "connectWallet": "Connect Wallet",
+    "desc": "Earn rewards effortlessly!",
+    "stake": "Stake now",
+    "title": "<0>Stake</0> with Forbole",
+    "totalRewards": "My total rewards",
+    "totalStake": "My total stake"
+  },
+  "stakingLabel": "Stake here!",
+  "stakingModal": {
+    "amountError": {
+      "invalid": "You have to input a valid amount",
+      "noBalance": "You don't have any tokens to stake"
+    },
+    "available": "Available",
+    "error": {
+      "notEnoughGas": {
+        "title": "Gas limit too low, increase gas to complete the transaction."
+      }
+    },
+    "memo": "Memo",
+    "memoError": {
+      "tooLongMemo": "Please enter a smaller memo"
+    },
+    "networkSelect": "Select network:",
+    "success": {
+      "sub": "Thank you for supporting Forbole !",
+      "title": "Your token has been staked!"
+    },
+    "title": "Stake with Forbole",
+    "tokenAmount": "Token amount",
+    "walletSellect": "Stake from:"
+  },
+  "stakingWidget": {
+    "connected_one": "Connected wallet",
+    "connected_other": "Connected wallets",
+    "connectWallet": "Connect Wallet",
+    "disconnectWallet": "Disconnect"
+  },
   "string": " ",
   "success": "Email sent! We will get back to you shortly",
   "technical_support": "Technical support",
   "title": "Stake with Forbole",
   "token amount": "Token amount",
   "token amount placeholder": "How much token?",
+  "tooltip": {
+    "poolAPY": "The pool's Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from the staking pool. It helps you evaluate the potential growth of your investment.",
+    "poolMevAPY": "The Pool MEV APY combines Maximum Extractable Value (MEV) with your staking returns. It represents your potential token earnings from both staking and advanced transaction strategies.",
+    "soloAvgAPY": "The Solo Average APY shows your expected token earnings from solo staking.",
+    "soloMevAPY": "The Maximal extractable value(MEV) refers to additional earnings from specialized transaction strategies in Ethereum solo staking. It signifies the extra value extractable beyond regular staking rewards."
+  },
+  "totalStaked": "Total staked",
   "trusted provider": "Pick Trusted Provider",
   "trusted provider desc": "We have the infrastructure in place to act as validators and to secure networks",
   "unbonding period": "Unbonding period",
+  "unbondingTokens": "Unbonding tokens",
   "unstaking para 1": "The action of transferring your staked tokens from one validator to another, it is called restaking your tokens. Your rewards will keep calculating if you choose to restake. Your rewards will stop calculating once you choose unstaking. It is subject to a lockup period (normally 21-day) and during this lockup, you cannot do anything with your tokens that are undergoing unlocking.",
   "unstaking para 2": "Therefore, if your plan is to continue with staking, and you simply wish to switch to a different validator, use restake instead to continue accruing your staking rewards and airdrops.",
   "unstaking para 3": "After the first restaking, you need to wait for a certain period of time (corresponding with unstaking period) before making another restaking transaction. And do make sure you have sufficient funds in your available balance to pay for the transaction fee.",
   "unstaking q": "What are unstaking and restaking?",
+  "unstakingModal": {
+    "amount": {
+      "label": "Unstake token amount",
+      "placeholder": "1,000"
+    },
+    "available": "Staked",
+    "button": "Unstake",
+    "info2T": "During this time, you <1>won't receive</1> staking rewards.",
+    "info3": "However, if you change your mind, you can cancel the process at any time.",
+    "info4": "To continue staking after this period, you'll need to stake again.",
+    "infoTitle": "Are you sure? Before you proceed, please note that:",
+    "memo": {
+      "label": "Memo",
+      "placeholder": "Optional"
+    },
+    "success": {
+      "subtitle": "Hope to see you again soon.",
+      "title": "Your tokens are currently in the unstaking period and will be successfully unstaked on {{date}}."
+    },
+    "title": "Unstake",
+    "unlockedDateInfo": "Your token will be locked in until <1>{{date}} ({{days}} days later)</1>.",
+    "unstakeFrom": "Unstake from:"
+  },
+  "votingPower": "Voting Power",
+  "wallets": {
+    "keplr": "Keplr",
+    "leap": "Leap"
+  },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
   "why forbole?": "Why Forbole?",
   "your email": "Your Email",

@@ -22,6 +22,7 @@ import {
   getCanClickNetwork,
   handleNetworkClick,
 } from "@src/utils/network_functions";
+import type { NetworkKey } from "@src/utils/network_info";
 import {
   cosmosNetworkKeys,
   getNetworkInfo,
@@ -47,7 +48,7 @@ const Calculator = () => {
   } = useCalculateRewardsHook();
 
   const networkData = cosmosNetworkKeys
-    .map((x: number | string) => getNetworkInfo(x))
+    .map((x: number | string) => getNetworkInfo(x as NetworkKey))
     .filter(Boolean)
     .filter((x) => !skippedRewardsNetworks.has(x.key))
     .filter((x) => getCanClickNetwork(x));

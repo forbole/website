@@ -1,10 +1,17 @@
 import useTranslation from "next-translate/useTranslation";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useQuery } from "urql";
 
 import { statsQuery } from "@src/graphql/queries/stats";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
+import {
+  fetchCoinPriceForNetwork,
+  fetchNetworksInfo,
+} from "@src/screens/staking/lib/staking_sdk/context/actions";
+import { getNetworkTVL } from "@src/screens/staking/lib/staking_sdk/context/selectors";
+import { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import { networkFunctions } from "@src/utils/network_functions";
-import { networkNumber } from "@src/utils/network_info";
+import { EthData, VSYSData, networkNumber } from "@src/utils/network_info";
 
 const elrondNetworkFunctions = networkFunctions.elrond;
 
@@ -13,8 +20,20 @@ type StatsItem = {
   title: string;
 };
 
+// These networks don't have the exporter enabled so the value from the staking API is added
+const networksWithStakingTVL = [
+  StakingNetworkId.Celestia,
+  StakingNetworkId.DyDx,
+];
+
 export const useStatsHook = () => {
   const { t } = useTranslation("common");
+  const stakingRef = useStakingRef();
+
+  useEffect(() => {
+    fetchNetworksInfo(stakingRef.current);
+    fetchCoinPriceForNetwork(stakingRef.current, networksWithStakingTVL);
+  }, [stakingRef]);
 
   const stats: StatsItem[] = useMemo(
     () => [
@@ -37,6 +56,17 @@ export const useStatsHook = () => {
   const [{ data: statsQueryData, fetching: statsQueryLoading }] = useQuery({
     query: statsQuery,
   });
+
+  const extraTVL =
+    EthData.TVL +
+    VSYSData.TVL +
+    networksWithStakingTVL.reduce((acc, network) => {
+      const networkTVL = getNetworkTVL(stakingRef.current.state, network);
+
+      if (!networkTVL) return acc;
+
+      return acc + networkTVL.toNumber();
+    }, 0);
 
   const parsedStats = useMemo(() => {
     if (!statsQueryLoading && statsQueryData) {
@@ -68,7 +98,7 @@ export const useStatsHook = () => {
                 Number(solanaUsers.usersCount || 0) || "-",
           };
 
-        if (stat.title === t("full tvl"))
+        if (stat.title === t("full tvl")) {
           return {
             ...stat,
             stats:
@@ -78,15 +108,17 @@ export const useStatsHook = () => {
               Number(oasisTVL?.[0]?.TVL || 0) +
               Number(radixTVL?.[0]?.TVL || 0) +
               Number(suiTVL?.[0]?.TVL || 0) +
-              elrondNetworkFunctions.converter(elrondTVL?.[0]?.TVL || 0),
+              elrondNetworkFunctions.converter(elrondTVL?.[0]?.TVL || 0) +
+              extraTVL,
           };
+        }
 
         return stat;
       });
     }
 
     return stats;
-  }, [statsQueryLoading, statsQueryData, stats, t]);
+  }, [statsQueryLoading, statsQueryData, stats, t, extraTVL]);
 
   return parsedStats;
 };

@@ -10,10 +10,9 @@
   font-weight: 600;
   height: 32px;
   line-height: 17px;
-  padding: 0;
+  padding: 0 12px;
   transition: all 0.3s;
   white-space: nowrap;
-  width: 97px;
 
   &:hover {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
@@ -27,11 +26,30 @@
       box-shadow: none;
       color: rgba(195, 204, 226, 1);
       cursor: not-allowed;
+      filter: none;
     }
   }
 
   @include up-laptop {
     height: 45px;
-    width: 111px;
+  }
+
+  &.big {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    line-height: 19px;
+    min-height: 48px;
+  }
+
+  &.pinkShadow {
+    &,
+    &:hover {
+      box-shadow: 4px 8px 24px 0 #fd247240;
+
+      &:disabled {
+        box-shadow: none;
+      }
+    }
   }
 }

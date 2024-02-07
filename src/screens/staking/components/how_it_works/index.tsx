@@ -1,6 +1,6 @@
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 
 import * as commonStyles from "@src/screens/staking/common.module.scss";
 
@@ -68,4 +68,4 @@ const HowItWorks = () => {
   );
 };
 
-export default HowItWorks;
+export default memo(HowItWorks);

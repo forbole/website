@@ -1,6 +1,7 @@
 import { Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import dynamic from "next/dynamic";
+import { memo } from "react";
 
 import Calculator from "./components/calculator";
 import * as styles from "./index.module.scss";
@@ -47,4 +48,4 @@ const CalculateRewards = () => {
   );
 };
 
-export default CalculateRewards;
+export default memo(CalculateRewards);

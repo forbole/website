@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import Card from "./components/card";
 import { useFaq } from "./config";
@@ -100,4 +100,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default memo(FAQ);

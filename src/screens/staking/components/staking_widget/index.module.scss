@@ -1,0 +1,219 @@
+@import "src/styles/sass.scss";
+
+.connectButton {
+  min-width: 100px;
+}
+
+$wallet-icon-size: 28px;
+
+.trigger {
+  align-items: center;
+  background: #fff;
+  border: none;
+  border-radius: 60px;
+  box-shadow: $box-shadow-variant-3;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  height: 46px;
+  justify-content: center;
+  padding: 4px 16px;
+
+  svg {
+    border: 2px solid rgba(2, 38, 225, 0.3);
+    border-radius: 24px;
+    display: block;
+    height: $wallet-icon-size;
+    width: $wallet-icon-size;
+
+    &:nth-child(2) {
+      display: flex;
+      margin-left: -8px;
+    }
+  }
+
+  &:hover {
+    box-shadow: $box-shadow-variant-2;
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.header {
+  align-items: center;
+  color: #25282d;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  gap: 10px;
+  justify-content: space-between;
+  letter-spacing: 0.108px;
+  line-height: 21px;
+  margin-bottom: 24px;
+  width: 100%;
+
+  > div:first-child {
+    flex: 1;
+  }
+}
+
+.walletRow {
+  align-items: center;
+  box-shadow:
+    0 10px 32px -4px rgba(2, 38, 225, 0.1),
+    0 6px 14px -6px rgba(2, 38, 225, 0.12);
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  justify-content: flex-start;
+  padding: 16px;
+  width: 100%;
+
+  svg {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+.walletContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+
+  div:nth-child(1) {
+    display: block;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include down-tablet {
+      max-width: 160px;
+    }
+  }
+}
+
+.subtitle {
+  color: #9d9d9d;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
+}
+
+.clickableIcon {
+  background: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.list {
+  border-radius: 12px;
+  box-shadow: $box-shadow-variant-3;
+  overflow: hidden;
+  width: 100%;
+}
+
+.expand {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+
+  svg {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &.open {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.icon svg {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.paper {
+  align-items: center;
+  background: #fff;
+  border-radius: spacing(3);
+  box-shadow: $box-shadow-variant-3;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: spacing(2);
+  width: 380px;
+
+  @include down-tablet {
+    width: 100%;
+  }
+}
+
+.logo {
+  img {
+    border: 2px solid rgba(2, 38, 225, 0.3);
+    border-radius: 200px;
+    box-shadow: 0 4px 24px 0 rgba(2, 38, 225, 0.24);
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.account {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+.accountContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.accountsTitle {
+  color: #616161;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.032px;
+  line-height: 20px;
+  padding: 16px;
+}
+
+body .walletIcon {
+  border: 2px solid rgba(2, 38, 225, 0.3);
+  border-radius: 200px;
+  box-shadow: 0 4px 24px 0 rgba(2, 38, 225, 0.24);
+  height: 48px !important;
+  width: 48px !important;
+}
+
+.accounts {
+  background: #f8f9fb;
+}

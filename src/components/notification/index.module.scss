@@ -1,0 +1,39 @@
+.notificationTitle {
+  color: #25282d;
+}
+
+.notificationSubtitle {
+  color: #9d9d9d;
+}
+
+.notificationBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.notificationContent {
+  flex: 1;
+}
+
+.notificationIcon {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.error {
+  background-color: #feeaec;
+  border: 2px solid #fd565f;
+}
+
+.success {
+  background-color: rgb(218, 244, 233);
+  border: 2px solid #1ec490;
+}
+
+.error,
+.success {
+  border-radius: 8px;
+}

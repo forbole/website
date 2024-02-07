@@ -1,0 +1,82 @@
+@import "src/styles/sass.scss";
+
+.intro {
+  color: #616161;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.192px;
+  line-height: 22px;
+}
+
+.wallet {
+  align-items: center;
+  background: #fff;
+  border: none;
+  border-radius: 24px;
+  box-shadow: $box-shadow-variant-3;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 178px;
+  justify-content: center;
+  padding: 32px;
+  transition: all 0.3s ease-in-out;
+  width: 178px;
+
+  &:hover {
+    background: #f8f8f8;
+    transform: scale(1.02);
+  }
+}
+
+.wallets {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  margin-bottom: 48px;
+  margin-top: 48px;
+}
+
+.name {
+  color: #25282d;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.72px;
+  line-height: normal;
+  text-align: center;
+}
+
+.icon svg {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.link {
+  color: #007fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.notice {
+  color: #9d9d9d;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
+}
+
+.loading {
+  margin: 48px 0;
+}

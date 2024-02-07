@@ -20,9 +20,7 @@ export type Network = {
   value?: string;
 };
 
-interface IStringIndex extends Record<string, Network> {}
-
-const logos: IStringIndex = {
+const networks = {
   "agoric": {
     address: "agoricvaloper1pcc069wu2utgnf5qsm6n2pk2x8xt6cah954t4g",
     bigDipper: "https://testnet.explorer.agoric.net/",
@@ -138,6 +136,13 @@ const logos: IStringIndex = {
     label: "Celestia - TIA",
     name: "Celestia",
   },
+  "celestia-testnet": {
+    denom: "tia",
+    graphql: "celestia",
+    image: "/images/network/celestia.svg",
+    key: "celestia-testnet",
+    name: "Celestia Testnet",
+  },
   "cheqd": {
     address: "cheqdvaloper1pknp3fyss23xeezcj6ypd8pl6d2ql4758zpxej",
     delegate: "https://wallet.cheqd.io",
@@ -170,6 +175,15 @@ const logos: IStringIndex = {
     key: "comdex",
     label: "Comdex - CMDX",
     name: "Comdex",
+  },
+  "composable-finance": {
+    address: "centaurivaloper1fmz5pw0agjg4mz4nxs34ha6rc5337fc3vk3xrd",
+    denom: "PICA",
+    graphql: "composable-finance",
+    image: "/images/network/composable_finance.svg",
+    key: "composable-finance",
+    label: "Composable Finance - PICA",
+    name: "Composable Finance",
   },
   "coreum": {
     address: "corevaloper1k3wy8ztt2e0uq3j5deukjxu2um4a4z5tvz35la",
@@ -204,6 +218,13 @@ const logos: IStringIndex = {
     name: "Cosmos Hub",
     value: "cosmos",
   },
+  "cosmos-testnet": {
+    denom: "ATOM",
+    graphql: "",
+    image: "/images/network/cosmos_hub.png",
+    key: "cosmos-testnet",
+    name: "Cosmos Hub Testnet",
+  },
   "crescent": {
     address: "crevaloper1ls9w867xu0q5zjze5vrakfa2zluahtv44gwn7y",
     delegate: "https://crescent.disperze.network/",
@@ -235,6 +256,13 @@ const logos: IStringIndex = {
     image: "/images/network/desmos.png",
     key: "desmos",
     name: "Desmos",
+  },
+  "dydx": {
+    denom: "dydxprotocold",
+    graphql: "dydx",
+    image: "/images/network/dydx.svg",
+    key: "dydx",
+    name: "dydx",
   },
   "e-money": {
     address: "emoneyvaloper1293pqwtzu67zp8txuya4yts03ccw5kgf98hz9y",
@@ -334,11 +362,9 @@ const logos: IStringIndex = {
     name: "Injective",
   },
   "islamic_coin": {
-    denom: "",
     graphql: "islamic_coin",
-    image: "/images/network/islamic_coin.png",
+    image: "/images/network/islamic_coin.svg",
     key: "islamic_coin",
-    label: "",
     name: "Islamic Coin",
   },
   "ixo": {
@@ -429,6 +455,13 @@ const logos: IStringIndex = {
     label: "",
     name: "Neutron",
   },
+  "nois": {
+    denom: "NOIS",
+    graphql: "nois",
+    image: "/images/network/nois.svg",
+    key: "nois",
+    name: "Nois",
+  },
   "nolus": {
     denom: "NLS",
     graphql: "nolus",
@@ -486,7 +519,7 @@ const logos: IStringIndex = {
     denom: "osmo",
     graphql: "osmosis",
     guide: "how-to-stake-osmo-on-osmosis",
-    image: "/images/network/osmosis.png",
+    image: "/images/network/osmosis.svg",
     key: "osmosis",
     label: "Osmosis - OSMO",
     name: "Osmosis",
@@ -552,7 +585,7 @@ const logos: IStringIndex = {
     address: "regenvaloper14kn0kk33szpwus9nh8n87fjel8djx0y0c7xhe5",
     denom: "regen",
     graphql: "regen",
-    image: "/images/network/regen.png",
+    image: "/images/network/regen.svg",
     key: "regen",
     label: "Regen - REGEN",
     name: "Regen",
@@ -564,6 +597,13 @@ const logos: IStringIndex = {
     key: "rizon",
     label: "Rizon - ATOLO",
     name: "Rizon",
+  },
+  "router-protocol": {
+    denom: "Route",
+    graphql: "router-protocol",
+    image: "/images/network/router_protocol.svg",
+    key: "router-protocol",
+    name: "Router Protocol",
   },
   "secret": {
     address: "secretvaloper1kvp570cd6zvzh8ffrhz7lmytt6v6u2gxz8tl0g",
@@ -712,9 +752,12 @@ const logos: IStringIndex = {
     label: "XPLA - XPLA",
     name: "XPLA",
   },
-};
+} satisfies Record<string, Network>;
 
-export const getNetworkInfo = (key: number | string) => logos[key] || null;
+export type NetworkKey = keyof typeof networks;
+
+export const getNetworkInfo = (key: NetworkKey): Network =>
+  networks[key] || null;
 
 export const cosmosNetworkKeys = [
   "agoric",
@@ -725,12 +768,15 @@ export const cosmosNetworkKeys = [
   "band",
   "bitsong",
   "celer",
+  "celestia",
   "cheqd",
   "comdex",
+  "composable-finance",
   "coreum",
   "cosmos",
   "crescent",
   "crypto.org",
+  "dydx",
   "e-money",
   "evmos",
   "fetch-ai",
@@ -738,12 +784,14 @@ export const cosmosNetworkKeys = [
   "gravity_bridge",
   "humansai",
   "injective",
+  "islamic_coin",
   "jackal",
   "kava",
   "kyve",
   "likecoin",
   "mars",
   "neutron",
+  "nois",
   "nolus",
   "nomic",
   "nym",
@@ -757,6 +805,7 @@ export const cosmosNetworkKeys = [
   "quicksilver",
   "regen",
   "rizon",
+  "router-protocol",
   "sentinel",
   "ssv",
   "stafihub",
@@ -770,10 +819,8 @@ export const cosmosNetworkKeys = [
   "xpla",
 
   // Preparing:
-  // "celestia",
-  // "islamic_coin",
   // 'desmos',
-];
+] satisfies NetworkKey[];
 
 // These networks are not supported by the rewards calculator yet
 export const skippedRewardsNetworks = new Set([
@@ -789,10 +836,10 @@ export const skippedRewardsNetworks = new Set([
 ]);
 
 // The data of these networks is not ready yet
-export const networksWithHiddenInfo = new Set();
+export const networksWithHiddenInfo = new Set("composable-finance");
 
 const getNetworkKeysArray = () => {
-  const arr = [...cosmosNetworkKeys];
+  const arr = [...cosmosNetworkKeys] as string[];
 
   arr.push("elrond", "solana", "oasis", "radix", "sui", "ethereum");
   arr.sort();
@@ -802,3 +849,27 @@ const getNetworkKeysArray = () => {
 
 export const allNetworkKeys = getNetworkKeysArray();
 export const networkNumber = allNetworkKeys.length;
+
+// @hardcoded
+// https://www.coingecko.com/en/coins/ethereum
+const ethPrice = 2270;
+
+export const EthData = {
+  // @hardcoded
+  TVL: 521 * 32 * ethPrice,
+};
+
+// @hardcoded
+export const VSYSData = (() => {
+  // https://explorer.v.systems/nodeInfo/AR45wyKHZnmt7ujqJRT7b4hSk9wX1bjwDkz
+  // https://explorer.v.systems/superNodes
+  const bonded = 96_909_275;
+  // https://www.coingecko.com/en/coins/v-systems
+  const coinPrice = 0.001204;
+
+  const TVL = bonded * coinPrice;
+
+  return {
+    TVL,
+  };
+})();

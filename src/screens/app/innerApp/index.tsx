@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { lightTemplate } from "@src/styles";
+import * as commonStyles from "@src/styles/common.module.scss";
 
 const InnerApp = ({ Component, pageProps }: any) => {
   const muiTheme = createTheme(lightTemplate);
@@ -12,7 +13,12 @@ const InnerApp = ({ Component, pageProps }: any) => {
     <ThemeProvider theme={muiTheme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
-      <ToastContainer autoClose={6000} closeOnClick position="top-center" />
+      <ToastContainer
+        autoClose={6000}
+        className={commonStyles.notification}
+        closeOnClick
+        position="top-center"
+      />
       <Component {...pageProps} />
     </ThemeProvider>
   );

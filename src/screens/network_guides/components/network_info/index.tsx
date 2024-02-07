@@ -11,14 +11,13 @@ import {
 import DOMPurify from "isomorphic-dompurify";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/legacy/image";
-import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useCallback, useState } from "react";
 
-import HighlightButton from "@src/components/highlight-button";
 import CopyIcon from "@src/components/icons/icon_copy.svg";
 import * as guideStyles from "@src/screens/network_guides/components/guide/components/guide_details/index.module.scss";
 import { getMiddleEllipsis } from "@src/utils/get_middle_ellipsis";
+import type { NetworkKey } from "@src/utils/network_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import InfoCard from "./components/info_card";
@@ -59,7 +58,7 @@ const NetworkInfo = ({ post }: any) => {
     const mapping = mappings[tags[1].slug as string];
 
     if (mapping) {
-      return getNetworkInfo(mapping);
+      return getNetworkInfo(mapping as NetworkKey);
     }
 
     return getNetworkInfo(tags[1].slug);
@@ -139,13 +138,6 @@ const NetworkInfo = ({ post }: any) => {
                 )}
               </div>
             </div>
-            {!!networkData?.delegate && (
-              <div>
-                <Link href={networkData?.delegate ? networkData.delegate : ""}>
-                  <HighlightButton>{t("stake_now")}</HighlightButton>
-                </Link>
-              </div>
-            )}
           </CardContent>
           <CardContent>
             <div className={styles.contentBox}>

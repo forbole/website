@@ -5,6 +5,7 @@ import * as styles from "./index.module.scss";
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   classNameWrapper?: string;
   fullWidth?: boolean;
+  noFocusEffect?: boolean;
   noMargin?: boolean;
   rightText?: ReactNode;
 };
@@ -13,6 +14,7 @@ const FormInput = ({
   className,
   classNameWrapper,
   fullWidth,
+  noFocusEffect,
   noMargin,
   rightText,
   ...props
@@ -25,6 +27,7 @@ const FormInput = ({
         rightText ? styles.withText : "",
         fullWidth ? styles.fullWidth : "",
         noMargin ? styles.noMargin : "",
+        noFocusEffect ? styles.noFocusEffect : "",
         className,
       ].join(" ")}
     />

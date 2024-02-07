@@ -1,8 +1,8 @@
 import useTranslation from "next-translate/useTranslation";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import type { MouseEvent, RefObject } from "react";
+import type { FC } from "react";
 
-import HighlightButton from "@src/components/highlight-button";
 import ForboleLogo from "@src/components/icons/forbole";
 import ForboleShadowIcon from "@src/components/icons/icon_forbole_shadow.svg";
 import { AnchorElContextProvider } from "@src/utils/menu";
@@ -12,27 +12,21 @@ import LangMenuButton from "./components/lang_menu_button";
 import { useNavHook } from "./hooks";
 import * as styles from "./index.module.scss";
 
+const StakingWidget = dynamic(
+  () => import("@src/screens/staking/components/staking_widget"),
+  {
+    ssr: false,
+  },
+) as unknown as FC;
+
 interface NavProps {
   itemColor?: string;
-  stakeNowRef?: RefObject<HTMLElement>;
   staking?: boolean;
 }
 
-const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
+const Nav = ({ itemColor, staking }: NavProps) => {
   const { displayBackground } = useNavHook();
   const { t } = useTranslation("staking");
-
-  const scrollToRef = (e: MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-
-    if (stakeNowRef !== undefined && stakeNowRef.current !== null) {
-      window.scrollTo({
-        behavior: "smooth",
-        left: 0,
-        top: stakeNowRef.current?.offsetTop,
-      });
-    }
-  };
 
   const navStyle = {
     style: {
@@ -69,9 +63,7 @@ const Nav = ({ itemColor, stakeNowRef, staking }: NavProps) => {
             </div>
             {staking ? (
               <div className={styles.stakingWrapper}>
-                <HighlightButton onClick={scrollToRef}>
-                  {t("stake_now")}
-                </HighlightButton>
+                <StakingWidget />
                 <div className={styles.stakingLang}>
                   <LangMenuButton />
                 </div>

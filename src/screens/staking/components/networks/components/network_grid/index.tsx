@@ -14,7 +14,7 @@ type Props = {
 };
 
 const NetworkGrid = ({ allNetworkInfo, sortedNetworks }: Props) => {
-  const [showMobilePopover, setShowMobilePopover] = useState("");
+  const [showPopover, setShowPopover] = useState("");
 
   return (
     <div className={styles.root}>
@@ -25,8 +25,8 @@ const NetworkGrid = ({ allNetworkInfo, sortedNetworks }: Props) => {
               key={network.name ?? index}
               network={network}
               networkSummary={allNetworkInfo[network.graphql]}
-              setShowMobilePopover={setShowMobilePopover}
-              showMobilePopover={showMobilePopover}
+              setShowPopover={setShowPopover}
+              showPopover={showPopover}
             />
           ))}
         </LayoutGroup>
