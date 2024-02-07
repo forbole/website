@@ -142,7 +142,12 @@ const StakingWidgetBase = ({
             })}
           </div>
           {canConnectMoreWallets && (
-            <button className={styles.clickableIcon} onClick={onConnectWallet}>
+            <button
+              className={styles.clickableIcon}
+              data-tooltip-content={t("stakingWidget.addWallet")}
+              data-tooltip-id={tooltipId}
+              onClick={onConnectWallet}
+            >
               <IconPlus />
             </button>
           )}

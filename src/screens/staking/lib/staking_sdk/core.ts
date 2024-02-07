@@ -59,7 +59,6 @@ export const keplrNetworks = new Set(
   [
     StakingNetworkId.Akash,
     StakingNetworkId.CosmosHubTestnet,
-    StakingNetworkId.ComposableFinance,
     StakingNetworkId.CelestiaTestnet,
     StakingNetworkId.CosmosHub,
     StakingNetworkId.Celestia,
@@ -71,7 +70,11 @@ export const keplrNetworks = new Set(
   ),
 );
 
-const leapExcludedNetworks = new Set([StakingNetworkId.Regen]);
+const leapExcludedNetworks = new Set([
+  StakingNetworkId.Regen,
+  StakingNetworkId.DyDx,
+  StakingNetworkId.Celestia,
+]);
 
 export const leapNetworks = new Set(
   Array.from(keplrNetworks).filter(

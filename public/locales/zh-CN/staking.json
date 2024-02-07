@@ -142,6 +142,7 @@
     "walletSellect": "股权来自："
   },
   "stakingWidget": {
+    "addWallet": "添加錢包",
     "connected_other": "连接钱包",
     "connectWallet": "连接钱包",
     "disconnectWallet": "断开"
