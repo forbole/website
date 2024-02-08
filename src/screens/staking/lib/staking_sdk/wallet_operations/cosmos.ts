@@ -1,6 +1,5 @@
 import type { EncodeObject } from "@cosmjs/proto-signing";
 import type {
-  Coin,
   MsgDelegateEncodeObject,
   MsgUndelegateEncodeObject,
   MsgWithdrawDelegatorRewardEncodeObject,
@@ -21,7 +20,7 @@ import { toastError, toastSuccess } from "@src/components/notification";
 import type { TStakingContext } from "../context";
 import { fetchAccountData, setUserWallet } from "../context/actions";
 import { getHasConnectedWallet } from "../context/selectors";
-import type { Account, StakingNetworkId, Wallet } from "../core";
+import type { Account, Coin, StakingNetworkId, Wallet } from "../core";
 import {
   WalletId,
   keplrNetworks,

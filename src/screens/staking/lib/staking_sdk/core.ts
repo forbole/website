@@ -1,12 +1,17 @@
 import type { NetworkKey } from "@src/utils/network_info";
 
 import type {
-  GetAddressInfoResponse,
-  GetRewardsResponse,
-} from "./staking_client";
+  AccountDetailResponse,
+  ClaimableRewardsResponse,
+} from "./staking_client_types";
 
 export const ENABLE_TESTNETS =
   process.env.NEXT_PUBLIC_STAKING_ENABLE_TESTNETS === "true";
+
+export type Coin = {
+  amount: string;
+  denom: string;
+};
 
 export enum WalletId {
   Keplr = "keplr",
@@ -115,9 +120,9 @@ export const networkKeyToNetworkId: { [key in NetworkKey]?: StakingNetworkId } =
 
 export type Account = {
   address: string;
-  info?: GetAddressInfoResponse;
+  info?: AccountDetailResponse;
   networkId: StakingNetworkId;
-  rewards?: GetRewardsResponse;
+  rewards?: ClaimableRewardsResponse;
   wallet: WalletId;
 };
 

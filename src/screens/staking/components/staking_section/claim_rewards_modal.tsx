@@ -1,4 +1,3 @@
-import type { Coin } from "@cosmjs/stargate";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 
@@ -15,6 +14,7 @@ import {
   syncAccountData,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
+import type { Coin } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {

@@ -1,8 +1,8 @@
-import type { Coin } from "@cosmjs/proto-signing";
 import BigNumber from "bignumber.js";
 
 import type {
   Account,
+  Coin,
   CoinDenom,
   StakingNetworkId,
   State,
@@ -18,6 +18,7 @@ import {
   getEmptyCoin,
   networkToUnnormalisedDenom,
   normaliseCoin,
+  sumAllCoins,
   sumCoins,
 } from "../utils/coins";
 import { doesWalletSupportNetwork } from "../wallet_operations";
@@ -78,12 +79,18 @@ export const getStakedDataForNetwork = (
 
   const mainDenom = mainNetworkDenom[network];
 
-  return accountsForNetwork
-    .filter(filterUniqueAddresses())
-    .reduce(
-      (acc, account) => sumCoins(acc, account.info?.delegation),
-      getEmptyCoin(mainDenom || undefined),
-    );
+  return accountsForNetwork.filter(filterUniqueAddresses()).reduce(
+    (acc, account) => {
+      const delegationProp = account.info?.delegation;
+
+      const delegation = Array.isArray(delegationProp)
+        ? sumAllCoins(delegationProp)
+        : delegationProp;
+
+      return sumCoins(acc, delegation || undefined);
+    },
+    getEmptyCoin(mainDenom || undefined),
+  );
 };
 
 export type NetworkClaimableRewards = Coin | null;
@@ -139,6 +146,8 @@ export const getUnbondingTokensForNetwork = (
         amount: unbondingInfo.balance,
         denom,
       });
+
+      if (!unbondingInfo.completion_time) return acc2;
 
       const itemPeriod = unbondingInfo.completion_time.seconds;
 
@@ -232,7 +241,11 @@ export const getAllStaked = (
     .filter(filterOutTestnets);
 
   return uniqueMainnetAccounts.reduce((acc, account) => {
-    const delegation = account.info?.delegation;
+    const delegationProp = account.info?.delegation;
+
+    const delegation = Array.isArray(delegationProp)
+      ? sumAllCoins(delegationProp)
+      : delegationProp;
 
     if (!delegation?.denom) return acc;
 

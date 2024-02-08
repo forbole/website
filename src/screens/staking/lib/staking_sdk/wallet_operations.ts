@@ -1,7 +1,5 @@
-import type { Coin } from "@cosmjs/stargate";
-
 import type { TStakingContext } from "./context";
-import type { StakingNetworkId } from "./core";
+import type { Coin, StakingNetworkId } from "./core";
 import { WalletId, keplrNetworks, leapNetworks } from "./core";
 import type {
   ClaimOpts,
