@@ -88,4 +88,4 @@ export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin =>
     }, getEmptyCoin());
 
 export const sumAllCoins = (coins: Coin[]): Coin =>
-  coins.reduce((acc, coin) => sumCoins(acc, coin), getEmptyCoin());
+  (coins || []).reduce((acc, coin) => sumCoins(acc, coin), getEmptyCoin());
