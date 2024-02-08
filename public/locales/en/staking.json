@@ -19,6 +19,7 @@
   "commission": "Commission Rate",
   "connectWallet": {
     "intro": "Stake with Forbole and earn rewards!",
+    "leapCreateWallet": "You need to create the Leap wallet in the browser extension, then reload this page.",
     "success": {
       "subtitle": "Welcome  🎉",
       "title": "Sign up success"
@@ -51,6 +52,7 @@
   "how it works": "How it works?",
   "how it works title": "<0>Easy to <1>earn passive income</1> on tokens through staking</0>",
   "keplrWalletUpdate": "Keplr Wallet Updated",
+  "leapWalletUpdate": "Leap Wallet Updated",
   "length of time": "Length of Time (in month)",
   "money": "$",
   "months": "Months",

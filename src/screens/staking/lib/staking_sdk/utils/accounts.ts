@@ -5,7 +5,7 @@ import { getNetworkInfo } from "@src/utils/network_info";
 
 import type { Account } from "../core";
 import { networkIdToNetworkKey, testnetNetworks } from "../core";
-import { normaliseCoin, sumCoins } from "./coins";
+import { normaliseCoin, sumAllCoins, sumCoins } from "./coins";
 import { sortNetworksByName } from "./networks";
 
 export const accountHasDelegations = (account?: Account): boolean =>
@@ -39,9 +39,15 @@ type NormalisedInfo = { coin: Coin; num: BigNumber } | null;
 export const getAccountNormalisedDelegation = (
   account?: Account,
 ): NormalisedInfo => {
-  if (!account?.info?.delegation?.denom) return null;
+  const delegationProp = account?.info?.delegation;
 
-  const available = normaliseCoin(account.info.delegation);
+  const delegation = Array.isArray(delegationProp)
+    ? sumAllCoins(delegationProp)
+    : delegationProp;
+
+  if (!delegation?.denom) return null;
+
+  const available = normaliseCoin(delegation);
 
   return {
     coin: available,

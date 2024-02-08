@@ -1,8 +1,12 @@
-import type { Coin } from "@cosmjs/stargate";
 import BigNumber from "bignumber.js";
 
 import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 
+import type {
+  AccountDetailResponse,
+  ClaimableRewardsResponse,
+  StakingInfoResponse,
+} from "./staking_client_types";
 import { normaliseCoin } from "./utils/coins";
 
 const baseUrl =
@@ -27,7 +31,7 @@ const fetchJson = <A = any>(uri: string, opts?: Options): Promise<A> =>
 
 const rewardsDivisor = new BigNumber(10).pow(18);
 
-const parseStakingRewards = async (res: GetRewardsResponse) =>
+const parseStakingRewards = async (res: ClaimableRewardsResponse) =>
   Array.isArray(res)
     ? res
         .map((coin) => {
@@ -61,29 +65,6 @@ type StakeResponse = {
   };
 };
 
-export type GetAddressInfoResponse = {
-  balances: { amount: string; denom: string };
-  delegation: { amount: string; denom: string };
-  unbonding:
-    | {
-        balance: string;
-        completion_time: {
-          nanos: number;
-          seconds: string;
-        };
-      }[]
-    | null;
-};
-
-export type GetRewardsResponse = Array<Coin> | Record<string, never>;
-
-type GetStakingInfoResponse = {
-  apy: number;
-  rpc: string;
-  unbonding_period: null | string;
-  voting_power: number;
-};
-
 export const stakingClient = {
   broadcast: async (network: StakingNetworkId, body: unknown) =>
     fetchJson(`/api/broadcast/${network}`, {
@@ -99,14 +80,14 @@ export const stakingClient = {
       method: "POST",
     }),
   getAddressInfo: async (network: StakingNetworkId, address: string) =>
-    fetchJson<GetAddressInfoResponse>(`/api/address/${network}/${address}`),
+    fetchJson<AccountDetailResponse>(`/api/address/${network}/${address}`),
 
   getRewardsInfo: async (network: StakingNetworkId, address: string) =>
-    fetchJson<GetRewardsResponse>(`/api/rewards/${network}/${address}`).then(
-      parseStakingRewards,
-    ),
+    fetchJson<ClaimableRewardsResponse>(
+      `/api/rewards/${network}/${address}`,
+    ).then(parseStakingRewards),
   getStakingInfo: async (network: StakingNetworkId) =>
-    fetchJson<GetStakingInfoResponse>(`/api/staking_info/${network}`),
+    fetchJson<StakingInfoResponse>(`/api/staking_info/${network}`),
   stake: async (network: StakingNetworkId, address: string, amount: string) =>
     fetchJson<StakeResponse>(`/api/stake`, {
       body: JSON.stringify({

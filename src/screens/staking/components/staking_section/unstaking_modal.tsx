@@ -23,13 +23,16 @@ import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context
 import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { normaliseDenom } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import {
+  normaliseDenom,
+  sumAllCoins,
+} from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
   MAX_MEMO,
-  UnstakeError,
   unstake,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
+import { UnstakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -168,6 +171,12 @@ const UnstakingModal = () => {
       });
   };
 
+  const delegationProp = account?.info?.delegation;
+
+  const delegation = Array.isArray(delegationProp)
+    ? sumAllCoins(delegationProp)
+    : delegationProp;
+
   return (
     <ModalBase
       onClose={() => setSelectedAccount(stakingRef.current, null, null)}
@@ -186,12 +195,10 @@ const UnstakingModal = () => {
         <div className={styles.row}>
           <Label>{t("unstakingModal.amount.label")}</Label>
           <div>
-            {!!account?.info?.delegation?.amount && (
+            {!!delegation?.amount && (
               <>
                 <Label>{t("unstakingModal.available")}</Label>:{" "}
-                <span className={styles.amount}>
-                  {formatCoin(account.info.delegation)}
-                </span>
+                <span className={styles.amount}>{formatCoin(delegation)}</span>
               </>
             )}
           </div>
@@ -210,8 +217,8 @@ const UnstakingModal = () => {
             setAmount(e.target.value);
           }}
           placeholder={t("unstakingModal.amount.placeholder")}
-          {...(account?.info?.delegation?.denom && {
-            rightText: normaliseDenom(account.info.delegation?.denom),
+          {...(delegation?.denom && {
+            rightText: normaliseDenom(delegation.denom),
           })}
           value={amount}
         />

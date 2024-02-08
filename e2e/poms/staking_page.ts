@@ -1,9 +1,9 @@
-import type { Coin } from "@cosmjs/stargate";
 import type { Page } from "@playwright/test";
 
 import type { TStakingContext } from "@src/screens/staking/lib/staking_sdk/context";
 import type {
   Account,
+  Coin,
   StakingNetworkId,
   Wallet,
 } from "@src/screens/staking/lib/staking_sdk/core";
@@ -82,6 +82,8 @@ export class StakingPage {
                   {
                     address: "test-address",
                     info: {
+                      account_number: 0,
+                      address: "test-address",
                       balances: opts.balances ?? {
                         amount: "10",
                         denom: "utest",
@@ -90,7 +92,9 @@ export class StakingPage {
                         amount: "0",
                         denom: "utest",
                       },
-                      unbonding: null,
+                      network: opts.network,
+                      sequence: 0,
+                      unbonding: [],
                     },
                     networkId: opts.network,
                     wallet: opts.wallet,

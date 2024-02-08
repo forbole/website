@@ -1,4 +1,3 @@
-import type { Coin } from "@cosmjs/stargate";
 import { LinearProgress } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import type {
@@ -42,6 +41,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/core";
 import type {
   Account,
+  Coin,
   NetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import {

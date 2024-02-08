@@ -1,6 +1,6 @@
-import type { Coin } from "@cosmjs/stargate";
 import BigNumber from "bignumber.js";
 
+import type { Coin } from "../core";
 import { CoinDenom, StakingNetworkId } from "../core";
 
 export const networkToUnnormalisedDenom = {
@@ -86,3 +86,6 @@ export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin =>
         denom,
       };
     }, getEmptyCoin());
+
+export const sumAllCoins = (coins: Coin[]): Coin =>
+  (coins || []).reduce((acc, coin) => sumCoins(acc, coin), getEmptyCoin());

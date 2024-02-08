@@ -1,6 +1,6 @@
-import type { Coin } from "@cosmjs/stargate";
 import BigNumber from "bignumber.js";
 
+import type { Coin } from "./core";
 import { normaliseCoin } from "./utils/coins";
 
 type FormatOpts = {
