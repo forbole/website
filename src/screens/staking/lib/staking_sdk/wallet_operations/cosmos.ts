@@ -634,7 +634,7 @@ export const useCosmosWalletsListeners = (contextValue: TStakingContext) => {
 
       if (connectedWallets.includes(WalletId.Leap)) {
         toastSuccess({
-          title: t("keplrWalletUpdate"),
+          title: t("leapWalletUpdate"),
         });
 
         tryToConnectLeap(contextValue, false);
