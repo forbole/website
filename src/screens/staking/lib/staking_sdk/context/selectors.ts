@@ -59,10 +59,7 @@ export const getAccountsForNetwork = (
   const wallets = Object.values(state.wallets);
 
   return wallets.reduce(
-    (acc, wallet) => [
-      ...acc,
-      ...(wallet.networks?.[network]?.accounts || []).filter(filterOutTestnets),
-    ],
+    (acc, wallet) => [...acc, ...(wallet.networks?.[network]?.accounts || [])],
     [] as Account[],
   );
 };
