@@ -408,6 +408,17 @@ const networks = {
     label: "Kava - KAVA",
     name: "Kava",
   },
+  "kava-testnet": {
+    address: "kavavaloper1vlpsrmdyuywvaqrv7rx6xga224sqfwz3yjnlkh",
+    delegate: "https://wallet.keplr.app/chains/kava", // FIXME test chain not found in keplr https://testnet.keplr.app/
+    denom: "KAVA",
+    graphql: "kava",
+    guide: "how-to-stake-akt-on-kava",
+    image: "/images/network/kava.png",
+    key: "kava-testnet",
+    label: "Kava - KAVA",
+    name: "Kava",
+  },
   "kyve": {
     denom: "KYVE",
     graphql: "kyve",
@@ -787,6 +798,7 @@ export const cosmosNetworkKeys = [
   "islamic_coin",
   "jackal",
   "kava",
+  "kava-testnet", // FIXME remove me ?
   "kyve",
   "likecoin",
   "mars",

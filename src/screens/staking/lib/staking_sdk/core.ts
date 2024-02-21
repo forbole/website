@@ -22,6 +22,7 @@ export enum CoinDenom {
   AKT = "AKT",
   ATOM = "ATOM",
   DYDX = "DYDX",
+  KAVA = "KAVA",
   OSMO = "OSMO",
   PICA = "PICA",
   REGEN = "REGEN",
@@ -39,6 +40,7 @@ export enum StakingNetworkId {
   CosmosHub = "cosmoshub-4",
   CosmosHubTestnet = "theta-testnet-001",
   DyDx = "dydx-mainnet-1",
+  KavaTestnet = "kava_2222-10",
   Osmosis = "osmosis-1",
   Regen = "regen-1",
 }
@@ -51,6 +53,7 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
   [StakingNetworkId.CosmosHub]: CoinDenom.ATOM,
   [StakingNetworkId.CosmosHubTestnet]: CoinDenom.ATOM,
   [StakingNetworkId.DyDx]: CoinDenom.DYDX,
+  [StakingNetworkId.KavaTestnet]: CoinDenom.KAVA,
   [StakingNetworkId.Osmosis]: CoinDenom.OSMO,
   [StakingNetworkId.Regen]: CoinDenom.REGEN,
 };
@@ -58,6 +61,7 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
 export const testnetNetworks = new Set([
   StakingNetworkId.CosmosHubTestnet,
   StakingNetworkId.CelestiaTestnet,
+  StakingNetworkId.KavaTestnet,
 ]);
 
 export const keplrNetworks = new Set(
@@ -71,6 +75,7 @@ export const keplrNetworks = new Set(
     StakingNetworkId.DyDx,
     StakingNetworkId.Osmosis,
     StakingNetworkId.Regen,
+    StakingNetworkId.KavaTestnet,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
@@ -107,6 +112,7 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.CosmosHub]: "cosmos",
   [StakingNetworkId.CosmosHubTestnet]: "cosmos-testnet",
   [StakingNetworkId.DyDx]: "dydx",
+  [StakingNetworkId.KavaTestnet]: "kava-testnet",
   [StakingNetworkId.Osmosis]: "osmosis",
   [StakingNetworkId.Regen]: "regen",
 };
