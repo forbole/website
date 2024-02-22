@@ -1,3 +1,5 @@
+import { ENABLE_TESTNETS } from "@src/screens/staking/lib/staking_sdk/core";
+
 export type Network = {
   address?: string;
   bigDipper?: string;
@@ -777,6 +779,10 @@ export type NetworkKey = keyof typeof networks;
 export const getNetworkInfo = (key: NetworkKey): Network =>
   networks[key] || null;
 
+const cosmosTestNetworkKeys = ENABLE_TESTNETS
+  ? (["kava-testnet", "stargaze-testnet"] satisfies NetworkKey[])
+  : [];
+
 export const cosmosNetworkKeys = [
   "agoric",
   "akash",
@@ -805,7 +811,6 @@ export const cosmosNetworkKeys = [
   "islamic_coin",
   "jackal",
   "kava",
-  "kava-testnet",
   "kyve",
   "likecoin",
   "mars",
@@ -829,7 +834,6 @@ export const cosmosNetworkKeys = [
   "ssv",
   "stafihub",
   "stargaze",
-  "stargaze-testnet",
   "stride",
   "teritori",
   "tgrade",
@@ -838,6 +842,7 @@ export const cosmosNetworkKeys = [
   "wormhole",
   "xpla",
 
+  ...cosmosTestNetworkKeys,
   // Preparing:
   // 'desmos',
 ] satisfies NetworkKey[];
