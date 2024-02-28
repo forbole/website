@@ -1,3 +1,5 @@
+import { ENABLE_TESTNETS } from "@src/screens/staking/lib/staking_sdk/core";
+
 export type Network = {
   address?: string;
   bigDipper?: string;
@@ -399,14 +401,23 @@ const networks = {
   },
   "kava": {
     address: "kavavaloper14kn0kk33szpwus9nh8n87fjel8djx0y02c7me3",
-    delegate: "https://wallet.keplr.app/chains/kava",
     denom: "kava",
     graphql: "kava",
     guide: "how-to-stake-kava-on-kava",
-    image: "/images/network/kava.png",
+    image: "/images/network/kava.svg",
     key: "kava",
     label: "Kava - KAVA",
     name: "Kava",
+  },
+  "kava-testnet": {
+    address: "kavavaloper1vlpsrmdyuywvaqrv7rx6xga224sqfwz3yjnlkh",
+    denom: "KAVA",
+    graphql: "kava",
+    guide: "how-to-stake-akt-on-kava",
+    image: "/images/network/kava.svg",
+    key: "kava-testnet",
+    label: "Kava - KAVA",
+    name: "Kava Testnet",
   },
   "kyve": {
     denom: "KYVE",
@@ -656,14 +667,23 @@ const networks = {
   },
   "stargaze": {
     address: "starsvaloper12k8za208e5kt0j34w6au6v8py6t6cat2sqjzvw",
-    delegate: "https://wallet.keplr.app/chains/stargaze",
     denom: "STARS",
     graphql: "stargaze",
     guide: "how-to-stake-stars-on-stargaze",
-    image: "/images/network/stargaze.png",
+    image: "/images/network/stargaze.svg",
     key: "stargaze",
     label: "Stargaze - STARS",
     name: "Stargaze",
+  },
+  "stargaze-testnet": {
+    address: "starsvaloper12k8za208e5kt0j34w6au6v8py6t6cat2sqjzvw",
+    denom: "STARS",
+    graphql: "stargaze",
+    guide: "how-to-stake-stars-on-stargaze",
+    image: "/images/network/stargaze.svg",
+    key: "stargaze-testnet",
+    label: "Stargaze - STARS",
+    name: "Stargaze Testnet",
   },
   "stride": {
     address: "stridevaloper19d8a9dr4kh85zcl5kq7fj64ad9r9dqfky93dgq",
@@ -759,6 +779,10 @@ export type NetworkKey = keyof typeof networks;
 export const getNetworkInfo = (key: NetworkKey): Network =>
   networks[key] || null;
 
+const cosmosTestNetworkKeys = ENABLE_TESTNETS
+  ? (["kava-testnet", "stargaze-testnet"] satisfies NetworkKey[])
+  : [];
+
 export const cosmosNetworkKeys = [
   "agoric",
   "akash",
@@ -818,6 +842,7 @@ export const cosmosNetworkKeys = [
   "wormhole",
   "xpla",
 
+  ...cosmosTestNetworkKeys,
   // Preparing:
   // 'desmos',
 ] satisfies NetworkKey[];

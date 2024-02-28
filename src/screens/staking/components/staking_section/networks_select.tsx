@@ -20,6 +20,7 @@ import type {
   StakingNetworkId,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import {
+  WalletId,
   mainNetworkDenom,
   networkIdToNetworkKey,
 } from "@src/screens/staking/lib/staking_sdk/core";
@@ -177,9 +178,9 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   ].join(SEPARATOR);
 
   if (isWallet) {
-    const otherWalletsAccounts = allAccounts.filter(
-      (account) => account.networkId === selectedAccount.networkId,
-    );
+    const otherWalletsAccounts = allAccounts
+      .filter(({ wallet }) => wallet !== WalletId.Leap) // TODO remove this line when staking with Leap Wallet is reliable
+      .filter((account) => account.networkId === selectedAccount.networkId);
 
     if (otherWalletsAccounts.length < 2) {
       const walletName = getWalletCustomName(

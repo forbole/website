@@ -10,9 +10,11 @@ export const geckoClient = {
       [CoinDenom.AKT]: "akash-network",
       [CoinDenom.ATOM]: "cosmos",
       [CoinDenom.DYDX]: "dydx",
+      [CoinDenom.KAVA]: "kava",
       [CoinDenom.OSMO]: "osmosis",
       [CoinDenom.PICA]: "picasso",
       [CoinDenom.REGEN]: "regen",
+      [CoinDenom.STARS]: "stargaze",
       [CoinDenom.TIA]: "celestia",
     } as const;
 

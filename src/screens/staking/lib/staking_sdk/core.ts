@@ -22,9 +22,11 @@ export enum CoinDenom {
   AKT = "AKT",
   ATOM = "ATOM",
   DYDX = "DYDX",
+  KAVA = "KAVA",
   OSMO = "OSMO",
   PICA = "PICA",
   REGEN = "REGEN",
+  STARS = "STARS",
   TIA = "TIA",
 }
 
@@ -39,8 +41,12 @@ export enum StakingNetworkId {
   CosmosHub = "cosmoshub-4",
   CosmosHubTestnet = "theta-testnet-001",
   DyDx = "dydx-mainnet-1",
+  Kava = "kava_2222-10",
+  KavaTestnet = "kava_2221-16000",
   Osmosis = "osmosis-1",
   Regen = "regen-1",
+  Stargaze = "stargaze-1",
+  StargazeTestnet = "elgafar-1",
 }
 
 export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
@@ -51,13 +57,19 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
   [StakingNetworkId.CosmosHub]: CoinDenom.ATOM,
   [StakingNetworkId.CosmosHubTestnet]: CoinDenom.ATOM,
   [StakingNetworkId.DyDx]: CoinDenom.DYDX,
+  [StakingNetworkId.Kava]: CoinDenom.KAVA,
+  [StakingNetworkId.KavaTestnet]: CoinDenom.KAVA,
   [StakingNetworkId.Osmosis]: CoinDenom.OSMO,
   [StakingNetworkId.Regen]: CoinDenom.REGEN,
+  [StakingNetworkId.Stargaze]: CoinDenom.STARS,
+  [StakingNetworkId.StargazeTestnet]: CoinDenom.STARS,
 };
 
 export const testnetNetworks = new Set([
   StakingNetworkId.CosmosHubTestnet,
   StakingNetworkId.CelestiaTestnet,
+  StakingNetworkId.KavaTestnet,
+  StakingNetworkId.StargazeTestnet,
 ]);
 
 export const keplrNetworks = new Set(
@@ -69,8 +81,12 @@ export const keplrNetworks = new Set(
     StakingNetworkId.CosmosHub,
     StakingNetworkId.CosmosHubTestnet,
     StakingNetworkId.DyDx,
+    StakingNetworkId.Kava,
+    StakingNetworkId.KavaTestnet,
     StakingNetworkId.Osmosis,
     StakingNetworkId.Regen,
+    StakingNetworkId.Stargaze,
+    StakingNetworkId.StargazeTestnet,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
@@ -80,6 +96,8 @@ export const keplrNonNativeChains = new Set([
   StakingNetworkId.ComposableFinance,
   StakingNetworkId.CelestiaTestnet,
   StakingNetworkId.CosmosHubTestnet,
+  StakingNetworkId.KavaTestnet,
+  StakingNetworkId.StargazeTestnet,
 ]);
 
 const leapExcludedNetworks = new Set([
@@ -87,6 +105,7 @@ const leapExcludedNetworks = new Set([
   StakingNetworkId.ComposableFinance,
   StakingNetworkId.DyDx,
   StakingNetworkId.Regen,
+  StakingNetworkId.KavaTestnet,
 ]);
 
 export const leapNetworks = new Set(
@@ -97,7 +116,7 @@ export const leapNetworks = new Set(
 
 export const networksWithStaking = new Set([...Array.from(keplrNetworks)]);
 
-export const walletsSupported = new Set([WalletId.Keplr, WalletId.Leap]);
+export const walletsSupported = new Set([WalletId.Keplr]); // TODO add WalletId.Leap back when staking with Leap Wallet is reliable
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",
@@ -107,8 +126,12 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.CosmosHub]: "cosmos",
   [StakingNetworkId.CosmosHubTestnet]: "cosmos-testnet",
   [StakingNetworkId.DyDx]: "dydx",
+  [StakingNetworkId.Kava]: "kava",
+  [StakingNetworkId.KavaTestnet]: "kava-testnet",
   [StakingNetworkId.Osmosis]: "osmosis",
   [StakingNetworkId.Regen]: "regen",
+  [StakingNetworkId.Stargaze]: "stargaze",
+  [StakingNetworkId.StargazeTestnet]: "stargaze-testnet",
 };
 
 export const networkKeyToNetworkId: { [key in NetworkKey]?: StakingNetworkId } =
