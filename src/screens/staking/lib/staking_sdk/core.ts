@@ -116,7 +116,7 @@ export const leapNetworks = new Set(
 
 export const networksWithStaking = new Set([...Array.from(keplrNetworks)]);
 
-export const walletsSupported = new Set([WalletId.Keplr, WalletId.Leap]);
+export const walletsSupported = new Set([WalletId.Keplr]); // TODO add WalletId.Leap back when staking with Leap Wallet is reliable
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",
