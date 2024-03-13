@@ -1,6 +1,6 @@
 import BigNumber from "bignumber.js";
 
-import type { Coin } from "./core";
+import type { Coin } from "./core/base";
 import { normaliseCoin } from "./utils/coins";
 
 type FormatOpts = {

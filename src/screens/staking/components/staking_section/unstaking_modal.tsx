@@ -20,7 +20,7 @@ import {
   syncAccountData,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
-import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
@@ -43,8 +43,13 @@ const UnstakingModal = () => {
   const stakingRef = useStakingRef();
 
   const { locale } = useRouter();
-  const { selectedAccount, selectedAction } = stakingRef.current.state;
-  const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
+  const { selectedAction } = stakingRef.current.state;
+
+  const [networkInfo, setNetworkInfo] = useState<null | StakingNetworkInfo>(
+    null,
+  );
+
+  const selectedAccount = getSelectedAccount(stakingRef.current.state);
 
   const isOpen = !!selectedAccount && selectedAction === "unstake";
 

@@ -35,15 +35,15 @@ import {
   getUnbondingTokensForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
-  WalletId,
   networkKeyToNetworkId,
   networksWithStaking,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import type {
   Account,
-  Coin,
-  NetworkInfo,
+  StakingNetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/core";
+import type { Coin } from "@src/screens/staking/lib/staking_sdk/core/base";
+import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import {
   formatCoin,
   formatStakedDataUSD,
@@ -93,7 +93,7 @@ const PopOver = ({
   const { t } = useTranslation("staking");
 
   const [stakingNetworkInfo, setStakingNetworkInfo] =
-    useState<NetworkInfo | null>(null);
+    useState<null | StakingNetworkInfo>(null);
 
   const { state: stakingState } = useContext(StakingContext);
 

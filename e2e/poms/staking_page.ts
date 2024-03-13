@@ -3,11 +3,13 @@ import type { Page } from "@playwright/test";
 import type { TStakingContext } from "@src/screens/staking/lib/staking_sdk/context";
 import type {
   Account,
-  Coin,
-  StakingNetworkId,
   Wallet,
 } from "@src/screens/staking/lib/staking_sdk/core";
-import { WalletId } from "@src/screens/staking/lib/staking_sdk/core";
+import type {
+  Coin,
+  StakingNetworkId,
+} from "@src/screens/staking/lib/staking_sdk/core/base";
+import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import type { NetworkKey } from "@src/utils/network_info";
 
 const networkCard = (network: NetworkKey) =>

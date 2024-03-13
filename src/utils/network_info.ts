@@ -1,4 +1,4 @@
-import { ENABLE_TESTNETS } from "@src/screens/staking/lib/staking_sdk/core";
+import { ENABLE_TESTNETS } from "@src/screens/staking/lib/staking_sdk/core/base";
 
 export type Network = {
   address?: string;
@@ -266,6 +266,12 @@ const networks = {
     key: "dydx",
     name: "dydx",
   },
+  "dymension": {
+    graphql: "dymension",
+    image: "/images/network/dymension.svg",
+    key: "dymension",
+    name: "Dymension",
+  },
   "e-money": {
     address: "emoneyvaloper1293pqwtzu67zp8txuya4yts03ccw5kgf98hz9y",
     bigDipper: "https://e-money.network/",
@@ -309,7 +315,7 @@ const networks = {
     denom: "evmos",
     graphql: "evmos",
     guide: "how-to-stake-evmos-on-evmos",
-    image: "/images/network/evmos.png",
+    image: "/images/network/evmos.svg",
     key: "evmos",
     label: "Evmos - EVMOS",
     name: "Evmos",
@@ -801,6 +807,7 @@ export const cosmosNetworkKeys = [
   "crescent",
   "crypto.org",
   "dydx",
+  "dymension",
   "e-money",
   "evmos",
   "fetch-ai",

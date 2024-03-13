@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 import {
   StakingNetworkId,
   WalletId,
-} from "@src/screens/staking/lib/staking_sdk/core";
+} from "@src/screens/staking/lib/staking_sdk/core/base";
 import type { NetworkKey } from "@src/utils/network_info";
 
 import { StakingPage } from "./poms/staking_page";

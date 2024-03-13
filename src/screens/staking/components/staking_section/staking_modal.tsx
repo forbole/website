@@ -19,8 +19,8 @@ import {
   syncAccountData,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
-import type { NetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
-import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core";
+import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
@@ -43,7 +43,10 @@ const StakingModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { selectedAccount, selectedAction } = stakingRef.current.state;
 
-  const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
+  const [networkInfo, setNetworkInfo] = useState<null | StakingNetworkInfo>(
+    null,
+  );
+
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
   const [memoError, setMemoError] = useState("");

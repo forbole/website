@@ -9,7 +9,7 @@ import {
   fetchNetworksInfo,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getNetworkTVL } from "@src/screens/staking/lib/staking_sdk/context/selectors";
-import { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
+import { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { networkFunctions } from "@src/utils/network_functions";
 import { EthData, VSYSData, networkNumber } from "@src/utils/network_info";
 

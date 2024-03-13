@@ -1,14 +1,9 @@
 import BigNumber from "bignumber.js";
 
-import type {
-  Account,
-  Coin,
-  CoinDenom,
-  StakingNetworkId,
-  State,
-  WalletId,
-} from "../core";
-import { mainNetworkDenom, walletsSupported } from "../core";
+import type { Account, StakingState } from "../core";
+import { walletsSupported } from "../core";
+import type { Coin, CoinDenom, StakingNetworkId, WalletId } from "../core/base";
+import { mainNetworkDenom } from "../core/base";
 import {
   filterOutTestnets,
   filterUniqueAddresses,
@@ -26,7 +21,7 @@ import { doesWalletSupportNetwork } from "../wallet_operations";
 // This functions are only intended to be used for extracting data, so they
 // should not be setting the state. Also they should be synchronous functions.
 
-export const getSelectedAccount = (state: State) => {
+export const getSelectedAccount = (state: StakingState) => {
   const { selectedAccount } = state;
 
   if (!selectedAccount) {
@@ -40,7 +35,7 @@ export const getSelectedAccount = (state: State) => {
   );
 };
 
-export const getCanAddWallet = (state: State) => {
+export const getCanAddWallet = (state: StakingState) => {
   const { wallets } = state;
 
   const connectedWallets = new Set(Object.keys(wallets));
@@ -53,7 +48,7 @@ export const getCanAddWallet = (state: State) => {
 };
 
 export const getAccountsForNetwork = (
-  state: State,
+  state: StakingState,
   network: StakingNetworkId,
 ) => {
   const wallets = Object.values(state.wallets);
@@ -65,7 +60,7 @@ export const getAccountsForNetwork = (
 };
 
 export const getStakedDataForNetwork = (
-  state: State,
+  state: StakingState,
   network: StakingNetworkId,
 ): Coin | null => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
@@ -95,7 +90,7 @@ export type NetworkClaimableRewards = Coin | null;
 // This assumes that the rewards coins have been normalized (which happens in
 // the staking client)
 export const getClaimableRewardsForNetwork = (
-  state: State,
+  state: StakingState,
   network: StakingNetworkId,
 ): NetworkClaimableRewards => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
@@ -121,7 +116,7 @@ export const getClaimableRewardsForNetwork = (
 type UnbondingTokensResult = { coin: Coin; period: string } | null;
 
 export const getUnbondingTokensForNetwork = (
-  state: State,
+  state: StakingState,
   network: StakingNetworkId,
 ): UnbondingTokensResult => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
@@ -160,14 +155,16 @@ export const getUnbondingTokensForNetwork = (
   }, null as UnbondingTokensResult);
 };
 
-export const getHasConnectedWallets = (state: State) =>
+export const getHasConnectedWallets = (state: StakingState) =>
   Object.keys(state.wallets).length > 0;
 
-export const getHasConnectedWallet = (state: State, walletId: WalletId) =>
-  state.wallets[walletId] !== undefined;
+export const getHasConnectedWallet = (
+  state: StakingState,
+  walletId: WalletId,
+) => state.wallets[walletId] !== undefined;
 
 export const getNetworkVotingPower = (
-  state: State,
+  state: StakingState,
   network: StakingNetworkId,
 ): Coin | null => {
   const networkInfo = state.networksInfo[network];
@@ -189,7 +186,7 @@ export const getNetworkVotingPower = (
 };
 
 export const getNetworkTVL = (
-  state: State,
+  state: StakingState,
   network: StakingNetworkId,
 ): BigNumber | null => {
   const votingPower = getNetworkVotingPower(state, network);
@@ -208,14 +205,14 @@ export const getNetworkTVL = (
 };
 
 export const getHasNetworkSupportedWallet = (
-  state: State,
+  state: StakingState,
   network: StakingNetworkId,
 ) =>
   Object.keys(state.wallets).some((walletId) =>
     doesWalletSupportNetwork(walletId as WalletId, network),
   );
 
-export const getAllAccounts = (state: State) =>
+export const getAllAccounts = (state: StakingState) =>
   Object.values(state.wallets).reduce(
     (acc, wallet) => [
       ...acc,
@@ -228,7 +225,7 @@ export const getAllAccounts = (state: State) =>
   );
 
 export const getAllStaked = (
-  state: State,
+  state: StakingState,
   accountsProp?: Account[],
 ): number => {
   const accounts = accountsProp || getAllAccounts(state);
@@ -260,7 +257,10 @@ export const getAllStaked = (
   }, 0);
 };
 
-export const getAllRewards = (state: State, accountsProp?: Account[]) => {
+export const getAllRewards = (
+  state: StakingState,
+  accountsProp?: Account[],
+) => {
   const accounts = accountsProp || getAllAccounts(state);
 
   const uniqueMainnetAccounts = accounts
@@ -287,7 +287,7 @@ export const getAllRewards = (state: State, accountsProp?: Account[]) => {
 };
 
 export const getCoinPriceForNetwork = (
-  state: State,
+  state: StakingState,
   networkId: StakingNetworkId,
 ) => {
   const mainDenom = mainNetworkDenom[networkId];
@@ -301,5 +301,5 @@ export const getCoinPriceForNetwork = (
   return coinPrice;
 };
 
-export const getWalletCustomName = (state: State, walletId: WalletId) =>
+export const getWalletCustomName = (state: StakingState, walletId: WalletId) =>
   state.wallets[walletId]?.name;

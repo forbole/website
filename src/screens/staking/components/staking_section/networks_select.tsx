@@ -15,15 +15,13 @@ import {
   getSelectedAccount,
   getWalletCustomName,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
-import type {
-  Account,
-  StakingNetworkId,
-} from "@src/screens/staking/lib/staking_sdk/core";
+import type { Account } from "@src/screens/staking/lib/staking_sdk/core";
 import {
-  WalletId,
-  mainNetworkDenom,
   networkIdToNetworkKey,
+  walletsSupported,
 } from "@src/screens/staking/lib/staking_sdk/core";
+import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core/base";
+import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   getClaimableRewardsForAccount,
@@ -179,7 +177,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
 
   if (isWallet) {
     const otherWalletsAccounts = allAccounts
-      .filter(({ wallet }) => wallet !== WalletId.Leap) // TODO remove this line when staking with Leap Wallet is reliable
+      .filter(({ wallet }) => walletsSupported.has(wallet))
       .filter((account) => account.networkId === selectedAccount.networkId);
 
     if (otherWalletsAccounts.length < 2) {

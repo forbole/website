@@ -1,7 +1,6 @@
 import BigNumber from "bignumber.js";
 
-import type { StakingNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
-
+import type { StakingNetworkId } from "./core/base";
 import type {
   AccountDetailResponse,
   ClaimableRewardsResponse,
@@ -46,6 +45,10 @@ const parseStakingRewards = async (res: ClaimableRewardsResponse) =>
     : res;
 
 type StakeResponse = {
+  ethAccount?: {
+    account_number: string;
+    sequence: number;
+  };
   tx: {
     authInfo: {
       fee: {

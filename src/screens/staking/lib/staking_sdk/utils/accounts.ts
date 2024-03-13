@@ -4,7 +4,8 @@ import BigNumber from "bignumber.js";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import type { Account } from "../core";
-import { networkIdToNetworkKey, testnetNetworks } from "../core";
+import { networkIdToNetworkKey } from "../core";
+import { testnetNetworks } from "../core/base";
 import { normaliseCoin, sumAllCoins, sumCoins } from "./coins";
 import { sortNetworksByName } from "./networks";
 

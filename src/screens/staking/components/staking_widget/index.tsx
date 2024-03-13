@@ -14,10 +14,8 @@ import {
   setSelectedAccount,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getCanAddWallet } from "@src/screens/staking/lib/staking_sdk/context/selectors";
-import type {
-  Wallet,
-  WalletId,
-} from "@src/screens/staking/lib/staking_sdk/core";
+import type { Wallet } from "@src/screens/staking/lib/staking_sdk/core";
+import type { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import {
   getWalletName,
   walletsIcons,
