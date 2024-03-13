@@ -5,15 +5,26 @@ import {
   testnetNetworks,
 } from "./base";
 
+export const ethermintNetworks = new Set([
+  StakingNetworkId.Dymension,
+  StakingNetworkId.Evmos,
+  StakingNetworkId.Injective,
+  StakingNetworkId.IslamicCoin,
+]);
+
 export const keplrNetworks = new Set(
   [
     StakingNetworkId.Akash,
+    StakingNetworkId.Evmos,
     StakingNetworkId.Celestia,
     StakingNetworkId.CelestiaTestnet,
     StakingNetworkId.ComposableFinance,
     StakingNetworkId.CosmosHub,
     StakingNetworkId.CosmosHubTestnet,
     StakingNetworkId.DyDx,
+    StakingNetworkId.Dymension,
+    StakingNetworkId.IslamicCoin,
+    StakingNetworkId.Injective,
     StakingNetworkId.Kava,
     StakingNetworkId.KavaTestnet,
     StakingNetworkId.Osmosis,
@@ -29,6 +40,7 @@ export const keplrNonNativeChains = new Set([
   StakingNetworkId.CelestiaTestnet,
   StakingNetworkId.ComposableFinance,
   StakingNetworkId.CosmosHubTestnet,
+  StakingNetworkId.IslamicCoin,
   StakingNetworkId.KavaTestnet,
   StakingNetworkId.StargazeTestnet,
 ]);

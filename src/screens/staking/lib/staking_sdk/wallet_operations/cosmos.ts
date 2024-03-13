@@ -1,5 +1,11 @@
-import type { EncodeObject } from "@cosmjs/proto-signing";
-import { SigningStargateClient } from "@cosmjs/stargate";
+import { fromBase64 } from "@cosmjs/encoding";
+import type { EncodeObject, OfflineDirectSigner } from "@cosmjs/proto-signing";
+import { makeAuthInfoBytes, makeSignDoc } from "@cosmjs/proto-signing";
+import {
+  QueryClient,
+  SigningStargateClient,
+  setupTxExtension,
+} from "@cosmjs/stargate";
 import type {
   MsgDelegateEncodeObject,
   MsgUndelegateEncodeObject,
@@ -7,12 +13,16 @@ import type {
   StdFee,
   Event as TxEvent,
 } from "@cosmjs/stargate";
-import type { AccountData } from "@keplr-wallet/types";
+import { connectComet } from "@cosmjs/tendermint-rpc";
+import type { AccountData, BroadcastMode } from "@keplr-wallet/types";
+import { PubKey } from "cosmjs-types/cosmos/crypto/secp256k1/keys";
 import { MsgWithdrawDelegatorReward } from "cosmjs-types/cosmos/distribution/v1beta1/tx";
 import {
   MsgDelegate,
   MsgUndelegate,
 } from "cosmjs-types/cosmos/staking/v1beta1/tx";
+import { TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx";
+import { Any } from "cosmjs-types/google/protobuf/any";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect } from "react";
 
@@ -23,9 +33,10 @@ import { fetchAccountData, setUserWallet } from "../context/actions";
 import { getHasConnectedWallet } from "../context/selectors";
 import type { Account, Wallet } from "../core";
 import { networksWithStaking } from "../core";
-import type { Coin, StakingNetworkId } from "../core/base";
-import { WalletId } from "../core/base";
+import type { Coin } from "../core/base";
+import { StakingNetworkId, WalletId } from "../core/base";
 import {
+  ethermintNetworks,
   keplrNetworks,
   keplrNonNativeChains,
   leapNetworks,
@@ -67,14 +78,14 @@ const getCosmosFee = async ({
   memo,
   msgs,
 }: FeeOpts) => {
-  const gasEstimate = await client
-    .simulate(account.address, msgs, memo)
-    .catch((err) => {
-      // eslint-disable-next-line no-console
-      console.log("debug: wallet_operations.ts: Estimate error", err);
+  const gasEstimate = ethermintNetworks.has(account.networkId)
+    ? 0
+    : await client.simulate(account.address, msgs, memo).catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log("debug: wallet_operations.ts: Estimate error", err);
 
-      return 0;
-    });
+        return 0;
+      });
 
   // This is a factor to increase the gas fee, since the estimate can be a
   // bit short in some cases (especially for the last events)
@@ -116,6 +127,136 @@ const getCosmosError = (err: Error): CosmosError => {
       ? CosmosError.Unknown
       : CosmosError.None
   );
+};
+
+type PollTxOpts = {
+  rpc: string;
+  txHash: string;
+};
+
+const pollTx = async ({ rpc, txHash }: PollTxOpts) => {
+  const tmClient = await connectComet(rpc);
+
+  const queryClient = QueryClient.withExtensions(tmClient, setupTxExtension);
+
+  while (true) {
+    try {
+      const tx = await queryClient.tx.getTx(txHash);
+
+      return tx;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log("debug: cosmos.ts: err", err);
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+  }
+};
+
+type AccountInfo = {
+  account_number: string;
+  sequence: number;
+};
+
+const signAndBroadcastEthermint = async (
+  rpc: string,
+  account: Account,
+  latestAccountInfo: AccountInfo,
+  client: SigningStargateClient,
+  messages: EncodeObject[],
+  fee: StdFee,
+  memo: string,
+) => {
+  const signer = (account.wallet === WalletId.Leap
+    ? window.leap!.getOfflineSigner(account.networkId)
+    : window.keplr!.getOfflineSigner(
+        account.networkId,
+      )) as unknown as OfflineDirectSigner;
+
+  const { account_number: accountNumber, sequence } = latestAccountInfo;
+
+  if (typeof sequence !== "number" || !accountNumber) {
+    throw new Error("Account number or sequence is missing");
+  }
+
+  const accountFromSigner = (await signer.getAccounts()).find(
+    (acc) => acc.address === account.address,
+  );
+
+  if (!accountFromSigner) {
+    throw new Error("Failed to retrieve account from signer");
+  }
+
+  const pubkeyTypeUrl = (() => {
+    if (account.networkId === StakingNetworkId.Injective) {
+      return "/injective.crypto.v1beta1.ethsecp256k1.PubKey";
+    }
+
+    return "/ethermint.crypto.v1.ethsecp256k1.PubKey";
+  })();
+
+  const pubkey = Any.fromPartial({
+    typeUrl: pubkeyTypeUrl,
+    value: PubKey.encode({
+      key: accountFromSigner.pubkey,
+    }).finish(),
+  });
+
+  const txBodyEncodeObject = {
+    typeUrl: "/cosmos.tx.v1beta1.TxBody",
+    value: {
+      memo,
+      messages,
+    },
+  };
+
+  const txBodyBytes = client.registry.encode(txBodyEncodeObject);
+
+  const authInfoBytes = makeAuthInfoBytes(
+    [{ pubkey, sequence }],
+    fee.amount,
+    Number(fee.gas),
+    undefined,
+    undefined,
+  );
+
+  const signDoc = makeSignDoc(
+    txBodyBytes,
+    authInfoBytes,
+    account.networkId,
+    Number(accountNumber),
+  );
+
+  const { signature, signed } = await signer.signDirect(
+    account.address,
+    signDoc,
+  );
+
+  const tx = TxRaw.encode({
+    authInfoBytes: signed.authInfoBytes,
+    bodyBytes: signed.bodyBytes,
+    signatures: [fromBase64(signature.signature)],
+  }).finish();
+
+  return (account.wallet === WalletId.Leap ? window.leap! : window.keplr!)
+    ?.sendTx(account.networkId, tx, "async" as BroadcastMode.Block)
+    .then(async (res) => {
+      const txHash = Buffer.from(res).toString("hex");
+
+      if (!txHash) {
+        throw new Error("Failed to broadcast transaction");
+      }
+
+      const txResult = await pollTx({
+        rpc,
+        txHash,
+      });
+
+      // eslint-disable-next-line no-console
+      console.log("debug: cosmos.ts: txResult", txResult);
+
+      return txResult.txResponse?.events;
+    });
 };
 
 export const stakeAmountCosmos = ({
@@ -189,6 +330,20 @@ export const stakeAmountCosmos = ({
             },
           }) satisfies Record<CosmosError, WalletOperationResult<StakeError>>
         )[getCosmosError(err)];
+
+      if (ethermintNetworks.has(account.networkId) && info.ethAccount) {
+        return signAndBroadcastEthermint(
+          networkInfo.rpc,
+          account,
+          info.ethAccount,
+          client,
+          [msgAny],
+          fee,
+          memo,
+        )
+          .then(handleSuccess)
+          .catch(handleError);
+      }
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
@@ -270,6 +425,20 @@ export const claimRewardsCosmos = async ({
             WalletOperationResult<ClaimRewardsError>
           >
         )[getCosmosError(err)];
+
+      if (ethermintNetworks.has(account.networkId) && info.ethAccount) {
+        return signAndBroadcastEthermint(
+          networkInfo.rpc,
+          account,
+          info.ethAccount,
+          client,
+          [msgAny],
+          fee,
+          "",
+        )
+          .then(handleSuccess)
+          .catch(handleError);
+      }
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee)
@@ -367,6 +536,20 @@ export const unstakeCosmos = async (
             },
           }) satisfies Record<CosmosError, WalletOperationResult<UnstakeError>>
         )[getCosmosError(err)];
+
+      if (ethermintNetworks.has(opts.account.networkId) && info.ethAccount) {
+        return signAndBroadcastEthermint(
+          networkInfo.rpc,
+          opts.account,
+          info.ethAccount,
+          client,
+          [msgAny],
+          fee,
+          opts.memo,
+        )
+          .then(handleSuccess)
+          .catch(handleError);
+      }
 
       return client
         .signAndBroadcast(opts.account.address, [msgAny], fee, opts.memo)
