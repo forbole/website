@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
 
-import type { Coin } from "../core";
-import { CoinDenom, StakingNetworkId } from "../core";
+import type { Coin } from "../core/base";
+import { CoinDenom, StakingNetworkId } from "../core/base";
 
 export const networkToUnnormalisedDenom = {
   [StakingNetworkId.Akash]: "UAKT",

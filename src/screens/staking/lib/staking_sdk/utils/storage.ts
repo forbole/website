@@ -1,4 +1,4 @@
-import { WalletId } from "../core";
+import { WalletId } from "../core/base";
 
 const localStorageKey = "connectedWallets";
 

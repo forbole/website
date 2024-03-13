@@ -1,6 +1,7 @@
 import type { TStakingContext } from "./context";
-import type { Coin, StakingNetworkId } from "./core";
-import { WalletId, keplrNetworks, leapNetworks } from "./core";
+import type { Coin, StakingNetworkId } from "./core/base";
+import { WalletId } from "./core/base";
+import { keplrNetworks, leapNetworks } from "./core/cosmos";
 import type {
   ClaimOpts,
   ClaimRewardsError,

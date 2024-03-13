@@ -1,6 +1,6 @@
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
-import type { NetworkInfo } from "../core";
+import type { StakingNetworkInfo } from "../core";
 import { networkKeyToNetworkId } from "../core";
 
 export const sortNetworksByName = (a: Network, b: Network) => {
@@ -19,7 +19,7 @@ export const sortNetworksByName = (a: Network, b: Network) => {
 };
 
 export const getUnbondingTimeForNetwork = (
-  networkInfo: NetworkInfo | null,
+  networkInfo: null | StakingNetworkInfo,
   locale?: string,
 ) => {
   if (!networkInfo) {

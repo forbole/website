@@ -1,19 +1,18 @@
 import type { TStakingContext } from ".";
+import { networksWithStaking } from "../core";
+import type {
+  Account,
+  StakingNetworkInfo,
+  StakingState,
+  Wallet,
+} from "../core";
+import type { CoinDenom, StakingNetworkId } from "../core/base";
 import {
   ENABLE_TESTNETS,
   WalletId,
   mainNetworkDenom,
-  networksWithStaking,
   testnetNetworks,
-} from "../core";
-import type {
-  Account,
-  CoinDenom,
-  NetworkInfo,
-  StakingNetworkId,
-  State,
-  Wallet,
-} from "../core";
+} from "../core/base";
 import type { CoinsPricesResult } from "../gecko_client";
 import { geckoClient } from "../gecko_client";
 import { stakingClient } from "../staking_client";
@@ -24,7 +23,7 @@ import { disconnectWalletFns } from "../wallet_operations";
 // Actions
 
 const networkInfoRequests: {
-  [key in StakingNetworkId]?: Promise<NetworkInfo>;
+  [key in StakingNetworkId]?: Promise<StakingNetworkInfo>;
 } = {};
 
 export const getNetworkStakingInfo = async (
@@ -32,7 +31,7 @@ export const getNetworkStakingInfo = async (
   networkId: StakingNetworkId,
 ) => {
   if (context.state.networksInfo[networkId])
-    return context.state.networksInfo[networkId] as NetworkInfo;
+    return context.state.networksInfo[networkId] as StakingNetworkInfo;
 
   const request = networkInfoRequests[networkId];
 
@@ -49,7 +48,7 @@ export const getNetworkStakingInfo = async (
 
     networkInfoRequests[networkId] = undefined;
 
-    return newInfo as NetworkInfo;
+    return newInfo as StakingNetworkInfo;
   });
 
   networkInfoRequests[networkId] = newRequest;
@@ -139,8 +138,8 @@ export const setUserWallet = (
 
 export const setSelectedAccount = (
   context: TStakingContext,
-  selectedAction: State["selectedAction"],
-  selectedAccount: State["selectedAccount"],
+  selectedAction: StakingState["selectedAction"],
+  selectedAccount: StakingState["selectedAccount"],
 ) => {
   context.setState({
     selectedAccount: selectedAccount

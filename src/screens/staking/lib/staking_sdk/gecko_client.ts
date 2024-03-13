@@ -1,6 +1,6 @@
 import { IS_E2E } from "@src/utils/e2e";
 
-import { CoinDenom } from "./core";
+import { CoinDenom } from "./core/base";
 
 export type CoinsPricesResult = { [key in CoinDenom]?: string };
 

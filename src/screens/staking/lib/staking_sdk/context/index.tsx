@@ -8,17 +8,19 @@ import {
   useState,
 } from "react";
 
-import type { State } from "../core";
+import type { StakingState } from "../core";
 import { useWalletsListeners } from "../wallet_operations";
 
-type SetState = (state: ((s: State) => State) | Partial<State>) => void;
+type SetState = (
+  state: ((s: StakingState) => StakingState) | Partial<StakingState>,
+) => void;
 
 export type TStakingContext = {
   setState: SetState;
-  state: State;
+  state: StakingState;
 };
 
-const defaultState: State = {
+const defaultState: StakingState = {
   coinsPrices: {},
   hasInit: false,
   networksInfo: {},
@@ -35,7 +37,7 @@ const baseContext: TStakingContext = {
 export const StakingContext = createContext(baseContext);
 
 export const StakingProvider = ({ children }: PropsWithChildren) => {
-  const [state, setState] = useState<State>(
+  const [state, setState] = useState<StakingState>(
     (typeof window !== "undefined" && window.stakingContext?.state) ||
       baseContext.state,
   );

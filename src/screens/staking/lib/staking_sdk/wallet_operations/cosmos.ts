@@ -1,11 +1,12 @@
 import type { EncodeObject } from "@cosmjs/proto-signing";
+import { SigningStargateClient } from "@cosmjs/stargate";
 import type {
   MsgDelegateEncodeObject,
   MsgUndelegateEncodeObject,
   MsgWithdrawDelegatorRewardEncodeObject,
   StdFee,
+  Event as TxEvent,
 } from "@cosmjs/stargate";
-import { SigningStargateClient } from "@cosmjs/stargate";
 import type { AccountData } from "@keplr-wallet/types";
 import { MsgWithdrawDelegatorReward } from "cosmjs-types/cosmos/distribution/v1beta1/tx";
 import {
@@ -20,14 +21,15 @@ import { toastError, toastSuccess } from "@src/components/notification";
 import type { TStakingContext } from "../context";
 import { fetchAccountData, setUserWallet } from "../context/actions";
 import { getHasConnectedWallet } from "../context/selectors";
-import type { Account, Coin, StakingNetworkId, Wallet } from "../core";
+import type { Account, Wallet } from "../core";
+import { networksWithStaking } from "../core";
+import type { Coin, StakingNetworkId } from "../core/base";
+import { WalletId } from "../core/base";
 import {
-  WalletId,
   keplrNetworks,
   keplrNonNativeChains,
   leapNetworks,
-  networksWithStaking,
-} from "../core";
+} from "../core/cosmos";
 import { stakingClient } from "../staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "../utils/storage";
 import type {
@@ -39,8 +41,17 @@ import type {
 } from "./base";
 import { ClaimRewardsError, StakeError, UnstakeError } from "./base";
 
+type TxEventType = "delegate" | "unbond" | "withdraw_rewards";
+
+const verifyEvent = (eventName: TxEventType) => (events?: readonly TxEvent[]) =>
+  !!events?.find((ev) => ev.type === eventName);
+
+const verifyDelegate = verifyEvent("delegate");
+const verifyWithdraw = verifyEvent("withdraw_rewards");
+const verifyUnbond = verifyEvent("unbond");
+
 type FeeOpts = {
-  address: string;
+  account: Account;
   amount: Coin[];
   client: SigningStargateClient;
   gasLimit: string;
@@ -49,7 +60,7 @@ type FeeOpts = {
 };
 
 const getCosmosFee = async ({
-  address,
+  account,
   amount,
   client,
   gasLimit,
@@ -57,7 +68,7 @@ const getCosmosFee = async ({
   msgs,
 }: FeeOpts) => {
   const gasEstimate = await client
-    .simulate(address, msgs, memo)
+    .simulate(account.address, msgs, memo)
     .catch((err) => {
       // eslint-disable-next-line no-console
       console.log("debug: wallet_operations.ts: Estimate error", err);
@@ -147,7 +158,7 @@ export const stakeAmountCosmos = ({
       );
 
       const fee = await getCosmosFee({
-        address: account.address,
+        account,
         amount: info.tx.authInfo.fee.amount,
         client,
         gasLimit: info.tx.authInfo.fee.gas_limit,
@@ -155,37 +166,34 @@ export const stakeAmountCosmos = ({
         msgs: [msgAny],
       });
 
+      const handleSuccess = (events?: readonly TxEvent[]) => {
+        const hasDelegated = verifyDelegate(events);
+
+        return hasDelegated
+          ? ({ success: true } as const)
+          : { error: StakeError.NotEnoughGas, success: false };
+      };
+
+      const handleError = (err: Error) =>
+        (
+          ({
+            [CosmosError.None]: { error: StakeError.None, success: false },
+            [CosmosError.NotEnoughGas]: {
+              error: StakeError.NotEnoughGas,
+              success: false,
+            },
+            [CosmosError.Success]: { success: true },
+            [CosmosError.Unknown]: {
+              error: StakeError.Unknown,
+              success: false,
+            },
+          }) satisfies Record<CosmosError, WalletOperationResult<StakeError>>
+        )[getCosmosError(err)];
+
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
-        .then((result) => {
-          const hasDelegated = !!result?.events?.find(
-            (ev) => ev.type === "delegate",
-          );
-
-          return hasDelegated
-            ? ({ success: true } as const)
-            : { error: StakeError.NotEnoughGas, success: false };
-        })
-        .catch(
-          (err) =>
-            (
-              ({
-                [CosmosError.None]: { error: StakeError.None, success: false },
-                [CosmosError.NotEnoughGas]: {
-                  error: StakeError.NotEnoughGas,
-                  success: false,
-                },
-                [CosmosError.Success]: { success: true },
-                [CosmosError.Unknown]: {
-                  error: StakeError.Unknown,
-                  success: false,
-                },
-              }) satisfies Record<
-                CosmosError,
-                WalletOperationResult<StakeError>
-              >
-            )[getCosmosError(err)],
-        );
+        .then((result) => handleSuccess(result?.events))
+        .catch(handleError);
     });
 
 export const claimRewardsCosmos = async ({
@@ -225,7 +233,7 @@ export const claimRewardsCosmos = async ({
       );
 
       const fee = await getCosmosFee({
-        address: account.address,
+        account,
         amount: info.tx.authInfo.fee.amount,
         client,
         gasLimit: info.tx.authInfo.fee.gas_limit,
@@ -233,40 +241,40 @@ export const claimRewardsCosmos = async ({
         msgs: [msgAny],
       });
 
+      const handleSuccess = (events?: readonly TxEvent[]) => {
+        const hasClaimed = !!verifyWithdraw(events);
+
+        return hasClaimed
+          ? ({ success: true } as const)
+          : { error: ClaimRewardsError.NotEnoughGas, success: false };
+      };
+
+      const handleError = (err: Error) =>
+        (
+          ({
+            [CosmosError.None]: {
+              error: ClaimRewardsError.None,
+              success: false,
+            },
+            [CosmosError.NotEnoughGas]: {
+              error: ClaimRewardsError.NotEnoughGas,
+              success: false,
+            },
+            [CosmosError.Success]: { success: true },
+            [CosmosError.Unknown]: {
+              error: ClaimRewardsError.Unknown,
+              success: false,
+            },
+          }) satisfies Record<
+            CosmosError,
+            WalletOperationResult<ClaimRewardsError>
+          >
+        )[getCosmosError(err)];
+
       return client
         .signAndBroadcast(account.address, [msgAny], fee)
-        .then((result) => {
-          const hasClaimed = !!result?.events?.find(
-            (ev) => ev.type === "withdraw_rewards",
-          );
-
-          return hasClaimed
-            ? ({ success: true } as const)
-            : { error: ClaimRewardsError.NotEnoughGas, success: false };
-        })
-        .catch(
-          (err) =>
-            (
-              ({
-                [CosmosError.None]: {
-                  error: ClaimRewardsError.None,
-                  success: false,
-                },
-                [CosmosError.NotEnoughGas]: {
-                  error: ClaimRewardsError.NotEnoughGas,
-                  success: false,
-                },
-                [CosmosError.Success]: { success: true },
-                [CosmosError.Unknown]: {
-                  error: ClaimRewardsError.Unknown,
-                  success: false,
-                },
-              }) satisfies Record<
-                CosmosError,
-                WalletOperationResult<ClaimRewardsError>
-              >
-            )[getCosmosError(err)],
-        );
+        .then((result) => handleSuccess(result?.events))
+        .catch(handleError);
     });
 
 export const getCosmosClaimRewardsFee = async ({
@@ -322,7 +330,7 @@ export const unstakeCosmos = async (
       );
 
       const fee = await getCosmosFee({
-        address: opts.account.address,
+        account: opts.account,
         amount: info.tx.authInfo.fee.amount,
         client,
         gasLimit: info.tx.authInfo.fee.gas_limit,
@@ -330,43 +338,40 @@ export const unstakeCosmos = async (
         msgs: [msgAny],
       });
 
+      const handleSuccess = (events?: readonly TxEvent[]) => {
+        const hasUnbonded = verifyUnbond(events);
+
+        return hasUnbonded
+          ? ({ success: true } as const)
+          : {
+              error: UnstakeError.NotEnoughGas,
+              success: false,
+            };
+      };
+
+      const handleError = (err: Error) =>
+        (
+          ({
+            [CosmosError.None]: {
+              error: UnstakeError.None,
+              success: false,
+            },
+            [CosmosError.NotEnoughGas]: {
+              error: UnstakeError.NotEnoughGas,
+              success: false,
+            },
+            [CosmosError.Success]: { success: true },
+            [CosmosError.Unknown]: {
+              error: UnstakeError.Unknown,
+              success: false,
+            },
+          }) satisfies Record<CosmosError, WalletOperationResult<UnstakeError>>
+        )[getCosmosError(err)];
+
       return client
         .signAndBroadcast(opts.account.address, [msgAny], fee, opts.memo)
-        .then((result) => {
-          const hasUnbonded = !!result?.events?.find(
-            (ev) => ev.type === "unbond",
-          );
-
-          return hasUnbonded
-            ? ({ success: true } as const)
-            : {
-                error: UnstakeError.NotEnoughGas,
-                success: false,
-              };
-        })
-        .catch(
-          (err) =>
-            (
-              ({
-                [CosmosError.None]: {
-                  error: UnstakeError.None,
-                  success: false,
-                },
-                [CosmosError.NotEnoughGas]: {
-                  error: UnstakeError.NotEnoughGas,
-                  success: false,
-                },
-                [CosmosError.Success]: { success: true },
-                [CosmosError.Unknown]: {
-                  error: UnstakeError.Unknown,
-                  success: false,
-                },
-              }) satisfies Record<
-                CosmosError,
-                WalletOperationResult<UnstakeError>
-              >
-            )[getCosmosError(err)],
-        );
+        .then((result) => handleSuccess(result?.events))
+        .catch(handleError);
     });
 
 export const tryToConnectKeplr = async (
