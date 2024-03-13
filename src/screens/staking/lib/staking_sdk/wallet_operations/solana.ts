@@ -13,10 +13,11 @@ import type { TStakingContext } from "../context";
 import { fetchAccountData, setUserWallet } from "../context/actions";
 import type { Account } from "../core";
 import { ENABLE_TESTNETS, StakingNetworkId, WalletId } from "../core/base";
+import { solanaNetworks } from "../core/solana";
 import { stakingClient } from "../staking_client";
 import { normaliseCoin } from "../utils/coins";
 import { addToConnectedWallets } from "../utils/storage";
-import { StakeError } from "./base";
+import { StakeError, UnstakeError } from "./base";
 import type { StakeOpts, WalletOperationResult } from "./base";
 
 const mainnetWallet = new Solflare({});
@@ -94,16 +95,18 @@ export const tryToConnectSolana = async (
         }
       };
 
-    if (connectListenerMainnet) {
-      mainnetWallet.off("connect", connectListenerMainnet);
+    if (solanaNetworks.has(StakingNetworkId.Solana)) {
+      if (connectListenerMainnet) {
+        mainnetWallet.off("connect", connectListenerMainnet);
+      }
+
+      connectListenerMainnet = getListener(
+        mainnetWallet,
+        StakingNetworkId.Solana,
+      );
+
+      mainnetWallet.on("connect", connectListenerMainnet);
     }
-
-    connectListenerMainnet = getListener(
-      mainnetWallet,
-      StakingNetworkId.Solana,
-    );
-
-    mainnetWallet.on("connect", connectListenerMainnet);
 
     if (ENABLE_TESTNETS) {
       if (connectListenerTestnet) {
@@ -129,6 +132,9 @@ const minimumStakeAmount: { [key in StakingNetworkId]?: number } = {
   [StakingNetworkId.SolanaTestnet]: LAMPORTS_PER_SOL * 1,
 };
 
+const getWallet = (networkId: StakingNetworkId) =>
+  networkId === StakingNetworkId.SolanaTestnet ? testnetWallet : mainnetWallet;
+
 // https://solanacookbook.com/references/staking.html
 export const stakeAmountSolana = async ({
   account,
@@ -140,11 +146,7 @@ export const stakeAmountSolana = async ({
       const validatorAddress = (info as any).validator_address;
 
       const accountKey = new PublicKey(account.address);
-
-      const wallet =
-        account.networkId === StakingNetworkId.SolanaTestnet
-          ? testnetWallet
-          : mainnetWallet;
+      const wallet = getWallet(account.networkId);
 
       const stakeAccount = (account.info?.stakeAccounts || []).find(
         (a) => a.validator_address === validatorAddress,
@@ -232,6 +234,70 @@ export const stakeAmountSolana = async ({
 
       return {
         error: StakeError.Unknown,
+        success: false,
+      };
+    });
+
+export const unstakeSolana = async ({
+  account,
+  amount,
+}: StakeOpts): Promise<WalletOperationResult<UnstakeError>> =>
+  stakingClient
+    .unstake(account.networkId, account.address, amount)
+    .then(async (info) => {
+      const validatorAddress = (info as any).validator_address;
+
+      const accountKey = new PublicKey(account.address);
+
+      const wallet = getWallet(account.networkId);
+
+      const stakeAccount = (account.info?.stakeAccounts || []).find(
+        (a) => a.validator_address === validatorAddress,
+      );
+
+      if (!stakeAccount) {
+        return {
+          error: UnstakeError.Unknown,
+          success: false,
+        };
+      }
+
+      const stakePubkey = new PublicKey(stakeAccount.address);
+
+      const newTx = new Transaction().add(
+        StakeProgram.deactivate({
+          authorizedPubkey: accountKey,
+          stakePubkey,
+        }),
+      );
+
+      newTx.recentBlockhash = (info as any).blockhash;
+      newTx.feePayer = accountKey;
+
+      const unstakeAccountResult = await wallet.signAndSendTransaction(newTx);
+
+      console.log(
+        "debug: solana.ts: unstakeAccountResult",
+        unstakeAccountResult,
+      );
+
+      return {
+        success: true,
+      } as const;
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log("debug: solana.ts: error", error);
+
+      if (error.message?.includes("Transaction cancelled")) {
+        return {
+          error: UnstakeError.None,
+          success: false,
+        };
+      }
+
+      return {
+        error: UnstakeError.Unknown,
         success: false,
       };
     });

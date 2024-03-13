@@ -145,7 +145,9 @@ const PopOver = ({
 
         if (unbonding) {
           result.unbondingTokens = {
-            period: new Date(Number(unbonding.period) * 1000).toLocaleString(),
+            period: unbonding.period
+              ? new Date(Number(unbonding.period) * 1000).toLocaleString()
+              : "",
             text: formatCoin(unbonding.coin, { decimals: 4 }),
           };
         }
@@ -224,9 +226,13 @@ const PopOver = ({
             <div className={styles.unbonding}>
               <div>{t("unbondingTokens")}</div>
               <div
-                data-tooltip-content={t("popover.unbondingTooltip", {
-                  period: unbondingTokens.period,
-                })}
+                data-tooltip-content={
+                  !!unbondingTokens.period
+                    ? t("popover.unbondingTooltip", {
+                        period: unbondingTokens.period,
+                      })
+                    : ""
+                }
                 data-tooltip-id={tooltipId}
               >
                 {unbondingTokens.text}

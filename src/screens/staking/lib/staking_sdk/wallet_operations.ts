@@ -29,6 +29,7 @@ import {
   disconnectSolana,
   stakeAmountSolana,
   tryToConnectSolana,
+  unstakeSolana,
 } from "./wallet_operations/solana";
 
 export const MAX_MEMO = 256;
@@ -63,7 +64,22 @@ export const getClaimRewardsFee = async (
 
 export const unstake = async (
   opts: UnstakeAmount,
-): Promise<WalletOperationResult<UnstakeError>> => unstakeCosmos(opts);
+): Promise<WalletOperationResult<UnstakeError>> => {
+  const { account } = opts;
+
+  if (
+    keplrNetworks.has(account.networkId) ||
+    leapNetworks.has(account.networkId)
+  ) {
+    return unstakeCosmos(opts);
+  }
+
+  if (solanaNetworks.has(account.networkId)) {
+    return unstakeSolana(opts);
+  }
+
+  throw new Error("Unsupported network");
+};
 
 export const tryToConnectWallets = async (
   context: TStakingContext,

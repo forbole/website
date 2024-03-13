@@ -5,21 +5,21 @@ import {
   testnetNetworks,
 } from "./base";
 
-export const keplrNetworks = new Set(
+export const keplrNetworks = new Set<StakingNetworkId>(
   [
-    StakingNetworkId.Akash,
-    StakingNetworkId.Celestia,
-    StakingNetworkId.CelestiaTestnet,
-    StakingNetworkId.ComposableFinance,
-    StakingNetworkId.CosmosHub,
-    StakingNetworkId.CosmosHubTestnet,
-    StakingNetworkId.DyDx,
-    StakingNetworkId.Kava,
-    StakingNetworkId.KavaTestnet,
-    StakingNetworkId.Osmosis,
-    StakingNetworkId.Regen,
-    StakingNetworkId.Stargaze,
-    StakingNetworkId.StargazeTestnet,
+    // StakingNetworkId.Akash,
+    // StakingNetworkId.Celestia,
+    // StakingNetworkId.CelestiaTestnet,
+    // StakingNetworkId.ComposableFinance,
+    // StakingNetworkId.CosmosHub,
+    // StakingNetworkId.CosmosHubTestnet,
+    // StakingNetworkId.DyDx,
+    // StakingNetworkId.Kava,
+    // StakingNetworkId.KavaTestnet,
+    // StakingNetworkId.Osmosis,
+    // StakingNetworkId.Regen,
+    // StakingNetworkId.Stargaze,
+    // StakingNetworkId.StargazeTestnet,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),

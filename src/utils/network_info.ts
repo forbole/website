@@ -803,6 +803,10 @@ const cosmosTestNetworkKeys = ENABLE_TESTNETS
     ] satisfies NetworkKey[])
   : [];
 
+const solanaTestNetworkKeys = ENABLE_TESTNETS
+  ? (["solana-testnet"] satisfies NetworkKey[])
+  : [];
+
 export const cosmosNetworkKeys = [
   "agoric",
   "akash",
@@ -864,6 +868,7 @@ export const cosmosNetworkKeys = [
   "xpla",
 
   ...cosmosTestNetworkKeys,
+  ...solanaTestNetworkKeys,
   // Preparing:
   // 'desmos',
 ] satisfies NetworkKey[];

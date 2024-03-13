@@ -131,14 +131,18 @@ export const getUnbondingTokensForNetwork = (
 
     return unbonding.reduce((acc2, unbondingInfo) => {
       const baseCoin = acc2 ? acc2.coin : getEmptyCoin(denom);
-      const basePeriod = acc2 ? acc2.period : "0";
+      const basePeriod = acc2 ? acc2.period : "";
 
       const newCoin = sumCoins(baseCoin, {
         amount: unbondingInfo.balance,
         denom,
       });
 
-      if (!unbondingInfo.completion_time) return acc2;
+      if (!unbondingInfo.completion_time)
+        return {
+          coin: newCoin,
+          period: basePeriod,
+        };
 
       const itemPeriod = unbondingInfo.completion_time.seconds;
 
