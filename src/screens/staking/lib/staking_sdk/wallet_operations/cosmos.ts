@@ -131,13 +131,16 @@ const getCosmosError = (err: Error): CosmosError => {
 
 type PollTxOpts = {
   rpc: string;
+  timeout?: number;
   txHash: string;
 };
 
-const pollTx = async ({ rpc, txHash }: PollTxOpts) => {
+const pollTx = async ({ rpc, timeout, txHash }: PollTxOpts) => {
   const tmClient = await connectComet(rpc);
 
   const queryClient = QueryClient.withExtensions(tmClient, setupTxExtension);
+
+  let elapsed = 0;
 
   while (true) {
     try {
@@ -149,7 +152,15 @@ const pollTx = async ({ rpc, txHash }: PollTxOpts) => {
       console.log("debug: cosmos.ts: err", err);
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    const toWait = 5000;
+
+    elapsed += toWait;
+
+    if (timeout && elapsed >= timeout) {
+      throw new Error("Timeout");
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, toWait));
   }
 };
 
@@ -175,6 +186,8 @@ const signAndBroadcastEthermint = async (
 
   const { account_number: accountNumber, sequence } = latestAccountInfo;
 
+  // The `sequence` can be `0` here if the account is new. But check that both
+  // values are set in case the types are not valid.
   if (typeof sequence !== "number" || !accountNumber) {
     throw new Error("Account number or sequence is missing");
   }
@@ -249,6 +262,9 @@ const signAndBroadcastEthermint = async (
 
       const txResult = await pollTx({
         rpc,
+        // Three minutes, since some transactions (e.g. for Injective) can take
+        // a long time
+        timeout: 1000 * 60 * 3,
         txHash,
       });
 
