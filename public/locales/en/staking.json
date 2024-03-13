@@ -126,6 +126,9 @@
     },
     "available": "Available",
     "error": {
+      "notEnoughAmountError": {
+        "title": "You need to stake at least {{amount}}"
+      },
       "notEnoughGas": {
         "title": "Gas limit too low, increase gas to complete the transaction."
       }
@@ -197,7 +200,8 @@
   "votingPower": "Voting Power",
   "wallets": {
     "keplr": "Keplr",
-    "leap": "Leap"
+    "leap": "Leap",
+    "solana": "Solana"
   },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
   "why forbole?": "Why Forbole?",

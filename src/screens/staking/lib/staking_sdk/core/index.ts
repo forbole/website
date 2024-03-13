@@ -7,12 +7,17 @@ import type {
 import type { CoinDenom, WalletId } from "./base";
 import { StakingNetworkId } from "./base";
 import { cosmosStakingNetworks, cosmosWallets } from "./cosmos";
+import { solanaNetworks, solanaWallets } from "./solana";
 
 export const networksWithStaking = new Set([
   ...Array.from(cosmosStakingNetworks),
+  ...Array.from(solanaNetworks),
 ]);
 
-export const walletsSupported = new Set(Array.from(cosmosWallets)); // TODO add WalletId.Leap back when staking with Leap Wallet is reliable
+export const walletsSupported = new Set([
+  ...Array.from(cosmosWallets),
+  ...Array.from(solanaWallets),
+]);
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",
@@ -26,6 +31,8 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.KavaTestnet]: "kava-testnet",
   [StakingNetworkId.Osmosis]: "osmosis",
   [StakingNetworkId.Regen]: "regen",
+  [StakingNetworkId.Solana]: "solana",
+  [StakingNetworkId.SolanaTestnet]: "solana-testnet",
   [StakingNetworkId.Stargaze]: "stargaze",
   [StakingNetworkId.StargazeTestnet]: "stargaze-testnet",
 };

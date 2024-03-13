@@ -28,6 +28,13 @@ type Coin = {
   denom: string;
 };
 
+type StakeAccount = {
+  address: string;
+  amount: string;
+  denom: string;
+  validator_address: string;
+};
+
 export type AccountDetailResponse = {
   account_number: null | number;
   address: string;
@@ -35,6 +42,7 @@ export type AccountDetailResponse = {
   delegation: Coin | Coin[] | null;
   network: string;
   sequence: null | number;
+  stakeAccounts?: StakeAccount[];
   unbonding: Unbonding[];
 };
 

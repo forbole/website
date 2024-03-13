@@ -15,18 +15,22 @@ export const networkToUnnormalisedDenom = {
   [StakingNetworkId.KavaTestnet]: "UKAVA",
   [StakingNetworkId.Osmosis]: "UOSMO",
   [StakingNetworkId.Regen]: "UREGEN",
+  [StakingNetworkId.Solana]: "LAMPORTS",
+  [StakingNetworkId.SolanaTestnet]: "LAMPORTS",
   [StakingNetworkId.Stargaze]: "USTARS",
   [StakingNetworkId.StargazeTestnet]: "USTARS",
 } as const satisfies Record<StakingNetworkId, string>;
 
 type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
 
-const uExp = 6;
-const pExp = 12;
 const aExp = 18;
+const nExp = 9;
+const pExp = 12;
+const uExp = 6;
 
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   ADYDX: [CoinDenom.DYDX, aExp],
+  LAMPORTS: [CoinDenom.SOL, nExp],
   PPICA: [CoinDenom.PICA, pExp],
   UAKT: [CoinDenom.AKT, uExp],
   UATOM: [CoinDenom.ATOM, uExp],

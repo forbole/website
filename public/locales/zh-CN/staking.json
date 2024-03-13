@@ -126,6 +126,9 @@
     },
     "available": "可用的",
     "error": {
+      "notEnoughAmountError": {
+        "title": "You need to stake at least {{amount}}"
+      },
       "notEnoughGas": {
         "title": "Gas 限额太低，增加 Gas 来完成交易。"
       }
@@ -196,7 +199,8 @@
   "votingPower": "投票权",
   "wallets": {
     "keplr": "Keplr",
-    "leap": "Leap"
+    "leap": "Leap",
+    "solana": "Solana"
   },
   "why forbole title": "<0>Forbole<1>坚实基建，硅步千里</1></0>",
   "why forbole?": "为何选择 Forbole？",

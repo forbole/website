@@ -2,6 +2,7 @@ import type { TStakingContext } from "./context";
 import type { Coin, StakingNetworkId } from "./core/base";
 import { WalletId } from "./core/base";
 import { keplrNetworks, leapNetworks } from "./core/cosmos";
+import { solanaNetworks } from "./core/solana";
 import type {
   ClaimOpts,
   ClaimRewardsError,
@@ -24,12 +25,32 @@ import {
   unstakeCosmos,
   useCosmosWalletsListeners,
 } from "./wallet_operations/cosmos";
+import {
+  disconnectSolana,
+  stakeAmountSolana,
+  tryToConnectSolana,
+} from "./wallet_operations/solana";
 
 export const MAX_MEMO = 256;
 
 export const stakeAmount = (
   opts: StakeOpts,
-): Promise<WalletOperationResult<StakeError>> => stakeAmountCosmos(opts);
+): Promise<WalletOperationResult<StakeError>> => {
+  const { account } = opts;
+
+  if (
+    keplrNetworks.has(account.networkId) ||
+    leapNetworks.has(account.networkId)
+  ) {
+    return stakeAmountCosmos(opts);
+  }
+
+  if (solanaNetworks.has(account.networkId)) {
+    return stakeAmountSolana(opts);
+  }
+
+  throw new Error("Unsupported network");
+};
 
 export const claimRewards = async (
   opts: ClaimOpts,
@@ -67,6 +88,12 @@ export const tryToConnectWallets = async (
 
         break;
 
+      case WalletId.SolanaGroup:
+        // @TODO: Open link if missing
+        connected = await tryToConnectSolana(context);
+
+        break;
+
       default: {
         walletId satisfies never;
       }
@@ -82,6 +109,7 @@ export const disconnectWalletFns: Record<
 > = {
   [WalletId.Keplr]: disconnecKeplr,
   [WalletId.Leap]: disconnectLeap,
+  [WalletId.SolanaGroup]: disconnectSolana,
 };
 
 export const useWalletsListeners = (contextValue: TStakingContext) => {
@@ -98,6 +126,9 @@ export const doesWalletSupportNetwork = (
 
     case WalletId.Leap:
       return leapNetworks.has(networkId as StakingNetworkId);
+
+    case WalletId.SolanaGroup:
+      return solanaNetworks.has(networkId as StakingNetworkId);
 
     default: {
       wallet satisfies never;

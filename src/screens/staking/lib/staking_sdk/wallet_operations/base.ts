@@ -2,6 +2,7 @@ import type { Account } from "../core";
 
 export type WalletOperationResult<ErrorType> =
   | {
+      data?: unknown;
       error: ErrorType;
       success: false;
     }
@@ -32,6 +33,7 @@ export type WalletErrorMap = {
 };
 
 export enum StakeError {
+  MinimumAmount = "MinimumAmount",
   None = "None",
   NotEnoughGas = "NotEnoughGas",
   Unknown = "Unknown",

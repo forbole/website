@@ -13,3 +13,11 @@ export const notEnoughGasError = (t: Translate) => {
     title: t("staking:stakingModal.error.notEnoughGas.title"),
   });
 };
+
+export const notEnoughAmountError = (t: Translate, minimum: string) => {
+  toastError({
+    title: t("staking:stakingModal.error.notEnoughAmountError.title", {
+      minimum,
+    }),
+  });
+};

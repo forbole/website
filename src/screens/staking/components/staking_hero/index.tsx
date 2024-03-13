@@ -34,9 +34,9 @@ const StakingHero = () => {
 
   useEffect(() => {
     if (hasInit) {
-      const filteredAccounts = getAllAccounts(stakingRef.current.state)
-        .filter(filterUniqueAddresses())
-        .filter(filterOutTestnets);
+      const filteredAccounts = getAllAccounts(stakingRef.current.state).filter(
+        filterUniqueAddresses(),
+      );
 
       // Once it has init, fetch all coin prices for all the networks
       fetchCoinPriceForNetwork(
@@ -48,7 +48,9 @@ const StakingHero = () => {
 
   if (!hasInit) return null;
 
-  const accounts = getAllAccounts(stakingRef.current.state);
+  const accounts = getAllAccounts(stakingRef.current.state).filter(
+    filterOutTestnets,
+  );
 
   const accountsWithRewards = accounts.filter(accountHasRewards);
 

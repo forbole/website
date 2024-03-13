@@ -5,7 +5,6 @@ import { walletsSupported } from "../core";
 import type { Coin, CoinDenom, StakingNetworkId, WalletId } from "../core/base";
 import { mainNetworkDenom } from "../core/base";
 import {
-  filterOutTestnets,
   filterUniqueAddresses,
   getClaimableRewardsForAccount,
 } from "../utils/accounts";
@@ -230,11 +229,9 @@ export const getAllStaked = (
 ): number => {
   const accounts = accountsProp || getAllAccounts(state);
 
-  const uniqueMainnetAccounts = accounts
-    .filter(filterUniqueAddresses())
-    .filter(filterOutTestnets);
+  const uniqueAccounts = accounts.filter(filterUniqueAddresses());
 
-  return uniqueMainnetAccounts.reduce((acc, account) => {
+  return uniqueAccounts.reduce((acc, account) => {
     const delegationProp = account.info?.delegation;
 
     const delegation = Array.isArray(delegationProp)
@@ -263,11 +260,9 @@ export const getAllRewards = (
 ) => {
   const accounts = accountsProp || getAllAccounts(state);
 
-  const uniqueMainnetAccounts = accounts
-    .filter(filterUniqueAddresses())
-    .filter(filterOutTestnets);
+  const uniqueAccounts = accounts.filter(filterUniqueAddresses());
 
-  return uniqueMainnetAccounts.reduce((acc, account) => {
+  return uniqueAccounts.reduce((acc, account) => {
     const { rewards } = account;
 
     if (!rewards) return acc;

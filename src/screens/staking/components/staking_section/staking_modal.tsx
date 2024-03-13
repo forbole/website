@@ -10,6 +10,7 @@ import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import {
   displayGenericError,
+  notEnoughAmountError,
   notEnoughGasError,
 } from "@src/screens/staking/lib/error";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
@@ -153,6 +154,13 @@ const StakingModal = () => {
           });
         } else if (result.error !== StakeError.None) {
           const handlers: Record<StakeError, () => void> = {
+            [StakeError.MinimumAmount]: () => {
+              const minimum = result.data;
+
+              if (typeof minimum === "string") {
+                notEnoughAmountError(t, minimum);
+              }
+            },
             [StakeError.None]: () => {},
             [StakeError.NotEnoughGas]: () => {
               notEnoughGasError(t);
