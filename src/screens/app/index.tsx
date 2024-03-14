@@ -25,12 +25,14 @@ const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 // Check that PostHog is client-side (used to handle Next.js SSR)
 if (typeof window !== "undefined") {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    api_host: `${window.location.origin}/ingest`,
 
     // Enable debug mode in development
-    loaded: (posthog) => {
-      if (process.env.NODE_ENV === "development") posthog.debug();
+    loaded: (_posthog) => {
+      if (process.env.NODE_ENV === "development") _posthog.debug();
     },
+
+    ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
   });
 }
 
@@ -59,6 +61,7 @@ export default function MyApp({
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
