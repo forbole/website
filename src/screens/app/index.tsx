@@ -3,6 +3,9 @@ import { CacheProvider } from "@emotion/react";
 import { init } from "@socialgouv/matomo-next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 
 import createEmotionCache from "../../utils/createEmotionCache";
@@ -19,11 +22,25 @@ interface MyAppProps extends AppProps {
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
+// Check that PostHog is client-side (used to handle Next.js SSR)
+if (typeof window !== "undefined") {
+  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+
+    // Enable debug mode in development
+    loaded: (posthog) => {
+      if (process.env.NODE_ENV === "development") posthog.debug();
+    },
+  });
+}
+
 export default function MyApp({
   Component,
   emotionCache = clientSideEmotionCache,
   pageProps,
 }: MyAppProps) {
+  const router = useRouter();
+
   useEffect(() => {
     if (!MATOMO_URL) return;
 
@@ -33,13 +50,26 @@ export default function MyApp({
     });
   }, []);
 
+  useEffect(() => {
+    // Track page views
+    const handleRouteChange = () => posthog?.capture("$pageview");
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, []);
+
   return (
-    <CacheProvider value={emotionCache}>
-      <Head>
-        <meta content="width=device-width,initial-scale=1" name="viewport" />
-        <meta content="no-referrer" name="referrer" />
-      </Head>
-      <InnerApp Component={Component} pageProps={pageProps} />
-    </CacheProvider>
+    <PostHogProvider client={posthog}>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <meta content="width=device-width,initial-scale=1" name="viewport" />
+          <meta content="no-referrer" name="referrer" />
+        </Head>
+        <InnerApp Component={Component} pageProps={pageProps} />
+      </CacheProvider>
+    </PostHogProvider>
   );
 }
