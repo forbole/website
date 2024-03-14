@@ -1,4 +1,4 @@
-import { WalletId } from "../core/base";
+import type { WalletId } from "../core/base";
 
 const localStorageKey = "connectedWallets";
 
@@ -12,7 +12,7 @@ export const getConnectedWallets = (): WalletId[] => {
   try {
     const parsedWallets: WalletId[] = JSON.parse(connectedWallets);
 
-    return parsedWallets.filter((walletId) => walletId !== WalletId.Leap); // TODO remove this line when staking with Leap Wallet is reliable
+    return parsedWallets;
   } catch (e) {
     return [];
   }
