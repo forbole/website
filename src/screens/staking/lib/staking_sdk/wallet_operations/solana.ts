@@ -178,22 +178,12 @@ export const stakeAmountSolana = async ({
           };
         }
 
-        const newTx = new Transaction()
-          .add(
-            StakeProgram.createAccount({
-              authorized: new Authorized(accountKey, accountKey),
-              fromPubkey: accountKey,
-              lamports: amountToStake,
-              stakePubkey: stakeKeyPair.publicKey,
-            }),
-          )
-          .add(
-            StakeProgram.delegate({
-              authorizedPubkey: accountKey,
-              stakePubkey: stakeKeyPair.publicKey,
-              votePubkey: new PublicKey(validatorAddress),
-            }),
-          );
+        const newTx = StakeProgram.createAccount({
+          authorized: new Authorized(accountKey, accountKey),
+          fromPubkey: accountKey,
+          lamports: amountToStake,
+          stakePubkey: stakeKeyPair.publicKey,
+        });
 
         newTx.recentBlockhash = (info as any).blockhash;
         newTx.feePayer = accountKey;
@@ -204,6 +194,30 @@ export const stakeAmountSolana = async ({
 
         // eslint-disable-next-line no-console
         console.log("debug: solana.ts: result", stakeAccountResult);
+
+        await new Promise((resolve) => setTimeout(resolve, 10000));
+
+        const newInfo = await stakingClient.stake(
+          account.networkId,
+          account.address,
+          amount,
+        );
+
+        const newTx2 = StakeProgram.delegate({
+          authorizedPubkey: accountKey,
+          stakePubkey: stakeKeyPair.publicKey,
+          votePubkey: new PublicKey(validatorAddress),
+        });
+
+        newTx2.recentBlockhash = (newInfo as any).blockhash;
+        newTx2.feePayer = accountKey;
+
+        // newTx2.sign(stakeKeyPair);
+
+        const stakeAccountResult2 = await wallet.signAndSendTransaction(newTx2);
+
+        // eslint-disable-next-line no-console
+        console.log("debug: solana.ts: result", stakeAccountResult2);
 
         return { success: true } as const;
       }
