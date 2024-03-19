@@ -44,6 +44,11 @@ export const tryToConnectSolana = async (
   new Promise(async (resolve, reject) => {
     let resolvedItems = 0;
 
+    const hasMainnetWallet = solanaNetworks.has(StakingNetworkId.Solana);
+
+    const hasTestnetWallet =
+      ENABLE_TESTNETS && solanaNetworks.has(StakingNetworkId.SolanaTestnet);
+
     const getListener =
       (wallet: typeof mainnetWallet, networkId: StakingNetworkId) =>
       async () => {
@@ -87,7 +92,11 @@ export const tryToConnectSolana = async (
 
           resolvedItems += 1;
 
-          if (resolvedItems === (ENABLE_TESTNETS ? 2 : 1)) {
+          const totalItems = [hasMainnetWallet, hasTestnetWallet].filter(
+            Boolean,
+          ).length;
+
+          if (resolvedItems === totalItems) {
             resolve(true);
           }
         } catch (error) {
@@ -95,7 +104,7 @@ export const tryToConnectSolana = async (
         }
       };
 
-    if (solanaNetworks.has(StakingNetworkId.Solana)) {
+    if (hasMainnetWallet) {
       if (connectListenerMainnet) {
         mainnetWallet.off("connect", connectListenerMainnet);
       }
@@ -108,7 +117,7 @@ export const tryToConnectSolana = async (
       mainnetWallet.on("connect", connectListenerMainnet);
     }
 
-    if (ENABLE_TESTNETS) {
+    if (hasTestnetWallet) {
       if (connectListenerTestnet) {
         testnetWallet.off("connect", connectListenerTestnet);
       }
@@ -122,8 +131,8 @@ export const tryToConnectSolana = async (
     }
 
     await Promise.all([
-      mainnetWallet.connect(),
-      ENABLE_TESTNETS ? testnetWallet.connect() : Promise.resolve(),
+      hasMainnetWallet ? mainnetWallet.connect() : Promise.resolve(),
+      hasTestnetWallet ? testnetWallet.connect() : Promise.resolve(),
     ]);
   });
 
@@ -160,7 +169,7 @@ export const stakeAmountSolana = async ({
 
         if (amountToStake < minimumAmount) {
           return {
-            data: normaliseCoin({
+            coin: normaliseCoin({
               amount: minimumAmount.toString(),
               denom: "LAMPORTS",
             }),
@@ -274,12 +283,7 @@ export const unstakeSolana = async ({
       newTx.recentBlockhash = (info as any).blockhash;
       newTx.feePayer = accountKey;
 
-      const unstakeAccountResult = await wallet.signAndSendTransaction(newTx);
-
-      console.log(
-        "debug: solana.ts: unstakeAccountResult",
-        unstakeAccountResult,
-      );
+      await wallet.signAndSendTransaction(newTx);
 
       return {
         success: true,

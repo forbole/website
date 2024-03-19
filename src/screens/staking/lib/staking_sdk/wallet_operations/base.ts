@@ -1,8 +1,9 @@
 import type { Account } from "../core";
+import type { Coin } from "../core/base";
 
 export type WalletOperationResult<ErrorType> =
   | {
-      data?: unknown;
+      coin?: Coin;
       error: ErrorType;
       success: false;
     }

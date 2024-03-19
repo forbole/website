@@ -73,6 +73,14 @@ export const normaliseDenom = (denom: string): string =>
 
 export const getEmptyCoin = (denom = ""): Coin => ({ amount: "0", denom });
 
+export const getIsCoin = (val?: unknown): val is Coin =>
+  typeof val === "object" &&
+  val !== null &&
+  "amount" in val &&
+  "denom" in val &&
+  typeof val.amount === "string" &&
+  typeof val.denom === "string";
+
 export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin =>
   [coinA, coinB]
     .filter((c): c is Coin => !!c?.denom)

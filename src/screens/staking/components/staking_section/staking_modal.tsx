@@ -24,7 +24,10 @@ import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/co
 import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import {
+  getEmptyCoin,
+  getIsCoin,
+} from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import {
   MAX_MEMO,
   stakeAmount,
@@ -155,9 +158,9 @@ const StakingModal = () => {
         } else if (result.error !== StakeError.None) {
           const handlers: Record<StakeError, () => void> = {
             [StakeError.MinimumAmount]: () => {
-              const minimum = result.data;
+              const minimum = result.coin;
 
-              if (typeof minimum === "string") {
+              if (getIsCoin(minimum)) {
                 notEnoughAmountError(t, minimum);
               }
             },
