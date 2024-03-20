@@ -17,7 +17,6 @@ export const keplrNetworks = new Set(
     StakingNetworkId.Kava,
     StakingNetworkId.KavaTestnet,
     StakingNetworkId.Osmosis,
-    StakingNetworkId.Regen,
     StakingNetworkId.Stargaze,
     StakingNetworkId.StargazeTestnet,
   ].filter(
@@ -37,7 +36,6 @@ const leapExcludedNetworks = new Set([
   StakingNetworkId.Celestia,
   StakingNetworkId.ComposableFinance,
   StakingNetworkId.DyDx,
-  StakingNetworkId.Regen,
   StakingNetworkId.KavaTestnet,
 ]);
 
