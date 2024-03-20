@@ -25,7 +25,6 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Kava]: "kava",
   [StakingNetworkId.KavaTestnet]: "kava-testnet",
   [StakingNetworkId.Osmosis]: "osmosis",
-  [StakingNetworkId.Regen]: "regen",
   [StakingNetworkId.Stargaze]: "stargaze",
   [StakingNetworkId.StargazeTestnet]: "stargaze-testnet",
 };
