@@ -32,6 +32,8 @@ if (typeof window !== "undefined") {
       if (process.env.NODE_ENV === "development") _posthog.debug();
     },
 
+    // Used to capture events only for the staking page
+    opt_out_capturing_by_default: true,
     ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
   });
 }
