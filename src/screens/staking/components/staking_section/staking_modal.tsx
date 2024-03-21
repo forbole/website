@@ -29,6 +29,7 @@ import {
   stakeAmount,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { StakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
+import { PostHogCustomEvent } from "@src/utils/posthog";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -146,6 +147,11 @@ const StakingModal = () => {
           await syncAccountData(stakingRef.current, selectedAccount);
 
           setSelectedAccount(stakingRef.current, null, null);
+
+          stakingRef.current.postHog?.capture(PostHogCustomEvent.StakedTokens, {
+            amount,
+            denom: mainNetworkDenom[selectedAccount.networkId],
+          });
 
           toastSuccess({
             subtitle: `${t("stakingModal.success.sub")} 🎉`,
