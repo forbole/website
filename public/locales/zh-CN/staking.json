@@ -108,7 +108,7 @@
   "stake_now": "立即质押",
   "staked by forbole": "Forbole 质押",
   "staking": {
-    "days_other": "天"
+    "days_other": "{{count}}天"
   },
   "staking para 1": "代币持有者将其代币质押给验证者以保护网络的行为称为质押。",
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
