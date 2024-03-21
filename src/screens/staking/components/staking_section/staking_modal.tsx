@@ -1,5 +1,6 @@
 import BigNumber from "bignumber.js";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import FormInput from "@src/components/form_input";
@@ -24,6 +25,7 @@ import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
   MAX_MEMO,
   stakeAmount,
@@ -52,6 +54,7 @@ const StakingModal = () => {
   const [memoError, setMemoError] = useState("");
   const [memo, setMemo] = useState("");
 
+  const { locale } = useRouter();
   const isOpen = !!selectedAccount && selectedAction === "stake";
 
   const { state: stakingState } = stakingRef.current;
@@ -183,6 +186,8 @@ const StakingModal = () => {
     return null;
   })();
 
+  const unbondingPeriod = getUnbondingTimeForNetwork(networkInfo, locale);
+
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
       <form className={styles.wrapper} onSubmit={onSubmit}>
@@ -204,6 +209,24 @@ const StakingModal = () => {
               APY
             </Label>
             <div>{(networkInfo.apy * 100).toFixed(0)}%</div>
+          </div>
+        )}
+        {unbondingPeriod && (
+          <div className={styles.row}>
+            <Label className={styles.apy}>
+              <IconInfoCircle
+                data-tooltip-content={t("definitions.unbonding", {
+                  count: unbondingPeriod.days,
+                })}
+                data-tooltip-id={tooltipId}
+              />{" "}
+              {t("stakingModal.unbonding")}
+            </Label>
+            <div>
+              {t("staking.days", {
+                count: unbondingPeriod.days,
+              })}
+            </div>
           </div>
         )}
         <div className={styles.selectGroup}>
