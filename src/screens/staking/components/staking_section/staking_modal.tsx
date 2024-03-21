@@ -208,7 +208,9 @@ const StakingModal = () => {
               />{" "}
               APY
             </Label>
-            <div>{(networkInfo.apy * 100).toFixed(0)}%</div>
+            <div className={styles.labelValue}>
+              {(networkInfo.apy * 100).toFixed(0)}%
+            </div>
           </div>
         )}
         {unbondingPeriod && (
@@ -222,7 +224,7 @@ const StakingModal = () => {
               />{" "}
               {t("stakingModal.unbonding")}
             </Label>
-            <div>
+            <div className={styles.labelValue}>
               {t("staking.days", {
                 count: unbondingPeriod.days,
               })}
