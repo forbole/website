@@ -272,7 +272,7 @@ export const getAllRewards = (
     if (!rewards) return acc;
 
     const newValue = rewards.reduce((acc2, reward) => {
-      const normalised = normaliseCoin(reward);
+      const normalised = normaliseCoin(reward.coin);
 
       const coinPrice = state.coinsPrices[normalised.denom as CoinDenom];
 

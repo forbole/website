@@ -46,4 +46,9 @@ export type AccountDetailResponse = {
   unbonding: Unbonding[];
 };
 
-export type ClaimableRewardsResponse = Coin[] | Record<string, never>;
+type Reward = {
+  address: string;
+  coin: Coin;
+};
+
+export type ClaimableRewardsResponse = Record<string, never> | Reward[];

@@ -32,16 +32,18 @@ const rewardsDivisor = new BigNumber(10).pow(18);
 
 const parseStakingRewards = async (res: ClaimableRewardsResponse) =>
   Array.isArray(res)
-    ? res
-        .map((coin) => {
-          const num = new BigNumber(coin.amount);
+    ? res.map((reward) => {
+        const { coin } = reward;
+        const num = new BigNumber(coin.amount);
 
-          return {
+        return {
+          ...reward,
+          coin: normaliseCoin({
             amount: num.dividedBy(rewardsDivisor).toString(),
             denom: coin.denom,
-          };
-        })
-        .map(normaliseCoin)
+          }),
+        };
+      })
     : res;
 
 type StakeResponse = {
