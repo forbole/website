@@ -200,7 +200,8 @@
   "wallets": {
     "keplr": "Keplr",
     "leap": "Leap",
-    "solana": "Solana"
+    "phantom": "Phantom",
+    "solflare": "Solflare"
   },
   "why forbole title": "<0>Forbole<1>坚实基建，硅步千里</1></0>",
   "why forbole?": "为何选择 Forbole？",

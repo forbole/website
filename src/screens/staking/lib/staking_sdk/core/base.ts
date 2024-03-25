@@ -9,7 +9,8 @@ export type Coin = {
 export enum WalletId {
   Keplr = "keplr",
   Leap = "leap",
-  SolanaGroup = "solana-group",
+  Phantom = "phantom",
+  Solflare = "solflare",
 }
 
 export enum CoinDenom {

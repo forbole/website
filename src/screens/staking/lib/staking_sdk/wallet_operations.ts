@@ -26,9 +26,11 @@ import {
   useCosmosWalletsListeners,
 } from "./wallet_operations/cosmos";
 import {
-  disconnectSolana,
+  disconnectPhantom,
+  disconnectSolflare,
   stakeAmountSolana,
-  tryToConnectSolana,
+  tryToConnectPhantom,
+  tryToConnectSolflare,
   unstakeSolana,
 } from "./wallet_operations/solana";
 
@@ -104,9 +106,14 @@ export const tryToConnectWallets = async (
 
         break;
 
-      case WalletId.SolanaGroup:
+      case WalletId.Solflare:
         // @TODO: Open link if missing
-        connected = await tryToConnectSolana(context);
+        connected = await tryToConnectSolflare(context);
+
+        break;
+
+      case WalletId.Phantom:
+        connected = await tryToConnectPhantom(context, openLinkIfMissing);
 
         break;
 
@@ -125,7 +132,8 @@ export const disconnectWalletFns: Record<
 > = {
   [WalletId.Keplr]: disconnecKeplr,
   [WalletId.Leap]: disconnectLeap,
-  [WalletId.SolanaGroup]: disconnectSolana,
+  [WalletId.Phantom]: disconnectPhantom,
+  [WalletId.Solflare]: disconnectSolflare,
 };
 
 export const useWalletsListeners = (contextValue: TStakingContext) => {
@@ -143,7 +151,10 @@ export const doesWalletSupportNetwork = (
     case WalletId.Leap:
       return leapNetworks.has(networkId as StakingNetworkId);
 
-    case WalletId.SolanaGroup:
+    case WalletId.Solflare:
+      return solanaNetworks.has(networkId as StakingNetworkId);
+
+    case WalletId.Phantom:
       return solanaNetworks.has(networkId as StakingNetworkId);
 
     default: {

@@ -38,7 +38,7 @@ testnetWallet.on("disconnect", () => {
 let connectListenerMainnet: (() => void) | undefined;
 let connectListenerTestnet: (() => void) | undefined;
 
-export const tryToConnectSolana = async (
+export const tryToConnectSolflare = async (
   context: TStakingContext,
 ): Promise<boolean> =>
   new Promise(async (resolve, reject) => {
@@ -73,22 +73,22 @@ export const tryToConnectSolana = async (
             info: accountData.info,
             networkId,
             rewards: accountData.rewards,
-            wallet: WalletId.SolanaGroup,
+            wallet: WalletId.Solflare,
           };
 
-          setUserWallet(context, WalletId.SolanaGroup, {
+          setUserWallet(context, WalletId.Solflare, {
             name: "Test", // @TODO
             networks: {
-              ...context.state.wallets[WalletId.SolanaGroup]?.networks,
+              ...context.state.wallets[WalletId.Solflare]?.networks,
               [networkId]: {
                 accounts: [account],
                 networkId,
               },
             },
-            wallet: WalletId.SolanaGroup,
+            wallet: WalletId.Solflare,
           });
 
-          addToConnectedWallets(WalletId.SolanaGroup);
+          addToConnectedWallets(WalletId.Solflare);
 
           resolvedItems += 1;
 
@@ -136,13 +136,83 @@ export const tryToConnectSolana = async (
     ]);
   });
 
+export const tryToConnectPhantom = async (
+  context: TStakingContext,
+  openLinkIfMissing?: boolean,
+) => {
+  const { phantom } = window as any;
+  const provider = phantom?.solana;
+
+  if (provider?.isPhantom) {
+    const resp = await provider.connect();
+
+    const publicKey = resp.publicKey.toString();
+
+    return [StakingNetworkId.Solana]
+      .concat(ENABLE_TESTNETS ? [StakingNetworkId.SolanaTestnet] : [])
+      .reduce(async (promise, networkId) => {
+        await promise;
+
+        const accountData = await fetchAccountData(
+          context,
+          publicKey,
+          networkId,
+          true,
+        );
+
+        const account: Account = {
+          address: publicKey,
+          info: accountData.info,
+          networkId,
+          rewards: accountData.rewards,
+          wallet: WalletId.Phantom,
+        };
+
+        setUserWallet(context, WalletId.Phantom, {
+          name: "Test", // @TODO
+          networks: {
+            ...context.state.wallets[WalletId.Phantom]?.networks,
+            [networkId]: {
+              accounts: [account],
+              networkId,
+            },
+          },
+          wallet: WalletId.Phantom,
+        });
+
+        addToConnectedWallets(WalletId.Phantom);
+
+        return true;
+      }, Promise.resolve(false));
+  } else if (openLinkIfMissing) {
+    window.open("https://phantom.app/", "_blank");
+  }
+};
+
 const minimumStakeAmount: { [key in StakingNetworkId]?: number } = {
   // In testnet it is not possible to stake less than 1 SOL, Solflare will disable the button
   [StakingNetworkId.SolanaTestnet]: LAMPORTS_PER_SOL * 1,
 };
 
-const getWallet = (networkId: StakingNetworkId) =>
-  networkId === StakingNetworkId.SolanaTestnet ? testnetWallet : mainnetWallet;
+type WalletApi = {
+  signAndSendTransaction: any;
+};
+
+const getWalletApi = (account: Account): WalletApi => {
+  if (account.wallet === WalletId.Phantom) {
+    const { phantom } = window as any;
+
+    return {
+      signAndSendTransaction: phantom.solana.signAndSendTransaction.bind(
+        phantom.solana,
+      ),
+    };
+  }
+
+  return account.networkId === StakingNetworkId.SolanaTestnet
+    ? testnetWallet
+    : mainnetWallet;
+};
 
 // https://solanacookbook.com/references/staking.html
 export const stakeAmountSolana = async ({
@@ -155,7 +225,7 @@ export const stakeAmountSolana = async ({
       const validatorAddress = (info as any).validator_address;
 
       const accountKey = new PublicKey(account.address);
-      const wallet = getWallet(account.networkId);
+      const wallet = getWalletApi(account);
 
       const stakeAccount = (account.info?.stakeAccounts || []).find(
         (a) => a.validator_address === validatorAddress,
@@ -272,7 +342,7 @@ export const unstakeSolana = async ({
 
       const accountKey = new PublicKey(account.address);
 
-      const wallet = getWallet(account.networkId);
+      const wallet = getWalletApi(account);
 
       const stakeAccount = (account.info?.stakeAccounts || []).find(
         (a) => a.validator_address === validatorAddress,
@@ -320,7 +390,17 @@ export const unstakeSolana = async ({
       };
     });
 
-export const disconnectSolana = async (networks: StakingNetworkId[]) => {
+export const disconnectSolflare = async (networks: StakingNetworkId[]) => {
+  // @TODO
   // eslint-disable-next-line no-console
   console.log("debug: solana.ts: disconnectSolana", networks);
+};
+
+export const disconnectPhantom = async () => {
+  const { phantom } = window as any;
+  const provider = phantom?.solana;
+
+  if (provider?.isPhantom) {
+    await provider.disconnect();
+  }
 };

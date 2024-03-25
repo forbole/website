@@ -201,7 +201,8 @@
   "wallets": {
     "keplr": "Keplr",
     "leap": "Leap",
-    "solana": "Solana"
+    "phantom": "Phantom",
+    "solflare": "Solflare"
   },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
   "why forbole?": "Why Forbole?",

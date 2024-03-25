@@ -14,4 +14,4 @@ export const solanaNetworks = new Set(
   ),
 );
 
-export const solanaWallets = new Set([WalletId.SolanaGroup]);
+export const solanaWallets = new Set([WalletId.Solflare, WalletId.Phantom]);
