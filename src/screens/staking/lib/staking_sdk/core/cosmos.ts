@@ -40,7 +40,7 @@ export const leapNetworks = new Set(
 
 export const cosmosWallets = new Set([
   WalletId.Keplr,
-  // WalletId.Leap // @TODO: Enable Leap wallet when ready
+  // WalletId.Leap, // @TODO: Enable Leap wallet when ready
 ]);
 
 export const cosmosStakingNetworks = new Set([
