@@ -33,6 +33,7 @@
   "definitions": {
     "apy": "年收益率（APY）显示您可以通过质押获得的代币收益率。 它包括复利，帮助您衡量投资的潜在增长。",
     "tvl": "锁定总价值 (TVL) 是 Forbole 在该网络上质押的所有资产的美元总价值。 它表明了 Forbole 的质押规模和受欢迎程度。",
+    "unbonding_other": "质押后，您的代币将被锁定，直到 {{count}} 天解质期结束后才能转移",
     "votingPower": "“投票权”是指 Forbole 在网络上质押的代币总量。 质押的代币数量越多，投票权就越高。"
   },
   "description": " 在 Forbole 质押，赚取收益，守护网络",
@@ -78,7 +79,7 @@
   "receiving bullet 2": "提名一名验证者，佣金持有者为 100%。",
   "receiving q": "为什么我没有收到质押奖励？",
   "reputable validator": "信誉良好的验证人",
-  "reputable validator desc": "始于 Cosmos Hub 创世验证人的我们，已在短时期内快速拓展，现阶段已在超过 50 个主网中运行验证节点，保护重要的跨链桥，并积极参与多个测试网络。身为一家非托管式质押服务提供商，我们深得全球数千计质押者的信任。",
+  "reputable validator desc": "始于 Cosmos Hub 创世验证人的我们，已在短时期内快速拓展，现阶段已在超过 40 个主网中运行验证节点，保护重要的跨链桥，并积极参与多个测试网络。身为一家非托管式质押服务提供商，我们深得全球数千计质押者的信任。",
   "reward para 1": "新铸造的代币和交易费用将作为奖励给予质押代币持有者。",
   "reward para 2": "<0>您可以计算您的质押奖励 <1>这里</1>。</0>",
   "reward para 3": "质押奖励应在您的账户中可用之前“领取”。",
@@ -107,6 +108,9 @@
   "stake_now": "立即质押",
   "stakeAccounts": "Accounts",
   "staked by forbole": "Forbole 质押",
+  "staking": {
+    "days_other": "{{count}}天"
+  },
   "staking para 1": "代币持有者将其代币质押给验证者以保护网络的行为称为质押。",
   "staking para 2": "质押者将质押权质押给验证者，但这并不意味着验证者拥有或保管质押给他们的代币。",
   "staking q": "什么是质押？",
@@ -145,6 +149,7 @@
     },
     "title": "用 Forbole 进行桩桩",
     "tokenAmount": "代币数量",
+    "unbonding": "解押期",
     "walletSellect": "股权来自："
   },
   "stakingWidget": {
