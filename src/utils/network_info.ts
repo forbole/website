@@ -524,7 +524,7 @@ const networks = {
     denom: "SOL",
     graphql: "solana",
     guide: "how-to-stake-sol-on-solana",
-    image: "/images/network/solana.png",
+    image: "/images/network/solana.svg",
     key: "solana",
     label: "Solana - SOL",
     name: "Solana",

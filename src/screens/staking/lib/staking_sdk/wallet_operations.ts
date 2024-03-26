@@ -29,7 +29,18 @@ export const MAX_MEMO = 256;
 
 export const stakeAmount = (
   opts: StakeOpts,
-): Promise<WalletOperationResult<StakeError>> => stakeAmountCosmos(opts);
+): Promise<WalletOperationResult<StakeError>> => {
+  const { account } = opts;
+
+  if (
+    keplrNetworks.has(account.networkId) ||
+    leapNetworks.has(account.networkId)
+  ) {
+    return stakeAmountCosmos(opts);
+  }
+
+  throw new Error("Unsupported network");
+};
 
 export const claimRewards = async (
   opts: ClaimOpts,
@@ -42,7 +53,18 @@ export const getClaimRewardsFee = async (
 
 export const unstake = async (
   opts: UnstakeAmount,
-): Promise<WalletOperationResult<UnstakeError>> => unstakeCosmos(opts);
+): Promise<WalletOperationResult<UnstakeError>> => {
+  const { account } = opts;
+
+  if (
+    keplrNetworks.has(account.networkId) ||
+    leapNetworks.has(account.networkId)
+  ) {
+    return unstakeCosmos(opts);
+  }
+
+  throw new Error("Unsupported network");
+};
 
 export const tryToConnectWallets = async (
   context: TStakingContext,

@@ -387,6 +387,10 @@ export const tryToConnectKeplr = async (
 
     const nonNativeChains = Array.from(keplrNonNativeChains);
 
+    if (!chainsToConnect.length || !nonNativeChains.length) {
+      return;
+    }
+
     try {
       await keplr.enable(chainsToConnect);
 
