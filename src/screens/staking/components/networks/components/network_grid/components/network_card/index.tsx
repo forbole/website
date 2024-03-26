@@ -71,8 +71,10 @@ const NetworkCard = ({
     </div>
   );
 
+  const forceDisplay = network.key === process.env.NEXT_PUBLIC_STAKING_POPOVER;
+
   const popover =
-    isEmptyPopover || network.name !== showPopover ? null : (
+    !forceDisplay && (isEmptyPopover || network.name !== showPopover) ? null : (
       <PopOver
         canClickNetwork={canClickNetwork}
         handleExploreClick={handleExploreClick}

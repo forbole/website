@@ -33,6 +33,8 @@
   "definitions": {
     "apy": "Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from staking. It includes compound interest, helping you gauge the potential growth of your investment.",
     "tvl": "Total Value Locked (TVL) is the total USD value of all assets staked with Forbole on this network. It indicates Forbole's staking scale and popularity.",
+    "unbonding_one": "After staking, your tokens will be locked and unable to be transferred until the {{count}}-day unstaking period ends.",
+    "unbonding_other": "After staking, your tokens will be locked and unable to be transferred until the {{count}}-days unstaking period ends",
     "votingPower": "The \"Voting Power\" is the total amount of tokens staked with Forbole on the network. The more amount of tokens staked, the higher the voting power."
   },
   "description": "Stake, earn and secure the networks with Forbole",
@@ -78,7 +80,7 @@
   "receiving bullet 2": "Nominated a validator with 100% commission holders. The rewards rate varies depending on the total amount of staked tokens, and each network has their specific settings.",
   "receiving q": "Why am I not receiving staking rewards?",
   "reputable validator": "Reputable Validator Journey",
-  "reputable validator desc": "We started as a genesis validator or Cosmos Hub and quickly expanded to other networks. Currently, we are validating on over 50 mainnets, operating nodes on all major blockchians, being guardians on major interchain bridges, and actively participating in many testnets. As a non-custodian staking service provider, we are trusted by thousands of stakers all over the world.",
+  "reputable validator desc": "We started as a genesis validator or Cosmos Hub and quickly expanded to other networks. Currently, we are validating on over 40 mainnets, operating nodes on all major blockchians, being guardians on major interchain bridges, and actively participating in many testnets. As a non-custodian staking service provider, we are trusted by thousands of stakers all over the world.",
   "reward para 1": "Newly minted tokens and transaction fees are given out as rewards to bonded staking token holders. The rewards rate varies depending on the total amount of staked tokens, and each network has their specific settings.",
   "reward para 2": "<0>You can calculate your staking rewards <1>here</1>. You can also view your real-time rewards on each Big Dipper explorer. Or if you are interested in the detailed calculation, please refer to the whitepapers or tokenomics papers of each network, which can be found on their websites.</0>",
   "reward para 3": "Staking rewards should be “claimed” before becoming available in your account. This is a type of transaction so you would need to pay for the transaction when claiming rewards. While staking new tokens, your rewards will automatically be claimed into your available balance. The rewards are also automatically withdrawn to your account if there is a network upgrade.",
@@ -106,6 +108,10 @@
   "stake with us!": "Stake with us!",
   "stake_now": "Stake Now",
   "staked by forbole": "Staked by Forbole",
+  "staking": {
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days"
+  },
   "staking para 1": "The action that token holders stake their tokens to validators to secure the network is called staking. Staked tokens are eligible to receive staking rewards. Newly minted tokens and transactions fees are given out as rewards to bonded staking token holders.",
   "staking para 2": "Stakers stake their staking power to validators, but that does not mean the validators possess or have custody of the tokens staked to them. In other words, validators cannot steal or take away stakers’ tokens. Your staked amount of tokens will not be decreased in most situations, however, if your validator is punished by slashing, your staked token is at risk of being slashed too (see below for “slashing”).",
   "staking q": "What is staking?",
@@ -141,6 +147,7 @@
     },
     "title": "Stake with Forbole",
     "tokenAmount": "Token amount",
+    "unbonding": "Unstaking period",
     "walletSellect": "Stake from:"
   },
   "stakingWidget": {

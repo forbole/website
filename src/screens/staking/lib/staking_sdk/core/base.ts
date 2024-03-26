@@ -22,7 +22,6 @@ export enum CoinDenom {
   KAVA = "KAVA",
   OSMO = "OSMO",
   PICA = "PICA",
-  REGEN = "REGEN",
   STARS = "STARS",
   TIA = "TIA",
 }
@@ -45,7 +44,6 @@ export enum StakingNetworkId {
   Kava = "kava_2222-10",
   KavaTestnet = "kava_2221-16000",
   Osmosis = "osmosis-1",
-  Regen = "regen-1",
   Stargaze = "stargaze-1",
   StargazeTestnet = "elgafar-1",
 }
@@ -65,7 +63,6 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
   [StakingNetworkId.Kava]: CoinDenom.KAVA,
   [StakingNetworkId.KavaTestnet]: CoinDenom.KAVA,
   [StakingNetworkId.Osmosis]: CoinDenom.OSMO,
-  [StakingNetworkId.Regen]: CoinDenom.REGEN,
   [StakingNetworkId.Stargaze]: CoinDenom.STARS,
   [StakingNetworkId.StargazeTestnet]: CoinDenom.STARS,
 };

@@ -154,8 +154,8 @@ export const setSelectedAccount = (
 };
 
 type FetchAccountResult = {
-  info: Awaited<ReturnType<typeof stakingClient.getAddressInfo>>;
-  rewards: Awaited<ReturnType<typeof stakingClient.getRewardsInfo>>;
+  info: Awaited<ReturnType<typeof stakingClient.getAddressInfo>> | undefined;
+  rewards: Awaited<ReturnType<typeof stakingClient.getRewardsInfo>> | undefined;
 };
 
 const accountsRequests: Record<
@@ -198,8 +198,8 @@ export const fetchAccountData = async (
   }
 
   const newRequest = Promise.all([
-    stakingClient.getAddressInfo(networkId, address),
-    stakingClient.getRewardsInfo(networkId, address),
+    stakingClient.getAddressInfo(networkId, address).catch(() => undefined),
+    stakingClient.getRewardsInfo(networkId, address).catch(() => undefined),
   ]).then(([info, rewards]) => {
     accountsRequests[id] = undefined;
 

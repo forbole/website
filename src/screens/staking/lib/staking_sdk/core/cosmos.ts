@@ -12,7 +12,7 @@ export const ethermintNetworks = new Set([
   StakingNetworkId.IslamicCoin,
 ]);
 
-export const keplrNetworks = new Set(
+export const keplrNetworks = new Set<StakingNetworkId>(
   [
     StakingNetworkId.Akash,
     StakingNetworkId.Evmos,
@@ -28,7 +28,6 @@ export const keplrNetworks = new Set(
     StakingNetworkId.Kava,
     StakingNetworkId.KavaTestnet,
     StakingNetworkId.Osmosis,
-    StakingNetworkId.Regen,
     StakingNetworkId.Stargaze,
     StakingNetworkId.StargazeTestnet,
   ].filter(
@@ -45,23 +44,15 @@ export const keplrNonNativeChains = new Set([
   StakingNetworkId.StargazeTestnet,
 ]);
 
-const leapExcludedNetworks = new Set([
-  StakingNetworkId.Celestia,
-  StakingNetworkId.ComposableFinance,
-  StakingNetworkId.DyDx,
-  StakingNetworkId.Regen,
-  StakingNetworkId.KavaTestnet,
-]);
-
 export const leapNetworks = new Set(
   Array.from(keplrNetworks).filter(
-    (network) => !leapExcludedNetworks.has(network),
+    (network) => !keplrNonNativeChains.has(network),
   ),
 );
 
 export const cosmosWallets = new Set([
   WalletId.Keplr,
-  // WalletId.Leap // @TODO: Enable when ready
+  // WalletId.Leap, // @TODO: Enable Leap wallet when ready
 ]);
 
 export const cosmosStakingNetworks = new Set([
