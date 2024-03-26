@@ -12,7 +12,7 @@ export const networksWithStaking = new Set([
   ...Array.from(cosmosStakingNetworks),
 ]);
 
-export const walletsSupported = new Set(Array.from(cosmosWallets)); // TODO add WalletId.Leap back when staking with Leap Wallet is reliable
+export const walletsSupported = new Set([...Array.from(cosmosWallets)]);
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",

@@ -5,7 +5,7 @@ import {
   testnetNetworks,
 } from "./base";
 
-export const keplrNetworks = new Set(
+export const keplrNetworks = new Set<StakingNetworkId>(
   [
     StakingNetworkId.Akash,
     StakingNetworkId.Celestia,

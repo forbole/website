@@ -6,7 +6,6 @@ import type {
   ClaimableRewardsResponse,
   StakingInfoResponse,
 } from "./staking_client_types";
-import { normaliseCoin } from "./utils/coins";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_STAKING_API || "https://staking-api.forbole.com";
@@ -32,16 +31,15 @@ const rewardsDivisor = new BigNumber(10).pow(18);
 
 const parseStakingRewards = async (res: ClaimableRewardsResponse) =>
   Array.isArray(res)
-    ? res
-        .map((coin) => {
-          const num = new BigNumber(coin.amount);
+    ? res.map((coin) => {
+        const num = new BigNumber(coin.amount);
 
-          return {
-            amount: num.dividedBy(rewardsDivisor).toString(),
-            denom: coin.denom,
-          };
-        })
-        .map(normaliseCoin)
+        return {
+          ...coin,
+          amount: num.dividedBy(rewardsDivisor).toString(),
+          denom: coin.denom,
+        };
+      })
     : res;
 
 type StakeResponse = {
