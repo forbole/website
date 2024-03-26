@@ -34,7 +34,7 @@ const baseContext: TStakingContext = {
   state: defaultState,
 };
 
-export const StakingContext = createContext(baseContext);
+const StakingContext = createContext(baseContext);
 
 export const StakingProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState<StakingState>(

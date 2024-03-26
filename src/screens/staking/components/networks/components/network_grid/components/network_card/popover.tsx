@@ -6,7 +6,7 @@ import type {
   ReactNode,
   SetStateAction,
 } from "react";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import CtaButton from "@src/components/cta-button";
 import EmptyButton from "@src/components/empty-button";
@@ -14,10 +14,7 @@ import HighlightButton from "@src/components/highlight-button";
 import CloseIcon from "@src/components/icons/icon_cross.svg";
 import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import { tooltipId } from "@src/components/tooltip";
-import {
-  StakingContext,
-  useStakingRef,
-} from "@src/screens/staking/lib/staking_sdk/context";
+import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import {
   fetchCoinPriceForNetwork,
   getNetworkStakingInfo,
@@ -27,12 +24,9 @@ import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_s
 import {
   getAccountsForNetwork,
   getClaimableRewardsForNetwork,
-  getCoinPriceForNetwork,
   getHasNetworkSupportedWallet,
   getNetworkTVL,
   getNetworkVotingPower,
-  getStakedDataForNetwork,
-  getUnbondingTokensForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   networkKeyToNetworkId,
@@ -42,12 +36,8 @@ import type {
   Account,
   StakingNetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/core";
-import type { Coin } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
-import {
-  formatCoin,
-  formatStakedDataUSD,
-} from "@src/screens/staking/lib/staking_sdk/formatters";
+import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   accountHasDelegations,
   accountHasRewards,
@@ -58,6 +48,7 @@ import type { Network, NetworkKey } from "@src/utils/network_info";
 
 import type { ParamsProps } from "../../config";
 import * as styles from "./popover.module.scss";
+import StakingDataBox from "./staking_data_box";
 
 type PopOverProps = {
   canClickNetwork: boolean;
@@ -78,6 +69,7 @@ const PopOver = ({
 }: PopOverProps) => {
   const networkNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
   const stakingNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
+  const nodeRef = useRef<HTMLDivElement | null>(null);
 
   const stakingRef = useStakingRef();
 
@@ -95,9 +87,20 @@ const PopOver = ({
   const [stakingNetworkInfo, setStakingNetworkInfo] =
     useState<null | StakingNetworkInfo>(null);
 
-  const { state: stakingState } = useContext(StakingContext);
-
+  const { state: stakingState } = stakingRef.current;
   const { hasInit } = stakingState;
+
+  useEffect(() => {
+    if (!nodeRef.current) return;
+
+    const box = nodeRef.current.getBoundingClientRect();
+
+    if (box.left < 0) {
+      (nodeRef.current as HTMLElement).style.left = "0";
+    } else if (box.right > window.innerWidth) {
+      (nodeRef.current as HTMLElement).style.right = "0";
+    }
+  }, [nodeRef]);
 
   useEffect(() => {
     if (stakingNetworkId) {
@@ -109,52 +112,30 @@ const PopOver = ({
     }
   }, [stakingNetworkId, stakingRef]);
 
-  const { accounts, claimableRewards, stakedData, unbondingTokens } =
-    useMemo(() => {
-      const wallet = WalletId.Keplr;
+  const { accounts, claimableRewards } = useMemo(() => {
+    const wallet = WalletId.Keplr;
 
-      const result = {
-        accounts: null as Account[] | null,
-        claimableRewards: null as NetworkClaimableRewards | null,
-        stakedData: null as Coin | null,
-        unbondingTokens: null as { period: string; text: string } | null,
-      };
+    const result = {
+      accounts: null as Account[] | null,
+      claimableRewards: null as NetworkClaimableRewards | null,
+    };
 
-      if (!!stakingNetworkId && !!wallet) {
-        result.accounts = getAccountsForNetwork(stakingState, stakingNetworkId);
+    if (!!stakingNetworkId && !!wallet) {
+      result.accounts = getAccountsForNetwork(stakingState, stakingNetworkId);
 
-        if (!result.accounts?.length) {
-          return result;
-        }
-
-        result.stakedData = getStakedDataForNetwork(
-          stakingRef.current.state,
-          stakingNetworkId,
-        );
-
-        result.claimableRewards =
-          getClaimableRewardsForNetwork(
-            stakingRef.current.state,
-            stakingNetworkId,
-          ) || null;
-
-        const unbonding = getUnbondingTokensForNetwork(
-          stakingRef.current.state,
-          stakingNetworkId,
-        );
-
-        if (unbonding) {
-          result.unbondingTokens = {
-            period: unbonding.period
-              ? new Date(Number(unbonding.period) * 1000).toLocaleString()
-              : "",
-            text: formatCoin(unbonding.coin, { decimals: 4 }),
-          };
-        }
+      if (!result.accounts?.length) {
+        return result;
       }
 
-      return result;
-    }, [stakingState, stakingNetworkId, stakingRef]);
+      result.claimableRewards =
+        getClaimableRewardsForNetwork(
+          stakingRef.current.state,
+          stakingNetworkId,
+        ) || null;
+    }
+
+    return result;
+  }, [stakingState, stakingNetworkId, stakingRef]);
 
   useEffect(() => {
     fetchCoinPriceForNetwork(stakingRef.current, stakingNetworkId);
@@ -163,31 +144,13 @@ const PopOver = ({
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
   const accountsWithRewards = accounts?.filter(accountHasRewards);
 
-  const displayedRewards = claimableRewards
-    ? `+${formatCoin(claimableRewards, { decimals: 4 })}`
-    : null;
-
-  const displayedStaked = (() => {
-    if (!stakedData || !stakingNetworkId) return null;
-
-    const coinPrice = getCoinPriceForNetwork(
-      stakingRef.current.state,
-      stakingNetworkId,
-    );
-
-    if (!coinPrice) return [formatCoin(stakedData)];
-
-    const stakedDataUSD = formatStakedDataUSD(stakedData, coinPrice);
-
-    return [formatCoin(stakedData), stakedDataUSD].filter(Boolean);
-  })();
-
   return (
     <div
       className={styles.popover}
       onMouseLeave={() => {
         setShowPopover("");
       }}
+      ref={nodeRef}
     >
       <CloseIcon
         className={styles.closeBtn}
@@ -196,51 +159,7 @@ const PopOver = ({
       />
       <div>{networkImage}</div>
       {network.name && <div className={styles.name}>{network.name}</div>}
-      {!![stakedData, claimableRewards, unbondingTokens].filter(Boolean)
-        .length && (
-        <div className={styles.stakingData}>
-          {displayedStaked && (
-            <div className={styles.total}>
-              <div>{t("totalStaked")}</div>
-              <div className={styles.totalValue}>
-                {displayedStaked.map((item, itemIdx) => (
-                  <div key={itemIdx}>{item}</div>
-                ))}
-              </div>
-            </div>
-          )}
-          {!!claimableRewards && (
-            <div className={styles.rewards}>
-              <div>{t("claimableRewards")}</div>
-              <div
-                data-tooltip-content={formatCoin(claimableRewards, {
-                  maximumFractionDigits: 12,
-                })}
-                data-tooltip-id={tooltipId}
-              >
-                {displayedRewards}
-              </div>
-            </div>
-          )}
-          {!!unbondingTokens && (
-            <div className={styles.unbonding}>
-              <div>{t("unbondingTokens")}</div>
-              <div
-                data-tooltip-content={
-                  !!unbondingTokens.period
-                    ? t("popover.unbondingTooltip", {
-                        period: unbondingTokens.period,
-                      })
-                    : ""
-                }
-                data-tooltip-id={tooltipId}
-              >
-                {unbondingTokens.text}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
+      <StakingDataBox network={network} />
       {!!networkSummary && (
         <div className={styles.dataBox}>
           {(() => {

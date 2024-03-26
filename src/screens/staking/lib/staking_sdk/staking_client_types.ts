@@ -28,10 +28,11 @@ type Coin = {
   denom: string;
 };
 
-type StakeAccount = {
+export type StakeAccount = {
   address: string;
   amount: string;
   denom: string;
+  status: string;
   validator_address: string;
 };
 

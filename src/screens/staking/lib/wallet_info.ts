@@ -4,7 +4,7 @@ import type { FC } from "react";
 import IconKeplr from "@src/components/icons/keplr.svg";
 import IconLeap from "@src/components/icons/leap.svg";
 import IconPhantom from "@src/components/icons/phantom.svg";
-import IconSolflare from "@src/components/icons/solana_wallet.svg";
+import IconSolflare from "@src/components/icons/solflare.svg";
 
 import { WalletId } from "./staking_sdk/core/base";
 

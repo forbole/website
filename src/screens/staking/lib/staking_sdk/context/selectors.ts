@@ -4,6 +4,7 @@ import type { Account, StakingState } from "../core";
 import { walletsSupported } from "../core";
 import type { Coin, CoinDenom, StakingNetworkId, WalletId } from "../core/base";
 import { mainNetworkDenom } from "../core/base";
+import type { StakeAccount } from "../staking_client_types";
 import {
   filterUniqueAddresses,
   getClaimableRewardsForAccount,
@@ -56,6 +57,28 @@ export const getAccountsForNetwork = (
     (acc, wallet) => [...acc, ...(wallet.networks?.[network]?.accounts || [])],
     [] as Account[],
   );
+};
+
+export const getStakeAccountsForNetwork = (
+  state: StakingState,
+  network: StakingNetworkId,
+) => {
+  const accounts = getAccountsForNetwork(state, network);
+  const uniqueAccounts = new Set<string>();
+
+  return accounts
+    .map((account) => account.info?.stakeAccounts)
+    .flat()
+    .filter((a): a is StakeAccount => !!a)
+    .filter((a) => {
+      if (uniqueAccounts.has(a.address)) {
+        return false;
+      }
+
+      uniqueAccounts.add(a.address);
+
+      return true;
+    });
 };
 
 export const getStakedDataForNetwork = (

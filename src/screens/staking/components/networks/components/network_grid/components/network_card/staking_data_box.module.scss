@@ -1,0 +1,65 @@
+@import "src/styles/sass.scss";
+
+.stakingData {
+  background: #ffffff8f;
+  border-radius: 8px;
+  box-shadow:
+    0 10px 32px -4px #0226e11a,
+    0 6px 14px -6px #0226e11f;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  line-break: anywhere;
+  margin-bottom: 8px;
+  max-width: 100%;
+  padding: 12px 16px;
+  width: 100%;
+
+  .unbonding,
+  .rewards,
+  .total {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    justify-content: space-between;
+    width: 100%;
+
+    > div {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.032px;
+      line-height: 20px;
+      text-shadow: $box-shadow-variant-3;
+    }
+
+    > div:first-child {
+      color: #25282d;
+      text-align: left;
+    }
+
+    > div:last-child {
+      text-align: right;
+    }
+  }
+
+  .rewards {
+    > div:nth-child(2) {
+      color: #059c78;
+    }
+  }
+}
+
+.totalValue {
+  > div:nth-child(2) {
+    color: #616161;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.308px;
+    line-height: 20px;
+    text-align: right;
+    text-shadow: $box-shadow-variant-3;
+  }
+}
