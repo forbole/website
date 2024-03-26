@@ -33,8 +33,8 @@
   "definitions": {
     "apy": "Annual Percentage Yield (APY) shows the rate of token earnings you can achieve from staking. It includes compound interest, helping you gauge the potential growth of your investment.",
     "tvl": "Total Value Locked (TVL) is the total USD value of all assets staked with Forbole on this network. It indicates Forbole's staking scale and popularity.",
-    "unbonding_one": "Once you’ve staked, your tokens will be locked and cannot be moved until the {{count}}-day unstaking period ends.",
-    "unbonding_other": "Once you’ve staked, your tokens will be locked and cannot be moved until the {{count}}-days unstaking period ends.",
+    "unbonding_one": "After staking, your tokens will be locked and unable to be transferred until the {{count}}-day unstaking period ends.",
+    "unbonding_other": "After staking, your tokens will be locked and unable to be transferred until the {{count}}-days unstaking period ends",
     "votingPower": "The \"Voting Power\" is the total amount of tokens staked with Forbole on the network. The more amount of tokens staked, the higher the voting power."
   },
   "description": "Stake, earn and secure the networks with Forbole",
