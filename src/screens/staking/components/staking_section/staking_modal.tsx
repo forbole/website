@@ -29,6 +29,7 @@ import {
   getEmptyCoin,
   getIsCoin,
 } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
   MAX_MEMO,
   stakeAmount,
