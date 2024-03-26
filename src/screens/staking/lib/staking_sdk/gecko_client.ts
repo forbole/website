@@ -11,7 +11,6 @@ export const geckoClient = {
       [CoinDenom.ATOM]: "cosmos",
       [CoinDenom.DYDX]: "dydx",
       [CoinDenom.DYM]: "dymension",
-      [CoinDenom.EVMOS]: "evmos",
       [CoinDenom.INJ]: "injective",
       [CoinDenom.ISLM]: "islamic-coin",
       [CoinDenom.KAVA]: "kava",

@@ -7,7 +7,6 @@ import {
 
 export const ethermintNetworks = new Set([
   StakingNetworkId.Dymension,
-  StakingNetworkId.Evmos,
   StakingNetworkId.Injective,
   StakingNetworkId.IslamicCoin,
 ]);
@@ -15,7 +14,6 @@ export const ethermintNetworks = new Set([
 export const keplrNetworks = new Set<StakingNetworkId>(
   [
     StakingNetworkId.Akash,
-    StakingNetworkId.Evmos,
     StakingNetworkId.Celestia,
     StakingNetworkId.CelestiaTestnet,
     StakingNetworkId.ComposableFinance,

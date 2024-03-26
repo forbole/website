@@ -12,7 +12,6 @@ export const networkToUnnormalisedDenom = {
   [StakingNetworkId.CosmosHubTestnet]: "UATOM",
   [StakingNetworkId.DyDx]: "ADYDX",
   [StakingNetworkId.Dymension]: "ADYM",
-  [StakingNetworkId.Evmos]: "AEVMOS",
   [StakingNetworkId.Injective]: "inj", // This is important to be lowercase, since inj != INJ
   [StakingNetworkId.IslamicCoin]: "AISLM",
   [StakingNetworkId.Kava]: "UKAVA",
@@ -32,7 +31,6 @@ const exp0 = 0;
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   ADYDX: [CoinDenom.DYDX, aExp],
   ADYM: [CoinDenom.DYM, aExp],
-  AEVMOS: [CoinDenom.EVMOS, aExp],
   AISLM: [CoinDenom.ISLM, aExp],
   // Because inj != INJ, this needs to keep the lower case, it is handled when
   // normalising the coin

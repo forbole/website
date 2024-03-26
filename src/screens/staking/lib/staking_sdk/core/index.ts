@@ -23,7 +23,6 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.CosmosHubTestnet]: "cosmos-testnet",
   [StakingNetworkId.DyDx]: "dydx",
   [StakingNetworkId.Dymension]: "dymension",
-  [StakingNetworkId.Evmos]: "evmos",
   [StakingNetworkId.Injective]: "injective",
   [StakingNetworkId.IslamicCoin]: "islamic_coin",
   [StakingNetworkId.Kava]: "kava",
