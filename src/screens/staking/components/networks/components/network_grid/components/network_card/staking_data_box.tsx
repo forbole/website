@@ -20,6 +20,7 @@ import {
   formatStakedDataUSD,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type { StakeAccount } from "@src/screens/staking/lib/staking_sdk/staking_client_types";
+import { getExplorerLink } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
 import * as styles from "./staking_data_box.module.scss";
@@ -133,13 +134,38 @@ const StakingDataBox = ({ network }: PopOverProps) => {
             Accounts {stakeAccounts?.length}
           </div>
           <div>
-            {stakeAccounts?.map((account, accountIdx) => (
-              <div key={accountIdx}>
-                <div>{account.address}</div>
-                <div>{formatCoin(account)}</div>
-                <div>{account.status}</div>
-              </div>
-            ))}
+            {stakeAccounts?.map((account) => {
+              const shortenedAddress = `${account.address.slice(0, 8)}...`;
+
+              const explorerLink = getExplorerLink(
+                account.address,
+                stakingNetworkId,
+              );
+
+              return (
+                <div className={styles.stakeAccount} key={account.address}>
+                  <div>
+                    <div>
+                      {shortenedAddress}
+                      {!!explorerLink && (
+                        <>
+                          {" "}
+                          <a
+                            className={styles.external}
+                            href={explorerLink}
+                            target="_blank"
+                          >
+                            <img alt="" src="/icons/external.svg" />
+                          </a>
+                        </>
+                      )}
+                    </div>
+                    <div>{account.status}</div>
+                  </div>
+                  <div>{formatCoin(account)}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       );

@@ -16,6 +16,7 @@ export const networkToUnnormalisedDenom = {
   [StakingNetworkId.Osmosis]: "UOSMO",
   [StakingNetworkId.Regen]: "UREGEN",
   [StakingNetworkId.Solana]: "LAMPORTS",
+  [StakingNetworkId.SolanaDevnet]: "LAMPORTS",
   [StakingNetworkId.SolanaTestnet]: "LAMPORTS",
   [StakingNetworkId.Stargaze]: "USTARS",
   [StakingNetworkId.StargazeTestnet]: "USTARS",

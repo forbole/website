@@ -645,7 +645,6 @@ const networks = {
     name: "Sentinel",
   },
   "solana": {
-    address: "76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857",
     denom: "SOL",
     graphql: "solana",
     guide: "how-to-stake-sol-on-solana",
@@ -654,8 +653,16 @@ const networks = {
     label: "Solana - SOL",
     name: "Solana",
   },
+  "solana-devnet": {
+    denom: "SOL",
+    graphql: "solana",
+    guide: "how-to-stake-sol-on-solana",
+    image: "/images/network/solana.svg",
+    key: "solana-devnet",
+    label: "SolanaDevnet - SOL",
+    name: "Solana Devnet",
+  },
   "solana-testnet": {
-    address: "76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857",
     denom: "SOL",
     graphql: "solana",
     guide: "how-to-stake-sol-on-solana",
@@ -804,7 +811,7 @@ const cosmosTestNetworkKeys = ENABLE_TESTNETS
   : [];
 
 const solanaTestNetworkKeys = ENABLE_TESTNETS
-  ? (["solana-testnet"] satisfies NetworkKey[])
+  ? (["solana-testnet", "solana-devnet"] satisfies NetworkKey[])
   : [];
 
 export const cosmosNetworkKeys = [

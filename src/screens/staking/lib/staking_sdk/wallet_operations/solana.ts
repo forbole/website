@@ -149,7 +149,12 @@ export const tryToConnectPhantom = async (
     const publicKey = resp.publicKey.toString();
 
     return [StakingNetworkId.Solana]
-      .concat(ENABLE_TESTNETS ? [StakingNetworkId.SolanaTestnet] : [])
+      .concat(
+        ENABLE_TESTNETS
+          ? [StakingNetworkId.SolanaTestnet, StakingNetworkId.SolanaDevnet]
+          : [],
+      )
+      .filter((networkId) => solanaNetworks.has(networkId))
       .reduce(async (promise, networkId) => {
         await promise;
 

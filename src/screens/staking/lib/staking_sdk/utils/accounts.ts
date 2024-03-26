@@ -5,7 +5,7 @@ import { getNetworkInfo } from "@src/utils/network_info";
 
 import type { Account } from "../core";
 import { networkIdToNetworkKey } from "../core";
-import { testnetNetworks } from "../core/base";
+import { StakingNetworkId, testnetNetworks } from "../core/base";
 import { normaliseCoin, sumAllCoins, sumCoins } from "./coins";
 import { sortNetworksByName } from "./networks";
 
@@ -101,4 +101,15 @@ export const sortAccountsByNetworkName = (a: Account, b: Account) => {
   const networkB = getNetworkInfo(networkBKey);
 
   return sortNetworksByName(networkA, networkB);
+};
+
+export const getExplorerLink = (address: string, network?: string) => {
+  switch (network) {
+    case StakingNetworkId.Solana:
+    case StakingNetworkId.SolanaTestnet:
+    case StakingNetworkId.SolanaDevnet:
+      return `https://explorer.solana.com/address/${address}?cluster=devnet`;
+    default:
+      return null;
+  }
 };

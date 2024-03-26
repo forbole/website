@@ -42,6 +42,7 @@ export enum StakingNetworkId {
   Osmosis = "osmosis-1",
   Regen = "regen-1",
   Solana = "solana",
+  SolanaDevnet = "solana-devnet",
   SolanaTestnet = "solana-testnet",
   Stargaze = "stargaze-1",
   StargazeTestnet = "elgafar-1",
@@ -60,6 +61,7 @@ export const mainNetworkDenom: Record<StakingNetworkId, CoinDenom | null> = {
   [StakingNetworkId.Osmosis]: CoinDenom.OSMO,
   [StakingNetworkId.Regen]: CoinDenom.REGEN,
   [StakingNetworkId.Solana]: CoinDenom.SOL,
+  [StakingNetworkId.SolanaDevnet]: CoinDenom.SOL,
   [StakingNetworkId.SolanaTestnet]: CoinDenom.SOL,
   [StakingNetworkId.Stargaze]: CoinDenom.STARS,
   [StakingNetworkId.StargazeTestnet]: CoinDenom.STARS,
@@ -70,5 +72,6 @@ export const testnetNetworks = new Set([
   StakingNetworkId.CosmosHubTestnet,
   StakingNetworkId.KavaTestnet,
   StakingNetworkId.SolanaTestnet,
+  StakingNetworkId.SolanaDevnet,
   StakingNetworkId.StargazeTestnet,
 ]);
