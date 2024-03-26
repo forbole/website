@@ -33,6 +33,7 @@
   "definitions": {
     "apy": "年收益率（APY）顯示您可以透過質押獲得的代幣收益率。 它包括複利，幫助您衡量投資的潛在成長。",
     "tvl": "鎖定總價值 (TVL) 是 Forbole 在該網絡上質押的所有資產的美元總價值。 它顯示了 Forbole 的質押規模和受歡迎程度。",
+    "unbonding_other": "質押後，您的代幣將被鎖定，直到 {{count}} 天解質期結束後才能轉移",
     "votingPower": "「投票權」指 Forbole 在網路上質押的代幣總量。 質押的代幣數量越多，投票權越高。"
   },
   "description": " 在 Forbole 质押，赚取收益，守护网络",
@@ -106,6 +107,9 @@
   "stake with us!": "與我們一起賭注！",
   "stake_now": "立即質押",
   "staked by forbole": "Forbole 質押",
+  "staking": {
+    "days_other": "{{count}}日"
+  },
   "staking para 1": "代幣持有者將其代幣質押給驗證者以保護網路的行為稱為質押。",
   "staking para 2": "質押者將質押權質押給驗證者，但這並不意味著驗證者擁有或保管質押給他們的代幣。",
   "staking q": "什麼是質押？",
@@ -141,6 +145,7 @@
     },
     "title": "用 Forbole 進行樁樁",
     "tokenAmount": "代幣數量",
+    "unbonding": "解押期",
     "walletSellect": "股權來自："
   },
   "stakingWidget": {

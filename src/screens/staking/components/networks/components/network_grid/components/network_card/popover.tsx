@@ -257,8 +257,10 @@ const PopOver = ({
 
               return networkSummary?.bonded > 0
                 ? [
-                    network.denom?.toUpperCase(),
-                    convertToMoney(networkSummary.bonded),
+                    t("votingPower"),
+                    `${convertToMoney(
+                      networkSummary.bonded,
+                    )} ${network.denom?.toUpperCase()}`,
                   ]
                 : null;
             })();
