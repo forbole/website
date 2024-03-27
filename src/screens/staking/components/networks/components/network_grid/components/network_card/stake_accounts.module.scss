@@ -1,0 +1,111 @@
+@import "src/styles/sass.scss";
+
+.statusActivating {
+  background: #007fff;
+}
+
+.statusActive {
+  background: #1ec490;
+}
+
+.statusDeactivating {
+  background: #e4a11e;
+}
+
+.statusActivating,
+.statusActive,
+.statusDeactivating {
+  align-items: flex-start;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  gap: 10px;
+  padding: 2px 4px;
+}
+
+.stakeAccount {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.34);
+  box-shadow:
+    0 6px 14px -6px rgba(2, 38, 225, 0.12),
+    0 10px 32px -4px rgba(2, 38, 225, 0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px;
+  width: 100%;
+}
+
+.external {
+  img {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.stakeIcon {
+  height: 20px;
+  width: 20px;
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: flex-start;
+
+  span {
+    color: #25282d;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    text-shadow:
+      0 8px 22px rgba(2, 38, 225, 0.12),
+      0 14px 64px rgba(2, 38, 225, 0.12);
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.value {
+  color: #25282d;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.032px;
+  line-height: 20px;
+  text-align: right;
+  text-shadow:
+    0 8px 22px rgba(2, 38, 225, 0.12),
+    0 14px 64px rgba(2, 38, 225, 0.12);
+}
+
+.numbers {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: space-between;
+}
+
+.extra {
+  color: #059c78;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
+  text-align: right;
+  text-shadow:
+    0 8px 22px rgba(2, 38, 225, 0.12),
+    0 14px 64px rgba(2, 38, 225, 0.12);
+}

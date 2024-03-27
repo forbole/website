@@ -1,4 +1,5 @@
 {
+  "accounts": "Accounts",
   "addressCopied": "地址已复制",
   "apy": "年收益率",
   "benefits bullet 1": "赚取您的质押奖励，它可以让您通过贡献来获得保护网络的奖励",
@@ -106,6 +107,13 @@
   "stake desc": "作为通证持有人，你可以安心在我们的基础建设上委托质押原生通证",
   "stake with us!": "与我们一起赌注！",
   "stake_now": "立即质押",
+  "stakeAccount": {
+    "status": {
+      "activating": "Active",
+      "active": "Active",
+      "deactivating": "Deactivating"
+    }
+  },
   "stakeAccounts": "Accounts",
   "staked by forbole": "Forbole 质押",
   "staking": {

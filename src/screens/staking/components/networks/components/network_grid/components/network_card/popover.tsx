@@ -141,6 +141,9 @@ const PopOver = ({
     fetchCoinPriceForNetwork(stakingRef.current, stakingNetworkId);
   }, [stakingRef, stakingNetworkId]);
 
+  // @TODO: Remove
+  const [, rerender] = useState(0);
+
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
   const accountsWithRewards = accounts?.filter(accountHasRewards);
 
@@ -158,6 +161,13 @@ const PopOver = ({
         onClickCapture={() => setShowPopover("")}
       />
       <div>{networkImage}</div>
+      <button
+        onClick={() => {
+          rerender((prev) => prev + 1);
+        }}
+      >
+        Rerender
+      </button>
       {network.name && <div className={styles.name}>{network.name}</div>}
       <StakingDataBox network={network} />
       {!!networkSummary && (

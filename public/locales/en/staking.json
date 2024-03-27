@@ -1,4 +1,5 @@
 {
+  "accounts": "Accounts",
   "addressCopied": "Address copied",
   "apy": "Annual Percentage Yield",
   "benefits bullet 1": "Earn your staking rewards, it allows you to earn rewards for securing the network with your contribution",
@@ -107,6 +108,13 @@
   "stake desc": "As a token holder, you can utilize our infrastructure by staking your tokens with us",
   "stake with us!": "Stake with us!",
   "stake_now": "Stake Now",
+  "stakeAccount": {
+    "status": {
+      "activating": "Active",
+      "active": "Active",
+      "deactivating": "Deactivating"
+    }
+  },
   "stakeAccounts": "Accounts",
   "staked by forbole": "Staked by Forbole",
   "staking": {
