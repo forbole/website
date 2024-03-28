@@ -15,6 +15,7 @@
   padding: 12px 16px;
   width: 100%;
 
+  .stakeAccounts,
   .unbonding,
   .rewards,
   .total {
@@ -62,4 +63,16 @@
     text-align: right;
     text-shadow: $box-shadow-variant-3;
   }
+}
+
+.nav {
+  background: transparent;
+  border: none;
+  transform: rotate(-90deg);
+}
+
+.navWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 }

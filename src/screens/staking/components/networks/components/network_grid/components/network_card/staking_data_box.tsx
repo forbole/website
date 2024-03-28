@@ -1,6 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useMemo, useState } from "react";
 
+import IconChevron from "@src/components/icons/icon_chevron.svg";
 import { tooltipId } from "@src/components/tooltip";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { fetchCoinPriceForNetwork } from "@src/screens/staking/lib/staking_sdk/context/actions";
@@ -22,14 +23,15 @@ import {
 import type { StakeAccount } from "@src/screens/staking/lib/staking_sdk/staking_client_types";
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
-import StakeAccounts from "./stake_accounts";
+import StakeAccounts, { StakeAccountsNum } from "./stake_accounts";
 import * as styles from "./staking_data_box.module.scss";
 
 type PopOverProps = {
   network: Network;
+  onFocusContent: (isFocused: boolean) => void;
 };
 
-const StakingDataBox = ({ network }: PopOverProps) => {
+const StakingDataBox = ({ network, onFocusContent }: PopOverProps) => {
   const stakingNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
 
   const [isDisplayingStakeAccounts, setIsDisplayingStakeAccounts] =
@@ -38,6 +40,11 @@ const StakingDataBox = ({ network }: PopOverProps) => {
   const stakingRef = useStakingRef();
 
   const { t } = useTranslation("staking");
+
+  const setStakeAccountsDisplay = (isDisplayed: boolean) => {
+    setIsDisplayingStakeAccounts(isDisplayed);
+    onFocusContent(isDisplayed);
+  };
 
   const { claimableRewards, stakeAccounts, stakedData, unbondingTokens } =
     useMemo(() => {
@@ -124,7 +131,7 @@ const StakingDataBox = ({ network }: PopOverProps) => {
       return (
         <StakeAccounts
           network={network}
-          onClose={() => setIsDisplayingStakeAccounts(false)}
+          onClose={() => setStakeAccountsDisplay(false)}
         />
       );
     }
@@ -172,16 +179,17 @@ const StakingDataBox = ({ network }: PopOverProps) => {
           </div>
         )}
         {!!stakeAccounts?.length && (
-          <div className={styles.unbonding}>
+          <div className={styles.stakeAccounts}>
             <div>{t("stakeAccounts")}</div>
-            <div>
-              {stakeAccounts.length}{" "}
+            <div className={styles.navWrapper}>
+              <StakeAccountsNum>{stakeAccounts.length}</StakeAccountsNum>{" "}
               <button
+                className={styles.nav}
                 onClick={() => {
-                  setIsDisplayingStakeAccounts(true);
+                  setStakeAccountsDisplay(true);
                 }}
               >
-                {">"}
+                <IconChevron />
               </button>
             </div>
           </div>

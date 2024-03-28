@@ -1,6 +1,8 @@
 import useTranslation from "next-translate/useTranslation";
+import type { PropsWithChildren } from "react";
 import { useEffect, useMemo } from "react";
 
+import IconChevron from "@src/components/icons/icon_chevron.svg";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { fetchCoinPriceForNetwork } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_sdk/context/selectors";
@@ -19,6 +21,10 @@ import { getExplorerLink } from "@src/screens/staking/lib/staking_sdk/utils/acco
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
 import * as styles from "./stake_accounts.module.scss";
+
+export const StakeAccountsNum = ({ children }: PropsWithChildren) => (
+  <div className={styles.stakeAccountsNum}>{children}</div>
+);
 
 type Props = {
   network: Network;
@@ -83,9 +89,14 @@ const StakeAccounts = ({ network, onClose }: Props) => {
 
   return (
     <div>
-      <div>
-        <button onClick={onClose}>{"<"}</button> {t("accounts")}{" "}
-        {stakeAccounts?.length}
+      <div className={styles.header}>
+        <span className={styles.headerCopy}>
+          <button className={styles.nav} onClick={onClose}>
+            <IconChevron />
+          </button>{" "}
+          {t("accounts")}
+        </span>
+        <StakeAccountsNum>{stakeAccounts?.length}</StakeAccountsNum>
       </div>
       <div>
         {stakeAccounts?.map((account) => {

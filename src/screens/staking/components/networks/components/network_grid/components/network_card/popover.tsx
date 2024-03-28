@@ -70,6 +70,7 @@ const PopOver = ({
   const networkNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
   const stakingNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
   const nodeRef = useRef<HTMLDivElement | null>(null);
+  const [isContentFocused, setIsContentFocused] = useState(false);
 
   const stakingRef = useStakingRef();
 
@@ -142,7 +143,7 @@ const PopOver = ({
   }, [stakingRef, stakingNetworkId]);
 
   // @TODO: Remove
-  const [, rerender] = useState(0);
+  const [rerenderKey, rerender] = useState(0);
 
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
   const accountsWithRewards = accounts?.filter(accountHasRewards);
@@ -169,8 +170,12 @@ const PopOver = ({
         Rerender
       </button>
       {network.name && <div className={styles.name}>{network.name}</div>}
-      <StakingDataBox network={network} />
-      {!!networkSummary && (
+      <StakingDataBox
+        key={rerenderKey}
+        network={network}
+        onFocusContent={setIsContentFocused}
+      />
+      {!!networkSummary && !isContentFocused && (
         <div className={styles.dataBox}>
           {(() => {
             const votingPower = (() => {

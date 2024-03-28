@@ -109,3 +109,41 @@
     0 8px 22px rgba(2, 38, 225, 0.12),
     0 14px 64px rgba(2, 38, 225, 0.12);
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+.nav {
+  background: transparent;
+  border: none;
+  transform: rotate(90deg);
+}
+
+.headerCopy {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  font-weight: 600;
+  gap: 4px;
+  letter-spacing: 0.002em;
+  line-height: 20px;
+  text-align: left;
+  transform: translateX(-8px);
+}
+
+.stakeAccountsNum {
+  align-items: center;
+  background: #8484ea;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  min-height: 30px;
+  min-width: 30px;
+  padding: 2px;
+}
