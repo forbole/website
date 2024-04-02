@@ -121,7 +121,10 @@ const ClaimRewardsModal = () => {
 
                   stakingRef.current.postHog?.capture(
                     PostHogCustomEvent.ClaimedRewards,
-                    claimableRewardsForNetwork,
+                    {
+                      ...claimableRewardsForNetwork,
+                      walletAddress: selectedAccount.address,
+                    },
                   );
 
                   toastSuccess({

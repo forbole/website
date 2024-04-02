@@ -152,7 +152,11 @@ const UnstakingModal = () => {
 
           stakingRef.current.postHog?.capture(
             PostHogCustomEvent.UnstakedTokens,
-            { amount, denom: mainNetworkDenom[selectedAccount.networkId] },
+            {
+              amount,
+              denom: mainNetworkDenom[selectedAccount.networkId],
+              walletAddress: selectedAccount.address,
+            },
           );
 
           toastSuccess({

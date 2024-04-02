@@ -151,6 +151,7 @@ const StakingModal = () => {
           stakingRef.current.postHog?.capture(PostHogCustomEvent.StakedTokens, {
             amount,
             denom: mainNetworkDenom[selectedAccount.networkId],
+            walletAddress: selectedAccount.address,
           });
 
           toastSuccess({
