@@ -528,6 +528,76 @@ const Policy = () => {
                     or similar technologies.
                   </span>
                 </p>
+                <div
+                  className="c6"
+                  style={{
+                    color: "#000",
+
+                    fontSize: "11pt",
+                    lineHeight: "1.15",
+                    margin: 0,
+                    marginLeft: "8em",
+                    marginTop: "1em",
+                    orphans: 2,
+                    paddingBottom: 0,
+                    paddingTop: 0,
+                    textAlign: "left",
+
+                    widows: 2,
+                  }}
+                >
+                  <span className={styles.c2}>
+                    <span className="t1">(iv)</span> anonymized identifiers. We
+                    also may use Posthog and Sentry to help us better understand
+                    the usage and error data in order to improve our user
+                    experience. Please refer to each service provider’s Terms of
+                    Use and Privacy Policy for more information:
+                  </span>
+                  <div
+                    style={{
+                      marginLeft: "4em",
+                      marginTop: "1rem",
+                    }}
+                  >
+                    (i) Posthog's Terms of Use:{" "}
+                    <a href="https://posthog.com/terms">
+                      https://posthog.com/terms
+                    </a>
+                  </div>
+                  <div
+                    style={{
+                      marginLeft: "4em",
+                      marginTop: "1rem",
+                    }}
+                  >
+                    (ii) Posthog’s Privacy Policy:{" "}
+                    <a href="https://posthog.com/privacy">
+                      https://posthog.com/privacy
+                    </a>
+                  </div>
+                  <div
+                    style={{
+                      marginLeft: "4em",
+                      marginTop: "1rem",
+                    }}
+                  >
+                    (iii) Sentry’s Terms of Use:{" "}
+                    <a href="https://sentry.io/terms">
+                      https://sentry.io/terms/
+                    </a>
+                  </div>
+                  <div
+                    style={{
+                      marginLeft: "4em",
+                      marginTop: "1rem",
+                    }}
+                  >
+                    (iv) Sentry’s Privacy Policy:{" "}
+                    <a href="https://sentry.io/privacy">
+                      https://sentry.io/privacy/
+                    </a>
+                  </div>
+                </div>
                 <p className={styles.c3}>
                   <span className={styles.c2} />
                 </p>
