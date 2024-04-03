@@ -38,11 +38,14 @@ const StakeAccounts = ({ network, onClose }: Props) => {
 
   const { t } = useTranslation("staking");
 
-  const { stakeAccounts } = useMemo(() => {
+  const { rewardsByAddress, stakeAccounts } = useMemo(() => {
     const wallet = WalletId.Keplr;
+
+    type RewardMap = Record<string, Coin>;
 
     const result = {
       claimableRewards: null as NetworkClaimableRewards | null,
+      rewardsByAddress: null as null | RewardMap,
       stakeAccounts: null as null | StakeAccount[],
       stakedData: null as Coin | null,
       unbondingTokens: null as { period: string; text: string } | null,
@@ -58,6 +61,31 @@ const StakeAccounts = ({ network, onClose }: Props) => {
         stakingRef.current.state,
         stakingNetworkId,
       );
+
+      result.rewardsByAddress = (() => {
+        // @TODO: Use a selector for this
+        const accounts =
+          stakingRef.current.state.wallets[wallet]?.networks?.[stakingNetworkId]
+            ?.accounts || [];
+
+        if (!accounts?.length) {
+          return null;
+        }
+
+        return accounts.reduce((acc, account) => {
+          const { rewards } = account;
+
+          if (Array.isArray(rewards)) {
+            rewards.forEach((reward) => {
+              if (!reward.address) return;
+
+              acc[reward.address] = reward.coin;
+            });
+          }
+
+          return acc;
+        }, {} as RewardMap);
+      })();
 
       result.claimableRewards =
         getClaimableRewardsForNetwork(
@@ -121,6 +149,8 @@ const StakeAccounts = ({ network, onClose }: Props) => {
               deactivating: styles.statusDeactivating,
             }[account.status] || null;
 
+          const reward = rewardsByAddress?.[account.address];
+
           return (
             <div className={styles.stakeAccount} key={account.address}>
               <div className={styles.left}>
@@ -152,7 +182,9 @@ const StakeAccounts = ({ network, onClose }: Props) => {
               </div>
               <div className={styles.numbers}>
                 <div className={styles.value}>{formatCoin(account)}</div>
-                <div className={styles.extra}>+123</div>
+                {reward && (
+                  <div className={styles.extra}>+{formatCoin(reward)}</div>
+                )}
               </div>
             </div>
           );

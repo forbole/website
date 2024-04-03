@@ -110,7 +110,7 @@
   "stake_now": "Stake Now",
   "stakeAccount": {
     "status": {
-      "activating": "Active",
+      "activating": "Activating",
       "active": "Active",
       "deactivating": "Deactivating"
     }
