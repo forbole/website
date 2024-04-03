@@ -140,6 +140,7 @@ const StakeAccounts = ({ network, onClose }: Props) => {
               activating: t("stakeAccount.status.activating"),
               active: t("stakeAccount.status.active"),
               deactivating: t("stakeAccount.status.deactivating"),
+              inactive: t("stakeAccount.status.inactive"),
             }[account.status] || account.status;
 
           const statusStyle =
@@ -147,6 +148,7 @@ const StakeAccounts = ({ network, onClose }: Props) => {
               activating: styles.statusActivating,
               active: styles.statusActive,
               deactivating: styles.statusDeactivating,
+              inactive: null,
             }[account.status] || null;
 
           const reward = rewardsByAddress?.[account.address];

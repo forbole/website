@@ -21,21 +21,11 @@ import type { StakeOpts, UnstakeAmount, WalletOperationResult } from "./base";
 
 const mainnetWallet = new Solflare({});
 const testnetWallet = new Solflare({ network: "testnet" });
-
-if (ENABLE_TESTNETS) {
-  mainnetWallet.on("disconnect", () => {
-    // eslint-disable-next-line no-console
-    console.log("disconnected");
-  });
-}
-
-testnetWallet.on("disconnect", () => {
-  // eslint-disable-next-line no-console
-  console.log("disconnected");
-});
+const devnetWallet = new Solflare({ network: "devnet" });
 
 let connectListenerMainnet: (() => void) | undefined;
 let connectListenerTestnet: (() => void) | undefined;
+let connectListenerDevnet: (() => void) | undefined;
 
 export const tryToConnectSolflare = async (
   context: TStakingContext,
@@ -47,6 +37,9 @@ export const tryToConnectSolflare = async (
 
     const hasTestnetWallet =
       ENABLE_TESTNETS && solanaNetworks.has(StakingNetworkId.SolanaTestnet);
+
+    const hasDevnetWallet =
+      ENABLE_TESTNETS && solanaNetworks.has(StakingNetworkId.SolanaDevnet);
 
     const getListener =
       (wallet: typeof mainnetWallet, networkId: StakingNetworkId) =>
@@ -91,9 +84,11 @@ export const tryToConnectSolflare = async (
 
           resolvedItems += 1;
 
-          const totalItems = [hasMainnetWallet, hasTestnetWallet].filter(
-            Boolean,
-          ).length;
+          const totalItems = [
+            hasMainnetWallet,
+            hasTestnetWallet,
+            hasDevnetWallet,
+          ].filter(Boolean).length;
 
           if (resolvedItems === totalItems) {
             resolve(true);
@@ -117,9 +112,8 @@ export const tryToConnectSolflare = async (
     }
 
     if (hasTestnetWallet) {
-      if (connectListenerTestnet) {
+      if (connectListenerTestnet)
         testnetWallet.off("connect", connectListenerTestnet);
-      }
 
       connectListenerTestnet = getListener(
         testnetWallet,
@@ -129,9 +123,22 @@ export const tryToConnectSolflare = async (
       testnetWallet.on("connect", connectListenerTestnet);
     }
 
+    if (hasDevnetWallet) {
+      if (connectListenerDevnet)
+        devnetWallet.off("connect", connectListenerDevnet);
+
+      connectListenerDevnet = getListener(
+        devnetWallet,
+        StakingNetworkId.SolanaDevnet,
+      );
+
+      devnetWallet.on("connect", connectListenerDevnet);
+    }
+
     await Promise.all([
       hasMainnetWallet ? mainnetWallet.connect() : Promise.resolve(),
       hasTestnetWallet ? testnetWallet.connect() : Promise.resolve(),
+      hasDevnetWallet ? devnetWallet.connect() : Promise.resolve(),
     ]);
   });
 
@@ -213,9 +220,15 @@ const getWalletApi = (account: Account): WalletApi => {
     };
   }
 
-  return account.networkId === StakingNetworkId.SolanaTestnet
-    ? testnetWallet
-    : mainnetWallet;
+  const wallet = {
+    [StakingNetworkId.Solana]: mainnetWallet,
+    [StakingNetworkId.SolanaDevnet]: devnetWallet,
+    [StakingNetworkId.SolanaTestnet]: testnetWallet,
+  }[account.networkId as string];
+
+  if (!wallet) throw new Error("Unexpected wallet");
+
+  return wallet;
 };
 
 // https://solanacookbook.com/references/staking.html

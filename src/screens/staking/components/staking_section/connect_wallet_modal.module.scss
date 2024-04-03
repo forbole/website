@@ -33,8 +33,9 @@
 
 .wallets {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   gap: 24px;
+  justify-content: center;
   margin-bottom: 48px;
   margin-top: 48px;
 }

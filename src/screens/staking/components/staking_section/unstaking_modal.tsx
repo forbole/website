@@ -25,6 +25,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
+import { solanaNetworks } from "@src/screens/staking/lib/staking_sdk/core/solana";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
@@ -124,12 +125,14 @@ const UnstakingModal = () => {
     }
   })() as string;
 
-  const stakeAccounts = selectedAccount
-    ? getStakeAccountsForNetwork(
-        stakingRef.current.state,
-        selectedAccount.networkId,
-      )
-    : [];
+  const stakeAccounts = (
+    selectedAccount
+      ? getStakeAccountsForNetwork(
+          stakingRef.current.state,
+          selectedAccount.networkId,
+        )
+      : []
+  ).filter((acc) => ["activating", "active"].includes(acc.status));
 
   const onSubmit = (e: any) => {
     e?.preventDefault();
@@ -207,7 +210,9 @@ const UnstakingModal = () => {
       });
   };
 
-  const hasStakingAccounts = stakeAccounts.length > 0;
+  const usesStakeAccounts = account?.networkId
+    ? solanaNetworks.has(account.networkId)
+    : false;
 
   const delegationProp = account?.info?.delegation;
 
@@ -230,7 +235,7 @@ const UnstakingModal = () => {
             )}
           </div>
         </div>
-        {hasStakingAccounts ? (
+        {usesStakeAccounts ? (
           <>
             <Label>{t("unstakingModal.amount.labelBase")}</Label>
             <StakeAccountsSelect

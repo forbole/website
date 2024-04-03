@@ -28,11 +28,13 @@ type Coin = {
   denom: string;
 };
 
+type StakeAccountStatus = "activating" | "active" | "deactivating" | "inactive";
+
 export type StakeAccount = {
   address: string;
   amount: string;
   denom: string;
-  status: string;
+  status: StakeAccountStatus;
   validator_address: string;
 };
 

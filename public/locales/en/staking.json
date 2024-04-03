@@ -112,7 +112,8 @@
     "status": {
       "activating": "Activating",
       "active": "Active",
-      "deactivating": "Deactivating"
+      "deactivating": "Deactivating",
+      "inactive": "Inactive"
     }
   },
   "stakeAccounts": "Accounts",
