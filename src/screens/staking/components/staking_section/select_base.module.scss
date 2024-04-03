@@ -1,0 +1,48 @@
+.control {
+  border-radius: 8px;
+  box-shadow:
+    0 14px 64px -4px #0226e11f,
+    0 8px 22px -6px #0226e11f;
+  height: 80px;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.select {
+  height: 100%;
+  width: 100%;
+
+  :global(.MuiOutlinedInput-notchedOutline) {
+    background-color: transparent !important;
+    border: none;
+    outline-color: transparent !important;
+
+    &:hover {
+      background-color: transparent !important;
+      border: none !important;
+      border-color: transparent !important;
+      border-right-style: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+  }
+
+  :global(.MuiSelect-select.MuiSelect-outlined.MuiInputBase-input) {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding: 0 !important;
+  }
+}
+
+.trigger {
+  cursor: pointer;
+  margin-right: 20px;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}

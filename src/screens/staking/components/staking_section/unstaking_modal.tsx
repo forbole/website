@@ -19,7 +19,10 @@ import {
   setSelectedAccount,
   syncAccountData,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
-import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
+import {
+  getSelectedAccount,
+  getStakeAccountsForNetwork,
+} from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -39,6 +42,7 @@ import { PostHogCustomEvent } from "@src/utils/posthog";
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
 import NetworksSelect from "./networks_select";
+import StakeAccountsSelect from "./stake_accounts_select";
 import * as styles from "./unstaking_modal.module.scss";
 
 const UnstakingModal = () => {
@@ -50,6 +54,10 @@ const UnstakingModal = () => {
   const [networkInfo, setNetworkInfo] = useState<null | StakingNetworkInfo>(
     null,
   );
+
+  const [selectedStakeAccount, setSelectedStakeAccount] = useState<
+    null | string
+  >(null);
 
   const selectedAccount = getSelectedAccount(stakingRef.current.state);
 
@@ -187,6 +195,15 @@ const UnstakingModal = () => {
       });
   };
 
+  const stakeAccounts = selectedAccount
+    ? getStakeAccountsForNetwork(
+        stakingRef.current.state,
+        selectedAccount.networkId,
+      )
+    : [];
+
+  const hasStakingAccounts = stakeAccounts.length > 0;
+
   const delegationProp = account?.info?.delegation;
 
   const delegation = Array.isArray(delegationProp)
@@ -208,59 +225,75 @@ const UnstakingModal = () => {
             )}
           </div>
         </div>
-        <div className={styles.row}>
-          <Label>{t("unstakingModal.amount.label")}</Label>
-          <div>
-            {!!delegation?.amount && (
-              <>
-                <Label>{t("unstakingModal.available")}</Label>:{" "}
-                <span className={styles.amount}>{formatCoin(delegation)}</span>
-              </>
-            )}
-          </div>
-        </div>
-        <FormInput
-          disabled={isLoading}
-          fullWidth
-          onBlur={() => {
-            setAmountError(newAmountError);
-          }}
-          onChange={(e) => {
-            if (amountError) {
-              setAmountError("");
-            }
+        {hasStakingAccounts ? (
+          <>
+            <Label>{t("unstakingModal.amount.labelBase")}</Label>
+            <StakeAccountsSelect
+              accounts={stakeAccounts}
+              disabled={isLoading}
+              onChange={setSelectedStakeAccount}
+              selectedAccount={selectedStakeAccount}
+            />
+          </>
+        ) : (
+          <>
+            <div className={styles.row}>
+              <Label>{t("unstakingModal.amount.label")}</Label>
+              <div>
+                {!!delegation?.amount && (
+                  <>
+                    <Label>{t("unstakingModal.available")}</Label>:{" "}
+                    <span className={styles.amount}>
+                      {formatCoin(delegation)}
+                    </span>
+                  </>
+                )}
+              </div>
+            </div>
+            <FormInput
+              disabled={isLoading}
+              fullWidth
+              onBlur={() => {
+                setAmountError(newAmountError);
+              }}
+              onChange={(e) => {
+                if (amountError) {
+                  setAmountError("");
+                }
 
-            setAmount(e.target.value);
-          }}
-          placeholder={t("unstakingModal.amount.placeholder")}
-          {...(delegation?.denom && {
-            rightText: normaliseDenom(delegation.denom),
-          })}
-          value={amount}
-        />
-        {!!amountError && <ModalError>{amountError}</ModalError>}
-        <Label>{t("unstakingModal.memo.label")}</Label>
-        <FormInput
-          className={styles.input}
-          disabled={isLoading}
-          noFocusEffect
-          noMargin
-          onBlur={() => {
-            if (newMemoError !== memoError) {
-              setMemoError(newMemoError);
-            }
-          }}
-          onChange={(e) => {
-            if (memoError) {
-              setMemoError("");
-            }
+                setAmount(e.target.value);
+              }}
+              placeholder={t("unstakingModal.amount.placeholder")}
+              {...(delegation?.denom && {
+                rightText: normaliseDenom(delegation.denom),
+              })}
+              value={amount}
+            />
+            {!!amountError && <ModalError>{amountError}</ModalError>}
+            <Label>{t("unstakingModal.memo.label")}</Label>
+            <FormInput
+              className={styles.input}
+              disabled={isLoading}
+              noFocusEffect
+              noMargin
+              onBlur={() => {
+                if (newMemoError !== memoError) {
+                  setMemoError(newMemoError);
+                }
+              }}
+              onChange={(e) => {
+                if (memoError) {
+                  setMemoError("");
+                }
 
-            setMemo(e.target.value);
-          }}
-          placeholder={t("unstakingModal.memo.placeholder")}
-          value={memo}
-        />
-        {!!memoError && <ModalError>{memoError}</ModalError>}
+                setMemo(e.target.value);
+              }}
+              placeholder={t("unstakingModal.memo.placeholder")}
+              value={memo}
+            />
+            {!!memoError && <ModalError>{memoError}</ModalError>}
+          </>
+        )}
         <div className={styles.info}>
           <IconWarning />
           <div className={styles.infoContent}>

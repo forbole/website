@@ -193,6 +193,7 @@
   "unstakingModal": {
     "amount": {
       "label": "Unstake token amount",
+      "labelBase": "Amount",
       "placeholder": "1,000"
     },
     "available": "Staked",

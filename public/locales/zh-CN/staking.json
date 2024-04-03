@@ -190,6 +190,7 @@
   "unstakingModal": {
     "amount": {
       "label": "取消质押代币数量",
+      "labelBase": "Amount",
       "placeholder": "1,000"
     },
     "available": "质押",
