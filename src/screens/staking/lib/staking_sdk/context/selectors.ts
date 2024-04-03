@@ -143,42 +143,44 @@ export const getUnbondingTokensForNetwork = (
 ): UnbondingTokensResult => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
 
-  return accountsForNetwork.reduce((acc, account) => {
-    if (!account.info?.unbonding?.length) {
-      return acc;
-    }
+  return accountsForNetwork
+    .filter(filterUniqueAddresses())
+    .reduce((acc, account) => {
+      if (!account.info?.unbonding?.length) {
+        return acc;
+      }
 
-    const { unbonding } = account.info;
+      const { unbonding } = account.info;
 
-    const denom = networkToUnnormalisedDenom[account.networkId];
+      const denom = networkToUnnormalisedDenom[account.networkId];
 
-    return unbonding.reduce((acc2, unbondingInfo) => {
-      const baseCoin = acc2 ? acc2.coin : getEmptyCoin(denom);
-      const basePeriod = acc2 ? acc2.period : "";
+      return unbonding.reduce((acc2, unbondingInfo) => {
+        const baseCoin = acc2 ? acc2.coin : getEmptyCoin(denom);
+        const basePeriod = acc2 ? acc2.period : "";
 
-      const newCoin = sumCoins(baseCoin, {
-        amount: unbondingInfo.balance,
-        denom,
-      });
+        const newCoin = sumCoins(baseCoin, {
+          amount: unbondingInfo.balance,
+          denom,
+        });
 
-      if (!unbondingInfo.completion_time)
+        if (!unbondingInfo.completion_time)
+          return {
+            coin: newCoin,
+            period: basePeriod,
+          };
+
+        const itemPeriod = unbondingInfo.completion_time.seconds;
+
+        const newPeriod = new BigNumber(basePeriod).isGreaterThan(itemPeriod)
+          ? basePeriod
+          : itemPeriod;
+
         return {
           coin: newCoin,
-          period: basePeriod,
+          period: newPeriod,
         };
-
-      const itemPeriod = unbondingInfo.completion_time.seconds;
-
-      const newPeriod = new BigNumber(basePeriod).isGreaterThan(itemPeriod)
-        ? basePeriod
-        : itemPeriod;
-
-      return {
-        coin: newCoin,
-        period: newPeriod,
-      };
-    }, acc);
-  }, null as UnbondingTokensResult);
+      }, acc);
+    }, null as UnbondingTokensResult);
 };
 
 export const getHasConnectedWallets = (state: StakingState) =>

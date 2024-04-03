@@ -7,7 +7,7 @@ import {
 
 export const keplrNetworks = new Set<StakingNetworkId>(
   [
-    // StakingNetworkId.Akash,
+    StakingNetworkId.Akash,
     // StakingNetworkId.Celestia,
     // StakingNetworkId.CelestiaTestnet,
     // StakingNetworkId.ComposableFinance,
