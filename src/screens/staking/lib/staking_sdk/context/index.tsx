@@ -1,3 +1,5 @@
+import type { PostHog } from "posthog-js";
+import { usePostHog } from "posthog-js/react";
 import type { PropsWithChildren } from "react";
 import {
   createContext,
@@ -16,6 +18,7 @@ type SetState = (
 ) => void;
 
 export type TStakingContext = {
+  postHog?: PostHog;
   setState: SetState;
   state: StakingState;
 };
@@ -37,6 +40,8 @@ const baseContext: TStakingContext = {
 const StakingContext = createContext(baseContext);
 
 export const StakingProvider = ({ children }: PropsWithChildren) => {
+  const postHog = usePostHog();
+
   const [state, setState] = useState<StakingState>(
     (typeof window !== "undefined" && window.stakingContext?.state) ||
       baseContext.state,
@@ -54,10 +59,11 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
     };
 
     return {
+      postHog,
       setState: wrappedSetState,
       state,
     };
-  }, [state, setState]);
+  }, [postHog, state]);
 
   useEffect(() => {
     window.stakingContext = contextValue;
@@ -73,12 +79,13 @@ export const StakingProvider = ({ children }: PropsWithChildren) => {
 };
 
 export const useStakingRef = () => {
-  const { setState, state } = useContext(StakingContext);
+  const { postHog, setState, state } = useContext(StakingContext);
 
   const stakingRef = useRef({} as TStakingContext);
 
   stakingRef.current.state = state;
   stakingRef.current.setState = setState;
+  stakingRef.current.postHog = postHog;
 
   return stakingRef;
 };

@@ -1,5 +1,4 @@
 import type { EncodeObject } from "@cosmjs/proto-signing";
-import { SigningStargateClient } from "@cosmjs/stargate";
 import type {
   MsgDelegateEncodeObject,
   MsgUndelegateEncodeObject,
@@ -7,6 +6,7 @@ import type {
   StdFee,
   Event as TxEvent,
 } from "@cosmjs/stargate";
+import { SigningStargateClient } from "@cosmjs/stargate";
 import type { AccountData } from "@keplr-wallet/types";
 import { MsgWithdrawDelegatorReward } from "cosmjs-types/cosmos/distribution/v1beta1/tx";
 import {
@@ -103,7 +103,10 @@ const getCosmosError = (err: Error): CosmosError => {
     return CosmosError.Success;
   }
 
-  if (err?.message?.includes("out of gas in")) {
+  if (
+    err?.message?.includes("out of gas in") ||
+    err?.message?.includes("insufficient fee")
+  ) {
     return CosmosError.NotEnoughGas;
   }
 
