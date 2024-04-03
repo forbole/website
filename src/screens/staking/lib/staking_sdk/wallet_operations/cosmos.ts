@@ -1,10 +1,13 @@
 import { fromBase64 } from "@cosmjs/encoding";
 import type { EncodeObject, OfflineDirectSigner } from "@cosmjs/proto-signing";
-import { makeAuthInfoBytes, makeSignDoc } from "@cosmjs/proto-signing";
+import { makeAuthInfoBytes, Registry } from "@cosmjs/proto-signing";
 import {
+  AminoTypes,
   QueryClient,
   SigningStargateClient,
+  createDefaultAminoConverters,
   setupTxExtension,
+  defaultRegistryTypes,
 } from "@cosmjs/stargate";
 import type {
   MsgDelegateEncodeObject,
@@ -14,20 +17,19 @@ import type {
   Event as TxEvent,
 } from "@cosmjs/stargate";
 import { connectComet } from "@cosmjs/tendermint-rpc";
-import type { AccountData, BroadcastMode } from "@keplr-wallet/types";
+import type { AccountData, BroadcastMode, StdSignDoc, StdSignature } from "@keplr-wallet/types";
+import { EthermintChainIdHelper } from "@keplr-wallet/cosmos";
 import { PubKey } from "cosmjs-types/cosmos/crypto/secp256k1/keys";
 import { MsgWithdrawDelegatorReward } from "cosmjs-types/cosmos/distribution/v1beta1/tx";
 import {
   MsgDelegate,
   MsgUndelegate,
 } from "cosmjs-types/cosmos/staking/v1beta1/tx";
-import { TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx";
-import { Any } from "cosmjs-types/google/protobuf/any";
+import { SignMode } from "cosmjs-types/cosmos/tx/signing/v1beta1/signing";
+import { TxRaw, TxBody } from "cosmjs-types/cosmos/tx/v1beta1/tx";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect } from "react";
-
 import { toastError, toastSuccess } from "@src/components/notification";
-
 import type { TStakingContext } from "../context";
 import { fetchAccountData, setUserWallet } from "../context/actions";
 import { getHasConnectedWallet } from "../context/selectors";
@@ -51,6 +53,8 @@ import type {
   WalletOperationResult,
 } from "./base";
 import { ClaimRewardsError, StakeError, UnstakeError } from "./base";
+import { makeSignDoc } from "@cosmjs/amino";
+import { ExtensionOptionsWeb3Tx } from "@keplr-wallet/proto-types/ethermint/types/v1/web3";
 
 type TxEventType = "delegate" | "unbond" | "withdraw_rewards";
 
@@ -81,11 +85,11 @@ const getCosmosFee = async ({
   const gasEstimate = ethermintNetworks.has(account.networkId)
     ? 0
     : await client.simulate(account.address, msgs, memo).catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log("debug: wallet_operations.ts: Estimate error", err);
+      // eslint-disable-next-line no-console
+      console.log("debug: wallet_operations.ts: Estimate error", err);
 
-        return 0;
-      });
+      return 0;
+    });
 
   // This is a factor to increase the gas fee, since the estimate can be a
   // bit short in some cases (especially for the last events)
@@ -181,8 +185,10 @@ const signAndBroadcastEthermint = async (
   const signer = (account.wallet === WalletId.Leap
     ? window.leap!.getOfflineSigner(account.networkId)
     : window.keplr!.getOfflineSigner(
-        account.networkId,
-      )) as unknown as OfflineDirectSigner;
+      account.networkId,
+    )) as unknown as OfflineDirectSigner;
+  
+  const currentHeight = await client.getHeight();
 
   const { account_number: accountNumber, sequence } = latestAccountInfo;
 
@@ -208,53 +214,210 @@ const signAndBroadcastEthermint = async (
     return "/ethermint.crypto.v1.ethsecp256k1.PubKey";
   })();
 
-  const pubkey = Any.fromPartial({
-    typeUrl: pubkeyTypeUrl,
-    value: PubKey.encode({
-      key: accountFromSigner.pubkey,
-    }).finish(),
-  });
 
-  const txBodyEncodeObject = {
-    typeUrl: "/cosmos.tx.v1beta1.TxBody",
-    value: {
-      memo,
-      messages,
-    },
-  };
+  // Create the instance that will take care of converting an EncodeObject
+  // into an amino encoded message.
+  const aminoTypes = new AminoTypes(createDefaultAminoConverters());
+  /// Create the instance that will take care of converting an EncodeObject
+  // into an direct encoded message.
+  const directRegistry = new Registry(defaultRegistryTypes);
+  // Convert the EncodeObjects into amino encoded messages
+  const aminoMessages = messages.map((m) => aminoTypes.toAmino(m));
 
-  const txBodyBytes = client.registry.encode(txBodyEncodeObject);
-
-  const authInfoBytes = makeAuthInfoBytes(
-    [{ pubkey, sequence }],
-    fee.amount,
-    Number(fee.gas),
-    undefined,
-    undefined,
-  );
-
+  // Create the amino signDoc.
   const signDoc = makeSignDoc(
-    txBodyBytes,
-    authInfoBytes,
+    aminoMessages,
+    fee,
     account.networkId,
-    Number(accountNumber),
+    memo,
+    accountNumber,
+    sequence,
+    BigInt(currentHeight) + BigInt(500), 
   );
 
-  const { signature, signed } = await signer.signDirect(
-    account.address,
-    signDoc,
-  );
 
-  const tx = TxRaw.encode({
-    authInfoBytes: signed.authInfoBytes,
-    bodyBytes: signed.bodyBytes,
+  let signed: StdSignDoc;
+  let signature: StdSignature;
+
+  if (account.wallet === WalletId.Keplr) {
+    const signResponse = await window.keplr!.experimentalSignEIP712CosmosTx_v0(
+      account.networkId,
+      account.address,
+      {
+        domain: {
+          chainId: "0x1",
+          name: "Injective Web3",
+          salt: "0",
+          verifyingContract: "cosmos",
+          version: "1.0.0"
+        },
+        primaryType: "Tx",
+        types: {
+          Coin: [
+            {
+              name: "denom",
+              type: "string"
+            },
+            {
+              name: "amount",
+              type: "string"
+            }
+          ],
+          EIP712Domain: [
+            {
+              name: "name",
+              type: "string"
+            },
+            {
+              name: "version",
+              type: "string"
+            },
+            {
+              name: "chainId",
+              type: "uint256"
+            },
+            {
+              name: "verifyingContract",
+              type: "string"
+            },
+            {
+              name: "salt",
+              type: "string"
+            }
+          ],
+          Fee: [
+            {
+              name: "amount",
+              type: "Coin[]"
+            },
+            {
+              name: "gas",
+              type: "string"
+            }
+          ],
+          Msg: [
+            {
+              name: "type",
+              type: "string"
+            },
+            {
+              name: "value",
+              type: "MsgValue"
+            }
+          ],
+          MsgValue: [
+            {
+              name: "delegator_address",
+              type: "string"
+            },
+            {
+              name: "validator_address",
+              type: "string"
+            },
+            {
+              name: "amount",
+              type: "TypeAmount"
+            }
+          ],
+          Tx: [
+            {
+              name: "account_number",
+              type: "string"
+            },
+            {
+              name: "chain_id",
+              type: "string"
+            },
+            {
+              name: "fee",
+              type: "Fee"
+            },
+            {
+              name: "memo",
+              type: "string"
+            },
+            {
+              name: "msgs",
+              type: "Msg[]"
+            },
+            {
+              name: "sequence",
+              type: "string"
+            },
+            {
+              name: "timeout_height",
+              type: "string"
+            }
+          ],
+          TypeAmount: [
+            {
+              name: "denom",
+              type: "string"
+            },
+            {
+              name: "amount",
+              type: "string"
+            }
+          ]
+        }
+      },
+      signDoc,
+    );
+
+    signed = signResponse.signed;
+    signature = signResponse.signature;
+  } else if (account.wallet === WalletId.Leap) {
+    // TODO: Implement EIP712CosmosTx sign for Leap.
+    throw new Error("Not implemented");
+  }
+  else {
+    throw new Error(`Unsupported account wallet: ${account.wallet}`);
+  }
+  
+  const extensionOption = (() => {
+    const typeUrl = account.networkId === StakingNetworkId.Injective ? 
+      "/injective.types.v1beta1.ExtensionOptionsWeb3Tx" : 
+      "/ethermint.types.v1.ExtensionOptionsWeb3Tx";
+
+    return {
+      typeUrl,
+      value: ExtensionOptionsWeb3Tx.encode(
+        ExtensionOptionsWeb3Tx.fromPartial({
+          feePayerSig: fromBase64(signature.signature), 
+          typedDataChainId: EthermintChainIdHelper.parse(signed.chain_id).ethChainId.toString(),
+        })
+      ).finish(),
+    }
+  })();
+  
+  // Convert the EncodeObjects into direct encoded messages.
+  const directMessages = messages.map(m => directRegistry.encodeAsAny(m));
+
+  const txRaw = TxRaw.fromPartial({
+    authInfoBytes: makeAuthInfoBytes([{
+      pubkey: {
+        typeUrl: pubkeyTypeUrl,
+        value: PubKey.encode({
+          key: fromBase64(signature.pub_key.value),
+        }).finish(),
+      },
+      sequence,
+    }], signed.fee.amount, Number(signed.fee.gas), undefined, undefined, SignMode.SIGN_MODE_LEGACY_AMINO_JSON),
+    bodyBytes: TxBody.encode(TxBody.fromPartial({
+      extensionOptions: [extensionOption],
+      memo: signed.memo,
+      messages: directMessages,
+      timeoutHeight: signed.timeout_height ? BigInt(signed.timeout_height) : undefined,
+    })).finish(),
     signatures: [fromBase64(signature.signature)],
-  }).finish();
+  })
+
+  const tx = TxRaw.encode(txRaw).finish();
 
   return (account.wallet === WalletId.Leap ? window.leap! : window.keplr!)
     ?.sendTx(account.networkId, tx, "async" as BroadcastMode.Block)
     .then(async (res) => {
-      const txHash = Buffer.from(res).toString("hex");
+      const txHash = Buffer.from(res).toString("hex").toUpperCase();
 
       if (!txHash) {
         throw new Error("Failed to broadcast transaction");
@@ -529,9 +692,9 @@ export const unstakeCosmos = async (
         return hasUnbonded
           ? ({ success: true } as const)
           : {
-              error: UnstakeError.NotEnoughGas,
-              success: false,
-            };
+            error: UnstakeError.NotEnoughGas,
+            success: false,
+          };
       };
 
       const handleError = (err: Error) =>
@@ -612,27 +775,27 @@ export const tryToConnectKeplr = async (
 
       const parseAccounts =
         (networkId: StakingNetworkId) =>
-        (accounts: readonly AccountData[]): Promise<Account[]> =>
-          Promise.all(
-            accounts.map((account) =>
-              Promise.all([
-                fetchAccountData(context, account.address, networkId, true),
-                window.keplr!.getKey(networkId),
-              ]).then(([{ info, rewards }, key]) => {
-                if (key?.name) {
-                  walletName = key.name;
-                }
+          (accounts: readonly AccountData[]): Promise<Account[]> =>
+            Promise.all(
+              accounts.map((account) =>
+                Promise.all([
+                  fetchAccountData(context, account.address, networkId, true),
+                  window.keplr!.getKey(networkId),
+                ]).then(([{ info, rewards }, key]) => {
+                  if (key?.name) {
+                    walletName = key.name;
+                  }
 
-                return {
-                  address: account.address,
-                  info,
-                  networkId,
-                  rewards,
-                  wallet: WalletId.Keplr,
-                };
-              }),
-            ),
-          );
+                  return {
+                    address: account.address,
+                    info,
+                    networkId,
+                    rewards,
+                    wallet: WalletId.Keplr,
+                  };
+                }),
+              ),
+            );
 
       const keplrAccounts = await Promise.all(
         Array.from(keplrNetworks).map(async (network) => {
@@ -716,27 +879,27 @@ export const tryToConnectLeap = async (
 
       const parseAccounts =
         (networkId: StakingNetworkId) =>
-        (accounts: readonly AccountData[]): Promise<Account[]> =>
-          Promise.all(
-            accounts.map((account) =>
-              Promise.all([
-                fetchAccountData(context, account.address, networkId, true),
-                window.leap!.getKey(networkId),
-              ]).then(([{ info, rewards }, key]) => {
-                if (key?.name) {
-                  walletName = key.name;
-                }
+          (accounts: readonly AccountData[]): Promise<Account[]> =>
+            Promise.all(
+              accounts.map((account) =>
+                Promise.all([
+                  fetchAccountData(context, account.address, networkId, true),
+                  window.leap!.getKey(networkId),
+                ]).then(([{ info, rewards }, key]) => {
+                  if (key?.name) {
+                    walletName = key.name;
+                  }
 
-                return {
-                  address: account.address,
-                  info,
-                  networkId,
-                  rewards,
-                  wallet: WalletId.Leap,
-                };
-              }),
-            ),
-          );
+                  return {
+                    address: account.address,
+                    info,
+                    networkId,
+                    rewards,
+                    wallet: WalletId.Leap,
+                  };
+                }),
+              ),
+            );
 
       const leapAccounts = await Promise.all(
         Array.from(leapNetworks).map(async (network) => {
