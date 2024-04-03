@@ -17,7 +17,7 @@ import { stakingClient } from "../staking_client";
 import { normaliseCoin } from "../utils/coins";
 import { addToConnectedWallets } from "../utils/storage";
 import { StakeError, UnstakeError } from "./base";
-import type { StakeOpts, WalletOperationResult } from "./base";
+import type { StakeOpts, UnstakeAmount, WalletOperationResult } from "./base";
 
 const mainnetWallet = new Solflare({});
 const testnetWallet = new Solflare({ network: "testnet" });
@@ -310,26 +310,21 @@ export const stakeAmountSolana = async ({
 export const unstakeSolana = async ({
   account,
   amount,
-}: StakeOpts): Promise<WalletOperationResult<UnstakeError>> =>
+  stakeAccount,
+}: UnstakeAmount): Promise<WalletOperationResult<UnstakeError>> =>
   stakingClient
     .unstake(account.networkId, account.address, amount)
     .then(async (info) => {
-      const validatorAddress = (info as any).validator_address;
-
-      const accountKey = new PublicKey(account.address);
-
-      const wallet = getWalletApi(account);
-
-      const stakeAccount = (account.info?.stakeAccounts || []).find(
-        (a) => a.validator_address === validatorAddress,
-      );
-
       if (!stakeAccount) {
         return {
           error: UnstakeError.Unknown,
           success: false,
         };
       }
+
+      const accountKey = new PublicKey(account.address);
+
+      const wallet = getWalletApi(account);
 
       const stakePubkey = new PublicKey(stakeAccount.address);
 

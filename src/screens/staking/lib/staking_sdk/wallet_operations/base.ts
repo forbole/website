@@ -1,5 +1,6 @@
 import type { Account } from "../core";
 import type { Coin } from "../core/base";
+import type { StakeAccount } from "../staking_client_types";
 
 export type WalletOperationResult<ErrorType> =
   | {
@@ -21,6 +22,7 @@ export type UnstakeAmount = {
   account: Account;
   amount: string;
   memo: string;
+  stakeAccount?: StakeAccount | undefined;
 };
 
 export enum UnstakeError {

@@ -124,8 +124,19 @@ const UnstakingModal = () => {
     }
   })() as string;
 
+  const stakeAccounts = selectedAccount
+    ? getStakeAccountsForNetwork(
+        stakingRef.current.state,
+        selectedAccount.networkId,
+      )
+    : [];
+
   const onSubmit = (e: any) => {
     e?.preventDefault();
+
+    const selectedStakeAccountObj =
+      stakeAccounts.find((acc) => acc.address === selectedStakeAccount) ||
+      stakeAccounts?.[0];
 
     if (newAmountError) {
       setAmountError(newAmountError);
@@ -135,13 +146,13 @@ const UnstakingModal = () => {
       setMemoError(newMemoError);
     }
 
+    const hasInputError =
+      amountError || memoError || newAmountError || newMemoError;
+
     if (
       !selectedAccount ||
-      amountError ||
-      memoError ||
       isLoading ||
-      newAmountError ||
-      newMemoError
+      (!selectedStakeAccountObj && hasInputError)
     )
       return;
 
@@ -149,8 +160,9 @@ const UnstakingModal = () => {
 
     unstake({
       account: selectedAccount,
-      amount,
+      amount: selectedStakeAccountObj?.amount || amount,
       memo,
+      stakeAccount: selectedStakeAccountObj,
     })
       .then(async (unstaked) => {
         if (unstaked.success) {
@@ -194,13 +206,6 @@ const UnstakingModal = () => {
         setIsLoading(false);
       });
   };
-
-  const stakeAccounts = selectedAccount
-    ? getStakeAccountsForNetwork(
-        stakingRef.current.state,
-        selectedAccount.networkId,
-      )
-    : [];
 
   const hasStakingAccounts = stakeAccounts.length > 0;
 
