@@ -21,6 +21,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedDelegation } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
@@ -33,6 +34,7 @@ import {
   unstake,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { UnstakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
+import { PostHogCustomEvent } from "@src/utils/posthog";
 
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
@@ -147,6 +149,15 @@ const UnstakingModal = () => {
           await syncAccountData(stakingRef.current, selectedAccount);
 
           setSelectedAccount(stakingRef.current, null, null);
+
+          stakingRef.current.postHog?.capture(
+            PostHogCustomEvent.UnstakedTokens,
+            {
+              amount,
+              denom: mainNetworkDenom[selectedAccount.networkId],
+              walletAddress: selectedAccount.address,
+            },
+          );
 
           toastSuccess({
             subtitle: t("unstakingModal.success.subtitle"),
