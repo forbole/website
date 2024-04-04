@@ -103,6 +103,187 @@ const getCosmosFee = async ({
   return fee;
 };
 
+const getEIP712DataStructure = (signDoc: StdSignDoc) => {
+  const messages = signDoc.msgs;
+
+  const messagesStructure = messages.map((msg) => {
+    // Amino type for the MsgDelegate.
+    if (msg.type === "cosmos-sdk/MsgDelegate" || msg.type === "cosmos-sdk/MsgUndelegate") {
+      return {
+        MsgValue: [
+          {
+            name: "delegator_address",
+            type: "string"
+          },
+          {
+            name: "validator_address",
+            type: "string"
+          },
+          {
+            name: "amount",
+            type: "TypeAmount"
+          }
+        ],
+        TypeAmount: [
+          {
+            name: "denom",
+            type: "string"
+          },
+          {
+            name: "amount",
+            type: "string"
+          }
+        ],
+      }
+    } else if (msg.type === "cosmos-sdk/MsgWithdrawDelegationReward") {
+      return {
+        MsgValue: [
+          {
+            name: "delegator_address",
+            type: "string"
+          },
+          {
+            name: "validator_address",
+            type: "string"
+          },
+        ]
+      }
+    }
+
+    // Throw an error if a message is not supported.
+    throw new Error(`Unsupported message type: ${msg.type}`);
+
+  }).reduce((acc, curr) => ({
+    ...acc,
+    ...curr
+  }), {});
+
+  let domain: Record<string, string>;
+
+  if (signDoc.chain_id === StakingNetworkId.Injective) {
+    domain = {
+      chainId: "0x1",
+      name: "Injective Web3",
+      salt: "0",
+      verifyingContract: "cosmos",
+      version: "1.0.0"
+    };
+  } else if (signDoc.chain_id === StakingNetworkId.Dymension) {
+    domain = {
+      chainId: `0x${(1100).toString(16)}`,
+      // TODO: Check if the name is correct.
+      name: "Dymension",
+      salt: "0",
+      verifyingContract: "cosmos",
+      version: "1.0.0"
+    };
+  } else if (signDoc.chain_id === StakingNetworkId.IslamicCoin) {
+    domain = {
+      // Got chain id from:
+      // https://github.com/haqq-network/haqq/blob/03bba90ecacd8ecf49921be4196a2805f35f1ce8/app/app.go#L195C25-L195C30
+      chainId: `0x${(11235).toString(16)}`,
+      // Got the other domain info from: 
+      // https://github.com/haqq-network/haqq/blob/master/ethereum/eip712/domain.go
+      name: "Cosmos Web3",
+      salt: "0",
+      verifyingContract: "cosmos",
+      version: "1.0.0"
+    };
+  } else {
+    throw new Error(`Unsupported chain id: ${signDoc.chain_id}`);
+  }
+
+  return {
+    domain,
+    primaryType: "Tx",
+    types: {
+      Coin: [
+        {
+          name: "denom",
+          type: "string"
+        },
+        {
+          name: "amount",
+          type: "string"
+        }
+      ],
+      EIP712Domain: [
+        {
+          name: "name",
+          type: "string"
+        },
+        {
+          name: "version",
+          type: "string"
+        },
+        {
+          name: "chainId",
+          type: "uint256"
+        },
+        {
+          name: "verifyingContract",
+          type: "string"
+        },
+        {
+          name: "salt",
+          type: "string"
+        }
+      ],
+      Fee: [
+        {
+          name: "amount",
+          type: "Coin[]"
+        },
+        {
+          name: "gas",
+          type: "string"
+        }
+      ],
+      Msg: [
+        {
+          name: "type",
+          type: "string"
+        },
+        {
+          name: "value",
+          type: "MsgValue"
+        }
+      ],
+      Tx: [
+        {
+          name: "account_number",
+          type: "string"
+        },
+        {
+          name: "chain_id",
+          type: "string"
+        },
+        {
+          name: "fee",
+          type: "Fee"
+        },
+        {
+          name: "memo",
+          type: "string"
+        },
+        {
+          name: "msgs",
+          type: "Msg[]"
+        },
+        {
+          name: "sequence",
+          type: "string"
+        },
+        {
+          name: "timeout_height",
+          type: "string"
+        }
+      ],
+      ...messagesStructure
+    }
+  };
+};
+
 enum CosmosError {
   None = "None",
   NotEnoughGas = "NotEnoughGas",
@@ -187,7 +368,7 @@ const signAndBroadcastEthermint = async (
     : window.keplr!.getOfflineSigner(
       account.networkId,
     )) as unknown as OfflineDirectSigner;
-  
+
   const currentHeight = await client.getHeight();
 
   const { account_number: accountNumber, sequence } = latestAccountInfo;
@@ -232,7 +413,11 @@ const signAndBroadcastEthermint = async (
     memo,
     accountNumber,
     sequence,
-    BigInt(currentHeight) + BigInt(500), 
+    // TODO: Set a proper offset for the timeout height.
+    // Currently 500 is enough to allow the user to sign and 
+    // broadcast the transaction on Injective but I don't know 
+    // how this behaves on other chains.
+    BigInt(currentHeight) + BigInt(500),
   );
 
 
@@ -243,124 +428,7 @@ const signAndBroadcastEthermint = async (
     const signResponse = await window.keplr!.experimentalSignEIP712CosmosTx_v0(
       account.networkId,
       account.address,
-      {
-        domain: {
-          chainId: "0x1",
-          name: "Injective Web3",
-          salt: "0",
-          verifyingContract: "cosmos",
-          version: "1.0.0"
-        },
-        primaryType: "Tx",
-        types: {
-          Coin: [
-            {
-              name: "denom",
-              type: "string"
-            },
-            {
-              name: "amount",
-              type: "string"
-            }
-          ],
-          EIP712Domain: [
-            {
-              name: "name",
-              type: "string"
-            },
-            {
-              name: "version",
-              type: "string"
-            },
-            {
-              name: "chainId",
-              type: "uint256"
-            },
-            {
-              name: "verifyingContract",
-              type: "string"
-            },
-            {
-              name: "salt",
-              type: "string"
-            }
-          ],
-          Fee: [
-            {
-              name: "amount",
-              type: "Coin[]"
-            },
-            {
-              name: "gas",
-              type: "string"
-            }
-          ],
-          Msg: [
-            {
-              name: "type",
-              type: "string"
-            },
-            {
-              name: "value",
-              type: "MsgValue"
-            }
-          ],
-          MsgValue: [
-            {
-              name: "delegator_address",
-              type: "string"
-            },
-            {
-              name: "validator_address",
-              type: "string"
-            },
-            {
-              name: "amount",
-              type: "TypeAmount"
-            }
-          ],
-          Tx: [
-            {
-              name: "account_number",
-              type: "string"
-            },
-            {
-              name: "chain_id",
-              type: "string"
-            },
-            {
-              name: "fee",
-              type: "Fee"
-            },
-            {
-              name: "memo",
-              type: "string"
-            },
-            {
-              name: "msgs",
-              type: "Msg[]"
-            },
-            {
-              name: "sequence",
-              type: "string"
-            },
-            {
-              name: "timeout_height",
-              type: "string"
-            }
-          ],
-          TypeAmount: [
-            {
-              name: "denom",
-              type: "string"
-            },
-            {
-              name: "amount",
-              type: "string"
-            }
-          ]
-        }
-      },
+      getEIP712DataStructure(signDoc),
       signDoc,
     );
 
@@ -373,23 +441,23 @@ const signAndBroadcastEthermint = async (
   else {
     throw new Error(`Unsupported account wallet: ${account.wallet}`);
   }
-  
+
   const extensionOption = (() => {
-    const typeUrl = account.networkId === StakingNetworkId.Injective ? 
-      "/injective.types.v1beta1.ExtensionOptionsWeb3Tx" : 
+    const typeUrl = account.networkId === StakingNetworkId.Injective ?
+      "/injective.types.v1beta1.ExtensionOptionsWeb3Tx" :
       "/ethermint.types.v1.ExtensionOptionsWeb3Tx";
 
     return {
       typeUrl,
       value: ExtensionOptionsWeb3Tx.encode(
         ExtensionOptionsWeb3Tx.fromPartial({
-          feePayerSig: fromBase64(signature.signature), 
+          feePayerSig: fromBase64(signature.signature),
           typedDataChainId: EthermintChainIdHelper.parse(signed.chain_id).ethChainId.toString(),
         })
       ).finish(),
     }
   })();
-  
+
   // Convert the EncodeObjects into direct encoded messages.
   const directMessages = messages.map(m => directRegistry.encodeAsAny(m));
 
