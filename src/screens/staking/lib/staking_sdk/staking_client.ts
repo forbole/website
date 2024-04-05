@@ -1,12 +1,13 @@
 import BigNumber from "bignumber.js";
 
 import type { StakingNetworkId } from "./core/base";
+import { cosmosStakingNetworks } from "./core/cosmos";
 import type {
   AccountDetailResponse,
   ClaimableRewardsResponse,
   StakingInfoResponse,
 } from "./staking_client_types";
-import { normaliseCoin } from "./utils/coins";
+import { normaliseCoin, unnormalisedDenomToNetwork } from "./utils/coins";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_STAKING_API || "https://staking-api.forbole.com";
@@ -28,20 +29,31 @@ const fetchJson = <A = any>(uri: string, opts?: Options): Promise<A> =>
     },
   }).then((res) => res.json());
 
-const rewardsDivisor = new BigNumber(10).pow(18);
+const getRewardsDivisor = (denom: string) => {
+  const network = unnormalisedDenomToNetwork[denom.toUpperCase()];
+
+  if (cosmosStakingNetworks.has(network as StakingNetworkId)) {
+    return new BigNumber(10).pow(18);
+  }
+
+  return 1;
+};
 
 const parseStakingRewards = async (res: ClaimableRewardsResponse) =>
   Array.isArray(res)
-    ? res
-        .map((coin) => {
-          const num = new BigNumber(coin.amount);
+    ? res.map((reward) => {
+        const { coin } = reward;
+        const num = new BigNumber(coin.amount);
+        const rewardsDivisor = getRewardsDivisor(coin.denom);
 
-          return {
+        return {
+          ...reward,
+          coin: normaliseCoin({
             amount: num.dividedBy(rewardsDivisor).toString(),
             denom: coin.denom,
-          };
-        })
-        .map(normaliseCoin)
+          }),
+        };
+      })
     : res;
 
 type StakeResponse = {

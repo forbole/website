@@ -5,7 +5,6 @@ import { walletsSupported } from "../core";
 import type { Coin, CoinDenom, StakingNetworkId, WalletId } from "../core/base";
 import { mainNetworkDenom } from "../core/base";
 import {
-  filterOutTestnets,
   filterUniqueAddresses,
   getClaimableRewardsForAccount,
 } from "../utils/accounts";
@@ -121,38 +120,44 @@ export const getUnbondingTokensForNetwork = (
 ): UnbondingTokensResult => {
   const accountsForNetwork = getAccountsForNetwork(state, network);
 
-  return accountsForNetwork.reduce((acc, account) => {
-    if (!account.info?.unbonding?.length) {
-      return acc;
-    }
+  return accountsForNetwork
+    .filter(filterUniqueAddresses())
+    .reduce((acc, account) => {
+      if (!account.info?.unbonding?.length) {
+        return acc;
+      }
 
-    const { unbonding } = account.info;
+      const { unbonding } = account.info;
 
-    const denom = networkToUnnormalisedDenom[account.networkId];
+      const denom = networkToUnnormalisedDenom[account.networkId];
 
-    return unbonding.reduce((acc2, unbondingInfo) => {
-      const baseCoin = acc2 ? acc2.coin : getEmptyCoin(denom);
-      const basePeriod = acc2 ? acc2.period : "0";
+      return unbonding.reduce((acc2, unbondingInfo) => {
+        const baseCoin = acc2 ? acc2.coin : getEmptyCoin(denom);
+        const basePeriod = acc2 ? acc2.period : "";
 
-      const newCoin = sumCoins(baseCoin, {
-        amount: unbondingInfo.balance,
-        denom,
-      });
+        const newCoin = sumCoins(baseCoin, {
+          amount: unbondingInfo.balance,
+          denom,
+        });
 
-      if (!unbondingInfo.completion_time) return acc2;
+        if (!unbondingInfo.completion_time)
+          return {
+            coin: newCoin,
+            period: basePeriod,
+          };
 
-      const itemPeriod = unbondingInfo.completion_time.seconds;
+        const itemPeriod = unbondingInfo.completion_time.seconds;
 
-      const newPeriod = new BigNumber(basePeriod).isGreaterThan(itemPeriod)
-        ? basePeriod
-        : itemPeriod;
+        const newPeriod = new BigNumber(basePeriod).isGreaterThan(itemPeriod)
+          ? basePeriod
+          : itemPeriod;
 
-      return {
-        coin: newCoin,
-        period: newPeriod,
-      };
-    }, acc);
-  }, null as UnbondingTokensResult);
+        return {
+          coin: newCoin,
+          period: newPeriod,
+        };
+      }, acc);
+    }, null as UnbondingTokensResult);
 };
 
 export const getHasConnectedWallets = (state: StakingState) =>
@@ -230,11 +235,9 @@ export const getAllStaked = (
 ): number => {
   const accounts = accountsProp || getAllAccounts(state);
 
-  const uniqueMainnetAccounts = accounts
-    .filter(filterUniqueAddresses())
-    .filter(filterOutTestnets);
+  const uniqueAccounts = accounts.filter(filterUniqueAddresses());
 
-  return uniqueMainnetAccounts.reduce((acc, account) => {
+  return uniqueAccounts.reduce((acc, account) => {
     const delegationProp = account.info?.delegation;
 
     const delegation = Array.isArray(delegationProp)
@@ -263,17 +266,15 @@ export const getAllRewards = (
 ) => {
   const accounts = accountsProp || getAllAccounts(state);
 
-  const uniqueMainnetAccounts = accounts
-    .filter(filterUniqueAddresses())
-    .filter(filterOutTestnets);
+  const uniqueAccounts = accounts.filter(filterUniqueAddresses());
 
-  return uniqueMainnetAccounts.reduce((acc, account) => {
+  return uniqueAccounts.reduce((acc, account) => {
     const { rewards } = account;
 
     if (!rewards) return acc;
 
     const newValue = rewards.reduce((acc2, reward) => {
-      const normalised = normaliseCoin(reward);
+      const normalised = normaliseCoin(reward.coin);
 
       const coinPrice = state.coinsPrices[normalised.denom as CoinDenom];
 
