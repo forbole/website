@@ -23,6 +23,17 @@ export const networkToUnnormalisedDenom = {
 
 type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
 
+export const unnormalisedDenomToNetwork = Object.entries(
+  networkToUnnormalisedDenom,
+).reduce(
+  (acc, [k, v]) => {
+    acc[v] = k as StakingNetworkId;
+
+    return acc;
+  },
+  {} as Record<string, StakingNetworkId>,
+);
+
 const aExp = 18;
 const nExp = 9;
 const pExp = 12;

@@ -36,7 +36,6 @@ import type {
   Account,
   StakingNetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/core";
-import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   accountHasDelegations,
@@ -114,14 +113,12 @@ const PopOver = ({
   }, [stakingNetworkId, stakingRef]);
 
   const { accounts, claimableRewards } = useMemo(() => {
-    const wallet = WalletId.Keplr;
-
     const result = {
       accounts: null as Account[] | null,
       claimableRewards: null as NetworkClaimableRewards | null,
     };
 
-    if (!!stakingNetworkId && !!wallet) {
+    if (!!stakingNetworkId) {
       result.accounts = getAccountsForNetwork(stakingState, stakingNetworkId);
 
       if (!result.accounts?.length) {

@@ -5,16 +5,19 @@ import { useEffect, useMemo } from "react";
 import IconChevron from "@src/components/icons/icon_chevron.svg";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { fetchCoinPriceForNetwork } from "@src/screens/staking/lib/staking_sdk/context/actions";
-import type { NetworkClaimableRewards } from "@src/screens/staking/lib/staking_sdk/context/selectors";
+import type {
+  NetworkClaimableRewards,
+  RewardMap,
+} from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   getClaimableRewardsForNetwork,
+  getRewardsByAddressForNetwork,
   getStakeAccountsForNetwork,
   getStakedDataForNetwork,
   getUnbondingTokensForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import { networkKeyToNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import type { Coin } from "@src/screens/staking/lib/staking_sdk/core/base";
-import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type { StakeAccount } from "@src/screens/staking/lib/staking_sdk/staking_client_types";
 import { getExplorerLink } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
@@ -39,10 +42,6 @@ const StakeAccounts = ({ network, onClose }: Props) => {
   const { t } = useTranslation("staking");
 
   const { rewardsByAddress, stakeAccounts } = useMemo(() => {
-    const wallet = WalletId.Keplr;
-
-    type RewardMap = Record<string, Coin>;
-
     const result = {
       claimableRewards: null as NetworkClaimableRewards | null,
       rewardsByAddress: null as null | RewardMap,
@@ -51,7 +50,7 @@ const StakeAccounts = ({ network, onClose }: Props) => {
       unbondingTokens: null as { period: string; text: string } | null,
     };
 
-    if (!!stakingNetworkId && !!wallet) {
+    if (!!stakingNetworkId) {
       result.stakeAccounts = getStakeAccountsForNetwork(
         stakingRef.current.state,
         stakingNetworkId,
@@ -62,30 +61,10 @@ const StakeAccounts = ({ network, onClose }: Props) => {
         stakingNetworkId,
       );
 
-      result.rewardsByAddress = (() => {
-        // @TODO: Use a selector for this
-        const accounts =
-          stakingRef.current.state.wallets[wallet]?.networks?.[stakingNetworkId]
-            ?.accounts || [];
-
-        if (!accounts?.length) {
-          return null;
-        }
-
-        return accounts.reduce((acc, account) => {
-          const { rewards } = account;
-
-          if (Array.isArray(rewards)) {
-            rewards.forEach((reward) => {
-              if (!reward.address) return;
-
-              acc[reward.address] = reward.coin;
-            });
-          }
-
-          return acc;
-        }, {} as RewardMap);
-      })();
+      result.rewardsByAddress = getRewardsByAddressForNetwork(
+        stakingRef.current.state,
+        stakingNetworkId,
+      );
 
       result.claimableRewards =
         getClaimableRewardsForNetwork(

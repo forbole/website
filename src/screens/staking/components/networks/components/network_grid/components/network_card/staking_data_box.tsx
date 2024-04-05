@@ -15,7 +15,6 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import { networkKeyToNetworkId } from "@src/screens/staking/lib/staking_sdk/core";
 import type { Coin } from "@src/screens/staking/lib/staking_sdk/core/base";
-import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import {
   formatCoin,
   formatStakedDataUSD,
@@ -48,8 +47,6 @@ const StakingDataBox = ({ network, onFocusContent }: PopOverProps) => {
 
   const { claimableRewards, stakeAccounts, stakedData, unbondingTokens } =
     useMemo(() => {
-      const wallet = WalletId.Keplr;
-
       const result = {
         claimableRewards: null as NetworkClaimableRewards | null,
         stakeAccounts: null as null | StakeAccount[],
@@ -57,7 +54,7 @@ const StakingDataBox = ({ network, onFocusContent }: PopOverProps) => {
         unbondingTokens: null as { period: string; text: string } | null,
       };
 
-      if (!!stakingNetworkId && !!wallet) {
+      if (!!stakingNetworkId) {
         result.stakeAccounts = getStakeAccountsForNetwork(
           stakingRef.current.state,
           stakingNetworkId,

@@ -135,6 +135,33 @@ export const getClaimableRewardsForNetwork = (
     );
 };
 
+export type RewardMap = Record<string, Coin>;
+
+export const getRewardsByAddressForNetwork = (
+  state: StakingState,
+  network: StakingNetworkId,
+): null | RewardMap => {
+  const accounts = getAccountsForNetwork(state, network);
+
+  if (!accounts?.length) {
+    return null;
+  }
+
+  return accounts.filter(filterUniqueAddresses()).reduce((acc, account) => {
+    const { rewards } = account;
+
+    if (Array.isArray(rewards)) {
+      rewards.forEach((reward) => {
+        if (!reward.address) return;
+
+        acc[reward.address] = reward.coin;
+      });
+    }
+
+    return acc;
+  }, {} as RewardMap);
+};
+
 type UnbondingTokensResult = { coin: Coin; period: string } | null;
 
 export const getUnbondingTokensForNetwork = (
