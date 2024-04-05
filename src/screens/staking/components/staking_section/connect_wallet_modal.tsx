@@ -63,6 +63,9 @@ const ConnectWalletModal = () => {
 
                     tryToConnectWallets(stakingRef.current, [walletId], true, {
                       leapCreateWallet: t("connectWallet.leapCreateWallet"),
+                      phantomCreateWallet: t(
+                        "connectWallet.phantomCreateWallet",
+                      ),
                     })
                       .then((connected) => {
                         if (connected) {

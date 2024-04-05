@@ -8,6 +8,8 @@ import {
 } from "@solana/web3.js";
 import Solflare from "@solflare-wallet/sdk";
 
+import { toastError } from "@src/components/notification";
+
 import type { TStakingContext } from "../context";
 import { fetchAccountData, setUserWallet } from "../context/actions";
 import type { Account } from "../core";
@@ -17,7 +19,12 @@ import { stakingClient } from "../staking_client";
 import { normaliseCoin } from "../utils/coins";
 import { addToConnectedWallets } from "../utils/storage";
 import { StakeError, UnstakeError } from "./base";
-import type { StakeOpts, UnstakeAmount, WalletOperationResult } from "./base";
+import type {
+  StakeOpts,
+  UnstakeAmount,
+  WalletErrorMap,
+  WalletOperationResult,
+} from "./base";
 
 const mainnetWallet = new Solflare({});
 const testnetWallet = new Solflare({ network: "testnet" });
@@ -148,15 +155,26 @@ export const tryToConnectSolflare = async (
 
 export const tryToConnectPhantom = async (
   context: TStakingContext,
-  openLinkIfMissing?: boolean,
+  openLinkIfMissing: boolean,
+  walletErrorMap: WalletErrorMap = {},
 ) => {
   const { phantom } = window as any;
   const provider = phantom?.solana;
 
   if (provider?.isPhantom) {
-    const resp = await provider.connect();
+    let publicKey: string;
 
-    const publicKey = resp.publicKey.toString();
+    try {
+      const resp = await provider.connect();
+
+      publicKey = resp.publicKey.toString();
+    } catch (error) {
+      toastError({
+        title: walletErrorMap.phantomCreateWallet,
+      });
+
+      return false;
+    }
 
     return [StakingNetworkId.Solana]
       .concat(

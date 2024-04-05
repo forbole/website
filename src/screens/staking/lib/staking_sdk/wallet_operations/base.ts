@@ -33,6 +33,7 @@ export enum UnstakeError {
 
 export type WalletErrorMap = {
   leapCreateWallet?: string;
+  phantomCreateWallet?: string;
 };
 
 export enum StakeError {

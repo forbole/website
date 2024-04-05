@@ -113,7 +113,11 @@ export const tryToConnectWallets = async (
         break;
 
       case WalletId.Phantom:
-        connected = await tryToConnectPhantom(context, openLinkIfMissing);
+        connected = await tryToConnectPhantom(
+          context,
+          openLinkIfMissing,
+          walletErrorMap,
+        );
 
         break;
 

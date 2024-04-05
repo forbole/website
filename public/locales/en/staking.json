@@ -21,6 +21,7 @@
   "connectWallet": {
     "intro": "Stake with Forbole and earn rewards!",
     "leapCreateWallet": "You need to create the Leap wallet in the browser extension, then reload this page.",
+    "phantomCreateWallet": "Failed to connect to Phantom, make sure the wallet is created and unlocked.",
     "success": {
       "subtitle": "Welcome  🎉",
       "title": "Sign up success"

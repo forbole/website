@@ -89,7 +89,7 @@ const UnstakingModal = () => {
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hasCompleted, setHasCompleted] = useState(true);
+  const [hasCompleted, setHasCompleted] = useState(false);
 
   const { state: stakingState } = stakingRef.current;
 
@@ -102,7 +102,7 @@ const UnstakingModal = () => {
         setAmountError("");
         setMemo("");
         setMemoError("");
-        setHasCompleted(true);
+        setHasCompleted(false);
       };
     }
   }, [isOpen]);
