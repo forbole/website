@@ -20,9 +20,20 @@ export const networkToUnnormalisedDenom = {
 
 type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
 
-const uExp = 6;
-const pExp = 12;
+export const unnormalisedDenomToNetwork = Object.entries(
+  networkToUnnormalisedDenom,
+).reduce(
+  (acc, [k, v]) => {
+    acc[v] = k as StakingNetworkId;
+
+    return acc;
+  },
+  {} as Record<string, StakingNetworkId>,
+);
+
 const aExp = 18;
+const pExp = 12;
+const uExp = 6;
 
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   ADYDX: [CoinDenom.DYDX, aExp],

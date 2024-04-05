@@ -28,6 +28,16 @@ type Coin = {
   denom: string;
 };
 
+type StakeAccountStatus = "activating" | "active" | "deactivating" | "inactive";
+
+export type StakeAccount = {
+  address: string;
+  amount: string;
+  denom: string;
+  status: StakeAccountStatus;
+  validator_address: string;
+};
+
 export type AccountDetailResponse = {
   account_number: null | number;
   address: string;
@@ -35,7 +45,13 @@ export type AccountDetailResponse = {
   delegation: Coin | Coin[] | null;
   network: string;
   sequence: null | number;
+  stakeAccounts?: StakeAccount[];
   unbonding: Unbonding[];
 };
 
-export type ClaimableRewardsResponse = Coin[] | Record<string, never>;
+type Reward = {
+  address: string;
+  coin: Coin;
+};
+
+export type ClaimableRewardsResponse = Record<string, never> | Reward[];
