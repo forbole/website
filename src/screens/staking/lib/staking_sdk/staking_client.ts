@@ -29,6 +29,7 @@ const fetchJson = <A = any>(uri: string, opts?: Options): Promise<A> =>
     },
   }).then((res) => res.json());
 
+// @TODO: Review with cosmos chains
 const getRewardsDivisor = (denom: string) => {
   const network = unnormalisedDenomToNetwork[denom.toUpperCase()];
 

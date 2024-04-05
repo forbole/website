@@ -35,8 +35,8 @@ export const unnormalisedDenomToNetwork = Object.entries(
 );
 
 const aExp = 18;
-const nExp = 9;
 const pExp = 12;
+const nExp = 9;
 const uExp = 6;
 
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
