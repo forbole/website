@@ -1,5 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
-import { useRef } from "react";
+import posthog from "posthog-js";
+import { useEffect, useRef } from "react";
 
 import LayoutVal from "@src/components/layout_val";
 import Tooltip from "@src/components/tooltip";
@@ -23,6 +24,12 @@ const Staking = () => {
   const ref = useRef(null);
 
   const hasConnectedWallets = getHasConnectedWallets(stakingRef.current.state);
+
+  useEffect(() => {
+    posthog.opt_in_capturing();
+
+    return () => posthog.opt_out_capturing();
+  }, []);
 
   const extraInfo = (
     <>

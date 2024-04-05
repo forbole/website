@@ -23,9 +23,9 @@ export const networkToUnnormalisedDenom = {
 
 type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
 
-const uExp = 6;
-const pExp = 12;
 const aExp = 18;
+const pExp = 12;
+const uExp = 6;
 const exp0 = 0;
 
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {

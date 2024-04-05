@@ -114,7 +114,10 @@ const getCosmosError = (err: Error): CosmosError => {
     return CosmosError.Success;
   }
 
-  if (err?.message?.includes("out of gas in")) {
+  if (
+    err?.message?.includes("out of gas in") ||
+    err?.message?.includes("insufficient fee")
+  ) {
     return CosmosError.NotEnoughGas;
   }
 
