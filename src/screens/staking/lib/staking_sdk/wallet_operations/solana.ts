@@ -27,6 +27,10 @@ let connectListenerMainnet: (() => void) | undefined;
 let connectListenerTestnet: (() => void) | undefined;
 let connectListenerDevnet: (() => void) | undefined;
 
+const isCloseError = (error: Error) =>
+  error.message?.includes("Transaction cancelled") ||
+  error.message?.includes("User rejected the request");
+
 export const tryToConnectSolflare = async (
   context: TStakingContext,
 ): Promise<boolean> =>
@@ -307,7 +311,7 @@ export const stakeAmountSolana = async ({
       // eslint-disable-next-line no-console
       console.log("debug: solana.ts: error", error);
 
-      if (error.message?.includes("Transaction cancelled")) {
+      if (isCloseError(error)) {
         return {
           error: StakeError.None,
           success: false,
@@ -361,7 +365,7 @@ export const unstakeSolana = async ({
       // eslint-disable-next-line no-console
       console.log("debug: solana.ts: error", error);
 
-      if (error.message?.includes("Transaction cancelled")) {
+      if (isCloseError(error)) {
         return {
           error: UnstakeError.None,
           success: false,

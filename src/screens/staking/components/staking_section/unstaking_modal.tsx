@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 import FormInput from "@src/components/form_input";
 import HighlightButton from "@src/components/highlight-button";
 import IconWarning from "@src/components/icons/icon_warning.svg";
+import IconInfoCircle from "@src/components/icons/info-circle.svg";
 import LoadingSpinner from "@src/components/loading_spinner";
 import { toastSuccess } from "@src/components/notification";
+import { tooltipId } from "@src/components/tooltip";
 import {
   displayGenericError,
   notEnoughGasError,
@@ -33,6 +35,10 @@ import {
   sumAllCoins,
 } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
+import {
+  getHasUnstaked,
+  setHasUnstaked,
+} from "@src/screens/staking/lib/staking_sdk/utils/storage";
 import {
   MAX_MEMO,
   unstake,
@@ -83,6 +89,7 @@ const UnstakingModal = () => {
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [hasCompleted, setHasCompleted] = useState(true);
 
   const { state: stakingState } = stakingRef.current;
 
@@ -95,6 +102,7 @@ const UnstakingModal = () => {
         setAmountError("");
         setMemo("");
         setMemoError("");
+        setHasCompleted(true);
       };
     }
   }, [isOpen]);
@@ -134,6 +142,8 @@ const UnstakingModal = () => {
       : []
   ).filter((acc) => ["activating", "active"].includes(acc.status));
 
+  const onClose = () => setSelectedAccount(stakingRef.current, null, null);
+
   const onSubmit = (e: any) => {
     e?.preventDefault();
 
@@ -171,8 +181,6 @@ const UnstakingModal = () => {
         if (unstaked.success) {
           await syncAccountData(stakingRef.current, selectedAccount);
 
-          setSelectedAccount(stakingRef.current, null, null);
-
           stakingRef.current.postHog?.capture(
             PostHogCustomEvent.UnstakedTokens,
             {
@@ -181,6 +189,18 @@ const UnstakingModal = () => {
               walletAddress: selectedAccount.address,
             },
           );
+
+          if (
+            solanaNetworks.has(selectedAccount.networkId) &&
+            !getHasUnstaked()
+          ) {
+            setHasUnstaked();
+            setHasCompleted(true);
+
+            return;
+          }
+
+          setSelectedAccount(stakingRef.current, null, null);
 
           toastSuccess({
             subtitle: t("unstakingModal.success.subtitle"),
@@ -220,9 +240,76 @@ const UnstakingModal = () => {
     ? sumAllCoins(delegationProp)
     : delegationProp;
 
+  if (hasCompleted) {
+    return (
+      <ModalBase
+        onClose={onClose}
+        open={isOpen}
+        title={t("unstakingModal.complete.titleComplete")}
+      >
+        <div className={styles.completedWrapper}>
+          <img
+            alt=""
+            className={styles.coinsImg}
+            src="/icons/unstaking_coins.svg"
+          />
+          <div className={styles.introWrapper}>
+            <div className={styles.intro}>
+              {t("unstakingModal.complete.intro")}
+            </div>
+            <div className={styles.introSub}>
+              {t("unstakingModal.complete.introSub")}
+            </div>
+          </div>
+          <div className={styles.blueCard}>
+            <img alt="" className={styles.bulb} src="/icons/bulb_stars.svg" />
+            <div>
+              <div className={styles.tipsTitleWrapper}>
+                <span className={styles.tipsTitle}>
+                  {t("stakingModal.complete.tips")}
+                </span>
+                <IconInfoCircle
+                  data-tooltip-content={t("stakingModal.complete.tipsTooltip")}
+                  data-tooltip-id={tooltipId}
+                />
+              </div>
+              <div className={styles.rewards}>
+                {t("stakingModal.complete.release")}
+              </div>
+              <ul className={styles.tipsList}>
+                {unlockedDate && (
+                  <li>
+                    <Trans
+                      components={[<b key="0" />]}
+                      i18nKey="unstakingModal.complete.desc1Solana"
+                      ns="staking"
+                      values={{
+                        unstakeDate: unlockedDate.date,
+                      }}
+                    />
+                  </li>
+                )}
+                <li>
+                  <Trans
+                    components={[<b key="0" />]}
+                    i18nKey="unstakingModal.complete.desc2Solana"
+                    ns="staking"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <HighlightButton onClick={onClose} pinkShadow size="big">
+          {t("common:close")}
+        </HighlightButton>
+      </ModalBase>
+    );
+  }
+
   return (
     <ModalBase
-      onClose={() => setSelectedAccount(stakingRef.current, null, null)}
+      onClose={onClose}
       open={isOpen}
       title={t("unstakingModal.title")}
     >

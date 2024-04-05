@@ -102,3 +102,96 @@
   flex-direction: column;
   gap: 12px;
 }
+
+.coinsImg {
+  width: 250px;
+}
+
+.completedWrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 24px;
+  box-shadow: 4px 8px 24px 0 rgba(90, 117, 255, 0.24);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 36px;
+  max-width: 550px;
+  padding: 24px;
+}
+
+.intro {
+  color: #616161;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px;
+  text-shadow: 0 4px 24px rgba(2, 38, 225, 0.24);
+}
+
+.bulb {
+  width: 24px;
+}
+
+.blueCard {
+  align-items: flex-start;
+  background: #dbedff;
+  border-left: 4px solid #007fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  padding: 16px;
+}
+
+.tipsTitle {
+  color: #25282d;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.032px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.rewards {
+  color: #25282d;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.056px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.tipsList {
+  color: #616161;
+
+  b {
+    color: #007fff;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.056px;
+    line-height: 20px;
+  }
+}
+
+.tipsTitleWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.introSub {
+  color: #9d9d9d;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.308px;
+  line-height: 20px;
+}
+
+.introWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 24px 0;
+}

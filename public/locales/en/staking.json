@@ -208,6 +208,13 @@
     },
     "available": "Staked",
     "button": "Unstake",
+    "complete": {
+      "desc1Solana": "Your tokens are currently in the unstaking period and will be successfully unstaked on <0>{{unstakeDate}}</0>.",
+      "desc2Solana": "Remember to withdraw your tokens after unstaking period is complete and status changes to \"Unstaked\".",
+      "intro": "Your tokens are currently in the unstaking period",
+      "introSub": "Hope to see you again soon.",
+      "titleComplete": "Unstake successful"
+    },
     "info2T": "During this time, you <1>won't receive</1> staking rewards.",
     "info3": "However, if you change your mind, you can cancel the process at any time.",
     "info4": "To continue staking after this period, you'll need to stake again.",

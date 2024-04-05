@@ -205,6 +205,13 @@
     },
     "available": "质押",
     "button": "取消质押",
+    "complete": {
+      "desc1Solana": "Your tokens are currently in the unstaking period and will be successfully unstaked on <0>{{unstakeDate}}</0>.",
+      "desc2Solana": "Remember to withdraw your tokens after unstaking period is complete and status changes to \"Unstaked\".",
+      "intro": "Your tokens are currently in the unstaking period",
+      "introSub": "Hope to see you again soon.",
+      "titleComplete": "Unstake successful"
+    },
     "info2T": "在此期间，您<1>不会收到</1>质押奖励。",
     "info3": "但是，如果您改变主意，可以随时取消该过程。",
     "info4": "要在此期限后继续质押，您需要再次质押。",

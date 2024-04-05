@@ -24,6 +24,7 @@ import {
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
 import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
+import { solanaNetworks } from "@src/screens/staking/lib/staking_sdk/core/solana";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
@@ -32,13 +33,16 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
+  getHasStaked,
+  setHasStaked,
+} from "@src/screens/staking/lib/staking_sdk/utils/storage";
+import {
   MAX_MEMO,
   stakeAmount,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { StakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
 import { PostHogCustomEvent } from "@src/utils/posthog";
 
-import { solanaNetworks } from "../../lib/staking_sdk/core/solana";
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -163,7 +167,11 @@ const StakingModal = () => {
             walletAddress: selectedAccount.address,
           });
 
-          if (solanaNetworks.has(selectedAccount.networkId)) {
+          if (
+            solanaNetworks.has(selectedAccount.networkId) &&
+            !getHasStaked()
+          ) {
+            setHasStaked();
             setHasCompleted(true);
 
             return;
