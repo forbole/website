@@ -139,6 +139,15 @@
       "noBalance": "您没有任何代币可供质押"
     },
     "available": "可用的",
+    "complete": {
+      "desc1Solana": "The staking rewards will be distributed in <1>2-3 days</1> after your staking status change from <3>\"Activating\"</3> to <6>“Active“</6>.",
+      "desc2Solana": "Your rewards will be <1>distributed automatically</1> to your staking account <3>every 2-3 days</3>.",
+      "intro": "Great job on your first staking!",
+      "release": "Rewards Release",
+      "tips": "Tips for Solana Staking",
+      "tipsTooltip": "Each chain has its own staking rules. It means Solana, Cosmos, and Ethereum have different rules.",
+      "titleComplete": "Staking complete"
+    },
     "error": {
       "notEnoughAmountError": {
         "title": "You need to stake at least {{amount}}"

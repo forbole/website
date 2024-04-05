@@ -141,6 +141,15 @@
       "noBalance": "You don't have any tokens to stake"
     },
     "available": "Available",
+    "complete": {
+      "desc1Solana": "The staking rewards will be distributed in <0>2-3 days</0> after your staking status change from <0>\"Activating\"</0> to <0>“Active“</0>.",
+      "desc2Solana": "Your rewards will be <0>distributed automatically</0> to your staking account <0>every 2-3 days</0>.",
+      "intro": "Great job on your first staking!",
+      "release": "Rewards Release",
+      "tips": "Tips for Solana Staking",
+      "tipsTooltip": "Each chain has its own staking rules. It means Solana, Cosmos, and Ethereum have different rules.",
+      "titleComplete": "Staking complete"
+    },
     "error": {
       "notEnoughAmountError": {
         "title": "You need to stake at least {{amount}}"

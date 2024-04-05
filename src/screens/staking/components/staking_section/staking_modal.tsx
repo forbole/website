@@ -1,4 +1,5 @@
 import BigNumber from "bignumber.js";
+import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -37,6 +38,7 @@ import {
 import { StakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
 import { PostHogCustomEvent } from "@src/utils/posthog";
 
+import { solanaNetworks } from "../../lib/staking_sdk/core/solana";
 import Label from "./label";
 import ModalBase, { ModalError } from "./modal_base";
 import NetworksSelect from "./networks_select";
@@ -58,6 +60,7 @@ const StakingModal = () => {
   const [amountError, setAmountError] = useState("");
   const [memoError, setMemoError] = useState("");
   const [memo, setMemo] = useState("");
+  const [hasCompleted, setHasCompleted] = useState(false);
 
   const { locale } = useRouter();
   const isOpen = !!selectedAccount && selectedAction === "stake";
@@ -79,6 +82,7 @@ const StakingModal = () => {
         setAmountError("");
         setMemo("");
         setMemoError("");
+        setHasCompleted(false);
       };
     }
   }, [isOpen, selectedAccount, stakingRef]);
@@ -153,13 +157,19 @@ const StakingModal = () => {
         if (result.success) {
           await syncAccountData(stakingRef.current, selectedAccount);
 
-          setSelectedAccount(stakingRef.current, null, null);
-
           stakingRef.current.postHog?.capture(PostHogCustomEvent.StakedTokens, {
             amount,
             denom: mainNetworkDenom[selectedAccount.networkId],
             walletAddress: selectedAccount.address,
           });
+
+          if (solanaNetworks.has(selectedAccount.networkId)) {
+            setHasCompleted(true);
+
+            return;
+          }
+
+          setSelectedAccount(stakingRef.current, null, null);
 
           toastSuccess({
             subtitle: `${t("stakingModal.success.sub")} 🎉`,
@@ -205,6 +215,61 @@ const StakingModal = () => {
   })();
 
   const unbondingPeriod = getUnbondingTimeForNetwork(networkInfo, locale);
+
+  if (hasCompleted) {
+    return (
+      <ModalBase
+        onClose={onClose}
+        open={isOpen}
+        title={t("stakingModal.complete.titleComplete")}
+      >
+        <div className={styles.completedWrapper}>
+          <img
+            alt=""
+            className={styles.coinsImg}
+            src="/icons/staking_coins.svg"
+          />
+          <div className={styles.intro}>{t("stakingModal.complete.intro")}</div>
+          <div className={styles.blueCard}>
+            <img alt="" className={styles.bulb} src="/icons/bulb_stars.svg" />
+            <div>
+              <div className={styles.tipsTitleWrapper}>
+                <span className={styles.tipsTitle}>
+                  {t("stakingModal.complete.tips")}
+                </span>
+                <IconInfoCircle
+                  data-tooltip-content={t("stakingModal.complete.tipsTooltip")}
+                  data-tooltip-id={tooltipId}
+                />
+              </div>
+              <div className={styles.rewards}>
+                {t("stakingModal.complete.release")}
+              </div>
+              <ul className={styles.tipsList}>
+                <li>
+                  <Trans
+                    components={[<b key="0" />]}
+                    i18nKey="stakingModal.complete.desc1Solana"
+                    ns="staking"
+                  />
+                </li>
+                <li>
+                  <Trans
+                    components={[<b key="0" />]}
+                    i18nKey="stakingModal.complete.desc2Solana"
+                    ns="staking"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <HighlightButton onClick={onClose} pinkShadow size="big">
+          {t("common:close")}
+        </HighlightButton>
+      </ModalBase>
+    );
+  }
 
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
