@@ -268,6 +268,18 @@ const TermsAndConditions = () => {
                 </p>
 
                 <p>
+                  <span className="t1">2.8</span>We've integrated{" "}
+                  <a href="https://posthog.com/">Posthog</a>, a third-party
+                  analytics and behavioral tracking tool, into our platform to
+                  gain insights into user interactions and behaviors. This
+                  enables us to continually enhance and optimize our services,
+                  ensuring an improved user experience for you. By accepting our
+                  Terms of Service, you're also agreeing to the{" "}
+                  <a href="https://posthog.com/terms">Terms of Service</a>
+                  of Posthog.
+                </p>
+
+                <p>
                   <span className="t1">3.</span>
                   <b>Disclaimers</b>
                 </p>

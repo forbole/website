@@ -80,8 +80,8 @@ export const sortAccounts = (a: Account, b: Account) => {
 export const getClaimableRewardsForAccount = (start: Coin, account: Account) =>
   (Array.isArray(account.rewards) ? account.rewards : []).reduce(
     (acc2, reward) => {
-      if (start.denom?.toUpperCase() === reward.denom?.toUpperCase()) {
-        return sumCoins(acc2, reward);
+      if (start.denom?.toUpperCase() === reward.coin.denom?.toUpperCase()) {
+        return sumCoins(acc2, reward.coin);
       }
 
       return acc2;

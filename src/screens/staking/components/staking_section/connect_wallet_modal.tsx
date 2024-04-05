@@ -12,6 +12,7 @@ import {
   getWalletName,
   walletsIcons,
 } from "@src/screens/staking/lib/wallet_info";
+import { PostHogCustomEvent } from "@src/utils/posthog";
 
 import * as styles from "./connect_wallet_modal.module.scss";
 import ModalBase from "./modal_base";
@@ -65,6 +66,13 @@ const ConnectWalletModal = () => {
                     })
                       .then((connected) => {
                         if (connected) {
+                          stakingRef.current.postHog?.capture(
+                            PostHogCustomEvent.WalletConnected,
+                            {
+                              type: walletId,
+                            },
+                          );
+
                           toastSuccess({
                             subtitle: t("connectWallet.success.subtitle"),
                             title: t("connectWallet.success.title"),

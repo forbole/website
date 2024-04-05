@@ -38,11 +38,20 @@ const baseConfig = nextTranslate({
       source: `${prefix}/native-staking`,
     })),
   ],
-  rewrites: async () =>
-    ["/rss", "/rss/"].map((path) => ({
+  rewrites: async () => [
+    ...["/rss", "/rss/"].map((path) => ({
       destination: "/rss.xml",
       source: path,
     })),
+    {
+      destination: "https://eu-assets.i.posthog.com/static/:path*",
+      source: "/ingest/static/:path*",
+    },
+    {
+      destination: "https://eu.i.posthog.com/:path*",
+      source: "/ingest/:path*",
+    },
+  ],
   typescript: {
     ignoreBuildErrors: process.env.QUICK_BUILD === "true",
   },

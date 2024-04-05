@@ -13,7 +13,10 @@ import {
   setSelectedAccount,
   syncAccountData,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
-import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
+import {
+  getClaimableRewardsForNetwork,
+  getSelectedAccount,
+} from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { Coin } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
@@ -22,6 +25,7 @@ import {
   getClaimRewardsFee,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { ClaimRewardsError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
+import { PostHogCustomEvent } from "@src/utils/posthog";
 
 import * as styles from "./claim_rewards_modal.module.scss";
 import Label from "./label";
@@ -108,6 +112,20 @@ const ClaimRewardsModal = () => {
                   );
 
                   setSelectedAccount(stakingRef.current, null, null);
+
+                  const claimableRewardsForNetwork =
+                    getClaimableRewardsForNetwork(
+                      stakingRef.current.state,
+                      selectedAccount.networkId,
+                    );
+
+                  stakingRef.current.postHog?.capture(
+                    PostHogCustomEvent.ClaimedRewards,
+                    {
+                      ...claimableRewardsForNetwork,
+                      walletAddress: selectedAccount.address,
+                    },
+                  );
 
                   toastSuccess({
                     subtitle: `${t("rewardsModal.success.sub")} 🎉`,
