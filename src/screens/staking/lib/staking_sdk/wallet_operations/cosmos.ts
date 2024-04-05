@@ -1,15 +1,5 @@
-import { makeSignDoc } from "@cosmjs/amino";
-import { fromBase64 } from "@cosmjs/encoding";
-import type { EncodeObject, OfflineDirectSigner } from "@cosmjs/proto-signing";
-import { Registry, makeAuthInfoBytes } from "@cosmjs/proto-signing";
-import {
-  AminoTypes,
-  QueryClient,
-  SigningStargateClient,
-  createDefaultAminoConverters,
-  defaultRegistryTypes,
-  setupTxExtension,
-} from "@cosmjs/stargate";
+import type { EncodeObject } from "@cosmjs/proto-signing";
+import { SigningStargateClient } from "@cosmjs/stargate";
 import type {
   MsgDelegateEncodeObject,
   MsgUndelegateEncodeObject,
@@ -17,23 +7,12 @@ import type {
   StdFee,
   Event as TxEvent,
 } from "@cosmjs/stargate";
-import { connectComet } from "@cosmjs/tendermint-rpc";
-import { EthermintChainIdHelper } from "@keplr-wallet/cosmos";
-import { ExtensionOptionsWeb3Tx } from "@keplr-wallet/proto-types/ethermint/types/v1/web3";
-import type {
-  AccountData,
-  BroadcastMode,
-  StdSignDoc,
-  StdSignature,
-} from "@keplr-wallet/types";
-import { PubKey } from "cosmjs-types/cosmos/crypto/secp256k1/keys";
+import type { AccountData } from "@keplr-wallet/types";
 import { MsgWithdrawDelegatorReward } from "cosmjs-types/cosmos/distribution/v1beta1/tx";
 import {
   MsgDelegate,
   MsgUndelegate,
 } from "cosmjs-types/cosmos/staking/v1beta1/tx";
-import { SignMode } from "cosmjs-types/cosmos/tx/signing/v1beta1/signing";
-import { TxBody, TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect } from "react";
 
@@ -44,8 +23,8 @@ import { fetchAccountData, setUserWallet } from "../context/actions";
 import { getHasConnectedWallet } from "../context/selectors";
 import type { Account, Wallet } from "../core";
 import { networksWithStaking } from "../core";
-import type { Coin } from "../core/base";
-import { StakingNetworkId, WalletId } from "../core/base";
+import type { Coin, StakingNetworkId } from "../core/base";
+import { WalletId } from "../core/base";
 import {
   ethermintNetworks,
   keplrNetworks,
@@ -62,6 +41,7 @@ import type {
   WalletOperationResult,
 } from "./base";
 import { ClaimRewardsError, StakeError, UnstakeError } from "./base";
+import { signAndBroadcastEthermint } from "./cosmos/ethermint_utils";
 
 type TxEventType = "delegate" | "unbond" | "withdraw_rewards";
 
@@ -110,194 +90,6 @@ const getCosmosFee = async ({
   return fee;
 };
 
-const getEIP712DataStructure = (signDoc: StdSignDoc) => {
-  const messages = signDoc.msgs;
-
-  const messagesStructure = messages
-    .map((msg) => {
-      // Amino type for the MsgDelegate.
-      if (
-        msg.type === "cosmos-sdk/MsgDelegate" ||
-        msg.type === "cosmos-sdk/MsgUndelegate"
-      ) {
-        return {
-          MsgValue: [
-            {
-              name: "delegator_address",
-              type: "string",
-            },
-            {
-              name: "validator_address",
-              type: "string",
-            },
-            {
-              name: "amount",
-              type: "TypeAmount",
-            },
-          ],
-          TypeAmount: [
-            {
-              name: "denom",
-              type: "string",
-            },
-            {
-              name: "amount",
-              type: "string",
-            },
-          ],
-        };
-      } else if (msg.type === "cosmos-sdk/MsgWithdrawDelegationReward") {
-        return {
-          MsgValue: [
-            {
-              name: "delegator_address",
-              type: "string",
-            },
-            {
-              name: "validator_address",
-              type: "string",
-            },
-          ],
-        };
-      }
-
-      // Throw an error if a message is not supported.
-      throw new Error(`Unsupported message type: ${msg.type}`);
-    })
-    .reduce(
-      (acc, curr) => ({
-        ...acc,
-        ...curr,
-      }),
-      {},
-    );
-
-  let domain: Record<string, string>;
-
-  if (signDoc.chain_id === StakingNetworkId.Injective) {
-    domain = {
-      chainId: "0x1",
-      name: "Injective Web3",
-      salt: "0",
-      verifyingContract: "cosmos",
-      version: "1.0.0",
-    };
-  } else if (signDoc.chain_id === StakingNetworkId.Dymension) {
-    domain = {
-      chainId: `0x${(1100).toString(16)}`,
-      // TODO: Check if the name is correct.
-      name: "Dymension",
-      salt: "0",
-      verifyingContract: "cosmos",
-      version: "1.0.0",
-    };
-  } else if (signDoc.chain_id === StakingNetworkId.IslamicCoin) {
-    domain = {
-      // Got chain id from:
-      // https://github.com/haqq-network/haqq/blob/03bba90ecacd8ecf49921be4196a2805f35f1ce8/app/app.go#L195C25-L195C30
-      chainId: `0x${(11235).toString(16)}`,
-      // Got the other domain info from:
-      // https://github.com/haqq-network/haqq/blob/master/ethereum/eip712/domain.go
-      name: "Cosmos Web3",
-      salt: "0",
-      verifyingContract: "cosmos",
-      version: "1.0.0",
-    };
-  } else {
-    throw new Error(`Unsupported chain id: ${signDoc.chain_id}`);
-  }
-
-  return {
-    domain,
-    primaryType: "Tx",
-    types: {
-      Coin: [
-        {
-          name: "denom",
-          type: "string",
-        },
-        {
-          name: "amount",
-          type: "string",
-        },
-      ],
-      EIP712Domain: [
-        {
-          name: "name",
-          type: "string",
-        },
-        {
-          name: "version",
-          type: "string",
-        },
-        {
-          name: "chainId",
-          type: "uint256",
-        },
-        {
-          name: "verifyingContract",
-          type: "string",
-        },
-        {
-          name: "salt",
-          type: "string",
-        },
-      ],
-      Fee: [
-        {
-          name: "amount",
-          type: "Coin[]",
-        },
-        {
-          name: "gas",
-          type: "string",
-        },
-      ],
-      Msg: [
-        {
-          name: "type",
-          type: "string",
-        },
-        {
-          name: "value",
-          type: "MsgValue",
-        },
-      ],
-      Tx: [
-        {
-          name: "account_number",
-          type: "string",
-        },
-        {
-          name: "chain_id",
-          type: "string",
-        },
-        {
-          name: "fee",
-          type: "Fee",
-        },
-        {
-          name: "memo",
-          type: "string",
-        },
-        {
-          name: "msgs",
-          type: "Msg[]",
-        },
-        {
-          name: "sequence",
-          type: "string",
-        },
-        {
-          name: "timeout_height",
-          type: "string",
-        },
-      ],
-      ...messagesStructure,
-    },
-  };
-};
-
 enum CosmosError {
   None = "None",
   NotEnoughGas = "NotEnoughGas",
@@ -329,212 +121,6 @@ const getCosmosError = (err: Error): CosmosError => {
       ? CosmosError.Unknown
       : CosmosError.None
   );
-};
-
-type PollTxOpts = {
-  rpc: string;
-  timeout?: number;
-  txHash: string;
-};
-
-const pollTx = async ({ rpc, timeout, txHash }: PollTxOpts) => {
-  const tmClient = await connectComet(rpc);
-
-  const queryClient = QueryClient.withExtensions(tmClient, setupTxExtension);
-
-  let elapsed = 0;
-
-  while (true) {
-    try {
-      const tx = await queryClient.tx.getTx(txHash);
-
-      return tx;
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log("debug: cosmos.ts: err", err);
-    }
-
-    const toWait = 5000;
-
-    elapsed += toWait;
-
-    if (timeout && elapsed >= timeout) {
-      throw new Error("Timeout");
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, toWait));
-  }
-};
-
-type AccountInfo = {
-  account_number: string;
-  sequence: number;
-};
-
-const signAndBroadcastEthermint = async (
-  rpc: string,
-  account: Account,
-  latestAccountInfo: AccountInfo,
-  client: SigningStargateClient,
-  messages: EncodeObject[],
-  fee: StdFee,
-  memo: string,
-) => {
-  const signer = (account.wallet === WalletId.Leap
-    ? window.leap!.getOfflineSigner(account.networkId)
-    : window.keplr!.getOfflineSigner(
-        account.networkId,
-      )) as unknown as OfflineDirectSigner;
-
-  const currentHeight = await client.getHeight();
-
-  const { account_number: accountNumber, sequence } = latestAccountInfo;
-
-  // The `sequence` can be `0` here if the account is new. But check that both
-  // values are set in case the types are not valid.
-  if (typeof sequence !== "number" || !accountNumber) {
-    throw new Error("Account number or sequence is missing");
-  }
-
-  const accountFromSigner = (await signer.getAccounts()).find(
-    (acc) => acc.address === account.address,
-  );
-
-  if (!accountFromSigner) {
-    throw new Error("Failed to retrieve account from signer");
-  }
-
-  const pubkeyTypeUrl = (() => {
-    if (account.networkId === StakingNetworkId.Injective) {
-      return "/injective.crypto.v1beta1.ethsecp256k1.PubKey";
-    }
-
-    return "/ethermint.crypto.v1.ethsecp256k1.PubKey";
-  })();
-
-  // Create the instance that will take care of converting an EncodeObject
-  // into an amino encoded message.
-  const aminoTypes = new AminoTypes(createDefaultAminoConverters());
-  /// Create the instance that will take care of converting an EncodeObject
-  // into an direct encoded message.
-  const directRegistry = new Registry(defaultRegistryTypes);
-  // Convert the EncodeObjects into amino encoded messages
-  const aminoMessages = messages.map((m) => aminoTypes.toAmino(m));
-
-  // Create the amino signDoc.
-  const signDoc = makeSignDoc(
-    aminoMessages,
-    fee,
-    account.networkId,
-    memo,
-    accountNumber,
-    sequence,
-    // TODO: Set a proper offset for the timeout height.
-    // Currently 500 is enough to allow the user to sign and
-    // broadcast the transaction on Injective but I don't know
-    // how this behaves on other chains.
-    BigInt(currentHeight) + BigInt(500),
-  );
-
-  let signed: StdSignDoc;
-  let signature: StdSignature;
-
-  if (account.wallet === WalletId.Keplr) {
-    const signResponse = await window.keplr!.experimentalSignEIP712CosmosTx_v0(
-      account.networkId,
-      account.address,
-      getEIP712DataStructure(signDoc),
-      signDoc,
-    );
-
-    ({ signature, signed } = signResponse);
-  } else if (account.wallet === WalletId.Leap) {
-    // @TODO: Implement EIP712CosmosTx sign for Leap.
-    throw new Error("Not implemented");
-  } else {
-    throw new Error(`Unsupported account wallet: ${account.wallet}`);
-  }
-
-  const extensionOption = (() => {
-    const typeUrl =
-      account.networkId === StakingNetworkId.Injective
-        ? "/injective.types.v1beta1.ExtensionOptionsWeb3Tx"
-        : "/ethermint.types.v1.ExtensionOptionsWeb3Tx";
-
-    return {
-      typeUrl,
-      value: ExtensionOptionsWeb3Tx.encode(
-        ExtensionOptionsWeb3Tx.fromPartial({
-          feePayerSig: fromBase64(signature.signature),
-          typedDataChainId: EthermintChainIdHelper.parse(
-            signed.chain_id,
-          ).ethChainId.toString(),
-        }),
-      ).finish(),
-    };
-  })();
-
-  // Convert the EncodeObjects into direct encoded messages.
-  const directMessages = messages.map((m) => directRegistry.encodeAsAny(m));
-
-  const txRaw = TxRaw.fromPartial({
-    authInfoBytes: makeAuthInfoBytes(
-      [
-        {
-          pubkey: {
-            typeUrl: pubkeyTypeUrl,
-            value: PubKey.encode({
-              key: fromBase64(signature.pub_key.value),
-            }).finish(),
-          },
-          sequence,
-        },
-      ],
-      signed.fee.amount,
-      Number(signed.fee.gas),
-      undefined,
-      undefined,
-      SignMode.SIGN_MODE_LEGACY_AMINO_JSON,
-    ),
-    bodyBytes: TxBody.encode(
-      TxBody.fromPartial({
-        extensionOptions: [extensionOption],
-        memo: signed.memo,
-        messages: directMessages,
-        timeoutHeight: signed.timeout_height
-          ? BigInt(signed.timeout_height)
-          : undefined,
-      }),
-    ).finish(),
-    signatures: [fromBase64(signature.signature)],
-  });
-
-  const tx = TxRaw.encode(txRaw).finish();
-
-  // @TODO
-  // @ts-expect-error: `account.wallet` is always Keplr here because of the error above
-  return (account.wallet === WalletId.Leap ? window.leap! : window.keplr!)
-    ?.sendTx(account.networkId, tx, "async" as BroadcastMode.Block)
-    .then(async (res) => {
-      const txHash = Buffer.from(res).toString("hex").toUpperCase();
-
-      if (!txHash) {
-        throw new Error("Failed to broadcast transaction");
-      }
-
-      const txResult = await pollTx({
-        rpc,
-        // Three minutes, since some transactions (e.g. for Injective) can take
-        // a long time
-        timeout: 1000 * 60 * 3,
-        txHash,
-      });
-
-      // eslint-disable-next-line no-console
-      console.log("debug: cosmos.ts: txResult", txResult);
-
-      return txResult.txResponse?.events;
-    });
 };
 
 export const stakeAmountCosmos = ({
