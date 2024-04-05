@@ -60,6 +60,7 @@ const pollTx = async ({ rpc, timeout, txHash }: PollTxOpts) => {
   }
 };
 
+// @TODO: Confirm all names
 const getEIP712DataStructure = (signDoc: StdSignDoc) => {
   const messages = signDoc.msgs;
 
@@ -253,6 +254,9 @@ type AccountInfo = {
   sequence: number;
 };
 
+// To be able to support ledger with ethermint chains (related to Ethereum), it
+// can't use Protobuf messages, and it requires using Amino messages for
+// enconding. It also needs to use EIP712CosmosTx for signing from Keplr.
 export const signAndBroadcastEthermint = async (
   rpc: string,
   account: Account,
