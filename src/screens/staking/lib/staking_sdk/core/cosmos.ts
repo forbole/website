@@ -21,7 +21,7 @@ export const keplrNetworks = new Set<StakingNetworkId>(
     // StakingNetworkId.CosmosHubTestnet,
     // StakingNetworkId.DyDx,
     StakingNetworkId.Dymension,
-    // StakingNetworkId.IslamicCoin,
+    StakingNetworkId.IslamicCoin,
     StakingNetworkId.Injective,
     // StakingNetworkId.Kava,
     // StakingNetworkId.KavaTestnet,
