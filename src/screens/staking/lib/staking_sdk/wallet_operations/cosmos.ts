@@ -449,9 +449,9 @@ export const tryToConnectKeplr = async (
         await keplr.enable([network]).catch(() => null);
       }, Promise.resolve());
 
-      const handleError = (err: unknown) => {
+      const handleError = (network: StakingNetworkId) => (err: unknown) => {
         // eslint-disable-next-line no-console
-        console.log("debug: index.tsx: err", err);
+        console.log("debug: index.tsx: err", network, err);
 
         return [] as Account[];
       };
@@ -489,7 +489,7 @@ export const tryToConnectKeplr = async (
               .keplr!.getOfflineSigner(network)
               .getAccounts()
               .then(parseAccounts(network))
-              .catch(handleError);
+              .catch(handleError(network));
 
             return {
               accounts,
@@ -553,9 +553,9 @@ export const tryToConnectLeap = async (
     try {
       await window.leap.enable(chainsToConnect);
 
-      const handleError = (err: unknown) => {
+      const handleError = (network: StakingNetworkId) => (err: unknown) => {
         // eslint-disable-next-line no-console
-        console.log("debug: index.tsx: err", err);
+        console.log("debug: index.tsx: err", network, err);
 
         return [] as Account[];
       };
@@ -593,7 +593,7 @@ export const tryToConnectLeap = async (
               .leap!.getOfflineSigner(network)
               .getAccounts()
               .then(parseAccounts(network))
-              .catch(handleError);
+              .catch(handleError(network));
 
             return {
               accounts,
