@@ -297,6 +297,7 @@ export const signAndBroadcastEthermint = async (
   const aminoMessages = messages.map((m) => aminoTypes.toAmino(m));
 
   const isInjective = account.networkId === StakingNetworkId.Injective;
+  const emptyCosmosSignatures = account.networkId === StakingNetworkId.Dymension;
 
   const timeoutHeight = isInjective
     ? BigInt(currentHeight) + BigInt(500)
@@ -346,6 +347,7 @@ export const signAndBroadcastEthermint = async (
       typeUrl,
       value: ExtensionOptionsWeb3Tx.encode(
         ExtensionOptionsWeb3Tx.fromPartial({
+          feePayer: emptyCosmosSignatures ? account.address : undefined,
           feePayerSig: fromBase64(signature.signature),
           typedDataChainId: EthermintChainIdHelper.parse(
             signed.chain_id,
@@ -387,7 +389,7 @@ export const signAndBroadcastEthermint = async (
           : undefined,
       }),
     ).finish(),
-    signatures: [fromBase64(signature.signature)],
+    signatures: !emptyCosmosSignatures ? [fromBase64(signature.signature)] : [new Uint8Array(0)],
   });
 
   const tx = TxRaw.encode(txRaw).finish();
