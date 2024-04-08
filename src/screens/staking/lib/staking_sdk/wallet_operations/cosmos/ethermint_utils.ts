@@ -60,8 +60,12 @@ const pollTx = async ({ rpc, timeout, txHash }: PollTxOpts) => {
   }
 };
 
-// @TODO: Confirm all names
-const getEIP712DataStructure = (signDoc: StdSignDoc) => {
+// This is extracted from the Keplr wallet, from
+// `packages/stores/src/account/utils.ts`
+const getEIP712DataStructure = (
+  signDoc: StdSignDoc,
+  networkId: StakingNetworkId,
+) => {
   const messages = signDoc.msgs;
 
   const messagesStructure = messages
@@ -135,9 +139,8 @@ const getEIP712DataStructure = (signDoc: StdSignDoc) => {
     };
   } else if (signDoc.chain_id === StakingNetworkId.Dymension) {
     domain = {
-      chainId: `0x${(1100).toString(16)}`,
-      // TODO: Check if the name is correct.
-      name: "Dymension",
+      chainId: EthermintChainIdHelper.parse(networkId).ethChainId.toString(),
+      name: "Cosmos Web3",
       salt: "0",
       verifyingContract: "cosmos",
       version: "1.0.0",
@@ -158,6 +161,8 @@ const getEIP712DataStructure = (signDoc: StdSignDoc) => {
     throw new Error(`Unsupported chain id: ${signDoc.chain_id}`);
   }
 
+  const isInjective = networkId === StakingNetworkId.Injective;
+
   return {
     domain,
     primaryType: "Tx",
@@ -173,36 +178,16 @@ const getEIP712DataStructure = (signDoc: StdSignDoc) => {
         },
       ],
       EIP712Domain: [
-        {
-          name: "name",
-          type: "string",
-        },
-        {
-          name: "version",
-          type: "string",
-        },
-        {
-          name: "chainId",
-          type: "uint256",
-        },
-        {
-          name: "verifyingContract",
-          type: "string",
-        },
-        {
-          name: "salt",
-          type: "string",
-        },
+        { name: "name", type: "string" },
+        { name: "version", type: "string" },
+        { name: "chainId", type: "uint256" },
+        { name: "verifyingContract", type: "string" },
+        { name: "salt", type: "string" },
       ],
       Fee: [
-        {
-          name: "amount",
-          type: "Coin[]",
-        },
-        {
-          name: "gas",
-          type: "string",
-        },
+        ...(!isInjective ? [{ name: "feePayer", type: "string" }] : []),
+        { name: "amount", type: "Coin[]" },
+        { name: "gas", type: "string" },
       ],
       Msg: [
         {
@@ -239,10 +224,14 @@ const getEIP712DataStructure = (signDoc: StdSignDoc) => {
           name: "sequence",
           type: "string",
         },
-        {
-          name: "timeout_height",
-          type: "string",
-        },
+        ...(isInjective
+          ? [
+              {
+                name: "timeout_height",
+                type: "string",
+              },
+            ]
+          : []),
       ],
       ...messagesStructure,
     },
@@ -307,36 +296,42 @@ export const signAndBroadcastEthermint = async (
   // Convert the EncodeObjects into amino encoded messages
   const aminoMessages = messages.map((m) => aminoTypes.toAmino(m));
 
+  const isInjective = account.networkId === StakingNetworkId.Injective;
+
+  const timeoutHeight = isInjective
+    ? BigInt(currentHeight) + BigInt(500)
+    : undefined;
+
+  const parsedFee = {
+    ...fee,
+    ...(!isInjective ? { feePayer: account.address } : {}),
+  };
+
   // Create the amino signDoc.
   const signDoc = makeSignDoc(
     aminoMessages,
-    fee,
+    parsedFee,
     account.networkId,
     memo,
     accountNumber,
     sequence,
-    // TODO: Set a proper offset for the timeout height.
-    // Currently 500 is enough to allow the user to sign and
-    // broadcast the transaction on Injective but I don't know
-    // how this behaves on other chains.
-    BigInt(currentHeight) + BigInt(500),
+    timeoutHeight,
   );
 
   let signed: StdSignDoc;
   let signature: StdSignature;
 
-  if (account.wallet === WalletId.Keplr) {
-    const signResponse = await window.keplr!.experimentalSignEIP712CosmosTx_v0(
+  if (account.wallet === WalletId.Keplr || account.wallet === WalletId.Leap) {
+    const signResponse = await (
+      account.wallet === WalletId.Keplr ? window.keplr : window.leap
+    )!.experimentalSignEIP712CosmosTx_v0(
       account.networkId,
       account.address,
-      getEIP712DataStructure(signDoc),
+      getEIP712DataStructure(signDoc, account.networkId),
       signDoc,
     );
 
     ({ signature, signed } = signResponse);
-  } else if (account.wallet === WalletId.Leap) {
-    // @TODO: Implement EIP712CosmosTx sign for Leap.
-    throw new Error("Not implemented");
   } else {
     throw new Error(`Unsupported account wallet: ${account.wallet}`);
   }
@@ -379,7 +374,7 @@ export const signAndBroadcastEthermint = async (
       signed.fee.amount,
       Number(signed.fee.gas),
       undefined,
-      undefined,
+      signed.fee.feePayer,
       SignMode.SIGN_MODE_LEGACY_AMINO_JSON,
     ),
     bodyBytes: TxBody.encode(
@@ -397,10 +392,8 @@ export const signAndBroadcastEthermint = async (
 
   const tx = TxRaw.encode(txRaw).finish();
 
-  // @TODO
-  // @ts-expect-error: `account.wallet` is always Keplr here because of the error above
   return (account.wallet === WalletId.Leap ? window.leap! : window.keplr!)
-    ?.sendTx(account.networkId, tx, "async" as BroadcastMode.Block)
+    ?.sendTx(account.networkId, tx, "sync" as BroadcastMode.Block)
     .then(async (res) => {
       const txHash = Buffer.from(res).toString("hex").toUpperCase();
 
