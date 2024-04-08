@@ -3,6 +3,7 @@ import type { PropsWithChildren } from "react";
 import { useEffect, useMemo } from "react";
 
 import IconChevron from "@src/components/icons/icon_chevron.svg";
+import { tooltipId } from "@src/components/tooltip";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
 import { fetchCoinPriceForNetwork } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import type {
@@ -127,7 +128,15 @@ const StakeAccounts = ({ network, onClose }: Props) => {
               activating: styles.statusActivating,
               active: styles.statusActive,
               deactivating: styles.statusDeactivating,
-              inactive: null,
+              inactive: styles.statusInactive,
+            }[account.status] || null;
+
+          const statusTooltip =
+            {
+              activating: t("stakeAccount.statusTooltip.activating"),
+              active: t("stakeAccount.statusTooltip.active"),
+              deactivating: t("stakeAccount.statusTooltip.deactivating"),
+              inactive: t("stakeAccount.statusTooltip.inactive"),
             }[account.status] || null;
 
           const reward = rewardsByAddress?.[account.address];
@@ -157,7 +166,15 @@ const StakeAccounts = ({ network, onClose }: Props) => {
                 </div>
                 <div className={styles.status}>
                   {!!statusStyle && (
-                    <span className={statusStyle}>{statusLabel}</span>
+                    <span
+                      className={statusStyle}
+                      {...(statusTooltip && {
+                        "data-tooltip-content": statusTooltip,
+                        "data-tooltip-id": tooltipId,
+                      })}
+                    >
+                      {statusLabel}
+                    </span>
                   )}
                 </div>
               </div>

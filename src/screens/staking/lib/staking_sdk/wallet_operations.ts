@@ -12,6 +12,8 @@ import type {
   UnstakeError,
   WalletErrorMap,
   WalletOperationResult,
+  WithdrawUnstakedError,
+  WithdrawUnstakedOpts,
 } from "./wallet_operations/base";
 import {
   claimRewardsCosmos,
@@ -32,6 +34,7 @@ import {
   tryToConnectPhantom,
   tryToConnectSolflare,
   unstakeSolana,
+  withdrawnUnstakedSolana,
 } from "./wallet_operations/solana";
 
 export const MAX_MEMO = 256;
@@ -59,6 +62,11 @@ export const claimRewards = async (
   opts: ClaimOpts,
 ): Promise<WalletOperationResult<ClaimRewardsError>> =>
   claimRewardsCosmos(opts);
+
+export const withdrawnUnstaked = async (
+  opts: WithdrawUnstakedOpts,
+): Promise<WalletOperationResult<WithdrawUnstakedError>> =>
+  withdrawnUnstakedSolana(opts);
 
 export const getClaimRewardsFee = async (
   opts: ClaimOpts,

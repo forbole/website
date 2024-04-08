@@ -114,11 +114,12 @@ const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
 };
 
 type Props = {
+  accountFilter?: (account: Account) => boolean;
   disabled?: boolean;
   variant: "accounts_wallet" | "accounts_with_rewards" | "accounts";
 };
 
-const NetworksSelect = ({ disabled, variant }: Props) => {
+const NetworksSelect = ({ accountFilter, disabled, variant }: Props) => {
   const stakingRef = useStakingRef();
 
   const { state: stakingState } = stakingRef.current;
@@ -129,6 +130,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   if (!variant || !selectedAccount) return null;
 
   const isRewards = variant === "accounts_with_rewards";
+
   const isWallet = variant === "accounts_wallet";
 
   const allAccounts = getAllAccounts(stakingState);
@@ -156,7 +158,8 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   if (isWallet) {
     const otherWalletsAccounts = allAccounts
       .filter(({ wallet }) => walletsSupported.has(wallet))
-      .filter((account) => account.networkId === selectedAccount.networkId);
+      .filter((account) => account.networkId === selectedAccount.networkId)
+      .filter(accountFilter || (() => true));
 
     if (otherWalletsAccounts.length < 2) {
       const walletName = getWalletCustomName(

@@ -75,7 +75,8 @@
     "networkDetails": "查看网络详细信息",
     "stake": "立即质押",
     "unbondingTooltip": "所有代币将于 {{period}} 解除绑定",
-    "unstake": "取消质押"
+    "unstake": "取消质押",
+    "withdrawUnstakeAccounts": "Withdraw unstaked tokens"
   },
   "receiving bullet 1": "指定验证人不在活跃集中",
   "receiving bullet 2": "提名一名验证者，佣金持有者为 100%。",
@@ -114,6 +115,12 @@
       "active": "Active",
       "deactivating": "Deactivating",
       "inactive": "Inactive"
+    },
+    "statusTooltip": {
+      "activating": "The staking rewards will be distributed 2-3 days after your status changes from \"Activating\" to \"Active.\"",
+      "active": "Your tokens are staked.",
+      "deactivating": "unstaked in 2-3 days.",
+      "inactive": "Your tokens are ready to be withdrawn"
     }
   },
   "stakeAccounts": "Accounts",
@@ -238,6 +245,12 @@
   },
   "why forbole title": "<0>Forbole<1>坚实基建，硅步千里</1></0>",
   "why forbole?": "为何选择 Forbole？",
+  "withdrawUnstaked": {
+    "button": "Withdraw",
+    "fromWallet": "Use wallet:",
+    "selectAcc": "Select account:",
+    "title": "Withdraw Tokens From Unstaked Accounts"
+  },
   "your email": "你的邮箱地址",
   "your name": "你的名字"
 }

@@ -43,6 +43,16 @@ export enum StakeError {
   Unknown = "Unknown",
 }
 
+export enum WithdrawUnstakedError {
+  None = "None",
+  Unknown = "Unknown",
+}
+
+export type WithdrawUnstakedOpts = {
+  account: Account;
+  stakeAccountAddress: string;
+};
+
 export type ClaimOpts = {
   account: Account;
 };

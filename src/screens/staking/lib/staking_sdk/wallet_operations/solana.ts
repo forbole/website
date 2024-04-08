@@ -18,13 +18,14 @@ import { solanaNetworks } from "../core/solana";
 import { stakingClient } from "../staking_client";
 import { normaliseCoin } from "../utils/coins";
 import { addToConnectedWallets } from "../utils/storage";
-import { StakeError, UnstakeError } from "./base";
 import type {
   StakeOpts,
   UnstakeAmount,
   WalletErrorMap,
   WalletOperationResult,
+  WithdrawUnstakedOpts,
 } from "./base";
+import { StakeError, UnstakeError, WithdrawUnstakedError } from "./base";
 
 const mainnetWallet = new Solflare({});
 const testnetWallet = new Solflare({ network: "testnet" });
@@ -392,6 +393,66 @@ export const unstakeSolana = async ({
 
       return {
         error: UnstakeError.Unknown,
+        success: false,
+      };
+    });
+
+export const withdrawnUnstakedSolana = async ({
+  account,
+  stakeAccountAddress,
+}: WithdrawUnstakedOpts): Promise<
+  WalletOperationResult<WithdrawUnstakedError>
+> =>
+  stakingClient
+    // It sends and incorrect amount of 10, which is not used
+    .stake(account.networkId, account.address, "10")
+    .then(async (info) => {
+      const accountKey = new PublicKey(account.address);
+      const stakeAccountKey = new PublicKey(stakeAccountAddress);
+
+      const stakeAccount = account.info?.stakeAccounts?.find(
+        (item) => item.address === stakeAccountAddress,
+      );
+
+      if (!stakeAccount) {
+        return {
+          error: WithdrawUnstakedError.Unknown,
+          success: false,
+        };
+      }
+
+      const wallet = getWalletApi(account);
+
+      const tx = StakeProgram.withdraw({
+        authorizedPubkey: accountKey,
+        lamports: Number(stakeAccount.amount),
+        stakePubkey: stakeAccountKey,
+        toPubkey: accountKey,
+      });
+
+      tx.recentBlockhash = (info as any).blockhash;
+      tx.feePayer = accountKey;
+
+      const stakeAccountResult = await wallet.signAndSendTransaction(tx);
+
+      // eslint-disable-next-line no-console
+      console.log("debug: solana.ts: result", stakeAccountResult);
+
+      return { success: true } as const;
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log("debug: solana.ts: error", error);
+
+      if (error instanceof Error && isCloseError(error)) {
+        return {
+          error: WithdrawUnstakedError.None,
+          success: false,
+        };
+      }
+
+      return {
+        error: WithdrawUnstakedError.Unknown,
         success: false,
       };
     });

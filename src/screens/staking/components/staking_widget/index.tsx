@@ -26,6 +26,7 @@ import ClaimRewardsModal from "../staking_section/claim_rewards_modal";
 import ConnectWalletModal from "../staking_section/connect_wallet_modal";
 import StakingModal from "../staking_section/staking_modal";
 import UnstakingModal from "../staking_section/unstaking_modal";
+import WithdrawUnstakedModal from "../staking_section/withdraw_unstaked_modal";
 import * as styles from "./index.module.scss";
 
 type WalletRowProps = {
@@ -198,6 +199,7 @@ const StakingWidgetContainer = () => {
       <UnstakingModal />
       <ClaimRewardsModal />
       <ConnectWalletModal />
+      <WithdrawUnstakedModal />
     </>
   );
 };

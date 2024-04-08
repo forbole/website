@@ -27,9 +27,11 @@ import {
   getHasNetworkSupportedWallet,
   getNetworkTVL,
   getNetworkVotingPower,
+  getStakeAccountsForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   networkKeyToNetworkId,
+  networksWithRewards,
   networksWithStaking,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import type {
@@ -37,6 +39,7 @@ import type {
   StakingNetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
+import type { StakeAccount } from "@src/screens/staking/lib/staking_sdk/staking_client_types";
 import {
   accountHasDelegations,
   accountHasRewards,
@@ -112,10 +115,11 @@ const PopOver = ({
     }
   }, [stakingNetworkId, stakingRef]);
 
-  const { accounts, claimableRewards } = useMemo(() => {
+  const { accounts, claimableRewards, inactiveStakeAccounts } = useMemo(() => {
     const result = {
       accounts: null as Account[] | null,
       claimableRewards: null as NetworkClaimableRewards | null,
+      inactiveStakeAccounts: null as null | StakeAccount[],
     };
 
     if (!!stakingNetworkId) {
@@ -124,6 +128,11 @@ const PopOver = ({
       if (!result.accounts?.length) {
         return result;
       }
+
+      result.inactiveStakeAccounts = getStakeAccountsForNetwork(
+        stakingRef.current.state,
+        stakingNetworkId,
+      )?.filter((stakeAccount) => stakeAccount.status === "inactive");
 
       result.claimableRewards =
         getClaimableRewardsForNetwork(
@@ -141,6 +150,17 @@ const PopOver = ({
 
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
   const accountsWithRewards = accounts?.filter(accountHasRewards);
+
+  const shouldDisplayRewardsButton =
+    !!claimableRewards &&
+    !!accountsWithRewards?.length &&
+    stakingNetworkId &&
+    networksWithRewards.has(stakingNetworkId);
+
+  const shouldDisplayWithdrawUnstakeButton =
+    !!inactiveStakeAccounts?.length &&
+    stakingNetworkId &&
+    !networksWithRewards.has(stakingNetworkId);
 
   return (
     <div
@@ -317,7 +337,7 @@ const PopOver = ({
                 {t("popover.stake")}
               </HighlightButton>
             )}
-            {!!claimableRewards && !!accountsWithRewards?.length && (
+            {shouldDisplayRewardsButton && (
               <CtaButton
                 onClick={() => {
                   setSelectedAccount(
@@ -329,6 +349,31 @@ const PopOver = ({
               >
                 {t("popover.claimRewards")}
               </CtaButton>
+            )}
+            {shouldDisplayWithdrawUnstakeButton && (
+              <EmptyButton
+                onClick={() => {
+                  const account = getAccountsForNetwork(
+                    stakingRef.current.state,
+                    stakingNetworkId,
+                  ).find(
+                    (acc) =>
+                      !!acc.info?.stakeAccounts?.find(
+                        (s) => s.address === inactiveStakeAccounts[0].address,
+                      ),
+                  );
+
+                  if (!account) return;
+
+                  setSelectedAccount(
+                    stakingRef.current,
+                    "withdraw_unstake",
+                    account,
+                  );
+                }}
+              >
+                {t("popover.withdrawUnstakeAccounts")}
+              </EmptyButton>
             )}
             {!!accountsWithDelegations?.length && (
               <EmptyButton

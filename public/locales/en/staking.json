@@ -76,7 +76,8 @@
     "networkDetails": "See network details",
     "stake": "Stake Now",
     "unbondingTooltip": "All tokens will have been unbonded by {{period}}",
-    "unstake": "Unstake"
+    "unstake": "Unstake",
+    "withdrawUnstakeAccounts": "Withdraw unstaked tokens"
   },
   "receiving bullet 1": "Nominated validators are not in the active set",
   "receiving bullet 2": "Nominated a validator with 100% commission holders. The rewards rate varies depending on the total amount of staked tokens, and each network has their specific settings.",
@@ -115,6 +116,12 @@
       "active": "Active",
       "deactivating": "Deactivating",
       "inactive": "Inactive"
+    },
+    "statusTooltip": {
+      "activating": "The staking rewards will be distributed 2-3 days after your status changes from \"Activating\" to \"Active.\"",
+      "active": "Your tokens are staked.",
+      "deactivating": "unstaked in 2-3 days.",
+      "inactive": "Your tokens are ready to be withdrawn"
     }
   },
   "stakeAccounts": "Accounts",
@@ -241,6 +248,12 @@
   },
   "why forbole title": "<0>Forbole <1>empowers</1> people by building decentralized infrastructure.</0>",
   "why forbole?": "Why Forbole?",
+  "withdrawUnstaked": {
+    "button": "Withdraw",
+    "fromWallet": "Use wallet:",
+    "selectAcc": "Select account:",
+    "title": "Withdraw Tokens From Unstaked Accounts"
+  },
   "your email": "Your Email",
   "your name": "Your Name"
 }

@@ -14,6 +14,10 @@ export const networksWithStaking = new Set([
   ...Array.from(solanaNetworks),
 ]);
 
+export const networksWithRewards = new Set([
+  ...Array.from(cosmosStakingNetworks),
+]);
+
 export const walletsSupported = new Set([
   ...Array.from(cosmosWallets),
   ...Array.from(solanaWallets),
@@ -52,7 +56,12 @@ export type Account = {
   wallet: WalletId;
 };
 
-type StakeAction = "claim_rewards" | "connect_wallet" | "stake" | "unstake";
+type StakeAction =
+  | "claim_rewards"
+  | "connect_wallet"
+  | "stake"
+  | "unstake"
+  | "withdraw_unstake";
 
 type SelectedAccount = {
   address: string;
