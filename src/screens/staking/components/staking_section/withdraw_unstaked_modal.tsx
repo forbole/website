@@ -52,11 +52,7 @@ const WithdrawUnstakedModal = () => {
     }
   }, [isOpen]);
 
-  const hasRewards = selectedAccount
-    ? accountHasRewards(selectedAccount)
-    : null;
-
-  const stakeAccounts = (
+  const inactiveStakeAccounts = (
     selectedAccount
       ? getStakeAccountsForNetwork(
           stakingRef.current.state,
@@ -64,6 +60,10 @@ const WithdrawUnstakedModal = () => {
         )
       : []
   ).filter((acc) => acc.status === "inactive");
+
+  const hasRewards =
+    !!inactiveStakeAccounts?.length ||
+    (selectedAccount ? accountHasRewards(selectedAccount) : null);
 
   const onClose = () => {
     if (isLoading) return;
@@ -101,7 +101,7 @@ const WithdrawUnstakedModal = () => {
           <div>
             {selectedAccount && (
               <StakeAccountsSelect
-                accounts={stakeAccounts}
+                accounts={inactiveStakeAccounts}
                 disabled={isLoading}
                 onChange={setSelectedStakeAccount}
                 selectedAccount={selectedStakeAccount}
@@ -112,17 +112,28 @@ const WithdrawUnstakedModal = () => {
         <HighlightButton
           disabled={!address || !networkId || isLoading || !hasRewards}
           onClick={() => {
-            if (!selectedAccount?.address || !selectedStakeAccount || isLoading)
+            const usedSelectedStakeAccount =
+              selectedStakeAccount || inactiveStakeAccounts[0]?.address;
+
+            if (
+              !selectedAccount?.address ||
+              !usedSelectedStakeAccount ||
+              isLoading
+            )
               return;
 
             setIsLoading(true);
 
             withdrawnUnstaked({
               account: selectedAccount,
-              stakeAccountAddress: selectedStakeAccount,
+              stakeAccountAddress: usedSelectedStakeAccount,
             })
               .then(async (withdrawn) => {
                 if (withdrawn.success) {
+                  await new Promise<void>((resolve) =>
+                    setTimeout(resolve, 5000),
+                  );
+
                   await syncAccountData(
                     stakingRef.current,
                     selectedAccount as NonNullable<typeof selectedAccount>,
@@ -131,8 +142,7 @@ const WithdrawUnstakedModal = () => {
                   setSelectedAccount(stakingRef.current, null, null);
 
                   toastSuccess({
-                    subtitle: `${t("rewardsModal.success.sub")} 🎉`,
-                    title: t("rewardsModal.success.title"),
+                    title: t("withdrawUnstaked.success.title"),
                   });
                 } else if (withdrawn.error) {
                   const handlers: Record<ClaimRewardsError, () => void> = {

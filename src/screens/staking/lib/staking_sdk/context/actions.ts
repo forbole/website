@@ -215,7 +215,7 @@ export const syncAccountData = async (
   context: TStakingContext,
   account: Account,
 ) => {
-  const { address, networkId, wallet: walletId } = account;
+  const { address, networkId } = account;
 
   const { info, rewards } = await fetchAccountData(
     context,
@@ -224,34 +224,48 @@ export const syncAccountData = async (
     false,
   );
 
-  const newWallet: Wallet = {
-    ...context.state.wallets[walletId],
-    networks: {
-      ...context.state.wallets[walletId]?.networks,
-      [networkId]: {
-        accounts: [
-          ...(
-            context.state.wallets[walletId]?.networks?.[networkId]?.accounts ||
-            []
-          ).filter((a: Account) => a.address !== address),
-          {
-            ...account,
-            info,
-            rewards,
-          },
-        ].sort(sortAccounts),
+  // This account may be in several wallets, so this updates all of them
+  Object.keys(context.state.wallets).forEach((walletId) => {
+    const wallet = walletId as WalletId;
+
+    const hasAccount = !!context.state.wallets[wallet]?.networks?.[
+      networkId
+    ]?.accounts?.find((a) => a.address === address);
+
+    if (!hasAccount) return;
+
+    const newAccount: Account = {
+      ...account,
+      info,
+      rewards,
+      wallet,
+    };
+
+    const newWallet: Wallet = {
+      ...context.state.wallets[wallet],
+      networks: {
+        ...context.state.wallets[wallet]?.networks,
+        [networkId]: {
+          accounts: [
+            ...(
+              context.state.wallets[wallet]?.networks?.[networkId]?.accounts ||
+              []
+            ).filter((a: Account) => a.address !== address),
+            newAccount,
+          ].sort(sortAccounts),
+        },
       },
-    },
-    wallet: walletId,
-  };
+      wallet,
+    };
 
-  const newWallets = {
-    ...context.state.wallets,
-    [walletId]: newWallet,
-  };
+    const newWallets = {
+      ...context.state.wallets,
+      [walletId]: newWallet,
+    };
 
-  context.setState({
-    wallets: newWallets,
+    context.setState({
+      wallets: newWallets,
+    });
   });
 };
 

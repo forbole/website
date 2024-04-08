@@ -27,7 +27,7 @@ if [ "$MISSING_TRANSLATIONS" -gt 0 ]; then
   exit 1
 fi
 
-EMPTY_TRANSLATIONS="$(grep -r '""' public/locales | wc -l)"
+EMPTY_TRANSLATIONS="$(grep -r ': "",' public/locales | wc -l)"
 
 if [ "$EMPTY_TRANSLATIONS" -gt 0 ]; then
   echo "Empty translations"

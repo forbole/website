@@ -18,6 +18,10 @@ export const networksWithRewards = new Set([
   ...Array.from(cosmosStakingNetworks),
 ]);
 
+export const networksWithStakeAccounts = new Set([
+  ...Array.from(solanaNetworks),
+]);
+
 export const walletsSupported = new Set([
   ...Array.from(cosmosWallets),
   ...Array.from(solanaWallets),

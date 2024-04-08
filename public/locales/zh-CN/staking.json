@@ -249,6 +249,9 @@
     "button": "Withdraw",
     "fromWallet": "Use wallet:",
     "selectAcc": "Select account:",
+    "success": {
+      "title": "You have successfully withdrawn your unstaked tokens"
+    },
     "title": "Withdraw Tokens From Unstaked Accounts"
   },
   "your email": "你的邮箱地址",
