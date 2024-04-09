@@ -127,7 +127,6 @@
       "inactive": "您的代幣已準備好提取。"
     }
   },
-  "stakeAccounts": "Accounts",
   "staked by forbole": "Forbole 質押",
   "staking": {
     "days_other": "{{count}}日"

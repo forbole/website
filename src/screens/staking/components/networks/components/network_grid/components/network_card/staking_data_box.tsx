@@ -177,7 +177,7 @@ const StakingDataBox = ({ network, onFocusContent }: PopOverProps) => {
         )}
         {!!stakeAccounts?.length && (
           <div className={styles.stakeAccounts}>
-            <div>{t("stakeAccounts")}</div>
+            <div>{t("accounts")}</div>
             <div className={styles.navWrapper}>
               <StakeAccountsNum>{stakeAccounts.length}</StakeAccountsNum>{" "}
               <button

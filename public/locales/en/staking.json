@@ -128,7 +128,6 @@
       "inactive": "Your tokens are ready to be withdrawn."
     }
   },
-  "stakeAccounts": "Accounts",
   "staked by forbole": "Staked by Forbole",
   "staking": {
     "days_one": "{{count}} day",
