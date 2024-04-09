@@ -224,6 +224,8 @@ export const syncAccountData = async (
     false,
   );
 
+  const newWallets = { ...context.state.wallets };
+
   // This account may be in several wallets, so this updates all of them
   Object.keys(context.state.wallets).forEach((walletId) => {
     const wallet = walletId as WalletId;
@@ -241,16 +243,18 @@ export const syncAccountData = async (
       wallet,
     };
 
+    const existingWallet = context.state.wallets[wallet];
+    const existingNetworks = existingWallet?.networks;
+
     const newWallet: Wallet = {
-      ...context.state.wallets[wallet],
+      ...existingWallet,
       networks: {
-        ...context.state.wallets[wallet]?.networks,
+        ...existingNetworks,
         [networkId]: {
           accounts: [
-            ...(
-              context.state.wallets[wallet]?.networks?.[networkId]?.accounts ||
-              []
-            ).filter((a: Account) => a.address !== address),
+            ...(existingNetworks?.[networkId]?.accounts || []).filter(
+              (a: Account) => a.address !== address,
+            ),
             newAccount,
           ].sort(sortAccounts),
         },
@@ -258,14 +262,11 @@ export const syncAccountData = async (
       wallet,
     };
 
-    const newWallets = {
-      ...context.state.wallets,
-      [walletId]: newWallet,
-    };
+    newWallets[wallet] = newWallet;
+  });
 
-    context.setState({
-      wallets: newWallets,
-    });
+  context.setState({
+    wallets: newWallets,
   });
 };
 
