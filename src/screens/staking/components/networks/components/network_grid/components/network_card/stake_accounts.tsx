@@ -104,9 +104,11 @@ const StakeAccounts = ({ network, onClose }: Props) => {
           </button>{" "}
           {t("accounts")}
         </span>
-        <StakeAccountsNum>{stakeAccounts?.length}</StakeAccountsNum>
+        {!!stakeAccounts?.length && (
+          <StakeAccountsNum>{stakeAccounts?.length}</StakeAccountsNum>
+        )}
       </div>
-      <div>
+      <div className={styles.accountsList}>
         {stakeAccounts?.map((account) => {
           const shortenedAddress = `${account.address.slice(0, 8)}...`;
 

@@ -116,6 +116,18 @@ const PopOver = ({
     }
   }, [stakingNetworkId, stakingRef]);
 
+  useEffect(() => {
+    const isMobile = window.innerWidth < 500;
+
+    if (isMobile) {
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, []);
+
   const {
     accounts,
     activeStakeAccounts,

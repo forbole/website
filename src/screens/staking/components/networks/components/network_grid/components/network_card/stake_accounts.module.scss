@@ -153,3 +153,8 @@
   min-width: 30px;
   padding: 2px;
 }
+
+.accountsList {
+  max-height: 250px;
+  overflow-y: auto;
+}
