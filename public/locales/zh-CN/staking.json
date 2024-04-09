@@ -1,5 +1,5 @@
 {
-  "accounts": "Accounts",
+  "accounts": "账户",
   "addressCopied": "地址已复制",
   "apy": "年收益率",
   "benefits bullet 1": "赚取您的质押奖励，它可以让您通过贡献来获得保护网络的奖励",
@@ -21,7 +21,7 @@
   "connectWallet": {
     "intro": "与 Forbole 进行质押并赚取奖励！",
     "leapCreateWallet": "您需要在浏览器扩展中创建 Leap 钱包，然后重新加载此页面。",
-    "phantomCreateWallet": "Failed to connect to Phantom, make sure the wallet is created and unlocked.",
+    "phantomCreateWallet": "无法连接 Phantom，请确保钱包已创建并解锁。",
     "success": {
       "subtitle": "欢迎 🎉",
       "title": "注册成功"
@@ -76,7 +76,7 @@
     "stake": "立即质押",
     "unbondingTooltip": "所有代币将于 {{period}} 解除绑定",
     "unstake": "取消质押",
-    "withdrawUnstakeAccounts": "Withdraw unstaked tokens"
+    "withdrawUnstakeAccounts": "提取未质押的代币"
   },
   "receiving bullet 1": "指定验证人不在活跃集中",
   "receiving bullet 2": "提名一名验证者，佣金持有者为 100%。",
@@ -106,8 +106,8 @@
   "select token": "选择通证",
   "showMore": "展示更多",
   "solanaUnstakeIsReady": {
-    "subtitle": "Withdraw now",
-    "title": "Your unstaked $SOL is now withdrawable"
+    "subtitle": "立即提款",
+    "title": "您未质押的 $SOL 现已可提取"
   },
   "stake": "质押",
   "stake desc": "作为通证持有人，你可以安心在我们的基础建设上委托质押原生通证",
@@ -115,19 +115,19 @@
   "stake_now": "立即质押",
   "stakeAccount": {
     "status": {
-      "activating": "Active",
+      "activating": "Activating",
       "active": "Active",
       "deactivating": "Deactivating",
       "inactive": "Inactive"
     },
     "statusTooltip": {
-      "activating": "The staking rewards will be distributed 2-3 days after your status changes from \"Activating\" to \"Active.\"",
-      "active": "Your tokens are staked.",
-      "deactivating": "Unstaked in 2-3 days.",
-      "inactive": "Your tokens are ready to be withdrawn"
+      "activating": "质押奖励将于您的状态由“激活”变为“活跃”后2-3天发放。",
+      "active": "您的代币已被质押。",
+      "deactivating": "2-3天内解除质押。",
+      "inactive": "您的代币已准备好提取。"
     }
   },
-  "stakeAccounts": "Accounts",
+  "stakeAccounts": "账户",
   "staked by forbole": "Forbole 质押",
   "staking": {
     "days_other": "{{count}}天"
@@ -152,17 +152,17 @@
     },
     "available": "可用的",
     "complete": {
-      "desc1Solana": "The staking rewards will be distributed in <1>2-3 days</1> after your staking status change from <3>\"Activating\"</3> to <6>“Active“</6>.",
-      "desc2Solana": "Your rewards will be <1>distributed automatically</1> to your staking account <3>every 2-3 days</3>.",
-      "intro": "Great job on your first staking!",
-      "release": "Rewards Release",
-      "tips": "Tips for Solana Staking",
-      "tipsTooltip": "Each chain has its own staking rules. It means Solana, Cosmos, and Ethereum have different rules.",
-      "titleComplete": "Staking complete"
+      "desc1Solana": "质押奖励将于您的质押状态由<0>「Activating」</0>变为<0>「Active」</0>后的<1>2-3天</0>内发放。",
+      "desc2Solana": "您的奖励将<0>每 2-3 天</0><0>自动分配</0>到您的质押账户。",
+      "intro": "你的第一次质押做得很好！",
+      "release": "奖励发布",
+      "tips": "Solana 质押提示",
+      "tipsTooltip": "每个链都有自己的质押规则。 这意味着 Solana、Cosmos 和以太坊有不同的规则。",
+      "titleComplete": "质押完成"
     },
     "error": {
       "notEnoughAmountError": {
-        "title": "You need to stake at least {{amount}}"
+        "title": "您需要投入至少 {{amount}}"
       },
       "notEnoughGas": {
         "title": "Gas 限额太低，增加 Gas 来完成交易。"
@@ -212,17 +212,17 @@
   "unstakingModal": {
     "amount": {
       "label": "取消质押代币数量",
-      "labelBase": "Amount",
+      "labelBase": "数量",
       "placeholder": "1,000"
     },
     "available": "质押",
     "button": "取消质押",
     "complete": {
-      "desc1Solana": "Your tokens are currently in the unstaking period and will be successfully unstaked on <0>{{unstakeDate}}</0>.",
-      "desc2Solana": "Remember to withdraw your tokens after unstaking period is complete and status changes to \"Unstaked\".",
-      "intro": "Your tokens are currently in the unstaking period",
-      "introSub": "Hope to see you again soon.",
-      "titleComplete": "Unstake successful"
+      "desc1Solana": "您的代币目前正处于解押期，将于<0>{{unstakeDate}}</0>成功解押。",
+      "desc2Solana": "请记住在取消质押期结束且状态更改为“已取消质押”后提取您的代币。",
+      "intro": "您的代币目前正处于质押期",
+      "introSub": "希望很快再见到你。",
+      "titleComplete": "解押成功"
     },
     "info2T": "在此期间，您<1>不会收到</1>质押奖励。",
     "info3": "但是，如果您改变主意，可以随时取消该过程。",
@@ -250,13 +250,13 @@
   "why forbole title": "<0>Forbole<1>坚实基建，硅步千里</1></0>",
   "why forbole?": "为何选择 Forbole？",
   "withdrawUnstaked": {
-    "button": "Withdraw",
-    "fromWallet": "Use wallet:",
-    "selectAcc": "Select account:",
+    "button": "提取",
+    "fromWallet": "使用钱包：",
+    "selectAcc": "选择账户：",
     "success": {
-      "title": "You have successfully withdrawn your unstaked tokens"
+      "title": "您已成功提取未质押的代币"
     },
-    "title": "Withdraw tokens from unstaked accounts"
+    "title": "从未质押的账户中提取代币"
   },
   "your email": "你的邮箱地址",
   "your name": "你的名字"

@@ -125,7 +125,7 @@
       "activating": "The staking rewards will be distributed 2-3 days after your status changes from \"Activating\" to \"Active.\"",
       "active": "Your tokens are staked.",
       "deactivating": "Unstaked in 2-3 days.",
-      "inactive": "Your tokens are ready to be withdrawn"
+      "inactive": "Your tokens are ready to be withdrawn."
     }
   },
   "stakeAccounts": "Accounts",
