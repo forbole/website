@@ -1,7 +1,11 @@
-import { makeSignDoc } from "@cosmjs/amino";
+import { makeSignDoc as makeSignDocAmino } from "@cosmjs/amino";
 import { fromBase64 } from "@cosmjs/encoding";
+import {
+  Registry,
+  makeAuthInfoBytes,
+  makeSignDoc,
+} from "@cosmjs/proto-signing";
 import type { EncodeObject, OfflineDirectSigner } from "@cosmjs/proto-signing";
-import { Registry, makeAuthInfoBytes } from "@cosmjs/proto-signing";
 import type { SigningStargateClient, StdFee } from "@cosmjs/stargate";
 import {
   AminoTypes,
@@ -14,6 +18,7 @@ import { connectComet } from "@cosmjs/tendermint-rpc";
 import { EthermintChainIdHelper } from "@keplr-wallet/cosmos";
 import { SignMode } from "@keplr-wallet/proto-types/cosmos/tx/signing/v1beta1/signing";
 import { ExtensionOptionsWeb3Tx } from "@keplr-wallet/proto-types/ethermint/types/v1/web3";
+import { Any } from "@keplr-wallet/proto-types/google/protobuf/any";
 import type {
   BroadcastMode,
   StdSignDoc,
@@ -246,8 +251,7 @@ type AccountInfo = {
 // To be able to support ledger with ethermint chains (related to Ethereum), it
 // can't use Protobuf messages, and it requires using Amino messages for
 // enconding. It also needs to use EIP712CosmosTx for signing from Keplr.
-export const signAndBroadcastEthermint = async (
-  rpc: string,
+const getTxForEthermintLedger = async (
   account: Account,
   latestAccountInfo: AccountInfo,
   client: SigningStargateClient,
@@ -310,8 +314,7 @@ export const signAndBroadcastEthermint = async (
     ...(!isInjective ? { feePayer: account.address } : {}),
   };
 
-  // Create the amino signDoc.
-  const signDoc = makeSignDoc(
+  const signDoc = makeSignDocAmino(
     aminoMessages,
     parsedFee,
     account.networkId,
@@ -396,10 +399,126 @@ export const signAndBroadcastEthermint = async (
       : [new Uint8Array(0)],
   });
 
-  const tx = TxRaw.encode(txRaw).finish();
+  return TxRaw.encode(txRaw).finish();
+};
+
+const getTxForEtherminintCommon = async (
+  account: Account,
+  latestAccountInfo: AccountInfo,
+  client: SigningStargateClient,
+  messages: EncodeObject[],
+  fee: StdFee,
+  memo: string,
+) => {
+  const signer = (account.wallet === WalletId.Leap
+    ? window.leap!.getOfflineSigner(account.networkId)
+    : window.keplr!.getOfflineSigner(
+        account.networkId,
+      )) as unknown as OfflineDirectSigner;
+
+  const { account_number: accountNumber, sequence } = latestAccountInfo;
+
+  // The `sequence` can be `0` here if the account is new. But check that both
+  // values are set in case the types are not valid.
+  if (typeof sequence !== "number" || !accountNumber) {
+    throw new Error("Account number or sequence is missing");
+  }
+
+  const accountFromSigner = (await signer.getAccounts()).find(
+    (acc) => acc.address === account.address,
+  );
+
+  if (!accountFromSigner) {
+    throw new Error("Failed to retrieve account from signer");
+  }
+
+  const pubkeyTypeUrl = (() => {
+    if (account.networkId === StakingNetworkId.Injective) {
+      return "/injective.crypto.v1beta1.ethsecp256k1.PubKey";
+    }
+
+    return "/ethermint.crypto.v1.ethsecp256k1.PubKey";
+  })();
+
+  const pubkey = Any.fromPartial({
+    typeUrl: pubkeyTypeUrl,
+    value: PubKey.encode({
+      key: accountFromSigner.pubkey,
+    }).finish(),
+  });
+
+  const txBodyEncodeObject = {
+    typeUrl: "/cosmos.tx.v1beta1.TxBody",
+    value: {
+      memo,
+      messages,
+    },
+  };
+
+  const txBodyBytes = client.registry.encode(txBodyEncodeObject);
+
+  const authInfoBytes = makeAuthInfoBytes(
+    [{ pubkey, sequence }],
+    fee.amount,
+    Number(fee.gas),
+    undefined,
+    undefined,
+  );
+
+  const signDoc = makeSignDoc(
+    txBodyBytes,
+    authInfoBytes,
+    account.networkId,
+    Number(accountNumber),
+  );
+
+  const { signature, signed } = await signer.signDirect(
+    account.address,
+    signDoc,
+  );
+
+  return TxRaw.encode({
+    authInfoBytes: signed.authInfoBytes,
+    bodyBytes: signed.bodyBytes,
+    signatures: [fromBase64(signature.signature)],
+  }).finish();
+};
+
+export const signAndBroadcastEthermint = async (
+  rpc: string,
+  account: Account,
+  latestAccountInfo: AccountInfo,
+  client: SigningStargateClient,
+  messages: EncodeObject[],
+  fee: StdFee,
+  memo: string,
+) => {
+  const walletProvider =
+    account.wallet === WalletId.Leap ? window.leap : window.keplr;
+
+  const { isNanoLedger } =
+    (await walletProvider?.getKey(account.networkId)) ?? {};
+
+  const tx = isNanoLedger
+    ? await getTxForEthermintLedger(
+        account,
+        latestAccountInfo,
+        client,
+        messages,
+        fee,
+        memo,
+      )
+    : await getTxForEtherminintCommon(
+        account,
+        latestAccountInfo,
+        client,
+        messages,
+        fee,
+        memo,
+      );
 
   return (account.wallet === WalletId.Leap ? window.leap! : window.keplr!)
-    ?.sendTx(account.networkId, tx, "sync" as BroadcastMode.Block)
+    ?.sendTx(account.networkId, tx, "async" as BroadcastMode.Block)
     .then(async (res) => {
       const txHash = Buffer.from(res).toString("hex").toUpperCase();
 
