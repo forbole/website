@@ -223,8 +223,11 @@ export const tryToConnectPhantom = async (
   }
 };
 
+// In testnet it is not possible to stake less than 1 SOL, Solflare will disable the button.
+// In mainnet less than 0.1 SOL it gives an error from the wallet estimation.
 const minimumStakeAmount: { [key in StakingNetworkId]?: number } = {
-  // In testnet it is not possible to stake less than 1 SOL, Solflare will disable the button
+  [StakingNetworkId.Solana]: LAMPORTS_PER_SOL * 0.1,
+  [StakingNetworkId.SolanaDevnet]: LAMPORTS_PER_SOL * 0.001,
   [StakingNetworkId.SolanaTestnet]: LAMPORTS_PER_SOL * 1,
 };
 
