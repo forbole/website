@@ -130,15 +130,15 @@ const PopOver = ({
 
   const {
     accounts,
-    activeStakeAccounts,
     claimableRewards,
     inactiveStakeAccounts,
+    unstakeableStakeAccounts,
   } = useMemo(() => {
     const result = {
       accounts: null as Account[] | null,
-      activeStakeAccounts: null as null | StakeAccount[],
       claimableRewards: null as NetworkClaimableRewards | null,
       inactiveStakeAccounts: null as null | StakeAccount[],
+      unstakeableStakeAccounts: null as null | StakeAccount[],
     };
 
     if (!!stakingNetworkId) {
@@ -153,8 +153,8 @@ const PopOver = ({
         stakingNetworkId,
       );
 
-      result.activeStakeAccounts = allStakeAccounts.filter(
-        (acc) => acc.status === "active",
+      result.unstakeableStakeAccounts = allStakeAccounts.filter(
+        (acc) => acc.status === "active" || acc.status === "activating",
       );
 
       result.inactiveStakeAccounts = allStakeAccounts.filter(
@@ -188,6 +188,12 @@ const PopOver = ({
     !!inactiveStakeAccounts?.length &&
     stakingNetworkId &&
     !networksWithRewards.has(stakingNetworkId);
+
+  const shouldDisplayUnstakeButton =
+    !!accountsWithDelegations?.length &&
+    stakingNetworkId &&
+    (!networksWithStakeAccounts.has(stakingNetworkId) ||
+      !!unstakeableStakeAccounts?.length);
 
   return (
     <div
@@ -402,22 +408,19 @@ const PopOver = ({
                 {t("popover.withdrawUnstakeAccounts")}
               </EmptyButton>
             )}
-            {!!accountsWithDelegations?.length &&
-              stakingNetworkId &&
-              (!networksWithStakeAccounts.has(stakingNetworkId) ||
-                !!activeStakeAccounts?.length) && (
-                <EmptyButton
-                  onClick={() => {
-                    setSelectedAccount(
-                      stakingRef.current,
-                      "unstake",
-                      accountsWithDelegations[0],
-                    );
-                  }}
-                >
-                  {t("popover.unstake")}
-                </EmptyButton>
-              )}
+            {shouldDisplayUnstakeButton && (
+              <EmptyButton
+                onClick={() => {
+                  setSelectedAccount(
+                    stakingRef.current,
+                    "unstake",
+                    accountsWithDelegations[0],
+                  );
+                }}
+              >
+                {t("popover.unstake")}
+              </EmptyButton>
+            )}
           </>
         )}
         {canClickNetwork && (

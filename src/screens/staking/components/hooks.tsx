@@ -156,6 +156,8 @@ const notifySolanaUnstake = (context: TStakingContext, t: Translate) => {
         ),
         title: t("staking:solanaUnstakeIsReady.title"),
       });
+
+      return true;
     });
   });
 };
