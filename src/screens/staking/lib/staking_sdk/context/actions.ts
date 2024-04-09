@@ -232,7 +232,7 @@ export const syncAccountData = async (
       networkId
     ]?.accounts?.find((a) => a.address === address);
 
-    if (!hasAccount) return;
+    if (!hasAccount && account.wallet !== walletId) return;
 
     const newAccount: Account = {
       ...account,

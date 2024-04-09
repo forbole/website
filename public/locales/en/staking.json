@@ -106,6 +106,10 @@
   "select option": "Select an option",
   "select token": "Select token",
   "showMore": "Show more",
+  "solanaUnstakeIsReady": {
+    "subtitle": "Withdraw now",
+    "title": "Your unstaked $SOL is now withdrawable"
+  },
   "stake": "Stake",
   "stake desc": "As a token holder, you can utilize our infrastructure by staking your tokens with us",
   "stake with us!": "Stake with us!",
@@ -120,7 +124,7 @@
     "statusTooltip": {
       "activating": "The staking rewards will be distributed 2-3 days after your status changes from \"Activating\" to \"Active.\"",
       "active": "Your tokens are staked.",
-      "deactivating": "unstaked in 2-3 days.",
+      "deactivating": "Unstaked in 2-3 days.",
       "inactive": "Your tokens are ready to be withdrawn"
     }
   },
@@ -255,7 +259,7 @@
     "success": {
       "title": "You have successfully withdrawn your unstaked tokens"
     },
-    "title": "Withdraw Tokens From Unstaked Accounts"
+    "title": "Withdraw tokens from unstaked accounts"
   },
   "your email": "Your Email",
   "your name": "Your Name"

@@ -70,3 +70,23 @@ export const toastError = (
     ...toastOpts,
   });
 };
+
+export const toastInfo = (
+  props: ToastOptsBase,
+  toastOpts: ToastOptions = {},
+) => {
+  toast(<NotificationBase {...props} icon="/icons/info_filled.svg" />, {
+    className: styles.info,
+    position: "top-right",
+    ...toastOpts,
+  });
+};
+
+export const InfoButton = ({
+  children,
+  onClick,
+}: PropsWithChildren<{ onClick: () => void }>) => (
+  <button className={styles.infoBytton} onClick={onClick}>
+    {children}
+  </button>
+);
