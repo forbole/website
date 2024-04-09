@@ -7,7 +7,7 @@ import {
 
 export const solanaNetworks = new Set(
   [
-    // StakingNetworkId.Solana,
+    StakingNetworkId.Solana,
     // StakingNetworkId.SolanaTestnet,
     StakingNetworkId.SolanaDevnet,
   ].filter(
