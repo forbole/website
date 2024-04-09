@@ -108,7 +108,13 @@ export const getExplorerLink = (address: string, network?: string) => {
     case StakingNetworkId.Solana:
     case StakingNetworkId.SolanaTestnet:
     case StakingNetworkId.SolanaDevnet:
-      return `https://explorer.solana.com/address/${address}?cluster=devnet`;
+      return `https://explorer.solana.com/address/${address}?cluster=${
+        {
+          [StakingNetworkId.Solana]: "mainnet",
+          [StakingNetworkId.SolanaDevnet]: "devnet",
+          [StakingNetworkId.SolanaTestnet]: "testnet",
+        }[network]
+      }`;
     default:
       return null;
   }
