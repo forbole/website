@@ -37,6 +37,7 @@ import type {
   StakingNetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
+import { unsupportedLedgerNetworks } from "@src/screens/staking/lib/staking_sdk/core/cosmos";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import {
   accountHasDelegations,
@@ -290,6 +291,10 @@ const PopOver = ({
               <HighlightButton
                 className={styles.stake}
                 data-test="popover-stake-button"
+                disabled={
+                  stakingNetworkId &&
+                  unsupportedLedgerNetworks.has(stakingNetworkId)
+                }
                 onClick={() => {
                   if (!hasNetworkSupportedWallet) {
                     setSelectedAccount(

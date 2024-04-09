@@ -150,18 +150,6 @@ const getEIP712DataStructure = (
       verifyingContract: "cosmos",
       version: "1.0.0",
     };
-  } else if (signDoc.chain_id === StakingNetworkId.IslamicCoin) {
-    domain = {
-      // Got chain id from:
-      // https://github.com/haqq-network/haqq/blob/03bba90ecacd8ecf49921be4196a2805f35f1ce8/app/app.go#L195C25-L195C30
-      chainId: `0x${(11235).toString(16)}`,
-      // Got the other domain info from:
-      // https://github.com/haqq-network/haqq/blob/master/ethereum/eip712/domain.go
-      name: "Cosmos Web3",
-      salt: "0",
-      verifyingContract: "cosmos",
-      version: "1.0.0",
-    };
   } else {
     throw new Error(`Unsupported chain id: ${signDoc.chain_id}`);
   }
@@ -498,6 +486,10 @@ export const signAndBroadcastEthermint = async (
 
   const { isNanoLedger } =
     (await walletProvider?.getKey(account.networkId)) ?? {};
+
+  if (isNanoLedger && account.wallet !== WalletId.Keplr) {
+    throw new Error("Ledger is only supported in Keplr");
+  }
 
   const tx = isNanoLedger
     ? await getTxForEthermintLedger(

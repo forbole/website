@@ -13,21 +13,21 @@ export const ethermintNetworks = new Set([
 
 export const keplrNetworks = new Set<StakingNetworkId>(
   [
-    // StakingNetworkId.Akash,
-    // StakingNetworkId.Celestia,
-    // StakingNetworkId.CelestiaTestnet,
-    // StakingNetworkId.ComposableFinance,
-    // StakingNetworkId.CosmosHub,
-    // StakingNetworkId.CosmosHubTestnet,
-    // StakingNetworkId.DyDx,
+    StakingNetworkId.Akash,
+    StakingNetworkId.Celestia,
+    StakingNetworkId.CelestiaTestnet,
+    StakingNetworkId.ComposableFinance,
+    StakingNetworkId.CosmosHub,
+    StakingNetworkId.CosmosHubTestnet,
+    StakingNetworkId.DyDx,
     StakingNetworkId.Dymension,
     StakingNetworkId.IslamicCoin,
     StakingNetworkId.Injective,
-    // StakingNetworkId.Kava,
-    // StakingNetworkId.KavaTestnet,
-    // StakingNetworkId.Osmosis,
-    // StakingNetworkId.Stargaze,
-    // StakingNetworkId.StargazeTestnet,
+    StakingNetworkId.Kava,
+    StakingNetworkId.KavaTestnet,
+    StakingNetworkId.Osmosis,
+    StakingNetworkId.Stargaze,
+    StakingNetworkId.StargazeTestnet,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
@@ -54,3 +54,5 @@ export const cosmosStakingNetworks = new Set([
   ...Array.from(cosmosWallets.has(WalletId.Keplr) ? keplrNetworks : []),
   ...Array.from(cosmosWallets.has(WalletId.Leap) ? leapNetworks : []),
 ]);
+
+export const unsupportedLedgerNetworks = new Set<StakingNetworkId>([]);

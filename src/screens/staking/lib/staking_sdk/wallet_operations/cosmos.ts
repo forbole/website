@@ -30,6 +30,7 @@ import {
   keplrNetworks,
   keplrNonNativeChains,
   leapNetworks,
+  unsupportedLedgerNetworks,
 } from "../core/cosmos";
 import { stakingClient } from "../staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "../utils/storage";
@@ -452,6 +453,14 @@ export const tryToConnectKeplr = async (
       const handleError = (network: StakingNetworkId) => (err: unknown) => {
         // eslint-disable-next-line no-console
         console.log("debug: index.tsx: err", network, err);
+
+        if (
+          (err as any)?.message?.includes(
+            "Ledger is unsupported for this chain",
+          )
+        ) {
+          unsupportedLedgerNetworks.add(network);
+        }
 
         return [] as Account[];
       };
