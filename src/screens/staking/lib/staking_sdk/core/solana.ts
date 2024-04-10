@@ -8,7 +8,7 @@ import {
 export const solanaNetworks = new Set(
   [
     StakingNetworkId.Solana,
-    // StakingNetworkId.SolanaTestnet,
+    StakingNetworkId.SolanaTestnet,
     StakingNetworkId.SolanaDevnet,
   ].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
