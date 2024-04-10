@@ -536,15 +536,6 @@ const networks = {
     label: "SolanaDevnet - SOL",
     name: "Solana Devnet",
   },
-  "solana-testnet": {
-    denom: "SOL",
-    graphql: "solana",
-    guide: "how-to-stake-sol-on-solana",
-    image: "/images/network/solana.svg",
-    key: "solana-testnet",
-    label: "SolanaTestnet - SOL",
-    name: "Solana Testnet",
-  },
   "ssv": {
     denom: "SSV",
     graphql: "ssv",
@@ -658,7 +649,7 @@ const cosmosTestNetworkKeys = ENABLE_TESTNETS
   : [];
 
 const solanaTestNetworkKeys = ENABLE_TESTNETS
-  ? (["solana-testnet", "solana-devnet"] satisfies NetworkKey[])
+  ? (["solana-devnet"] satisfies NetworkKey[])
   : [];
 
 export const cosmosNetworkKeys = [

@@ -6,11 +6,7 @@ import {
 } from "./base";
 
 export const solanaNetworks = new Set(
-  [
-    StakingNetworkId.Solana,
-    StakingNetworkId.SolanaTestnet,
-    StakingNetworkId.SolanaDevnet,
-  ].filter(
+  [StakingNetworkId.Solana, StakingNetworkId.SolanaDevnet].filter(
     ENABLE_TESTNETS ? () => true : (network) => !testnetNetworks.has(network),
   ),
 );

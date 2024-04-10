@@ -40,7 +40,6 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Osmosis]: "osmosis",
   [StakingNetworkId.Solana]: "solana",
   [StakingNetworkId.SolanaDevnet]: "solana-devnet",
-  [StakingNetworkId.SolanaTestnet]: "solana-testnet",
   [StakingNetworkId.Stargaze]: "stargaze",
   [StakingNetworkId.StargazeTestnet]: "stargaze-testnet",
 };

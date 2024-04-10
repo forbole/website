@@ -28,11 +28,9 @@ import type {
 import { StakeError, UnstakeError, WithdrawUnstakedError } from "./base";
 
 const mainnetWallet = new Solflare({});
-const testnetWallet = new Solflare({ network: "testnet" });
 const devnetWallet = new Solflare({ network: "devnet" });
 
 let connectListenerMainnet: (() => void) | undefined;
-let connectListenerTestnet: (() => void) | undefined;
 let connectListenerDevnet: (() => void) | undefined;
 
 const isCloseError = (error: Error) =>
@@ -55,9 +53,6 @@ export const tryToConnectSolflare = async (
     let resolvedItems = 0;
 
     const hasMainnetWallet = solanaNetworks.has(StakingNetworkId.Solana);
-
-    const hasTestnetWallet =
-      ENABLE_TESTNETS && solanaNetworks.has(StakingNetworkId.SolanaTestnet);
 
     const hasDevnetWallet =
       ENABLE_TESTNETS && solanaNetworks.has(StakingNetworkId.SolanaDevnet);
@@ -105,11 +100,9 @@ export const tryToConnectSolflare = async (
 
           resolvedItems += 1;
 
-          const totalItems = [
-            hasMainnetWallet,
-            hasTestnetWallet,
-            hasDevnetWallet,
-          ].filter(Boolean).length;
+          const totalItems = [hasMainnetWallet, hasDevnetWallet].filter(
+            Boolean,
+          ).length;
 
           if (resolvedItems === totalItems) {
             resolve(true);
@@ -132,18 +125,6 @@ export const tryToConnectSolflare = async (
       mainnetWallet.on("connect", connectListenerMainnet);
     }
 
-    if (hasTestnetWallet) {
-      if (connectListenerTestnet)
-        testnetWallet.off("connect", connectListenerTestnet);
-
-      connectListenerTestnet = getListener(
-        testnetWallet,
-        StakingNetworkId.SolanaTestnet,
-      );
-
-      testnetWallet.on("connect", connectListenerTestnet);
-    }
-
     if (hasDevnetWallet) {
       if (connectListenerDevnet)
         devnetWallet.off("connect", connectListenerDevnet);
@@ -158,7 +139,6 @@ export const tryToConnectSolflare = async (
 
     await Promise.all([
       hasMainnetWallet ? mainnetWallet.connect() : Promise.resolve(),
-      hasTestnetWallet ? testnetWallet.connect() : Promise.resolve(),
       hasDevnetWallet ? devnetWallet.connect() : Promise.resolve(),
     ]);
   });
@@ -189,11 +169,7 @@ export const tryToConnectPhantom = async (
     }
 
     return [StakingNetworkId.Solana]
-      .concat(
-        ENABLE_TESTNETS
-          ? [StakingNetworkId.SolanaTestnet, StakingNetworkId.SolanaDevnet]
-          : [],
-      )
+      .concat(ENABLE_TESTNETS ? [StakingNetworkId.SolanaDevnet] : [])
       .filter((networkId) => solanaNetworks.has(networkId))
       .reduce(async (promise, networkId) => {
         await promise;
@@ -234,12 +210,10 @@ export const tryToConnectPhantom = async (
   }
 };
 
-// In testnet it is not possible to stake less than 1 SOL, Solflare will disable the button.
 // In mainnet less than 0.01 SOL it gives an error from the wallet estimation.
 const minimumStakeAmount: { [key in StakingNetworkId]?: number } = {
   [StakingNetworkId.Solana]: LAMPORTS_PER_SOL * 0.01,
   [StakingNetworkId.SolanaDevnet]: LAMPORTS_PER_SOL * 0.001,
-  [StakingNetworkId.SolanaTestnet]: LAMPORTS_PER_SOL * 1,
 };
 
 type WalletApi = {
@@ -260,7 +234,6 @@ const getWalletApi = (account: Account): WalletApi => {
   const wallet = {
     [StakingNetworkId.Solana]: mainnetWallet,
     [StakingNetworkId.SolanaDevnet]: devnetWallet,
-    [StakingNetworkId.SolanaTestnet]: testnetWallet,
   }[account.networkId as string];
 
   if (!wallet) throw new Error("Unexpected wallet");
@@ -475,7 +448,6 @@ export const disconnectSolflare = async () => {
   (
     [
       [mainnetWallet, connectListenerMainnet],
-      [testnetWallet, connectListenerTestnet],
       [devnetWallet, connectListenerDevnet],
     ] as const
   ).forEach(([wallet, listener]) => {

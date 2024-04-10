@@ -16,7 +16,6 @@ export const networkToUnnormalisedDenom = {
   [StakingNetworkId.Osmosis]: "UOSMO",
   [StakingNetworkId.Solana]: "LAMPORTS",
   [StakingNetworkId.SolanaDevnet]: "LAMPORTS",
-  [StakingNetworkId.SolanaTestnet]: "LAMPORTS",
   [StakingNetworkId.Stargaze]: "USTARS",
   [StakingNetworkId.StargazeTestnet]: "USTARS",
 } as const satisfies Record<StakingNetworkId, string>;
