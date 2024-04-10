@@ -81,7 +81,7 @@ export const tryToConnectSolflare = async (
           };
 
           setUserWallet(context, WalletId.Solflare, {
-            name: "Test", // @TODO
+            name: "", // @TODO
             networks: {
               ...context.state.wallets[WalletId.Solflare]?.networks,
               [networkId]: {
@@ -203,7 +203,7 @@ export const tryToConnectPhantom = async (
         };
 
         setUserWallet(context, WalletId.Phantom, {
-          name: "Test", // @TODO
+          name: "", // @TODO
           networks: {
             ...context.state.wallets[WalletId.Phantom]?.networks,
             [networkId]: {
@@ -460,10 +460,19 @@ export const withdrawnUnstakedSolana = async ({
       };
     });
 
-export const disconnectSolflare = async (networks: StakingNetworkId[]) => {
-  // @TODO
-  // eslint-disable-next-line no-console
-  console.log("debug: solana.ts: disconnectSolana", networks);
+export const disconnectSolflare = async () => {
+  (
+    [
+      [mainnetWallet, connectListenerMainnet],
+      [testnetWallet, connectListenerTestnet],
+      [devnetWallet, connectListenerDevnet],
+    ] as const
+  ).forEach(([wallet, listener]) => {
+    if (listener) {
+      wallet.off("connect", listener);
+      wallet.disconnect();
+    }
+  });
 };
 
 export const disconnectPhantom = async () => {
