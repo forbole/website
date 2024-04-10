@@ -41,8 +41,17 @@ const isCloseError = (error: Error) =>
 
 export const tryToConnectSolflare = async (
   context: TStakingContext,
-): Promise<boolean> =>
-  new Promise(async (resolve, reject) => {
+  openLinkIfMissing: boolean,
+): Promise<boolean> => {
+  if (!window.solflare?.isSolflare) {
+    if (openLinkIfMissing) {
+      window.open("https://solflare.com/", "_blank");
+    }
+
+    return false;
+  }
+
+  return new Promise(async (resolve, reject) => {
     let resolvedItems = 0;
 
     const hasMainnetWallet = solanaNetworks.has(StakingNetworkId.Solana);
@@ -153,19 +162,21 @@ export const tryToConnectSolflare = async (
       hasDevnetWallet ? devnetWallet.connect() : Promise.resolve(),
     ]);
   });
+};
 
 export const tryToConnectPhantom = async (
   context: TStakingContext,
   openLinkIfMissing: boolean,
   walletErrorMap: WalletErrorMap = {},
 ) => {
-  const { phantom } = window as any;
+  const { phantom } = window;
   const provider = phantom?.solana;
 
   if (provider?.isPhantom) {
     let publicKey: string;
 
     try {
+      // https://docs.phantom.app/solana/establishing-a-connection
       const resp = await provider.connect();
 
       publicKey = resp.publicKey.toString();

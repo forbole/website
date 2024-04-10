@@ -165,6 +165,10 @@ const notifySolanaUnstake = (context: TStakingContext, t: Translate) => {
 declare global {
   interface Window extends KeplrWindow {
     leap: KeplrWindow["keplr"];
+    phantom:
+      | { solana?: { connect: () => Promise<any>; isPhantom: boolean } }
+      | undefined;
+    solflare: { isSolflare: boolean } | undefined;
     stakingContext: TStakingContext | undefined;
   }
 }

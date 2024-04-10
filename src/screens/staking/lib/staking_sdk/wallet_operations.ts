@@ -115,8 +115,7 @@ export const tryToConnectWallets = async (
         break;
 
       case WalletId.Solflare:
-        // @TODO: Open link if missing
-        connected = await tryToConnectSolflare(context);
+        connected = await tryToConnectSolflare(context, openLinkIfMissing);
 
         break;
 
