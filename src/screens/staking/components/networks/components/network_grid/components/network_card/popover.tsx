@@ -179,17 +179,20 @@ const PopOver = ({
   const accountsWithRewards = accounts?.filter(accountHasRewards);
 
   const shouldDisplayRewardsButton =
+    hasInit &&
     !!claimableRewards &&
     !!accountsWithRewards?.length &&
     stakingNetworkId &&
     networksWithRewards.has(stakingNetworkId);
 
   const shouldDisplayWithdrawUnstakeButton =
+    hasInit &&
     !!inactiveStakeAccounts?.length &&
     stakingNetworkId &&
     !networksWithRewards.has(stakingNetworkId);
 
   const shouldDisplayUnstakeButton =
+    hasInit &&
     !!accountsWithDelegations?.length &&
     stakingNetworkId &&
     (!networksWithStakeAccounts.has(stakingNetworkId) ||

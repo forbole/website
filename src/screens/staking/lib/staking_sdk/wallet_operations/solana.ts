@@ -90,7 +90,7 @@ export const tryToConnectSolflare = async (
           };
 
           setUserWallet(context, WalletId.Solflare, {
-            name: "", // @TODO
+            name: "Solflare Wallet",
             networks: {
               ...context.state.wallets[WalletId.Solflare]?.networks,
               [networkId]: {
@@ -214,7 +214,7 @@ export const tryToConnectPhantom = async (
         };
 
         setUserWallet(context, WalletId.Phantom, {
-          name: "", // @TODO
+          name: "Phantom Wallet",
           networks: {
             ...context.state.wallets[WalletId.Phantom]?.networks,
             [networkId]: {
