@@ -20,6 +20,7 @@ import {
   formatStakedDataUSD,
 } from "@src/screens/staking/lib/staking_sdk/formatters";
 import type { StakeAccount } from "@src/screens/staking/lib/staking_sdk/staking_client_types";
+import { sumCoins } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import type { Network, NetworkKey } from "@src/utils/network_info";
 
 import StakeAccounts, { StakeAccountsNum } from "./stake_accounts";
@@ -45,49 +46,67 @@ const StakingDataBox = ({ network, onFocusContent }: PopOverProps) => {
     onFocusContent(isDisplayed);
   };
 
-  const { claimableRewards, stakeAccounts, stakedData, unbondingTokens } =
-    useMemo(() => {
-      const result = {
-        claimableRewards: null as NetworkClaimableRewards | null,
-        stakeAccounts: null as null | StakeAccount[],
-        stakedData: null as Coin | null,
-        unbondingTokens: null as { period: string; text: string } | null,
-      };
+  const {
+    claimableRewards,
+    stakeAccounts,
+    stakedData,
+    unbondingTokens,
+    unstakedTokens,
+  } = useMemo(() => {
+    const result = {
+      claimableRewards: null as NetworkClaimableRewards | null,
+      stakeAccounts: null as null | StakeAccount[],
+      stakedData: null as Coin | null,
+      unbondingTokens: null as { period: string; text: string } | null,
+      unstakedTokens: null as Coin | null,
+    };
 
-      if (!!stakingNetworkId) {
-        result.stakeAccounts = getStakeAccountsForNetwork(
+    if (!!stakingNetworkId) {
+      result.stakeAccounts = getStakeAccountsForNetwork(
+        stakingRef.current.state,
+        stakingNetworkId,
+      );
+
+      result.stakedData = getStakedDataForNetwork(
+        stakingRef.current.state,
+        stakingNetworkId,
+      );
+
+      result.unstakedTokens = result.stakeAccounts.reduce(
+        (acc, stakeAccount) => {
+          if (stakeAccount.status !== "inactive") return acc;
+
+          return sumCoins(acc || undefined, {
+            amount: stakeAccount.amount,
+            denom: stakeAccount.denom,
+          });
+        },
+        null as Coin | null,
+      );
+
+      result.claimableRewards =
+        getClaimableRewardsForNetwork(
           stakingRef.current.state,
           stakingNetworkId,
-        );
+        ) || null;
 
-        result.stakedData = getStakedDataForNetwork(
-          stakingRef.current.state,
-          stakingNetworkId,
-        );
+      const unbonding = getUnbondingTokensForNetwork(
+        stakingRef.current.state,
+        stakingNetworkId,
+      );
 
-        result.claimableRewards =
-          getClaimableRewardsForNetwork(
-            stakingRef.current.state,
-            stakingNetworkId,
-          ) || null;
-
-        const unbonding = getUnbondingTokensForNetwork(
-          stakingRef.current.state,
-          stakingNetworkId,
-        );
-
-        if (unbonding) {
-          result.unbondingTokens = {
-            period: unbonding.period
-              ? new Date(Number(unbonding.period) * 1000).toLocaleString()
-              : "",
-            text: formatCoin(unbonding.coin, { decimals: 4 }),
-          };
-        }
+      if (unbonding) {
+        result.unbondingTokens = {
+          period: unbonding.period
+            ? new Date(Number(unbonding.period) * 1000).toLocaleString()
+            : "",
+          text: formatCoin(unbonding.coin, { decimals: 4 }),
+        };
       }
+    }
 
-      return result;
-    }, [stakingNetworkId, stakingRef]);
+    return result;
+  }, [stakingNetworkId, stakingRef]);
 
   useEffect(() => {
     fetchCoinPriceForNetwork(stakingRef.current, stakingNetworkId);
@@ -173,6 +192,12 @@ const StakingDataBox = ({ network, onFocusContent }: PopOverProps) => {
             >
               {unbondingTokens.text}
             </div>
+          </div>
+        )}
+        {!!unstakedTokens && (
+          <div className={styles.unbonding}>
+            <div>{t("unstakedTokens")}</div>
+            <div data-tooltip-id={tooltipId}>{formatCoin(unstakedTokens)}</div>
           </div>
         )}
         {!!stakeAccounts?.length && (
