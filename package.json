@@ -21,12 +21,15 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@cosmjs/amino": "^0.32.2",
     "@cosmjs/encoding": "^0.32.2",
     "@cosmjs/proto-signing": "^0.32.2",
     "@cosmjs/stargate": "^0.32.2",
     "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@keplr-wallet/cosmos": "^0.12.76",
+    "@keplr-wallet/proto-types": "^0.12.76",
     "@keplr-wallet/types": "^0.12.70",
     "@mui/icons-material": "^5.15.11",
     "@mui/lab": "^5.0.0-alpha.166",
