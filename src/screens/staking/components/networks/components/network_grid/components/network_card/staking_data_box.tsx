@@ -197,7 +197,7 @@ const StakingDataBox = ({ network, onFocusContent }: PopOverProps) => {
         {!!unstakedTokens && (
           <div className={styles.unbonding}>
             <div>{t("unstakedTokens")}</div>
-            <div data-tooltip-id={tooltipId}>{formatCoin(unstakedTokens)}</div>
+            <div>{formatCoin(unstakedTokens)}</div>
           </div>
         )}
         {!!stakeAccounts?.length && (
