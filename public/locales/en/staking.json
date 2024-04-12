@@ -24,7 +24,7 @@
     "phantomCreateWallet": "Failed to connect to Phantom, make sure the wallet is created and unlocked.",
     "success": {
       "subtitle": "Welcome  🎉",
-      "title": "Sign up success"
+      "title": "You've successfully connected."
     },
     "title": "Connect Wallet"
   },
