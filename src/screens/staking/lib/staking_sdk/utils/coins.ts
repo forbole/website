@@ -47,7 +47,6 @@ const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   ADYM: [CoinDenom.DYM, aExp],
   AISLM: [CoinDenom.ISLM, aExp],
   // Because inj != INJ, this needs to keep the lower case, it is handled when
-  // normalising the coin
   inj: [CoinDenom.INJ, exp0],
   LAMPORTS: [CoinDenom.SOL, nExp],
   PPICA: [CoinDenom.PICA, pExp],

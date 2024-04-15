@@ -23,6 +23,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import { networksWithMemo } from "@src/screens/staking/lib/staking_sdk/core";
 import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { solanaNetworks } from "@src/screens/staking/lib/staking_sdk/core/solana";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -30,6 +31,7 @@ import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sd
 import {
   getEmptyCoin,
   getIsCoin,
+  normaliseCoin,
 } from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
@@ -38,6 +40,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/utils/storage";
 import {
   MAX_MEMO,
+  minimumStakeAmountMap,
   stakeAmount,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { StakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
@@ -98,6 +101,8 @@ const StakingModal = () => {
 
   if (!account) return null;
 
+  const hasMemo = networksWithMemo.has(account.networkId);
+
   const amountNum = new BigNumber(amount);
 
   const isValidAmount =
@@ -112,6 +117,18 @@ const StakingModal = () => {
   const newAmountError = (() => {
     if (!balance?.num.gt(0)) {
       return t("stakingModal.amountError.noBalance");
+    }
+
+    const minimumStakeAmount = minimumStakeAmountMap[selectedAccount.networkId];
+
+    if (minimumStakeAmount) {
+      const normalised = normaliseCoin(minimumStakeAmount);
+
+      if (amountNum.lt(normalised.amount)) {
+        return t("stakingModal.amountError.notEnough", {
+          amount: formatCoin(normalised),
+        });
+      }
     }
 
     if (!isValidAmount) {
@@ -144,9 +161,7 @@ const StakingModal = () => {
       isLoading ||
       !isValidAmount ||
       amountError ||
-      memoError ||
-      newAmountError ||
-      newMemoError
+      (hasMemo && (memoError || newAmountError || newMemoError))
     )
       return;
 
@@ -372,31 +387,33 @@ const StakingModal = () => {
             </ModalError>
           )}
         </div>
-        <div className={styles.group}>
-          <Label>{t("stakingModal.memo")}</Label>
-          <FormInput
-            className={styles.input}
-            disabled={isLoading}
-            fullWidth
-            noFocusEffect
-            noMargin
-            onBlur={() => {
-              if (newMemoError !== memoError) {
-                setMemoError(newMemoError);
-              }
-            }}
-            onChange={(e) => {
-              if (memoError) {
-                setMemoError("");
-              }
+        {networksWithMemo.has(account.networkId) && (
+          <div className={styles.group}>
+            <Label>{t("stakingModal.memo")}</Label>
+            <FormInput
+              className={styles.input}
+              disabled={isLoading}
+              fullWidth
+              noFocusEffect
+              noMargin
+              onBlur={() => {
+                if (newMemoError !== memoError) {
+                  setMemoError(newMemoError);
+                }
+              }}
+              onChange={(e) => {
+                if (memoError) {
+                  setMemoError("");
+                }
 
-              setMemo(e.target.value);
-            }}
-            placeholder={t("optionalInput")}
-            value={memo}
-          />
-          {!!memoError && <ModalError>{memoError}</ModalError>}
-        </div>
+                setMemo(e.target.value);
+              }}
+              placeholder={t("optionalInput")}
+              value={memo}
+            />
+            {!!memoError && <ModalError>{memoError}</ModalError>}
+          </div>
+        )}
         <HighlightButton
           disabled={!!amountError || !!memoError || isLoading}
           onClick={onSubmit}

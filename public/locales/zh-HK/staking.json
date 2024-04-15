@@ -147,7 +147,8 @@
   "stakingModal": {
     "amountError": {
       "invalid": "您必須輸入有效金額",
-      "noBalance": "您沒有任何通證可供質押"
+      "noBalance": "您沒有任何通證可供質押",
+      "notEnough": "最低質押金金額為{{amount}}"
     },
     "available": "可用通證",
     "complete": {

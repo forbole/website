@@ -26,6 +26,7 @@ import {
   getStakeAccountsForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import { networksWithMemo } from "@src/screens/staking/lib/staking_sdk/core";
 import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { solanaNetworks } from "@src/screens/staking/lib/staking_sdk/core/solana";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
@@ -138,11 +139,13 @@ const UnstakingModal = () => {
       ? getStakeAccountsForNetwork(
           stakingRef.current.state,
           selectedAccount.networkId,
+          account?.address,
         )
       : []
   ).filter((acc) => ["activating", "active"].includes(acc.status));
 
   const onClose = () => setSelectedAccount(stakingRef.current, null, null);
+  const hasMemo = account ? networksWithMemo.has(account?.networkId) : false;
 
   const onSubmit = (e: any) => {
     e?.preventDefault();
@@ -160,7 +163,7 @@ const UnstakingModal = () => {
     }
 
     const hasInputError =
-      amountError || memoError || newAmountError || newMemoError;
+      amountError || newAmountError || (hasMemo && (newMemoError || memoError));
 
     if (
       !selectedAccount ||
@@ -417,7 +420,10 @@ const UnstakingModal = () => {
                     ns="staking"
                   />
                 </li>
-                <li>{t("unstakingModal.info3")}</li>
+                {!!selectedAccount?.networkId &&
+                  !solanaNetworks.has(selectedAccount.networkId) && (
+                    <li>{t("unstakingModal.info3")}</li>
+                  )}
                 <li>{t("unstakingModal.info4")}</li>
               </ul>
             ) : (

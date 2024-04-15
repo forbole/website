@@ -30,6 +30,7 @@ import {
 import {
   disconnectPhantom,
   disconnectSolflare,
+  minimumSolanaStakeAmount,
   stakeAmountSolana,
   tryToConnectPhantom,
   tryToConnectSolflare,
@@ -181,4 +182,10 @@ export const suggestAddWalletNetwork = (
   networkId: StakingNetworkId,
 ) => {
   suggestAddCosmosWalletNetwork(context, networkId);
+};
+
+export const minimumStakeAmountMap: {
+  [key in StakingNetworkId]?: Coin | undefined;
+} = {
+  ...minimumSolanaStakeAmount,
 };

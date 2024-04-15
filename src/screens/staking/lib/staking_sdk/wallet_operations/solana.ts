@@ -7,12 +7,14 @@ import {
   Transaction,
 } from "@solana/web3.js";
 import Solflare from "@solflare-wallet/sdk";
+import BigNumber from "bignumber.js";
 
 import { toastError } from "@src/components/notification";
 
 import type { TStakingContext } from "../context";
 import { fetchAccountData, setUserWallet } from "../context/actions";
 import type { Account } from "../core";
+import type { Coin } from "../core/base";
 import { ENABLE_TESTNETS, StakingNetworkId, WalletId } from "../core/base";
 import { solanaNetworks } from "../core/solana";
 import { stakingClient } from "../staking_client";
@@ -140,7 +142,14 @@ export const tryToConnectSolflare = async (
     await Promise.all([
       hasMainnetWallet ? mainnetWallet.connect() : Promise.resolve(),
       hasDevnetWallet ? devnetWallet.connect() : Promise.resolve(),
-    ]);
+    ]).catch((err) => {
+      if (!err) {
+        // This means that the user closed the popup or rejected the connection
+        resolve(false);
+      }
+
+      reject(err);
+    });
   });
 };
 
@@ -160,7 +169,11 @@ export const tryToConnectPhantom = async (
       const resp = await provider.connect();
 
       publicKey = resp.publicKey.toString();
-    } catch (error) {
+    } catch (error: any) {
+      if (error?.message?.includes("User rejected the request")) {
+        return false;
+      }
+
       toastError({
         title: walletErrorMap.phantomCreateWallet,
       });
@@ -211,9 +224,15 @@ export const tryToConnectPhantom = async (
 };
 
 // In mainnet less than 0.01 SOL it gives an error from the wallet estimation.
-const minimumStakeAmount: { [key in StakingNetworkId]?: number } = {
-  [StakingNetworkId.Solana]: LAMPORTS_PER_SOL * 0.01,
-  [StakingNetworkId.SolanaDevnet]: LAMPORTS_PER_SOL * 0.001,
+export const minimumSolanaStakeAmount: { [key in StakingNetworkId]?: Coin } = {
+  [StakingNetworkId.Solana]: {
+    amount: "0.01",
+    denom: "SOL",
+  },
+  [StakingNetworkId.SolanaDevnet]: {
+    amount: "0.001",
+    denom: "SOL",
+  },
 };
 
 type WalletApi = {
@@ -256,19 +275,22 @@ export const stakeAmountSolana = async ({
 
       const stakeKeyPair = Keypair.generate();
 
-      const amountToStake = Number(amount) * LAMPORTS_PER_SOL;
-      const minimumAmount = minimumStakeAmount[account.networkId] || 0;
+      const minimumAmount = minimumSolanaStakeAmount[account.networkId] || {
+        amount: "0",
+        denom: "SOL",
+      };
 
-      if (amountToStake < minimumAmount) {
+      const amountBN = new BigNumber(amount);
+
+      if (amountBN.lt(normaliseCoin(minimumAmount).amount)) {
         return {
-          coin: normaliseCoin({
-            amount: minimumAmount.toString(),
-            denom: "LAMPORTS",
-          }),
+          coin: minimumAmount,
           error: StakeError.MinimumAmount,
           success: false,
         };
       }
+
+      const amountToStake = amountBN.times(LAMPORTS_PER_SOL).toNumber();
 
       const newTx = StakeProgram.createAccount({
         authorized: new Authorized(accountKey, accountKey),

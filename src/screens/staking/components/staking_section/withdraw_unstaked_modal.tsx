@@ -57,6 +57,7 @@ const WithdrawUnstakedModal = () => {
       ? getStakeAccountsForNetwork(
           stakingRef.current.state,
           selectedAccount.networkId,
+          address,
         )
       : []
   ).filter((acc) => acc.status === "inactive");

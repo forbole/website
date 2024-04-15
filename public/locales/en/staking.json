@@ -149,7 +149,8 @@
   "stakingModal": {
     "amountError": {
       "invalid": "You have to input a valid amount",
-      "noBalance": "You don't have any tokens to stake"
+      "noBalance": "You don't have any tokens to stake",
+      "notEnough": "The minimum staking amount is {{amount}}"
     },
     "available": "Available",
     "complete": {

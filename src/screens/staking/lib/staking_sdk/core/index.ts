@@ -22,6 +22,8 @@ export const networksWithStakeAccounts = new Set([
   ...Array.from(solanaNetworks),
 ]);
 
+export const networksWithMemo = new Set([...Array.from(cosmosStakingNetworks)]);
+
 export const walletsSupported = new Set([
   ...Array.from(cosmosWallets),
   ...Array.from(solanaWallets),

@@ -62,11 +62,13 @@ export const getAccountsForNetwork = (
 export const getStakeAccountsForNetwork = (
   state: StakingState,
   network: StakingNetworkId,
+  parentAddress?: string,
 ) => {
   const accounts = getAccountsForNetwork(state, network);
   const uniqueAccounts = new Set<string>();
 
   return accounts
+    .filter(parentAddress ? (acc) => acc.address === parentAddress : () => true)
     .map((account) => account.info?.stakeAccounts)
     .flat()
     .filter((a): a is StakeAccount => !!a)
