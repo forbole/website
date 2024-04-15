@@ -1,4 +1,5 @@
 import type { EncodeObject } from "@cosmjs/proto-signing";
+import { SigningStargateClient } from "@cosmjs/stargate";
 import type {
   MsgDelegateEncodeObject,
   MsgUndelegateEncodeObject,
@@ -6,7 +7,6 @@ import type {
   StdFee,
   Event as TxEvent,
 } from "@cosmjs/stargate";
-import { SigningStargateClient } from "@cosmjs/stargate";
 import type { AccountData } from "@keplr-wallet/types";
 import { MsgWithdrawDelegatorReward } from "cosmjs-types/cosmos/distribution/v1beta1/tx";
 import {
@@ -26,9 +26,11 @@ import { networksWithStaking } from "../core";
 import type { Coin, StakingNetworkId } from "../core/base";
 import { WalletId } from "../core/base";
 import {
+  ethermintNetworks,
   keplrNetworks,
   keplrNonNativeChains,
   leapNetworks,
+  unsupportedLedgerNetworks,
 } from "../core/cosmos";
 import { stakingClient } from "../staking_client";
 import { addToConnectedWallets, getConnectedWallets } from "../utils/storage";
@@ -40,6 +42,7 @@ import type {
   WalletOperationResult,
 } from "./base";
 import { ClaimRewardsError, StakeError, UnstakeError } from "./base";
+import { signAndBroadcastEthermint } from "./cosmos/ethermint_utils";
 
 type TxEventType = "delegate" | "unbond" | "withdraw_rewards";
 
@@ -67,14 +70,14 @@ const getCosmosFee = async ({
   memo,
   msgs,
 }: FeeOpts) => {
-  const gasEstimate = await client
-    .simulate(account.address, msgs, memo)
-    .catch((err) => {
-      // eslint-disable-next-line no-console
-      console.log("debug: wallet_operations.ts: Estimate error", err);
+  const gasEstimate = ethermintNetworks.has(account.networkId)
+    ? 0
+    : await client.simulate(account.address, msgs, memo).catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log("debug: wallet_operations.ts: Estimate error", err);
 
-      return 0;
-    });
+        return 0;
+      });
 
   // This is a factor to increase the gas fee, since the estimate can be a
   // bit short in some cases (especially for the last events)
@@ -193,6 +196,20 @@ export const stakeAmountCosmos = ({
           }) satisfies Record<CosmosError, WalletOperationResult<StakeError>>
         )[getCosmosError(err)];
 
+      if (ethermintNetworks.has(account.networkId) && info.ethAccount) {
+        return signAndBroadcastEthermint(
+          networkInfo.rpc,
+          account,
+          info.ethAccount,
+          client,
+          [msgAny],
+          fee,
+          memo,
+        )
+          .then(handleSuccess)
+          .catch(handleError);
+      }
+
       return client
         .signAndBroadcast(account.address, [msgAny], fee, memo)
         .then((result) => handleSuccess(result?.events))
@@ -273,6 +290,20 @@ export const claimRewardsCosmos = async ({
             WalletOperationResult<ClaimRewardsError>
           >
         )[getCosmosError(err)];
+
+      if (ethermintNetworks.has(account.networkId) && info.ethAccount) {
+        return signAndBroadcastEthermint(
+          networkInfo.rpc,
+          account,
+          info.ethAccount,
+          client,
+          [msgAny],
+          fee,
+          "",
+        )
+          .then(handleSuccess)
+          .catch(handleError);
+      }
 
       return client
         .signAndBroadcast(account.address, [msgAny], fee)
@@ -371,6 +402,20 @@ export const unstakeCosmos = async (
           }) satisfies Record<CosmosError, WalletOperationResult<UnstakeError>>
         )[getCosmosError(err)];
 
+      if (ethermintNetworks.has(opts.account.networkId) && info.ethAccount) {
+        return signAndBroadcastEthermint(
+          networkInfo.rpc,
+          opts.account,
+          info.ethAccount,
+          client,
+          [msgAny],
+          fee,
+          opts.memo,
+        )
+          .then(handleSuccess)
+          .catch(handleError);
+      }
+
       return client
         .signAndBroadcast(opts.account.address, [msgAny], fee, opts.memo)
         .then((result) => handleSuccess(result?.events))
@@ -405,9 +450,17 @@ export const tryToConnectKeplr = async (
         await keplr.enable([network]).catch(() => null);
       }, Promise.resolve());
 
-      const handleError = (err: unknown) => {
+      const handleError = (network: StakingNetworkId) => (err: unknown) => {
         // eslint-disable-next-line no-console
-        console.log("debug: index.tsx: err", err);
+        console.log("debug: index.tsx: err", network, err);
+
+        if (
+          (err as any)?.message?.includes(
+            "Ledger is unsupported for this chain",
+          )
+        ) {
+          unsupportedLedgerNetworks.add(network);
+        }
 
         return [] as Account[];
       };
@@ -445,7 +498,7 @@ export const tryToConnectKeplr = async (
               .keplr!.getOfflineSigner(network)
               .getAccounts()
               .then(parseAccounts(network))
-              .catch(handleError);
+              .catch(handleError(network));
 
             return {
               accounts,
@@ -509,9 +562,9 @@ export const tryToConnectLeap = async (
     try {
       await window.leap.enable(chainsToConnect);
 
-      const handleError = (err: unknown) => {
+      const handleError = (network: StakingNetworkId) => (err: unknown) => {
         // eslint-disable-next-line no-console
-        console.log("debug: index.tsx: err", err);
+        console.log("debug: index.tsx: err", network, err);
 
         return [] as Account[];
       };
@@ -549,7 +602,7 @@ export const tryToConnectLeap = async (
               .leap!.getOfflineSigner(network)
               .getAccounts()
               .then(parseAccounts(network))
-              .catch(handleError);
+              .catch(handleError(network));
 
             return {
               accounts,

@@ -11,6 +11,9 @@ export const networkToUnnormalisedDenom = {
   [StakingNetworkId.CosmosHub]: "UATOM",
   [StakingNetworkId.CosmosHubTestnet]: "UATOM",
   [StakingNetworkId.DyDx]: "ADYDX",
+  [StakingNetworkId.Dymension]: "ADYM",
+  [StakingNetworkId.Injective]: "inj", // This is important to be lowercase, since inj != INJ
+  [StakingNetworkId.IslamicCoin]: "AISLM",
   [StakingNetworkId.Kava]: "UKAVA",
   [StakingNetworkId.KavaTestnet]: "UKAVA",
   [StakingNetworkId.Osmosis]: "UOSMO",
@@ -37,9 +40,15 @@ const aExp = 18;
 const pExp = 12;
 const nExp = 9;
 const uExp = 6;
+const exp0 = 0;
 
 const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   ADYDX: [CoinDenom.DYDX, aExp],
+  ADYM: [CoinDenom.DYM, aExp],
+  AISLM: [CoinDenom.ISLM, aExp],
+  // Because inj != INJ, this needs to keep the lower case, it is handled when
+  // normalising the coin
+  inj: [CoinDenom.INJ, exp0],
   LAMPORTS: [CoinDenom.SOL, nExp],
   PPICA: [CoinDenom.PICA, pExp],
   UAKT: [CoinDenom.AKT, uExp],
@@ -51,6 +60,16 @@ const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
 };
 
 export const normaliseCoin = (coin: Coin): Coin => {
+  // Special case where INJ != inj
+  if (coin.denom === "inj") {
+    return {
+      amount: new BigNumber(coin.amount)
+        .div(new BigNumber(10).pow(18))
+        .toString(),
+      denom: CoinDenom.INJ,
+    };
+  }
+
   const compared = coin.denom?.toUpperCase();
 
   const parseNum = (exp: number) =>
