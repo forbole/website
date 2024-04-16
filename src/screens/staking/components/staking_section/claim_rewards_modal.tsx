@@ -65,10 +65,9 @@ const ClaimRewardsModal = () => {
     setSelectedAccount(stakingRef.current, null, null);
   };
 
-  const infoMessage =
-    networkId && solanaNetworks.has(networkId)
-      ? `* ${t("claimRewards.solanaInfo")}`
-      : "";
+  const isSolana = networkId && solanaNetworks.has(networkId);
+
+  const infoMessage = isSolana ? `* ${t("claimRewards.solanaInfo")}` : "";
 
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("claimRewards.title")}>
@@ -102,7 +101,9 @@ const ClaimRewardsModal = () => {
         )}
         {infoMessage && <div className={styles.infoMessage}>{infoMessage}</div>}
         <HighlightButton
-          disabled={!address || !networkId || isLoading || !hasRewards}
+          disabled={
+            !address || !networkId || isLoading || !hasRewards || isSolana
+          }
           onClick={() => {
             if (!selectedAccount?.address || isLoading) return;
 
