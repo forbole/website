@@ -1,4 +1,5 @@
 import type { TStakingContext } from "./context";
+import type { Account } from "./core";
 import type { Coin, StakingNetworkId } from "./core/base";
 import { WalletId } from "./core/base";
 import { keplrNetworks, leapNetworks } from "./core/cosmos";
@@ -30,6 +31,7 @@ import {
 import {
   disconnectPhantom,
   disconnectSolflare,
+  handleSolflareClose,
   minimumSolanaStakeAmount,
   stakeAmountSolana,
   tryToConnectPhantom,
@@ -188,4 +190,10 @@ export const minimumStakeAmountMap: {
   [key in StakingNetworkId]?: Coin | undefined;
 } = {
   ...minimumSolanaStakeAmount,
+};
+
+export const handleWalletClose = (account: Account) => {
+  if (account.wallet === WalletId.Solflare) {
+    handleSolflareClose();
+  }
 };

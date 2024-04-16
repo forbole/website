@@ -8,8 +8,9 @@ import {
 } from "@solana/web3.js";
 import Solflare from "@solflare-wallet/sdk";
 import BigNumber from "bignumber.js";
+import Trans from "next-translate/Trans";
 
-import { toastError } from "@src/components/notification";
+import { toastError, toastInfo } from "@src/components/notification";
 
 import type { TStakingContext } from "../context";
 import { fetchAccountData, setUserWallet } from "../context/actions";
@@ -19,7 +20,11 @@ import { ENABLE_TESTNETS, StakingNetworkId, WalletId } from "../core/base";
 import { solanaNetworks } from "../core/solana";
 import { stakingClient } from "../staking_client";
 import { normaliseCoin } from "../utils/coins";
-import { addToConnectedWallets } from "../utils/storage";
+import {
+  addToConnectedWallets,
+  getSolflareCloseNotified,
+  setSolflareCloseNotified,
+} from "../utils/storage";
 import type {
   StakeOpts,
   UnstakeAmount,
@@ -487,4 +492,32 @@ export const disconnectPhantom = async () => {
   if (provider?.isPhantom) {
     await provider.disconnect();
   }
+};
+
+// Haven't found a way to detect if the user is using Ledger when staking with
+// Solflare. This displays a message when detecting that the modal was closed
+// without staking (at most once per day).
+export const handleSolflareClose = () => {
+  if (getSolflareCloseNotified()) return;
+
+  setSolflareCloseNotified();
+
+  toastInfo({
+    title: (
+      <Trans
+        components={[
+          // No content here since it is added by the i18n library
+          // eslint-disable-next-line jsx-a11y/anchor-has-content
+          <a
+            href="https://support.ledger.com/hc/en-us/articles/4499092909085-Allowing-blind-signing-in-the-Solana-SOL-app?docs=true"
+            key="0"
+            rel="noopener noreferrer"
+            target="_blank"
+          />,
+        ]}
+        i18nKey="solflareCloseMsg"
+        ns="staking"
+      />
+    ),
+  });
 };

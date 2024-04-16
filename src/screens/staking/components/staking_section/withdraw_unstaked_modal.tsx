@@ -18,7 +18,10 @@ import {
   getStakeAccountsForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { withdrawnUnstaked } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
+import {
+  handleWalletClose,
+  withdrawnUnstaked,
+} from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { ClaimRewardsError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
 
 import * as styles from "./claim_rewards_modal.module.scss";
@@ -147,7 +150,9 @@ const WithdrawUnstakedModal = () => {
                   });
                 } else if (withdrawn.error) {
                   const handlers: Record<ClaimRewardsError, () => void> = {
-                    [ClaimRewardsError.None]: () => {},
+                    [ClaimRewardsError.None]: () => {
+                      handleWalletClose(selectedAccount);
+                    },
                     [ClaimRewardsError.NotEnoughGas]: () => {
                       notEnoughGasError(t);
                     },

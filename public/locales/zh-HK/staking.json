@@ -109,6 +109,7 @@
     "subtitle": "立即提款",
     "title": "您已解除質押的 $SOL 現已可領取"
   },
+  "solflareCloseMsg": "如果您將 Ledger 與 Solflare 結合使用，請將其解鎖，打開 Solana 應用程序，然後啟用<0>必要的設定</0>來簽署交易。",
   "stake": "質押",
   "stake desc": "作為通證持有人，你可以安心在我們的基礎建設上委託質押原生通證",
   "stake with us!": "與我們一起質押！",

@@ -42,6 +42,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/utils/storage";
 import {
   MAX_MEMO,
+  handleWalletClose,
   unstake,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { UnstakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
@@ -215,7 +216,9 @@ const UnstakingModal = () => {
           });
         } else if (unstaked.error) {
           const handlers: Record<UnstakeError, () => void> = {
-            [UnstakeError.None]: () => {},
+            [UnstakeError.None]: () => {
+              handleWalletClose(selectedAccount);
+            },
             [UnstakeError.NotEnoughGas]: () => {
               notEnoughGasError(t);
             },

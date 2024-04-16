@@ -40,6 +40,7 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/utils/storage";
 import {
   MAX_MEMO,
+  handleWalletClose,
   minimumStakeAmountMap,
   stakeAmount,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
@@ -198,7 +199,7 @@ const StakingModal = () => {
             subtitle: `${t("stakingModal.success.sub")} 🎉`,
             title: t("stakingModal.success.title"),
           });
-        } else if (result.error !== StakeError.None) {
+        } else if (result.error) {
           const handlers: Record<StakeError, () => void> = {
             [StakeError.MinimumAmount]: () => {
               const minimum = result.coin;
@@ -207,7 +208,9 @@ const StakingModal = () => {
                 notEnoughAmountError(t, minimum);
               }
             },
-            [StakeError.None]: () => {},
+            [StakeError.None]: () => {
+              handleWalletClose(account);
+            },
             [StakeError.NotEnoughGas]: () => {
               notEnoughGasError(t);
             },

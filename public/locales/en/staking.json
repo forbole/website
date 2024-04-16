@@ -110,6 +110,7 @@
     "subtitle": "Withdraw now",
     "title": "Your unstaked $SOL is now withdrawable"
   },
+  "solflareCloseMsg": "If you are using Ledger with Solflare, unlock it, open the Solana app, and enable the <0>necessary setting</0> to sign transactions.",
   "stake": "Stake",
   "stake desc": "As a token holder, you can utilize our infrastructure by staking your tokens with us",
   "stake with us!": "Stake with us!",
