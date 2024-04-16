@@ -207,7 +207,7 @@
   "trusted provider desc": "我們已經建立了完善的驗證人基礎設施，全天候監控區塊鏈網路安全",
   "unbonding period": "解質押期",
   "unbondingTokens": "解除質押中的通證",
-  "unstakedTokens": "已解除質押的",
+  "unstakedTokens": "已解除質押的通證",
   "unstaking para 1": "將您質押的通證從一個驗證器轉移到另一個驗證器的操作稱為重新質押您的通證。",
   "unstaking para 2": "因此，如果您的計劃是繼續質押，並且您只是希望切換到不同的驗證器，請使用重新質押來繼續累積您的質押獎勵和空投。",
   "unstaking para 3": "第一次重質押後，您需要等待一定時間（對應解質押期）才能進行下一次重質押交易。",
