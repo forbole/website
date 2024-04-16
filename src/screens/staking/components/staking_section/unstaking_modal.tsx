@@ -53,6 +53,8 @@ import NetworksSelect from "./networks_select";
 import StakeAccountsSelect from "./stake_accounts_select";
 import * as styles from "./unstaking_modal.module.scss";
 
+const possibleStakeAccountStatus = ["activating", "active"];
+
 const UnstakingModal = () => {
   const stakingRef = useStakingRef();
 
@@ -142,7 +144,7 @@ const UnstakingModal = () => {
           account?.address,
         )
       : []
-  ).filter((acc) => ["activating", "active"].includes(acc.status));
+  ).filter((acc) => possibleStakeAccountStatus.includes(acc.status));
 
   const onClose = () => setSelectedAccount(stakingRef.current, null, null);
   const hasMemo = account ? networksWithMemo.has(account?.networkId) : false;
@@ -321,7 +323,18 @@ const UnstakingModal = () => {
           <Label>{t("unstakingModal.unstakeFrom")}</Label>
           <div>
             {selectedAccount && (
-              <NetworksSelect disabled={isLoading} variant="accounts_wallet" />
+              <NetworksSelect
+                accountFilter={
+                  solanaNetworks.has(selectedAccount.networkId)
+                    ? (acc) =>
+                        !!acc.info?.stakeAccounts?.some((a) =>
+                          possibleStakeAccountStatus.includes(a.status),
+                        )
+                    : () => true
+                }
+                disabled={isLoading}
+                variant="accounts_wallet"
+              />
             )}
           </div>
         </div>

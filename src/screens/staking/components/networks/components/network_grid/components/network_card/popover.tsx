@@ -419,6 +419,33 @@ const PopOver = ({
             {shouldDisplayUnstakeButton && (
               <EmptyButton
                 onClick={() => {
+                  if (
+                    unstakeableStakeAccounts &&
+                    unstakeableStakeAccounts.length > 0
+                  ) {
+                    const [unstakeableStakeAccount] = unstakeableStakeAccounts;
+
+                    const account = getAccountsForNetwork(
+                      stakingRef.current.state,
+                      stakingNetworkId,
+                    ).find(
+                      (acc) =>
+                        !!acc.info?.stakeAccounts?.find(
+                          (s) => s.address === unstakeableStakeAccount.address,
+                        ),
+                    );
+
+                    if (account) {
+                      setSelectedAccount(
+                        stakingRef.current,
+                        "unstake",
+                        account,
+                      );
+                    }
+
+                    return;
+                  }
+
                   setSelectedAccount(
                     stakingRef.current,
                     "unstake",
