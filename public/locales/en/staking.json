@@ -15,6 +15,7 @@
   "claimRewards": {
     "claimFrom": "Claim from:",
     "selectNetwork": "Select network:",
+    "solanaInfo": "On solana, your rewards will be distributed automatically to your staking account every 2-3 days, it means you don't need to withdraw it manually!",
     "title": "Claim Rewards"
   },
   "commission": "Commission Rate",

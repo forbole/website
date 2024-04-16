@@ -15,6 +15,7 @@
   "claimRewards": {
     "claimFrom": "选择网络：",
     "selectNetwork": "选择网络：",
+    "solanaInfo": "在 solana 上，您的奖励将每 2-3 天自动分配到您的质押账户，这意味着您无需手动提取！",
     "title": "领取奖励"
   },
   "commission": "佣金",

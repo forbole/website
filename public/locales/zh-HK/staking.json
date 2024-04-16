@@ -15,6 +15,7 @@
   "claimRewards": {
     "claimFrom": "從哪個錢包領取？",
     "selectNetwork": "選擇網路：",
+    "solanaInfo": "在 solana 上，您的獎勵將每 2-3 天自動分配到您的質押帳戶，這意味著您無需手動提取！",
     "title": "領取獎勵"
   },
   "commission": "佣金",

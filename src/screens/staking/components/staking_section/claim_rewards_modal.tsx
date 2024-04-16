@@ -18,6 +18,7 @@ import {
   getSelectedAccount,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { Coin } from "@src/screens/staking/lib/staking_sdk/core/base";
+import { solanaNetworks } from "@src/screens/staking/lib/staking_sdk/core/solana";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
@@ -64,6 +65,11 @@ const ClaimRewardsModal = () => {
     setSelectedAccount(stakingRef.current, null, null);
   };
 
+  const infoMessage =
+    networkId && solanaNetworks.has(networkId)
+      ? `* ${t("claimRewards.solanaInfo")}`
+      : "";
+
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("claimRewards.title")}>
       <div className={styles.wrapper}>
@@ -94,6 +100,7 @@ const ClaimRewardsModal = () => {
             </div>
           </div>
         )}
+        {infoMessage && <div className={styles.infoMessage}>{infoMessage}</div>}
         <HighlightButton
           disabled={!address || !networkId || isLoading || !hasRewards}
           onClick={() => {
