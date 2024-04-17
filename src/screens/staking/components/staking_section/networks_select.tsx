@@ -4,7 +4,6 @@ import BigNumber from "bignumber.js";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
-import IconChevronDown from "@src/components/icons/icon_chevron_down.svg";
 import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import { useMiddleEllipsis } from "@src/hooks/use_middle_ellipsis";
@@ -32,28 +31,7 @@ import { walletsIcons } from "@src/screens/staking/lib/wallet_info";
 import { getNetworkInfo } from "@src/utils/network_info";
 
 import * as styles from "./networks_select.module.scss";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-
-const IconComponent = ({ className }: { className: string }) => (
-  <IconChevronDown
-    className={[
-      className,
-      styles.trigger,
-      className.includes("disabled") ? styles.disabled : "",
-    ].join(" ")}
-  />
-);
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
+import { IconComponent, MenuProps, selectStyles } from "./select_base";
 
 type NetworkItemProps = {
   denom: string;
@@ -136,11 +114,12 @@ const WalletItem = ({ account, isOpened, walletName }: WalletItemProps) => {
 };
 
 type Props = {
+  accountFilter?: (account: Account) => boolean;
   disabled?: boolean;
   variant: "accounts_wallet" | "accounts_with_rewards" | "accounts";
 };
 
-const NetworksSelect = ({ disabled, variant }: Props) => {
+const NetworksSelect = ({ accountFilter, disabled, variant }: Props) => {
   const stakingRef = useStakingRef();
 
   const { state: stakingState } = stakingRef.current;
@@ -151,6 +130,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   if (!variant || !selectedAccount) return null;
 
   const isRewards = variant === "accounts_with_rewards";
+
   const isWallet = variant === "accounts_wallet";
 
   const allAccounts = getAllAccounts(stakingState);
@@ -178,7 +158,8 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
   if (isWallet) {
     const otherWalletsAccounts = allAccounts
       .filter(({ wallet }) => walletsSupported.has(wallet))
-      .filter((account) => account.networkId === selectedAccount.networkId);
+      .filter((account) => account.networkId === selectedAccount.networkId)
+      .filter(accountFilter || (() => true));
 
     if (otherWalletsAccounts.length < 2) {
       const walletName = getWalletCustomName(
@@ -187,7 +168,7 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
       );
 
       return (
-        <div className={styles.singleItem}>
+        <div className={[styles.singleItem, selectStyles.control].join(" ")}>
           <WalletItem
             account={selectedAccount}
             isOpened={false}
@@ -198,11 +179,11 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
     }
 
     return (
-      <div className={styles.singleItem}>
+      <div className={[styles.singleItem, selectStyles.control].join(" ")}>
         <Select
           IconComponent={IconComponent}
           MenuProps={MenuProps}
-          className={styles.select}
+          className={selectStyles.select}
           disabled={disabled}
           onChange={handleChange}
           onClose={() => {
@@ -256,11 +237,11 @@ const NetworksSelect = ({ disabled, variant }: Props) => {
     .sort(sortAccountsByNetworkName);
 
   return (
-    <div className={styles.control}>
+    <div className={selectStyles.control}>
       <Select
         IconComponent={IconComponent}
         MenuProps={MenuProps}
-        className={styles.select}
+        className={selectStyles.select}
         disabled={disabled}
         onChange={handleChange}
         value={selectedItem}

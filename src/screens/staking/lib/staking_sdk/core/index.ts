@@ -7,12 +7,27 @@ import type {
 import type { CoinDenom, WalletId } from "./base";
 import { StakingNetworkId } from "./base";
 import { cosmosStakingNetworks, cosmosWallets } from "./cosmos";
+import { solanaNetworks, solanaWallets } from "./solana";
 
 export const networksWithStaking = new Set([
   ...Array.from(cosmosStakingNetworks),
+  ...Array.from(solanaNetworks),
 ]);
 
-export const walletsSupported = new Set([...Array.from(cosmosWallets)]);
+export const networksWithRewards = new Set([
+  ...Array.from(cosmosStakingNetworks),
+]);
+
+export const networksWithStakeAccounts = new Set([
+  ...Array.from(solanaNetworks),
+]);
+
+export const networksWithMemo = new Set([...Array.from(cosmosStakingNetworks)]);
+
+export const walletsSupported = new Set([
+  ...Array.from(cosmosWallets),
+  ...Array.from(solanaWallets),
+]);
 
 export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Akash]: "akash",
@@ -28,6 +43,8 @@ export const networkIdToNetworkKey: Record<StakingNetworkId, NetworkKey> = {
   [StakingNetworkId.Kava]: "kava",
   [StakingNetworkId.KavaTestnet]: "kava-testnet",
   [StakingNetworkId.Osmosis]: "osmosis",
+  [StakingNetworkId.Solana]: "solana",
+  [StakingNetworkId.SolanaDevnet]: "solana-devnet",
   [StakingNetworkId.Stargaze]: "stargaze",
   [StakingNetworkId.StargazeTestnet]: "stargaze-testnet",
 };
@@ -47,7 +64,12 @@ export type Account = {
   wallet: WalletId;
 };
 
-type StakeAction = "claim_rewards" | "connect_wallet" | "stake" | "unstake";
+type StakeAction =
+  | "claim_rewards"
+  | "connect_wallet"
+  | "stake"
+  | "unstake"
+  | "withdraw_unstake";
 
 type SelectedAccount = {
   address: string;

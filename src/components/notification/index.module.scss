@@ -28,12 +28,29 @@
   border: 2px solid #fd565f;
 }
 
+.info {
+  background-color: #ebeef5;
+  border: 2px solid #007fff;
+}
+
 .success {
   background-color: rgb(218, 244, 233);
   border: 2px solid #1ec490;
 }
 
+.info,
 .error,
 .success {
   border-radius: 8px;
+}
+
+.infoBytton {
+  background: transparent;
+  border: none;
+  color: #007fff;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.022em;
+  line-height: 20px;
+  text-align: left;
 }

@@ -518,9 +518,7 @@ const networks = {
     label: "Sentinel - DVPN",
     name: "Sentinel",
   },
-
   "solana": {
-    address: "76nwV8zz8tLz97SBRXH6uwHvgHXtqJDLQfF66jZhQ857",
     denom: "SOL",
     graphql: "solana",
     guide: "how-to-stake-sol-on-solana",
@@ -528,6 +526,15 @@ const networks = {
     key: "solana",
     label: "Solana - SOL",
     name: "Solana",
+  },
+  "solana-devnet": {
+    denom: "SOL",
+    graphql: "solana",
+    guide: "how-to-stake-sol-on-solana",
+    image: "/images/network/solana.svg",
+    key: "solana-devnet",
+    label: "SolanaDevnet - SOL",
+    name: "Solana Devnet",
   },
   "ssv": {
     denom: "SSV",
@@ -633,7 +640,16 @@ export const getNetworkInfo = (key: NetworkKey): Network =>
   networks[key] || null;
 
 const cosmosTestNetworkKeys = ENABLE_TESTNETS
-  ? (["kava-testnet", "stargaze-testnet"] satisfies NetworkKey[])
+  ? ([
+      "celestia-testnet",
+      "cosmos-testnet",
+      "kava-testnet",
+      "stargaze-testnet",
+    ] satisfies NetworkKey[])
+  : [];
+
+const solanaTestNetworkKeys = ENABLE_TESTNETS
+  ? (["solana-devnet"] satisfies NetworkKey[])
   : [];
 
 export const cosmosNetworkKeys = [
@@ -683,6 +699,7 @@ export const cosmosNetworkKeys = [
   "xpla",
 
   ...cosmosTestNetworkKeys,
+  ...solanaTestNetworkKeys,
   // Preparing:
   // 'desmos',
 ] satisfies NetworkKey[];
@@ -705,6 +722,7 @@ const getNetworkKeysArray = () => {
   const arr = [...cosmosNetworkKeys] as string[];
 
   arr.push("elrond", "solana", "oasis", "radix", "sui", "ethereum");
+
   arr.sort();
 
   return arr;

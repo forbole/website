@@ -14,50 +14,60 @@ import {
   syncAccountData,
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import {
-  getClaimableRewardsForNetwork,
   getSelectedAccount,
+  getStakeAccountsForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
-import type { Coin } from "@src/screens/staking/lib/staking_sdk/core/base";
-import { solanaNetworks } from "@src/screens/staking/lib/staking_sdk/core/solana";
-import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { accountHasRewards } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
 import {
-  claimRewards,
-  getClaimRewardsFee,
+  handleWalletClose,
+  withdrawnUnstaked,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { ClaimRewardsError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
-import { PostHogCustomEvent } from "@src/utils/posthog";
 
 import * as styles from "./claim_rewards_modal.module.scss";
 import Label from "./label";
 import ModalBase from "./modal_base";
 import NetworksSelect from "./networks_select";
+import StakeAccountsSelect from "./stake_accounts_select";
 
-const ClaimRewardsModal = () => {
+const WithdrawUnstakedModal = () => {
   const stakingRef = useStakingRef();
 
-  const [gasFee, setGasFee] = useState<Coin | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [selectedStakeAccount, setSelectedStakeAccount] = useState<
+    null | string
+  >(null);
 
   const { t } = useTranslation("staking");
 
   const { selectedAction } = stakingRef.current.state;
 
   const selectedAccount = getSelectedAccount(stakingRef.current.state);
-  const isOpen = !!selectedAccount && selectedAction === "claim_rewards";
+  const isOpen = !!selectedAccount && selectedAction === "withdraw_unstake";
   const { address, networkId } = selectedAccount || {};
 
-  const hasRewards = selectedAccount
-    ? accountHasRewards(selectedAccount)
-    : null;
-
   useEffect(() => {
-    if (isOpen && selectedAccount?.address) {
-      setGasFee(null);
-
-      getClaimRewardsFee({ account: selectedAccount }).then(setGasFee);
+    if (isOpen) {
+      return () => {
+        setSelectedStakeAccount(null);
+      };
     }
-  }, [isOpen, selectedAccount]);
+  }, [isOpen]);
+
+  const inactiveStakeAccounts = (
+    selectedAccount
+      ? getStakeAccountsForNetwork(
+          stakingRef.current.state,
+          selectedAccount.networkId,
+          address,
+        )
+      : []
+  ).filter((acc) => acc.status === "inactive");
+
+  const hasRewards =
+    !!inactiveStakeAccounts?.length ||
+    (selectedAccount ? accountHasRewards(selectedAccount) : null);
 
   const onClose = () => {
     if (isLoading) return;
@@ -65,55 +75,69 @@ const ClaimRewardsModal = () => {
     setSelectedAccount(stakingRef.current, null, null);
   };
 
-  const isSolana = networkId && solanaNetworks.has(networkId);
-
-  const infoMessage = isSolana ? `* ${t("claimRewards.solanaInfo")}` : "";
+  if (!isOpen) return null;
 
   return (
-    <ModalBase onClose={onClose} open={isOpen} title={t("claimRewards.title")}>
+    <ModalBase
+      onClose={onClose}
+      open={isOpen}
+      title={t("withdrawUnstaked.title")}
+    >
       <div className={styles.wrapper}>
         <div className={styles.selectGroup}>
-          <Label>{t("claimRewards.claimFrom")}</Label>
-          <div>
-            {selectedAccount && (
-              <NetworksSelect disabled={isLoading} variant="accounts_wallet" />
-            )}
-          </div>
-        </div>
-        <div className={styles.selectGroup}>
-          <Label>{t("claimRewards.selectNetwork")}</Label>
+          <Label>{t("withdrawUnstaked.fromWallet")}</Label>
           <div>
             {selectedAccount && (
               <NetworksSelect
+                accountFilter={(acc) =>
+                  !!acc.info?.stakeAccounts?.some(
+                    (a) => a.status === "inactive",
+                  )
+                }
                 disabled={isLoading}
-                variant="accounts_with_rewards"
+                variant="accounts_wallet"
               />
             )}
           </div>
         </div>
-        {gasFee && (
-          <div className={styles.feeRow}>
-            <div>{t("rewardsModal.gasFee")}</div>
-            <div>
-              {formatCoin({ amount: gasFee.amount, denom: gasFee.denom })}
-            </div>
+        <div className={styles.selectGroup}>
+          <Label>{t("withdrawUnstaked.selectAcc")}</Label>
+          <div>
+            {selectedAccount && (
+              <StakeAccountsSelect
+                accounts={inactiveStakeAccounts}
+                disabled={isLoading}
+                onChange={setSelectedStakeAccount}
+                selectedAccount={selectedStakeAccount}
+              />
+            )}
           </div>
-        )}
-        {infoMessage && <div className={styles.infoMessage}>{infoMessage}</div>}
+        </div>
         <HighlightButton
-          disabled={
-            !address || !networkId || isLoading || !hasRewards || isSolana
-          }
+          disabled={!address || !networkId || isLoading || !hasRewards}
           onClick={() => {
-            if (!selectedAccount?.address || isLoading) return;
+            const usedSelectedStakeAccount =
+              selectedStakeAccount || inactiveStakeAccounts[0]?.address;
+
+            if (
+              !selectedAccount?.address ||
+              !usedSelectedStakeAccount ||
+              isLoading
+            )
+              return;
 
             setIsLoading(true);
 
-            claimRewards({
+            withdrawnUnstaked({
               account: selectedAccount,
+              stakeAccountAddress: usedSelectedStakeAccount,
             })
-              .then(async (claimed) => {
-                if (claimed.success) {
+              .then(async (withdrawn) => {
+                if (withdrawn.success) {
+                  await new Promise<void>((resolve) =>
+                    setTimeout(resolve, 5000),
+                  );
+
                   await syncAccountData(
                     stakingRef.current,
                     selectedAccount as NonNullable<typeof selectedAccount>,
@@ -121,27 +145,14 @@ const ClaimRewardsModal = () => {
 
                   setSelectedAccount(stakingRef.current, null, null);
 
-                  const claimableRewardsForNetwork =
-                    getClaimableRewardsForNetwork(
-                      stakingRef.current.state,
-                      selectedAccount.networkId,
-                    );
-
-                  stakingRef.current.postHog?.capture(
-                    PostHogCustomEvent.ClaimedRewards,
-                    {
-                      ...claimableRewardsForNetwork,
-                      walletAddress: selectedAccount.address,
-                    },
-                  );
-
                   toastSuccess({
-                    subtitle: `${t("rewardsModal.success.sub")} 🎉`,
-                    title: t("rewardsModal.success.title"),
+                    title: t("withdrawUnstaked.success.title"),
                   });
-                } else if (claimed.error) {
+                } else if (withdrawn.error) {
                   const handlers: Record<ClaimRewardsError, () => void> = {
-                    [ClaimRewardsError.None]: () => {},
+                    [ClaimRewardsError.None]: () => {
+                      handleWalletClose(selectedAccount);
+                    },
                     [ClaimRewardsError.NotEnoughGas]: () => {
                       notEnoughGasError(t);
                     },
@@ -150,7 +161,7 @@ const ClaimRewardsModal = () => {
                     },
                   };
 
-                  handlers[claimed.error]?.();
+                  handlers[withdrawn.error]?.();
                 }
               })
               .catch((error) => {
@@ -166,11 +177,11 @@ const ClaimRewardsModal = () => {
           pinkShadow
           size="big"
         >
-          {isLoading ? <LoadingSpinner /> : t("rewardsModal.button")}
+          {isLoading ? <LoadingSpinner /> : t("withdrawUnstaked.button")}
         </HighlightButton>
       </div>
     </ModalBase>
   );
 };
 
-export default ClaimRewardsModal;
+export default WithdrawUnstakedModal;

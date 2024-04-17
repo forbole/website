@@ -15,6 +15,7 @@
   padding: 12px 16px;
   width: 100%;
 
+  .stakeAccounts,
   .unbonding,
   .rewards,
   .total {
@@ -64,15 +65,15 @@
   }
 }
 
-.stakeAccount {
+.nav {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transform: rotate(-90deg);
+}
+
+.navWrapper {
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.external {
-  height: 20px;
-  width: 20px;
 }

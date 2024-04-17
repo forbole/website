@@ -1,4 +1,5 @@
 import BigNumber from "bignumber.js";
+import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ import { toastSuccess } from "@src/components/notification";
 import { tooltipId } from "@src/components/tooltip";
 import {
   displayGenericError,
+  notEnoughAmountError,
   notEnoughGasError,
 } from "@src/screens/staking/lib/error";
 import { useStakingRef } from "@src/screens/staking/lib/staking_sdk/context";
@@ -21,13 +23,25 @@ import {
 } from "@src/screens/staking/lib/staking_sdk/context/actions";
 import { getSelectedAccount } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import type { StakingNetworkInfo } from "@src/screens/staking/lib/staking_sdk/core";
+import { networksWithMemo } from "@src/screens/staking/lib/staking_sdk/core";
 import { mainNetworkDenom } from "@src/screens/staking/lib/staking_sdk/core/base";
+import { solanaNetworks } from "@src/screens/staking/lib/staking_sdk/core/solana";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
 import { getAccountNormalisedBalance } from "@src/screens/staking/lib/staking_sdk/utils/accounts";
-import { getEmptyCoin } from "@src/screens/staking/lib/staking_sdk/utils/coins";
+import {
+  getEmptyCoin,
+  getIsCoin,
+  normaliseCoin,
+} from "@src/screens/staking/lib/staking_sdk/utils/coins";
 import { getUnbondingTimeForNetwork } from "@src/screens/staking/lib/staking_sdk/utils/networks";
 import {
+  getHasStaked,
+  setHasStaked,
+} from "@src/screens/staking/lib/staking_sdk/utils/storage";
+import {
   MAX_MEMO,
+  handleWalletClose,
+  minimumStakeAmountMap,
   stakeAmount,
 } from "@src/screens/staking/lib/staking_sdk/wallet_operations";
 import { StakeError } from "@src/screens/staking/lib/staking_sdk/wallet_operations/base";
@@ -54,6 +68,7 @@ const StakingModal = () => {
   const [amountError, setAmountError] = useState("");
   const [memoError, setMemoError] = useState("");
   const [memo, setMemo] = useState("");
+  const [hasCompleted, setHasCompleted] = useState(false);
 
   const { locale } = useRouter();
   const isOpen = !!selectedAccount && selectedAction === "stake";
@@ -75,6 +90,7 @@ const StakingModal = () => {
         setAmountError("");
         setMemo("");
         setMemoError("");
+        setHasCompleted(false);
       };
     }
   }, [isOpen, selectedAccount, stakingRef]);
@@ -85,6 +101,8 @@ const StakingModal = () => {
   const balance = getAccountNormalisedBalance(account);
 
   if (!account) return null;
+
+  const hasMemo = networksWithMemo.has(account.networkId);
 
   const amountNum = new BigNumber(amount);
 
@@ -100,6 +118,18 @@ const StakingModal = () => {
   const newAmountError = (() => {
     if (!balance?.num.gt(0)) {
       return t("stakingModal.amountError.noBalance");
+    }
+
+    const minimumStakeAmount = minimumStakeAmountMap[selectedAccount.networkId];
+
+    if (minimumStakeAmount) {
+      const normalised = normaliseCoin(minimumStakeAmount);
+
+      if (amountNum.lt(normalised.amount)) {
+        return t("stakingModal.amountError.notEnough", {
+          amount: formatCoin(normalised),
+        });
+      }
     }
 
     if (!isValidAmount) {
@@ -132,9 +162,7 @@ const StakingModal = () => {
       isLoading ||
       !isValidAmount ||
       amountError ||
-      memoError ||
-      newAmountError ||
-      newMemoError
+      (hasMemo && (memoError || newAmountError || newMemoError))
     )
       return;
 
@@ -149,21 +177,40 @@ const StakingModal = () => {
         if (result.success) {
           await syncAccountData(stakingRef.current, selectedAccount);
 
-          setSelectedAccount(stakingRef.current, null, null);
-
           stakingRef.current.postHog?.capture(PostHogCustomEvent.StakedTokens, {
             amount,
             denom: mainNetworkDenom[selectedAccount.networkId],
             walletAddress: selectedAccount.address,
           });
 
+          if (
+            solanaNetworks.has(selectedAccount.networkId) &&
+            !getHasStaked()
+          ) {
+            setHasStaked();
+            setHasCompleted(true);
+
+            return;
+          }
+
+          setSelectedAccount(stakingRef.current, null, null);
+
           toastSuccess({
             subtitle: `${t("stakingModal.success.sub")} 🎉`,
             title: t("stakingModal.success.title"),
           });
-        } else if (result.error !== StakeError.None) {
+        } else if (result.error) {
           const handlers: Record<StakeError, () => void> = {
-            [StakeError.None]: () => {},
+            [StakeError.MinimumAmount]: () => {
+              const minimum = result.coin;
+
+              if (getIsCoin(minimum)) {
+                notEnoughAmountError(t, minimum);
+              }
+            },
+            [StakeError.None]: () => {
+              handleWalletClose(account);
+            },
             [StakeError.NotEnoughGas]: () => {
               notEnoughGasError(t);
             },
@@ -194,6 +241,61 @@ const StakingModal = () => {
   })();
 
   const unbondingPeriod = getUnbondingTimeForNetwork(networkInfo, locale);
+
+  if (hasCompleted) {
+    return (
+      <ModalBase
+        onClose={onClose}
+        open={isOpen}
+        title={t("stakingModal.complete.titleComplete")}
+      >
+        <div className={styles.completedWrapper}>
+          <img
+            alt=""
+            className={styles.coinsImg}
+            src="/icons/staking_coins.svg"
+          />
+          <div className={styles.intro}>{t("stakingModal.complete.intro")}</div>
+          <div className={styles.blueCard}>
+            <img alt="" className={styles.bulb} src="/icons/bulb_stars.svg" />
+            <div>
+              <div className={styles.tipsTitleWrapper}>
+                <span className={styles.tipsTitle}>
+                  {t("stakingModal.complete.tips")}
+                </span>
+                <IconInfoCircle
+                  data-tooltip-content={t("stakingModal.complete.tipsTooltip")}
+                  data-tooltip-id={tooltipId}
+                />
+              </div>
+              <div className={styles.rewards}>
+                {t("stakingModal.complete.release")}
+              </div>
+              <ul className={styles.tipsList}>
+                <li>
+                  <Trans
+                    components={[<b key="0" />]}
+                    i18nKey="stakingModal.complete.desc1Solana"
+                    ns="staking"
+                  />
+                </li>
+                <li>
+                  <Trans
+                    components={[<b key="0" />]}
+                    i18nKey="stakingModal.complete.desc2Solana"
+                    ns="staking"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <HighlightButton onClick={onClose} pinkShadow size="big">
+          {t("common:close")}
+        </HighlightButton>
+      </ModalBase>
+    );
+  }
 
   return (
     <ModalBase onClose={onClose} open={isOpen} title={t("stakingModal.title")}>
@@ -288,31 +390,33 @@ const StakingModal = () => {
             </ModalError>
           )}
         </div>
-        <div className={styles.group}>
-          <Label>{t("stakingModal.memo")}</Label>
-          <FormInput
-            className={styles.input}
-            disabled={isLoading}
-            fullWidth
-            noFocusEffect
-            noMargin
-            onBlur={() => {
-              if (newMemoError !== memoError) {
-                setMemoError(newMemoError);
-              }
-            }}
-            onChange={(e) => {
-              if (memoError) {
-                setMemoError("");
-              }
+        {networksWithMemo.has(account.networkId) && (
+          <div className={styles.group}>
+            <Label>{t("stakingModal.memo")}</Label>
+            <FormInput
+              className={styles.input}
+              disabled={isLoading}
+              fullWidth
+              noFocusEffect
+              noMargin
+              onBlur={() => {
+                if (newMemoError !== memoError) {
+                  setMemoError(newMemoError);
+                }
+              }}
+              onChange={(e) => {
+                if (memoError) {
+                  setMemoError("");
+                }
 
-              setMemo(e.target.value);
-            }}
-            placeholder={t("optionalInput")}
-            value={memo}
-          />
-          {!!memoError && <ModalError>{memoError}</ModalError>}
-        </div>
+                setMemo(e.target.value);
+              }}
+              placeholder={t("optionalInput")}
+              value={memo}
+            />
+            {!!memoError && <ModalError>{memoError}</ModalError>}
+          </div>
+        )}
         <HighlightButton
           disabled={!!amountError || !!memoError || isLoading}
           onClick={onSubmit}

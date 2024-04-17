@@ -4,6 +4,7 @@ import type { Account, StakingState } from "../core";
 import { walletsSupported } from "../core";
 import type { Coin, CoinDenom, StakingNetworkId, WalletId } from "../core/base";
 import { mainNetworkDenom } from "../core/base";
+import type { StakeAccount } from "../staking_client_types";
 import {
   filterUniqueAddresses,
   getClaimableRewardsForAccount,
@@ -58,6 +59,30 @@ export const getAccountsForNetwork = (
   );
 };
 
+export const getStakeAccountsForNetwork = (
+  state: StakingState,
+  network: StakingNetworkId,
+  parentAddress?: string,
+) => {
+  const accounts = getAccountsForNetwork(state, network);
+  const uniqueAccounts = new Set<string>();
+
+  return accounts
+    .filter(parentAddress ? (acc) => acc.address === parentAddress : () => true)
+    .map((account) => account.info?.stakeAccounts)
+    .flat()
+    .filter((a): a is StakeAccount => !!a)
+    .filter((a) => {
+      if (uniqueAccounts.has(a.address)) {
+        return false;
+      }
+
+      uniqueAccounts.add(a.address);
+
+      return true;
+    });
+};
+
 export const getStakedDataForNetwork = (
   state: StakingState,
   network: StakingNetworkId,
@@ -110,6 +135,33 @@ export const getClaimableRewardsForNetwork = (
       (acc, account) => getClaimableRewardsForAccount(acc, account),
       getEmptyCoin(denom.toUpperCase()),
     );
+};
+
+export type RewardMap = Record<string, Coin>;
+
+export const getRewardsByAddressForNetwork = (
+  state: StakingState,
+  network: StakingNetworkId,
+): null | RewardMap => {
+  const accounts = getAccountsForNetwork(state, network);
+
+  if (!accounts?.length) {
+    return null;
+  }
+
+  return accounts.filter(filterUniqueAddresses()).reduce((acc, account) => {
+    const { rewards } = account;
+
+    if (Array.isArray(rewards)) {
+      rewards.forEach((reward) => {
+        if (!reward.address) return;
+
+        acc[reward.address] = reward.coin;
+      });
+    }
+
+    return acc;
+  }, {} as RewardMap);
 };
 
 type UnbondingTokensResult = { coin: Coin; period: string } | null;

@@ -35,3 +35,10 @@
   flex-direction: column;
   gap: 12px;
 }
+
+.infoMessage {
+  color: $color-blue-1;
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+}

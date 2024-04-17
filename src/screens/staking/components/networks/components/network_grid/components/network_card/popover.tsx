@@ -27,18 +27,21 @@ import {
   getHasNetworkSupportedWallet,
   getNetworkTVL,
   getNetworkVotingPower,
+  getStakeAccountsForNetwork,
 } from "@src/screens/staking/lib/staking_sdk/context/selectors";
 import {
   networkKeyToNetworkId,
+  networksWithRewards,
+  networksWithStakeAccounts,
   networksWithStaking,
 } from "@src/screens/staking/lib/staking_sdk/core";
 import type {
   Account,
   StakingNetworkInfo,
 } from "@src/screens/staking/lib/staking_sdk/core";
-import { WalletId } from "@src/screens/staking/lib/staking_sdk/core/base";
 import { unsupportedLedgerNetworks } from "@src/screens/staking/lib/staking_sdk/core/cosmos";
 import { formatCoin } from "@src/screens/staking/lib/staking_sdk/formatters";
+import type { StakeAccount } from "@src/screens/staking/lib/staking_sdk/staking_client_types";
 import {
   accountHasDelegations,
   accountHasRewards,
@@ -71,6 +74,7 @@ const PopOver = ({
   const networkNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
   const stakingNetworkId = networkKeyToNetworkId[network.key as NetworkKey];
   const nodeRef = useRef<HTMLDivElement | null>(null);
+  const [isContentFocused, setIsContentFocused] = useState(false);
 
   const stakingRef = useStakingRef();
 
@@ -113,20 +117,50 @@ const PopOver = ({
     }
   }, [stakingNetworkId, stakingRef]);
 
-  const { accounts, claimableRewards } = useMemo(() => {
-    const wallet = WalletId.Keplr;
+  useEffect(() => {
+    const isMobile = window.innerWidth < 500;
 
+    if (isMobile) {
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, []);
+
+  const {
+    accounts,
+    claimableRewards,
+    inactiveStakeAccounts,
+    unstakeableStakeAccounts,
+  } = useMemo(() => {
     const result = {
       accounts: null as Account[] | null,
       claimableRewards: null as NetworkClaimableRewards | null,
+      inactiveStakeAccounts: null as null | StakeAccount[],
+      unstakeableStakeAccounts: null as null | StakeAccount[],
     };
 
-    if (!!stakingNetworkId && !!wallet) {
+    if (!!stakingNetworkId) {
       result.accounts = getAccountsForNetwork(stakingState, stakingNetworkId);
 
       if (!result.accounts?.length) {
         return result;
       }
+
+      const allStakeAccounts = getStakeAccountsForNetwork(
+        stakingRef.current.state,
+        stakingNetworkId,
+      );
+
+      result.unstakeableStakeAccounts = allStakeAccounts.filter(
+        (acc) => acc.status === "active" || acc.status === "activating",
+      );
+
+      result.inactiveStakeAccounts = allStakeAccounts.filter(
+        (acc) => acc.status === "inactive",
+      );
 
       result.claimableRewards =
         getClaimableRewardsForNetwork(
@@ -145,6 +179,26 @@ const PopOver = ({
   const accountsWithDelegations = accounts?.filter(accountHasDelegations);
   const accountsWithRewards = accounts?.filter(accountHasRewards);
 
+  const shouldDisplayRewardsButton =
+    hasInit &&
+    !!claimableRewards &&
+    !!accountsWithRewards?.length &&
+    stakingNetworkId &&
+    networksWithRewards.has(stakingNetworkId);
+
+  const shouldDisplayWithdrawUnstakeButton =
+    hasInit &&
+    !!inactiveStakeAccounts?.length &&
+    stakingNetworkId &&
+    !networksWithRewards.has(stakingNetworkId);
+
+  const shouldDisplayUnstakeButton =
+    hasInit &&
+    !!accountsWithDelegations?.length &&
+    stakingNetworkId &&
+    (!networksWithStakeAccounts.has(stakingNetworkId) ||
+      !!unstakeableStakeAccounts?.length);
+
   return (
     <div
       className={styles.popover}
@@ -160,8 +214,8 @@ const PopOver = ({
       />
       <div>{networkImage}</div>
       {network.name && <div className={styles.name}>{network.name}</div>}
-      <StakingDataBox network={network} />
-      {!!networkSummary && (
+      <StakingDataBox network={network} onFocusContent={setIsContentFocused} />
+      {!!networkSummary && !isContentFocused && (
         <div className={styles.dataBox}>
           {(() => {
             const votingPower = (() => {
@@ -324,7 +378,7 @@ const PopOver = ({
                 {t("popover.stake")}
               </HighlightButton>
             )}
-            {!!claimableRewards && !!accountsWithRewards?.length && (
+            {shouldDisplayRewardsButton && (
               <CtaButton
                 onClick={() => {
                   setSelectedAccount(
@@ -337,9 +391,61 @@ const PopOver = ({
                 {t("popover.claimRewards")}
               </CtaButton>
             )}
-            {!!accountsWithDelegations?.length && (
+            {shouldDisplayWithdrawUnstakeButton && (
               <EmptyButton
                 onClick={() => {
+                  const account = getAccountsForNetwork(
+                    stakingRef.current.state,
+                    stakingNetworkId,
+                  ).find(
+                    (acc) =>
+                      !!acc.info?.stakeAccounts?.find(
+                        (s) => s.address === inactiveStakeAccounts[0].address,
+                      ),
+                  );
+
+                  if (!account) return;
+
+                  setSelectedAccount(
+                    stakingRef.current,
+                    "withdraw_unstake",
+                    account,
+                  );
+                }}
+              >
+                {t("popover.withdrawUnstakeAccounts")}
+              </EmptyButton>
+            )}
+            {shouldDisplayUnstakeButton && (
+              <EmptyButton
+                onClick={() => {
+                  if (
+                    unstakeableStakeAccounts &&
+                    unstakeableStakeAccounts.length > 0
+                  ) {
+                    const [unstakeableStakeAccount] = unstakeableStakeAccounts;
+
+                    const account = getAccountsForNetwork(
+                      stakingRef.current.state,
+                      stakingNetworkId,
+                    ).find(
+                      (acc) =>
+                        !!acc.info?.stakeAccounts?.find(
+                          (s) => s.address === unstakeableStakeAccount.address,
+                        ),
+                    );
+
+                    if (account) {
+                      setSelectedAccount(
+                        stakingRef.current,
+                        "unstake",
+                        account,
+                      );
+                    }
+
+                    return;
+                  }
+
                   setSelectedAccount(
                     stakingRef.current,
                     "unstake",

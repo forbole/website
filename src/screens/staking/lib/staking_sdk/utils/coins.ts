@@ -17,14 +17,28 @@ export const networkToUnnormalisedDenom = {
   [StakingNetworkId.Kava]: "UKAVA",
   [StakingNetworkId.KavaTestnet]: "UKAVA",
   [StakingNetworkId.Osmosis]: "UOSMO",
+  [StakingNetworkId.Solana]: "LAMPORTS",
+  [StakingNetworkId.SolanaDevnet]: "LAMPORTS",
   [StakingNetworkId.Stargaze]: "USTARS",
   [StakingNetworkId.StargazeTestnet]: "USTARS",
 } as const satisfies Record<StakingNetworkId, string>;
 
 type DenomToNormalise = (typeof networkToUnnormalisedDenom)[StakingNetworkId];
 
+export const unnormalisedDenomToNetwork = Object.entries(
+  networkToUnnormalisedDenom,
+).reduce(
+  (acc, [k, v]) => {
+    acc[v] = k as StakingNetworkId;
+
+    return acc;
+  },
+  {} as Record<string, StakingNetworkId>,
+);
+
 const aExp = 18;
 const pExp = 12;
+const nExp = 9;
 const uExp = 6;
 const exp0 = 0;
 
@@ -33,8 +47,8 @@ const denomMap: Record<DenomToNormalise, [CoinDenom, number]> = {
   ADYM: [CoinDenom.DYM, aExp],
   AISLM: [CoinDenom.ISLM, aExp],
   // Because inj != INJ, this needs to keep the lower case, it is handled when
-  // normalising the coin
   inj: [CoinDenom.INJ, exp0],
+  LAMPORTS: [CoinDenom.SOL, nExp],
   PPICA: [CoinDenom.PICA, pExp],
   UAKT: [CoinDenom.AKT, uExp],
   UATOM: [CoinDenom.ATOM, uExp],
@@ -85,6 +99,14 @@ export const normaliseDenom = (denom: string): string =>
   normaliseCoin({ amount: "0", denom }).denom;
 
 export const getEmptyCoin = (denom = ""): Coin => ({ amount: "0", denom });
+
+export const getIsCoin = (val?: unknown): val is Coin =>
+  typeof val === "object" &&
+  val !== null &&
+  "amount" in val &&
+  "denom" in val &&
+  typeof val.amount === "string" &&
+  typeof val.denom === "string";
 
 export const sumCoins = (coinA?: Coin, coinB?: Coin): Coin =>
   [coinA, coinB]

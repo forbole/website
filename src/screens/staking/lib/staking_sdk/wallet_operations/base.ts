@@ -33,13 +33,25 @@ export enum UnstakeError {
 
 export type WalletErrorMap = {
   leapCreateWallet?: string;
+  phantomCreateWallet?: string;
 };
 
 export enum StakeError {
+  MinimumAmount = "MinimumAmount",
   None = "None",
   NotEnoughGas = "NotEnoughGas",
   Unknown = "Unknown",
 }
+
+export enum WithdrawUnstakedError {
+  None = "None",
+  Unknown = "Unknown",
+}
+
+export type WithdrawUnstakedOpts = {
+  account: Account;
+  stakeAccountAddress: string;
+};
 
 export type ClaimOpts = {
   account: Account;

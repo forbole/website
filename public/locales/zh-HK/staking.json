@@ -1,28 +1,31 @@
 {
+  "accounts": "帳戶",
   "addressCopied": "地址已複製",
-  "apy": "年報酬率",
+  "apy": "年化收益率",
   "benefits bullet 1": "賺取您的質押獎勵，它可以讓您透過貢獻來獲得保護網路的獎勵",
-  "benefits bullet 2": "提高網路安全性，質押的代幣持有者越多，網路就越安全",
+  "benefits bullet 2": "提高網路安全性，質押的通證持有者越多，網路就越安全",
   "benefits desc": "質押有兩個主要好處：",
   "benefits q": "質押有什麼好處？",
   "business_support": "商業合作",
   "calculate rewards desc": "委託 Forbole 質押原生通證來賺取你的收益。",
   "calculate rewards title": "<0><1>計算</1> 你的收益</0>",
-  "claim para 1": "沒有模型答案，因為這取決於太多因素，包括質押的代幣數量、特定網路中的交易費用等。",
+  "claim para 1": "沒有標準答案，因為這取決於太多因素，包括質押的通證數量、特定網路中的交易費用等。",
   "claim q": "我應該多久領取我的質押獎勵？",
   "claimableRewards": "可領取的獎勵",
   "claimRewards": {
-    "claimFrom": "索賠來自：",
+    "claimFrom": "從哪個錢包領取？",
     "selectNetwork": "選擇網路：",
+    "solanaInfo": "在 solana 上，您的獎勵將每 2-3 天自動分配到您的質押帳戶，這意味著您無需手動提取！",
     "title": "領取獎勵"
   },
-  "commission": "佣金率",
+  "commission": "佣金",
   "connectWallet": {
     "intro": "與 Forbole 進行質押並賺取獎勵！",
     "leapCreateWallet": "您需要在瀏覽器擴充功能中建立 Leap 錢包，然後重新載入此頁面。",
+    "phantomCreateWallet": "無法連接 Phantom，請確保錢包已建立並解鎖。",
     "success": {
       "subtitle": "歡迎 🎉",
-      "title": "註冊成功"
+      "title": "連接成功"
     },
     "title": "連接錢包"
   },
@@ -31,10 +34,10 @@
   "contact forbole title": "<0>立即與我們團隊商討<1>合作</1> ！</0>",
   "copied to clipboard": "複製到剪貼簿",
   "definitions": {
-    "apy": "年收益率（APY）顯示您可以透過質押獲得的代幣收益率。 它包括複利，幫助您衡量投資的潛在成長。",
+    "apy": "年化收益率（APY）顯示您可以透過質押獲得的通證收益率。 它包括複利，幫助您衡量投資的潛在成長。",
     "tvl": "鎖定總價值 (TVL) 是 Forbole 在該網絡上質押的所有資產的美元總價值。 它顯示了 Forbole 的質押規模和受歡迎程度。",
-    "unbonding_other": "質押後，您的代幣將被鎖定，直到 {{count}} 天解質期結束後才能轉移",
-    "votingPower": "「投票權」指 Forbole 在網路上質押的代幣總量。 質押的代幣數量越多，投票權越高。"
+    "unbonding_other": "質押後，您的通證將被鎖定，直到 {{count}} 天解質期結束後才能轉移",
+    "votingPower": "「投票權」指 Forbole 在網路上質押的通證總量。 質押的通證數量越多，投票權越高。"
   },
   "description": " 在 Forbole 质押，赚取收益，守护网络",
   "difference para 1": "對於託管，私鑰由第三方持有，而對於非託管，用戶對其資產負責並完全控制。",
@@ -44,7 +47,7 @@
   "drop desc": "有以下幾個可能的原因：",
   "drop q": "為什麼我的質押獎勵下降了？",
   "email": "電郵",
-  "estimated earning": "預計收入",
+  "estimated earning": "預估收益",
   "faq": "常見問題解答",
   "FVH title": "在 Forbole 質押，賺取收益，守護網路",
   "get in touch!": "聯絡 Forbole",
@@ -60,27 +63,28 @@
   "more": "更多的",
   "name": "姓名",
   "non-custodial": "非託管",
-  "non-custodial desc": "我們提供非託管質押服務，你可隨時提取你的資產",
+  "non-custodial desc": "我們提供非託管質押服務，你可隨時領取你的資產",
   "noResultsFound": "未找到結果",
   "notice": "<0>連接您的錢包即表示您同意<1>條款及條件</1>和<2>隱私權政策</2>。</0>",
-  "optionalInput": "選修的",
+  "optionalInput": "可選的",
   "others": "其他的",
   "our future": "我們的未來",
   "our future desc": "Forbole運行一個跨鏈生態系統，我們與時並進，永不停步，時刻留意最新的技術發展，確保應用最高級的安全標準於質押服務中，讓你高枕無憂。",
   "percentage": "%",
   "popover": {
     "claimRewards": "領取獎勵",
-    "networkDetails": "查看網絡詳細信息",
+    "networkDetails": "查看網絡詳情",
     "stake": "立即質押",
-    "unbondingTooltip": "所有代幣將於 {{period}} 解除綁定",
-    "unstake": "取消質押"
+    "unbondingTooltip": "所有通證將於 {{period}} 解除質押",
+    "unstake": "取消質押",
+    "withdrawUnstakeAccounts": "領取未質押的通證"
   },
   "receiving bullet 1": "指定驗證人不在活躍集中",
   "receiving bullet 2": "提名一名驗證者，佣金持有者為 100%。",
   "receiving q": "為什麼我沒有收到質押獎勵？",
   "reputable validator": "信譽良好的驗證人",
   "reputable validator desc": "始於 Cosmos Hub 創世驗證人的我們，已在短時期內快速拓展，現階段已在超過 40 個主網中運行驗證節點，保護重要的跨鏈橋，並積極參與多個測試網路。身為一家非託管式質押服務提供者，我們深得全球數千計質押者的信任。",
-  "reward para 1": "新鑄造的代幣和交易費用將作為獎勵給予質押代幣持有者。",
+  "reward para 1": "新鑄造的通證和交易費用將作為獎勵給予質押通證持有者。",
   "reward para 2": "<0>您可以計算您的質押獎勵 <1>這裡</1>。</0>",
   "reward para 3": "質押獎勵應在您的帳戶中可用之前「領取」。",
   "reward q": "什麼是質押獎勵以及獎勵多久發放一次？",
@@ -88,7 +92,7 @@
   "rewards desc": "可以透過質押通證賺取收益",
   "rewardsModal": {
     "button": "領取獎勵",
-    "gasFee": "汽油費",
+    "gasFee": "Gas",
     "success": {
       "sub": "恭喜！",
       "title": "您的獎勵已被領取！"
@@ -101,17 +105,36 @@
   "security focus desc": "我們的團隊由經驗豐富的工程師和開發者組成。我們運用行業領先的安全風險管理制度，並提供7x24小時的監控，確保我們的節點在各個網路中都能維持最優表現。",
   "select option": "選擇其中一項",
   "select token": "選擇通證",
-  "showMore": "展示更多",
+  "showMore": "顯示更多",
+  "solanaUnstakeIsReady": {
+    "subtitle": "立即提款",
+    "title": "您已解除質押的 $SOL 現已可領取"
+  },
+  "solflareCloseMsg": "如果您將 Ledger 與 Solflare 結合使用，請將其解鎖，打開 Solana 應用程序，然後啟用<0>必要的設定</0>來簽署交易。",
   "stake": "質押",
   "stake desc": "作為通證持有人，你可以安心在我們的基礎建設上委託質押原生通證",
-  "stake with us!": "與我們一起賭注！",
+  "stake with us!": "與我們一起質押！",
   "stake_now": "立即質押",
+  "stakeAccount": {
+    "status": {
+      "activating": "Activating",
+      "active": "Active",
+      "deactivating": "Deactivating",
+      "inactive": "Inactive"
+    },
+    "statusTooltip": {
+      "activating": "質押獎勵將於您的狀態由「Activating」變為「Active」後2-3天發放。",
+      "active": "您的通證已被質押。",
+      "deactivating": "2-3天內解除質押。",
+      "inactive": "您的通證已準備好領取。"
+    }
+  },
   "staked by forbole": "Forbole 質押",
   "staking": {
     "days_other": "{{count}}日"
   },
-  "staking para 1": "代幣持有者將其代幣質押給驗證者以保護網路的行為稱為質押。",
-  "staking para 2": "質押者將質押權質押給驗證者，但這並不意味著驗證者擁有或保管質押給他們的代幣。",
+  "staking para 1": "通證持有者將其通證質押給驗證者以保護網路的行為稱為質押。",
+  "staking para 2": "質押者將質押權質押給驗證者，但這並不意味著驗證者擁有或保管質押給他們的通證。",
   "staking q": "什麼是質押？",
   "stakingHero": {
     "claimRewards": "領取獎勵",
@@ -120,39 +143,52 @@
     "stake": "立即質押",
     "title": "與 Forbole <0>質押</0>",
     "totalRewards": "我的總獎勵",
-    "totalStake": "我的總股份"
+    "totalStake": "我的總質押"
   },
-  "stakingLabel": "在這裡賭注！",
+  "stakingLabel": "在這裡質押！",
   "stakingModal": {
     "amountError": {
       "invalid": "您必須輸入有效金額",
-      "noBalance": "您沒有任何代幣可供質押"
+      "noBalance": "您沒有任何通證可供質押",
+      "notEnough": "最低質押金金額為{{amount}}"
     },
-    "available": "可用的",
+    "available": "可用通證",
+    "complete": {
+      "desc1Solana": "質押獎勵將於您的質押狀態由<0>「Activating」</0>變為<0>「Active」</0>後的<0>2-3天</0>內發放。",
+      "desc2Solana": "您的獎勵將<0>每 2-3 天</0><0>自動分配</0>到您的質押帳戶。",
+      "intro": "你的第一次質押做得很好！",
+      "release": "獎勵發放",
+      "tips": "Solana 質押提示",
+      "tipsTooltip": "每條鏈都有其自己的抵押規則。這意味著Solana、Cosmos和Ethereum各有不同的規則。",
+      "titleComplete": "質押完成"
+    },
     "error": {
+      "notEnoughAmountError": {
+        "title": "您需要投入至少 {{amount}}"
+      },
       "notEnoughGas": {
-        "title": "Gas 限額太低，增加 Gas 完成交易"
+        "title": "Gas 限額太低，請增加 Gas 完成交易"
       }
     },
-    "memo": "備忘錄",
+    "memo": "Memo",
     "memoError": {
-      "tooLongMemo": "請輸入較小的備註"
+      "tooLongMemo": "請輸入較少的內容"
     },
     "networkSelect": "選擇網路：",
     "success": {
-      "sub": "感謝您對福博樂的支持！",
-      "title": "您的代幣已被質押！"
+      "sub": "感謝您對Forbole的支持！",
+      "title": "您的通證已被質押！"
     },
-    "title": "用 Forbole 進行樁樁",
-    "tokenAmount": "代幣數量",
-    "unbonding": "解押期",
-    "walletSellect": "股權來自："
+    "title": "與 Forbole 質押",
+    "tokenAmount": "通證數量",
+    "unbonding": "解質押期",
+    "walletSellect": "從哪個錢包質押？"
   },
   "stakingWidget": {
     "addWallet": "添加钱包",
     "connected_other": "連接錢包",
     "connectWallet": "連接錢包",
-    "disconnectWallet": "斷開"
+    "disconnectWallet": "斷開錢包連接"
   },
   "string": " ",
   "success": "郵件已發送！",
@@ -161,50 +197,70 @@
   "token amount": "通證數量",
   "token amount placeholder": "多少通證？",
   "tooltip": {
-    "poolAPY": "池的年收益率 (APY) 顯示您可以從質押池中獲得的代幣收益率。 它可以幫助您評估投資的潛在成長。",
-    "poolMevAPY": "MEV APY 池將最大可提取價值 (MEV) 與您的質押回報相結合。 它代表您從質押和高級交易策略中獲得的潛在代幣收入。",
-    "soloAvgAPY": "單獨平均 APY 顯示您從單獨抵押貸款中獲得的預期代幣收益。",
-    "soloMevAPY": "最大可提取價值（MEV）是指以太坊單獨質押中專門交易策略帶來的額外收益。 它意味著在常規質押獎勵之外可提取的額外價值。"
+    "poolAPY": "POOL APY 顯示您可以從質押池中獲得的通證收益率。 它可以幫助您評估投資的潛在成長。",
+    "poolMevAPY": "POOL MEV APY 池將最大可領取價值 (MEV) 與您的質押回報相結合。 它代表您從質押和高級交易策略中獲得的潛在通證收入。",
+    "soloAvgAPY": "SOLO AVG APY 顯示您從單獨質押貸款中獲得的預期通證收益。",
+    "soloMevAPY": "SOLO MEV APY是指以太坊單獨質押中專門交易策略帶來的額外收益。 它意味著在常規質押獎勵之外可提取的額外價值。"
   },
   "totalStaked": "總質押",
   "trusted provider": "選擇值得信賴的營運商",
   "trusted provider desc": "我們已經建立了完善的驗證人基礎設施，全天候監控區塊鏈網路安全",
-  "unbonding period": "解綁期",
-  "unbondingTokens": "解綁代幣",
-  "unstaking para 1": "將您質押的代幣從一個驗證器轉移到另一個驗證器的操作稱為重新質押您的代幣。",
+  "unbonding period": "解質押期",
+  "unbondingTokens": "解除質押中的通證",
+  "unstakedTokens": "已解除質押的通證",
+  "unstaking para 1": "將您質押的通證從一個驗證器轉移到另一個驗證器的操作稱為重新質押您的通證。",
   "unstaking para 2": "因此，如果您的計劃是繼續質押，並且您只是希望切換到不同的驗證器，請使用重新質押來繼續累積您的質押獎勵和空投。",
   "unstaking para 3": "第一次重質押後，您需要等待一定時間（對應解質押期）才能進行下一次重質押交易。",
   "unstaking q": "什麼是解除質押和重新質押？",
   "unstakingModal": {
     "amount": {
-      "label": "取消質押代幣數量",
+      "label": "取消質押通證數量",
+      "labelBase": "數量",
       "placeholder": "1,000"
     },
     "available": "質押",
     "button": "取消質押",
+    "complete": {
+      "desc1Solana": "您的通證目前正處於解質押期，將於<0>{{unstakeDate}}</0>成功解質押期。",
+      "desc2Solana": "請記得在取消質押期結束且狀態更改為「已取消質押」後領取您的通證。",
+      "intro": "您的通證目前正處於質押期",
+      "introSub": "希望很快再見到你。",
+      "titleComplete": "解質押成功"
+    },
     "info2T": "在此期間，您<1>不會收到</1>質押獎勵。",
     "info3": "但是，如果您改變主意，可以隨時取消該過程。",
     "info4": "要在此期限後繼續質押，您需要再次質押。",
     "infoTitle": "你確定嗎？ 在繼續之前，請注意：",
     "memo": {
-      "label": "備忘錄",
-      "placeholder": "選修的"
+      "label": "Memo",
+      "placeholder": "可選的"
     },
     "success": {
       "subtitle": "希望很快再見到你。",
-      "title": "您的代幣目前正處於解押期，將於{{date}}成功解押。"
+      "title": "您的通證目前正處於解質押期，將於{{date}}成功解質押。"
     },
     "title": "取消質押",
-    "unlockedDateInfo": "您的代幣將會被鎖定到<1>{{date}}（{{days}}天後）</1>。",
-    "unstakeFrom": "解除質押："
+    "unlockedDateInfo": "您的通證將會被鎖定到<1>{{date}}（{{days}}天後）</1>。",
+    "unstakeFrom": "從哪個錢包解除質押？"
   },
   "votingPower": "投票權",
   "wallets": {
     "keplr": "Keplr",
-    "leap": "Leap"
+    "leap": "Leap",
+    "phantom": "Phantom",
+    "solflare": "Solflare"
   },
   "why forbole title": "<0>Forbole <1>堅實基建，硅步千里</1></0>",
   "why forbole?": "為何選擇 Forbole？",
+  "withdrawUnstaked": {
+    "button": "領取",
+    "fromWallet": "使用錢包：",
+    "selectAcc": "選擇帳戶：",
+    "success": {
+      "title": "您已成功領取已解除質押的通證"
+    },
+    "title": "從已解除質押的帳戶提取通證"
+  },
   "your email": "你的電郵",
   "your name": "你的名字"
 }
