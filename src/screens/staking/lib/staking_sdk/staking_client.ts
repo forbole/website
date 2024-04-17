@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
 
 import type { StakingNetworkId } from "./core/base";
-import { cosmosStakingNetworks } from "./core/cosmos";
+import { solanaNetworks } from "./core/solana";
 import type {
   AccountDetailResponse,
   ClaimableRewardsResponse,
@@ -32,11 +32,11 @@ const fetchJson = <A = any>(uri: string, opts?: Options): Promise<A> =>
 const getRewardsDivisor = (denom: string) => {
   const network = unnormalisedDenomToNetwork[denom.toUpperCase()];
 
-  if (cosmosStakingNetworks.has(network as StakingNetworkId)) {
-    return new BigNumber(10).pow(18);
+  if (solanaNetworks.has(network as StakingNetworkId)) {
+    return 1;
   }
 
-  return 1;
+  return new BigNumber(10).pow(18);
 };
 
 const parseStakingRewards = async (res: ClaimableRewardsResponse) =>
