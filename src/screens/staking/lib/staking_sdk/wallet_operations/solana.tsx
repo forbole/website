@@ -297,23 +297,29 @@ export const stakeAmountSolana = async ({
 
       const amountToStake = amountBN.times(LAMPORTS_PER_SOL).toNumber();
 
-      const newTx = StakeProgram.createAccount({
+      const createAccountTx = StakeProgram.createAccount({
         authorized: new Authorized(accountKey, accountKey),
         fromPubkey: accountKey,
         lamports: amountToStake,
         stakePubkey: stakeKeyPair.publicKey,
       });
 
-      newTx.recentBlockhash = (info as any).blockhash;
-      newTx.feePayer = accountKey;
+      createAccountTx.recentBlockhash = (info as any).blockhash;
+      createAccountTx.feePayer = accountKey;
 
-      newTx.sign(stakeKeyPair);
+      // This specific transaction has to be signed also by the stake account
+      // key pair (and also by the wallet) to be able to broadcast it by the
+      // wallets. Because the wallet account is the authorized pub key, the
+      // other transactions can be signed just by the wallet.
+      createAccountTx.sign(stakeKeyPair);
 
-      const stakeAccountResult = await wallet.signAndSendTransaction(newTx);
+      const stakeAccountResult =
+        await wallet.signAndSendTransaction(createAccountTx);
 
       // eslint-disable-next-line no-console
       console.log("debug: solana.ts: result", stakeAccountResult);
 
+      // Wait some time for the nodes to be able to find the account
       await new Promise((resolve) => setTimeout(resolve, 10000));
 
       const newInfo = await stakingClient.stake(
@@ -322,18 +328,17 @@ export const stakeAmountSolana = async ({
         amount,
       );
 
-      const newTx2 = StakeProgram.delegate({
+      const activateStakeTx = StakeProgram.delegate({
         authorizedPubkey: accountKey,
         stakePubkey: stakeKeyPair.publicKey,
         votePubkey: new PublicKey(validatorAddress),
       });
 
-      newTx2.recentBlockhash = (newInfo as any).blockhash;
-      newTx2.feePayer = accountKey;
+      activateStakeTx.recentBlockhash = (newInfo as any).blockhash;
+      activateStakeTx.feePayer = accountKey;
 
-      // newTx2.sign(stakeKeyPair);
-
-      const stakeAccountResult2 = await wallet.signAndSendTransaction(newTx2);
+      const stakeAccountResult2 =
+        await wallet.signAndSendTransaction(activateStakeTx);
 
       // eslint-disable-next-line no-console
       console.log("debug: solana.ts: result", stakeAccountResult2);
