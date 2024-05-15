@@ -685,7 +685,6 @@ const solanaTestNetworkKeys = ENABLE_TESTNETS
 
 export const cosmosNetworkKeys = [
   "andromeda",
-  "agoric",
   "akash",
   "archway",
   "axelar",
@@ -704,7 +703,6 @@ export const cosmosNetworkKeys = [
   "likecoin",
   "neutron",
   "nois",
-  "nolus",
   "nomic",
   "nym",
   "osmosis",
